@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+*.egg
+build/
+dist/
+.Python
+*.so
+
+# Unit test / coverage
+.coverage
+coverage.xml
+htmlcov/
+.nox/
+.tox/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Logs
+*.log
+
+# Local databases
+*.sqlite3
+*.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+venv/
+.venv/
+env/
+.envrc
+
+# Secrets / keys
+*.pem
+*.key
+*.p12
+*.pfx
+SETUP_HISTORY.md
+
+# Django
+staticfiles/
+media/
+
+# Celery / scheduler
+celerybeat-schedule
+celerybeat.pid
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
