@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 1 — Введение в веб-разработку</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #1e293b; background: #f8fafc; padding: 40px 20px; }
+        .container { max-width: 860px; margin: 0 auto; }
+        h1 { font-size: 2.2rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 12px; margin-bottom: 8px; }
+        h2 { font-size: 1.5rem; color: #7e22ce; margin: 48px 0 16px; padding: 10px 16px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 8px 8px 0; }
+        h3 { font-size: 1.25rem; color: #1e3a5f; margin: 28px 0 12px; }
+        .subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 24px; }
+        p { margin: 10px 0; }
+        .highlight { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .important { background: #fef2f2; border-left: 4px solid #ef4444; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy { background: #fff7ed; border-left: 4px solid #f97316; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy::before { content: '🎨 Аналогия'; display: block; font-weight: 700; color: #c2410c; margin-bottom: 6px; }
+        .fun-fact { background: #fdf4ff; border-left: 4px solid #a855f7; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .fun-fact::before { content: '💡 Интересный факт'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 6px; }
+        .try-it { background: #ecfdf5; border: 2px solid #6ee7b7; padding: 16px 20px; margin: 16px 0; border-radius: 10px; }
+        .try-it::before { content: '🔧 Попробуй сам'; display: block; font-weight: 700; color: #059669; margin-bottom: 6px; }
+        .result-box { background: #fff; border: 2px solid #e2e8f0; border-radius: 10px; padding: 20px; margin: 16px 0; }
+        .result-box::before { content: '👁️ Результат в браузере:'; display: block; font-weight: 700; color: #475569; margin-bottom: 10px; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; margin: 14px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        .diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 20px; border-radius: 10px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.5; margin: 16px 0; overflow-x: auto; font-size: 0.88rem; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { padding: 10px 14px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 10px 0 10px 24px; }
+        li { margin: 5px 0; }
+        strong { color: #0f172a; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 40px 0; }
+        .summary { background: #faf5ff; border: 2px solid #d8b4fe; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .summary::before { content: '📋 Итоги раздела'; display: block; font-weight: 700; color: #7e22ce; font-size: 1.1rem; margin-bottom: 10px; }
+        .quiz { background: #fef2f2; border: 2px solid #fca5a5; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .quiz::before { content: '✅ Проверь себя'; display: block; font-weight: 700; color: #dc2626; font-size: 1.1rem; margin-bottom: 10px; }
+        .toc { background: #f1f5f9; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+        .toc-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: #0f172a; }
+        .toc ol { margin: 0 0 0 20px; }
+        .toc li { margin: 6px 0; }
+        .toc a { color: #7e22ce; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+        .compare > div { padding: 16px; border-radius: 8px; }
+        .compare .wrong { background: #fef2f2; border: 2px solid #fca5a5; }
+        .compare .right { background: #f0fdf4; border: 2px solid #86efac; }
+        .compare .label { font-weight: 700; margin-bottom: 8px; }
+        .mistake { background: #fff8f1; border: 2px solid #fdba74; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .mistake::before { content: '🚫 Частая ошибка новичков'; display: block; font-weight: 700; color: #ea580c; font-size: 1.05rem; margin-bottom: 10px; }
+        .pro-tip { background: #f0f9ff; border: 2px solid #7dd3fc; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .pro-tip::before { content: '🏆 Совет профессионала'; display: block; font-weight: 700; color: #0284c7; font-size: 1.05rem; margin-bottom: 10px; }
+        .why { background: #fefce8; border-left: 4px solid #eab308; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .why::before { content: '🤔 Зачем это нужно?'; display: block; font-weight: 700; color: #a16207; margin-bottom: 6px; }
+        .real-world { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .real-world::before { content: '🌍 В реальных проектах'; display: block; font-weight: 700; color: #0f766e; margin-bottom: 6px; }
+        .timeline { border-left: 3px solid #a855f7; margin: 20px 0 20px 12px; padding-left: 24px; }
+        .timeline-item { position: relative; margin-bottom: 20px; }
+        .timeline-item::before { content: ''; position: absolute; left: -31px; top: 6px; width: 12px; height: 12px; background: #a855f7; border-radius: 50%; }
+        .timeline-year { font-weight: 700; color: #7e22ce; font-size: 1.05rem; }
+        .person-card { display: flex; gap: 20px; align-items: flex-start; background: #f1f5f9; padding: 20px; border-radius: 12px; margin: 16px 0; }
+        .person-card .info { flex: 1; }
+        .person-card .name { font-size: 1.2rem; font-weight: 700; color: #0f172a; }
+        .person-card .role { color: #7e22ce; font-weight: 600; font-size: 0.95rem; }
+        @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 1: Введение в веб-разработку</span><span style="color:#cbd5e1;">|</span><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128104;&#8205;&#127979; Лекция</span><a href="student.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127891; Конспект</a><a href="tasks.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128203; Задания</a></div>
+<div class="container">
+
+    <h1>Занятие 1: Введение в веб-разработку</h1>
+    <p class="subtitle">Как работает интернет, из чего состоят сайты и кто такие веб-разработчики</p>
+
+    <div class="why">
+        <p>Это ваше <strong>первое занятие</strong> — и оно самое важное. Сегодня вы поймёте общую картину: откуда взялся интернет, как работают сайты, какие технологии за ними стоят. Без этого понимания вы будете писать код «вслепую».</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Объяснить, как работает интернет (клиент-сервер, URL, DNS)</li>
+            <li>Понимать роли HTML, CSS и JavaScript</li>
+            <li>Использовать VS Code и DevTools</li>
+            <li>Создать свою первую HTML-страницу</li>
+        </ul>
+    </div>
+
+    <div class="toc">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#history">Краткая история интернета и веба</a></li>
+            <li><a href="#how-internet-works">Как работает интернет</a></li>
+            <li><a href="#web-page">Из чего состоит веб-страница</a></li>
+            <li><a href="#html">HTML — структура страницы</a></li>
+            <li><a href="#css">CSS — внешний вид</a></li>
+            <li><a href="#js">JavaScript — интерактивность</a></li>
+            <li><a href="#browsers">Браузеры и DevTools</a></li>
+            <li><a href="#webdev">Кто такие веб-разработчики</a></li>
+            <li><a href="#vscode">VS Code — наш редактор кода</a></li>
+            <li><a href="#first-page">Твоя первая HTML-страница</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== ИСТОРИЯ ===== -->
+    <h2 id="history">1. Краткая история интернета и веба</h2>
+
+    <p>Прежде чем создавать сайты, полезно узнать, как появился интернет и веб — это поможет лучше понять, почему всё устроено именно так.</p>
+
+    <h3>От военной сети до World Wide Web</h3>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-year">1969 — ARPANET</div>
+            <p>Всё началось с военного проекта в США. Министерство обороны создало сеть <strong>ARPANET</strong> — она соединила 4 университетских компьютера. Цель была простая: если один компьютер выйдет из строя, остальные продолжат работать. Это была первая компьютерная сеть в истории.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-year">1983 — Интернет</div>
+            <p>Был создан протокол <strong>TCP/IP</strong> — единый «язык», который позволил разным сетям общаться друг с другом. Именно эту дату считают рождением интернета. Но интернет тогда выглядел совсем не так, как сейчас — никаких сайтов, только текст в терминале.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-year">1989 — Тим Бернерс-Ли изобретает веб</div>
+            <p>Британский учёный <strong>Тим Бернерс-Ли</strong>, работавший в CERN (Европейская организация по ядерным исследованиям), предложил систему, которая изменила мир. Он придумал три вещи: <strong>HTML</strong> (язык для создания страниц), <strong>URL</strong> (адреса страниц) и <strong>HTTP</strong> (протокол для передачи страниц).</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-year">1991 — Первый в мире сайт</div>
+            <p>Тим Бернерс-Ли запустил первый в мире веб-сайт. Он выглядел как простая текстовая страница с ссылками — никаких картинок, цветов или анимаций. Но это было начало эпохи, в которой мы живём сегодня.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-year">1993 — Браузер Mosaic</div>
+            <p>Появился первый браузер с графическим интерфейсом — <strong>Mosaic</strong>. Впервые можно было видеть картинки рядом с текстом! Это сделало веб доступным для обычных людей, а не только для учёных.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-year">1996 — CSS</div>
+            <p>Появился <strong>CSS</strong> — язык для оформления веб-страниц. До CSS весь дизайн делался прямо внутри HTML, что было неудобно. CSS позволил отделить содержимое от внешнего вида.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-year">1995–2000 — Бум интернета</div>
+            <p>Появились Yahoo, Amazon, Google, eBay. Каждый хотел быть в интернете. Это время называют «пузырём доткомов» — тысячи компаний создавали сайты, и веб-разработчики стали невероятно востребованы.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-year">2004–2010 — Web 2.0</div>
+            <p>Появились Facebook, YouTube, Twitter, Instagram. Веб стал интерактивным — пользователи начали создавать контент сами. JavaScript стал важнейшей технологией.</p>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-year">Сегодня</div>
+            <p>В интернете более <strong>1.9 миллиарда сайтов</strong>. Мы смотрим видео, общаемся, учимся, покупаем, работаем — всё через веб. А основа всего этого по-прежнему те же три технологии: <strong>HTML, CSS и JavaScript</strong>.</p>
+        </div>
+    </div>
+
+    <div class="person-card">
+        <div class="info">
+            <div class="name">Сэр Тим Бернерс-Ли</div>
+            <div class="role">Изобретатель World Wide Web</div>
+            <p style="margin-top: 8px;">Британский учёный, который в 1989 году придумал HTML, URL и HTTP — три кита, на которых стоит весь современный веб. Он мог бы стать миллиардером, но сделал свои изобретения бесплатными для всех. Благодаря этому решению интернет стал открытым и доступным для каждого человека на планете. В 2004 году он был посвящён в рыцари Королевой Великобритании.</p>
+        </div>
+    </div>
+
+    <div class="fun-fact">
+        Первый в мире сайт всё ещё работает! Его можно открыть по адресу <strong>info.cern.ch</strong>. Это простая текстовая страница — ни дизайна, ни картинок. Сравните его с любым современным сайтом, и вы увидите, какой путь прошёл веб за 30+ лет.
+    </div>
+
+    <div class="real-world">
+        <p>Когда вы на собеседовании расскажете историю веба — это произведёт впечатление. Большинство новичков не знают, откуда взялись технологии, которые они используют. А понимание контекста показывает глубину вашего мышления.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== КАК РАБОТАЕТ ИНТЕРНЕТ ===== -->
+    <h2 id="how-internet-works">2. Как работает интернет</h2>
+
+    <p>Когда вы вводите адрес сайта в браузере и нажимаете Enter — что происходит? За долю секунды запускается целая цепочка событий.</p>
+
+    <h3>Клиент и сервер</h3>
+
+    <p>Интернет работает по принципу <strong>«клиент — сервер»</strong>:</p>
+
+    <ul>
+        <li><strong>Клиент</strong> — это ваш компьютер и браузер (Chrome, Firefox, Edge). Он отправляет запрос: «Покажи мне этот сайт!»</li>
+        <li><strong>Сервер</strong> — это мощный компьютер, который хранит файлы сайта. Он получает запрос и отправляет нужные файлы обратно.</li>
+    </ul>
+
+    <div class="diagram">
+     ВЫ (клиент)                              СЕРВЕР
+  ┌──────────────┐                      ┌──────────────┐
+  │   Браузер    │ ── 1. Запрос ──────► │  Компьютер   │
+  │   (Chrome)   │                      │  с файлами   │
+  │              │ ◄── 2. Ответ ─────── │  сайта       │
+  └──────────────┘    (HTML, CSS, JS)   └──────────────┘</div>
+
+    <div class="analogy">
+        <p><strong>Ресторан:</strong> Вы (клиент) — посетитель ресторана. Вы делаете заказ (запрос). Официант (интернет) несёт заказ на кухню (сервер). Кухня готовит блюдо (находит файлы) и официант приносит его вам (ответ).</p>
+    </div>
+
+    <div class="analogy">
+        <p><strong>Библиотека:</strong> Вы приходите в библиотеку (интернет) и просите книгу (запрос). Библиотекарь (DNS) находит нужную полку (IP-адрес), достаёт книгу (файлы сайта) и даёт вам почитать (ответ). Вы не знаете, на какой полке она лежала — вам просто нужно было название.</p>
+    </div>
+
+    <h3>URL — адрес сайта</h3>
+
+    <p>Каждый сайт имеет свой уникальный адрес — <strong>URL</strong> (Uniform Resource Locator). Давайте разберём, из чего он состоит:</p>
+
+    <div class="diagram">
+  https://www.google.com/search?q=html
+
+  https://     — протокол (безопасное соединение)
+  www.         — поддомен (необязательная часть)
+  google.com   — доменное имя (имя сайта)
+  /search      — путь (конкретная страница)
+  ?q=html      — параметры (данные запроса)</div>
+
+    <p><strong>Доменное имя</strong> — это человеко-понятное имя сайта. На самом деле компьютеры общаются через числовые IP-адреса (например, 142.250.74.206), но нам удобнее запоминать google.com. Специальная система <strong>DNS</strong> (Domain Name System) переводит доменные имена в IP-адреса — как телефонная книга.</p>
+
+    <h3>HTTP и HTTPS</h3>
+
+    <p><strong>HTTP</strong> (HyperText Transfer Protocol) — это протокол (набор правил), по которому общаются клиент и сервер. <strong>HTTPS</strong> — то же самое, но с шифрованием.</p>
+
+    <div class="analogy">
+        <p><strong>Почта:</strong> HTTP — это открытка, которую может прочитать любой почтальон. HTTPS — письмо в запечатанном конверте, которое прочитает только получатель. Когда вы видите замочек 🔒 в адресной строке — ваши данные защищены.</p>
+    </div>
+
+    <div class="mistake">
+        <p><strong>«Интернет и веб — это одно и то же»</strong></p>
+        <p>Нет! <strong>Интернет</strong> — это глобальная сеть компьютеров (инфраструктура). <strong>Веб</strong> (World Wide Web) — это лишь одна из служб, работающих поверх интернета. Email, мессенджеры, онлайн-игры — тоже используют интернет, но они не являются «вебом». Веб — это именно сайты, доступные через браузер.</p>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li><strong>Клиент</strong> — ваш браузер, отправляет запросы</li>
+            <li><strong>Сервер</strong> — хранит сайт, отвечает на запросы</li>
+            <li><strong>URL</strong> — адрес сайта (https://google.com)</li>
+            <li><strong>DNS</strong> — переводит доменное имя в IP-адрес</li>
+            <li><strong>HTTPS</strong> — безопасный протокол с шифрованием</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p>Мысленно ответьте:</p>
+        <ol>
+            <li>Ваш браузер — это клиент или сервер? <em>(Клиент — он отправляет запросы)</em></li>
+            <li>Что делает DNS? <em>(Переводит доменное имя в IP-адрес, как телефонная книга)</em></li>
+            <li>Чем HTTP отличается от HTTPS? <em>(HTTPS шифрует данные — замочек в браузере)</em></li>
+            <li>Что произойдёт, если набрать в браузере google.com? Опишите цепочку. <em>(Браузер → DNS → IP-адрес → запрос серверу → сервер отдаёт файлы → браузер рисует страницу)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== ИЗ ЧЕГО СОСТОИТ ВЕБ-СТРАНИЦА ===== -->
+    <h2 id="web-page">3. Из чего состоит веб-страница</h2>
+
+    <p>Когда сервер отвечает на запрос, он отправляет браузеру файлы. Любая веб-страница состоит из трёх технологий:</p>
+
+    <div class="diagram">
+  📄 HTML  — структура и содержимое  (скелет)
+  🎨 CSS   — внешний вид и стили    (одежда)
+  ⚡ JS    — интерактивность        (движения)
+
+  ┌─────────────────────────────────────────┐
+  │            Веб-страница                 │
+  │                                         │
+  │     HTML   +   CSS   +   JavaScript     │
+  │    (что)    (как это    (что             │
+  │             выглядит)   происходит)      │
+  └─────────────────────────────────────────┘</div>
+
+    <p>Любой сайт, который вы видите — Facebook, YouTube, TikTok, Google — всё это HTML + CSS + JavaScript. Даже самый красивый и сложный сайт построен на этих трёх технологиях.</p>
+
+    <div class="analogy">
+        <p><strong>Человек:</strong></p>
+        <ul>
+            <li><strong>HTML</strong> = скелет и органы (структура тела)</li>
+            <li><strong>CSS</strong> = одежда, причёска, макияж (внешний вид)</li>
+            <li><strong>JavaScript</strong> = мышцы и нервная система (движения и реакции)</li>
+        </ul>
+        <p>Без скелета — нет тела. Без одежды — некрасиво. Без мышц — не двигается.</p>
+    </div>
+
+    <div class="try-it">
+        <p><strong>Эксперимент: отключи CSS на любом сайте!</strong></p>
+        <ol>
+            <li>Откройте любой красивый сайт (например, apple.com)</li>
+            <li>Нажмите <strong>F12</strong> — откроются DevTools</li>
+            <li>Перейдите на вкладку <strong>Console</strong></li>
+            <li>Скопируйте и вставьте эту команду:</li>
+        </ol>
+<pre><code>document.querySelectorAll('style, link[rel="stylesheet"]').forEach(el => el.remove())</code></pre>
+        <p>Нажмите Enter и посмотрите, что произошло! Без CSS сайт превращается в простой текст — как в 90-х. Вся красота — это CSS. А HTML — это содержимое, которое осталось. Чтобы вернуть всё назад, просто обновите страницу (F5).</p>
+    </div>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:12px;">Посмотрите наглядно — три роли:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+            <div style="padding:16px;border:2px solid #3b82f6;border-radius:10px;text-align:center;background:#eff6ff;">
+                <div style="font-size:2rem;margin-bottom:6px;">📄</div>
+                <div style="font-weight:700;color:#1d4ed8;margin-bottom:4px;">HTML</div>
+                <div style="font-size:0.85rem;">Заголовок, текст, картинка, кнопка — <strong>что</strong> на странице</div>
+            </div>
+            <div style="padding:16px;border:2px solid #a855f7;border-radius:10px;text-align:center;background:#faf5ff;">
+                <div style="font-size:2rem;margin-bottom:6px;">🎨</div>
+                <div style="font-weight:700;color:#7c3aed;margin-bottom:4px;">CSS</div>
+                <div style="font-size:0.85rem;">Цвета, шрифты, отступы, тени — <strong>как</strong> это выглядит</div>
+            </div>
+            <div style="padding:16px;border:2px solid #f59e0b;border-radius:10px;text-align:center;background:#fffbeb;">
+                <div style="font-size:2rem;margin-bottom:6px;">⚡</div>
+                <div style="font-weight:700;color:#b45309;margin-bottom:4px;">JavaScript</div>
+                <div style="font-size:0.85rem;">Клики, анимации, загрузка данных — <strong>что происходит</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li><strong>HTML</strong> — структура и содержимое (скелет)</li>
+            <li><strong>CSS</strong> — внешний вид и стили (одежда)</li>
+            <li><strong>JavaScript</strong> — интерактивность (движения)</li>
+            <li>Любой сайт в мире (Google, YouTube, TikTok) построен на этих 3 технологиях</li>
+            <li>CSS можно отключить в DevTools — и увидеть «голый» HTML</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ===== HTML ===== -->
+    <h2 id="html">4. HTML — структура страницы</h2>
+
+    <p><strong>HTML</strong> расшифровывается как <strong>HyperText Markup Language</strong> — язык гипертекстовой разметки.</p>
+
+    <div class="important">
+        <strong>HTML — это НЕ язык программирования!</strong> Это язык <em>разметки</em>. Он не может складывать числа или принимать решения. HTML просто говорит браузеру: «Вот заголовок, вот параграф, вот картинка, вот ссылка».
+    </div>
+
+    <p>HTML-код состоит из <strong>тегов</strong> — специальных слов в угловых скобках. Большинство тегов работают в парах: открывающий и закрывающий:</p>
+
+<pre><code>&lt;h1&gt;Это заголовок&lt;/h1&gt;
+&lt;p&gt;Это параграф текста.&lt;/p&gt;</code></pre>
+
+    <p>Тег <code>&lt;h1&gt;</code> открывает заголовок, а <code>&lt;/h1&gt;</code> (с косой чертой) — закрывает. Всё, что между ними — содержимое тега.</p>
+
+    <p>Вот пример простой HTML-страницы:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Мой первый сайт&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Привет, мир!&lt;/h1&gt;
+    &lt;p&gt;Это мой первый сайт.&lt;/p&gt;
+    &lt;img src="photo.jpg" alt="Фото"&gt;
+    &lt;a href="https://google.com"&gt;Перейти в Google&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <p>Обратите внимание на несколько вещей:</p>
+
+    <ul>
+        <li>Теги можно <strong>вкладывать</strong> друг в друга — как матрёшки</li>
+        <li>Некоторые теги не имеют закрывающей части (например, <code>&lt;img&gt;</code> и <code>&lt;br&gt;</code>)</li>
+        <li>Теги могут иметь <strong>атрибуты</strong> — дополнительную информацию (например, <code>src="photo.jpg"</code>)</li>
+    </ul>
+
+    <h3>Основные HTML-теги</h3>
+
+    <table>
+        <tr><th>Тег</th><th>Что делает</th><th>Пример использования</th></tr>
+        <tr><td><code>&lt;h1&gt; — &lt;h6&gt;</code></td><td>Заголовки (от главного до мелкого)</td><td>Название страницы, заголовки разделов</td></tr>
+        <tr><td><code>&lt;p&gt;</code></td><td>Параграф текста</td><td>Обычный текст на странице</td></tr>
+        <tr><td><code>&lt;a&gt;</code></td><td>Ссылка</td><td>Переход на другую страницу</td></tr>
+        <tr><td><code>&lt;img&gt;</code></td><td>Изображение</td><td>Фото, иконка, логотип</td></tr>
+        <tr><td><code>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</code></td><td>Списки</td><td>Меню, перечисление пунктов</td></tr>
+        <tr><td><code>&lt;button&gt;</code></td><td>Кнопка</td><td>Кнопка «Отправить», «Купить»</td></tr>
+        <tr><td><code>&lt;div&gt;</code></td><td>Блок-контейнер</td><td>Группировка элементов</td></tr>
+    </table>
+
+    <div class="analogy">
+        <p><strong>Строительство дома:</strong> HTML — это чертёж. Он говорит: здесь стена, здесь дверь, здесь окно. Но чертёж не говорит, какого цвета стены и какие обои клеить — это уже работа CSS.</p>
+    </div>
+
+    <div class="mistake">
+        <p><strong>«Буду учить только CSS, HTML скучный»</strong></p>
+        <p>CSS без HTML — как одежда без тела. Вы не можете стилизовать то, чего не существует. Сначала вы создаёте структуру (HTML), потом её украшаете (CSS). Попытка учить CSS без понимания HTML — гарантированный путь к путанице.</p>
+    </div>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:10px;">Вот как браузер отображает простой HTML-код:</p>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;">
+            <h1 style="font-size:2rem;font-weight:700;margin:0 0 10px;">Привет, мир!</h1>
+            <p style="margin:0 0 10px;">Это мой первый сайт. Я учусь создавать веб-страницы.</p>
+            <h2 style="font-size:1.5rem;font-weight:700;margin:0 0 8px;">Мои увлечения</h2>
+            <ul style="margin:0 0 10px 20px;">
+                <li>Программирование</li>
+                <li>Музыка</li>
+                <li>Спорт</li>
+            </ul>
+            <a href="#" style="color:#2563eb;text-decoration:underline;">Перейти в Google</a>
+        </div>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;">Это чистый HTML без CSS. Браузер добавляет базовые стили: чёрный текст, подчёркнутые синие ссылки, отступы у списков. Выглядит просто, но <strong>вся информация на месте</strong>.</p>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li>HTML — язык <strong>разметки</strong>, не программирования</li>
+            <li>Теги работают в парах: <code>&lt;h1&gt;...&lt;/h1&gt;</code></li>
+            <li>Основные теги: <code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;ul&gt;</code>/<code>&lt;ol&gt;</code>/<code>&lt;li&gt;</code>, <code>&lt;div&gt;</code></li>
+            <li>Теги могут иметь <strong>атрибуты</strong>: <code>src="..."</code>, <code>href="..."</code></li>
+            <li>Теги вкладываются друг в друга — как матрёшки</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p>Мысленно ответьте:</p>
+        <ol>
+            <li>HTML — это язык программирования? <em>(Нет! Это язык разметки)</em></li>
+            <li>Какой тег создаёт самый важный заголовок? <em>(<code>&lt;h1&gt;</code>)</em></li>
+            <li>Какой тег создаёт ссылку? <em>(<code>&lt;a href="..."&gt;</code>)</em></li>
+            <li>Что будет, если не закрыть тег <code>&lt;p&gt;</code>? <em>(Браузер попытается угадать, но может отобразить неправильно — всегда закрывайте теги!)</em></li>
+            <li>В чём разница между <code>&lt;h1&gt;</code> и <code>&lt;h6&gt;</code>? <em>(h1 — главный заголовок (большой), h6 — самый мелкий подзаголовок)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== CSS ===== -->
+    <h2 id="css">5. CSS — внешний вид</h2>
+
+    <p><strong>CSS</strong> расшифровывается как <strong>Cascading Style Sheets</strong> — каскадные таблицы стилей. CSS отвечает за то, КАК выглядит страница: цвета, шрифты, размеры, расположение элементов.</p>
+
+    <p>Один и тот же HTML с разным CSS может выглядеть совершенно по-разному:</p>
+
+    <p><em>HTML (одинаковый):</em></p>
+
+<pre><code>&lt;h1&gt;Привет, мир!&lt;/h1&gt;
+&lt;p&gt;Это мой первый сайт.&lt;/p&gt;
+&lt;button&gt;Нажми меня&lt;/button&gt;</code></pre>
+
+    <p><em>Без CSS</em> — браузер покажет стандартный чёрный текст на белом фоне. Скучно.</p>
+
+    <p><em>С CSS</em> — тот же HTML, но со стилями:</p>
+
+<pre><code>body {
+    background-color: #1a1a2e;   /* тёмный фон */
+    color: white;                /* белый текст */
+    font-family: Arial;          /* шрифт */
+    text-align: center;          /* выравнивание по центру */
+    padding: 50px;               /* внутренние отступы */
+}
+
+h1 {
+    color: #e94560;              /* красный заголовок */
+    font-size: 48px;             /* крупный шрифт */
+}
+
+button {
+    background: #e94560;         /* красная кнопка */
+    color: white;                /* белый текст на кнопке */
+    border: none;                /* без рамки */
+    padding: 15px 40px;          /* отступы внутри кнопки */
+    font-size: 18px;             /* размер текста */
+    border-radius: 25px;         /* скруглённые углы */
+    cursor: pointer;             /* курсор-указатель */
+}</code></pre>
+
+    <p>Тот же HTML — но теперь это стильная страница с тёмным фоном, красным заголовком и красивой кнопкой! Вот что делает CSS:</p>
+
+    <ul>
+        <li><strong>Цвета</strong> — фон, текст, рамки, кнопки</li>
+        <li><strong>Шрифты</strong> — размер, жирность, семейство шрифтов</li>
+        <li><strong>Размеры</strong> — ширина, высота, отступы</li>
+        <li><strong>Расположение</strong> — где что находится на странице</li>
+        <li><strong>Анимации</strong> — плавные переходы, эффекты при наведении</li>
+    </ul>
+
+    <div class="fun-fact">
+        До появления CSS в 1996 году весь дизайн делался прямо в HTML. Цвета, шрифты, расположение — всё в одном файле. Это было настолько неудобно, что разработчики прозвали такой код «спагетти». CSS навёл порядок: содержимое (HTML) отдельно, стили (CSS) отдельно.
+    </div>
+
+    <div class="pro-tip">
+        <p>Когда вы видите красивый сайт — не пугайтесь. За каждым эффектом стоит всего несколько строк CSS. К концу нашего курса вы сможете повторить дизайн большинства сайтов, которые видите в интернете. Главное — практика.</p>
+    </div>
+
+    <h3>Один HTML — два совершенно разных вида</h3>
+
+    <p>Посмотрите, как один и тот же HTML выглядит без CSS и с CSS:</p>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">Без CSS ❌</div>
+            <div style="background:white;padding:12px;border-radius:6px;font-family:Times New Roman,serif;">
+                <h3 style="margin:0 0 8px;font-family:Times New Roman,serif;">Привет, мир!</h3>
+                <p style="margin:0 0 8px;font-family:Times New Roman,serif;">Это мой сайт.</p>
+                <a href="#" style="color:blue;font-family:Times New Roman,serif;">Нажми меня</a>
+            </div>
+            <p style="font-size:0.8rem;color:#64748b;margin-top:6px;">Стандартный шрифт Times, чёрный текст, белый фон. Скучно.</p>
+        </div>
+        <div class="right">
+            <div class="label">С CSS ✅</div>
+            <div style="background:#1a1a2e;padding:12px;border-radius:6px;text-align:center;">
+                <h3 style="margin:0 0 8px;color:#e94560;font-family:Arial,sans-serif;">Привет, мир!</h3>
+                <p style="margin:0 0 10px;color:white;font-family:Arial,sans-serif;">Это мой сайт.</p>
+                <a href="#" style="display:inline-block;padding:8px 20px;background:#e94560;color:white;border-radius:20px;text-decoration:none;font-family:Arial,sans-serif;font-weight:600;">Нажми меня</a>
+            </div>
+            <p style="font-size:0.8rem;color:#64748b;margin-top:6px;">Тёмный фон, красный заголовок, стильная кнопка. Всё благодаря CSS!</p>
+        </div>
+    </div>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:10px;">Ещё один пример — карточка товара:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="font-family:Times New Roman,serif;padding:10px;border:1px solid #ccc;">
+                <p style="margin:0;"><strong>Наушники Pro</strong></p>
+                <p style="margin:4px 0;">Цена: 3500 руб.</p>
+                <a href="#" style="color:blue;">Купить</a>
+                <p style="font-size:0.75rem;color:#64748b;margin-top:6px;">Без CSS — просто текст</p>
+            </div>
+            <div style="padding:16px;background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.1);font-family:Segoe UI,sans-serif;">
+                <p style="margin:0;font-weight:700;">Наушники Pro</p>
+                <p style="margin:6px 0;font-size:1.1rem;color:#059669;font-weight:700;">3 500 &#8381;</p>
+                <a href="#" style="display:inline-block;width:100%;text-align:center;padding:8px;background:#3b82f6;color:white;border-radius:8px;text-decoration:none;font-weight:600;">Купить</a>
+                <p style="font-size:0.75rem;color:#64748b;margin-top:6px;">С CSS — красивая карточка</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li><strong>CSS</strong> отвечает за цвета, шрифты, размеры, расположение, анимации</li>
+            <li>Один и тот же HTML с разным CSS — совершенно разный вид</li>
+            <li>Синтаксис: <code>селектор { свойство: значение; }</code></li>
+            <li>CSS существует с 1996 года и постоянно развивается</li>
+            <li>Можно отключить CSS на любом сайте через DevTools — увидите «голый» HTML</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ===== JavaScript ===== -->
+    <h2 id="js">6. JavaScript — интерактивность</h2>
+
+    <p><strong>JavaScript</strong> (JS) — это настоящий язык программирования. Он добавляет <strong>поведение</strong> странице: реакцию на клики, анимации, загрузку данных, проверку форм.</p>
+
+    <p>HTML и CSS — это статика (неподвижная картинка). JavaScript добавляет динамику — страница начинает «оживать».</p>
+
+    <p><strong>Примеры JavaScript на сайтах:</strong></p>
+
+    <ul>
+        <li>Нажали кнопку «Нравится» → счётчик лайков увеличился</li>
+        <li>Начали печатать в поиске Google → появились подсказки</li>
+        <li>Проскроллили ленту Instagram → загрузились новые посты</li>
+        <li>Неправильно заполнили форму → появилось сообщение об ошибке</li>
+        <li>Навели мышку на меню → выпал список подменю</li>
+    </ul>
+
+    <div class="try-it">
+        <p>Вы можете прямо сейчас попробовать JavaScript! Откройте любой сайт, нажмите <strong>F12</strong>, перейдите на вкладку <strong>Console</strong> и введите:</p>
+<pre><code>// Показать всплывающее окно
+alert('Привет! Я JavaScript!');
+
+// Изменить цвет фона страницы
+document.body.style.backgroundColor = 'lightblue';
+
+// Изменить текст заголовка
+document.querySelector('h1').textContent = 'Я изменил заголовок!';</code></pre>
+        <p>Изменения видны только вам и пропадут при обновлении страницы.</p>
+    </div>
+
+    <div class="highlight">
+        <strong>На нашем курсе</strong> мы будем изучать HTML и CSS. Этого достаточно, чтобы создавать красивые, адаптивные сайты. JavaScript — это следующий этап, но знать о нём полезно для понимания общей картины.
+    </div>
+
+    <h3>HTML, CSS, JavaScript — сравнение на реальных сайтах</h3>
+
+    <table>
+        <tr><th>Сайт</th><th>HTML (содержимое)</th><th>CSS (стили)</th><th>JavaScript (действия)</th></tr>
+        <tr>
+            <td><strong>Google</strong></td>
+            <td>Логотип, поле ввода, кнопки</td>
+            <td>Центрирование, цвета, шрифты</td>
+            <td>Поисковые подсказки, голосовой ввод</td>
+        </tr>
+        <tr>
+            <td><strong>YouTube</strong></td>
+            <td>Видео, заголовки, описания</td>
+            <td>Сетка видео, тёмная тема</td>
+            <td>Воспроизведение видео, бесконечная лента</td>
+        </tr>
+        <tr>
+            <td><strong>Instagram</strong></td>
+            <td>Фото, комментарии, имена</td>
+            <td>Карточки постов, stories</td>
+            <td>Лайки, комментарии, скролл</td>
+        </tr>
+    </table>
+
+    <div class="summary">
+        <table>
+            <tr><th>Технология</th><th>Расшифровка</th><th>Роль</th><th>Аналогия</th></tr>
+            <tr><td><strong>HTML</strong></td><td>HyperText Markup Language</td><td>Структура и содержимое</td><td>Чертёж дома</td></tr>
+            <tr><td><strong>CSS</strong></td><td>Cascading Style Sheets</td><td>Внешний вид и стили</td><td>Дизайн интерьера</td></tr>
+            <tr><td><strong>JavaScript</strong></td><td>—</td><td>Интерактивность и логика</td><td>Электричество и механизмы</td></tr>
+        </table>
+    </div>
+
+    <div class="quiz">
+        <p>Определите — это HTML, CSS или JavaScript?</p>
+        <ol>
+            <li>Текст «Добро пожаловать» на странице <em>(HTML — содержимое)</em></li>
+            <li>Красный цвет кнопки <em>(CSS — стиль)</em></li>
+            <li>При нажатии на кнопку появляется окно <em>(JavaScript — действие)</em></li>
+            <li>Картинка логотипа <em>(HTML — элемент)</em></li>
+            <li>Скруглённые углы у карточки <em>(CSS — стиль)</em></li>
+            <li>Автоподсказки при вводе в поиск <em>(JavaScript — динамика)</em></li>
+            <li>Список «Главная, О нас, Контакты» <em>(HTML — структура навигации)</em></li>
+            <li>Шрифт Arial размером 18px <em>(CSS — стиль текста)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== БРАУЗЕРЫ ===== -->
+    <h2 id="browsers">7. Браузеры и DevTools</h2>
+
+    <p><strong>Браузер</strong> — это программа, которая читает HTML, CSS и JavaScript и рисует из них красивую страницу на экране. Этот процесс называется <strong>рендеринг</strong>.</p>
+
+    <table>
+        <tr><th>Браузер</th><th>Компания</th><th>Движок</th><th>Доля рынка</th></tr>
+        <tr><td>🌐 Google Chrome</td><td>Google</td><td>Blink / V8</td><td>~65%</td></tr>
+        <tr><td>🧭 Safari</td><td>Apple</td><td>WebKit</td><td>~19%</td></tr>
+        <tr><td>📘 Microsoft Edge</td><td>Microsoft</td><td>Blink</td><td>~5%</td></tr>
+        <tr><td>🦊 Mozilla Firefox</td><td>Mozilla</td><td>Gecko</td><td>~3%</td></tr>
+    </table>
+
+    <p>Разные браузеры могут немного по-разному отображать ваш сайт. Поэтому профессиональные веб-разработчики всегда проверяют свои сайты в нескольких браузерах. Мы будем работать в <strong>Google Chrome</strong> — он самый популярный и имеет лучшие инструменты для разработчиков.</p>
+
+    <h3>DevTools — инструменты разработчика</h3>
+
+    <p>В каждом современном браузере есть встроенные <strong>DevTools</strong> (Developer Tools) — мощный инструмент, который позволяет заглянуть «под капот» любого сайта.</p>
+
+    <p><strong>Как открыть DevTools:</strong></p>
+
+    <ul>
+        <li>Нажмите <strong>F12</strong></li>
+        <li>Или правый клик по любому элементу → <strong>«Просмотреть код»</strong> (Inspect)</li>
+    </ul>
+
+    <p><strong>Что можно делать в DevTools:</strong></p>
+
+    <ul>
+        <li><strong>Elements</strong> — просматривать HTML-структуру любой страницы</li>
+        <li><strong>Styles</strong> — видеть и менять CSS-стили любого элемента</li>
+        <li><strong>Console</strong> — выполнять JavaScript-код</li>
+        <li>Наводить мышку на элементы в коде — они подсвечиваются на странице</li>
+        <li>Менять текст, цвета, размеры прямо в DevTools и сразу видеть результат</li>
+    </ul>
+
+    <div class="important">
+        Все изменения в DevTools — <strong>временные</strong>. Они видны только вам и исчезают при обновлении страницы. Вы ничего не сломаете — можете экспериментировать свободно!
+    </div>
+
+    <div class="pro-tip">
+        <p>DevTools — это ваш лучший друг на всём пути обучения. Видите красивый элемент на чужом сайте? Кликните правой кнопкой → Inspect — и вы увидите, какой HTML и CSS за ним стоят. Это лучший способ учиться: смотреть, как делают профессионалы, и повторять.</p>
+    </div>
+
+    <div class="try-it">
+        <p>Откройте DevTools на вашем любимом сайте и попробуйте:</p>
+        <ol>
+            <li>Найдите заголовок страницы и измените его текст</li>
+            <li>Измените цвет какого-нибудь элемента</li>
+            <li>Увеличьте размер шрифта</li>
+        </ol>
+    </div>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:10px;">Вот как выглядит DevTools — три главные вкладки:</p>
+        <div style="background:#1e293b;border-radius:8px;padding:16px;font-family:Consolas,monospace;font-size:0.82rem;color:#e2e8f0;">
+            <div style="display:flex;gap:16px;border-bottom:1px solid #475569;padding-bottom:8px;margin-bottom:10px;">
+                <span style="color:#60a5fa;border-bottom:2px solid #60a5fa;padding-bottom:6px;font-weight:700;">Elements</span>
+                <span style="color:#94a3b8;">Console</span>
+                <span style="color:#94a3b8;">Sources</span>
+                <span style="color:#94a3b8;">Network</span>
+            </div>
+            <div style="color:#94a3b8;">&lt;body&gt;</div>
+            <div style="padding-left:20px;color:#e2e8f0;">&lt;<span style="color:#f472b6;">h1</span>&gt;<span style="color:#fbbf24;">Привет, мир!</span>&lt;/<span style="color:#f472b6;">h1</span>&gt;</div>
+            <div style="padding-left:20px;color:#e2e8f0;">&lt;<span style="color:#f472b6;">p</span>&gt;<span style="color:#fbbf24;">Это мой сайт.</span>&lt;/<span style="color:#f472b6;">p</span>&gt;</div>
+            <div style="color:#94a3b8;">&lt;/body&gt;</div>
+        </div>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;">Вкладка <strong>Elements</strong> показывает HTML-код страницы. Справа — CSS-стили выбранного элемента. Вы можете кликать, менять и сразу видеть результат!</p>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li><strong>Браузер</strong> = программа, которая рендерит (рисует) HTML+CSS+JS в красивую страницу</li>
+            <li><strong>Chrome</strong> — самый популярный (~65%), мы работаем в нём</li>
+            <li><strong>DevTools</strong> (F12) — инструменты разработчика: просмотр HTML, CSS, выполнение JS</li>
+            <li>Все изменения в DevTools — <strong>временные</strong> (пропадают при обновлении)</li>
+            <li>DevTools — лучший способ учиться: исследовать код любого сайта</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ===== КТО ТАКИЕ ВЕБ-РАЗРАБОТЧИКИ ===== -->
+    <h2 id="webdev">8. Кто такие веб-разработчики</h2>
+
+    <p>Веб-разработчик — это специалист, который создаёт сайты и веб-приложения. Но «веб-разработка» — это очень широкое понятие. Есть несколько направлений:</p>
+
+    <h3>Frontend-разработчик (фронтенд)</h3>
+
+    <p>Занимается <strong>видимой частью</strong> сайта — тем, что видит и с чем взаимодействует пользователь. Это кнопки, меню, анимации, формы, карточки товаров — всё, что вы видите на экране.</p>
+
+    <ul>
+        <li><strong>Технологии:</strong> HTML, CSS, JavaScript, React, Vue, Angular</li>
+        <li><strong>Задачи:</strong> верстка макетов, создание интерфейсов, адаптивный дизайн, анимации</li>
+    </ul>
+
+    <h3>Backend-разработчик (бэкенд)</h3>
+
+    <p>Занимается <strong>невидимой частью</strong> — серверной логикой. Это обработка данных, работа с базами данных, авторизация, оплата — всё, что происходит «за кулисами».</p>
+
+    <ul>
+        <li><strong>Технологии:</strong> Python, Node.js, PHP, Java, базы данных (SQL, MongoDB)</li>
+        <li><strong>Задачи:</strong> обработка запросов, хранение данных, безопасность, API</li>
+    </ul>
+
+    <h3>Fullstack-разработчик (фулстек)</h3>
+
+    <p>Умеет и то, и другое — работает и с фронтендом, и с бэкендом. Это как универсальный солдат в мире веб-разработки.</p>
+
+    <div class="analogy">
+        <p><strong>Строительство здания:</strong> Frontend — это архитектор и дизайнер интерьеров (то, что видят жильцы). Backend — это инженеры, которые прокладывают трубы, провода и фундамент (то, что скрыто в стенах). Fullstack — это мастер, который умеет и то, и другое.</p>
+    </div>
+
+    <h3>Другие специализации</h3>
+
+    <table>
+        <tr><th>Роль</th><th>Что делает</th></tr>
+        <tr><td><strong>Веб-дизайнер</strong></td><td>Создаёт макеты сайтов в Figma/Photoshop</td></tr>
+        <tr><td><strong>UX/UI дизайнер</strong></td><td>Проектирует удобный интерфейс и пользовательский опыт</td></tr>
+        <tr><td><strong>Верстальщик</strong></td><td>Превращает дизайн-макеты в HTML/CSS код</td></tr>
+        <tr><td><strong>DevOps</strong></td><td>Настраивает серверы, деплой, автоматизацию</td></tr>
+    </table>
+
+    <div class="highlight">
+        <p><strong>Наш курс — это фундамент фронтенда.</strong> Мы изучим HTML и CSS — основу, без которой невозможна ни одна из этих профессий. После этого курса вы сможете:</p>
+        <ul>
+            <li>Создавать красивые адаптивные сайты</li>
+            <li>Верстать по макетам из Figma</li>
+            <li>Использовать CSS-фреймворки (Bootstrap, Tailwind)</li>
+            <li>Перейти к изучению JavaScript и React</li>
+        </ul>
+    </div>
+
+    <div class="real-world">
+        <p>Веб-разработка — одна из самых востребованных профессий в мире. Каждой компании нужен сайт. Можно работать удалённо из любой точки мира. Порог входа низкий — начать можно с нуля. А результат виден сразу — вы создаёте то, что люди видят и используют каждый день.</p>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">Frontend (видимая часть)</div>
+            <div style="background:white;padding:12px;border-radius:6px;text-align:center;">
+                <div style="font-size:1.5rem;margin-bottom:4px;">🖥️</div>
+                <div style="font-size:0.85rem;"><strong>Что видит пользователь:</strong><br>кнопки, меню, анимации, формы, карточки</div>
+                <div style="font-size:0.75rem;color:#64748b;margin-top:6px;">HTML + CSS + JavaScript</div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="label">Backend (невидимая часть)</div>
+            <div style="background:white;padding:12px;border-radius:6px;text-align:center;">
+                <div style="font-size:1.5rem;margin-bottom:4px;">⚙️</div>
+                <div style="font-size:0.85rem;"><strong>Что работает «за кулисами»:</strong><br>база данных, авторизация, оплата, API</div>
+                <div style="font-size:0.75rem;color:#64748b;margin-top:6px;">Python, Node.js, PHP, SQL</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz">
+        <p>Мысленно ответьте:</p>
+        <ol>
+            <li>Что делает браузер с HTML, CSS и JS файлами? <em>(Рендерит — рисует из них красивую страницу)</em></li>
+            <li>Как открыть DevTools? <em>(F12 или правый клик → «Просмотреть код»)</em></li>
+            <li>Frontend-разработчик работает с видимой или невидимой частью? <em>(Видимой — то, что видит пользователь)</em></li>
+            <li>Какие технологии использует frontend? <em>(HTML, CSS, JavaScript)</em></li>
+            <li>Изменения в DevTools сохраняются навсегда? <em>(Нет — они временные, пропадают при обновлении)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== VS CODE ===== -->
+    <h2 id="vscode">9. VS Code — наш редактор кода</h2>
+
+    <p><strong>Visual Studio Code</strong> (VS Code) — бесплатный редактор кода от Microsoft. Это самый популярный редактор в мире: его используют миллионы разработчиков.</p>
+
+    <p>Есть и другие редакторы — Sublime Text, Atom, Notepad++, WebStorm. Но VS Code выделяется тем, что он бесплатный, быстрый, и имеет огромное количество расширений (плагинов).</p>
+
+    <div class="why">
+        <p>Почему именно VS Code, а не обычный Блокнот? Потому что VS Code умеет подсвечивать синтаксис (разные цвета для тегов, атрибутов, значений), подсказывать код, автоматически закрывать теги, форматировать код одним нажатием. Блокнот — это как ехать на велосипеде, когда есть машина.</p>
+    </div>
+
+    <h3>Установка VS Code</h3>
+
+    <ol>
+        <li>Откройте браузер и перейдите на <strong>code.visualstudio.com</strong></li>
+        <li>Нажмите «Download for Windows»</li>
+        <li>Запустите скачанный файл</li>
+        <li>При установке обязательно отметьте:
+            <ul>
+                <li>✅ Add to PATH</li>
+                <li>✅ Add "Open with Code" to context menu</li>
+                <li>✅ Register Code as an editor for supported file types</li>
+            </ul>
+        </li>
+        <li>Завершите установку и запустите VS Code</li>
+    </ol>
+
+    <h3>Расширения (Extensions)</h3>
+
+    <p>Расширения — это плагины, которые добавляют новые возможности в VS Code. Установите эти 4 расширения для нашего курса:</p>
+
+    <table>
+        <tr><th>Расширение</th><th>Зачем нужно</th></tr>
+        <tr><td><strong>Live Server</strong></td><td>Автоматически обновляет страницу в браузере при сохранении файла. Не нужно каждый раз нажимать F5!</td></tr>
+        <tr><td><strong>Prettier</strong></td><td>Автоматически форматирует код — делает его красивым и аккуратным</td></tr>
+        <tr><td><strong>Auto Rename Tag</strong></td><td>Если переименовать открывающий тег — закрывающий переименуется автоматически</td></tr>
+        <tr><td><strong>HTML CSS Support</strong></td><td>Подсказки при написании CSS — предлагает имена классов и свойства</td></tr>
+    </table>
+
+    <p><strong>Как установить расширение:</strong> нажмите <code>Ctrl+Shift+X</code>, введите название расширения в поиске и нажмите «Install».</p>
+
+    <div class="mistake">
+        <p><strong>«Я не установил Live Server»</strong></p>
+        <p>Без Live Server вам придётся каждый раз вручную обновлять страницу (F5) после каждого изменения. При 100+ изменениях в день это съедает кучу времени и нервов. Установите Live Server — это займёт 10 секунд и сэкономит вам часы.</p>
+    </div>
+
+    <h3>Горячие клавиши</h3>
+
+    <p>Горячие клавиши экономят время. Вот самые важные для начала:</p>
+
+    <table>
+        <tr><th>Клавиши</th><th>Действие</th></tr>
+        <tr><td><code>Ctrl + S</code></td><td>Сохранить файл</td></tr>
+        <tr><td><code>Ctrl + Z</code></td><td>Отменить последнее действие</td></tr>
+        <tr><td><code>Ctrl + C</code> / <code>Ctrl + V</code></td><td>Копировать / Вставить</td></tr>
+        <tr><td><code>Alt + Shift + ↓</code></td><td>Дублировать строку вниз</td></tr>
+        <tr><td><code>Ctrl + /</code></td><td>Закомментировать/раскомментировать строку</td></tr>
+        <tr><td><code>!</code> + <code>Tab</code></td><td>Создать шаблон HTML-страницы (Emmet)</td></tr>
+    </table>
+
+    <div class="fun-fact">
+        <strong>Emmet</strong> — встроенный инструмент VS Code, который умеет генерировать HTML-код по коротким командам. Напишите <code>!</code> и нажмите <code>Tab</code> — VS Code мгновенно создаст полный шаблон HTML-страницы. Это одна из самых полезных функций для веб-разработчика.
+    </div>
+
+    <div class="pro-tip">
+        <p>Запоминайте горячие клавиши постепенно. Начните с <code>Ctrl+S</code> (сохранить) и <code>Ctrl+Z</code> (отменить). Потом добавляйте по одной новой комбинации в день. Через месяц вы будете летать по редактору без мыши.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ПЕРВАЯ СТРАНИЦА ===== -->
+    <h2 id="first-page">10. Твоя первая HTML-страница</h2>
+
+    <p>Теперь, когда всё готово, давайте создадим первую веб-страницу!</p>
+
+    <h3>Шаг 1: Создай папку проекта</h3>
+
+    <p>Создайте на рабочем столе папку <code>my-first-site</code>. Правый клик по папке → <strong>Open with Code</strong>.</p>
+
+    <h3>Шаг 2: Создай файл</h3>
+
+    <p>В VS Code: <strong>File → New File</strong>. Сохраните его как <code>index.html</code>.</p>
+
+    <div class="important">
+        Почему <code>index.html</code>? Потому что это стандартное имя для главной страницы сайта. Когда вы открываете google.com, сервер отдаёт именно файл <code>index.html</code>.
+    </div>
+
+    <h3>Шаг 3: Создай шаблон</h3>
+
+    <p>Напишите <code>!</code> и нажмите <code>Tab</code>. VS Code сгенерирует шаблон:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <p>Давайте разберём каждую строку:</p>
+
+    <table>
+        <tr><th>Строка</th><th>Что означает</th></tr>
+        <tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>Сообщает браузеру, что это HTML5-документ</td></tr>
+        <tr><td><code>&lt;html lang="en"&gt;</code></td><td>Начало документа. Смените <code>en</code> на <code>ru</code> для русского языка</td></tr>
+        <tr><td><code>&lt;head&gt;</code></td><td>«Голова» — информация для браузера (не видна на странице)</td></tr>
+        <tr><td><code>&lt;meta charset="UTF-8"&gt;</code></td><td>Кодировка символов. UTF-8 поддерживает русский язык</td></tr>
+        <tr><td><code>&lt;meta name="viewport"...&gt;</code></td><td>Настройка для корректного отображения на мобильных</td></tr>
+        <tr><td><code>&lt;title&gt;</code></td><td>Текст на вкладке браузера</td></tr>
+        <tr><td><code>&lt;body&gt;</code></td><td>«Тело» — всё видимое содержимое страницы</td></tr>
+    </table>
+
+    <h3>Шаг 4: Добавь содержимое</h3>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Мой первый сайт&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Привет, мир!&lt;/h1&gt;
+    &lt;p&gt;Меня зовут [ваше имя]. Это мой первый сайт!&lt;/p&gt;
+
+    &lt;h2&gt;Обо мне&lt;/h2&gt;
+    &lt;p&gt;Я учусь создавать сайты с нуля.&lt;/p&gt;
+
+    &lt;h2&gt;Мои увлечения&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Программирование&lt;/li&gt;
+        &lt;li&gt;Музыка&lt;/li&gt;
+        &lt;li&gt;Спорт&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;h2&gt;Контакты&lt;/h2&gt;
+    &lt;p&gt;Напишите мне: &lt;a href="mailto:email@example.com"&gt;email@example.com&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h3>Шаг 5: Запусти в браузере</h3>
+
+    <p>Сохраните файл (<code>Ctrl+S</code>). В VS Code нажмите правой кнопкой по файлу → <strong>Open with Live Server</strong>. Ваша страница откроется в браузере!</p>
+
+    <p>Теперь попробуйте изменить текст в VS Code и сохранить — страница в браузере обновится автоматически. Это работает благодаря расширению Live Server.</p>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:10px;">Вот как ваша первая страница будет выглядеть в браузере:</p>
+        <div style="background:white;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
+            <div style="background:#f1f5f9;padding:6px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #e2e8f0;">
+                <div style="display:flex;gap:4px;">
+                    <div style="width:10px;height:10px;border-radius:50%;background:#ef4444;"></div>
+                    <div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></div>
+                    <div style="width:10px;height:10px;border-radius:50%;background:#22c55e;"></div>
+                </div>
+                <div style="flex:1;background:white;border-radius:4px;padding:2px 8px;font-size:0.75rem;color:#64748b;">127.0.0.1:5500/index.html</div>
+            </div>
+            <div style="padding:16px;">
+                <h1 style="font-size:2rem;font-weight:700;margin:0 0 10px;">Привет, мир!</h1>
+                <p style="margin:0 0 10px;">Меня зовут [ваше имя]. Это мой первый сайт!</p>
+                <h2 style="font-size:1.5rem;font-weight:700;margin:16px 0 8px;">Обо мне</h2>
+                <p style="margin:0 0 10px;">Я учусь создавать сайты с нуля.</p>
+                <h2 style="font-size:1.5rem;font-weight:700;margin:16px 0 8px;">Мои увлечения</h2>
+                <ul style="margin:0 0 10px 20px;">
+                    <li>Программирование</li>
+                    <li>Музыка</li>
+                    <li>Спорт</li>
+                </ul>
+                <h2 style="font-size:1.5rem;font-weight:700;margin:16px 0 8px;">Контакты</h2>
+                <p style="margin:0;">Напишите мне: <a href="#" style="color:#2563eb;">email@example.com</a></p>
+            </div>
+        </div>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;">Это чистый HTML без CSS. Выглядит просто, но <strong>вся структура на месте</strong>. На следующих занятиях мы научимся превращать это в красивый дизайн с помощью CSS!</p>
+    </div>
+
+    <div class="try-it">
+        <p><strong>Сделай свою страницу уникальной:</strong></p>
+        <ul>
+            <li>Напиши своё настоящее имя</li>
+            <li>Добавь свои увлечения в список</li>
+            <li>Добавь ещё один раздел <code>&lt;h2&gt;</code> с параграфом <code>&lt;p&gt;</code></li>
+            <li>Добавь ссылку <code>&lt;a&gt;</code> на любимый сайт</li>
+            <li>Попробуй добавить нумерованный список <code>&lt;ol&gt;</code> с ТОП-3 любимых фильмов</li>
+        </ul>
+    </div>
+
+    <div class="real-world">
+        <p>Поздравляем — вы только что стали веб-разработчиком! Да, ваша страница простая, но принцип тот же, что и у Google или YouTube: HTML-файл → браузер → страница на экране. Разница только в количестве кода и стилей. К концу курса вы будете создавать профессиональные макеты.</p>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">Сейчас (Занятие 1)</div>
+            <div style="background:white;padding:10px;border-radius:6px;">
+                <p style="margin:0;font-weight:700;">Привет, мир!</p>
+                <p style="margin:4px 0;font-size:0.85rem;">Простой текст без стилей</p>
+            </div>
+            <p style="font-size:0.8rem;color:#64748b;margin-top:4px;">Чистый HTML</p>
+        </div>
+        <div class="right">
+            <div class="label">К концу курса (Занятие 28)</div>
+            <div style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:10px;border-radius:6px;text-align:center;">
+                <p style="margin:0;font-weight:700;color:white;">Привет, мир!</p>
+                <p style="margin:4px 0;font-size:0.85rem;color:rgba(255,255,255,0.8);">Красивый адаптивный сайт</p>
+            </div>
+            <p style="font-size:0.8rem;color:#64748b;margin-top:4px;">HTML + CSS + анимации</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ===== ИТОГИ ===== -->
+    <h2>Итоги занятия</h2>
+
+    <div class="summary">
+        <p>Сегодня мы узнали:</p>
+        <ul>
+            <li>Интернет появился в 1969 (ARPANET), а веб — в 1989 (Тим Бернерс-Ли)</li>
+            <li>Интернет работает по принципу «клиент — сервер»</li>
+            <li>Веб-страница = <strong>HTML</strong> (структура) + <strong>CSS</strong> (стили) + <strong>JavaScript</strong> (интерактивность)</li>
+            <li>Браузер рендерит (рисует) страницы из HTML/CSS/JS файлов</li>
+            <li>DevTools (F12) — мощный инструмент для изучения любого сайта</li>
+            <li>Веб-разработчики бывают: frontend, backend, fullstack</li>
+            <li>VS Code — наш основной инструмент для написания кода</li>
+            <li><code>!</code> + <code>Tab</code> создаёт шаблон HTML в VS Code</li>
+            <li>Live Server автоматически обновляет страницу при сохранении</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <ol>
+            <li>В каком году Тим Бернерс-Ли изобрёл World Wide Web?</li>
+            <li>Что такое клиент и сервер?</li>
+            <li>Назовите 3 технологии, из которых состоит веб-страница.</li>
+            <li>Что делает HTML? А CSS? А JavaScript?</li>
+            <li>Что такое HTTPS и чем он отличается от HTTP?</li>
+            <li>Как открыть DevTools в браузере?</li>
+            <li>Чем занимается frontend-разработчик?</li>
+            <li>Что делает тег <code>&lt;h1&gt;</code>? А <code>&lt;p&gt;</code>? А <code>&lt;a&gt;</code>?</li>
+            <li>Какой тег содержит видимое содержимое страницы — <code>&lt;head&gt;</code> или <code>&lt;body&gt;</code>?</li>
+            <li>Как быстро создать HTML-шаблон в VS Code?</li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

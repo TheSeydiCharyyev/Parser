@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 33 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 33: Разработка — CSS-стили</span>
+    <span class="nav-title" data-lang="en">Lesson 33: Development — CSS Styles</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 33: Разработка — CSS-стили</p>
+    <p class="subtitle" data-lang="en">Lesson 33: Development — CSS Styles</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ГЛАВНЫЙ ПРИНЦИП</h2>
+    <h2 data-lang="en">&#x1F4DA; MAIN PRINCIPLE</h2>
+
+    <div class="definition" data-lang="ru">
+        Сегодня: <strong>base.css</strong> (сброс + типографика) + <strong>components.css</strong> (.btn, .card, форма). Layout (flex/grid) — завтра на 33. Страница выглядит лучше, но ещё «в потоке».
+    </div>
+    <div class="definition" data-lang="en">
+        Today: <strong>base.css</strong> (reset + typography) + <strong>components.css</strong> (.btn, .card, forms). Layout (flex/grid) — tomorrow in lesson 33. Page looks better but still "in flow".
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; BASE.CSS — ШАБЛОН</h2>
+    <h2 data-lang="en">&#x1F4DA; BASE.CSS — TEMPLATE</h2>
+
+<pre><code>/* 1. Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul, ol { list-style: none; }
+
+a { color: inherit; text-decoration: none; }
+
+img, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button, input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+/* 2. Body */
+body {
+    font-family: var(--font-primary);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    color: var(--color-text);
+    background: var(--color-bg);
+}
+
+/* 3. Типографика */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text);
+}
+h1 {
+    font-size: var(--fs-h1);
+    letter-spacing: -0.02em;
+}
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); }
+
+p { margin-bottom: var(--space-md); }
+
+/* 4. Ссылки */
+a {
+    color: var(--color-primary);
+    transition: color 0.2s;
+}
+a:hover {
+    color: var(--color-primary-dark);
+}
+
+/* 5. Контейнер */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <code>box-sizing: border-box</code> — <strong>индустриальный стандарт</strong>. Padding/border включены в width → предсказуемые размеры.
+    </div>
+    <div class="key-point" data-lang="en">
+        <code>box-sizing: border-box</code> — <strong>industry standard</strong>. Padding/border included in width → predictable sizing.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ТИПОГРАФИЯ — ПРАВИЛА</h2>
+    <h2 data-lang="en">&#x1F4DA; TYPOGRAPHY RULES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Что</th><th>Значение</th></tr>
+        <tr><td>Body line-height</td><td>1.5–1.7 (читабельность)</td></tr>
+        <tr><td>Heading line-height</td><td>1.1–1.3 (плотность)</td></tr>
+        <tr><td>Body font-weight</td><td>400 (regular)</td></tr>
+        <tr><td>Heading font-weight</td><td>700 (bold)</td></tr>
+        <tr><td>h1 letter-spacing</td><td>-0.01em до -0.03em</td></tr>
+        <tr><td>UPPERCASE letter-spacing</td><td>+0.05em до +0.1em</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>What</th><th>Value</th></tr>
+        <tr><td>Body line-height</td><td>1.5–1.7 (readability)</td></tr>
+        <tr><td>Heading line-height</td><td>1.1–1.3 (density)</td></tr>
+        <tr><td>Body font-weight</td><td>400 (regular)</td></tr>
+        <tr><td>Heading font-weight</td><td>700 (bold)</td></tr>
+        <tr><td>h1 letter-spacing</td><td>-0.01em to -0.03em</td></tr>
+        <tr><td>UPPERCASE letter-spacing</td><td>+0.05em to +0.1em</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; COMPONENT PATTERN: .btn</h2>
+    <h2 data-lang="en">&#x1F4DA; COMPONENT PATTERN: .btn</h2>
+
+<pre><code>/* Базовый класс */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    font-weight: 600;
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Модификаторы цвета */
+.btn-primary { background: var(--color-primary); color: white; }
+.btn-outline { background: transparent; color: var(--color-primary);
+                border-color: var(--color-primary); }
+.btn-ghost   { background: transparent; color: var(--color-text); }
+
+/* Модификаторы размера */
+.btn-sm   { padding: 8px 16px; font-size: var(--fs-small); }
+.btn-lg   { padding: 16px 36px; font-size: 18px; }
+.btn-full { width: 100%; }
+
+/* Состояния */
+.btn:hover   { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+}
+.btn:active  { transform: translateY(0); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }</code></pre>
+
+    <p data-lang="ru"><strong>Использование:</strong> <code>&lt;a class="btn btn-primary btn-lg"&gt;</code></p>
+    <p data-lang="en"><strong>Usage:</strong> <code>&lt;a class="btn btn-primary btn-lg"&gt;</code></p>
+
+    <div class="key-point" data-lang="ru">
+        <strong><code>:focus-visible</code></strong>, не <code>:focus</code>. Срабатывает только при клавиатурной навигации, не при клике мышью. Правильно для accessibility.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong><code>:focus-visible</code></strong>, not <code>:focus</code>. Triggers only on keyboard navigation, not mouse click. Correct for accessibility.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; КАРТОЧКА .card</h2>
+    <h2 data-lang="en">&#x1F4DA; CARD .card</h2>
+
+<pre><code>.card {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;       /* ОБЯЗАТЕЛЬНО! */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+.card-image { width: 100%; height: 240px; object-fit: cover; }
+.card-body  { padding: var(--space-md); }
+.card-title { font-size: var(--fs-h4); font-weight: 700; }
+.card-text  { color: var(--color-text-muted); }
+.card-price { font-size: var(--fs-h3); font-weight: 700;
+              color: var(--color-primary); }</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <code>overflow: hidden</code> + <code>border-radius</code> = обязательная пара. Иначе прямоугольное фото «вылезает» за скруглённые углы.
+    </div>
+    <div class="key-point" data-lang="en">
+        <code>overflow: hidden</code> + <code>border-radius</code> = mandatory pair. Otherwise rectangular photo "breaks out" of rounded corners.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ФОРМЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; FORMS</h2>
+
+<pre><code>.form-group { margin-bottom: var(--space-md); }
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: inherit;   /* наследовать шрифт body! */
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;       /* только по высоте */
+}
+
+.form-checkbox input {
+    accent-color: var(--color-primary);  /* цвет галочки */
+}</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Деталь</th><th>Зачем</th></tr>
+        <tr><td><code>font-family: inherit</code></td><td>Inputs используют шрифт сайта, не системный</td></tr>
+        <tr><td><code>resize: vertical</code></td><td>Textarea тянется только по высоте</td></tr>
+        <tr><td><code>box-shadow focus-ring</code></td><td>Замена <code>outline</code>, видна с клавиатуры</td></tr>
+        <tr><td><code>accent-color</code></td><td>Стилизует нативный checkbox одной строкой</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Detail</th><th>Why</th></tr>
+        <tr><td><code>font-family: inherit</code></td><td>Inputs use site font, not system</td></tr>
+        <tr><td><code>resize: vertical</code></td><td>Textarea resizes only vertically</td></tr>
+        <tr><td><code>box-shadow focus-ring</code></td><td>Replaces <code>outline</code>, visible on keyboard</td></tr>
+        <tr><td><code>accent-color</code></td><td>Styles native checkbox in one line</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ПОРЯДОК СВОЙСТВ В СЕЛЕКТОРЕ</h2>
+    <h2 data-lang="en">&#x1F4DA; PROPERTY ORDER IN A SELECTOR</h2>
+
+<pre><code>.selector {
+    /* 1. Layout */     display, position
+    /* 2. Размеры */    width, height
+    /* 3. Отступы */    padding, margin
+    /* 4. Визуал */     background, border, border-radius, box-shadow
+    /* 5. Типография */ font-*, color, text-*, line-height
+    /* 6. Интерактив */ transition, transform, cursor
+}</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; BEM-ИМЕНОВАНИЕ (ОПЦИОНАЛЬНО)</h2>
+    <h2 data-lang="en">&#x1F4DA; BEM NAMING (OPTIONAL)</h2>
+
+    <table data-lang="ru">
+        <tr><th>Тип</th><th>Синтаксис</th><th>Пример</th></tr>
+        <tr><td>Block</td><td><code>.block</code></td><td><code>.card</code></td></tr>
+        <tr><td>Element</td><td><code>.block__element</code></td><td><code>.card__title</code></td></tr>
+        <tr><td>Modifier</td><td><code>.block--modifier</code></td><td><code>.btn--primary</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Type</th><th>Syntax</th><th>Example</th></tr>
+        <tr><td>Block</td><td><code>.block</code></td><td><code>.card</code></td></tr>
+        <tr><td>Element</td><td><code>.block__element</code></td><td><code>.card__title</code></td></tr>
+        <tr><td>Modifier</td><td><code>.block--modifier</code></td><td><code>.btn--primary</code></td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        Не обязательно. Главное — <strong>единообразие</strong> в проекте. Либо везде BEM (<code>card__title</code>), либо везде дефис (<code>card-title</code>).
+    </div>
+    <div class="key-point" data-lang="en">
+        Not mandatory. Main thing — <strong>consistency</strong> in the project. Either BEM everywhere (<code>card__title</code>) or hyphen everywhere (<code>card-title</code>).
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ПРОГРЕСС</h2>
+    <h2 data-lang="en">&#x1F4DA; PROGRESS</h2>
+
+    <div class="write-box" data-lang="ru">
+        <strong>Чеклист 32-го занятия:</strong><br><br>
+        <code>base.css</code>:<br>
+        ☐ Reset (margin/padding/box-sizing)<br>
+        ☐ <code>html { scroll-behavior: smooth }</code><br>
+        ☐ <code>body</code> (font-family, font-size, line-height, color)<br>
+        ☐ Типографика h1-h4 (font-size, line-height, font-weight)<br>
+        ☐ <code>p</code> с margin-bottom<br>
+        ☐ <code>a</code> с color + transition + :hover<br>
+        ☐ <code>.container</code> (width, max-width, margin: auto)<br><br>
+        <code>components.css</code>:<br>
+        ☐ <code>.btn</code> базовый + <code>.btn-primary</code><br>
+        ☐ Минимум 2 других модификатора (<code>.btn-outline</code>, <code>.btn-ghost</code>)<br>
+        ☐ Размеры: <code>.btn-sm</code>, <code>.btn-lg</code><br>
+        ☐ Состояния: <code>:hover</code>, <code>:focus-visible</code>, <code>:active</code>, <code>:disabled</code><br>
+        ☐ <code>.card</code> + <code>.card-image</code>, <code>.card-title</code>, <code>.card-body</code>, <code>.card-text</code>, <code>.card-price</code><br>
+        ☐ <code>.card</code> имеет <code>overflow: hidden</code><br>
+        ☐ <code>.form-group</code>, <code>.form-label</code>, <code>.form-input</code>, <code>.form-textarea</code><br>
+        ☐ Focus-ring на input через <code>box-shadow</code><br>
+        ☐ <code>accent-color</code> на checkbox<br><br>
+        Общее:<br>
+        ☐ Все цвета через <code>var(--color-*)</code></code><br>
+        ☐ Все шрифты через <code>var(--fs-*)</code> и <code>var(--font-*)</code><br>
+        ☐ Проверено на главной странице — кнопки, карточки, формы стилизованы<br>
+        ☐ Коммит: «Lesson 33: Base styles + components»
+    </div>
+    <div class="write-box" data-lang="en">
+        <strong>Lesson 33 checklist:</strong><br><br>
+        <code>base.css</code>:<br>
+        ☐ Reset (margin/padding/box-sizing)<br>
+        ☐ <code>html { scroll-behavior: smooth }</code><br>
+        ☐ <code>body</code> (font-family, font-size, line-height, color)<br>
+        ☐ Typography h1-h4 (font-size, line-height, font-weight)<br>
+        ☐ <code>p</code> with margin-bottom<br>
+        ☐ <code>a</code> with color + transition + :hover<br>
+        ☐ <code>.container</code> (width, max-width, margin: auto)<br><br>
+        <code>components.css</code>:<br>
+        ☐ <code>.btn</code> base + <code>.btn-primary</code><br>
+        ☐ At least 2 other modifiers (<code>.btn-outline</code>, <code>.btn-ghost</code>)<br>
+        ☐ Sizes: <code>.btn-sm</code>, <code>.btn-lg</code><br>
+        ☐ States: <code>:hover</code>, <code>:focus-visible</code>, <code>:active</code>, <code>:disabled</code><br>
+        ☐ <code>.card</code> + <code>.card-image</code>, <code>.card-title</code>, <code>.card-body</code>, <code>.card-text</code>, <code>.card-price</code><br>
+        ☐ <code>.card</code> has <code>overflow: hidden</code><br>
+        ☐ <code>.form-group</code>, <code>.form-label</code>, <code>.form-input</code>, <code>.form-textarea</code><br>
+        ☐ Focus-ring on input via <code>box-shadow</code><br>
+        ☐ <code>accent-color</code> on checkbox<br><br>
+        General:<br>
+        ☐ All colors via <code>var(--color-*)</code><br>
+        ☐ All fonts via <code>var(--fs-*)</code> and <code>var(--font-*)</code><br>
+        ☐ Tested on home page — buttons, cards, forms styled<br>
+        ☐ Commit: "Lesson 33: Base styles + components"
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; 10 ОШИБОК CSS</h2>
+    <h2 data-lang="en">&#x1F4DA; 10 CSS MISTAKES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td>HEX прямо в коде</td><td><code>var(--color-*)</code> из tokens</td></tr>
+        <tr><td>Размеры шрифта px</td><td><code>var(--fs-*)</code></td></tr>
+        <tr><td>Нет <code>box-sizing</code></td><td>Первое правило reset</td></tr>
+        <tr><td><code>outline: none</code> без замены</td><td>+ <code>box-shadow</code> focus-ring</td></tr>
+        <tr><td><code>:focus</code> вместо <code>:focus-visible</code></td><td>focus-visible</td></tr>
+        <tr><td>Одинаковый line-height</td><td>1.6 body, 1.2 заголовки</td></tr>
+        <tr><td>Одноразовые стили кнопок</td><td>.btn + модификаторы</td></tr>
+        <tr><td>Нет hover/transition</td><td>Всегда добавлять</td></tr>
+        <tr><td>input без <code>font-family: inherit</code></td><td>Наследовать</td></tr>
+        <tr><td>Карточка без <code>overflow: hidden</code></td><td>Добавить</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td>HEX right in code</td><td><code>var(--color-*)</code> from tokens</td></tr>
+        <tr><td>px font sizes</td><td><code>var(--fs-*)</code></td></tr>
+        <tr><td>No <code>box-sizing</code></td><td>First reset rule</td></tr>
+        <tr><td><code>outline: none</code> unreplaced</td><td>+ <code>box-shadow</code> focus-ring</td></tr>
+        <tr><td><code>:focus</code> instead of <code>:focus-visible</code></td><td>Use focus-visible</td></tr>
+        <tr><td>Same line-height</td><td>1.6 body, 1.2 headings</td></tr>
+        <tr><td>One-off button styles</td><td>.btn + modifiers</td></tr>
+        <tr><td>No hover/transition</td><td>Always add</td></tr>
+        <tr><td>input without <code>font-family: inherit</code></td><td>Inherit</td></tr>
+        <tr><td>Card without <code>overflow: hidden</code></td><td>Add it</td></tr>
+    </table>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li>Сегодня только <code>base.css</code> + <code>components.css</code>. Layout — на 33</li>
+            <li>Порядок: reset → body → h1-h6 → ссылки → контейнер</li>
+            <li><code>box-sizing: border-box</code> — первое и обязательное правило</li>
+            <li>body line-height 1.6, headings line-height 1.2</li>
+            <li>letter-spacing в <code>em</code>, не px — масштабируется</li>
+            <li>Component pattern: <code>.btn</code> + модификаторы (<code>.btn-primary</code>, <code>.btn-outline</code>)</li>
+            <li>Модификаторы размера: <code>.btn-sm</code>, <code>.btn-lg</code>, <code>.btn-full</code></li>
+            <li>Состояния: hover, <strong>focus-visible</strong>, active, disabled</li>
+            <li><code>outline: none</code> всегда с заменой через <code>box-shadow</code></li>
+            <li>Карточка: <code>.card</code> + <code>.card-image</code> + <code>.card-body</code> + <code>overflow: hidden</code></li>
+            <li>Формы: <code>.form-input</code> с <code>font-family: inherit</code></li>
+            <li>Focus-ring: <code>box-shadow: 0 0 0 3px rgba(primary, 0.15)</code></li>
+            <li><code>resize: vertical</code> на textarea</li>
+            <li><code>accent-color</code> — стилизация нативного checkbox</li>
+            <li>Всё через <code>var(--token)</code>: цвета, шрифты, spacing</li>
+            <li>Порядок свойств: layout → size → spacing → visual → typo → interactive</li>
+            <li>BEM опционален, главное — единообразие</li>
+            <li>В конце дня — коммит в git</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li>Today only <code>base.css</code> + <code>components.css</code>. Layout — lesson 33</li>
+            <li>Order: reset → body → h1-h6 → links → container</li>
+            <li><code>box-sizing: border-box</code> — first and mandatory rule</li>
+            <li>body line-height 1.6, headings line-height 1.2</li>
+            <li>letter-spacing in <code>em</code>, not px — scales</li>
+            <li>Component pattern: <code>.btn</code> + modifiers (<code>.btn-primary</code>, <code>.btn-outline</code>)</li>
+            <li>Size modifiers: <code>.btn-sm</code>, <code>.btn-lg</code>, <code>.btn-full</code></li>
+            <li>States: hover, <strong>focus-visible</strong>, active, disabled</li>
+            <li><code>outline: none</code> always with <code>box-shadow</code> replacement</li>
+            <li>Card: <code>.card</code> + <code>.card-image</code> + <code>.card-body</code> + <code>overflow: hidden</code></li>
+            <li>Forms: <code>.form-input</code> with <code>font-family: inherit</code></li>
+            <li>Focus-ring: <code>box-shadow: 0 0 0 3px rgba(primary, 0.15)</code></li>
+            <li><code>resize: vertical</code> on textarea</li>
+            <li><code>accent-color</code> — styles native checkbox</li>
+            <li>Everything via <code>var(--token)</code>: colors, fonts, spacing</li>
+            <li>Property order: layout → size → spacing → visual → typo → interactive</li>
+            <li>BEM optional, main thing is consistency</li>
+            <li>End of day — commit to git</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong><code>base.css</code>:</strong> Заполните по шаблону — reset, body, h1-h4, p, a, .container. Все через <code>var(--token)</code>.</li>
+            <li><strong>Кнопки (<code>components.css</code>):</strong> Класс <code>.btn</code> + минимум 3 модификатора (primary, outline, ghost) + 2 размера (sm, lg) + все состояния (hover, focus-visible, active, disabled).</li>
+            <li><strong>Карточки:</strong> <code>.card</code> + <code>.card-image</code>, <code>.card-body</code>, <code>.card-title</code>, <code>.card-text</code>, <code>.card-price</code>. С hover-эффектом.</li>
+            <li><strong>Формы:</strong> <code>.form-group</code>, <code>.form-label</code>, <code>.form-input</code>, <code>.form-textarea</code>, focus-ring через box-shadow.</li>
+            <li><strong>Тест в браузере:</strong> Откройте главную страницу. Кнопки, карточки, формы должны выглядеть стилизованно (хоть и без layout).</li>
+            <li><strong>Проверка hover/focus:</strong> наведите мышь на кнопку → меняется. Tab по странице → фокус-ring виден.</li>
+            <li><strong>Git:</strong>
+<pre><code>git add .
+git commit -m "Lesson 33: Base styles + components"
+git push</code></pre>
+            </li>
+            <li><strong>Бонус:</strong> Добавьте <code>.btn-danger</code> (красная кнопка удаления) и состояние <code>.btn:disabled</code> с серым цветом.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong><code>base.css</code>:</strong> Fill per template — reset, body, h1-h4, p, a, .container. Everything via <code>var(--token)</code>.</li>
+            <li><strong>Buttons (<code>components.css</code>):</strong> Class <code>.btn</code> + at least 3 modifiers (primary, outline, ghost) + 2 sizes (sm, lg) + all states (hover, focus-visible, active, disabled).</li>
+            <li><strong>Cards:</strong> <code>.card</code> + <code>.card-image</code>, <code>.card-body</code>, <code>.card-title</code>, <code>.card-text</code>, <code>.card-price</code>. With hover effect.</li>
+            <li><strong>Forms:</strong> <code>.form-group</code>, <code>.form-label</code>, <code>.form-input</code>, <code>.form-textarea</code>, focus-ring via box-shadow.</li>
+            <li><strong>Browser test:</strong> Open home page. Buttons, cards, forms should look styled (though without layout).</li>
+            <li><strong>Hover/focus check:</strong> hover a button → changes. Tab through the page → focus-ring visible.</li>
+            <li><strong>Git:</strong>
+<pre><code>git add .
+git commit -m "Lesson 33: Base styles + components"
+git push</code></pre>
+            </li>
+            <li><strong>Bonus:</strong> Add <code>.btn-danger</code> (red delete button) and <code>.btn:disabled</code> state with gray color.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

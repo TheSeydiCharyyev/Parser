@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 12 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 12: Мультимедиа и iframe</span>
+    <span class="nav-title" data-lang="en">Lesson 12: Multimedia and iframe</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 12: Мультимедиа и iframe</p>
+    <p class="subtitle" data-lang="en">Lesson 12: Multimedia and iframe</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 12.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 12.1: АУДИО И ВИДЕО</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 12.1: AUDIO AND VIDEO</h2>
+
+    <!-- ЗАДАНИЕ 11.1 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 11.1: Каталог мультимедиа-тегов</span>
+            <span class="task-title" data-lang="en">Task 11.1: Multimedia tags catalog</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Познакомиться с тегами audio и video на практике</div>
+        <div class="task-goal" data-lang="en">Get hands-on experience with audio and video tags</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>media-test.html</code>. Добавьте на страницу:</p>
+        <p data-lang="en">Create a file <code>media-test.html</code>. Add to the page:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Аудиоплеер</strong> с атрибутом <code>controls</code> (можно использовать любой .mp3 файл или ссылку на аудио)</li>
+            <li><strong>Аудиоплеер с loop</strong> — добавь атрибут <code>loop</code></li>
+            <li><strong>Видеоплеер</strong> с <code>controls</code> и <code>width="640"</code> (используй любой .mp4 файл)</li>
+            <li><strong>Видеоплеер с poster</strong> — добавь обложку через <code>poster="cover.jpg"</code></li>
+            <li><strong>Фоновое видео</strong> — <code>autoplay muted loop</code> без <code>controls</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Audio player</strong> with <code>controls</code> attribute (use any .mp3 file or audio URL)</li>
+            <li><strong>Audio player with loop</strong> — add the <code>loop</code> attribute</li>
+            <li><strong>Video player</strong> with <code>controls</code> and <code>width="640"</code> (use any .mp4 file)</li>
+            <li><strong>Video player with poster</strong> — add a cover via <code>poster="cover.jpg"</code></li>
+            <li><strong>Background video</strong> — <code>autoplay muted loop</code> without <code>controls</code></li>
+        </ol>
+
+        <h3 data-lang="ru">Требования:</h3>
+        <h3 data-lang="en">Requirements:</h3>
+        <ul data-lang="ru">
+            <li>Каждый медиа-элемент обёрнут в <code>&lt;section&gt;</code> или <code>&lt;div&gt;</code> с заголовком <code>&lt;h2&gt;</code></li>
+            <li>Добавьте подпись под каждым плеером (<code>&lt;p&gt;</code> с описанием)</li>
+            <li>Все элементы на одной странице, расположены вертикально</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Each media element wrapped in a <code>&lt;section&gt;</code> or <code>&lt;div&gt;</code> with an <code>&lt;h2&gt;</code> heading</li>
+            <li>Add a caption under each player (<code>&lt;p&gt;</code> with a description)</li>
+            <li>All elements on one page, arranged vertically</li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Если у тебя нет медиа-файлов, можно использовать бесплатные:
+            <ul>
+                <li>Видео: скачай короткое видео с <strong>pexels.com/videos</strong> или <strong>pixabay.com/videos</strong></li>
+                <li>Аудио: скачай звук с <strong>freesound.org</strong> или <strong>pixabay.com/music</strong></li>
+            </ul>
+        </div>
+        <div class="hint" data-lang="en">
+            If you don't have media files, use free ones:
+            <ul>
+                <li>Video: download a short video from <strong>pexels.com/videos</strong> or <strong>pixabay.com/videos</strong></li>
+                <li>Audio: download audio from <strong>freesound.org</strong> or <strong>pixabay.com/music</strong></li>
+            </ul>
+        </div>
+
+        <div class="hint" data-lang="ru">
+            Добавьте немного CSS прямо в <code>&lt;style&gt;</code>, чтобы страница выглядела аккуратнее:
+<pre><code>section {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+audio, video {
+    display: block;
+    margin: 10px auto;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #2d3748;
+    margin-bottom: 8px;
+}</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            Add a bit of CSS inside <code>&lt;style&gt;</code> to make the page look cleaner:
+<pre><code>section {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+audio, video {
+    display: block;
+    margin: 10px auto;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #2d3748;
+    margin-bottom: 8px;
+}</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>5 медиа-элементов на странице</li>
+                <li>Аудио с controls</li>
+                <li>Видео с controls и шириной</li>
+                <li>Видео с poster</li>
+                <li>Фоновое видео (autoplay muted loop)</li>
+                <li>У каждого элемента есть заголовок и подпись</li>
+            </ul>
+            <ul data-lang="en">
+                <li>5 media elements on the page</li>
+                <li>Audio with controls</li>
+                <li>Video with controls and width</li>
+                <li>Video with poster</li>
+                <li>Background video (autoplay muted loop)</li>
+                <li>Each element has a heading and caption</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 12.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 12.2: IFRAME</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 12.2: IFRAME</h2>
+
+    <!-- ЗАДАНИЕ 11.2 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 11.2: YouTube + Google Maps</span>
+            <span class="task-title" data-lang="en">Task 11.2: YouTube + Google Maps</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться встраивать YouTube-видео и Google Maps через iframe</div>
+        <div class="task-goal" data-lang="en">Learn to embed YouTube videos and Google Maps via iframe</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>iframe-test.html</code>. Добавьте:</p>
+        <p data-lang="en">Create a file <code>iframe-test.html</code>. Add:</p>
+
+        <ol data-lang="ru">
+            <li><strong>2 YouTube-видео:</strong> Найдите 2 видео на YouTube &#x2192; Поделиться &#x2192; Встроить &#x2192; Скопируйте код iframe</li>
+            <li><strong>Google Maps:</strong> Откройте Google Maps &#x2192; Найдите место (например, ваш город) &#x2192; Поделиться &#x2192; Встроить карту &#x2192; Скопируйте код iframe</li>
+            <li>Добавьте заголовки (<code>&lt;h2&gt;</code>) перед каждым iframe</li>
+            <li>Добавьте атрибут <code>loading="lazy"</code> к карте</li>
+            <li>Добавьте атрибут <code>title</code> к каждому iframe (для доступности)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>2 YouTube videos:</strong> Find 2 videos on YouTube &#x2192; Share &#x2192; Embed &#x2192; Copy the iframe code</li>
+            <li><strong>Google Maps:</strong> Open Google Maps &#x2192; Find a place (e.g., your city) &#x2192; Share &#x2192; Embed a map &#x2192; Copy the iframe code</li>
+            <li>Add headings (<code>&lt;h2&gt;</code>) before each iframe</li>
+            <li>Add <code>loading="lazy"</code> attribute to the map</li>
+            <li>Add a <code>title</code> attribute to each iframe (for accessibility)</li>
+        </ol>
+
+        <h3 data-lang="ru">Требования:</h3>
+        <h3 data-lang="en">Requirements:</h3>
+        <ul data-lang="ru">
+            <li>Каждый iframe имеет атрибут <code>title</code> с описанием содержимого</li>
+            <li>Все iframe обёрнуты в <code>&lt;section&gt;</code> или <code>&lt;div&gt;</code></li>
+            <li>YouTube iframe использует <code>allowfullscreen</code></li>
+            <li>Google Maps iframe использует <code>loading="lazy"</code></li>
+        </ul>
+        <ul data-lang="en">
+            <li>Each iframe has a <code>title</code> attribute describing its content</li>
+            <li>All iframes wrapped in a <code>&lt;section&gt;</code> or <code>&lt;div&gt;</code></li>
+            <li>YouTube iframes use <code>allowfullscreen</code></li>
+            <li>Google Maps iframe uses <code>loading="lazy"</code></li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Стилизуйте iframe через CSS, чтобы они выглядели аккуратно:
+<pre><code>iframe {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin: 16px 0;
+}
+
+section {
+    margin-bottom: 30px;
+}</code></pre>
+            <p>Атрибут <code>title</code> важен для доступности — он описывает содержимое iframe для скринридеров. Пример: <code>title="YouTube: название видео"</code></p>
+        </div>
+        <div class="hint" data-lang="en">
+            Style iframes with CSS to make them look clean:
+<pre><code>iframe {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin: 16px 0;
+}
+
+section {
+    margin-bottom: 30px;
+}</code></pre>
+            <p>The <code>title</code> attribute is important for accessibility — it describes the iframe content for screen readers. Example: <code>title="YouTube: video name"</code></p>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>2 YouTube-видео встроены через iframe</li>
+                <li>Google Maps встроена через iframe</li>
+                <li>Каждый iframe имеет заголовок и атрибут <code>title</code></li>
+                <li>Видео воспроизводятся при нажатии Play</li>
+                <li>Карта работает (можно перемещать, масштабировать)</li>
+                <li>iframe стилизованы (без рамки, с тенью)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>2 YouTube videos embedded via iframe</li>
+                <li>Google Maps embedded via iframe</li>
+                <li>Each iframe has a heading and <code>title</code> attribute</li>
+                <li>Videos play when clicking Play</li>
+                <li>Map works (can pan, zoom)</li>
+                <li>iframes are styled (no border, with shadow)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 12.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 12.3: СТРАНИЦА МУЗЫКАНТА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 12.3: MUSICIAN PAGE</h2>
+
+    <!-- ЗАДАНИЕ 11.3 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 11.3: Страница музыканта / блогера</span>
+            <span class="task-title" data-lang="en">Task 11.3: Musician / blogger page</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать полноценную мультимедийную страницу</div>
+        <div class="task-goal" data-lang="en">Create a complete multimedia page</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>musician</code> с файлами <code>index.html</code> и <code>style.css</code>. Сделайте страницу любимого музыканта, блогера или вымышленного персонажа:</p>
+        <p data-lang="en">Create a folder <code>musician</code> with files <code>index.html</code> and <code>style.css</code>. Make a page for a favorite musician, blogger, or fictional character:</p>
+
+        <h3 data-lang="ru">Обязательные секции:</h3>
+        <h3 data-lang="en">Required sections:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Шапка (header):</strong> Имя, фото, краткое описание</li>
+            <li><strong>Видеоклипы:</strong> 2-3 YouTube-видео (iframe), с заголовками</li>
+            <li><strong>Музыка:</strong> 1-2 аудиоплеера (<code>&lt;audio&gt;</code>) с названиями треков</li>
+            <li><strong>Контакты / Где найти:</strong> Google Maps с локацией (студия, город)</li>
+            <li><strong>Подвал (footer):</strong> Копирайт, ссылки на соцсети</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Header:</strong> Name, photo, short description</li>
+            <li><strong>Music videos:</strong> 2-3 YouTube videos (iframe), with titles</li>
+            <li><strong>Music:</strong> 1-2 audio players (<code>&lt;audio&gt;</code>) with track names</li>
+            <li><strong>Contacts / Where to find:</strong> Google Maps with location (studio, city)</li>
+            <li><strong>Footer:</strong> Copyright, social links</li>
+        </ol>
+
+        <h3 data-lang="ru">Технические требования:</h3>
+        <h3 data-lang="en">Technical requirements:</h3>
+
+        <ul data-lang="ru">
+            <li>CSS в отдельном файле</li>
+            <li>Фавиконка (<code>&lt;link rel="icon"&gt;</code>)</li>
+            <li>Мета-теги: <code>description</code>, <code>author</code></li>
+            <li>iframe адаптивный (<code>width: 100%; aspect-ratio: 16/9</code>)</li>
+            <li>Страница стилизована (фон, шрифты, отступы, секции)</li>
+        </ul>
+        <ul data-lang="en">
+            <li>CSS in a separate file</li>
+            <li>Favicon (<code>&lt;link rel="icon"&gt;</code>)</li>
+            <li>Meta tags: <code>description</code>, <code>author</code></li>
+            <li>Responsive iframe (<code>width: 100%; aspect-ratio: 16/9</code>)</li>
+            <li>Page is styled (background, fonts, spacing, sections)</li>
+        </ul>
+
+        <h3 data-lang="ru">CSS-требования:</h3>
+        <h3 data-lang="en">CSS requirements:</h3>
+
+        <ul data-lang="ru">
+            <li>Каждая секция визуально отделена (отступы, фон или линии)</li>
+            <li>Header стилизован: фото округлённое или в рамке, крупный заголовок</li>
+            <li>Секция видео: iframe-ы в сетке или стопке с отступами</li>
+            <li>Аудиоплеер: <code>width: 100%</code> для заполнения контейнера</li>
+            <li>Footer с тёмным фоном и светлым текстом</li>
+            <li>CSS подключён через <code>&lt;link&gt;</code></li>
+        </ul>
+        <ul data-lang="en">
+            <li>Each section visually separated (spacing, background, or borders)</li>
+            <li>Header styled: rounded or framed photo, large heading</li>
+            <li>Video section: iframes in a grid or stack with spacing</li>
+            <li>Audio player: <code>width: 100%</code> to fill the container</li>
+            <li>Footer with dark background and light text</li>
+            <li>CSS linked via <code>&lt;link&gt;</code></li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Структура файлов:
+<pre><code>musician/
+├── index.html
+├── style.css
+└── favicon.png   (необязательно, можно ссылкой)</code></pre>
+            <p>Для фавиконки можно использовать emoji-конвертер: <strong>favicon.io/emoji-favicons</strong></p>
+        </div>
+        <div class="hint" data-lang="en">
+            File structure:
+<pre><code>musician/
+├── index.html
+├── style.css
+└── favicon.png   (optional, can use a link)</code></pre>
+            <p>For favicon you can use an emoji converter: <strong>favicon.io/emoji-favicons</strong></p>
+        </div>
+
+        <div class="hint" data-lang="ru">
+            Сделайте iframe адаптивным с помощью CSS. Этот приём работает во всех современных браузерах:
+<pre><code>iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 12px;
+}
+
+audio {
+    width: 100%;
+    margin: 8px 0;
+}</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            Make iframes responsive with CSS. This technique works in all modern browsers:
+<pre><code>iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 12px;
+}
+
+audio {
+    width: 100%;
+    margin: 8px 0;
+}</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>5 секций (header, видео, аудио, карта, footer)</li>
+                <li>2-3 YouTube iframe-а</li>
+                <li>1-2 аудиоплеера</li>
+                <li>Google Maps iframe</li>
+                <li>Фавиконка в &lt;head&gt;</li>
+                <li>Мета-теги description и author</li>
+                <li>iframe адаптивный</li>
+                <li>Страница стилизована через external CSS</li>
+                <li>Секции визуально разделены</li>
+                <li>Footer с тёмным фоном</li>
+            </ul>
+            <ul data-lang="en">
+                <li>5 sections (header, videos, audio, map, footer)</li>
+                <li>2-3 YouTube iframes</li>
+                <li>1-2 audio players</li>
+                <li>Google Maps iframe</li>
+                <li>Favicon in &lt;head&gt;</li>
+                <li>Meta tags description and author</li>
+                <li>Responsive iframe</li>
+                <li>Page styled via external CSS</li>
+                <li>Sections visually separated</li>
+                <li>Footer with dark background</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 11.4: Open Graph превью</span>
+            <span class="task-title" data-lang="en">Task 11.4: Open Graph preview</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Настроить превью страницы для соцсетей</div>
+        <div class="task-goal" data-lang="en">Configure page preview for social media</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li>Добавьте к странице музыканта <strong>Open Graph</strong> мета-теги:
+<pre><code>&lt;meta property="og:title" content="Имя — Музыкант"&gt;
+&lt;meta property="og:description" content="Описание..."&gt;
+&lt;meta property="og:image" content="preview.jpg"&gt;
+&lt;meta property="og:type" content="website"&gt;</code></pre>
+            </li>
+            <li>Создайте картинку-превью (<code>preview.jpg</code>) размером примерно 1200&#xD7;630 пикселей</li>
+            <li>Добавьте мета-теги <code>&lt;title&gt;</code> и <code>&lt;meta name="description"&gt;</code></li>
+            <li>Убедитесь, что <code>og:image</code> указывает на <strong>полный URL</strong> картинки (или относительный путь для локального теста)</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Add <strong>Open Graph</strong> meta tags to the musician page:
+<pre><code>&lt;meta property="og:title" content="Name — Musician"&gt;
+&lt;meta property="og:description" content="Description..."&gt;
+&lt;meta property="og:image" content="preview.jpg"&gt;
+&lt;meta property="og:type" content="website"&gt;</code></pre>
+            </li>
+            <li>Create a preview image (<code>preview.jpg</code>) approximately 1200&#xD7;630 pixels</li>
+            <li>Add <code>&lt;title&gt;</code> and <code>&lt;meta name="description"&gt;</code> tags</li>
+            <li>Make sure <code>og:image</code> points to a <strong>full URL</strong> of the image (or relative path for local testing)</li>
+        </ol>
+
+        <h3 data-lang="ru">Требования:</h3>
+        <h3 data-lang="en">Requirements:</h3>
+        <ul data-lang="ru">
+            <li>Все 4 обязательных OG-тега присутствуют (<code>og:title</code>, <code>og:description</code>, <code>og:image</code>, <code>og:type</code>)</li>
+            <li><code>&lt;title&gt;</code> и <code>&lt;meta name="description"&gt;</code> заполнены осмысленным текстом</li>
+            <li>Превью-картинка существует и имеет правильные пропорции (примерно 1200&#xD7;630)</li>
+            <li>OG-теги расположены внутри <code>&lt;head&gt;</code></li>
+        </ul>
+        <ul data-lang="en">
+            <li>All 4 required OG tags are present (<code>og:title</code>, <code>og:description</code>, <code>og:image</code>, <code>og:type</code>)</li>
+            <li><code>&lt;title&gt;</code> and <code>&lt;meta name="description"&gt;</code> filled with meaningful text</li>
+            <li>Preview image exists and has correct proportions (approximately 1200&#xD7;630)</li>
+            <li>OG tags are placed inside <code>&lt;head&gt;</code></li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Проверить OG-теги можно с помощью онлайн-инструментов:
+            <ul>
+                <li><strong>metatags.io</strong> — показывает, как ваша ссылка будет выглядеть в Google, Facebook, Twitter</li>
+                <li><strong>developers.facebook.com/tools/debug</strong> — отладчик Facebook (нужен публичный URL)</li>
+                <li><strong>cards-dev.twitter.com/validator</strong> — валидатор Twitter Cards</li>
+            </ul>
+            <p>Для локального теста достаточно просто открыть исходный код страницы и убедиться, что теги на месте.</p>
+        </div>
+        <div class="hint" data-lang="en">
+            You can check OG tags using online tools:
+            <ul>
+                <li><strong>metatags.io</strong> — shows how your link will look on Google, Facebook, Twitter</li>
+                <li><strong>developers.facebook.com/tools/debug</strong> — Facebook debugger (requires a public URL)</li>
+                <li><strong>cards-dev.twitter.com/validator</strong> — Twitter Cards validator</li>
+            </ul>
+            <p>For local testing, you can simply view the page source and verify that the tags are in place.</p>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>og:title, og:description, og:image, og:type добавлены</li>
+                <li>title и meta description заполнены</li>
+                <li>Превью-картинка создана</li>
+                <li>OG-теги находятся в &lt;head&gt;</li>
+                <li>Проверено через просмотр исходного кода или онлайн-инструмент</li>
+            </ul>
+            <ul data-lang="en">
+                <li>og:title, og:description, og:image, og:type are added</li>
+                <li>title and meta description are filled</li>
+                <li>Preview image is created</li>
+                <li>OG tags are inside &lt;head&gt;</li>
+                <li>Verified via page source or an online tool</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

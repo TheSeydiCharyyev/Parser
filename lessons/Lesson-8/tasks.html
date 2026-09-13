@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 8 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 8: CSS Position</span>
+    <span class="nav-title" data-lang="en">Lesson 8: CSS Position</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 8: CSS Position</p>
+    <p class="subtitle" data-lang="en">Lesson 8: CSS Position</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 8.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 8.1: relative + absolute</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 8.1: relative + absolute</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 8.1: Карточка товара с бейджем-скидкой</span>
+            <span class="task-title" data-lang="en">Task 8.1: Product card with sale badge</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться позиционировать дочерний элемент в углу родителя через связку <code>relative + absolute</code></div>
+        <div class="task-goal" data-lang="en">Learn to position a child element in the corner of a parent via the <code>relative + absolute</code> combo</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>card-badge.html</code>. Сделайте 4 карточки товаров в ряд (через Flex), у каждой — свой бейдж в правом верхнем углу.</p>
+        <p data-lang="en">Create a file <code>card-badge.html</code>. Make 4 product cards in a row (via Flex), each with its own badge in the top-right corner.</p>
+
+        <ol data-lang="ru">
+            <li><strong>HTML:</strong> 4 блока <code>&lt;article class="card"&gt;</code>, в каждом:
+                <ul>
+                    <li><code>&lt;img src="https://picsum.photos/seed/N/300/200" alt="..."&gt;</code> (N = 1, 2, 3, 4)</li>
+                    <li><code>&lt;span class="badge"&gt;-30%&lt;/span&gt;</code> (разные тексты: «-30%», «NEW», «HIT», «-50%»)</li>
+                    <li><code>&lt;h3&gt;Название товара&lt;/h3&gt;</code></li>
+                    <li><code>&lt;p class="price"&gt;1 200 ₽&lt;/p&gt;</code></li>
+                </ul>
+            </li>
+            <li><strong>CSS:</strong>
+                <ul>
+                    <li>Контейнер всех карточек — <code>display: flex; gap: 16px</code></li>
+                    <li>Карточка — белая, со скруглением, тенью, padding</li>
+                    <li>Картинка — <code>width: 100%; border-radius: 8px</code></li>
+                    <li><strong>На <code>.card</code> поставь <code>position: relative</code></strong> — иначе бейдж улетит в угол страницы</li>
+                    <li>На <code>.badge</code>:
+                        <ul>
+                            <li><code>position: absolute</code></li>
+                            <li><code>top: 16px</code>, <code>right: 16px</code></li>
+                            <li>Красный фон, белый текст, padding 4px 10px, border-radius 12px, font-weight 700</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Эксперимент:</strong> Убери <code>position: relative</code> с <code>.card</code> и обнови страницу. Что произошло? (Бейдж улетит в правый верхний угол окна браузера.) Верни <code>relative</code> обратно.</li>
+        </ol>
+
+        <ol data-lang="en">
+            <li><strong>HTML:</strong> 4 blocks <code>&lt;article class="card"&gt;</code>, each with:
+                <ul>
+                    <li><code>&lt;img src="https://picsum.photos/seed/N/300/200" alt="..."&gt;</code> (N = 1, 2, 3, 4)</li>
+                    <li><code>&lt;span class="badge"&gt;-30%&lt;/span&gt;</code> (different texts: "-30%", "NEW", "HIT", "-50%")</li>
+                    <li><code>&lt;h3&gt;Product name&lt;/h3&gt;</code></li>
+                    <li><code>&lt;p class="price"&gt;$12.00&lt;/p&gt;</code></li>
+                </ul>
+            </li>
+            <li><strong>CSS:</strong>
+                <ul>
+                    <li>Container of all cards — <code>display: flex; gap: 16px</code></li>
+                    <li>Card — white, rounded, shadow, padding</li>
+                    <li>Image — <code>width: 100%; border-radius: 8px</code></li>
+                    <li><strong>On <code>.card</code> set <code>position: relative</code></strong> — otherwise the badge flies to the page corner</li>
+                    <li>On <code>.badge</code>:
+                        <ul>
+                            <li><code>position: absolute</code></li>
+                            <li><code>top: 16px</code>, <code>right: 16px</code></li>
+                            <li>Red background, white text, padding 4px 10px, border-radius 12px, font-weight 700</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Experiment:</strong> Remove <code>position: relative</code> from <code>.card</code> and refresh. What happened? (Badge flies to the top-right corner of the browser window.) Put <code>relative</code> back.</li>
+        </ol>
+
+        <div class="example" data-lang="ru">
+            <p>Пример HTML одной карточки:</p>
+<pre><code>&lt;article class="card"&gt;
+    &lt;img src="https://picsum.photos/seed/1/300/200" alt="Товар 1"&gt;
+    &lt;span class="badge"&gt;-30%&lt;/span&gt;
+    &lt;h3&gt;Кофе арабика&lt;/h3&gt;
+    &lt;p class="price"&gt;420 ₽&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+        </div>
+        <div class="example" data-lang="en">
+            <p>Example HTML for one card:</p>
+<pre><code>&lt;article class="card"&gt;
+    &lt;img src="https://picsum.photos/seed/1/300/200" alt="Product 1"&gt;
+    &lt;span class="badge"&gt;-30%&lt;/span&gt;
+    &lt;h3&gt;Arabica coffee&lt;/h3&gt;
+    &lt;p class="price"&gt;$5.00&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+        </div>
+
+        <div class="hint" data-lang="ru">
+            💡 Если бейдж торчит «выглядывает» из карточки — попробуй <code>top: -8px; right: -8px</code> (отрицательные значения). А если ты случайно поставил <code>overflow: hidden</code> на карточку — отрицательные сдвиги обрежутся, и торчащий бейдж не получится.
+        </div>
+        <div class="hint" data-lang="en">
+            💡 If you want the badge to "stick out" of the card — try <code>top: -8px; right: -8px</code> (negative values). If you accidentally set <code>overflow: hidden</code> on the card — negative shifts will be clipped and the protruding badge won't work.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>4 карточки в ряд через Flex</li>
+                <li>На <code>.card</code> стоит <code>position: relative</code></li>
+                <li>На <code>.badge</code> стоит <code>position: absolute</code> + <code>top</code> + <code>right</code></li>
+                <li>Бейдж в правом верхнем углу КАРТОЧКИ (не страницы)</li>
+                <li>4 разных бейджа с разными текстами</li>
+                <li>Картинки загружаются (с <code>picsum.photos</code>)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>4 cards in a row via Flex</li>
+                <li><code>.card</code> has <code>position: relative</code></li>
+                <li><code>.badge</code> has <code>position: absolute</code> + <code>top</code> + <code>right</code></li>
+                <li>Badge in the top-right corner of the CARD (not the page)</li>
+                <li>4 different badges with different texts</li>
+                <li>Images load (from <code>picsum.photos</code>)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 8.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 8.2: position: fixed</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 8.2: position: fixed</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 8.2: Длинная страница с кнопкой «Наверх»</span>
+            <span class="task-title" data-lang="en">Task 8.2: Long page with "Back to top" button</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Освоить <code>position: fixed</code> для элементов, прижатых к окну браузера</div>
+        <div class="task-goal" data-lang="en">Master <code>position: fixed</code> for elements pinned to the browser window</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>fixed-button.html</code>. Сделайте длинную страницу (минимум 5 экранов скролла) и добавьте круглую кнопку «Наверх» в правом нижнем углу, которая остаётся на месте при прокрутке.</p>
+        <p data-lang="en">Create a file <code>fixed-button.html</code>. Make a long page (at least 5 screens of scroll) and add a round "Back to top" button in the bottom-right corner that stays put while scrolling.</p>
+
+        <ol data-lang="ru">
+            <li><strong>HTML:</strong>
+                <ul>
+                    <li>В <code>&lt;body&gt;</code> сначала якорь <code>&lt;div id="top"&gt;&lt;/div&gt;</code></li>
+                    <li>5-7 секций <code>&lt;section&gt;</code> с <code>&lt;h2&gt;</code> и большим текстом (Lorem ipsum)</li>
+                    <li>В самом конце <code>&lt;body&gt;</code> — <code>&lt;a href="#top" class="back-to-top" aria-label="Наверх"&gt;↑&lt;/a&gt;</code></li>
+                </ul>
+            </li>
+            <li><strong>CSS:</strong>
+                <ul>
+                    <li>Каждая <code>section</code> — <code>min-height: 100vh</code> (заставит скроллить)</li>
+                    <li>На <code>.back-to-top</code>:
+                        <ul>
+                            <li><code>position: fixed</code></li>
+                            <li><code>bottom: 24px</code>, <code>right: 24px</code></li>
+                            <li><code>width: 50px; height: 50px</code></li>
+                            <li><code>border-radius: 50%</code> (круглая)</li>
+                            <li>Синий фон, белая стрелка, центрирование через <code>display: grid; place-items: center</code></li>
+                            <li>Тень <code>box-shadow: 0 4px 12px rgba(0,0,0,0.2)</code></li>
+                            <li><code>z-index: 50</code> (поверх контента)</li>
+                            <li><code>text-decoration: none</code> (убрать подчёркивание)</li>
+                            <li>Hover: чуть темнее фон, плавный <code>transition</code></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Проверка:</strong> Прокрути страницу вниз — кнопка должна оставаться в правом нижнем углу. Кликни — должен сработать переход на <code>#top</code>.</li>
+        </ol>
+
+        <ol data-lang="en">
+            <li><strong>HTML:</strong>
+                <ul>
+                    <li>In <code>&lt;body&gt;</code> first an anchor <code>&lt;div id="top"&gt;&lt;/div&gt;</code></li>
+                    <li>5-7 sections <code>&lt;section&gt;</code> with <code>&lt;h2&gt;</code> and lots of text (Lorem ipsum)</li>
+                    <li>At the very end of <code>&lt;body&gt;</code> — <code>&lt;a href="#top" class="back-to-top" aria-label="Top"&gt;↑&lt;/a&gt;</code></li>
+                </ul>
+            </li>
+            <li><strong>CSS:</strong>
+                <ul>
+                    <li>Each <code>section</code> — <code>min-height: 100vh</code> (forces scrolling)</li>
+                    <li>On <code>.back-to-top</code>:
+                        <ul>
+                            <li><code>position: fixed</code></li>
+                            <li><code>bottom: 24px</code>, <code>right: 24px</code></li>
+                            <li><code>width: 50px; height: 50px</code></li>
+                            <li><code>border-radius: 50%</code> (round)</li>
+                            <li>Blue background, white arrow, centered via <code>display: grid; place-items: center</code></li>
+                            <li>Shadow <code>box-shadow: 0 4px 12px rgba(0,0,0,0.2)</code></li>
+                            <li><code>z-index: 50</code> (over content)</li>
+                            <li><code>text-decoration: none</code> (remove underline)</li>
+                            <li>Hover: slightly darker background, smooth <code>transition</code></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><strong>Verification:</strong> Scroll down — the button should stay in the bottom-right corner. Click it — should jump to <code>#top</code>.</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            💡 Бонус: добавь <code>html { scroll-behavior: smooth; }</code> — переход на якорь будет плавным, а не «прыгающим».
+        </div>
+        <div class="hint" data-lang="en">
+            💡 Bonus: add <code>html { scroll-behavior: smooth; }</code> — anchor jumps will be smooth instead of instant.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Страница длинная (минимум 5 секций <code>min-height: 100vh</code>)</li>
+                <li>Якорь <code>id="top"</code> в начале <code>&lt;body&gt;</code></li>
+                <li>На <code>.back-to-top</code> стоит <code>position: fixed</code></li>
+                <li>Указаны <code>bottom</code> и <code>right</code></li>
+                <li>Кнопка круглая (<code>border-radius: 50%</code>)</li>
+                <li>При скролле кнопка ОСТАЁТСЯ в правом нижнем углу</li>
+                <li>Клик переносит к самому верху страницы</li>
+                <li>Есть hover-эффект</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Page is long (at least 5 sections of <code>min-height: 100vh</code>)</li>
+                <li>Anchor <code>id="top"</code> at the start of <code>&lt;body&gt;</code></li>
+                <li><code>.back-to-top</code> has <code>position: fixed</code></li>
+                <li><code>bottom</code> and <code>right</code> are set</li>
+                <li>Button is round (<code>border-radius: 50%</code>)</li>
+                <li>On scroll, the button STAYS in the bottom-right corner</li>
+                <li>Click jumps to the very top of the page</li>
+                <li>Hover effect present</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 8.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 8.3: position: sticky</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 8.3: position: sticky</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 8.3: Sticky-навигация на странице блога</span>
+            <span class="task-title" data-lang="en">Task 8.3: Sticky navigation on a blog page</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Сделать sticky-шапку, которая «прилипает» к верху при скролле</div>
+        <div class="task-goal" data-lang="en">Make a sticky header that "sticks" to the top while scrolling</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>sticky-blog.html</code>. Сделайте страницу блога с длинной статьёй и навигацией сверху, которая прилипает к верху окна при прокрутке.</p>
+        <p data-lang="en">Create a file <code>sticky-blog.html</code>. Make a blog page with a long article and a top navigation that sticks to the top of the window while scrolling.</p>
+
+        <ol data-lang="ru">
+            <li><strong>HTML:</strong>
+                <ul>
+                    <li><code>&lt;header class="site-header"&gt;</code> с логотипом и 4 ссылками меню</li>
+                    <li><code>&lt;main&gt;</code> с <code>&lt;article&gt;</code></li>
+                    <li>В статье — <code>&lt;h1&gt;</code>, потом 8-10 параграфов <code>&lt;p&gt;</code> с большим текстом (Lorem ipsum)</li>
+                    <li>Между параграфами вставь 2-3 <code>&lt;h2&gt;</code> подзаголовка</li>
+                </ul>
+            </li>
+            <li><strong>CSS:</strong>
+                <ul>
+                    <li>На <code>.site-header</code>:
+                        <ul>
+                            <li><code>position: sticky</code></li>
+                            <li><code>top: 0</code> (обязательно!)</li>
+                            <li><strong>background: #fff</strong> (обязательно, иначе текст под шапкой будет просвечивать)</li>
+                            <li><code>z-index: 100</code></li>
+                            <li><code>display: flex</code>, <code>justify-content: space-between</code></li>
+                            <li><code>padding: 16px 32px</code></li>
+                            <li><code>box-shadow: 0 2px 8px rgba(0,0,0,0.06)</code></li>
+                        </ul>
+                    </li>
+                    <li>На <code>main</code> — <code>max-width: 800px</code>, <code>margin: 0 auto</code>, <code>padding: 32px</code></li>
+                </ul>
+            </li>
+            <li><strong>Проверка:</strong>
+                <ul>
+                    <li>Прокрути вниз — шапка должна «прилипнуть» к верху и оставаться видна.</li>
+                    <li>Текст не должен «просвечивать» сквозь шапку.</li>
+                    <li>Прокрути до самого низа — шапка остаётся видна.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <ol data-lang="en">
+            <li><strong>HTML:</strong>
+                <ul>
+                    <li><code>&lt;header class="site-header"&gt;</code> with a logo and 4 menu links</li>
+                    <li><code>&lt;main&gt;</code> with <code>&lt;article&gt;</code></li>
+                    <li>In the article — <code>&lt;h1&gt;</code>, then 8-10 paragraphs <code>&lt;p&gt;</code> with long text (Lorem ipsum)</li>
+                    <li>Between paragraphs insert 2-3 <code>&lt;h2&gt;</code> subheadings</li>
+                </ul>
+            </li>
+            <li><strong>CSS:</strong>
+                <ul>
+                    <li>On <code>.site-header</code>:
+                        <ul>
+                            <li><code>position: sticky</code></li>
+                            <li><code>top: 0</code> (mandatory!)</li>
+                            <li><strong>background: #fff</strong> (mandatory, otherwise text under the header will show through)</li>
+                            <li><code>z-index: 100</code></li>
+                            <li><code>display: flex</code>, <code>justify-content: space-between</code></li>
+                            <li><code>padding: 16px 32px</code></li>
+                            <li><code>box-shadow: 0 2px 8px rgba(0,0,0,0.06)</code></li>
+                        </ul>
+                    </li>
+                    <li>On <code>main</code> — <code>max-width: 800px</code>, <code>margin: 0 auto</code>, <code>padding: 32px</code></li>
+                </ul>
+            </li>
+            <li><strong>Verification:</strong>
+                <ul>
+                    <li>Scroll down — the header should "stick" to the top and remain visible.</li>
+                    <li>Text should not "show through" the header.</li>
+                    <li>Scroll to the very bottom — header is still visible.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            💡 Если sticky не работает — проверь: 1) указан ли <code>top: 0</code>, 2) нет ли где-то по дереву родителей <code>overflow: hidden/scroll/auto</code>, 3) нет ли опечатки в <code>position: sticky</code>.
+        </div>
+        <div class="hint" data-lang="en">
+            💡 If sticky doesn't work — check: 1) is <code>top: 0</code> set, 2) is there <code>overflow: hidden/scroll/auto</code> anywhere up the parent tree, 3) is there a typo in <code>position: sticky</code>.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Шапка с логотипом + 4 ссылками</li>
+                <li>На <code>.site-header</code> стоит <code>position: sticky</code> + <code>top: 0</code></li>
+                <li>У шапки задан непрозрачный <code>background</code></li>
+                <li>Указан <code>z-index</code></li>
+                <li>В статье минимум 8 параграфов и 2-3 подзаголовка</li>
+                <li>При скролле шапка ОСТАЁТСЯ видна</li>
+                <li>Текст НЕ просвечивает сквозь шапку</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Header with logo + 4 links</li>
+                <li><code>.site-header</code> has <code>position: sticky</code> + <code>top: 0</code></li>
+                <li>Header has opaque <code>background</code></li>
+                <li><code>z-index</code> is set</li>
+                <li>Article has at least 8 paragraphs and 2-3 subheadings</li>
+                <li>On scroll, the header REMAINS visible</li>
+                <li>Text does NOT show through the header</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 8.4: Полный лендинг с тремя position</span>
+            <span class="task-title" data-lang="en">Task 8.4: Full landing page with all three position values</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Совместить sticky-шапку, fixed-кнопку и absolute-бейджи на одной странице</div>
+        <div class="task-goal" data-lang="en">Combine sticky header, fixed button, and absolute badges on one page</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Сделайте лендинг интернет-магазина. Объедините всё, что изучили на этом занятии:</p>
+        <p data-lang="en">Make a landing page for an online store. Combine everything you learned in this lesson:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Sticky-шапка</strong> сверху — логотип + меню (4 ссылки) + кнопка «Войти»</li>
+            <li><strong>Hero-секция</strong> на 100vh с заголовком и кнопкой «Купить»</li>
+            <li><strong>Каталог</strong> — 6-8 карточек товаров через Flex или Grid:
+                <ul>
+                    <li>На каждой карточке свой бейдж в правом верхнем углу через <code>absolute</code></li>
+                    <li>На некоторых — несколько бейджей одновременно («-30%» сверху + «NEW» снизу)</li>
+                </ul>
+            </li>
+            <li><strong>Footer</strong> с копирайтом</li>
+            <li><strong>Fixed кнопка чата</strong> «💬» в правом нижнем углу — открыта на любой высоте скролла</li>
+            <li><strong>Кнопка «Наверх» «↑»</strong> в правом нижнем углу выше кнопки чата (<code>bottom: 90px</code>)</li>
+        </ol>
+
+        <ol data-lang="en">
+            <li><strong>Sticky header</strong> on top — logo + menu (4 links) + "Sign in" button</li>
+            <li><strong>Hero section</strong> at 100vh with a heading and "Buy" button</li>
+            <li><strong>Catalog</strong> — 6-8 product cards via Flex or Grid:
+                <ul>
+                    <li>Each card has its own badge in the top-right corner via <code>absolute</code></li>
+                    <li>Some have multiple badges at once ("-30%" on top + "NEW" below)</li>
+                </ul>
+            </li>
+            <li><strong>Footer</strong> with copyright</li>
+            <li><strong>Fixed chat button</strong> "💬" in the bottom-right corner — visible at any scroll height</li>
+            <li><strong>"Back to top" button "↑"</strong> in the bottom-right corner above the chat button (<code>bottom: 90px</code>)</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            💡 Чтобы кнопка чата и кнопка «Наверх» не перекрывались — задай им разные <code>bottom</code>: чат на <code>bottom: 24px</code>, «Наверх» на <code>bottom: 90px</code>. Обе с одинаковым <code>right: 24px</code>.
+        </div>
+        <div class="hint" data-lang="en">
+            💡 To prevent the chat button and "Back to top" button from overlapping — set different <code>bottom</code> values: chat at <code>bottom: 24px</code>, "Back to top" at <code>bottom: 90px</code>. Both with the same <code>right: 24px</code>.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Sticky-шапка прилипает при скролле</li>
+                <li>Минимум 6 карточек с бейджами в углу</li>
+                <li>Хотя бы на одной карточке два бейджа одновременно</li>
+                <li>Fixed кнопка чата ОДНОВРЕМЕННО с кнопкой «Наверх»</li>
+                <li>Кнопки не перекрывают друг друга</li>
+                <li>Все три значения position использованы: <code>sticky</code>, <code>fixed</code>, <code>absolute</code></li>
+                <li>На каждом карточке-родителе стоит <code>position: relative</code></li>
+            </ul>
+            <ul data-lang="en">
+                <li>Sticky header sticks on scroll</li>
+                <li>At least 6 cards with badges in corners</li>
+                <li>At least one card has two badges at once</li>
+                <li>Fixed chat button SIMULTANEOUSLY with "Back to top" button</li>
+                <li>Buttons don't overlap each other</li>
+                <li>All three position values used: <code>sticky</code>, <code>fixed</code>, <code>absolute</code></li>
+                <li>Each card-parent has <code>position: relative</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="checklist">
+        <h3 data-lang="ru">✅ Финальный чеклист по теме position</h3>
+        <h3 data-lang="en">✅ Final checklist on the position topic</h3>
+        <ul data-lang="ru">
+            <li>Понимаю разницу между всеми 5 значениями <code>position</code></li>
+            <li>Знаю, что <code>top/right/bottom/left</code> работают только при <code>position</code> ≠ static</li>
+            <li>Помню паттерн «relative-родитель + absolute-ребёнок» для бейджей</li>
+            <li>Умею делать sticky-шапку (с обязательным <code>top: 0</code> и фоном)</li>
+            <li>Умею делать fixed-кнопку в углу экрана</li>
+            <li>Понимаю, что такое containing block</li>
+            <li>Знаю шкалу <code>z-index</code>: -1, 1-10, 50-100, 1000+</li>
+            <li>Помню, что <code>z-index</code> работает только с position ≠ static</li>
+        </ul>
+        <ul data-lang="en">
+            <li>I understand the difference between all 5 <code>position</code> values</li>
+            <li>I know <code>top/right/bottom/left</code> only work with <code>position</code> ≠ static</li>
+            <li>I remember the "relative parent + absolute child" pattern for badges</li>
+            <li>I can make a sticky header (with mandatory <code>top: 0</code> and background)</li>
+            <li>I can make a fixed button in the screen corner</li>
+            <li>I understand what a containing block is</li>
+            <li>I know the <code>z-index</code> scale: -1, 1-10, 50-100, 1000+</li>
+            <li>I remember <code>z-index</code> only works with position ≠ static</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

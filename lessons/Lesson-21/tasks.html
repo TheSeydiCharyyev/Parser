@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 21 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 21: Адаптивные паттерны</span>
+    <span class="nav-title" data-lang="en">Lesson 21: Responsive Patterns</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 21: Адаптивные паттерны</p>
+    <p class="subtitle" data-lang="en">Lesson 21: Responsive Patterns</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 21.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 21.1: АДАПТИВНЫЕ ЕДИНИЦЫ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 21.1: RESPONSIVE UNITS</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 20.1: Лаборатория единиц</span>
+            <span class="task-title" data-lang="en">Task 20.1: Units laboratory</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Увидеть разницу между px, %, vw, rem, clamp() на практике</div>
+        <div class="task-goal" data-lang="en">See the difference between px, %, vw, rem, clamp() in practice</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>units-lab.html</code>. Сделайте 5 цветных блоков, каждый с разной шириной:</p>
+        <p data-lang="en">Create a file <code>units-lab.html</code>. Make 5 colored blocks, each with a different width:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Блок 1:</strong> <code>width: 300px</code> — красный фон (<code>#fee2e2</code>), подпись «300px — фиксированный»</li>
+            <li><strong>Блок 2:</strong> <code>width: 50%</code> — жёлтый фон (<code>#fef3c7</code>), подпись «50% — половина родителя»</li>
+            <li><strong>Блок 3:</strong> <code>width: 50vw</code> — зелёный фон (<code>#dcfce7</code>), подпись «50vw — половина viewport»</li>
+            <li><strong>Блок 4:</strong> <code>width: 20rem</code> — синий фон (<code>#dbeafe</code>), подпись «20rem = 320px»</li>
+            <li><strong>Блок 5:</strong> <code>width: clamp(200px, 50vw, 600px)</code> — фиолетовый фон (<code>#ede9fe</code>), подпись «clamp — адаптивный»</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Block 1:</strong> <code>width: 300px</code> — red background (<code>#fee2e2</code>), label "300px — fixed"</li>
+            <li><strong>Block 2:</strong> <code>width: 50%</code> — yellow background (<code>#fef3c7</code>), label "50% — half of parent"</li>
+            <li><strong>Block 3:</strong> <code>width: 50vw</code> — green background (<code>#dcfce7</code>), label "50vw — half of viewport"</li>
+            <li><strong>Block 4:</strong> <code>width: 20rem</code> — blue background (<code>#dbeafe</code>), label "20rem = 320px"</li>
+            <li><strong>Block 5:</strong> <code>width: clamp(200px, 50vw, 600px)</code> — purple background (<code>#ede9fe</code>), label "clamp — responsive"</li>
+        </ol>
+
+        <p data-lang="ru">Каждый блок: <code>padding: 16px</code>, <code>margin-bottom: 12px</code>, <code>border-radius: 8px</code>, <strong>шрифт жирный</strong>. Сужайте окно и наблюдайте, какие блоки меняются, а какие — нет!</p>
+        <p data-lang="en">Each block: <code>padding: 16px</code>, <code>margin-bottom: 12px</code>, <code>border-radius: 8px</code>, <strong>bold font</strong>. Resize the window and observe which blocks change and which don't!</p>
+
+        <div class="hint" data-lang="ru">
+            Добавьте также 3 заголовка с разными шрифтами для сравнения:<br>
+            <code>h1 { font-size: 32px; }</code> (фиксированный)<br>
+            <code>h2 { font-size: 2rem; }</code> (относительный)<br>
+            <code>h3 { font-size: clamp(1rem, 3vw, 2rem); }</code> (плавный)
+        </div>
+        <div class="hint" data-lang="en">
+            Also add 3 headings with different fonts for comparison:<br>
+            <code>h1 { font-size: 32px; }</code> (fixed)<br>
+            <code>h2 { font-size: 2rem; }</code> (relative)<br>
+            <code>h3 { font-size: clamp(1rem, 3vw, 2rem); }</code> (fluid)
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>5 блоков с разными единицами ширины</li>
+                <li>Подписи на каждом блоке</li>
+                <li>3 заголовка с разными единицами шрифта</li>
+                <li>Видна разница при изменении размера окна</li>
+                <li>Проверено в DevTools (iPhone + Desktop)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>5 blocks with different width units</li>
+                <li>Labels on each block</li>
+                <li>3 headings with different font units</li>
+                <li>Difference visible when resizing window</li>
+                <li>Tested in DevTools (iPhone + Desktop)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 21.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 21.2: БУРГЕР-МЕНЮ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 21.2: BURGER MENU</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 20.2: Бургер-меню на CSS</span>
+            <span class="task-title" data-lang="en">Task 20.2: CSS burger menu</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать header с бургер-меню на чистом CSS (без JavaScript)</div>
+        <div class="task-goal" data-lang="en">Create a header with pure CSS burger menu (no JavaScript)</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>burger-menu.html</code>. Постройте header с навигацией по шагам:</p>
+        <p data-lang="en">Create a file <code>burger-menu.html</code>. Build a header with navigation step by step:</p>
+
+        <ol data-lang="ru">
+            <li><strong>HTML-структура:</strong>
+                <ul>
+                    <li><code>&lt;header class="header"&gt;</code> с flexbox</li>
+                    <li>Лого слева: <code>&lt;a class="logo"&gt;MySite&lt;/a&gt;</code></li>
+                    <li>Чекбокс: <code>&lt;input type="checkbox" id="menu-toggle" class="menu-toggle"&gt;</code></li>
+                    <li>Бургер-иконка: <code>&lt;label for="menu-toggle" class="burger"&gt;</code> с 3 <code>&lt;span&gt;</code></li>
+                    <li>Навигация: <code>&lt;nav class="nav"&gt;</code> с 4 ссылками (Home, About, Services, Contact)</li>
+                </ul>
+            </li>
+            <li><strong>Десктоп (&#x2265; 769px):</strong>
+                <ul>
+                    <li>Навигация горизонтальная (<code>display: flex; gap: 20px</code>)</li>
+                    <li>Бургер скрыт (<code>display: none</code>)</li>
+                    <li>Чекбокс скрыт (<code>display: none</code>)</li>
+                </ul>
+            </li>
+            <li><strong>Мобильный (&#x2264; 768px):</strong>
+                <ul>
+                    <li>Бургер виден (<code>display: flex; flex-direction: column</code>)</li>
+                    <li>Навигация скрыта (<code>display: none</code>)</li>
+                    <li>Клик по бургеру &#x2192; навигация появляется вертикально: <code>.menu-toggle:checked ~ .nav { display: flex; }</code></li>
+                    <li>Бургер превращается в крестик через <code>transform: rotate()</code></li>
+                </ul>
+            </li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>HTML structure:</strong>
+                <ul>
+                    <li><code>&lt;header class="header"&gt;</code> with flexbox</li>
+                    <li>Logo on left: <code>&lt;a class="logo"&gt;MySite&lt;/a&gt;</code></li>
+                    <li>Checkbox: <code>&lt;input type="checkbox" id="menu-toggle" class="menu-toggle"&gt;</code></li>
+                    <li>Burger icon: <code>&lt;label for="menu-toggle" class="burger"&gt;</code> with 3 <code>&lt;span&gt;</code>s</li>
+                    <li>Navigation: <code>&lt;nav class="nav"&gt;</code> with 4 links (Home, About, Services, Contact)</li>
+                </ul>
+            </li>
+            <li><strong>Desktop (&#x2265; 769px):</strong>
+                <ul>
+                    <li>Horizontal navigation (<code>display: flex; gap: 20px</code>)</li>
+                    <li>Burger hidden (<code>display: none</code>)</li>
+                    <li>Checkbox hidden (<code>display: none</code>)</li>
+                </ul>
+            </li>
+            <li><strong>Mobile (&#x2264; 768px):</strong>
+                <ul>
+                    <li>Burger visible (<code>display: flex; flex-direction: column</code>)</li>
+                    <li>Navigation hidden (<code>display: none</code>)</li>
+                    <li>Click burger &#x2192; navigation appears vertically: <code>.menu-toggle:checked ~ .nav { display: flex; }</code></li>
+                    <li>Burger turns into X via <code>transform: rotate()</code></li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Порядок в HTML критически важен!</strong> Чекбокс и label должны быть <strong>перед</strong> nav, потому что селектор <code>~</code> работает только вперёд. Если nav стоит перед input — ничего не заработает.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>HTML order is critical!</strong> Checkbox and label must be <strong>before</strong> nav, because the <code>~</code> selector only works forward. If nav is before input — nothing will work.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Без JavaScript (только CSS)</li>
+                <li>На десктопе: горизонтальная навигация, бургер скрыт</li>
+                <li>На мобильном: бургер виден, клик &#x2192; вертикальное меню</li>
+                <li>Бургер &#x2192; крестик анимация (transform: rotate)</li>
+                <li>Плавный <code>transition: 0.3s</code> на полосках бургера</li>
+                <li>for/id совпадают у label и input</li>
+                <li>Проверено: iPhone + Desktop в DevTools</li>
+            </ul>
+            <ul data-lang="en">
+                <li>No JavaScript (CSS only)</li>
+                <li>On desktop: horizontal navigation, burger hidden</li>
+                <li>On mobile: burger visible, click &#x2192; vertical menu</li>
+                <li>Burger &#x2192; X animation (transform: rotate)</li>
+                <li>Smooth <code>transition: 0.3s</code> on burger lines</li>
+                <li>for/id match between label and input</li>
+                <li>Tested: iPhone + Desktop in DevTools</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 21.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 21.3: ПОЛНАЯ АДАПТИВНАЯ СТРАНИЦА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 21.3: FULL RESPONSIVE PAGE</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 20.3: Адаптивная навигация + сетка карточек</span>
+            <span class="task-title" data-lang="en">Task 20.3: Responsive nav + card grid</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Собрать полную адаптивную страницу, объединив бургер-меню, hero, карточки и sticky footer</div>
+        <div class="task-goal" data-lang="en">Build a full responsive page combining burger menu, hero, cards and sticky footer</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>responsive-full</code> с <code>index.html</code> и <code>style.css</code>. Страница состоит из 4 секций:</p>
+        <p data-lang="en">Create a folder <code>responsive-full</code> with <code>index.html</code> and <code>style.css</code>. The page has 4 sections:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Header</strong> с бургер-меню (из задания 20.2):
+                <ul>
+                    <li>Лого + навигация (4 ссылки)</li>
+                    <li>Десктоп: горизонтальная навигация</li>
+                    <li>Мобильный: бургер-меню (checkbox hack)</li>
+                </ul>
+            </li>
+            <li><strong>Hero-секция:</strong>
+                <ul>
+                    <li><code>height: 100vh</code></li>
+                    <li>Фоновый градиент: <code>linear-gradient(135deg, #667eea, #764ba2)</code></li>
+                    <li>Заголовок: <code>font-size: clamp(2rem, 5vw, 4rem)</code></li>
+                    <li>Подзаголовок: <code>font-size: clamp(1rem, 2vw, 1.25rem)</code></li>
+                    <li>Кнопка CTA (белая, <code>border-radius: 8px</code>)</li>
+                    <li>Центрирование через Flexbox</li>
+                </ul>
+            </li>
+            <li><strong>Секция карточек:</strong>
+                <ul>
+                    <li>Контейнер: <code>width: 90%; max-width: 1200px; margin: 0 auto</code></li>
+                    <li>6 карточек с изображениями (picsum.photos)</li>
+                    <li>Картинки: <code>width: 100%; height: 200px; object-fit: cover</code></li>
+                    <li>Mobile: 1 колонка, Tablet (768px+): 2, Desktop (1024px+): 3</li>
+                    <li>Шрифты в <code>rem</code></li>
+                </ul>
+            </li>
+            <li><strong>Footer:</strong>
+                <ul>
+                    <li>Sticky footer: <code>body { display: grid; grid-template-rows: auto 1fr auto; min-height: 100vh; }</code></li>
+                    <li>Тёмный фон, светлый текст</li>
+                </ul>
+            </li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Header</strong> with burger menu (from task 20.2):
+                <ul>
+                    <li>Logo + navigation (4 links)</li>
+                    <li>Desktop: horizontal navigation</li>
+                    <li>Mobile: burger menu (checkbox hack)</li>
+                </ul>
+            </li>
+            <li><strong>Hero section:</strong>
+                <ul>
+                    <li><code>height: 100vh</code></li>
+                    <li>Background gradient: <code>linear-gradient(135deg, #667eea, #764ba2)</code></li>
+                    <li>Heading: <code>font-size: clamp(2rem, 5vw, 4rem)</code></li>
+                    <li>Subheading: <code>font-size: clamp(1rem, 2vw, 1.25rem)</code></li>
+                    <li>CTA button (white, <code>border-radius: 8px</code>)</li>
+                    <li>Centering via Flexbox</li>
+                </ul>
+            </li>
+            <li><strong>Cards section:</strong>
+                <ul>
+                    <li>Container: <code>width: 90%; max-width: 1200px; margin: 0 auto</code></li>
+                    <li>6 cards with images (picsum.photos)</li>
+                    <li>Images: <code>width: 100%; height: 200px; object-fit: cover</code></li>
+                    <li>Mobile: 1 column, Tablet (768px+): 2, Desktop (1024px+): 3</li>
+                    <li>Fonts in <code>rem</code></li>
+                </ul>
+            </li>
+            <li><strong>Footer:</strong>
+                <ul>
+                    <li>Sticky footer: <code>body { display: grid; grid-template-rows: auto 1fr auto; min-height: 100vh; }</code></li>
+                    <li>Dark background, light text</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Начните с мобильной версии (mobile-first): базовые стили для телефона, потом <code>@media (min-width: 768px)</code> и <code>@media (min-width: 1024px)</code>. Для бургера используйте <code>@media (max-width: 768px)</code>.
+        </div>
+        <div class="hint" data-lang="en">
+            Start with mobile version (mobile-first): base styles for phone, then <code>@media (min-width: 768px)</code> and <code>@media (min-width: 1024px)</code>. For burger use <code>@media (max-width: 768px)</code>.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Бургер-меню работает без JS</li>
+                <li>Hero = 100vh + clamp() шрифт + кнопка CTA</li>
+                <li>Контейнер: width: 90% + max-width: 1200px</li>
+                <li>Адаптивные картинки: max-width: 100% + object-fit: cover</li>
+                <li>Карточки: 1 &#x2192; 2 &#x2192; 3 колонки</li>
+                <li>Sticky footer (footer внизу даже при малом контенте)</li>
+                <li><code>rem</code> для шрифтов</li>
+                <li>CSS в отдельном файле (style.css)</li>
+                <li>Протестировано на iPhone, iPad, Desktop в DevTools</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Burger menu works without JS</li>
+                <li>Hero = 100vh + clamp() font + CTA button</li>
+                <li>Container: width: 90% + max-width: 1200px</li>
+                <li>Responsive images: max-width: 100% + object-fit: cover</li>
+                <li>Cards: 1 &#x2192; 2 &#x2192; 3 columns</li>
+                <li>Sticky footer (footer at bottom even with little content)</li>
+                <li><code>rem</code> for fonts</li>
+                <li>CSS in separate file (style.css)</li>
+                <li>Tested on iPhone, iPad, Desktop in DevTools</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 20.4: Адаптивный лендинг</span>
+            <span class="task-title" data-lang="en">Task 20.4: Responsive landing</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать полный адаптивный лендинг из 5 секций, используя все изученные техники</div>
+        <div class="task-goal" data-lang="en">Create a full responsive landing with 5 sections using all techniques learned</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>landing</code> с <code>index.html</code> и <code>style.css</code>. Объедините все навыки и создайте лендинг из 5 секций:</p>
+        <p data-lang="en">Create a folder <code>landing</code> with <code>index.html</code> and <code>style.css</code>. Combine all skills and create a landing with 5 sections:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Header:</strong>
+                <ul>
+                    <li>Бургер-меню на мобильном (checkbox hack)</li>
+                    <li>Горизонтальная навигация на десктопе</li>
+                    <li>Лого + 5 ссылок</li>
+                </ul>
+            </li>
+            <li><strong>Hero:</strong>
+                <ul>
+                    <li><code>height: 100vh</code>, фоновый градиент</li>
+                    <li>Заголовок: <code>clamp(2rem, 6vw, 4rem)</code></li>
+                    <li>Описание + кнопка CTA</li>
+                    <li>Центрирование через Flexbox</li>
+                </ul>
+            </li>
+            <li><strong>Features (преимущества):</strong>
+                <ul>
+                    <li>3 блока в ряд (Flexbox)</li>
+                    <li>Каждый блок: иконка (&#x2764; &#x2B50; &#x26A1; или emoji), заголовок, описание</li>
+                    <li>На мобильном: стопка (<code>flex-direction: column</code>)</li>
+                    <li>На десктопе: 3 в ряд (<code>flex-direction: row</code>)</li>
+                </ul>
+            </li>
+            <li><strong>Cards (карточки):</strong>
+                <ul>
+                    <li>Grid-сетка: 6 карточек с изображениями</li>
+                    <li>Mobile: 1 колонка, Tablet: 2, Desktop: 3</li>
+                    <li>Картинки: <code>object-fit: cover</code></li>
+                    <li>Контейнер: <code>width: 90%; max-width: 1200px</code></li>
+                </ul>
+            </li>
+            <li><strong>Footer:</strong>
+                <ul>
+                    <li>3 колонки ссылок (О нас, Услуги, Контакты)</li>
+                    <li>На мобильном: стопка (<code>flex-direction: column</code>)</li>
+                    <li>Sticky footer (<code>grid-template-rows: auto 1fr auto</code>)</li>
+                    <li>Тёмный фон (#1e293b), светлый текст</li>
+                </ul>
+            </li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Header:</strong>
+                <ul>
+                    <li>Burger menu on mobile (checkbox hack)</li>
+                    <li>Horizontal navigation on desktop</li>
+                    <li>Logo + 5 links</li>
+                </ul>
+            </li>
+            <li><strong>Hero:</strong>
+                <ul>
+                    <li><code>height: 100vh</code>, background gradient</li>
+                    <li>Heading: <code>clamp(2rem, 6vw, 4rem)</code></li>
+                    <li>Description + CTA button</li>
+                    <li>Centering via Flexbox</li>
+                </ul>
+            </li>
+            <li><strong>Features:</strong>
+                <ul>
+                    <li>3 blocks in a row (Flexbox)</li>
+                    <li>Each block: icon (&#x2764; &#x2B50; &#x26A1; or emoji), title, description</li>
+                    <li>On mobile: stack (<code>flex-direction: column</code>)</li>
+                    <li>On desktop: 3 in a row (<code>flex-direction: row</code>)</li>
+                </ul>
+            </li>
+            <li><strong>Cards:</strong>
+                <ul>
+                    <li>Grid layout: 6 cards with images</li>
+                    <li>Mobile: 1 column, Tablet: 2, Desktop: 3</li>
+                    <li>Images: <code>object-fit: cover</code></li>
+                    <li>Container: <code>width: 90%; max-width: 1200px</code></li>
+                </ul>
+            </li>
+            <li><strong>Footer:</strong>
+                <ul>
+                    <li>3 columns of links (About, Services, Contact)</li>
+                    <li>On mobile: stack (<code>flex-direction: column</code>)</li>
+                    <li>Sticky footer (<code>grid-template-rows: auto 1fr auto</code>)</li>
+                    <li>Dark background (#1e293b), light text</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Это полноценный лендинг! Используйте все изученные приёмы: Grid, Flexbox, media queries, <code>rem</code>, <code>clamp()</code>, адаптивные картинки, бургер-меню, sticky footer. Начните с mobile-first: базовые стили для телефона, потом расширяйте.
+        </div>
+        <div class="hint" data-lang="en">
+            This is a full landing page! Use all techniques you've learned: Grid, Flexbox, media queries, <code>rem</code>, <code>clamp()</code>, responsive images, burger menu, sticky footer. Start mobile-first: base styles for phone, then expand.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>5 секций (header, hero, features, cards, footer)</li>
+                <li>Бургер-меню без JS (checkbox hack)</li>
+                <li><code>clamp()</code> для заголовков</li>
+                <li>Адаптивные изображения (<code>max-width: 100%</code> + <code>object-fit: cover</code>)</li>
+                <li>3 breakpoints (мобильный, планшет 768px, десктоп 1024px)</li>
+                <li>Grid + Flexbox комбинация</li>
+                <li>Sticky footer</li>
+                <li>Шрифты в <code>rem</code>, ширины в <code>%</code></li>
+                <li>CSS в отдельном файле</li>
+                <li>Протестировано на всех размерах в DevTools</li>
+            </ul>
+            <ul data-lang="en">
+                <li>5 sections (header, hero, features, cards, footer)</li>
+                <li>Burger menu without JS (checkbox hack)</li>
+                <li><code>clamp()</code> for headings</li>
+                <li>Responsive images (<code>max-width: 100%</code> + <code>object-fit: cover</code>)</li>
+                <li>3 breakpoints (mobile, tablet 768px, desktop 1024px)</li>
+                <li>Grid + Flexbox combination</li>
+                <li>Sticky footer</li>
+                <li>Fonts in <code>rem</code>, widths in <code>%</code></li>
+                <li>CSS in separate file</li>
+                <li>Tested on all sizes in DevTools</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

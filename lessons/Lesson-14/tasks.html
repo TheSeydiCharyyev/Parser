@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 14 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 14: Flexbox — основы</span>
+    <span class="nav-title" data-lang="en">Lesson 14: Flexbox — Basics</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 14: Flexbox — основы</p>
+    <p class="subtitle" data-lang="en">Lesson 14: Flexbox — Basics</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 14.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 14.1: FLEX-КОНТЕЙНЕР</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 14.1: FLEX CONTAINER</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 13.1: Лаборатория Flexbox</span>
+            <span class="task-title" data-lang="en">Task 13.1: Flexbox Laboratory</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Попробовать все свойства flex-контейнера</div>
+        <div class="task-goal" data-lang="en">Try all flex container properties</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>flex-lab.html</code>. Сделайте контейнер с 5 цветными блоками:</p>
+        <p data-lang="en">Create a file <code>flex-lab.html</code>. Make a container with 5 colored blocks:</p>
+
+<pre><code>&lt;div class="container"&gt;
+    &lt;div class="box" style="background:#ef4444"&gt;1&lt;/div&gt;
+    &lt;div class="box" style="background:#f97316"&gt;2&lt;/div&gt;
+    &lt;div class="box" style="background:#eab308"&gt;3&lt;/div&gt;
+    &lt;div class="box" style="background:#22c55e"&gt;4&lt;/div&gt;
+    &lt;div class="box" style="background:#3b82f6"&gt;5&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <p data-lang="ru">Последовательно примените к <code>.container</code> и запишите результат:</p>
+        <p data-lang="en">Apply each to <code>.container</code> and note the result:</p>
+
+        <ol data-lang="ru">
+            <li><code>display: flex</code> — что изменилось?</li>
+            <li><code>flex-direction: column</code> — как расположились блоки?</li>
+            <li><code>flex-direction: row-reverse</code> — что произошло?</li>
+            <li><code>justify-content: center</code> — куда переместились?</li>
+            <li><code>justify-content: space-between</code></li>
+            <li><code>justify-content: space-evenly</code></li>
+            <li>Добавьте <code>height: 300px</code> контейнеру, затем <code>align-items: center</code></li>
+            <li><code>align-items: flex-end</code></li>
+            <li><code>flex-wrap: wrap</code> (задайте блокам <code>width: 200px</code>)</li>
+            <li><code>gap: 20px</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><code>display: flex</code> — what changed?</li>
+            <li><code>flex-direction: column</code> — how are blocks arranged?</li>
+            <li><code>flex-direction: row-reverse</code> — what happened?</li>
+            <li><code>justify-content: center</code> — where did they move?</li>
+            <li><code>justify-content: space-between</code></li>
+            <li><code>justify-content: space-evenly</code></li>
+            <li>Add <code>height: 300px</code> to container, then <code>align-items: center</code></li>
+            <li><code>align-items: flex-end</code></li>
+            <li><code>flex-wrap: wrap</code> (set blocks to <code>width: 200px</code>)</li>
+            <li><code>gap: 20px</code></li>
+        </ol>
+
+        <h3 data-lang="ru">Требования:</h3>
+        <h3 data-lang="en">Requirements:</h3>
+        <ul data-lang="ru">
+            <li>CSS пишите в теге <code>&lt;style&gt;</code> внутри файла</li>
+            <li>Каждый эксперимент должен иметь видимый комментарий или подпись (<code>&lt;h3&gt;</code> или HTML-комментарий), чтобы вы могли вернуться и повторить</li>
+            <li>Блоки должны иметь <code>min-width</code> и <code>min-height</code>, чтобы разница была чётко видна</li>
+            <li>Контейнер должен иметь <code>border</code>, чтобы было видно его границы</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Write CSS in a <code>&lt;style&gt;</code> tag inside the file</li>
+            <li>Each experiment should have a visible comment or label (<code>&lt;h3&gt;</code> or HTML comment) so you can review later</li>
+            <li>Blocks should have <code>min-width</code> and <code>min-height</code> so the difference is clearly visible</li>
+            <li>Container should have a <code>border</code> so its boundaries are visible</li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Базовые стили для блоков, чтобы эксперименты были наглядными:
+<pre><code>.box {
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 8px;
+}
+
+.container {
+    border: 2px dashed #cbd5e1;
+    padding: 10px;
+    margin-bottom: 20px;
+}</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            Base styles for blocks so experiments are clearly visible:
+<pre><code>.box {
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 8px;
+}
+
+.container {
+    border: 2px dashed #cbd5e1;
+    padding: 10px;
+    margin-bottom: 20px;
+}</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все 10 экспериментов выполнены</li>
+                <li>Визуальная разница видна при каждом изменении</li>
+                <li>Блоки имеют min-width/min-height</li>
+                <li>Контейнер имеет видимую рамку</li>
+                <li>Каждый эксперимент подписан</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 10 experiments completed</li>
+                <li>Visual difference is visible with each change</li>
+                <li>Blocks have min-width/min-height</li>
+                <li>Container has a visible border</li>
+                <li>Each experiment is labeled</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 14.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 14.2: ВЫРАВНИВАНИЕ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 14.2: ALIGNMENT</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 13.2: 6 вариантов justify-content</span>
+            <span class="task-title" data-lang="en">Task 13.2: 6 justify-content variations</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Визуально сравнить все значения justify-content</div>
+        <div class="task-goal" data-lang="en">Visually compare all justify-content values</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>justify.html</code>. На одной странице покажите <strong>6 контейнеров</strong> — каждый с разным значением <code>justify-content</code>:</p>
+        <p data-lang="en">Create a file <code>justify.html</code>. On one page show <strong>6 containers</strong> — each with a different <code>justify-content</code> value:</p>
+
+        <ol data-lang="ru">
+            <li><code>flex-start</code></li>
+            <li><code>flex-end</code></li>
+            <li><code>center</code></li>
+            <li><code>space-between</code></li>
+            <li><code>space-around</code></li>
+            <li><code>space-evenly</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><code>flex-start</code></li>
+            <li><code>flex-end</code></li>
+            <li><code>center</code></li>
+            <li><code>space-between</code></li>
+            <li><code>space-around</code></li>
+            <li><code>space-evenly</code></li>
+        </ol>
+
+        <p data-lang="ru">Каждый контейнер: серый фон, <code>height: 80px</code>, 3 цветных блока внутри. Над каждым — подпись с названием значения.</p>
+        <p data-lang="en">Each container: gray background, <code>height: 80px</code>, 3 colored blocks inside. Above each — a label with the value name.</p>
+
+        <h3 data-lang="ru">Требования:</h3>
+        <h3 data-lang="en">Requirements:</h3>
+        <ul data-lang="ru">
+            <li>Каждый контейнер подписан через <code>&lt;h3&gt;</code> с названием значения</li>
+            <li>Блоки одинаково стилизованы во всех контейнерах (одинаковый размер, цвет, отступы)</li>
+            <li>Контейнеры имеют <code>border</code>, чтобы было видно где заканчиваются границы</li>
+            <li>Все контейнеры должны иметь одинаковую ширину для честного сравнения</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Each container is labeled with an <code>&lt;h3&gt;</code> showing the value name</li>
+            <li>Blocks are styled consistently across all containers (same size, color, padding)</li>
+            <li>Containers have a <code>border</code> so boundaries are visible</li>
+            <li>All containers should have the same width for a fair comparison</li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Стили для контейнеров и блоков:
+<pre><code>.demo-container {
+    display: flex;
+    background: #f1f5f9;
+    height: 80px;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.demo-box {
+    width: 60px;
+    height: 50px;
+    border-radius: 6px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            Styles for containers and blocks:
+<pre><code>.demo-container {
+    display: flex;
+    background: #f1f5f9;
+    height: 80px;
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.demo-box {
+    width: 60px;
+    height: 50px;
+    border-radius: 6px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>6 контейнеров на одной странице</li>
+                <li>Каждый с разным justify-content</li>
+                <li>Разница визуально заметна</li>
+                <li>Подписи есть</li>
+                <li>Контейнеры имеют рамку</li>
+                <li>Блоки одинаково стилизованы</li>
+            </ul>
+            <ul data-lang="en">
+                <li>6 containers on one page</li>
+                <li>Each with different justify-content</li>
+                <li>Difference is visually obvious</li>
+                <li>Labels are present</li>
+                <li>Containers have a border</li>
+                <li>Blocks are consistently styled</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 14.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 14.3: НАВИГАЦИЯ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 14.3: NAVIGATION</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 13.3: Навигационная панель на Flexbox</span>
+            <span class="task-title" data-lang="en">Task 13.3: Flexbox navigation bar</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать полноценную навигационную панель с помощью Flexbox</div>
+        <div class="task-goal" data-lang="en">Create a complete navigation bar using Flexbox</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>navbar</code> с файлами <code>index.html</code> и <code>style.css</code>. Сделайте навигационную панель:</p>
+        <p data-lang="en">Create a folder <code>navbar</code> with files <code>index.html</code> and <code>style.css</code>. Make a navigation bar:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Логотип</strong> — слева (текст или emoji), выделяется стилем (жирный, крупнее, другой цвет)</li>
+            <li><strong>Ссылки</strong> — по центру: Главная, Курсы, О нас, Блог, Контакты</li>
+            <li><strong>Кнопка</strong> — справа: «Войти» (стилизованная)</li>
+            <li><strong>Раскладка:</strong> <code>display: flex</code> + <code>justify-content: space-between</code> + <code>align-items: center</code></li>
+            <li><strong>Ссылки</strong> находятся в своём собственном flex-контейнере (<code>.nav-links</code>) с <code>gap</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Logo</strong> — on the left (text or emoji), stands out with styling (bold, larger, different color)</li>
+            <li><strong>Links</strong> — in the center: Home, Courses, About, Blog, Contacts</li>
+            <li><strong>Button</strong> — on the right: "Login" (styled)</li>
+            <li><strong>Layout:</strong> <code>display: flex</code> + <code>justify-content: space-between</code> + <code>align-items: center</code></li>
+            <li><strong>Links</strong> are in their own flex container (<code>.nav-links</code>) with <code>gap</code></li>
+        </ol>
+
+        <h3 data-lang="ru">CSS-требования:</h3>
+        <h3 data-lang="en">CSS requirements:</h3>
+        <ul data-lang="ru">
+            <li>Белый фон, лёгкая тень (<code>box-shadow</code>)</li>
+            <li>Ссылки без подчёркивания, hover-эффект (цвет)</li>
+            <li>Кнопка: цветной фон, белый текст, border-radius, hover</li>
+            <li>Навигация прилипает к верху (<code>position: sticky</code>)</li>
+            <li>Padding для отступов</li>
+            <li>Логотип визуально выделяется (<code>font-weight: bold</code>, крупнее, другой цвет)</li>
+        </ul>
+        <ul data-lang="en">
+            <li>White background, light shadow (<code>box-shadow</code>)</li>
+            <li>Links without underline, hover effect (color)</li>
+            <li>Button: colored background, white text, border-radius, hover</li>
+            <li>Nav sticks to top (<code>position: sticky</code>)</li>
+            <li>Padding for spacing</li>
+            <li>Logo is visually distinct (<code>font-weight: bold</code>, larger, different color)</li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Структура HTML:
+<pre><code>&lt;nav class="navbar"&gt;
+    &lt;a class="logo"&gt;...&lt;/a&gt;
+    &lt;div class="nav-links"&gt;    &lt;!-- flex внутри flex! --&gt;
+        &lt;a&gt;...&lt;/a&gt; &lt;a&gt;...&lt;/a&gt; ...
+    &lt;/div&gt;
+    &lt;a class="btn"&gt;Войти&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            HTML structure:
+<pre><code>&lt;nav class="navbar"&gt;
+    &lt;a class="logo"&gt;...&lt;/a&gt;
+    &lt;div class="nav-links"&gt;    &lt;!-- flex inside flex! --&gt;
+        &lt;a&gt;...&lt;/a&gt; &lt;a&gt;...&lt;/a&gt; ...
+    &lt;/div&gt;
+    &lt;a class="btn"&gt;Login&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+
+        <div class="hint" data-lang="ru">
+            Подумайте о разных ширинах экрана: что произойдёт, если окно браузера станет узким? Ссылки начнут «сжиматься» или вылезать за пределы? Пока не нужно это исправлять (media queries будут позже), но обратите внимание на поведение. Попробуйте уменьшить окно браузера и посмотрите, что происходит!
+        </div>
+        <div class="hint" data-lang="en">
+            Think about different screen widths: what happens if the browser window becomes narrow? Will links start to "squeeze" or overflow? You don't need to fix this yet (media queries come later), but notice the behavior. Try resizing the browser window and see what happens!
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Логотип слева, ссылки в центре, кнопка справа</li>
+                <li>Всё на одной линии, вертикально выровнено</li>
+                <li>Flexbox используется (display: flex)</li>
+                <li>Ссылки находятся в собственном flex-контейнере (.nav-links)</li>
+                <li>gap для отступов между ссылками</li>
+                <li>Логотип визуально выделяется</li>
+                <li>Hover-эффекты работают</li>
+                <li>Nav прилипает (sticky)</li>
+                <li>CSS в отдельном файле</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Logo left, links center, button right</li>
+                <li>All on one line, vertically aligned</li>
+                <li>Flexbox is used (display: flex)</li>
+                <li>Links are in their own flex container (.nav-links)</li>
+                <li>gap for spacing between links</li>
+                <li>Logo is visually distinct</li>
+                <li>Hover effects work</li>
+                <li>Nav is sticky</li>
+                <li>CSS in separate file</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 13.4: Flexbox Froggy</span>
+            <span class="task-title" data-lang="en">Task 13.4: Flexbox Froggy</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Закрепить Flexbox через интерактивную игру</div>
+        <div class="task-goal" data-lang="en">Reinforce Flexbox through an interactive game</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li>Откройте сайт <strong>flexboxfroggy.com</strong></li>
+            <li>Пройдите все <strong>24 уровня</strong></li>
+            <li>Запишите, какие свойства вы использовали на каждом уровне (например: «Уровень 1 — justify-content: flex-end»)</li>
+            <li>Если застряли — вернитесь к конспекту!</li>
+            <li>Сделайте скриншот последнего пройденного уровня или запишите номер последнего уровня и свойство, которое использовали</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Open the website <strong>flexboxfroggy.com</strong></li>
+            <li>Complete all <strong>24 levels</strong></li>
+            <li>Write down which properties you used on each level (e.g.: "Level 1 — justify-content: flex-end")</li>
+            <li>If stuck — go back to the notes!</li>
+            <li>Take a screenshot of the last completed level, or write down the level number and the property you used</li>
+        </ol>
+
+        <h3 data-lang="ru">Требования:</h3>
+        <h3 data-lang="en">Requirements:</h3>
+        <ul data-lang="ru">
+            <li>Создайте текстовый файл <code>froggy-notes.txt</code> или просто запишите в тетради</li>
+            <li>Формат записи: номер уровня — использованное свойство — значение</li>
+            <li>Скриншот финального уровня (уровень 24) как доказательство прохождения</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Create a text file <code>froggy-notes.txt</code> or simply write it down on paper</li>
+            <li>Format: level number — property used — value</li>
+            <li>Screenshot of the final level (level 24) as proof of completion</li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Flexbox Froggy — это бесплатная игра, где нужно расположить лягушек на лилиях с помощью CSS Flexbox. Очень наглядно! Игра охватывает свойства из этого занятия (<code>justify-content</code>, <code>align-items</code>, <code>flex-direction</code>, <code>flex-wrap</code>) и немного из следующего (<code>order</code>, <code>align-self</code>). Не волнуйтесь, если встретите незнакомые свойства — это отличная возможность заглянуть вперёд!
+        </div>
+        <div class="hint" data-lang="en">
+            Flexbox Froggy is a free game where you need to position frogs on lily pads using CSS Flexbox. Very visual! The game covers properties from this lesson (<code>justify-content</code>, <code>align-items</code>, <code>flex-direction</code>, <code>flex-wrap</code>) and a few from the next one (<code>order</code>, <code>align-self</code>). Don't worry if you encounter unfamiliar properties — it's a great chance to peek ahead!
+        </div>
+
+        <div class="hint" data-lang="ru">
+            Если хотите ещё практики — попробуйте <strong>Flexbox Defense</strong> (<strong>flexboxdefense.com</strong>). Это tower defense игра, где вы расставляете башни с помощью Flexbox. Другой формат, но тоже отлично тренирует!
+        </div>
+        <div class="hint" data-lang="en">
+            If you want more practice — try <strong>Flexbox Defense</strong> (<strong>flexboxdefense.com</strong>). It's a tower defense game where you place towers using Flexbox. Different format, but also great training!
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все 24 уровня пройдены</li>
+                <li>Записаны использованные свойства для каждого уровня</li>
+                <li>Есть скриншот или заметка о финальном уровне</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 24 levels completed</li>
+                <li>Properties used for each level are written down</li>
+                <li>Screenshot or note about the final level exists</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

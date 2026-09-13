@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 23 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 23: CSS Transitions и Transform</span>
+    <span class="nav-title" data-lang="en">Lesson 23: CSS Transitions and Transform</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 23: CSS Transitions и Transform</p>
+    <p class="subtitle" data-lang="en">Lesson 23: CSS Transitions and Transform</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 23.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 23.1: КНОПКИ С ЭФФЕКТАМИ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 23.1: BUTTONS WITH EFFECTS</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 22.1: Коллекция кнопок</span>
+            <span class="task-title" data-lang="en">Task 22.1: Button collection</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать 6 кнопок с разными hover-эффектами</div>
+        <div class="task-goal" data-lang="en">Create 6 buttons with different hover effects</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>buttons.html</code>. Сделайте 6 кнопок, каждая с уникальным hover-эффектом:</p>
+        <p data-lang="en">Create a file <code>buttons.html</code>. Make 6 buttons, each with a unique hover effect:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Смена цвета:</strong> <code>background</code> + <code>color</code> плавно меняются</li>
+            <li><strong>Подъём:</strong> <code>translateY(-3px)</code> + <code>box-shadow</code></li>
+            <li><strong>Увеличение:</strong> <code>scale(1.1)</code></li>
+            <li><strong>Нажатие:</strong> :hover = подъём, :active = <code>scale(0.95)</code></li>
+            <li><strong>Обводка:</strong> прозрачный фон → заполненный + <code>color</code> меняется</li>
+            <li><strong>Подчёркивание:</strong> <code>::after</code> ширина 0 → 100%</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Color change:</strong> <code>background</code> + <code>color</code> smoothly change</li>
+            <li><strong>Lift:</strong> <code>translateY(-3px)</code> + <code>box-shadow</code></li>
+            <li><strong>Scale:</strong> <code>scale(1.1)</code></li>
+            <li><strong>Press:</strong> :hover = lift, :active = <code>scale(0.95)</code></li>
+            <li><strong>Outline:</strong> transparent bg → filled + <code>color</code> changes</li>
+            <li><strong>Underline:</strong> <code>::after</code> width 0 → 100%</li>
+        </ol>
+
+        <p data-lang="ru">Все кнопки: <code>padding: 12px 28px</code>, <code>border-radius: 8px</code>, <code>font-weight: 600</code>, <code>cursor: pointer</code>.</p>
+        <p data-lang="en">All buttons: <code>padding: 12px 28px</code>, <code>border-radius: 8px</code>, <code>font-weight: 600</code>, <code>cursor: pointer</code>.</p>
+
+        <div class="hint" data-lang="ru">
+            <strong>Шаблон кнопки с анимированным подчёркиванием:</strong>
+<pre><code>.btn-underline { position: relative; }
+.btn-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 12px;
+    width: 0; height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+.btn-underline:hover::after {
+    width: calc(100% - 24px);
+}</code></pre>
+            <strong>Помните:</strong> <code>transition</code> всегда на базовом состоянии (.btn), а не на :hover.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Template for button with animated underline:</strong>
+<pre><code>.btn-underline { position: relative; }
+.btn-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 12px;
+    width: 0; height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+.btn-underline:hover::after {
+    width: calc(100% - 24px);
+}</code></pre>
+            <strong>Remember:</strong> <code>transition</code> always on the base state (.btn), not on :hover.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>6 кнопок с разными эффектами</li>
+                <li><code>transition</code> на базовом состоянии (НЕ на :hover)</li>
+                <li>Длительность 0.2s–0.3s</li>
+                <li>Кнопка №4 реагирует и на :hover, и на :active</li>
+                <li>Кнопка №6 использует псевдоэлемент <code>::after</code></li>
+                <li>Подписи под кнопками (какой эффект)</li>
+                <li>Все кнопки работают при обратном движении курсора (плавно, не резко)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>6 buttons with different effects</li>
+                <li><code>transition</code> on base state (NOT on :hover)</li>
+                <li>Duration 0.2s–0.3s</li>
+                <li>Button #4 reacts on both :hover and :active</li>
+                <li>Button #6 uses <code>::after</code> pseudo-element</li>
+                <li>Labels under buttons (which effect)</li>
+                <li>All buttons also animate on cursor leave (smoothly, not abruptly)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 23.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 23.2: ИНТЕРАКТИВНЫЕ КАРТОЧКИ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 23.2: INTERACTIVE CARDS</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 22.2: Карточки с hover-эффектами</span>
+            <span class="task-title" data-lang="en">Task 22.2: Cards with hover effects</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать сетку карточек с transition + transform</div>
+        <div class="task-goal" data-lang="en">Create a card grid with transition + transform</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>cards-hover.html</code> с Grid-сеткой из 6 карточек:</p>
+        <p data-lang="en">Create a file <code>cards-hover.html</code> with a Grid of 6 cards:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Сетка:</strong> <code>repeat(3, 1fr)</code>, <code>gap: 24px</code></li>
+            <li><strong>Карточка:</strong> белый фон, <code>border-radius: 16px</code>, <code>overflow: hidden</code></li>
+            <li><strong>Изображение:</strong> <code>width: 100%; height: 200px; object-fit: cover</code></li>
+            <li><strong>Hover карточки:</strong> <code>translateY(-8px)</code> + <code>box-shadow: 0 16px 32px rgba(0,0,0,0.12)</code></li>
+            <li><strong>Hover изображения:</strong> <code>scale(1.1)</code> (зум, не выходит за рамки)</li>
+            <li><strong>Кнопка внутри:</strong> hover = смена цвета + <code>translateY(-2px)</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Grid:</strong> <code>repeat(3, 1fr)</code>, <code>gap: 24px</code></li>
+            <li><strong>Card:</strong> white bg, <code>border-radius: 16px</code>, <code>overflow: hidden</code></li>
+            <li><strong>Image:</strong> <code>width: 100%; height: 200px; object-fit: cover</code></li>
+            <li><strong>Card hover:</strong> <code>translateY(-8px)</code> + <code>box-shadow: 0 16px 32px rgba(0,0,0,0.12)</code></li>
+            <li><strong>Image hover:</strong> <code>scale(1.1)</code> (zoom, doesn't overflow)</li>
+            <li><strong>Button inside:</strong> hover = color change + <code>translateY(-2px)</code></li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Готовый рецепт карточки:</strong>
+<pre><code>.card {
+    overflow: hidden;
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+}
+.card img {
+    transition: transform 0.4s ease;
+}
+.card:hover img {
+    transform: scale(1.1);
+}</code></pre>
+            Обратите внимание: <code>transition</code> у карточки анимирует 2 свойства (<code>transform</code> и <code>box-shadow</code>) через запятую.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Ready card recipe:</strong>
+<pre><code>.card {
+    overflow: hidden;
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+}
+.card img {
+    transition: transform 0.4s ease;
+}
+.card:hover img {
+    transform: scale(1.1);
+}</code></pre>
+            Note: the card's <code>transition</code> animates 2 properties (<code>transform</code> and <code>box-shadow</code>) comma-separated.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>6 карточек в Grid 3 колонки</li>
+                <li>Карточка поднимается при hover (<code>translateY(-8px)</code>)</li>
+                <li>Тень усиливается при hover</li>
+                <li>Изображение зумится (<code>scale(1.1)</code>) при <code>overflow: hidden</code> у родителя</li>
+                <li>Кнопка внутри карточки с hover-эффектом</li>
+                <li>Все <code>transition</code> на базовом состоянии</li>
+                <li>Плавные переходы (0.3s–0.4s)</li>
+                <li>Кнопка с <code>:active</code> эффектом (scale(0.95))</li>
+                <li>Адаптив: 3→2→1 колонки (опционально)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>6 cards in 3-column Grid</li>
+                <li>Card lifts on hover (<code>translateY(-8px)</code>)</li>
+                <li>Shadow intensifies on hover</li>
+                <li>Image zooms (<code>scale(1.1)</code>) with <code>overflow: hidden</code> on parent</li>
+                <li>Button inside card with hover effect</li>
+                <li>All <code>transition</code>s on base state</li>
+                <li>Smooth transitions (0.3s–0.4s)</li>
+                <li>Button with <code>:active</code> effect (scale(0.95))</li>
+                <li>Responsive: 3→2→1 columns (optional)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 23.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 23.3: TRANSFORM-ЛАБОРАТОРИЯ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 23.3: TRANSFORM LABORATORY</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 22.3: Все трансформации на одной странице</span>
+            <span class="task-title" data-lang="en">Task 22.3: All transforms on one page</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Визуально увидеть все виды transform</div>
+        <div class="task-goal" data-lang="en">Visually see all types of transform</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>transform-lab.html</code>. Сделайте 6 одинаковых квадратов (100x100px) и при hover примените разные transform:</p>
+        <p data-lang="en">Create a file <code>transform-lab.html</code>. Make 6 identical squares (100x100px) and on hover apply different transforms:</p>
+
+        <ol data-lang="ru">
+            <li><code>translateX(50px)</code></li>
+            <li><code>translateY(-30px)</code></li>
+            <li><code>scale(1.5)</code></li>
+            <li><code>rotate(45deg)</code></li>
+            <li><code>skewX(15deg)</code></li>
+            <li><code>translateY(-20px) scale(1.2) rotate(10deg)</code> — комбинация</li>
+        </ol>
+        <ol data-lang="en">
+            <li><code>translateX(50px)</code></li>
+            <li><code>translateY(-30px)</code></li>
+            <li><code>scale(1.5)</code></li>
+            <li><code>rotate(45deg)</code></li>
+            <li><code>skewX(15deg)</code></li>
+            <li><code>translateY(-20px) scale(1.2) rotate(10deg)</code> — combination</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Все квадраты одинаковые — разница только в transform при hover:</strong>
+<pre><code>.square {
+    width: 100px; height: 100px;
+    background: #3b82f6;
+    transition: transform 0.4s ease;
+}
+.square-1:hover { transform: translateX(50px); }
+.square-2:hover { transform: translateY(-30px); }
+/* ... и так далее для 3, 4, 5, 6 */</code></pre>
+            Расположите их в Flexbox ряду с <code>gap: 40px</code>, чтобы было место для движения.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>All squares are identical — difference is only in the transform on hover:</strong>
+<pre><code>.square {
+    width: 100px; height: 100px;
+    background: #3b82f6;
+    transition: transform 0.4s ease;
+}
+.square-1:hover { transform: translateX(50px); }
+.square-2:hover { transform: translateY(-30px); }
+/* ... and so on for 3, 4, 5, 6 */</code></pre>
+            Lay them out in a Flexbox row with <code>gap: 40px</code> to have space for movement.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>6 квадратов с подписями (какой transform применён)</li>
+                <li>Каждый с уникальным transform при hover</li>
+                <li><code>transition: transform 0.4s ease</code></li>
+                <li>Последний — комбинация 3 transform через <strong>пробел</strong> (не новые строки!)</li>
+                <li>Расположены с <code>gap</code> (чтобы было место для движения)</li>
+                <li>Плавно возвращаются в исходное положение</li>
+            </ul>
+            <ul data-lang="en">
+                <li>6 squares with labels (which transform applied)</li>
+                <li>Each with unique transform on hover</li>
+                <li><code>transition: transform 0.4s ease</code></li>
+                <li>Last one — combination of 3 transforms with <strong>spaces</strong> (not new lines!)</li>
+                <li>Laid out with <code>gap</code> (so there's room to move)</li>
+                <li>Smoothly return to original position</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 22.4: Социальные иконки</span>
+            <span class="task-title" data-lang="en">Task 22.4: Social icons</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать панель социальных иконок с анимированными hover-эффектами</div>
+        <div class="task-goal" data-lang="en">Create a social icon bar with animated hover effects</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li>5 круглых иконок в ряд (Flexbox, <code>gap: 16px</code>)</li>
+            <li>Каждая: 50x50px, <code>border-radius: 50%</code>, серый фон, буква внутри (F, T, I, Y, G)</li>
+            <li><strong>Hover:</strong>
+                <ul>
+                    <li><code>transform: translateY(-5px) scale(1.15)</code></li>
+                    <li>Фон меняется на цвет соцсети (FB=синий, TW=голубой, IG=розовый, YT=красный, GH=чёрный)</li>
+                    <li>Текст белый</li>
+                    <li><code>box-shadow</code> цвета соцсети</li>
+                </ul>
+            </li>
+            <li><code>transition: all 0.3s ease</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li>5 circle icons in a row (Flexbox, <code>gap: 16px</code>)</li>
+            <li>Each: 50x50px, <code>border-radius: 50%</code>, gray bg, letter inside (F, T, I, Y, G)</li>
+            <li><strong>Hover:</strong>
+                <ul>
+                    <li><code>transform: translateY(-5px) scale(1.15)</code></li>
+                    <li>Background changes to social color (FB=blue, TW=cyan, IG=pink, YT=red, GH=black)</li>
+                    <li>White text</li>
+                    <li><code>box-shadow</code> in social color</li>
+                </ul>
+            </li>
+            <li><code>transition: all 0.3s ease</code></li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>HEX цвета соцсетей:</strong>
+<pre><code>FB (Facebook):  #1877f2  (синий)
+TW (Twitter):   #1da1f2  (голубой)
+IG (Instagram): #e4405f  (розовый)
+YT (YouTube):   #ff0000  (красный)
+GH (GitHub):    #171515  (почти чёрный)</code></pre>
+            <strong>Цветная тень</strong> задаётся через <code>box-shadow: 0 8px 24px HEX-color-55</code> (55 — прозрачность в hex, около 33%).
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Social HEX colors:</strong>
+<pre><code>FB (Facebook):  #1877f2  (blue)
+TW (Twitter):   #1da1f2  (cyan)
+IG (Instagram): #e4405f  (pink)
+YT (YouTube):   #ff0000  (red)
+GH (GitHub):    #171515  (nearly black)</code></pre>
+            <strong>Colored shadow</strong> via <code>box-shadow: 0 8px 24px HEX-color-55</code> (55 = hex alpha, ~33%).
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>5 круглых иконок (50×50px, <code>border-radius: 50%</code>)</li>
+                <li>Каждая меняет цвет на свой при hover</li>
+                <li>Подъём (<code>translateY(-5px)</code>) + масштаб (<code>scale(1.15)</code>) + цветная тень</li>
+                <li>Плавный transition 0.3s ease</li>
+                <li><code>transform</code> и <code>background</code> анимируются одновременно</li>
+                <li>Все иконки в одном ряду (Flexbox + <code>gap: 16px</code>)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>5 circle icons (50×50px, <code>border-radius: 50%</code>)</li>
+                <li>Each changes to its own color on hover</li>
+                <li>Lift (<code>translateY(-5px)</code>) + scale (<code>scale(1.15)</code>) + colored shadow</li>
+                <li>Smooth transition 0.3s ease</li>
+                <li><code>transform</code> and <code>background</code> animate simultaneously</li>
+                <li>All icons in a single row (Flexbox + <code>gap: 16px</code>)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС 22.5 ==================== -->
+    <h2 data-lang="ru">&#x2B50; ФИНАЛЬНЫЙ БОНУС: ОЖИВИ САЙТ РЕСТОРАНА</h2>
+    <h2 data-lang="en">&#x2B50; FINAL BONUS: BRING THE RESTAURANT SITE TO LIFE</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 22.5: Интеграция с проектом из урока 21</span>
+            <span class="task-title" data-lang="en">Task 22.5: Integration with lesson 21 project</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Добавить все изученные transitions/transforms в проект сайта ресторана</div>
+        <div class="task-goal" data-lang="en">Add all learned transitions/transforms to the restaurant site project</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Откройте проект из урока 21 (сайт ресторана) и добавьте следующие анимации:</p>
+        <p data-lang="en">Open your lesson 21 project (restaurant site) and add the following animations:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Карточки меню:</strong> <code>transition</code> + <code>translateY(-8px)</code> + усиление тени при hover</li>
+            <li><strong>Фото внутри карточек:</strong> обернуть в блок с <code>overflow: hidden</code>, добавить <code>scale(1.1)</code> при hover на карточку</li>
+            <li><strong>Кнопка «View Menu» в hero:</strong> <code>translateY(-2px)</code> + <code>scale(1.05)</code> на hover, <code>scale(0.95)</code> на :active</li>
+            <li><strong>Ссылки в навигации header:</strong> анимированное подчёркивание через <code>::after</code></li>
+            <li><strong>Иконки соцсетей в footer:</strong> смена цвета + <code>scale(1.2)</code> на hover</li>
+            <li><strong>Фото в галерее:</strong> <code>scale(1.05)</code> при hover</li>
+            <li><strong>Кнопка «Send» в форме:</strong> <code>transition: background 0.3s</code> + эффект нажатия</li>
+            <li><strong>Доступность:</strong> в конце style.css добавьте <code>@media (prefers-reduced-motion: reduce) { * { transition-duration: 0.01ms !important; } }</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Menu cards:</strong> <code>transition</code> + <code>translateY(-8px)</code> + stronger shadow on hover</li>
+            <li><strong>Photos inside cards:</strong> wrap in a block with <code>overflow: hidden</code>, add <code>scale(1.1)</code> when hovering the card</li>
+            <li><strong>Hero "View Menu" button:</strong> <code>translateY(-2px)</code> + <code>scale(1.05)</code> on hover, <code>scale(0.95)</code> on :active</li>
+            <li><strong>Header nav links:</strong> animated underline via <code>::after</code></li>
+            <li><strong>Footer social icons:</strong> color change + <code>scale(1.2)</code> on hover</li>
+            <li><strong>Gallery photos:</strong> <code>scale(1.05)</code> on hover</li>
+            <li><strong>Form "Send" button:</strong> <code>transition: background 0.3s</code> + press effect</li>
+            <li><strong>Accessibility:</strong> at the end of style.css add <code>@media (prefers-reduced-motion: reduce) { * { transition-duration: 0.01ms !important; } }</code></li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Не анимируйте ВСЁ одновременно — правило «макс 3 типа анимаций на страницу». Цветные эффекты + подъём карточек + scale иконок — уже достаточно. Больше = мешанина.
+        </div>
+        <div class="hint" data-lang="en">
+            Don't animate EVERYTHING at once — "max 3 animation types per page" rule. Color effects + card lift + icon scale — is enough. More = a mess.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Карточки меню поднимаются при hover</li>
+                <li>Фото в карточках зумятся (overflow: hidden!)</li>
+                <li>Кнопка hero реагирует на hover и :active</li>
+                <li>Ссылки навигации с анимированным подчёркиванием</li>
+                <li>Иконки соцсетей масштабируются</li>
+                <li>Все transition на базовом состоянии</li>
+                <li>Блок <code>prefers-reduced-motion</code> добавлен</li>
+                <li>Анимации плавные, не резкие (0.2s–0.4s)</li>
+                <li>Протестировано: на десктопе и в DevTools на мобильном</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Menu cards lift on hover</li>
+                <li>Photos in cards zoom (overflow: hidden!)</li>
+                <li>Hero button reacts on hover and :active</li>
+                <li>Nav links with animated underline</li>
+                <li>Social icons scale</li>
+                <li>All transitions on base state</li>
+                <li><code>prefers-reduced-motion</code> block added</li>
+                <li>Smooth animations, not abrupt (0.2s–0.4s)</li>
+                <li>Tested: on desktop and in mobile DevTools</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

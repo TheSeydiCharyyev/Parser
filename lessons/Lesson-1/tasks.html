@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 1 — Практические задания</title>
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: #1e293b; background: #fff; padding: 40px 20px; }
+.container { max-width: 800px; margin: 0 auto; }
+h1 { font-size: 1.8rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 10px; margin-bottom: 6px; }
+h2 { font-size: 1.4rem; color: #7e22ce; margin: 36px 0 14px; padding: 8px 14px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 6px 6px 0; }
+h3 { font-size: 1.15rem; color: #1e3a5f; margin: 20px 0 10px; }
+.subtitle { color: #64748b; margin-bottom: 24px; }
+.task { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 24px; margin: 20px 0; }
+.task-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.task-title { font-size: 1.15rem; font-weight: 700; color: #0f172a; }
+.task-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+.badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+.badge-easy { background: #dcfce7; color: #15803d; }
+.badge-medium { background: #fef9c3; color: #a16207; }
+.badge-hard { background: #fce7f3; color: #9d174d; }
+.badge-time { background: #e0e7ff; color: #3730a3; }
+.task-goal { background: #faf5ff; border-left: 3px solid #a855f7; padding: 10px 14px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 0.95rem; }
+.task-goal::before { content: '🎯 Цель: '; font-weight: 700; color: #7e22ce; }
+pre { background: #1e293b; color: #e2e8f0; padding: 14px 18px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 0.9rem; line-height: 1.6; margin: 12px 0; }
+code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+pre code { background: none; padding: 0; }
+table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+th, td { padding: 8px 12px; border: 1px solid #e2e8f0; text-align: left; }
+th { background: #f1f5f9; font-weight: 600; }
+ul, ol { margin: 8px 0 8px 24px; }
+li { margin: 4px 0; }
+hr { border: none; border-top: 2px solid #e2e8f0; margin: 30px 0; }
+.criteria { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.criteria::before { content: '✅ Критерии оценки:'; display: block; font-weight: 700; color: #15803d; margin-bottom: 6px; }
+.hint { background: #fdf4ff; border: 1px solid #e9d5ff; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.hint::before { content: '💡 Подсказка:'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 4px; }
+.write-box { background: #fff; border: 2px dashed #94a3b8; border-radius: 8px; padding: 16px; margin: 14px 0; min-height: 80px; }
+.write-box::before { content: '✏️ Запиши:'; display: block; font-weight: 700; color: #475569; margin-bottom: 8px; }
+.example { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.example::before { content: '📋 Пример:'; display: block; font-weight: 700; color: #a16207; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 1: Введение в веб-разработку</span><span style="color:#cbd5e1;">|</span><a href="lecture.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127979; Лекция</a><a href="student.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127891; Конспект</a><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128203; Задания</span></div>
+
+<div class="container">
+
+    <h1>📝 ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <p class="subtitle">Занятие 1: Введение в веб-разработку</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 1.1 ==================== -->
+    <h2>🎯 УРОК 1.1: ЗАДАНИЯ</h2>
+
+    <!-- ЗАДАНИЕ 1.1 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 1.1: Найди компоненты на сайте</span>
+            <div class="task-meta">
+                <span class="badge badge-easy">Лёгкое</span>
+                <span class="badge badge-time">5 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Научиться видеть структуру реальных веб-страниц</div>
+
+        <h3>Условие:</h3>
+        <ol>
+            <li>Откройте любой известный сайт (YouTube, Instagram, Wikipedia и т.д.)</li>
+            <li>Внимательно изучите страницу</li>
+            <li>Найдите минимум <strong>5 элементов</strong>, из которых состоит страница</li>
+            <li>Определите, какие элементы <strong>повторяются</strong></li>
+        </ol>
+
+        <h3>Что искать:</h3>
+        <ul>
+            <li>Заголовки (названия разделов)</li>
+            <li>Параграфы текста</li>
+            <li>Картинки и иконки</li>
+            <li>Ссылки и кнопки</li>
+            <li>Списки и меню</li>
+            <li>Карточки (товаров, видео, постов)</li>
+            <li>Формы (поиск, вход)</li>
+        </ul>
+
+        <div class="write-box">
+            Сайт: ________________________________<br><br>
+            Найденные элементы:<br>
+            1. _________________________ (повторяется / не повторяется)<br>
+            2. _________________________ (повторяется / не повторяется)<br>
+            3. _________________________ (повторяется / не повторяется)<br>
+            4. _________________________ (повторяется / не повторяется)<br>
+            5. _________________________ (повторяется / не повторяется)<br><br>
+            Самый часто повторяющийся элемент: _________________________
+        </div>
+
+        <div class="example">
+            <p><strong>Сайт:</strong> YouTube</p>
+            <ol>
+                <li>Карточка видео с превью (повторяется — много раз на главной)</li>
+                <li>Логотип YouTube (не повторяется — один на странице)</li>
+                <li>Поле поиска (не повторяется — одно наверху)</li>
+                <li>Кнопки навигации слева (повторяются — много пунктов меню)</li>
+                <li>Иконки (повторяются — лайк, дизлайк, поделиться)</li>
+            </ol>
+            <p>Самый частый: карточка видео</p>
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Найдено минимум 5 элементов</li>
+                <li>Отмечено, какие повторяются</li>
+                <li>Указан самый частый элемент</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 1.2 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 1.2: DevTools — измени сайт</span>
+            <div class="task-meta">
+                <span class="badge badge-easy">Лёгкое</span>
+                <span class="badge badge-time">5 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Научиться открывать и использовать DevTools</div>
+
+        <h3>Условие:</h3>
+        <ol>
+            <li>Откройте любой сайт</li>
+            <li>Нажмите <strong>F12</strong> — откроются DevTools</li>
+            <li>Нажмите на иконку 🔍 (Select element) в левом верхнем углу DevTools</li>
+            <li>Наведите мышку на заголовок страницы — он подсветится</li>
+            <li>Кликните по нему</li>
+            <li>В DevTools найдите текст заголовка и <strong>измените его</strong> (двойной клик по тексту)</li>
+            <li>Покажите результат преподавателю</li>
+        </ol>
+
+        <div class="hint">
+            Не бойтесь — изменения видны только вам и исчезнут при обновлении страницы (F5). Вы ничего не сломаете!
+        </div>
+
+        <h3>Бонус — измени CSS:</h3>
+        <ol>
+            <li>Выберите элемент в DevTools (как выше)</li>
+            <li>Справа найдите панель <strong>Styles</strong></li>
+            <li>Найдите свойство <code>color</code> и кликните на значение</li>
+            <li>Измените его на <code>red</code> — текст станет красным!</li>
+            <li>Попробуйте также изменить <code>font-size</code> на <code>48px</code></li>
+        </ol>
+
+        <div class="write-box">
+            Какой сайт я изменил: ________________________________<br><br>
+            Что я изменил (текст): ________________________________<br>
+            Что я изменил (CSS): ________________________________<br><br>
+            Мои впечатления: ________________________________
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>DevTools открыт</li>
+                <li>Найден и выбран элемент на странице</li>
+                <li>Текст элемента успешно изменён</li>
+                <li>Бонус: изменён цвет или размер через Styles</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 1.2 ==================== -->
+    <h2>🎯 УРОК 1.2: ЗАДАНИЯ</h2>
+
+    <!-- ЗАДАНИЕ 1.3 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 1.3: Определи HTML, CSS, JS</span>
+            <div class="task-meta">
+                <span class="badge badge-easy">Лёгкое</span>
+                <span class="badge badge-time">5 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Научиться различать роли HTML, CSS и JavaScript на реальных сайтах</div>
+
+        <h3>Условие:</h3>
+        <p>Откройте сайт <strong>google.com</strong> и заполните таблицу:</p>
+
+        <div class="write-box">
+            <table>
+                <tr>
+                    <th>Элемент сайта</th>
+                    <th>Это HTML, CSS или JS?</th>
+                </tr>
+                <tr><td>Логотип Google</td><td></td></tr>
+                <tr><td>Поле для ввода текста</td><td></td></tr>
+                <tr><td>Цвет кнопки «Поиск»</td><td></td></tr>
+                <tr><td>Подсказки при вводе текста</td><td></td></tr>
+                <tr><td>Текст «Мне повезёт!»</td><td></td></tr>
+                <tr><td>Скругление углов кнопки</td><td></td></tr>
+                <tr><td>Смена языка</td><td></td></tr>
+            </table>
+        </div>
+
+        <div class="example">
+            <table>
+                <tr><th>Элемент</th><th>Ответ</th></tr>
+                <tr><td>Логотип Google</td><td><strong>HTML</strong> (тег <code>&lt;img&gt;</code>)</td></tr>
+                <tr><td>Поле для ввода</td><td><strong>HTML</strong> (тег <code>&lt;input&gt;</code>)</td></tr>
+                <tr><td>Цвет кнопки</td><td><strong>CSS</strong> (свойство <code>background-color</code>)</td></tr>
+                <tr><td>Подсказки при вводе</td><td><strong>JavaScript</strong> (динамическое появление)</td></tr>
+                <tr><td>Текст «Мне повезёт!»</td><td><strong>HTML</strong> (текст внутри тега)</td></tr>
+                <tr><td>Скругление углов</td><td><strong>CSS</strong> (свойство <code>border-radius</code>)</td></tr>
+                <tr><td>Смена языка</td><td><strong>JavaScript</strong> (интерактивное действие)</td></tr>
+            </table>
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Заполнены все строки</li>
+                <li>Минимум 5 из 7 ответов правильные</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 1.4 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 1.4: Отключи CSS на сайте</span>
+            <div class="task-meta">
+                <span class="badge badge-medium">Среднее</span>
+                <span class="badge badge-time">5 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Увидеть разницу между HTML (содержимое) и CSS (стили)</div>
+
+        <h3>Условие:</h3>
+        <ol>
+            <li>Откройте любой красивый сайт</li>
+            <li>Откройте DevTools (F12)</li>
+            <li>Перейдите на вкладку <strong>Console</strong></li>
+            <li>Скопируйте и вставьте эту команду:</li>
+        </ol>
+
+<pre><code>document.querySelectorAll('style, link[rel="stylesheet"]').forEach(el => el.remove())</code></pre>
+
+        <ol start="5">
+            <li>Нажмите Enter</li>
+            <li>Посмотрите, как изменился сайт!</li>
+        </ol>
+
+        <div class="write-box">
+            Сайт: ________________________________<br><br>
+            Как выглядит БЕЗ CSS: ________________________________<br>
+            ________________________________<br><br>
+            Что пропало: ________________________________<br>
+            Что осталось: ________________________________
+        </div>
+
+        <div class="hint">
+            Чтобы вернуть CSS — просто обновите страницу (F5). Попробуйте на 2-3 разных сайтах!
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Команда выполнена успешно</li>
+                <li>Записаны наблюдения: что пропало (стили) и что осталось (содержимое)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 1.3 ==================== -->
+    <h2>🎯 УРОК 1.3: ЗАДАНИЯ</h2>
+
+    <!-- ЗАДАНИЕ 1.5 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 1.5: Установка VS Code и расширений</span>
+            <div class="task-meta">
+                <span class="badge badge-easy">Лёгкое</span>
+                <span class="badge badge-time">10 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Подготовить рабочее окружение для разработки</div>
+
+        <h3>Условие:</h3>
+        <ol>
+            <li>Установите VS Code (если ещё не установлен)</li>
+            <li>Установите 4 расширения:
+                <ul>
+                    <li><strong>Live Server</strong></li>
+                    <li><strong>Prettier</strong></li>
+                    <li><strong>Auto Rename Tag</strong></li>
+                    <li><strong>HTML CSS Support</strong></li>
+                </ul>
+            </li>
+            <li>Проверьте, что всё работает</li>
+        </ol>
+
+        <div class="write-box">
+            VS Code установлен: Да / Нет<br><br>
+            Расширения:<br>
+            ☐ Live Server<br>
+            ☐ Prettier<br>
+            ☐ Auto Rename Tag<br>
+            ☐ HTML CSS Support<br>
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>VS Code запускается</li>
+                <li>Все 4 расширения установлены</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 1.6 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 1.6: Моя первая HTML-страница</span>
+            <div class="task-meta">
+                <span class="badge badge-medium">Среднее</span>
+                <span class="badge badge-time">15 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Создать свою первую HTML-страницу и запустить её в браузере</div>
+
+        <h3>Условие:</h3>
+        <ol>
+            <li>Создайте папку <code>my-first-site</code> на рабочем столе</li>
+            <li>Откройте её в VS Code</li>
+            <li>Создайте файл <code>index.html</code></li>
+            <li>Напишите <code>!</code> + <code>Tab</code> для шаблона</li>
+            <li>Измените <code>lang="en"</code> на <code>lang="ru"</code></li>
+            <li>Измените <code>&lt;title&gt;</code> на своё название</li>
+            <li>Внутри <code>&lt;body&gt;</code> добавьте:
+                <ul>
+                    <li>Заголовок <code>&lt;h1&gt;</code> со своим именем</li>
+                    <li>Параграф <code>&lt;p&gt;</code> с приветствием</li>
+                    <li>Подзаголовок <code>&lt;h2&gt;</code> «Обо мне»</li>
+                    <li>Параграф с рассказом о себе</li>
+                    <li>Подзаголовок <code>&lt;h2&gt;</code> «Мои увлечения»</li>
+                    <li>Список <code>&lt;ul&gt;</code> с 3+ увлечениями</li>
+                </ul>
+            </li>
+            <li>Запустите через Live Server</li>
+        </ol>
+
+        <div class="example">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Страница Алексея&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Привет! Я Алексей&lt;/h1&gt;
+    &lt;p&gt;Добро пожаловать на мой первый сайт!&lt;/p&gt;
+
+    &lt;h2&gt;Обо мне&lt;/h2&gt;
+    &lt;p&gt;Мне 16 лет. Я учусь в школе и мечтаю стать веб-разработчиком.&lt;/p&gt;
+
+    &lt;h2&gt;Мои увлечения&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Компьютерные игры&lt;/li&gt;
+        &lt;li&gt;Футбол&lt;/li&gt;
+        &lt;li&gt;Музыка&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;h2&gt;Мои цели&lt;/h2&gt;
+    &lt;p&gt;Научиться создавать красивые сайты и найти работу в IT.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <div class="hint">
+            <strong>Шпаргалка — частые ошибки новичков:</strong>
+            <ul>
+                <li>Забыли <code>&lt;!DOCTYPE html&gt;</code> в самом начале</li>
+                <li>Написали <code>lang="en"</code> вместо <code>lang="ru"</code></li>
+                <li>Забыли закрыть тег: написали <code>&lt;h1&gt;</code>, но не написали <code>&lt;/h1&gt;</code></li>
+                <li>Не сохранили файл перед просмотром (<code>Ctrl+S</code>!)</li>
+                <li>Назвали файл не <code>index.html</code>, а <code>Index.HTML</code> (регистр важен!)</li>
+            </ul>
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Файл назван <code>index.html</code></li>
+                <li>Есть <code>&lt;!DOCTYPE html&gt;</code> и правильная структура</li>
+                <li>Есть заголовок <code>&lt;h1&gt;</code> с именем</li>
+                <li>Есть минимум 2 подзаголовка <code>&lt;h2&gt;</code></li>
+                <li>Есть минимум 2 параграфа <code>&lt;p&gt;</code></li>
+                <li>Есть список <code>&lt;ul&gt;</code> с минимум 3 пунктами</li>
+                <li>Страница открывается в браузере через Live Server</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 1.7 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 1.7: Добавь ещё контент (бонусное)</span>
+            <div class="task-meta">
+                <span class="badge badge-medium">Среднее</span>
+                <span class="badge badge-time">5 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Закрепить работу с основными HTML-тегами</div>
+
+        <h3>Условие:</h3>
+        <p>Добавьте на свою страницу:</p>
+        <ol>
+            <li>Нумерованный список <code>&lt;ol&gt;</code> с вашим ТОП-3 (фильмы, игры, песни...)</li>
+            <li>Ссылку <code>&lt;a&gt;</code> на ваш любимый сайт</li>
+            <li>Горизонтальную линию <code>&lt;hr&gt;</code> для разделения секций</li>
+            <li>Жирный текст <code>&lt;strong&gt;</code> и курсив <code>&lt;em&gt;</code></li>
+        </ol>
+
+        <div class="hint">
+<pre><code>&lt;h2&gt;Мой ТОП-3 фильмов&lt;/h2&gt;
+&lt;ol&gt;
+    &lt;li&gt;Интерстеллар&lt;/li&gt;
+    &lt;li&gt;Начало&lt;/li&gt;
+    &lt;li&gt;Матрица&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Мой любимый сайт: &lt;a href="https://youtube.com"&gt;YouTube&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Важно:&lt;/strong&gt; я &lt;em&gt;очень&lt;/em&gt; люблю программирование!&lt;/p&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Добавлен нумерованный список</li>
+                <li>Добавлена рабочая ссылка</li>
+                <li>Использованы теги <code>&lt;hr&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+    <h2>📚 ДОМАШНЕЕ ЗАДАНИЕ</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">ДЗ 1: Расширь свою страницу</span>
+            <div class="task-meta">
+                <span class="badge badge-medium">Среднее</span>
+                <span class="badge badge-time">20 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Закрепить все знания первого занятия</div>
+
+        <h3>Часть 1: Дополни страницу</h3>
+        <p>Добавь на свою страницу <code>index.html</code> ещё минимум <strong>3 раздела</strong>. Идеи:</p>
+        <ul>
+            <li>«Мои любимые предметы в школе/вузе»</li>
+            <li>«Что я хочу научиться делать»</li>
+            <li>«Мои друзья»</li>
+            <li>«Любимая музыка / фильмы / игры»</li>
+            <li>«Мой распорядок дня»</li>
+        </ul>
+        <p>Используйте теги: <code>&lt;h2&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;ul&gt;</code> или <code>&lt;ol&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code></p>
+
+        <div class="example">
+            <p><strong>Пример нового раздела:</strong></p>
+<pre><code>&lt;hr&gt;
+&lt;h2&gt;Мой ТОП-3 фильмов&lt;/h2&gt;
+&lt;p&gt;Вот мои &lt;strong&gt;самые любимые&lt;/strong&gt; фильмы:&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt;Интерстеллар — &lt;em&gt;лучший фильм о космосе&lt;/em&gt;&lt;/li&gt;
+    &lt;li&gt;Начало — &lt;em&gt;невероятный сюжет&lt;/em&gt;&lt;/li&gt;
+    &lt;li&gt;Матрица — &lt;em&gt;классика&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Подробнее о фильмах: &lt;a href="https://imdb.com"&gt;IMDb&lt;/a&gt;&lt;/p&gt;</code></pre>
+        </div>
+
+        <h3>Часть 2: Исследуй сайты</h3>
+        <ol>
+            <li>Откройте DevTools (F12) на <strong>3 любимых сайтах</strong></li>
+            <li>Найдите на каждом сайте:
+                <ul>
+                    <li>Тег <code>&lt;h1&gt;</code> — главный заголовок</li>
+                    <li>Тег <code>&lt;img&gt;</code> — картинку</li>
+                    <li>Тег <code>&lt;a&gt;</code> — ссылку</li>
+                </ul>
+            </li>
+            <li>Попробуйте изменить текст и цвет через DevTools</li>
+        </ol>
+
+        <div class="write-box">
+            Сайт 1: ________________________<br>
+            h1 найден: Да / Нет. Текст: ________________________<br><br>
+            Сайт 2: ________________________<br>
+            h1 найден: Да / Нет. Текст: ________________________<br><br>
+            Сайт 3: ________________________<br>
+            h1 найден: Да / Нет. Текст: ________________________
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Страница содержит минимум 5 разделов (2 с урока + 3 новых)</li>
+                <li>Использованы разные теги (h2, p, ul/ol, a, strong/em)</li>
+                <li>Заполнена таблица исследования 3 сайтов</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

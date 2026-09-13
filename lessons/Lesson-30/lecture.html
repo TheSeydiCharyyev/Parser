@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 30 — Вёрстка по макету</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 30: Вёрстка по макету</span>
+    <span class="nav-title" data-lang="en">Lesson 30: Coding from a Mockup</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 30: Вёрстка по макету</h1>
+    <h1 data-lang="en">Lesson 30: Coding from a Mockup</h1>
+    <p class="subtitle" data-lang="ru">Процесс работы от Figma-макета до готовой страницы: анализ, разбивка, порядок, pixel-perfect</p>
+    <p class="subtitle" data-lang="en">The workflow from Figma layout to finished page: analysis, breaking into blocks, order, pixel-perfect</p>
+
+    <div class="why" data-lang="ru">
+        <p>В 28-м уроке вы научились <strong>читать</strong> Figma: размеры, цвета, шрифты, отступы. Отлично. Но это ещё не вёрстка — это только подготовка. Вопрос в том, <strong>как</strong> перевести макет в рабочий код. Профессионалы делают это по чёткому процессу. Любители открывают VS Code и начинают писать «что-то» — и получают хаос.</p>
+        <p>Этот урок — <strong>методология</strong>. Он не про новые свойства CSS, а про <strong>порядок действий</strong>, который экономит часы и гарантирует pixel-perfect результат. Те же самые HTML и CSS, но применённые <strong>в правильном порядке</strong> — разница между 6 часами и 2 часами работы.</p>
+        <p>После этого урока у вас будет <strong>универсальный алгоритм</strong>: получили макет → прошли по 9 шагам → готов сайт. Этот процесс работает одинаково для лендинга, админки, мобильного приложения. Индустриальный стандарт.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Анализировать Figma-макет за 10-15 минут до написания кода</li>
+            <li>Разбивать макет на секции → компоненты → элементы (атомарный подход)</li>
+            <li>Настраивать проект правильно: папки, шрифты, CSS-переменные с токенами</li>
+            <li>Писать HTML-скелет ДО стилей (разметка отдельно от визуала)</li>
+            <li>Следовать правильному порядку CSS: layout → spacing → colors → details</li>
+            <li>Делать pixel-perfect сравнение через overlay скриншотов</li>
+            <li>Достраивать мобильную версию, если её нет в макете</li>
+            <li>Избегать 10 классических ловушек при вёрстке по макету</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>In lesson 28 you learned to <strong>read</strong> Figma: sizes, colors, fonts, spacing. Great. But that's not coding yet — that's just preparation. The question is <strong>how</strong> to turn the layout into working code. Pros do it with a clear process. Amateurs open VS Code and start writing "stuff" — and get chaos.</p>
+        <p>This lesson is <strong>methodology</strong>. Not new CSS properties — the <strong>order of actions</strong> that saves hours and guarantees pixel-perfect results. Same HTML and CSS, but applied <strong>in the right order</strong> — the difference between 6 hours and 2 hours of work.</p>
+        <p>After this lesson you'll have a <strong>universal algorithm</strong>: got a layout → 9 steps → site is done. Same process for a landing, admin panel, or mobile app. Industry standard.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Analyze a Figma layout in 10-15 min before writing code</li>
+            <li>Break the layout into sections → components → elements (atomic approach)</li>
+            <li>Set up a project right: folders, fonts, CSS variables with tokens</li>
+            <li>Write the HTML skeleton BEFORE styles (markup separate from visuals)</li>
+            <li>Follow the right CSS order: layout → spacing → colors → details</li>
+            <li>Do pixel-perfect comparison via screenshot overlay</li>
+            <li>Build the mobile version when it's not in the layout</li>
+            <li>Avoid 10 classic traps when coding from a layout</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#process-vs-chaos">Процесс vs хаос — зачем нужен порядок</a></li>
+            <li><a href="#step-1">Шаг 1: Анализ макета (10-15 минут)</a></li>
+            <li><a href="#step-2">Шаг 2: Разбивка на блоки (секции → компоненты → элементы)</a></li>
+            <li><a href="#step-3">Шаг 3: Настройка проекта</a></li>
+            <li><a href="#step-4">Шаг 4: HTML-скелет без стилей</a></li>
+            <li><a href="#step-5">Шаг 5: CSS — layout (flex/grid)</a></li>
+            <li><a href="#step-6">Шаг 6: CSS — детали (цвета, шрифты, отступы)</a></li>
+            <li><a href="#step-7">Шаг 7: Интерактив (hover, transition)</a></li>
+            <li><a href="#step-8">Шаг 8: Адаптив (если нет мобильного макета)</a></li>
+            <li><a href="#step-9">Шаг 9: Pixel-perfect проверка</a></li>
+            <li><a href="#live-coding">Live-coding: разбор hero-секции</a></li>
+            <li><a href="#pitfalls">10 частых ловушек</a></li>
+            <li><a href="#practice">Практика: свёрстай секцию</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#process-vs-chaos">Process vs chaos — why order matters</a></li>
+            <li><a href="#step-1">Step 1: Analyze the layout (10-15 min)</a></li>
+            <li><a href="#step-2">Step 2: Break into blocks (sections → components → elements)</a></li>
+            <li><a href="#step-3">Step 3: Project setup</a></li>
+            <li><a href="#step-4">Step 4: HTML skeleton without styles</a></li>
+            <li><a href="#step-5">Step 5: CSS — layout (flex/grid)</a></li>
+            <li><a href="#step-6">Step 6: CSS — details (colors, fonts, spacing)</a></li>
+            <li><a href="#step-7">Step 7: Interactivity (hover, transition)</a></li>
+            <li><a href="#step-8">Step 8: Responsiveness (when there's no mobile mockup)</a></li>
+            <li><a href="#step-9">Step 9: Pixel-perfect check</a></li>
+            <li><a href="#live-coding">Live-coding: hero section walkthrough</a></li>
+            <li><a href="#pitfalls">10 common traps</a></li>
+            <li><a href="#practice">Practice: code a section</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== PROCESS VS CHAOS ==================== -->
+    <h2 id="process-vs-chaos" data-lang="ru">1. Процесс vs хаос — зачем нужен порядок</h2>
+    <h2 id="process-vs-chaos-en" data-lang="en">1. Process vs chaos — why order matters</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Представьте двух разработчиков с одним и тем же макетом. Один хаотично прыгает от элемента к элементу: сначала кнопку стилизует, потом передумал — делает header, потом возвращается к кнопке. В итоге 6 часов работы и куча мусорного CSS.</p>
+        <p>Второй сначала <strong>10 минут смотрит</strong> на макет: считает секции, выписывает цвета в блокнот. Потом пишет HTML-скелет целиком (без стилей). Потом настраивает layout (flex/grid). Потом детали. Потом адаптив. 2 часа — и готово.</p>
+        <p>Разница — не в скорости печати. Разница в <strong>порядке</strong>. Без процесса вы <strong>по нескольку раз переделываете</strong> одно и то же. С процессом — пишете каждую строчку один раз.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Picture two devs with the same layout. One jumps chaotically from element to element: styles a button, then changes mind and does the header, then goes back to the button. Result: 6 hours of work and a pile of garbage CSS.</p>
+        <p>The second first <strong>looks at the layout for 10 minutes</strong>: counts sections, writes colors into a note. Then writes the entire HTML skeleton (no styles). Then sets up layout (flex/grid). Then details. Then responsive. 2 hours — done.</p>
+        <p>The difference isn't typing speed. The difference is <strong>order</strong>. Without process — you redo things multiple times. With process — you write each line once.</p>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">&#x274C; Хаос</div>
+            <div class="label" data-lang="en">&#x274C; Chaos</div>
+            <p data-lang="ru"><strong>6 часов работы:</strong><br>
+            1. Начал делать кнопку<br>
+            2. Понял, что нужен header<br>
+            3. В header ссылку не задал цвет<br>
+            4. Вернулся к кнопке — переделал<br>
+            5. Адаптив не работает — переписал header<br>
+            6. Цвета разные везде — не вынес в переменные</p>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">&#x2705; Процесс</div>
+            <div class="label" data-lang="en">&#x2705; Process</div>
+            <p data-lang="ru"><strong>2 часа работы:</strong><br>
+            1. 10 мин — анализ макета<br>
+            2. 15 мин — tokens (цвета, шрифты)<br>
+            3. 20 мин — HTML-скелет целиком<br>
+            4. 30 мин — layout (flex/grid)<br>
+            5. 30 мин — детали<br>
+            6. 15 мин — адаптив<br>
+            7. 10 мин — pixel-perfect проверка</p>
+        </div>
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Ремонт квартиры.</strong> Плохой процесс: положили плитку, поняли, что провод забыли → сняли плитку, проложили провод, положили заново. Хороший процесс: сначала электрика, потом штукатурка, потом плитка, потом мебель. Каждый этап делается <strong>один раз</strong>. В вёрстке то же самое: HTML → layout → детали → адаптив.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Apartment renovation.</strong> Bad process: laid the tile, realized you forgot the wiring → removed tile, laid wire, re-tiled. Good process: electrical first, then plaster, then tile, then furniture. Each stage is done <strong>once</strong>. Same in coding: HTML → layout → details → responsive.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== STEP 1 ==================== -->
+    <h2 id="step-1" data-lang="ru">2. Шаг 1: Анализ макета (10-15 минут)</h2>
+    <h2 id="step-1-en" data-lang="en">2. Step 1: Analyze the layout (10-15 min)</h2>
+
+    <div class="why" data-lang="ru">
+        <p><strong>Не открывайте VS Code сразу.</strong> Сначала откройте только Figma — и 10-15 минут просто <strong>смотрите</strong>. Ваша задача — понять макет <strong>целиком</strong>, увидеть повторяющиеся элементы, продумать структуру. Это самый недооценённый шаг. Все профи его делают, все новички пропускают.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p><strong>Don't open VS Code yet.</strong> First open Figma only — and for 10-15 minutes just <strong>look</strong>. Your job: understand the layout <strong>as a whole</strong>, spot repeating elements, think through structure. The most underrated step. All pros do it, all beginners skip it.</p>
+    </div>
+
+    <h3 data-lang="ru">Чеклист анализа:</h3>
+    <h3 data-lang="en">Analysis checklist:</h3>
+
+    <table data-lang="ru">
+        <tr><th>Что смотреть</th><th>Зачем</th></tr>
+        <tr><td>Сколько секций?</td><td>Определить количество <code>&lt;section&gt;</code></td></tr>
+        <tr><td>Какие секции повторяются в стиле?</td><td>Найти общие паттерны</td></tr>
+        <tr><td>Сколько уникальных кнопок?</td><td>Спроектировать .btn + модификаторы</td></tr>
+        <tr><td>Какие цвета повторяются?</td><td>Выписать tokens</td></tr>
+        <tr><td>Сколько уникальных шрифтов/размеров?</td><td>Спроектировать typography</td></tr>
+        <tr><td>Есть ли мобильная версия?</td><td>Если нет — адаптив сами придумаете</td></tr>
+        <tr><td>Какие изображения нужно экспортировать?</td><td>Заранее выгрузить</td></tr>
+        <tr><td>Какие компоненты повторяются?</td><td>Карточки, кнопки, формы — писать один раз</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>What to look at</th><th>Why</th></tr>
+        <tr><td>How many sections?</td><td>Determine <code>&lt;section&gt;</code> count</td></tr>
+        <tr><td>Which sections repeat in style?</td><td>Find common patterns</td></tr>
+        <tr><td>How many unique buttons?</td><td>Design .btn + modifiers</td></tr>
+        <tr><td>Which colors repeat?</td><td>Extract tokens</td></tr>
+        <tr><td>How many unique fonts/sizes?</td><td>Design typography scale</td></tr>
+        <tr><td>Is there a mobile version?</td><td>If not — you design responsive yourself</td></tr>
+        <tr><td>Which images need exporting?</td><td>Export ahead of time</td></tr>
+        <tr><td>Which components repeat?</td><td>Cards, buttons, forms — write once</td></tr>
+    </table>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Файл <code>analysis.md</code>.</strong> Заведите простой markdown-файл в папке проекта и <strong>пишите туда всё, что нашли</strong>. Список секций, цвета в HEX, названия шрифтов, список компонентов. Это ваша «карта» — возвращайтесь к ней на каждом шаге вёрстки.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>File <code>analysis.md</code>.</strong> Create a simple markdown file in the project folder and <strong>write everything you found</strong> into it. Section list, HEX colors, font names, component list. Your "map" — come back to it at every coding step.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== STEP 2 ==================== -->
+    <h2 id="step-2" data-lang="ru">3. Шаг 2: Разбивка на блоки</h2>
+    <h2 id="step-2-en" data-lang="en">3. Step 2: Break into blocks</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Большая проблема «кажется сложным» решается разбивкой на мелкие части. В вёрстке это называется <strong>атомарный подход</strong>: макет → секции → компоненты → элементы. Каждый уровень проще предыдущего.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>The "it looks complicated" problem is solved by breaking into small parts. In coding it's called the <strong>atomic approach</strong>: layout → sections → components → elements. Each level is simpler than the previous.</p>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    Иерархия:
+
+    Страница (Layout)
+      &#x2514;&#x2500; Секции (Hero, Features, Footer...)
+              &#x2514;&#x2500; Компоненты (Card, Button, Form...)
+                      &#x2514;&#x2500; Элементы (h1, p, img, input...)
+                              &#x2514;&#x2500; Атомы (цвет, шрифт, отступ)
+
+    Сверху вниз — всё сложнее.
+    Снизу вверх — всё проще.
+    Писать снизу вверх: сначала атомы (tokens),
+    потом элементы, потом компоненты, потом секции.</div>
+    <div class="diagram" data-lang="en">
+    Hierarchy:
+
+    Page (Layout)
+      &#x2514;&#x2500; Sections (Hero, Features, Footer...)
+              &#x2514;&#x2500; Components (Card, Button, Form...)
+                      &#x2514;&#x2500; Elements (h1, p, img, input...)
+                              &#x2514;&#x2500; Atoms (color, font, spacing)
+
+    Top-down — increasingly complex.
+    Bottom-up — increasingly simple.
+    Code bottom-up: atoms (tokens) first,
+    then elements, then components, then sections.</div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Пример анализа:</strong> у вас лендинг ресторана. Что вы видите?</p>
+        <ul>
+            <li><strong>Секций:</strong> 6 (header, hero, about, menu, contacts, footer)</li>
+            <li><strong>Компонентов:</strong> 3 (card меню, button, form)</li>
+            <li><strong>Элементов в card:</strong> 4 (image, h3, p, price)</li>
+            <li><strong>Атомов:</strong> 5 цветов, 1 шрифт с 4 размерами, 3 размера отступов</li>
+        </ul>
+        <p>Итог: вы пишете <strong>один</strong> <code>.card</code> и <strong>один</strong> <code>.btn</code> — и используете их 10 раз на странице. Меняете дизайн — правите в одном месте.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Analysis example:</strong> you have a restaurant landing. What do you see?</p>
+        <ul>
+            <li><strong>Sections:</strong> 6 (header, hero, about, menu, contacts, footer)</li>
+            <li><strong>Components:</strong> 3 (menu card, button, form)</li>
+            <li><strong>Elements in card:</strong> 4 (image, h3, p, price)</li>
+            <li><strong>Atoms:</strong> 5 colors, 1 font with 4 sizes, 3 spacing sizes</li>
+        </ul>
+        <p>Result: you write <strong>one</strong> <code>.card</code> and <strong>one</strong> <code>.btn</code> — used 10 times on the page. Change the design — edit in one place.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== STEP 3 ==================== -->
+    <h2 id="step-3" data-lang="ru">4. Шаг 3: Настройка проекта</h2>
+    <h2 id="step-3-en" data-lang="en">4. Step 3: Project setup</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Перед первой строчкой HTML — создайте <strong>правильную структуру папок</strong> и подключите шрифты. 5 минут сейчас = 0 ошибок потом.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Before the first line of HTML — create a <strong>proper folder structure</strong> and load fonts. 5 minutes now = 0 errors later.</p>
+    </div>
+
+<pre><code>project/
+├── index.html
+├── css/
+│   ├── tokens.css      &lt;-- CSS-переменные (цвета, шрифты)
+│   ├── base.css        &lt;-- сброс, base-стили
+│   ├── components.css  &lt;-- .card, .btn, .form
+│   └── style.css       &lt;-- импортирует все + секции
+├── images/
+│   ├── hero-bg.jpg     &lt;-- 2x для Retina
+│   └── logo.svg
+├── icons/
+│   ├── check.svg
+│   └── arrow.svg
+└── analysis.md         &lt;-- ваша карта макета</code></pre>
+
+    <p data-lang="ru"><strong>Шаблон <code>tokens.css</code> (выписано из Figma):</strong></p>
+    <p data-lang="en"><strong><code>tokens.css</code> template (extracted from Figma):</strong></p>
+
+<pre><code>:root {
+    /* Colors */
+    --color-primary: #3B82F6;
+    --color-primary-dark: #1D4ED8;
+    --color-accent: #F59E0B;
+    --color-text: #1E293B;
+    --color-text-muted: #64748B;
+    --color-bg: #F8FAFC;
+    --color-border: #E2E8F0;
+
+    /* Typography */
+    --font-primary: 'Inter', sans-serif;
+    --fs-h1: 48px;
+    --fs-h2: 32px;
+    --fs-h3: 20px;
+    --fs-body: 16px;
+    --fs-small: 14px;
+
+    /* Spacing */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 48px;
+    --space-xl: 96px;
+
+    /* Other */
+    --radius: 12px;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 8px 16px rgba(0,0,0,0.08);
+}</code></pre>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Zero-to-hero шаблон <code>index.html</code>:</strong></p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Site&lt;/title&gt;
+
+    &lt;!-- Google Fonts (по макету) --&gt;
+    &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+    &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"&gt;
+
+    &lt;!-- CSS в правильном порядке --&gt;
+    &lt;link rel="stylesheet" href="css/tokens.css"&gt;
+    &lt;link rel="stylesheet" href="css/base.css"&gt;
+    &lt;link rel="stylesheet" href="css/components.css"&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- ... --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Zero-to-hero <code>index.html</code> template:</strong></p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Site&lt;/title&gt;
+
+    &lt;!-- Google Fonts (per layout) --&gt;
+    &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+    &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"&gt;
+
+    &lt;!-- CSS in correct order --&gt;
+    &lt;link rel="stylesheet" href="css/tokens.css"&gt;
+    &lt;link rel="stylesheet" href="css/base.css"&gt;
+    &lt;link rel="stylesheet" href="css/components.css"&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- ... --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+
+    <hr>
+
+    <!-- ==================== STEP 4 ==================== -->
+    <h2 id="step-4" data-lang="ru">5. Шаг 4: HTML-скелет без стилей</h2>
+    <h2 id="step-4-en" data-lang="en">5. Step 4: HTML skeleton without styles</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Ключевая идея: <strong>сначала разметка, потом стили</strong>. Напишите весь HTML страницы без единой строчки CSS. Страница будет выглядеть «уродливо» — это нормально. Ваша задача — создать <strong>правильную структуру</strong>: семантические теги, классы, иерархию.</p>
+        <p>Почему так? HTML — это <strong>смысл</strong>. CSS — это <strong>внешний вид</strong>. Смешивать их в голове при написании — значит путать оба. Пишите сначала смысл, потом оформление.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Key idea: <strong>markup first, styles later</strong>. Write the entire page HTML without a single line of CSS. The page will look "ugly" — that's fine. Your job is to create the <strong>right structure</strong>: semantic tags, classes, hierarchy.</p>
+        <p>Why? HTML is <strong>meaning</strong>. CSS is <strong>appearance</strong>. Mixing them in your head while writing means confusing both. Write meaning first, styling later.</p>
+    </div>
+
+<pre><code>&lt;body&gt;
+    &lt;header class="header"&gt;
+        &lt;a href="#" class="logo"&gt;Brand&lt;/a&gt;
+        &lt;nav class="nav"&gt;
+            &lt;a href="#features"&gt;Features&lt;/a&gt;
+            &lt;a href="#about"&gt;About&lt;/a&gt;
+            &lt;a href="#contact"&gt;Contact&lt;/a&gt;
+        &lt;/nav&gt;
+        &lt;a href="#" class="btn btn-primary"&gt;Get Started&lt;/a&gt;
+    &lt;/header&gt;
+
+    &lt;section class="hero"&gt;
+        &lt;div class="container"&gt;
+            &lt;h1&gt;Headline&lt;/h1&gt;
+            &lt;p&gt;Subheading text...&lt;/p&gt;
+            &lt;a href="#" class="btn btn-primary btn-lg"&gt;CTA&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section class="features"&gt;
+        &lt;div class="container"&gt;
+            &lt;h2&gt;Features&lt;/h2&gt;
+            &lt;div class="features-grid"&gt;
+                &lt;article class="feature"&gt;
+                    &lt;img src="icons/speed.svg" alt=""&gt;
+                    &lt;h3&gt;Fast&lt;/h3&gt;
+                    &lt;p&gt;Description...&lt;/p&gt;
+                &lt;/article&gt;
+                &lt;!-- ещё 2 --&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;footer class="footer"&gt;...&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>Семантика важна!</strong> Не пишите всё через <code>&lt;div&gt;</code>. Используйте <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>. Это важно для SEO и screen-readers.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Semantics matter!</strong> Don't write everything with <code>&lt;div&gt;</code>. Use <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>. Critical for SEO and screen readers.
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Не пишите inline-стили в HTML.</strong> «Я быстренько поставлю <code>style="color: red"</code>» — это <strong>технический долг</strong>. На странице 500 таких подсказок «быстренько» — и вы не можете найти нужный стиль. Всё в CSS-файле. Всегда.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Don't write inline styles in HTML.</strong> "I'll just quickly put <code>style="color: red"</code>" — that's <strong>tech debt</strong>. On a page with 500 such "quick" fixes — you can't find the right style. Everything in the CSS file. Always.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== STEP 5 ==================== -->
+    <h2 id="step-5" data-lang="ru">6. Шаг 5: CSS — layout (flex/grid)</h2>
+    <h2 id="step-5-en" data-lang="en">6. Step 5: CSS — layout (flex/grid)</h2>
+
+    <div class="why" data-lang="ru">
+        <p>HTML готов, страница выглядит ужасно (поток тегов сверху вниз). Теперь <strong>первый слой стилей</strong> — layout. Не цвета. Не шрифты. Только <strong>размещение элементов на странице</strong>: flex, grid, ширины, отступы между секциями.</p>
+        <p>Результат этого шага: страница имеет <strong>правильную структуру</strong> (колонки, ряды, секции разделены), но всё ещё выглядит «черновой» — без цветов и красивой типографии.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>HTML is ready, page looks terrible (stream of tags top-down). Now the <strong>first layer of styles</strong> — layout. Not colors. Not fonts. Just <strong>element placement on the page</strong>: flex, grid, widths, section spacing.</p>
+        <p>Result of this step: page has the <strong>right structure</strong> (columns, rows, sections separated), but still looks "drafty" — no colors and no pretty typography.</p>
+    </div>
+
+<pre><code>/* base.css — сброс + контейнер */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* style.css — секции */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm);
+}
+
+.nav {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+}</code></pre>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Правильный порядок внутри одного селектора:</strong></p>
+<pre><code>.card {
+    /* 1. Layout */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    /* 2. Размеры */
+    width: 100%;
+    max-width: 400px;
+    min-height: 300px;
+
+    /* 3. Отступы */
+    padding: 24px;
+    margin: 0 auto;
+
+    /* 4. Визуал */
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+
+    /* 5. Типография */
+    font-size: 16px;
+    color: var(--color-text);
+
+    /* 6. Интерактив */
+    transition: transform 0.3s;
+}</code></pre>
+        <p>Порядок помогает читать код и находить нужное.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Correct order inside a selector:</strong></p>
+<pre><code>.card {
+    /* 1. Layout */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    /* 2. Size */
+    width: 100%;
+    max-width: 400px;
+    min-height: 300px;
+
+    /* 3. Spacing */
+    padding: 24px;
+    margin: 0 auto;
+
+    /* 4. Visual */
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+
+    /* 5. Typography */
+    font-size: 16px;
+    color: var(--color-text);
+
+    /* 6. Interactivity */
+    transition: transform 0.3s;
+}</code></pre>
+        <p>Order helps read code and find things.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== STEP 6 ==================== -->
+    <h2 id="step-6" data-lang="ru">7. Шаг 6: CSS — детали (цвета, шрифты, отступы)</h2>
+    <h2 id="step-6-en" data-lang="en">7. Step 6: CSS — details (colors, fonts, spacing)</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Layout готов — теперь наводим красоту. Цвета фона, цвета текста, шрифты, размеры, тени, скругления. Здесь макет «оживает». Каждую деталь сверяйте с Figma: кликнули на элемент в макете — перенесли цвет/размер в CSS.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Layout is ready — now we polish. Background colors, text colors, fonts, sizes, shadows, rounding. Here the layout "comes alive". Check each detail against Figma: click the element in the layout — copy color/size to CSS.</p>
+    </div>
+
+<pre><code>/* Типография */
+h1 {
+    font-size: var(--fs-h1);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text);
+}
+
+h2 {
+    font-size: var(--fs-h2);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+}
+
+/* Секции */
+.hero {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: white;
+    padding: var(--space-xl) 0;
+}
+
+.features {
+    background: var(--color-bg);
+    padding: var(--space-xl) 0;
+}
+
+/* Компоненты */
+.feature {
+    background: white;
+    padding: var(--space-md);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.feature h3 {
+    font-size: var(--fs-h3);
+    margin: var(--space-sm) 0;
+}
+
+.feature p {
+    color: var(--color-text-muted);
+}</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Всё через переменные!</strong> Не пишите <code>color: #3B82F6</code> — пишите <code>color: var(--color-primary)</code>. Если дизайнер поменяет основной цвет — правите одну строку в <code>tokens.css</code>.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Everything via variables!</strong> Don't write <code>color: #3B82F6</code> — write <code>color: var(--color-primary)</code>. If the designer changes the primary color — edit one line in <code>tokens.css</code>.
+    </div>
+
+    <hr>
+
+    <!-- ==================== STEP 7 ==================== -->
+    <h2 id="step-7" data-lang="ru">8. Шаг 7: Интерактив (hover, transition, :focus)</h2>
+    <h2 id="step-7-en" data-lang="en">8. Step 7: Interactivity (hover, transition, :focus)</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Статичная страница собрана. Теперь делаем её <strong>живой</strong>: hover на кнопках и ссылках, hover-эффекты на карточках, :focus на инпутах, transition для плавности. Без этого шага сайт выглядит «мёртвым» и дешёвым.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Static page is done. Now make it <strong>alive</strong>: hover on buttons and links, card hover effects, :focus on inputs, transition for smoothness. Without this step, a site looks "dead" and cheap.</p>
+    </div>
+
+<pre><code>/* Кнопки */
+.btn {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Ссылки в навигации */
+.nav a {
+    color: var(--color-text);
+    transition: color 0.2s;
+}
+.nav a:hover {
+    color: var(--color-primary);
+}
+
+/* Карточки */
+.feature {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.feature:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Формы */
+.input {
+    border: 1px solid var(--color-border);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}</code></pre>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Макет часто не показывает hover.</strong> Дизайнер рисует только базовое состояние. Hover-эффекты — на ваше усмотрение. Золотой стандарт: кнопки поднимаются (<code>translateY(-2px)</code>), карточки поднимаются и усиливают тень, ссылки меняют цвет. Всё с <code>transition</code>.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Layouts often don't show hover.</strong> Designer draws only the base state. Hover effects are up to you. Gold standard: buttons lift (<code>translateY(-2px)</code>), cards lift and strengthen shadow, links change color. All with <code>transition</code>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== STEP 8 ==================== -->
+    <h2 id="step-8" data-lang="ru">9. Шаг 8: Адаптив (если нет мобильного макета)</h2>
+    <h2 id="step-8-en" data-lang="en">9. Step 8: Responsiveness (when there's no mobile mockup)</h2>
+
+    <div class="why" data-lang="ru">
+        <p>В 90% макетов дизайнер рисует только <strong>десктоп</strong> (1440px). Мобильный — <strong>ваша ответственность</strong>. Не бойтесь — есть чёткие правила, как адаптировать десктоп в мобильный.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>In 90% of layouts designers only draw <strong>desktop</strong> (1440px). Mobile is <strong>your responsibility</strong>. Don't panic — there are clear rules for adapting desktop to mobile.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Элемент</th><th>На десктопе</th><th>На мобильном</th></tr>
+        <tr><td>Навигация</td><td>Горизонтальная (5 ссылок)</td><td>Бургер-меню</td></tr>
+        <tr><td>Hero</td><td>Текст + фото рядом</td><td>Текст сверху, фото снизу</td></tr>
+        <tr><td>Features (3 блока)</td><td>3 колонки</td><td>1 колонка (стопка)</td></tr>
+        <tr><td>Карточки</td><td>3-4 колонки</td><td>1-2 колонки</td></tr>
+        <tr><td>Footer</td><td>3-4 колонки</td><td>1 колонка</td></tr>
+        <tr><td>Заголовки</td><td>48-64px</td><td>28-36px</td></tr>
+        <tr><td>Padding секций</td><td>96px</td><td>48px</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Element</th><th>On desktop</th><th>On mobile</th></tr>
+        <tr><td>Navigation</td><td>Horizontal (5 links)</td><td>Burger menu</td></tr>
+        <tr><td>Hero</td><td>Text + photo side by side</td><td>Text on top, photo below</td></tr>
+        <tr><td>Features (3 blocks)</td><td>3 columns</td><td>1 column (stack)</td></tr>
+        <tr><td>Cards</td><td>3-4 columns</td><td>1-2 columns</td></tr>
+        <tr><td>Footer</td><td>3-4 columns</td><td>1 column</td></tr>
+        <tr><td>Headings</td><td>48-64px</td><td>28-36px</td></tr>
+        <tr><td>Section padding</td><td>96px</td><td>48px</td></tr>
+    </table>
+
+<pre><code>/* Мобильный: ≤ 768px */
+@media (max-width: 768px) {
+    .hero { padding: 48px 0; }
+    h1 { font-size: 32px; }
+
+    .features-grid {
+        grid-template-columns: 1fr;  /* 1 колонка */
+    }
+
+    .nav {
+        /* Показать бургер, скрыть горизонтальное меню */
+        display: none;
+    }
+}</code></pre>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Правило «один ряд → стопка».</strong> Всё, что на десктопе в ряд — на мобильном в стопку. Флекс → <code>flex-direction: column</code>. Грид → <code>grid-template-columns: 1fr</code>. Простое правило, покрывает 80% случаев.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>"Row → stack" rule.</strong> Everything horizontal on desktop — stacks on mobile. Flex → <code>flex-direction: column</code>. Grid → <code>grid-template-columns: 1fr</code>. Simple rule, covers 80% of cases.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== STEP 9 ==================== -->
+    <h2 id="step-9" data-lang="ru">10. Шаг 9: Pixel-perfect проверка</h2>
+    <h2 id="step-9-en" data-lang="en">10. Step 9: Pixel-perfect check</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Страница готова — но соответствует ли она макету? Нужна проверка. <strong>Pixel-perfect</strong> означает: каждый пиксель вашей страницы совпадает с макетом (допуск ±2px). Именно это проверит дизайнер при ревью.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Page is done — but does it match the layout? You need to check. <strong>Pixel-perfect</strong> means: every pixel of your page matches the mockup (±2px tolerance). That's what the designer checks at review.</p>
+    </div>
+
+    <h3 data-lang="ru">3 способа сравнения:</h3>
+    <h3 data-lang="en">3 comparison methods:</h3>
+
+    <ol data-lang="ru">
+        <li><strong>Side-by-side:</strong> Figma на пол-экрана, браузер на другой. Визуальное сравнение. Самый быстрый.</li>
+        <li><strong>Overlay-скриншоты:</strong> сделайте скриншот Figma и браузера, откройте в Paint/Photoshop/tldraw, наложите друг на друга с opacity 50%. Все расхождения видны сразу.</li>
+        <li><strong>PerfectPixel extension:</strong> Chrome-расширение «PerfectPixel by WellDoneCode». Показывает Figma-скриншот полупрозрачно <strong>поверх</strong> вашей страницы.</li>
+    </ol>
+    <ol data-lang="en">
+        <li><strong>Side-by-side:</strong> Figma on half the screen, browser on the other. Visual comparison. Fastest.</li>
+        <li><strong>Screenshot overlay:</strong> screenshot Figma and browser, open in Paint/Photoshop/tldraw, layer them at 50% opacity. All discrepancies visible instantly.</li>
+        <li><strong>PerfectPixel extension:</strong> Chrome extension "PerfectPixel by WellDoneCode". Shows the Figma screenshot semi-transparent <strong>over</strong> your page.</li>
+    </ol>
+
+    <div class="try-it" data-lang="ru">
+        <p><strong>Чеклист pixel-perfect:</strong></p>
+        <ul>
+            <li>Шрифт и размеры заголовков совпадают?</li>
+            <li>Цвета совпадают (HEX)?</li>
+            <li>Отступы между блоками такие же?</li>
+            <li>Ширина контейнера такая же?</li>
+            <li>Border-radius и тени совпадают?</li>
+            <li>Картинки не размыты (2x для Retina)?</li>
+            <li>Иконки в SVG, не PNG?</li>
+            <li>Работает на мобильном (375px) и десктопе (1440px)?</li>
+        </ul>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p><strong>Pixel-perfect checklist:</strong></p>
+        <ul>
+            <li>Font and heading sizes match?</li>
+            <li>Colors match (HEX)?</li>
+            <li>Spacing between blocks same?</li>
+            <li>Container width same?</li>
+            <li>Border-radius and shadows match?</li>
+            <li>Images not blurry (2x for Retina)?</li>
+            <li>Icons in SVG, not PNG?</li>
+            <li>Works on mobile (375px) and desktop (1440px)?</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== LIVE CODING ==================== -->
+    <h2 id="live-coding" data-lang="ru">11. Live-coding: разбор hero-секции</h2>
+    <h2 id="live-coding-en" data-lang="en">11. Live-coding: hero section walkthrough</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Теория ясна — давайте соберём одну секцию с нуля, показывая каждый шаг. Берём hero-секцию: фон-градиент, заголовок, подзаголовок, кнопка. Живой пример того, как 9 шагов применяются на практике.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Theory is clear — let's build one section from scratch, showing every step. Take the hero: gradient background, headline, subheading, button. Live example of how the 9 steps apply in practice.</p>
+    </div>
+
+    <h3 data-lang="ru">Анализ макета (1 минута):</h3>
+    <h3 data-lang="en">Layout analysis (1 min):</h3>
+    <ul data-lang="ru">
+        <li>Фон: градиент синий → фиолетовый (<code>#3B82F6</code> → <code>#7C3AED</code>)</li>
+        <li>Высота: 80vh (не весь экран)</li>
+        <li>Заголовок: 48px bold, белый</li>
+        <li>Подзаголовок: 18px regular, белый с opacity 0.9</li>
+        <li>Кнопка: белый фон, синий текст, border-radius 8px</li>
+        <li>Всё центрировано по горизонтали и вертикали</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Background: gradient blue → purple (<code>#3B82F6</code> → <code>#7C3AED</code>)</li>
+        <li>Height: 80vh (not full screen)</li>
+        <li>Heading: 48px bold, white</li>
+        <li>Subheading: 18px regular, white with 0.9 opacity</li>
+        <li>Button: white bg, blue text, border-radius 8px</li>
+        <li>Everything centered horizontally and vertically</li>
+    </ul>
+
+    <h3 data-lang="ru">HTML:</h3>
+    <h3 data-lang="en">HTML:</h3>
+<pre><code>&lt;section class="hero"&gt;
+    &lt;div class="hero-content"&gt;
+        &lt;h1&gt;Build Beautiful Websites Faster&lt;/h1&gt;
+        &lt;p&gt;The fastest way from Figma to production. Zero setup.&lt;/p&gt;
+        &lt;a href="#" class="btn btn-white"&gt;Get Started&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+    <h3 data-lang="ru">Layout CSS:</h3>
+    <h3 data-lang="en">Layout CSS:</h3>
+<pre><code>.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+.hero-content {
+    max-width: 720px;
+}</code></pre>
+
+    <h3 data-lang="ru">Детали CSS:</h3>
+    <h3 data-lang="en">Details CSS:</h3>
+<pre><code>.hero {
+    background: linear-gradient(135deg, var(--color-primary), #7C3AED);
+    color: white;
+}
+.hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+}
+.hero p {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 32px;
+}
+.btn-white {
+    background: white;
+    color: var(--color-primary);
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}</code></pre>
+
+    <h3 data-lang="ru">Интерактив:</h3>
+    <h3 data-lang="en">Interactivity:</h3>
+<pre><code>.btn-white {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}</code></pre>
+
+    <h3 data-lang="ru">Адаптив:</h3>
+    <h3 data-lang="en">Responsive:</h3>
+<pre><code>@media (max-width: 768px) {
+    .hero { min-height: 70vh; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 16px; }
+}</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="ru">Результат:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="en">Result:</p>
+        <style>
+            .l29-hero { min-height: 280px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #3B82F6, #7C3AED); color: white; border-radius: 12px; }
+            .l29-hero-content { max-width: 480px; }
+            .l29-hero h3 { font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; color: white; }
+            .l29-hero p { font-size: 15px; opacity: 0.9; margin-bottom: 24px; }
+            .l29-btn-white { background: white; color: #3B82F6; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-block; transition: transform 0.2s, box-shadow 0.2s; }
+            .l29-btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+        </style>
+        <section class="l29-hero">
+            <div class="l29-hero-content">
+                <h3 data-lang="ru">Постройте красивые сайты быстрее</h3>
+                <h3 data-lang="en">Build Beautiful Websites Faster</h3>
+                <p data-lang="ru">Быстрый путь от Figma до продакшена. Ноль настройки.</p>
+                <p data-lang="en">The fastest way from Figma to production. Zero setup.</p>
+                <a href="#" class="l29-btn-white" onclick="event.preventDefault()" data-lang="ru">Начать</a>
+                <a href="#" class="l29-btn-white" onclick="event.preventDefault()" data-lang="en">Get Started</a>
+            </div>
+        </section>
+    </div>
+
+    <hr>
+
+    <!-- ==================== PITFALLS ==================== -->
+    <h2 id="pitfalls" data-lang="ru">12. 10 частых ловушек</h2>
+    <h2 id="pitfalls-en" data-lang="en">12. 10 common traps</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ловушка</th><th>Решение</th></tr>
+        <tr><td>Писать стили <strong>параллельно</strong> с HTML</td><td>Сначала весь HTML, потом CSS</td></tr>
+        <tr><td>Копировать <code>width: 560px</code> из Figma</td><td>Использовать <code>max-width</code>, %, grid</td></tr>
+        <tr><td>Inline-стили в HTML</td><td>Всё в CSS-файле</td></tr>
+        <tr><td>Одинаковые цвета повторяются в разных местах</td><td>Вынести в CSS-переменные</td></tr>
+        <tr><td>Экспортировать фото в 1x → размытие на Retina</td><td>Всегда 2x для фото</td></tr>
+        <tr><td>Иконки PNG вместо SVG</td><td>Иконки ВСЕГДА SVG</td></tr>
+        <tr><td>Все теги <code>&lt;div&gt;</code></td><td>Семантические: header, section, article, footer</td></tr>
+        <tr><td>Не проверяли pixel-perfect</td><td>Overlay скриншотов или PerfectPixel extension</td></tr>
+        <tr><td>Забыли hover/focus — «мёртвая» страница</td><td>Интерактив на всех кнопках/ссылках</td></tr>
+        <tr><td>Не проверяли на мобильном</td><td>DevTools Responsive mode, 375/768/1440px</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Trap</th><th>Fix</th></tr>
+        <tr><td>Writing styles <strong>in parallel</strong> with HTML</td><td>Full HTML first, then CSS</td></tr>
+        <tr><td>Copying <code>width: 560px</code> from Figma</td><td>Use <code>max-width</code>, %, grid</td></tr>
+        <tr><td>Inline styles in HTML</td><td>Everything in CSS file</td></tr>
+        <tr><td>Same colors repeat in different places</td><td>Extract to CSS variables</td></tr>
+        <tr><td>1x photo export → blurry on Retina</td><td>Always 2x for photos</td></tr>
+        <tr><td>PNG icons instead of SVG</td><td>Icons ALWAYS SVG</td></tr>
+        <tr><td>Everything as <code>&lt;div&gt;</code></td><td>Semantic: header, section, article, footer</td></tr>
+        <tr><td>Didn't check pixel-perfect</td><td>Screenshot overlay or PerfectPixel extension</td></tr>
+        <tr><td>Forgot hover/focus — "dead" page</td><td>Interactivity on all buttons/links</td></tr>
+        <tr><td>Didn't test on mobile</td><td>DevTools Responsive mode, 375/768/1440px</td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">13. Практика: свёрстай секцию</h2>
+    <h2 id="practice-en" data-lang="en">13. Practice: code a section</h2>
+
+    <p data-lang="ru">Откройте макет из урока 28 (Figma Community). Примените все 9 шагов: анализ → tokens → HTML → layout → детали → интерактив → адаптив → pixel-perfect. Сверстайте минимум одну секцию.</p>
+    <p data-lang="en">Open the layout from lesson 28 (Figma Community). Apply all 9 steps: analysis → tokens → HTML → layout → details → interactivity → responsive → pixel-perfect. Code at least one section.</p>
+
+    <div class="summary" data-lang="ru">
+        <strong>Универсальный алгоритм вёрстки по макету:</strong>
+        <ol>
+            <li><strong>Анализ</strong> (10-15 мин) — секции, цвета, шрифты, компоненты</li>
+            <li><strong>Разбивка</strong> — секции → компоненты → элементы → атомы</li>
+            <li><strong>Настройка</strong> — папки, шрифты, <code>tokens.css</code></li>
+            <li><strong>HTML-скелет</strong> — вся разметка без стилей</li>
+            <li><strong>CSS layout</strong> — flex/grid, размеры</li>
+            <li><strong>CSS детали</strong> — цвета, шрифты, отступы</li>
+            <li><strong>Интерактив</strong> — hover, focus, transition</li>
+            <li><strong>Адаптив</strong> — media queries, «ряд → стопка»</li>
+            <li><strong>Pixel-perfect</strong> — сравнение с макетом</li>
+        </ol>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>Universal layout-to-code algorithm:</strong>
+        <ol>
+            <li><strong>Analysis</strong> (10-15 min) — sections, colors, fonts, components</li>
+            <li><strong>Breakdown</strong> — sections → components → elements → atoms</li>
+            <li><strong>Setup</strong> — folders, fonts, <code>tokens.css</code></li>
+            <li><strong>HTML skeleton</strong> — all markup without styles</li>
+            <li><strong>CSS layout</strong> — flex/grid, sizes</li>
+            <li><strong>CSS details</strong> — colors, fonts, spacing</li>
+            <li><strong>Interactivity</strong> — hover, focus, transition</li>
+            <li><strong>Responsive</strong> — media queries, "row → stack"</li>
+            <li><strong>Pixel-perfect</strong> — compare with the layout</li>
+        </ol>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Почему нельзя писать CSS параллельно с HTML?</li>
+            <li>Какие 4 уровня в атомарной разбивке макета?</li>
+            <li>Что такое <code>tokens.css</code> и что туда идёт?</li>
+            <li>Что делать сначала — layout или цвета?</li>
+            <li>Правильный порядок свойств внутри селектора?</li>
+            <li>Что означает «ряд → стопка» при адаптиве?</li>
+            <li>Три способа проверки pixel-perfect?</li>
+            <li>Какая высота hero обычно: 100vh или меньше?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>Why shouldn't you write CSS in parallel with HTML?</li>
+            <li>What are the 4 levels in atomic layout breakdown?</li>
+            <li>What is <code>tokens.css</code> and what goes in it?</li>
+            <li>What first — layout or colors?</li>
+            <li>Correct order of properties inside a selector?</li>
+            <li>What does "row → stack" mean for responsive?</li>
+            <li>Three ways to check pixel-perfect?</li>
+            <li>What's typical hero height: 100vh or less?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

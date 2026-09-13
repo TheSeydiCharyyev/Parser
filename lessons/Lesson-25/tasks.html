@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 25 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 25: Bootstrap — основы</span>
+    <span class="nav-title" data-lang="en">Lesson 25: Bootstrap — Basics</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 25: Bootstrap — основы</p>
+    <p class="subtitle" data-lang="en">Lesson 25: Bootstrap — Basics</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 25.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 25.1: СЕТКА BOOTSTRAP</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 25.1: BOOTSTRAP GRID</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 24.1: Лаборатория сетки</span>
+            <span class="task-title" data-lang="en">Task 24.1: Grid laboratory</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Освоить 12-колоночную сетку Bootstrap</div>
+        <div class="task-goal" data-lang="en">Master the 12-column Bootstrap grid</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>grid-lab.html</code> с подключённым Bootstrap CDN. Покажите <strong>5 вариантов сетки</strong> на одной странице:</p>
+        <p data-lang="en">Create a file <code>grid-lab.html</code> with Bootstrap CDN connected. Show <strong>5 grid variations</strong> on one page:</p>
+
+        <ol data-lang="ru">
+            <li><code>col-6 + col-6</code> — 2 равные колонки</li>
+            <li><code>col-4 + col-4 + col-4</code> — 3 равные колонки</li>
+            <li><code>col-3 + col-9</code> — sidebar + content</li>
+            <li><code>col-3 + col-3 + col-3 + col-3</code> — 4 равные колонки</li>
+            <li><code>col-12 col-md-6 col-lg-4</code> — адаптивные (3 карточки)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><code>col-6 + col-6</code> — 2 equal columns</li>
+            <li><code>col-4 + col-4 + col-4</code> — 3 equal columns</li>
+            <li><code>col-3 + col-9</code> — sidebar + content</li>
+            <li><code>col-3 + col-3 + col-3 + col-3</code> — 4 equal columns</li>
+            <li><code>col-12 col-md-6 col-lg-4</code> — responsive (3 cards)</li>
+        </ol>
+
+        <p data-lang="ru">Каждую колонку раскрасьте (<code>bg-primary</code>, <code>bg-success</code> и т.д.) и добавьте <code>p-3</code> + <code>text-white</code>.</p>
+        <p data-lang="en">Color each column (<code>bg-primary</code>, <code>bg-success</code> etc.) and add <code>p-3</code> + <code>text-white</code>.</p>
+
+        <div class="hint" data-lang="ru">
+            <strong>Скелет HTML для одного варианта:</strong>
+<pre><code>&lt;div class="container my-4"&gt;
+    &lt;h3&gt;col-6 + col-6&lt;/h3&gt;
+    &lt;div class="row g-2"&gt;
+        &lt;div class="col-6"&gt;
+            &lt;div class="bg-primary text-white p-3 rounded"&gt;col-6&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="col-6"&gt;
+            &lt;div class="bg-success text-white p-3 rounded"&gt;col-6&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            Повторите для всех 5 вариантов.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>HTML skeleton for one variation:</strong>
+<pre><code>&lt;div class="container my-4"&gt;
+    &lt;h3&gt;col-6 + col-6&lt;/h3&gt;
+    &lt;div class="row g-2"&gt;
+        &lt;div class="col-6"&gt;
+            &lt;div class="bg-primary text-white p-3 rounded"&gt;col-6&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="col-6"&gt;
+            &lt;div class="bg-success text-white p-3 rounded"&gt;col-6&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            Repeat for all 5 variations.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Bootstrap 5 подключён через CDN (версия 5.3.x)</li>
+                <li>Свой CSS (если есть) — ПОСЛЕ Bootstrap</li>
+                <li>5 вариантов сетки на одной странице</li>
+                <li>Подписи над каждым вариантом (<code>&lt;h3&gt;</code>)</li>
+                <li>Последний вариант — адаптивный: 1 колонка → 2 → 3 (проверить в DevTools)</li>
+                <li>Строго используются <code>container</code> → <code>row</code> → <code>col</code></li>
+                <li>Сумма col в каждом row ≤ 12</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Bootstrap 5 connected via CDN (version 5.3.x)</li>
+                <li>Your CSS (if any) — AFTER Bootstrap</li>
+                <li>5 grid variations on one page</li>
+                <li>Labels above each variation (<code>&lt;h3&gt;</code>)</li>
+                <li>Last variation is responsive: 1 col → 2 → 3 (check in DevTools)</li>
+                <li>Strictly uses <code>container</code> → <code>row</code> → <code>col</code></li>
+                <li>Sum of cols in each row ≤ 12</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 25.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 25.2: КНОПКИ И УТИЛИТЫ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 25.2: BUTTONS AND UTILITIES</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 24.2: Витрина кнопок и утилит</span>
+            <span class="task-title" data-lang="en">Task 24.2: Button and utility showcase</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Изучить кнопки, цвета и утилиты Bootstrap</div>
+        <div class="task-goal" data-lang="en">Explore Bootstrap buttons, colors, and utilities</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Кнопки:</strong> 8 залитых (<code>btn-primary</code> — <code>btn-dark</code>) + 4 outline</li>
+            <li><strong>Размеры:</strong> <code>btn-sm</code>, обычная, <code>btn-lg</code></li>
+            <li><strong>Текст:</strong> <code>display-1</code> — <code>display-4</code>, <code>lead</code>, <code>text-muted</code>, <code>fw-bold</code>, <code>text-center</code></li>
+            <li><strong>Фоны:</strong> 8 блоков с <code>bg-primary</code> — <code>bg-dark</code> + <code>text-white</code> + <code>p-4 rounded mb-2</code></li>
+            <li><strong>Отступы:</strong> блоки с <code>p-1</code> по <code>p-5</code> (разный фон, чтобы видеть разницу)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Buttons:</strong> 8 filled (<code>btn-primary</code> — <code>btn-dark</code>) + 4 outline</li>
+            <li><strong>Sizes:</strong> <code>btn-sm</code>, regular, <code>btn-lg</code></li>
+            <li><strong>Text:</strong> <code>display-1</code> — <code>display-4</code>, <code>lead</code>, <code>text-muted</code>, <code>fw-bold</code>, <code>text-center</code></li>
+            <li><strong>Backgrounds:</strong> 8 blocks with <code>bg-primary</code> — <code>bg-dark</code> + <code>text-white</code> + <code>p-4 rounded mb-2</code></li>
+            <li><strong>Spacing:</strong> blocks with <code>p-1</code> through <code>p-5</code> (different bg to see difference)</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Все 8 цветов Bootstrap (запомните — пригодятся везде):</strong>
+<pre><code>primary   → синий (#0d6efd)  — основные действия
+secondary → серый (#6c757d)  — второстепенное
+success   → зелёный (#198754) — успех, подтверждение
+danger    → красный (#dc3545) — удаление, ошибка
+warning   → жёлтый (#ffc107)  — предупреждение
+info      → голубой (#0dcaf0) — инфо
+light     → светлый (#f8f9fa) — светлый фон
+dark      → тёмный (#212529)  — тёмный фон</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>All 8 Bootstrap colors (memorize — used everywhere):</strong>
+<pre><code>primary   → blue (#0d6efd)  — main actions
+secondary → gray (#6c757d)  — secondary
+success   → green (#198754) — success, confirm
+danger    → red (#dc3545)   — delete, error
+warning   → yellow (#ffc107) — warning
+info      → cyan (#0dcaf0)  — info
+light     → light (#f8f9fa) — light bg
+dark      → dark (#212529)  — dark bg</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все 8 цветов кнопок (<code>btn-primary</code> — <code>btn-dark</code>)</li>
+                <li>Outline-варианты (минимум 4: <code>btn-outline-primary</code> — <code>btn-outline-danger</code>)</li>
+                <li>3 размера: <code>btn-sm</code>, обычная, <code>btn-lg</code></li>
+                <li>Все 8 цветов фонов (<code>bg-primary</code> — <code>bg-dark</code>)</li>
+                <li>Типография: минимум <code>display-1</code>, <code>lead</code>, <code>fw-bold</code>, <code>text-muted</code>, <code>text-center</code></li>
+                <li>Все блоки разделены подписями (h3 с названием группы)</li>
+                <li>Минимум одна кнопка <code>w-100</code></li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 8 button colors (<code>btn-primary</code> — <code>btn-dark</code>)</li>
+                <li>Outline variants (min 4: <code>btn-outline-primary</code> — <code>btn-outline-danger</code>)</li>
+                <li>3 sizes: <code>btn-sm</code>, regular, <code>btn-lg</code></li>
+                <li>All 8 bg colors (<code>bg-primary</code> — <code>bg-dark</code>)</li>
+                <li>Typography: at least <code>display-1</code>, <code>lead</code>, <code>fw-bold</code>, <code>text-muted</code>, <code>text-center</code></li>
+                <li>All blocks separated by labels (h3 with group name)</li>
+                <li>At least one <code>w-100</code> button</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 25.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 25.3: СТРАНИЦА НА BOOTSTRAP</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 25.3: BOOTSTRAP PAGE</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 24.3: Страница на Bootstrap-сетке</span>
+            <span class="task-title" data-lang="en">Task 24.3: Page on Bootstrap grid</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Собрать полную страницу используя только Bootstrap-классы</div>
+        <div class="task-goal" data-lang="en">Build a complete page using only Bootstrap classes</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>bootstrap-page.html</code>. Соберите страницу <strong>без единой строки своего CSS</strong> — только Bootstrap-классы:</p>
+        <p data-lang="en">Create a file <code>bootstrap-page.html</code>. Build a page <strong>without a single line of custom CSS</strong> — only Bootstrap classes:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Header:</strong> <code>bg-dark text-white p-3</code>, внутри <code>row</code>: лого (<code>col-6</code>) + текст справа (<code>col-6 text-end</code>)</li>
+            <li><strong>Hero:</strong> <code>bg-primary text-white text-center py-5</code>, заголовок (<code>display-4</code>), описание (<code>lead</code>), кнопка (<code>btn btn-light btn-lg</code>)</li>
+            <li><strong>Карточки:</strong> <code>row g-4 py-5</code>, 3 карточки (<code>col-12 col-md-6 col-lg-4</code>), каждая: <code>bg-white p-4 rounded shadow-sm</code>, заголовок, текст (<code>text-muted</code>), кнопка (<code>btn btn-primary</code>)</li>
+            <li><strong>Footer:</strong> <code>bg-dark text-white text-center p-4 mt-5</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Header:</strong> <code>bg-dark text-white p-3</code>, inside <code>row</code>: logo (<code>col-6</code>) + text right (<code>col-6 text-end</code>)</li>
+            <li><strong>Hero:</strong> <code>bg-primary text-white text-center py-5</code>, heading (<code>display-4</code>), description (<code>lead</code>), button (<code>btn btn-light btn-lg</code>)</li>
+            <li><strong>Cards:</strong> <code>row g-4 py-5</code>, 3 cards (<code>col-12 col-md-6 col-lg-4</code>), each: <code>bg-white p-4 rounded shadow-sm</code>, heading, text (<code>text-muted</code>), button (<code>btn btn-primary</code>)</li>
+            <li><strong>Footer:</strong> <code>bg-dark text-white text-center p-4 mt-5</code></li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Не пишите ни одной строки CSS! Всё через Bootstrap-классы. Если вы хотите отступ — <code>p-3</code>. Тень — <code>shadow</code>. Цвет — <code>bg-primary</code>.
+        </div>
+        <div class="hint" data-lang="en">
+            Don't write a single line of CSS! Everything via Bootstrap classes. Need spacing? <code>p-3</code>. Shadow? <code>shadow</code>. Color? <code>bg-primary</code>.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>4 секции: header, hero, карточки (3 шт), footer</li>
+                <li><strong>Ноль строк своего CSS</strong> — всё через Bootstrap-классы</li>
+                <li>Строгая структура <code>container → row → col</code></li>
+                <li>Адаптивные карточки (<code>col-12 col-md-6 col-lg-4</code>)</li>
+                <li>Кнопки Bootstrap (<code>btn btn-*</code>, минимум 3 разных)</li>
+                <li>Утилиты: <code>p-*</code>, <code>m-*</code>, <code>text-center</code>, <code>bg-*</code>, <code>shadow</code>, <code>rounded</code></li>
+                <li>Hero с <code>display-4</code> + <code>lead</code> + кнопка <code>btn-lg</code></li>
+                <li>Row с <code>g-4</code> (gap между колонками)</li>
+                <li>Проверено на мобильном в DevTools (375px) — карточки в 1 колонку</li>
+            </ul>
+            <ul data-lang="en">
+                <li>4 sections: header, hero, cards (3), footer</li>
+                <li><strong>Zero lines of custom CSS</strong> — all via Bootstrap classes</li>
+                <li>Strict structure <code>container → row → col</code></li>
+                <li>Responsive cards (<code>col-12 col-md-6 col-lg-4</code>)</li>
+                <li>Bootstrap buttons (<code>btn btn-*</code>, min 3 different)</li>
+                <li>Utilities: <code>p-*</code>, <code>m-*</code>, <code>text-center</code>, <code>bg-*</code>, <code>shadow</code>, <code>rounded</code></li>
+                <li>Hero with <code>display-4</code> + <code>lead</code> + <code>btn-lg</code></li>
+                <li>Row with <code>g-4</code> (gap between cols)</li>
+                <li>Tested on mobile in DevTools (375px) — cards stack to 1 column</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 24.4: Pricing Table на Bootstrap</span>
+            <span class="task-title" data-lang="en">Task 24.4: Pricing Table with Bootstrap</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать таблицу тарифов на Bootstrap</div>
+        <div class="task-goal" data-lang="en">Create a pricing table with Bootstrap</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте 3 карточки тарифов в ряд (<code>row g-4</code>, <code>col-12 col-md-4</code>):</p>
+        <p data-lang="en">Create 3 pricing cards in a row (<code>row g-4</code>, <code>col-12 col-md-4</code>):</p>
+
+        <ol data-lang="ru">
+            <li><strong>Basic:</strong> <code>border rounded p-4 text-center</code>, цена <code>display-6 fw-bold</code>, 4 фичи, кнопка <code>btn-outline-primary w-100</code></li>
+            <li><strong>Pro (рекомендуемый):</strong> <code>bg-primary text-white rounded p-4 text-center shadow-lg</code>, бейдж «Popular», цена, 6 фич, кнопка <code>btn-light w-100</code></li>
+            <li><strong>Enterprise:</strong> как Basic, но с другой ценой и фичами</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Basic:</strong> <code>border rounded p-4 text-center</code>, price <code>display-6 fw-bold</code>, 4 features, button <code>btn-outline-primary w-100</code></li>
+            <li><strong>Pro (recommended):</strong> <code>bg-primary text-white rounded p-4 text-center shadow-lg</code>, "Popular" badge, price, 6 features, button <code>btn-light w-100</code></li>
+            <li><strong>Enterprise:</strong> like Basic, but different price and features</li>
+        </ol>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>3 карточки в ряд (адаптивные)</li>
+                <li>Средняя выделена цветом и тенью</li>
+                <li>Кнопки на всю ширину (w-100)</li>
+                <li>Только Bootstrap-классы</li>
+            </ul>
+            <ul data-lang="en">
+                <li>3 cards in a row (responsive)</li>
+                <li>Middle card highlighted with color and shadow</li>
+                <li>Full-width buttons (w-100)</li>
+                <li>Bootstrap classes only</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

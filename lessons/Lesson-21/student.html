@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 21 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 21: Адаптивные паттерны</span>
+    <span class="nav-title" data-lang="en">Lesson 21: Responsive Patterns</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 21: Адаптивные паттерны</p>
+    <p class="subtitle" data-lang="en">Lesson 21: Responsive Patterns</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; АДАПТИВНЫЕ ЕДИНИЦЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; RESPONSIVE UNITS</h2>
+
+    <div class="definition" data-lang="ru">
+        Вместо фиксированных <code>px</code> используем <strong>относительные единицы</strong>, которые подстраиваются под экран:
+    </div>
+    <div class="definition" data-lang="en">
+        Instead of fixed <code>px</code> we use <strong>relative units</strong> that adapt to the screen:
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Единица</th><th>Относительно</th><th>Когда использовать</th></tr>
+        <tr><td><code>px</code></td><td>Фиксированная</td><td>border, box-shadow, мелкие детали</td></tr>
+        <tr><td><code>%</code></td><td>Родитель</td><td>width контейнеров</td></tr>
+        <tr><td><code>vw / vh</code></td><td>Viewport (окно)</td><td>Hero-секции, фоны, плавные шрифты</td></tr>
+        <tr><td><code>rem</code></td><td>html (16px)</td><td>Шрифты, отступы (предсказуемо!)</td></tr>
+        <tr><td><code>em</code></td><td>Родитель</td><td>Отступы внутри компонента (кнопки)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Unit</th><th>Relative to</th><th>When to use</th></tr>
+        <tr><td><code>px</code></td><td>Fixed</td><td>border, box-shadow, small details</td></tr>
+        <tr><td><code>%</code></td><td>Parent</td><td>Container widths</td></tr>
+        <tr><td><code>vw / vh</code></td><td>Viewport (window)</td><td>Hero sections, backgrounds, fluid fonts</td></tr>
+        <tr><td><code>rem</code></td><td>html (16px)</td><td>Fonts, spacing (predictable!)</td></tr>
+        <tr><td><code>em</code></td><td>Parent</td><td>Spacing inside component (buttons)</td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Простое правило:</strong> <code>rem</code> для шрифтов, <code>%</code> для ширин контейнеров, <code>vh</code> для высоты hero, <code>px</code> для мелочей (border, shadow). <code>clamp()</code> для заголовков.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Simple rule:</strong> <code>rem</code> for fonts, <code>%</code> for container widths, <code>vh</code> for hero height, <code>px</code> for small things (border, shadow). <code>clamp()</code> for headings.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; КЛЮЧЕВЫЕ ФОРМУЛЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; KEY FORMULAS</h2>
+
+<pre><code>/* Адаптивный контейнер */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Адаптивные картинки (ОБЯЗАТЕЛЬНО!) */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Заполнение с обрезкой */
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Плавный шрифт (без media queries!) */
+h1 { font-size: clamp(1.5rem, 4vw, 3rem); }
+
+/* Hero на весь экран */
+.hero { height: 100vh; }</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>clamp(min, ideal, max)</strong> — шрифт плавно растёт от <code>min</code> до <code>max</code>. Центральное значение (<code>4vw</code>) определяет скорость роста. Заменяет несколько media queries одной строкой!
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>clamp(min, ideal, max)</strong> — font smoothly grows from <code>min</code> to <code>max</code>. The middle value (<code>4vw</code>) determines the growth speed. Replaces several media queries with one line!
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; rem vs em — РАЗНИЦА</h2>
+    <h2 data-lang="en">&#x1F4DA; rem vs em — DIFFERENCE</h2>
+
+    <table data-lang="ru">
+        <tr><th></th><th><code>rem</code></th><th><code>em</code></th></tr>
+        <tr><td>Относительно</td><td><code>&lt;html&gt;</code> (всегда 16px)</td><td>Родитель (может быть разным)</td></tr>
+        <tr><td>Предсказуемо?</td><td>Да, всегда</td><td>Нет, зависит от контекста</td></tr>
+        <tr><td>Накапливается?</td><td>Нет</td><td>Да! (em в em = путаница)</td></tr>
+        <tr><td>Когда</td><td>Шрифты, отступы</td><td>padding/margin внутри кнопок</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th></th><th><code>rem</code></th><th><code>em</code></th></tr>
+        <tr><td>Relative to</td><td><code>&lt;html&gt;</code> (always 16px)</td><td>Parent (can vary)</td></tr>
+        <tr><td>Predictable?</td><td>Yes, always</td><td>No, depends on context</td></tr>
+        <tr><td>Compounds?</td><td>No</td><td>Yes! (em in em = confusion)</td></tr>
+        <tr><td>When</td><td>Fonts, spacing</td><td>padding/margin inside buttons</td></tr>
+    </table>
+
+<pre><code>/* rem — всегда предсказуемо */
+html { font-size: 16px; }
+h1 { font-size: 2rem; }      /* = 32px, всегда */
+h2 { font-size: 1.5rem; }    /* = 24px, всегда */
+
+/* em — масштабируется с текстом (удобно для кнопок) */
+.btn { font-size: 1rem; padding: 0.5em 1em; }
+/* padding подстроится, если изменить font-size */</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; АДАПТИВНЫЕ КАРТИНКИ</h2>
+    <h2 data-lang="en">&#x1F4DA; RESPONSIVE IMAGES</h2>
+
+    <div class="definition" data-lang="ru">
+        Без <code>max-width: 100%</code> картинка <strong>вылезет за экран</strong> на мобильном. Это правило ставят в начало CSS.
+    </div>
+    <div class="definition" data-lang="en">
+        Without <code>max-width: 100%</code> an image will <strong>overflow the screen</strong> on mobile. This rule goes at the top of CSS.
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что делает</th></tr>
+        <tr><td><code>max-width: 100%</code></td><td>Картинка не шире контейнера</td></tr>
+        <tr><td><code>height: auto</code></td><td>Пропорции сохраняются</td></tr>
+        <tr><td><code>object-fit: cover</code></td><td>Заполнить + обрезать (без искажений)</td></tr>
+        <tr><td><code>object-fit: contain</code></td><td>Вместить целиком (с пустыми полосами)</td></tr>
+        <tr><td><code>aspect-ratio: 16/9</code></td><td>Фиксированные пропорции блока</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it does</th></tr>
+        <tr><td><code>max-width: 100%</code></td><td>Image not wider than container</td></tr>
+        <tr><td><code>height: auto</code></td><td>Proportions preserved</td></tr>
+        <tr><td><code>object-fit: cover</code></td><td>Fill + crop (no distortion)</td></tr>
+        <tr><td><code>object-fit: contain</code></td><td>Fit entirely (with empty bars)</td></tr>
+        <tr><td><code>aspect-ratio: 16/9</code></td><td>Fixed block proportions</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; БУРГЕР-МЕНЮ (CSS-ONLY)</h2>
+    <h2 data-lang="en">&#x1F4DA; BURGER MENU (CSS-ONLY)</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Принцип:</strong> скрытый <code>&lt;input type="checkbox"&gt;</code> + <code>&lt;label&gt;</code> (иконка) + <code>&lt;nav&gt;</code>. Когда чекбокс checked &#x2192; показать nav через <code>:checked ~ .nav</code>. Без JavaScript!
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Principle:</strong> hidden <code>&lt;input type="checkbox"&gt;</code> + <code>&lt;label&gt;</code> (icon) + <code>&lt;nav&gt;</code>. When checkbox checked &#x2192; show nav via <code>:checked ~ .nav</code>. No JavaScript!
+    </div>
+
+<pre><code>/* HTML (порядок важен!): */
+&lt;input type="checkbox" id="toggle" class="menu-toggle"&gt;
+&lt;label for="toggle" class="burger"&gt;
+    &lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
+&lt;/label&gt;
+&lt;nav class="nav"&gt;...&lt;/nav&gt;
+
+/* CSS: */
+.menu-toggle { display: none; }    /* скрыть чекбокс */
+.burger { display: none; }          /* скрыт на десктопе */
+
+@media (max-width: 768px) {
+    .burger { display: flex; flex-direction: column; }
+    .nav { display: none; }          /* навигация скрыта */
+    .menu-toggle:checked ~ .nav { display: flex; }  /* показать! */
+
+    /* Бургер → крестик */
+    .menu-toggle:checked ~ .burger span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+    .menu-toggle:checked ~ .burger span:nth-child(2) { opacity: 0; }
+    .menu-toggle:checked ~ .burger span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
+}</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Три частые ошибки:</strong> 1) <code>for=""</code> у label не совпадает с <code>id=""</code> чекбокса. 2) <code>&lt;nav&gt;</code> стоит перед <code>&lt;input&gt;</code> (селектор <code>~</code> работает только вперёд). 3) Забыли <code>display: none</code> на чекбоксе.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Three common mistakes:</strong> 1) label <code>for=""</code> doesn't match checkbox <code>id=""</code>. 2) <code>&lt;nav&gt;</code> is before <code>&lt;input&gt;</code> (the <code>~</code> selector only works forward). 3) Forgot <code>display: none</code> on checkbox.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; АДАПТИВНЫЕ ПАТТЕРНЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; RESPONSIVE PATTERNS</h2>
+
+    <table data-lang="ru">
+        <tr><th>Паттерн</th><th>Код</th><th>Когда</th></tr>
+        <tr><td>Колонки &#x2192; стопка</td><td><code>flex-direction: column</code></td><td>Любые элементы в ряд на десктопе</td></tr>
+        <tr><td>Скрытие</td><td><code>.desktop-only { display: none }</code></td><td>Sidebar, декор, длинные описания</td></tr>
+        <tr><td>Sticky footer</td><td><code>grid-template-rows: auto 1fr auto</code></td><td>Footer всегда внизу страницы</td></tr>
+        <tr><td>Hero</td><td><code>height: 100vh</code> + <code>clamp()</code></td><td>Приветственный экран</td></tr>
+        <tr><td>Контейнер</td><td><code>width: 90%</code> + <code>max-width</code></td><td>Обёртка для всего контента</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Pattern</th><th>Code</th><th>When</th></tr>
+        <tr><td>Columns &#x2192; stack</td><td><code>flex-direction: column</code></td><td>Any elements in a row on desktop</td></tr>
+        <tr><td>Hiding</td><td><code>.desktop-only { display: none }</code></td><td>Sidebar, decor, long descriptions</td></tr>
+        <tr><td>Sticky footer</td><td><code>grid-template-rows: auto 1fr auto</code></td><td>Footer always at page bottom</td></tr>
+        <tr><td>Hero</td><td><code>height: 100vh</code> + <code>clamp()</code></td><td>Welcome screen</td></tr>
+        <tr><td>Container</td><td><code>width: 90%</code> + <code>max-width</code></td><td>Wrapper for all content</td></tr>
+    </table>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>rem</code> для шрифтов (предсказуемо), <code>em</code> для отступов внутри кнопок</li>
+            <li><code>%</code> + <code>max-width</code> — адаптивный контейнер</li>
+            <li><code>100vh</code> — вся высота экрана</li>
+            <li><code>clamp(min, ideal, max)</code> — плавное масштабирование шрифтов</li>
+            <li><code>max-width: 100%; height: auto</code> — адаптивные картинки (обязательно!)</li>
+            <li><code>object-fit: cover</code> — заполнить контейнер с обрезкой</li>
+            <li>Бургер = checkbox hack: input &#x2192; label &#x2192; nav (<code>:checked ~ .nav</code>)</li>
+            <li>Селектор <code>~</code> работает только <strong>вперёд</strong> — nav после input!</li>
+            <li>Sticky footer = <code>grid-template-rows: auto 1fr auto</code></li>
+            <li>Осторожно: <code>100vw</code> включает скроллбар (используйте <code>100%</code>)</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>rem</code> for fonts (predictable), <code>em</code> for button spacing</li>
+            <li><code>%</code> + <code>max-width</code> — responsive container</li>
+            <li><code>100vh</code> — full screen height</li>
+            <li><code>clamp(min, ideal, max)</code> — smooth font scaling</li>
+            <li><code>max-width: 100%; height: auto</code> — responsive images (required!)</li>
+            <li><code>object-fit: cover</code> — fill container with crop</li>
+            <li>Burger = checkbox hack: input &#x2192; label &#x2192; nav (<code>:checked ~ .nav</code>)</li>
+            <li>The <code>~</code> selector only works <strong>forward</strong> — nav after input!</li>
+            <li>Sticky footer = <code>grid-template-rows: auto 1fr auto</code></li>
+            <li>Careful: <code>100vw</code> includes scrollbar (use <code>100%</code>)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Бургер-меню:</strong> Создайте header с бургер-меню на CSS (checkbox hack). На десктопе — горизонтальная навигация. На мобильном — бургер-иконка &#x2192; вертикальное меню. Анимация бургер &#x2192; крестик.</li>
+            <li><strong>Адаптивная сетка:</strong> 6 карточек с картинками. На десктопе 3 колонки, планшете 2, мобильном 1. Используйте <code>rem</code> для шрифтов, <code>clamp()</code> для h1, <code>object-fit: cover</code> для картинок.</li>
+            <li><strong>Бонус:</strong> Добавьте hero-секцию <code>height: 100vh</code> с <code>clamp()</code> заголовком и sticky footer (<code>grid-template-rows: auto 1fr auto</code>).</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Burger menu:</strong> Create a header with CSS burger menu (checkbox hack). On desktop — horizontal nav. On mobile — burger icon &#x2192; vertical menu. Burger &#x2192; X animation.</li>
+            <li><strong>Responsive grid:</strong> 6 cards with images. On desktop 3 columns, tablet 2, mobile 1. Use <code>rem</code> for fonts, <code>clamp()</code> for h1, <code>object-fit: cover</code> for images.</li>
+            <li><strong>Bonus:</strong> Add a hero section <code>height: 100vh</code> with <code>clamp()</code> heading and sticky footer (<code>grid-template-rows: auto 1fr auto</code>).</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 28 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 28: Tailwind CSS — адаптивность и проект</span>
+    <span class="nav-title" data-lang="en">Lesson 28: Tailwind CSS — Responsiveness and Project</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 28: Tailwind CSS — адаптивность и проект</p>
+    <p class="subtitle" data-lang="en">Lesson 28: Tailwind CSS — Responsiveness and Project</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ПРЕФИКСЫ СОСТОЯНИЙ — ГЛАВНОЕ</h2>
+    <h2 data-lang="en">&#x1F4DA; STATE PREFIXES — THE KEY</h2>
+
+    <div class="definition" data-lang="ru">
+        Любой Tailwind-класс можно «обвязать» префиксом состояния: <code>md:</code>, <code>hover:</code>, <code>focus:</code>, <code>active:</code>, <code>dark:</code>, <code>group-hover:</code>. Префиксы можно комбинировать: <code>md:hover:text-blue-500</code>.
+    </div>
+    <div class="definition" data-lang="en">
+        Any Tailwind class can be wrapped with a state prefix: <code>md:</code>, <code>hover:</code>, <code>focus:</code>, <code>active:</code>, <code>dark:</code>, <code>group-hover:</code>. Prefixes can be combined: <code>md:hover:text-blue-500</code>.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; RESPONSIVE-ПРЕФИКСЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; RESPONSIVE PREFIXES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Префикс</th><th>Экран</th><th>Пример</th></tr>
+        <tr><td>(без)</td><td>0px+ (мобильный)</td><td><code>grid-cols-1</code></td></tr>
+        <tr><td><code>sm:</code></td><td>&#x2265; 640px</td><td><code>sm:grid-cols-2</code></td></tr>
+        <tr><td><code>md:</code></td><td>&#x2265; 768px</td><td><code>md:grid-cols-2</code></td></tr>
+        <tr><td><code>lg:</code></td><td>&#x2265; 1024px</td><td><code>lg:grid-cols-3</code></td></tr>
+        <tr><td><code>xl:</code></td><td>&#x2265; 1280px</td><td><code>xl:grid-cols-4</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Prefix</th><th>Screen</th><th>Example</th></tr>
+        <tr><td>(none)</td><td>0px+ (mobile)</td><td><code>grid-cols-1</code></td></tr>
+        <tr><td><code>sm:</code></td><td>&#x2265; 640px</td><td><code>sm:grid-cols-2</code></td></tr>
+        <tr><td><code>md:</code></td><td>&#x2265; 768px</td><td><code>md:grid-cols-2</code></td></tr>
+        <tr><td><code>lg:</code></td><td>&#x2265; 1024px</td><td><code>lg:grid-cols-3</code></td></tr>
+        <tr><td><code>xl:</code></td><td>&#x2265; 1280px</td><td><code>xl:grid-cols-4</code></td></tr>
+    </table>
+
+<pre><code>&lt;!-- Адаптивная сетка --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"&gt;
+
+&lt;!-- Адаптивный текст --&gt;
+&lt;h1 class="text-2xl md:text-4xl lg:text-5xl"&gt;
+
+&lt;!-- Скрыть/показать --&gt;
+&lt;div class="hidden md:block"&gt;  &lt;!-- скрыто на мобильном --&gt;
+&lt;div class="block md:hidden"&gt;  &lt;!-- только на мобильном --&gt;
+
+&lt;!-- Стопка → ряд --&gt;
+&lt;div class="flex flex-col md:flex-row gap-8"&gt;</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Mobile-first логика:</strong> базовый класс = мобильный. Префикс = «С этого размера и выше». Если на md и lg выглядит одинаково — пишите только <code>md:</code>, lg автоматически наследует.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Mobile-first logic:</strong> base class = mobile. Prefix = "from this size up". If it looks same on md and lg — write only <code>md:</code>, lg inherits automatically.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Breakpoints Tailwind ≠ Bootstrap!</strong> sm=640 (у Bs 576), lg=1024 (у Bs 992), xl=1280 (у Bs 1200). Только md=768 совпадает.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Tailwind breakpoints ≠ Bootstrap!</strong> sm=640 (Bs 576), lg=1024 (Bs 992), xl=1280 (Bs 1200). Only md=768 matches.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; СОСТОЯНИЯ (HOVER, FOCUS, ACTIVE)</h2>
+    <h2 data-lang="en">&#x1F4DA; STATES (HOVER, FOCUS, ACTIVE)</h2>
+
+<pre><code>&lt;!-- Hover --&gt;
+hover:bg-blue-700      hover:-translate-y-2     hover:shadow-xl
+
+&lt;!-- Focus --&gt;
+focus:ring-2           focus:border-blue-500    focus:outline-none
+
+&lt;!-- Active --&gt;
+active:scale-95
+
+&lt;!-- Transition (обязательно для плавности!) --&gt;
+transition-all duration-300</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Правило трёх transitions:</strong>
+        <ul>
+            <li>Кнопки: <code>transition-colors duration-200</code></li>
+            <li>Карточки: <code>transition-all duration-300</code></li>
+            <li>Модалки, большие анимации: <code>transition-all duration-500 ease-out</code></li>
+        </ul>
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Rule of three transitions:</strong>
+        <ul>
+            <li>Buttons: <code>transition-colors duration-200</code></li>
+            <li>Cards: <code>transition-all duration-300</code></li>
+            <li>Modals, big animations: <code>transition-all duration-500 ease-out</code></li>
+        </ul>
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Везде где есть <code>hover:</code> — должен быть <code>focus:</code>.</strong> Это доступность: люди с клавиатуры (Tab) видят где они находятся.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Wherever there's <code>hover:</code> — add <code>focus:</code>.</strong> That's accessibility: keyboard users (Tab) see where they are.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ГРАДИЕНТЫ И DARK MODE</h2>
+    <h2 data-lang="en">&#x1F4DA; GRADIENTS AND DARK MODE</h2>
+
+<pre><code>&lt;!-- Градиент (направление + цвета) --&gt;
+bg-gradient-to-r from-blue-600 to-purple-600
+bg-gradient-to-br from-orange-500 to-pink-500
+bg-gradient-to-r from-green-400 via-blue-500 to-purple-600
+
+&lt;!-- Направления: r, l, t, b, tr, tl, br, bl --&gt;
+
+&lt;!-- Dark mode --&gt;
+bg-white dark:bg-gray-900
+text-gray-800 dark:text-gray-100</code></pre>
+
+    <div class="definition" data-lang="ru">
+        <strong>Рецепт красивого градиента:</strong> берите <strong>соседние</strong> цвета (blue+purple, orange+pink, green+blue), оттенки 500-700. Очень яркие контрасты (red+green) выглядят аляповато.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Recipe for a pretty gradient:</strong> use <strong>adjacent</strong> colors (blue+purple, orange+pink, green+blue), shades 500-700. Too much contrast (red+green) looks gaudy.
+    </div>
+
+    <div class="definition" data-lang="ru">
+        <strong>Палитра dark mode:</strong> фон — <code>bg-gray-900</code> (не чистый <code>bg-black</code>), карточки — <code>bg-gray-800</code>, текст — <code>text-gray-100</code> (не <code>text-white</code>).
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Dark mode palette:</strong> bg — <code>bg-gray-900</code> (not pure <code>bg-black</code>), cards — <code>bg-gray-800</code>, text — <code>text-gray-100</code> (not <code>text-white</code>).
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        Активация dark mode: добавить <code>class="dark"</code> на <code>&lt;html&gt;</code> — все <code>dark:</code> классы включатся.
+    </div>
+    <div class="key-point" data-lang="en">
+        Activate dark mode: add <code>class="dark"</code> to <code>&lt;html&gt;</code> — all <code>dark:</code> classes activate.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; GROUP-HOVER</h2>
+    <h2 data-lang="en">&#x1F4DA; GROUP-HOVER</h2>
+
+<pre><code>&lt;!-- Родитель: class="group" --&gt;
+&lt;div class="group hover:shadow-xl"&gt;
+    &lt;img class="group-hover:scale-110 transition-transform"&gt;
+    &lt;h3 class="group-hover:text-blue-600 transition-colors"&gt;
+&lt;/div&gt;</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <code>group</code> на родителе → <code>group-hover:</code> на детях = при hover на карточку меняются дочерние элементы.
+    </div>
+    <div class="key-point" data-lang="en">
+        <code>group</code> on parent → <code>group-hover:</code> on children = on card hover, child elements change.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Если <code>group-hover:</code> не работает</strong> — первым делом проверьте, стоит ли <code>group</code> на родителе. Самая частая ошибка.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>If <code>group-hover:</code> doesn't work</strong> — first check <code>group</code> is on the parent. Most common mistake.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧАСТЫЕ ОШИБКИ</h2>
+    <h2 data-lang="en">&#x1F4DA; COMMON MISTAKES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td><code>group-hover:</code> не срабатывает</td><td>Добавить <code>group</code> на родителя</td></tr>
+        <tr><td>Hover «дёргается» (резко)</td><td>Добавить <code>transition-all duration-300</code></td></tr>
+        <tr><td>Только <code>hover:</code> без <code>focus:</code></td><td>Добавить <code>focus:</code> с тем же эффектом — для доступности</td></tr>
+        <tr><td>Breakpoint не работает как ожидали</td><td>Tailwind sm=640 ≠ Bootstrap 576. Проверьте значения</td></tr>
+        <tr><td>Dark mode не включается</td><td>Проверьте <code>class="dark"</code> на <code>&lt;html&gt;</code></td></tr>
+        <tr><td>На мобильном стоит 3 колонки вместо 1</td><td>Базовый класс должен быть для мобильного: <code>grid-cols-1 md:grid-cols-3</code>, не наоборот</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td><code>group-hover:</code> doesn't fire</td><td>Add <code>group</code> to the parent</td></tr>
+        <tr><td>Hover is "jerky" (abrupt)</td><td>Add <code>transition-all duration-300</code></td></tr>
+        <tr><td>Only <code>hover:</code>, no <code>focus:</code></td><td>Add <code>focus:</code> with same effect — for accessibility</td></tr>
+        <tr><td>Breakpoint doesn't work as expected</td><td>Tailwind sm=640 ≠ Bootstrap 576. Check values</td></tr>
+        <tr><td>Dark mode doesn't activate</td><td>Check <code>class="dark"</code> on <code>&lt;html&gt;</code></td></tr>
+        <tr><td>Mobile shows 3 cols instead of 1</td><td>Base class should be for mobile: <code>grid-cols-1 md:grid-cols-3</code>, not reverse</td></tr>
+    </table>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li>Любой класс можно обвязать префиксом: responsive, state, dark</li>
+            <li>Responsive (mobile-first): <code>md:grid-cols-2 lg:grid-cols-3</code></li>
+            <li>Breakpoints: sm=640, md=768, lg=1024, xl=1280, 2xl=1536</li>
+            <li>Breakpoints Tailwind ≠ Bootstrap! Только md=768 совпадает</li>
+            <li>Hover: <code>hover:{класс}</code> на любом утилити-классе</li>
+            <li>Focus: <code>focus:ring-2 focus:border-blue-500</code> — обязательно для input</li>
+            <li>Active: <code>active:scale-95</code> для тактильности кнопок</li>
+            <li>Transitions: <code>transition-all duration-300</code> — обязательно для плавности!</li>
+            <li>Без transition hover работает резко — выглядит «дёшево»</li>
+            <li>Градиенты: <code>bg-gradient-to-{dir} from-{цвет} to-{цвет}</code></li>
+            <li>Направления: r, l, t, b, tr, tl, br, bl</li>
+            <li>3 цвета: <code>from-A via-B to-C</code></li>
+            <li>Dark mode: <code>dark:bg-gray-900 dark:text-gray-100</code></li>
+            <li>Активация dark: <code>class="dark"</code> на <code>&lt;html&gt;</code></li>
+            <li>Group hover: <code>group</code> на родителе + <code>group-hover:</code> на детях</li>
+            <li>Скрыть: <code>hidden md:block</code> (desktop-only) или <code>block md:hidden</code> (mobile-only)</li>
+            <li>Комбинировать префиксы: <code>md:hover:text-blue-500</code></li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li>Any class can be prefixed: responsive, state, dark</li>
+            <li>Responsive (mobile-first): <code>md:grid-cols-2 lg:grid-cols-3</code></li>
+            <li>Breakpoints: sm=640, md=768, lg=1024, xl=1280, 2xl=1536</li>
+            <li>Tailwind breakpoints ≠ Bootstrap! Only md=768 matches</li>
+            <li>Hover: <code>hover:{class}</code> on any utility class</li>
+            <li>Focus: <code>focus:ring-2 focus:border-blue-500</code> — mandatory for inputs</li>
+            <li>Active: <code>active:scale-95</code> for tactile buttons</li>
+            <li>Transitions: <code>transition-all duration-300</code> — required for smoothness!</li>
+            <li>Without transition, hover is abrupt — looks "cheap"</li>
+            <li>Gradients: <code>bg-gradient-to-{dir} from-{color} to-{color}</code></li>
+            <li>Directions: r, l, t, b, tr, tl, br, bl</li>
+            <li>3 colors: <code>from-A via-B to-C</code></li>
+            <li>Dark mode: <code>dark:bg-gray-900 dark:text-gray-100</code></li>
+            <li>Activate dark: <code>class="dark"</code> on <code>&lt;html&gt;</code></li>
+            <li>Group hover: <code>group</code> on parent + <code>group-hover:</code> on children</li>
+            <li>Hide: <code>hidden md:block</code> (desktop-only) or <code>block md:hidden</code> (mobile-only)</li>
+            <li>Combine prefixes: <code>md:hover:text-blue-500</code></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Лендинг:</strong> Tailwind-лендинг из 6 секций — Header (с бургером через <code>hidden md:block</code>), Hero (с градиентом <code>bg-gradient-to-r from-blue-600 to-purple-600</code>), Features (3 блока <code>grid-cols-1 md:grid-cols-3</code>), Cards (<code>grid-cols-1 md:grid-cols-2 lg:grid-cols-3</code> с <code>group-hover</code>), CTA, Footer. Ноль CSS!</li>
+            <li><strong>Адаптив:</strong> Все секции перестраиваются на 375px → 768px → 1024px. Проверить в DevTools на 3 размерах.</li>
+            <li><strong>Hover-эффекты:</strong> Карточки — <code>hover:-translate-y-2 hover:shadow-xl transition-all duration-300</code>. Кнопки — <code>hover:bg-blue-700 active:scale-95</code>.</li>
+            <li><strong>Dark mode:</strong> Все элементы имеют <code>dark:</code> варианты. Активация — <code>class="dark"</code> на <code>&lt;html&gt;</code>. Палитра: <code>dark:bg-gray-900</code>, <code>dark:text-gray-100</code>, карточки <code>dark:bg-gray-800</code>.</li>
+            <li><strong>Форма контактов:</strong> Input с <code>focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none</code>. Кнопка с hover + active + transition.</li>
+            <li><strong>Group-hover:</strong> Минимум одна карточка с <code>group</code>: картинка зумится (<code>group-hover:scale-110</code>), заголовок меняет цвет (<code>group-hover:text-blue-600</code>).</li>
+            <li><strong>Бонус:</strong> Переключатель темы через JS: кнопка toggle'ит <code>class="dark"</code> на <code>&lt;html&gt;</code>.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Landing:</strong> Tailwind landing with 6 sections — Header (with burger via <code>hidden md:block</code>), Hero (gradient <code>bg-gradient-to-r from-blue-600 to-purple-600</code>), Features (3 blocks <code>grid-cols-1 md:grid-cols-3</code>), Cards (<code>grid-cols-1 md:grid-cols-2 lg:grid-cols-3</code> with <code>group-hover</code>), CTA, Footer. Zero CSS!</li>
+            <li><strong>Responsive:</strong> All sections rebuild on 375px → 768px → 1024px. Test in DevTools at 3 sizes.</li>
+            <li><strong>Hover effects:</strong> Cards — <code>hover:-translate-y-2 hover:shadow-xl transition-all duration-300</code>. Buttons — <code>hover:bg-blue-700 active:scale-95</code>.</li>
+            <li><strong>Dark mode:</strong> All elements have <code>dark:</code> variants. Activate — <code>class="dark"</code> on <code>&lt;html&gt;</code>. Palette: <code>dark:bg-gray-900</code>, <code>dark:text-gray-100</code>, cards <code>dark:bg-gray-800</code>.</li>
+            <li><strong>Contact form:</strong> Input with <code>focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none</code>. Button with hover + active + transition.</li>
+            <li><strong>Group-hover:</strong> At least one card with <code>group</code>: image zooms (<code>group-hover:scale-110</code>), title changes color (<code>group-hover:text-blue-600</code>).</li>
+            <li><strong>Bonus:</strong> Theme toggle via JS: button toggles <code>class="dark"</code> on <code>&lt;html&gt;</code>.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

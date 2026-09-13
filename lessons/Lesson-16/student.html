@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 16 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 16: Мини-проект — Галерея карточек</span>
+    <span class="nav-title" data-lang="en">Lesson 16: Mini-project — Card Gallery</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 16: Мини-проект #3 — Галерея карточек</p>
+    <p class="subtitle" data-lang="en">Lesson 16: Mini-project #3 — Card Gallery</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; FLEXBOX-СЕТКА ДЛЯ КАРТОЧЕК</h2>
+    <h2 data-lang="en">&#x1F4DA; FLEXBOX GRID FOR CARDS</h2>
+
+<pre><code>.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.card {
+    flex: 1 1 280px;    /* мин. 280px, растёт, переносится */
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}</code></pre>
+
+    <h3 data-lang="ru">Ключевые свойства</h3>
+    <h3 data-lang="en">Key properties</h3>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>На чём</th><th>Зачем</th></tr>
+        <tr><td><code>flex-wrap: wrap</code></td><td>Контейнер</td><td>Перенос карточек на новую строку</td></tr>
+        <tr><td><code>gap: 24px</code></td><td>Контейнер</td><td>Отступы между карточками</td></tr>
+        <tr><td><code>flex: 1 1 280px</code></td><td>Карточка</td><td>Мин. ширина 280px, растёт</td></tr>
+        <tr><td><code>max-width: 400px</code></td><td>Карточка</td><td>Не шире 400px</td></tr>
+        <tr><td><code>flex-direction: column</code></td><td>Карточка</td><td>Содержимое вертикально</td></tr>
+        <tr><td><code>margin-top: auto</code></td><td>Бейджи/кнопка</td><td>Прижать к низу</td></tr>
+        <tr><td><code>overflow: hidden</code></td><td>Карточка</td><td>Обрезать по border-radius</td></tr>
+        <tr><td><code>object-fit: cover</code></td><td>Изображение</td><td>Заполнить область, обрезать лишнее</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>On what</th><th>Why</th></tr>
+        <tr><td><code>flex-wrap: wrap</code></td><td>Container</td><td>Wrap cards to new line</td></tr>
+        <tr><td><code>gap: 24px</code></td><td>Container</td><td>Spacing between cards</td></tr>
+        <tr><td><code>flex: 1 1 280px</code></td><td>Card</td><td>Min width 280px, grows</td></tr>
+        <tr><td><code>max-width: 400px</code></td><td>Card</td><td>No wider than 400px</td></tr>
+        <tr><td><code>flex-direction: column</code></td><td>Card</td><td>Content is vertical</td></tr>
+        <tr><td><code>margin-top: auto</code></td><td>Badges/button</td><td>Push to bottom</td></tr>
+        <tr><td><code>overflow: hidden</code></td><td>Card</td><td>Clip to border-radius</td></tr>
+        <tr><td><code>object-fit: cover</code></td><td>Image</td><td>Fill area, crop excess</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; HOVER-ЭФФЕКТЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; HOVER EFFECTS</h2>
+
+<pre><code>/* Подъём карточки */
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* Zoom изображения */
+.card:hover img {
+    transform: scale(1.05);
+}</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Не забудь <code>transition</code>!</strong> Без него эффекты будут резкими. Добавь <code>transition: transform 0.3s ease, box-shadow 0.3s ease</code> на карточку и изображение.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Don't forget <code>transition</code>!</strong> Without it, effects will be abrupt. Add <code>transition: transform 0.3s ease, box-shadow 0.3s ease</code> to card and image.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; СТРУКТУРА КАРТОЧКИ</h2>
+    <h2 data-lang="en">&#x1F4DA; CARD STRUCTURE</h2>
+
+    <div class="diagram" data-lang="ru">
+    &lt;div class="card"&gt;                   flex-direction: column
+      &#x251C;&#x2500; &lt;img&gt;                        изображение (object-fit: cover)
+      &#x2514;&#x2500; &lt;div class="card-body"&gt;       flex: 1
+           &#x251C;&#x2500; &lt;h3&gt; Название
+           &#x251C;&#x2500; &lt;p class="meta"&gt; Год
+           &#x251C;&#x2500; &lt;div class="rating"&gt; &#x2605;&#x2605;&#x2605;
+           &#x2514;&#x2500; &lt;div class="badges"&gt;     margin-top: auto
+                &#x251C;&#x2500; &lt;span&gt; Жанр 1
+                &#x2514;&#x2500; &lt;span&gt; Жанр 2</div>
+    <div class="diagram" data-lang="en">
+    &lt;div class="card"&gt;                   flex-direction: column
+      &#x251C;&#x2500; &lt;img&gt;                        image (object-fit: cover)
+      &#x2514;&#x2500; &lt;div class="card-body"&gt;       flex: 1
+           &#x251C;&#x2500; &lt;h3&gt; Title
+           &#x251C;&#x2500; &lt;p class="meta"&gt; Year
+           &#x251C;&#x2500; &lt;div class="rating"&gt; &#x2605;&#x2605;&#x2605;
+           &#x2514;&#x2500; &lt;div class="badges"&gt;     margin-top: auto
+                &#x251C;&#x2500; &lt;span&gt; Genre 1
+                &#x2514;&#x2500; &lt;span&gt; Genre 2</div>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>flex: 1 1 280px</code> — гибкая карточка (мин. 280px, растёт, переносится)</li>
+            <li><code>flex-wrap: wrap</code> — обязательно для переноса!</li>
+            <li><code>object-fit: cover</code> — изображение заполняет блок без деформации</li>
+            <li><code>overflow: hidden</code> — обрезает углы изображения по border-radius</li>
+            <li><code>margin-top: auto</code> — прижать элемент к низу (в flex-column)</li>
+            <li><code>transition</code> — плавные hover-эффекты</li>
+            <li><code>transform: scale(1.05)</code> — лёгкий zoom на hover</li>
+            <li><code>translateY(-8px)</code> — подъём карточки на hover</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>flex: 1 1 280px</code> — flexible card (min 280px, grows, wraps)</li>
+            <li><code>flex-wrap: wrap</code> — required for wrapping!</li>
+            <li><code>object-fit: cover</code> — image fills block without distortion</li>
+            <li><code>overflow: hidden</code> — clips image corners to border-radius</li>
+            <li><code>margin-top: auto</code> — push element to bottom (in flex-column)</li>
+            <li><code>transition</code> — smooth hover effects</li>
+            <li><code>transform: scale(1.05)</code> — subtle zoom on hover</li>
+            <li><code>translateY(-8px)</code> — card lift on hover</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Создай свою галерею</strong> на любую тему (фильмы, игры, музыка, рецепты). Минимум 6 карточек с изображениями, названиями, бейджами и hover.</li>
+            <li><strong>Своя тема оформления</strong> — светлая или тёмная, свои цвета.</li>
+            <li><strong>Бонус:</strong> Добавь шапку с заголовком и «фильтры» (кнопки жанров, пока без функционала — просто стилизованные).</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Create your own gallery</strong> on any topic (movies, games, music, recipes). At least 6 cards with images, titles, badges, and hover.</li>
+            <li><strong>Your own theme</strong> — light or dark, your own colors.</li>
+            <li><strong>Bonus:</strong> Add a header with title and "filter" buttons (genre buttons, no functionality yet — just styled).</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 1 — Конспект ученика</title>
+    <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: #1e293b; background: #fff; padding: 40px 20px; }
+.container { max-width: 800px; margin: 0 auto; }
+h1 { font-size: 1.8rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 10px; margin-bottom: 6px; }
+h2 { font-size: 1.4rem; color: #7e22ce; margin: 36px 0 14px; padding: 8px 14px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 6px 6px 0; }
+h3 { font-size: 1.15rem; color: #1e3a5f; margin: 20px 0 10px; }
+.subtitle { color: #64748b; margin-bottom: 6px; }
+.date-line { color: #94a3b8; font-style: italic; margin-bottom: 24px; }
+.key-point { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 14px 18px; margin: 12px 0; border-radius: 0 6px 6px 0; }
+.definition { background: #faf5ff; border: 1px solid #d8b4fe; padding: 14px 18px; border-radius: 8px; margin: 12px 0; }
+.definition strong { color: #7e22ce; }
+.diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 16px; border-radius: 8px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.4; margin: 14px 0; overflow-x: auto; font-size: 0.82rem; }
+pre { background: #1e293b; color: #e2e8f0; padding: 14px 18px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 0.9rem; line-height: 1.6; margin: 12px 0; }
+code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+pre code { background: none; padding: 0; }
+table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+th, td { padding: 8px 12px; border: 1px solid #e2e8f0; text-align: left; }
+th { background: #f1f5f9; font-weight: 600; }
+ul, ol { margin: 8px 0 8px 24px; }
+li { margin: 4px 0; }
+hr { border: none; border-top: 2px solid #e2e8f0; margin: 30px 0; }
+.remember { background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+.remember::before { content: '❗ Запомни:'; display: block; font-weight: 700; color: #dc2626; margin-bottom: 4px; }
+.homework { background: #fdf4ff; border: 2px solid #d8b4fe; border-radius: 10px; padding: 18px; margin: 20px 0; }
+.homework::before { content: '📚 ДОМАШНЕЕ ЗАДАНИЕ'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 8px; }
+.note-box { background: #fefce8; border: 1px solid #fde047; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+    </style>
+</head>
+<body>
+
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 1: Введение в веб-разработку</span><span style="color:#cbd5e1;">|</span><a href="lecture.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127979; Лекция</a><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128104;&#8205;&#127891; Конспект</span><a href="tasks.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128203; Задания</a></div>
+
+<div class="container">
+
+    <h1>📓 КОНСПЕКТ УЧЕНИКА</h1>
+
+    <p class="subtitle">Занятие 1: Введение в веб-разработку</p>
+
+    <p class="date-line">Дата: _______________</p>
+
+    <hr>
+
+    <!-- УРОК 1.1 -->
+    <h2>📚 УРОК 1.1: КАК РАБОТАЕТ ИНТЕРНЕТ И ВЕБ</h2>
+
+    <h3>Клиент и сервер</h3>
+
+    <div class="definition">
+        <strong>Клиент</strong> — ваш компьютер и браузер. Он запрашивает информацию.<br>
+        <strong>Сервер</strong> — мощный компьютер, который хранит файлы сайта и отдаёт их клиенту.
+    </div>
+
+    <div class="diagram">
+     ВЫ (клиент)                              СЕРВЕР
+  ┌──────────────┐                      ┌──────────────┐
+  │   Браузер    │ ── 1. Запрос ──────► │  Компьютер   │
+  │   (Chrome)   │                      │  с файлами   │
+  │              │ ◄── 2. Ответ ─────── │  сайта       │
+  └──────────────┘    (HTML, CSS, JS)   └──────────────┘</div>
+
+    <div class="key-point">
+        <strong>Аналогия:</strong> Клиент = посетитель ресторана, Сервер = кухня, Интернет = официант
+    </div>
+
+    <h3>URL — адрес сайта</h3>
+
+    <div class="diagram">
+  https://www.google.com/search?q=html
+
+  https://     — протокол (безопасное соединение)
+  www.         — поддомен
+  google.com   — доменное имя (имя сайта)
+  /search      — путь (конкретная страница)
+  ?q=html      — параметры запроса</div>
+
+    <h3>HTTP и HTTPS</h3>
+
+    <ul>
+        <li><strong>HTTP</strong> — протокол общения клиента и сервера</li>
+        <li><strong>HTTPS</strong> — то же, но с шифрованием (замочек 🔒 в браузере)</li>
+    </ul>
+
+    <div class="key-point">
+        <strong>Запоминалка:</strong> HTTP = открытка (все могут прочитать), HTTPS = письмо в запечатанном конверте. Видишь замочек 🔒 в браузере — данные защищены!
+    </div>
+
+    <div class="remember">
+        <ul>
+            <li><strong>Клиент</strong> — ваш браузер (отправляет запросы)</li>
+            <li><strong>Сервер</strong> — хранит сайт (отвечает на запросы)</li>
+            <li><strong>URL</strong> — адрес сайта (https://google.com)</li>
+            <li><strong>DNS</strong> — переводит имя сайта в IP-адрес</li>
+            <li><strong>HTTPS</strong> — безопасное соединение с шифрованием</li>
+        </ul>
+    </div>
+
+    <h3>Что такое веб-страница</h3>
+
+    <p>Сервер отправляет браузеру <strong>3 типа файлов</strong>:</p>
+
+    <table>
+        <tr>
+            <th>Технология</th>
+            <th>Что делает</th>
+            <th>Аналогия</th>
+            <th>Пример на Google</th>
+        </tr>
+        <tr>
+            <td>📄 <strong>HTML</strong></td>
+            <td>Структура и содержимое</td>
+            <td>Скелет человека</td>
+            <td>Логотип, поле ввода, кнопки</td>
+        </tr>
+        <tr>
+            <td>🎨 <strong>CSS</strong></td>
+            <td>Внешний вид и стили</td>
+            <td>Одежда и макияж</td>
+            <td>Цвета, центрирование, шрифты</td>
+        </tr>
+        <tr>
+            <td>⚡ <strong>JavaScript</strong></td>
+            <td>Интерактивность</td>
+            <td>Мышцы и движения</td>
+            <td>Подсказки при вводе, голосовой поиск</td>
+        </tr>
+    </table>
+
+    <div class="diagram">
+  Как работает любой сайт:
+
+  📄 HTML          🎨 CSS           ⚡ JS
+  ЧТО на странице  КАК выглядит     ЧТО происходит
+  (заголовок,      (красный цвет,   (клик → лайк,
+   текст,           шрифт Arial,     скролл → загрузка,
+   картинка)        отступ 20px)     ввод → подсказки)</div>
+
+    <h3>Браузеры</h3>
+
+    <div class="definition">
+        <strong>Браузер</strong> — программа, которая читает HTML, CSS, JS и рисует (рендерит) из них красивую страницу.
+    </div>
+
+    <table>
+        <tr><th>Браузер</th><th>Компания</th><th>Доля рынка</th><th>Движок</th></tr>
+        <tr><td>🌐 Google Chrome</td><td>Google</td><td>~65%</td><td>Blink/V8</td></tr>
+        <tr><td>🧭 Safari</td><td>Apple</td><td>~19%</td><td>WebKit</td></tr>
+        <tr><td>📘 Edge</td><td>Microsoft</td><td>~5%</td><td>Blink</td></tr>
+        <tr><td>🦊 Firefox</td><td>Mozilla</td><td>~3%</td><td>Gecko</td></tr>
+    </table>
+
+    <div class="key-point">
+        <strong>Мы работаем в Chrome</strong> — у него лучшие инструменты для разработчиков (DevTools).
+    </div>
+
+    <h3>DevTools — инструменты разработчика</h3>
+
+    <div class="remember">
+        <ul>
+            <li>Открыть: <strong>F12</strong> или правый клик → «Просмотреть код»</li>
+            <li><strong>Elements</strong> — просмотр и редактирование HTML-структуры</li>
+            <li><strong>Styles</strong> — просмотр и редактирование CSS-стилей</li>
+            <li><strong>Console</strong> — выполнение JavaScript-кода</li>
+            <li>Все изменения <strong>временные</strong> — пропадают при обновлении (F5)</li>
+            <li>Вы ничего не сломаете — экспериментируйте свободно!</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- УРОК 1.2 -->
+    <h2>📚 УРОК 1.2: HTML, CSS, JAVASCRIPT — ПОДРОБНЕЕ</h2>
+
+    <h3>HTML — HyperText Markup Language</h3>
+
+    <div class="definition">
+        <strong>HTML</strong> — язык гипертекстовой разметки. Это НЕ язык программирования!
+        Он определяет <strong>структуру и содержимое</strong> страницы.
+    </div>
+
+    <p>Основные HTML-теги:</p>
+
+    <table>
+        <tr><th>Тег</th><th>Что делает</th></tr>
+        <tr><td><code>&lt;h1&gt;...&lt;/h1&gt;</code></td><td>Заголовок (самый важный)</td></tr>
+        <tr><td><code>&lt;h2&gt;...&lt;/h2&gt;</code></td><td>Подзаголовок</td></tr>
+        <tr><td><code>&lt;p&gt;...&lt;/p&gt;</code></td><td>Параграф текста</td></tr>
+        <tr><td><code>&lt;a href="..."&gt;...&lt;/a&gt;</code></td><td>Ссылка</td></tr>
+        <tr><td><code>&lt;img src="..."&gt;</code></td><td>Картинка</td></tr>
+        <tr><td><code>&lt;ul&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;</code></td><td>Список</td></tr>
+        <tr><td><code>&lt;button&gt;...&lt;/button&gt;</code></td><td>Кнопка</td></tr>
+    </table>
+
+    <p>Пример HTML:</p>
+
+<pre><code>&lt;h1&gt;Привет, мир!&lt;/h1&gt;
+&lt;p&gt;Это мой первый сайт.&lt;/p&gt;
+&lt;a href="https://google.com"&gt;Перейти в Google&lt;/a&gt;</code></pre>
+
+    <div class="key-point">
+        <strong>Запоминалка:</strong> HTML = чертёж дома. Говорит ЧТО есть на странице, но не КАК это выглядит.
+    </div>
+
+    <div class="remember">
+        <ul>
+            <li>HTML — это <strong>НЕ</strong> язык программирования (он не считает и не решает)</li>
+            <li>Теги работают <strong>парами</strong>: <code>&lt;p&gt;</code>...<code>&lt;/p&gt;</code></li>
+            <li>Некоторые теги — <strong>одиночные</strong>: <code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code></li>
+            <li>Теги <strong>вкладываются</strong> друг в друга — как матрёшки</li>
+        </ul>
+    </div>
+
+    <h3>CSS — Cascading Style Sheets</h3>
+
+    <div class="definition">
+        <strong>CSS</strong> — каскадные таблицы стилей. Отвечает за <strong>внешний вид</strong> страницы: цвета, шрифты, размеры, расположение.
+    </div>
+
+    <p>Пример CSS:</p>
+
+<pre><code>h1 {
+    color: red;          /* цвет текста */
+    font-size: 48px;     /* размер шрифта */
+    text-align: center;  /* выравнивание по центру */
+}
+
+body {
+    background-color: #1a1a2e;  /* цвет фона */
+    font-family: Arial;         /* шрифт */
+}</code></pre>
+
+    <p>Что может CSS:</p>
+
+    <ul>
+        <li><strong>Цвета</strong> — фон, текст, рамки</li>
+        <li><strong>Шрифты</strong> — размер, жирность, семейство</li>
+        <li><strong>Размеры</strong> — ширина, высота, отступы</li>
+        <li><strong>Расположение</strong> — где что находится на странице</li>
+        <li><strong>Анимации</strong> — плавные переходы</li>
+    </ul>
+
+    <div class="key-point">
+        <strong>Запоминалка:</strong> CSS = дизайн интерьера. Говорит КАК выглядит страница.
+    </div>
+
+    <div class="diagram">
+  Синтаксис CSS:
+
+  селектор {
+      свойство: значение;
+  }
+
+  Пример:
+  h1 {
+      color: red;           ← свойство: значение;
+      font-size: 48px;      ← свойство: значение;
+  }</div>
+
+    <div class="remember">
+        Один и тот же HTML с <strong>разным CSS</strong> выглядит совершенно по-разному!
+        Без CSS сайт — просто чёрный текст на белом фоне. CSS добавляет красоту.
+    </div>
+
+    <h3>JavaScript (JS)</h3>
+
+    <div class="definition">
+        <strong>JavaScript</strong> — настоящий язык программирования. Добавляет <strong>интерактивность</strong>: клики, анимации, загрузка данных.
+    </div>
+
+    <p>Примеры JavaScript на сайтах:</p>
+
+    <ul>
+        <li>Нажали «Нравится» → счётчик увеличился</li>
+        <li>Печатаете в поиске → появляются подсказки</li>
+        <li>Скроллите вниз → загружаются новые посты</li>
+        <li>Ошибка в форме → появляется предупреждение</li>
+    </ul>
+
+    <div class="note-box">
+        <strong>На этом курсе</strong> мы изучаем HTML и CSS. JavaScript — следующий этап!
+    </div>
+
+    <h3>Примеры реальных сайтов</h3>
+
+    <table>
+        <tr><th>Сайт</th><th>HTML</th><th>CSS</th><th>JavaScript</th></tr>
+        <tr>
+            <td>Google</td>
+            <td>Логотип, поле ввода, кнопки</td>
+            <td>Центрирование, цвета</td>
+            <td>Поисковые подсказки</td>
+        </tr>
+        <tr>
+            <td>YouTube</td>
+            <td>Видео, заголовки</td>
+            <td>Сетка видео, тёмная тема</td>
+            <td>Воспроизведение видео</td>
+        </tr>
+        <tr>
+            <td>Instagram</td>
+            <td>Фото, комментарии</td>
+            <td>Карточки постов</td>
+            <td>Лайки, скролл</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <!-- УРОК 1.3 -->
+    <h2>📚 УРОК 1.3: VS CODE И ПЕРВАЯ HTML-СТРАНИЦА</h2>
+
+    <h3>VS Code — редактор кода</h3>
+
+    <div class="definition">
+        <strong>Visual Studio Code (VS Code)</strong> — бесплатный редактор кода от Microsoft. Самый популярный в мире.
+    </div>
+
+    <h3>Обязательные расширения</h3>
+
+    <table>
+        <tr><th>Расширение</th><th>Зачем</th></tr>
+        <tr><td><strong>Live Server</strong></td><td>Автообновление страницы при сохранении</td></tr>
+        <tr><td><strong>Prettier</strong></td><td>Автоформатирование кода</td></tr>
+        <tr><td><strong>Auto Rename Tag</strong></td><td>Автопереименование парного тега</td></tr>
+        <tr><td><strong>HTML CSS Support</strong></td><td>Подсказки для CSS</td></tr>
+    </table>
+
+    <h3>Горячие клавиши</h3>
+
+    <table>
+        <tr><th>Клавиши</th><th>Действие</th></tr>
+        <tr><td><code>Ctrl + S</code></td><td>Сохранить файл</td></tr>
+        <tr><td><code>Ctrl + Z</code></td><td>Отменить</td></tr>
+        <tr><td><code>Ctrl + C / V</code></td><td>Копировать / Вставить</td></tr>
+        <tr><td><code>Alt + Shift + ↓</code></td><td>Дублировать строку</td></tr>
+        <tr><td><code>Ctrl + /</code></td><td>Закомментировать</td></tr>
+        <tr><td><code>!</code> + <code>Tab</code></td><td>Шаблон HTML (Emmet)</td></tr>
+    </table>
+
+    <h3>Структура HTML-документа</h3>
+
+    <div class="diagram">
+  HTML-документ — это «матрёшка»:
+
+  ┌─── &lt;html&gt; ─────────────────────────────────┐
+  │                                             │
+  │   ┌─── &lt;head&gt; ──────────────────────────┐   │
+  │   │  Для БРАУЗЕРА (не видно на странице) │   │
+  │   │  • charset (кодировка)               │   │
+  │   │  • viewport (мобильные)              │   │
+  │   │  • title (вкладка браузера)          │   │
+  │   └─────────────────────────────────────┘   │
+  │                                             │
+  │   ┌─── &lt;body&gt; ──────────────────────────┐   │
+  │   │  Для ПОЛЬЗОВАТЕЛЯ (видно!)           │   │
+  │   │  • заголовки, текст, картинки        │   │
+  │   │  • ссылки, списки, кнопки            │   │
+  │   └─────────────────────────────────────┘   │
+  │                                             │
+  └─────────────────────────────────────────────┘</div>
+
+<pre><code>&lt;!DOCTYPE html&gt;        &lt;!-- Тип документа: HTML5 --&gt;
+&lt;html lang="ru"&gt;        &lt;!-- Начало документа, язык: русский --&gt;
+&lt;head&gt;                  &lt;!-- Голова: информация для браузера --&gt;
+    &lt;meta charset="UTF-8"&gt;              &lt;!-- Кодировка --&gt;
+    &lt;meta name="viewport" ...&gt;          &lt;!-- Для мобильных --&gt;
+    &lt;title&gt;Заголовок вкладки&lt;/title&gt;    &lt;!-- Название вкладки --&gt;
+&lt;/head&gt;
+&lt;body&gt;                  &lt;!-- Тело: видимое содержимое --&gt;
+
+    &lt;!-- Здесь пишем контент страницы --&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="remember">
+        <ul>
+            <li><code>&lt;head&gt;</code> — информация ДЛЯ БРАУЗЕРА (не видна на странице)</li>
+            <li><code>&lt;body&gt;</code> — содержимое ДЛЯ ПОЛЬЗОВАТЕЛЯ (видно на странице)</li>
+            <li><code>!</code> + <code>Tab</code> в VS Code — создаёт весь шаблон автоматически</li>
+            <li>Не забудьте сменить <code>lang="en"</code> на <code>lang="ru"</code>!</li>
+        </ul>
+    </div>
+
+    <div class="key-point">
+        <strong>Запоминалка:</strong> head = голова (думает, но не видна снаружи). body = тело (видно всем).
+    </div>
+
+    <h3>Моя первая страница</h3>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Мой первый сайт&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Привет, мир!&lt;/h1&gt;
+    &lt;p&gt;Меня зовут ________. Это мой первый сайт!&lt;/p&gt;
+
+    &lt;h2&gt;Обо мне&lt;/h2&gt;
+    &lt;p&gt;Я учусь создавать сайты.&lt;/p&gt;
+
+    &lt;h2&gt;Мои увлечения&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;________&lt;/li&gt;
+        &lt;li&gt;________&lt;/li&gt;
+        &lt;li&gt;________&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="note-box">
+        <strong>Как запустить:</strong> Правый клик по файлу в VS Code → <strong>Open with Live Server</strong>
+    </div>
+
+    <div class="remember">
+        <ul>
+            <li>Файл главной страницы всегда называется <strong>index.html</strong></li>
+            <li>Live Server запускает <strong>локальный сервер</strong> — адрес будет <code>127.0.0.1:5500</code></li>
+            <li>При каждом сохранении (<code>Ctrl+S</code>) страница обновляется <strong>автоматически</strong></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ИТОГИ -->
+    <h2>📝 ИТОГИ ЗАНЯТИЯ 1</h2>
+
+    <div class="key-point">
+        <p>Сегодня мы узнали:</p>
+        <ul>
+            <li>Интернет работает по принципу <strong>клиент ↔ сервер</strong> (вы запрашиваете → сервер отвечает)</li>
+            <li>Веб-страница = <strong>HTML</strong> (что) + <strong>CSS</strong> (как выглядит) + <strong>JavaScript</strong> (что происходит)</li>
+            <li><strong>URL</strong> — адрес сайта, <strong>DNS</strong> — переводит имя в IP, <strong>HTTPS</strong> — шифрование</li>
+            <li><strong>Браузер</strong> рендерит (рисует) страницу из HTML/CSS/JS файлов</li>
+            <li><strong>DevTools</strong> (F12) — инструмент для изучения и редактирования кода любого сайта</li>
+            <li><strong>Frontend</strong> = видимая часть (HTML+CSS+JS), <strong>Backend</strong> = невидимая (сервер, БД)</li>
+            <li><strong>VS Code</strong> — наш редактор кода (расширения: Live Server, Prettier, Auto Rename Tag)</li>
+            <li><code>!</code> + <code>Tab</code> — мгновенный шаблон HTML в VS Code</li>
+            <li><strong>Live Server</strong> — автообновление страницы при сохранении</li>
+            <li><code>&lt;head&gt;</code> — для браузера (невидимо), <code>&lt;body&gt;</code> — для пользователя (видимо)</li>
+        </ul>
+    </div>
+
+    <table>
+        <tr><th>Термин</th><th>Что значит</th><th>Запоминалка</th></tr>
+        <tr><td>Клиент</td><td>Ваш браузер</td><td>Посетитель ресторана</td></tr>
+        <tr><td>Сервер</td><td>Компьютер с файлами сайта</td><td>Кухня ресторана</td></tr>
+        <tr><td>HTML</td><td>Структура страницы</td><td>Скелет / чертёж</td></tr>
+        <tr><td>CSS</td><td>Внешний вид</td><td>Одежда / дизайн</td></tr>
+        <tr><td>JavaScript</td><td>Интерактивность</td><td>Мышцы / движения</td></tr>
+        <tr><td>DevTools</td><td>Инструменты разработчика</td><td>Рентген для сайтов</td></tr>
+        <tr><td>Emmet</td><td>Быстрый ввод HTML</td><td><code>!</code> + Tab = шаблон</td></tr>
+    </table>
+
+    <div class="homework">
+        <ol>
+            <li>Добавьте на свою страницу ещё 2-3 раздела (<code>&lt;h2&gt;</code> + <code>&lt;p&gt;</code>)</li>
+            <li>Откройте DevTools (F12) на 3 любимых сайтах и посмотрите их HTML-код</li>
+            <li>Попробуйте изменить текст или цвет на любом сайте через DevTools</li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

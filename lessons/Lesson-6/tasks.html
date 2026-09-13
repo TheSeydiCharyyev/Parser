@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 6 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 6: Введение в CSS</span>
+    <span class="nav-title" data-lang="en">Lesson 6: Introduction to CSS</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 6: Введение в CSS</p>
+    <p class="subtitle" data-lang="en">Lesson 6: Introduction to CSS</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 6.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 6.1: СПОСОБЫ ПОДКЛЮЧЕНИЯ CSS</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 6.1: WAYS TO INCLUDE CSS</h2>
+
+    <!-- ЗАДАНИЕ 6.1 / TASK 6.1 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 6.1: Три способа CSS</span>
+            <span class="task-title" data-lang="en">Task 6.1: Three Ways of CSS</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Понять разницу между inline, internal и external CSS</div>
+        <div class="task-goal" data-lang="en">Understand the difference between inline, internal, and external CSS</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Создайте файл <code>styles-test.html</code>. На одной странице продемонстрируйте все 3 способа подключения CSS:</p>
+        <p data-lang="en">Create a file <code>styles-test.html</code>. On one page, demonstrate all 3 ways to include CSS:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Inline:</strong> Создайте заголовок <code>&lt;h1&gt;</code> с inline-стилем: красный цвет, размер 36px</li>
+            <li><strong>Internal:</strong> В <code>&lt;style&gt;</code> в <code>&lt;head&gt;</code> задайте стили для <code>&lt;p&gt;</code>: тёмно-серый цвет (#333), межстрочный интервал 1.8</li>
+            <li><strong>External:</strong> Создайте файл <code>style.css</code>, подключите через <code>&lt;link&gt;</code>. В нём задайте стиль для <code>&lt;h2&gt;</code>: синий цвет, нижняя граница</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Inline:</strong> Create an <code>&lt;h1&gt;</code> heading with an inline style: red color, size 36px</li>
+            <li><strong>Internal:</strong> In <code>&lt;style&gt;</code> inside <code>&lt;head&gt;</code>, set styles for <code>&lt;p&gt;</code>: dark gray color (#333), line-height 1.8</li>
+            <li><strong>External:</strong> Create a file <code>style.css</code>, link it via <code>&lt;link&gt;</code>. In it, set a style for <code>&lt;h2&gt;</code>: blue color, bottom border</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Структура файлов:
+<pre><code>lesson-6/
+├── styles-test.html   ← inline + internal + &lt;link href="style.css"&gt;
+└── style.css          ← external стили для h2</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            File structure:
+<pre><code>lesson-6/
+├── styles-test.html   ← inline + internal + &lt;link href="style.css"&gt;
+└── style.css          ← external styles for h2</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Inline-стиль на <code>&lt;h1&gt;</code> работает</li>
+                <li>Internal стили в <code>&lt;style&gt;</code> работают</li>
+                <li>External файл <code>style.css</code> создан и подключён</li>
+                <li>Все 3 способа видны на странице</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Inline style on <code>&lt;h1&gt;</code> works</li>
+                <li>Internal styles in <code>&lt;style&gt;</code> work</li>
+                <li>External file <code>style.css</code> is created and linked</li>
+                <li>All 3 methods are visible on the page</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 6.2 / TASK 6.2 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 6.2: Синтаксис CSS — найди ошибки</span>
+            <span class="task-title" data-lang="en">Task 6.2: CSS Syntax — Find the Errors</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">5 минут</span>
+                <span class="badge badge-time" data-lang="en">5 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться видеть синтаксические ошибки в CSS</div>
+        <div class="task-goal" data-lang="en">Learn to spot syntax errors in CSS</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">В каждом примере найдите и исправьте ошибку:</p>
+        <p data-lang="en">Find and fix the error in each example:</p>
+
+<pre><code>/* Пример 1 */
+h1 {
+    color = blue;
+}
+
+/* Пример 2 */
+.card {
+    background-color: #fff
+    border-radius: 8px;
+}
+
+/* Пример 3 */
+#header
+    color: white;
+    background: black;
+
+
+/* Пример 4 */
+p {
+    font-size: 16;
+    color: #333;
+}
+
+/* Пример 5 */
+.title {
+    colr: red;
+    font-wieght: bold;
+}</code></pre>
+
+        <div class="write-box" data-lang="ru">
+            Ошибка 1: ________________________________<br>
+            Ошибка 2: ________________________________<br>
+            Ошибка 3: ________________________________<br>
+            Ошибка 4: ________________________________<br>
+            Ошибка 5: ________________________________<br>
+        </div>
+        <div class="write-box" data-lang="en">
+            Error 1: ________________________________<br>
+            Error 2: ________________________________<br>
+            Error 3: ________________________________<br>
+            Error 4: ________________________________<br>
+            Error 5: ________________________________<br>
+        </div>
+
+        <div class="hint" data-lang="ru">
+            Обращайте внимание на: двоеточие <code>:</code> вместо <code>=</code>, точку с запятой <code>;</code> в конце строк, фигурные скобки <code>{ }</code>, единицы измерения (<code>px</code>), правильное написание свойств.
+        </div>
+        <div class="hint" data-lang="en">
+            Pay attention to: colon <code>:</code> instead of <code>=</code>, semicolons <code>;</code> at the end of lines, curly braces <code>{ }</code>, units of measurement (<code>px</code>), correct spelling of properties.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все 5 ошибок найдены и исправлены</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 5 errors found and fixed</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 6.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 6.2: СЕЛЕКТОРЫ И ЦВЕТА</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 6.2: SELECTORS AND COLORS</h2>
+
+    <!-- ЗАДАНИЕ 6.3 / TASK 6.3 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 6.3: Селекторы — тег, класс, id</span>
+            <span class="task-title" data-lang="en">Task 6.3: Selectors — Tag, Class, ID</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Отработать все три типа селекторов</div>
+        <div class="task-goal" data-lang="en">Practice all three types of selectors</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Создайте файл <code>selectors.html</code> с internal CSS. Используйте все 3 типа селекторов:</p>
+        <p data-lang="en">Create a file <code>selectors.html</code> with internal CSS. Use all 3 types of selectors:</p>
+
+        <table data-lang="ru">
+            <tr><th>Селектор</th><th>Применить к</th><th>Стили</th></tr>
+            <tr><td><strong>Тег</strong> <code>body</code></td><td>Всё тело</td><td><code>font-family: 'Segoe UI', sans-serif;</code> <code>background-color: #f8fafc;</code> <code>line-height: 1.6;</code></td></tr>
+            <tr><td><strong>Тег</strong> <code>h1</code></td><td>Заголовок</td><td><code>color: #0f172a;</code> <code>text-align: center;</code></td></tr>
+            <tr><td><strong>Класс</strong> <code>.card</code></td><td>3 карточки</td><td><code>background-color: white;</code> <code>padding: 20px;</code> <code>border-radius: 12px;</code></td></tr>
+            <tr><td><strong>Класс</strong> <code>.highlight</code></td><td>1-2 карточки</td><td><code>border-left: 4px solid #3b82f6;</code> <code>background-color: #eff6ff;</code></td></tr>
+            <tr><td><strong>ID</strong> <code>#page-title</code></td><td>1 заголовок</td><td><code>font-size: 2rem;</code> <code>color: #7e22ce;</code></td></tr>
+        </table>
+        <table data-lang="en">
+            <tr><th>Selector</th><th>Apply to</th><th>Styles</th></tr>
+            <tr><td><strong>Tag</strong> <code>body</code></td><td>Entire body</td><td><code>font-family: 'Segoe UI', sans-serif;</code> <code>background-color: #f8fafc;</code> <code>line-height: 1.6;</code></td></tr>
+            <tr><td><strong>Tag</strong> <code>h1</code></td><td>Heading</td><td><code>color: #0f172a;</code> <code>text-align: center;</code></td></tr>
+            <tr><td><strong>Class</strong> <code>.card</code></td><td>3 cards</td><td><code>background-color: white;</code> <code>padding: 20px;</code> <code>border-radius: 12px;</code></td></tr>
+            <tr><td><strong>Class</strong> <code>.highlight</code></td><td>1-2 cards</td><td><code>border-left: 4px solid #3b82f6;</code> <code>background-color: #eff6ff;</code></td></tr>
+            <tr><td><strong>ID</strong> <code>#page-title</code></td><td>1 heading</td><td><code>font-size: 2rem;</code> <code>color: #7e22ce;</code></td></tr>
+        </table>
+
+        <p data-lang="ru"><strong>HTML-структура:</strong></p>
+        <p data-lang="en"><strong>HTML structure:</strong></p>
+<pre><code>&lt;h1 id="page-title"&gt;Мои заметки&lt;/h1&gt;
+&lt;div class="card"&gt;
+    &lt;h2&gt;Заметка 1&lt;/h2&gt;
+    &lt;p&gt;Текст заметки...&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="card highlight"&gt;
+    &lt;h2&gt;Важная заметка&lt;/h2&gt;
+    &lt;p&gt;Текст важной заметки...&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="card"&gt;
+    &lt;h2&gt;Заметка 3&lt;/h2&gt;
+    &lt;p&gt;Текст заметки...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Использован селектор тега (body, h1)</li>
+                <li>Использован селектор класса (.card, .highlight)</li>
+                <li>Использован селектор id (#page-title)</li>
+                <li>Карточки визуально отличаются от фона</li>
+                <li>Одна карточка выделена через .highlight</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Tag selector used (body, h1)</li>
+                <li>Class selector used (.card, .highlight)</li>
+                <li>ID selector used (#page-title)</li>
+                <li>Cards are visually distinct from the background</li>
+                <li>One card is highlighted via .highlight</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 6.4 / TASK 6.4 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 6.4: Палитра цветов</span>
+            <span class="task-title" data-lang="en">Task 6.4: Color Palette</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Попробовать разные форматы цветов и градиенты</div>
+        <div class="task-goal" data-lang="en">Try different color formats and gradients</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Создайте файл <code>colors.html</code> — страницу-палитру. Создайте 6 цветных блоков (<code>&lt;div&gt;</code>), каждый с разным способом указания цвета:</p>
+        <p data-lang="en">Create a file <code>colors.html</code> — a palette page. Create 6 colored blocks (<code>&lt;div&gt;</code>), each with a different way of specifying color:</p>
+
+        <table data-lang="ru">
+            <tr><th>Блок</th><th>Фон</th><th>Формат</th><th>Текст</th></tr>
+            <tr><td>1</td><td><code>tomato</code></td><td>Имя цвета</td><td>Белый</td></tr>
+            <tr><td>2</td><td><code>#1e40af</code></td><td>HEX</td><td>Белый</td></tr>
+            <tr><td>3</td><td><code>rgb(34, 197, 94)</code></td><td>RGB</td><td>Белый</td></tr>
+            <tr><td>4</td><td><code>rgba(0, 0, 0, 0.3)</code></td><td>RGBA (полупрозрачный)</td><td>Белый</td></tr>
+            <tr><td>5</td><td><code>hsl(270, 70%, 50%)</code></td><td>HSL</td><td>Белый</td></tr>
+            <tr><td>6</td><td><code>linear-gradient(135deg, #f97316, #ec4899)</code></td><td>Градиент</td><td>Белый</td></tr>
+        </table>
+        <table data-lang="en">
+            <tr><th>Block</th><th>Background</th><th>Format</th><th>Text</th></tr>
+            <tr><td>1</td><td><code>tomato</code></td><td>Color name</td><td>White</td></tr>
+            <tr><td>2</td><td><code>#1e40af</code></td><td>HEX</td><td>White</td></tr>
+            <tr><td>3</td><td><code>rgb(34, 197, 94)</code></td><td>RGB</td><td>White</td></tr>
+            <tr><td>4</td><td><code>rgba(0, 0, 0, 0.3)</code></td><td>RGBA (semi-transparent)</td><td>White</td></tr>
+            <tr><td>5</td><td><code>hsl(270, 70%, 50%)</code></td><td>HSL</td><td>White</td></tr>
+            <tr><td>6</td><td><code>linear-gradient(135deg, #f97316, #ec4899)</code></td><td>Gradient</td><td>White</td></tr>
+        </table>
+
+        <div class="hint" data-lang="ru">
+            Каждому блоку добавьте класс <code>.color-box</code> с общими стилями:
+<pre><code>.color-box {
+    padding: 24px;
+    margin: 10px 0;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+}</code></pre>
+            А индивидуальный фон задавайте через отдельный класс или inline.
+        </div>
+        <div class="hint" data-lang="en">
+            Add a class <code>.color-box</code> with shared styles to each block:
+<pre><code>.color-box {
+    padding: 24px;
+    margin: 10px 0;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+}</code></pre>
+            Set the individual background via a separate class or inline style.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>6 блоков с разными цветами</li>
+                <li>Использованы все форматы: имя, HEX, RGB, RGBA, HSL, градиент</li>
+                <li>Внутри каждого блока подписан формат цвета</li>
+                <li>Текст хорошо читается на фоне</li>
+            </ul>
+            <ul data-lang="en">
+                <li>6 blocks with different colors</li>
+                <li>All formats used: name, HEX, RGB, RGBA, HSL, gradient</li>
+                <li>The color format is labeled inside each block</li>
+                <li>Text is easily readable on the background</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 6.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 6.3: ПРАКТИЧЕСКИЙ ПРОЕКТ</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 6.3: PRACTICAL PROJECT</h2>
+
+    <!-- ЗАДАНИЕ 6.5 / TASK 6.5 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 6.5: Стилизация страницы-статьи</span>
+            <span class="task-title" data-lang="en">Task 6.5: Styling an Article Page</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Продвинутое</span>
+                <span class="badge badge-hard" data-lang="en">Advanced</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать красиво оформленную страницу с использованием всех изученных CSS-свойств</div>
+        <div class="task-goal" data-lang="en">Create a beautifully styled page using all the CSS properties you have learned</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Создайте страницу-статью на <strong>любую тему</strong> (технологии, спорт, кулинария, путешествия...) и стилизуйте её. Обязательные элементы:</p>
+        <p data-lang="en">Create an article page on <strong>any topic</strong> (technology, sports, cooking, travel...) and style it. Required elements:</p>
+
+        <table data-lang="ru">
+            <tr><th>Элемент</th><th>Обязательные CSS-свойства</th></tr>
+            <tr><td><strong>Шрифт</strong></td><td>Подключите Google Font (Inter, Roboto или другой). Задайте <code>font-family</code> для <code>body</code></td></tr>
+            <tr><td><strong>Фон страницы</strong></td><td><code>background-color</code> для <code>body</code> (не белый!)</td></tr>
+            <tr><td><strong>Контейнер статьи</strong></td><td>Белый фон, <code>max-width</code>, центрирование, <code>padding</code>, <code>border-radius</code></td></tr>
+            <tr><td><strong>Заголовок h1</strong></td><td><code>color</code>, <code>font-size</code>, <code>text-align: center</code></td></tr>
+            <tr><td><strong>Подзаголовки h2</strong></td><td>Другой цвет, <code>border-bottom</code> или <code>border-left</code></td></tr>
+            <tr><td><strong>Параграфы</strong></td><td><code>color</code> (не чёрный!), <code>line-height: 1.6–1.8</code>, <code>margin-bottom</code></td></tr>
+            <tr><td><strong>Ссылки</strong></td><td><code>color</code>, <code>text-decoration: none</code></td></tr>
+            <tr><td><strong>Выделенный блок</strong></td><td>Класс <code>.highlight</code> — <code>background-color</code>, <code>border-left</code>, <code>padding</code></td></tr>
+            <tr><td><strong>Градиент</strong></td><td>Используйте <code>linear-gradient</code> хотя бы в одном месте (шапка, баннер, тег)</td></tr>
+            <tr><td><strong>Селекторы</strong></td><td>Используйте минимум 2 класса и 1 id</td></tr>
+        </table>
+        <table data-lang="en">
+            <tr><th>Element</th><th>Required CSS Properties</th></tr>
+            <tr><td><strong>Font</strong></td><td>Connect a Google Font (Inter, Roboto, or another). Set <code>font-family</code> for <code>body</code></td></tr>
+            <tr><td><strong>Page background</strong></td><td><code>background-color</code> for <code>body</code> (not white!)</td></tr>
+            <tr><td><strong>Article container</strong></td><td>White background, <code>max-width</code>, centering, <code>padding</code>, <code>border-radius</code></td></tr>
+            <tr><td><strong>Heading h1</strong></td><td><code>color</code>, <code>font-size</code>, <code>text-align: center</code></td></tr>
+            <tr><td><strong>Subheadings h2</strong></td><td>Different color, <code>border-bottom</code> or <code>border-left</code></td></tr>
+            <tr><td><strong>Paragraphs</strong></td><td><code>color</code> (not black!), <code>line-height: 1.6–1.8</code>, <code>margin-bottom</code></td></tr>
+            <tr><td><strong>Links</strong></td><td><code>color</code>, <code>text-decoration: none</code></td></tr>
+            <tr><td><strong>Highlighted block</strong></td><td>Class <code>.highlight</code> — <code>background-color</code>, <code>border-left</code>, <code>padding</code></td></tr>
+            <tr><td><strong>Gradient</strong></td><td>Use <code>linear-gradient</code> in at least one place (header, banner, tag)</td></tr>
+            <tr><td><strong>Selectors</strong></td><td>Use at least 2 classes and 1 id</td></tr>
+        </table>
+
+        <div class="example" data-lang="ru">
+            Структура статьи:
+<pre><code>&lt;body&gt;
+    &lt;article class="article"&gt;
+        &lt;h1 id="title"&gt;Название статьи&lt;/h1&gt;
+        &lt;p class="author"&gt;Автор | Дата&lt;/p&gt;
+
+        &lt;h2&gt;Раздел 1&lt;/h2&gt;
+        &lt;p&gt;Текст...&lt;/p&gt;
+
+        &lt;div class="highlight"&gt;
+            Важная информация
+        &lt;/div&gt;
+
+        &lt;h2&gt;Раздел 2&lt;/h2&gt;
+        &lt;p&gt;Текст...&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Пункт 1&lt;/li&gt;
+            &lt;li&gt;Пункт 2&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;footer&gt;&amp;copy; 2026&lt;/footer&gt;
+    &lt;/article&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+        <div class="example" data-lang="en">
+            Article structure:
+<pre><code>&lt;body&gt;
+    &lt;article class="article"&gt;
+        &lt;h1 id="title"&gt;Article Title&lt;/h1&gt;
+        &lt;p class="author"&gt;Author | Date&lt;/p&gt;
+
+        &lt;h2&gt;Section 1&lt;/h2&gt;
+        &lt;p&gt;Text...&lt;/p&gt;
+
+        &lt;div class="highlight"&gt;
+            Important information
+        &lt;/div&gt;
+
+        &lt;h2&gt;Section 2&lt;/h2&gt;
+        &lt;p&gt;Text...&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Item 1&lt;/li&gt;
+            &lt;li&gt;Item 2&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;footer&gt;&amp;copy; 2026&lt;/footer&gt;
+    &lt;/article&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Google Font подключён и используется</li>
+                <li>Фон страницы — не белый</li>
+                <li>Статья на белом фоне с <code>border-radius</code></li>
+                <li>Заголовки стилизованы (цвет, размер)</li>
+                <li>Параграфы: <code>line-height</code>, <code>color</code> (не #000)</li>
+                <li>Ссылки без подчёркивания</li>
+                <li>Блок <code>.highlight</code> с <code>border-left</code> и <code>background</code></li>
+                <li>Градиент использован хотя бы 1 раз</li>
+                <li>Использованы селекторы: тег + класс + id</li>
+                <li>Минимум 2 раздела (h2) и 3 параграфа</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Google Font is connected and used</li>
+                <li>Page background is not white</li>
+                <li>Article has a white background with <code>border-radius</code></li>
+                <li>Headings are styled (color, size)</li>
+                <li>Paragraphs: <code>line-height</code>, <code>color</code> (not #000)</li>
+                <li>Links have no underline</li>
+                <li><code>.highlight</code> block with <code>border-left</code> and <code>background</code></li>
+                <li>Gradient used at least once</li>
+                <li>Selectors used: tag + class + id</li>
+                <li>At least 2 sections (h2) and 3 paragraphs</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 6.6 / TASK 6.6 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 6.6: DevTools — эксперименты с цветами</span>
+            <span class="task-title" data-lang="en">Task 6.6: DevTools — Color Experiments</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">5 минут</span>
+                <span class="badge badge-time" data-lang="en">5 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться менять цвета через DevTools</div>
+        <div class="task-goal" data-lang="en">Learn to change colors using DevTools</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Откройте свою страницу-статью в браузере и через DevTools (F12 → Styles):</p>
+        <p data-lang="en">Open your article page in the browser and use DevTools (F12 → Styles):</p>
+
+        <ol data-lang="ru">
+            <li>Найдите цвет текста (<code>color</code>) и поменяйте его кликом на цветной квадратик</li>
+            <li>Найдите фон (<code>background-color</code>) и выберите другой цвет через пипетку</li>
+            <li>Переключитесь между HEX, RGB и HSL (Shift + клик на квадратик)</li>
+            <li>Добавьте новое свойство: <code>text-shadow: 2px 2px 4px rgba(0,0,0,0.2);</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li>Find the text color (<code>color</code>) and change it by clicking on the colored square</li>
+            <li>Find the background (<code>background-color</code>) and pick a different color with the eyedropper</li>
+            <li>Switch between HEX, RGB, and HSL (Shift + click on the square)</li>
+            <li>Add a new property: <code>text-shadow: 2px 2px 4px rgba(0,0,0,0.2);</code></li>
+        </ol>
+
+        <div class="write-box" data-lang="ru">
+            Изменённый цвет текста (HEX): ________________________________<br>
+            Тот же цвет в RGB: ________________________________<br>
+            Тот же цвет в HSL: ________________________________<br><br>
+            Что такое text-shadow? ________________________________
+        </div>
+        <div class="write-box" data-lang="en">
+            Changed text color (HEX): ________________________________<br>
+            Same color in RGB: ________________________________<br>
+            Same color in HSL: ________________________________<br><br>
+            What is text-shadow? ________________________________
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Цвет изменён через палитру DevTools</li>
+                <li>Записаны все 3 формата (HEX, RGB, HSL)</li>
+                <li><code>text-shadow</code> добавлен</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Color changed via DevTools palette</li>
+                <li>All 3 formats recorded (HEX, RGB, HSL)</li>
+                <li><code>text-shadow</code> added</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+    <h2 data-lang="ru">&#x1F4DA; ДОМАШНЕЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x1F4DA; HOMEWORK</h2>
+
+    <!-- ДЗ 6 / HW 6 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">ДЗ 6: Стилизация + исследование</span>
+            <span class="task-title" data-lang="en">HW 6: Styling + Research</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">30 минут</span>
+                <span class="badge badge-time" data-lang="en">30 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Закрепить CSS: подключение, селекторы, цвета, шрифты</div>
+        <div class="task-goal" data-lang="en">Reinforce CSS: linking, selectors, colors, fonts</div>
+
+        <h3 data-lang="ru">Часть 1: Улучши свою статью</h3>
+        <h3 data-lang="en">Part 1: Improve Your Article</h3>
+        <ul data-lang="ru">
+            <li>Перенеси стили из <code>&lt;style&gt;</code> в <strong>внешний файл</strong> <code>style.css</code> и подключи через <code>&lt;link&gt;</code></li>
+            <li>Добавь <strong>ещё 2 раздела</strong> (h2) с текстом</li>
+            <li>Добавь <strong>второй класс</strong> <code>.warning</code> — красный <code>border-left</code>, светло-красный <code>background</code></li>
+            <li>Добавь стили для списков: <code>ul</code> и <code>ol</code></li>
+            <li>Добавь <code>footer</code> с <code>text-align: center</code>, другим <code>color</code> и <code>border-top</code></li>
+        </ul>
+        <ul data-lang="en">
+            <li>Move styles from <code>&lt;style&gt;</code> to an <strong>external file</strong> <code>style.css</code> and link it via <code>&lt;link&gt;</code></li>
+            <li>Add <strong>2 more sections</strong> (h2) with text</li>
+            <li>Add a <strong>second class</strong> <code>.warning</code> — red <code>border-left</code>, light red <code>background</code></li>
+            <li>Add styles for lists: <code>ul</code> and <code>ol</code></li>
+            <li>Add a <code>footer</code> with <code>text-align: center</code>, a different <code>color</code>, and <code>border-top</code></li>
+        </ul>
+
+        <h3 data-lang="ru">Часть 2: Исследование сайтов</h3>
+        <h3 data-lang="en">Part 2: Website Research</h3>
+        <p data-lang="ru">Откройте 3 любых сайта и через DevTools найдите:</p>
+        <p data-lang="en">Open 3 websites of your choice and use DevTools to find:</p>
+
+        <div class="write-box" data-lang="ru">
+            <strong>Сайт 1:</strong> ________________________________<br>
+            Шрифт (font-family): ________________________________<br>
+            Цвет текста (color): ________________________________<br>
+            Цвет фона (background): ________________________________<br>
+            Цвет ссылок: ________________________________<br><br>
+
+            <strong>Сайт 2:</strong> ________________________________<br>
+            Шрифт (font-family): ________________________________<br>
+            Цвет текста (color): ________________________________<br>
+            Цвет фона (background): ________________________________<br>
+            Цвет ссылок: ________________________________<br><br>
+
+            <strong>Сайт 3:</strong> ________________________________<br>
+            Шрифт (font-family): ________________________________<br>
+            Цвет текста (color): ________________________________<br>
+            Цвет фона (background): ________________________________<br>
+            Цвет ссылок: ________________________________<br><br>
+
+            <strong>Вывод:</strong> какие шрифты и цвета самые популярные?<br>
+            ________________________________
+        </div>
+        <div class="write-box" data-lang="en">
+            <strong>Website 1:</strong> ________________________________<br>
+            Font (font-family): ________________________________<br>
+            Text color (color): ________________________________<br>
+            Background color (background): ________________________________<br>
+            Link color: ________________________________<br><br>
+
+            <strong>Website 2:</strong> ________________________________<br>
+            Font (font-family): ________________________________<br>
+            Text color (color): ________________________________<br>
+            Background color (background): ________________________________<br>
+            Link color: ________________________________<br><br>
+
+            <strong>Website 3:</strong> ________________________________<br>
+            Font (font-family): ________________________________<br>
+            Text color (color): ________________________________<br>
+            Background color (background): ________________________________<br>
+            Link color: ________________________________<br><br>
+
+            <strong>Conclusion:</strong> which fonts and colors are the most popular?<br>
+            ________________________________
+        </div>
+
+        <h3 data-lang="ru">Часть 3: Попробуй новый Google Font</h3>
+        <h3 data-lang="en">Part 3: Try a New Google Font</h3>
+        <ul data-lang="ru">
+            <li>Зайди на <strong>fonts.google.com</strong></li>
+            <li>Выбери шрифт, который тебе нравится (не Inter и не Roboto)</li>
+            <li>Подключи его к своей статье</li>
+            <li>Используй для заголовков <strong>один</strong> шрифт, для текста — <strong>другой</strong></li>
+        </ul>
+        <ul data-lang="en">
+            <li>Go to <strong>fonts.google.com</strong></li>
+            <li>Choose a font you like (not Inter or Roboto)</li>
+            <li>Connect it to your article</li>
+            <li>Use <strong>one</strong> font for headings and <strong>another</strong> for body text</li>
+        </ul>
+
+        <div class="write-box" data-lang="ru">
+            Шрифт для заголовков: ________________________________<br>
+            Шрифт для текста: ________________________________<br>
+        </div>
+        <div class="write-box" data-lang="en">
+            Font for headings: ________________________________<br>
+            Font for body text: ________________________________<br>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Стили перенесены в external CSS</li>
+                <li>Добавлен класс <code>.warning</code></li>
+                <li>Footer стилизован</li>
+                <li>3 сайта исследованы</li>
+                <li>Новый Google Font подключён</li>
+                <li>Разные шрифты для заголовков и текста</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Styles moved to external CSS</li>
+                <li><code>.warning</code> class added</li>
+                <li>Footer is styled</li>
+                <li>3 websites researched</li>
+                <li>New Google Font connected</li>
+                <li>Different fonts for headings and body text</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

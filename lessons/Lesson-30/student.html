@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 30 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 30: Вёрстка по макету</span>
+    <span class="nav-title" data-lang="en">Lesson 30: Coding from a Mockup</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 30: Вёрстка по макету</p>
+    <p class="subtitle" data-lang="en">Lesson 30: Coding from a Mockup</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ГЛАВНЫЙ ПРИНЦИП</h2>
+    <h2 data-lang="en">&#x1F4DA; THE MAIN PRINCIPLE</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Вёрстка — это процесс, а не импровизация.</strong> Есть 9 шагов, которым следуют все профессионалы. Порядок важнее скорости печати. С процессом — 2 часа, без — 6 часов на ту же работу.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Coding is a process, not improvisation.</strong> There are 9 steps all pros follow. Order matters more than typing speed. With process — 2 hours, without — 6 hours for the same work.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>HTML = смысл. CSS = внешний вид.</strong> Пишите их раздельно: сначала вся разметка, потом все стили. Не смешивать.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>HTML = meaning. CSS = appearance.</strong> Write them separately: all markup first, all styles after. Don't mix.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; 9 ШАГОВ ВЁРСТКИ ПО МАКЕТУ</h2>
+    <h2 data-lang="en">&#x1F4DA; 9 STEPS OF CODING FROM A LAYOUT</h2>
+
+    <table data-lang="ru">
+        <tr><th>#</th><th>Шаг</th><th>Время</th></tr>
+        <tr><td>1</td><td><strong>Анализ</strong> — секции, компоненты, цвета, шрифты</td><td>10-15 мин</td></tr>
+        <tr><td>2</td><td><strong>Разбивка</strong> — секции → компоненты → элементы → атомы</td><td>5 мин</td></tr>
+        <tr><td>3</td><td><strong>Настройка</strong> — папки, шрифты, <code>tokens.css</code></td><td>10 мин</td></tr>
+        <tr><td>4</td><td><strong>HTML-скелет</strong> — вся разметка без стилей</td><td>20-30 мин</td></tr>
+        <tr><td>5</td><td><strong>CSS layout</strong> — flex/grid, размеры, секции</td><td>30 мин</td></tr>
+        <tr><td>6</td><td><strong>CSS детали</strong> — цвета, шрифты, отступы</td><td>30 мин</td></tr>
+        <tr><td>7</td><td><strong>Интерактив</strong> — hover, focus, transition</td><td>15 мин</td></tr>
+        <tr><td>8</td><td><strong>Адаптив</strong> — media queries</td><td>20 мин</td></tr>
+        <tr><td>9</td><td><strong>Pixel-perfect</strong> — сравнение с макетом</td><td>10 мин</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>#</th><th>Step</th><th>Time</th></tr>
+        <tr><td>1</td><td><strong>Analysis</strong> — sections, components, colors, fonts</td><td>10-15 min</td></tr>
+        <tr><td>2</td><td><strong>Breakdown</strong> — sections → components → elements → atoms</td><td>5 min</td></tr>
+        <tr><td>3</td><td><strong>Setup</strong> — folders, fonts, <code>tokens.css</code></td><td>10 min</td></tr>
+        <tr><td>4</td><td><strong>HTML skeleton</strong> — all markup without styles</td><td>20-30 min</td></tr>
+        <tr><td>5</td><td><strong>CSS layout</strong> — flex/grid, sizes, sections</td><td>30 min</td></tr>
+        <tr><td>6</td><td><strong>CSS details</strong> — colors, fonts, spacing</td><td>30 min</td></tr>
+        <tr><td>7</td><td><strong>Interactivity</strong> — hover, focus, transition</td><td>15 min</td></tr>
+        <tr><td>8</td><td><strong>Responsive</strong> — media queries</td><td>20 min</td></tr>
+        <tr><td>9</td><td><strong>Pixel-perfect</strong> — compare with layout</td><td>10 min</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; АТОМАРНАЯ РАЗБИВКА</h2>
+    <h2 data-lang="en">&#x1F4DA; ATOMIC BREAKDOWN</h2>
+
+<pre><code>Страница (Layout)
+  └─ Секции (Hero, Features, Footer…)
+       └─ Компоненты (Card, Button, Form…)
+            └─ Элементы (h1, p, img, input…)
+                 └─ Атомы (цвет, шрифт, отступ)</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Писать снизу вверх:</strong> сначала атомы (tokens), потом элементы, потом компоненты, потом секции. Повторяющееся — <strong>один раз</strong>.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Code bottom-up:</strong> atoms first (tokens), then elements, then components, then sections. Repeating things — <strong>once</strong>.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; СТРУКТУРА ПРОЕКТА</h2>
+    <h2 data-lang="en">&#x1F4DA; PROJECT STRUCTURE</h2>
+
+<pre><code>project/
+├── index.html
+├── css/
+│   ├── tokens.css      (CSS-переменные)
+│   ├── base.css        (сброс, базовые стили)
+│   ├── components.css  (.card, .btn, .form)
+│   └── style.css       (секции)
+├── images/             (2x JPG)
+├── icons/              (SVG)
+└── analysis.md         (ваша карта макета)</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ШАБЛОН TOKENS.CSS</h2>
+    <h2 data-lang="en">&#x1F4DA; TOKENS.CSS TEMPLATE</h2>
+
+<pre><code>:root {
+    /* Colors */
+    --color-primary: #3B82F6;
+    --color-text: #1E293B;
+    --color-text-muted: #64748B;
+    --color-bg: #F8FAFC;
+    --color-border: #E2E8F0;
+
+    /* Typography */
+    --font-primary: 'Inter', sans-serif;
+    --fs-h1: 48px;
+    --fs-h2: 32px;
+    --fs-body: 16px;
+
+    /* Spacing */
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 48px;
+    --space-xl: 96px;
+
+    /* Other */
+    --radius: 12px;
+    --shadow-md: 0 8px 16px rgba(0,0,0,0.08);
+}</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        Все цвета, шрифты, отступы — <strong>через переменные</strong>. Поменять дизайн = править одну строку.
+    </div>
+    <div class="key-point" data-lang="en">
+        All colors, fonts, spacing — <strong>via variables</strong>. Redesign = edit one line.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ПОРЯДОК СВОЙСТВ В СЕЛЕКТОРЕ</h2>
+    <h2 data-lang="en">&#x1F4DA; PROPERTY ORDER IN A SELECTOR</h2>
+
+<pre><code>.card {
+    /* 1. Layout */
+    display: flex;
+    flex-direction: column;
+
+    /* 2. Размеры */
+    width: 100%;
+    max-width: 400px;
+
+    /* 3. Отступы */
+    padding: 24px;
+    margin: 0 auto;
+
+    /* 4. Визуал */
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+
+    /* 5. Типография */
+    font-size: 16px;
+    color: var(--color-text);
+
+    /* 6. Интерактив */
+    transition: transform 0.3s;
+}</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; АДАПТИВ БЕЗ МОБИЛЬНОГО МАКЕТА</h2>
+    <h2 data-lang="en">&#x1F4DA; RESPONSIVE WITHOUT MOBILE MOCKUP</h2>
+
+    <table data-lang="ru">
+        <tr><th>Элемент</th><th>Desktop</th><th>Mobile</th></tr>
+        <tr><td>Навигация</td><td>Горизонтальная</td><td>Бургер</td></tr>
+        <tr><td>Hero текст + фото</td><td>В ряд</td><td>Стопка</td></tr>
+        <tr><td>Features</td><td>3 колонки</td><td>1 колонка</td></tr>
+        <tr><td>Карточки</td><td>3-4 колонки</td><td>1-2 колонки</td></tr>
+        <tr><td>Footer</td><td>3 колонки</td><td>1 колонка</td></tr>
+        <tr><td>h1</td><td>48-64px</td><td>28-36px</td></tr>
+        <tr><td>Padding секций</td><td>96px</td><td>48px</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Element</th><th>Desktop</th><th>Mobile</th></tr>
+        <tr><td>Navigation</td><td>Horizontal</td><td>Burger</td></tr>
+        <tr><td>Hero text + photo</td><td>Row</td><td>Stack</td></tr>
+        <tr><td>Features</td><td>3 columns</td><td>1 column</td></tr>
+        <tr><td>Cards</td><td>3-4 columns</td><td>1-2 columns</td></tr>
+        <tr><td>Footer</td><td>3 columns</td><td>1 column</td></tr>
+        <tr><td>h1</td><td>48-64px</td><td>28-36px</td></tr>
+        <tr><td>Section padding</td><td>96px</td><td>48px</td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Правило «ряд → стопка»:</strong> всё горизонтальное на десктопе становится вертикальным на мобильном. Flex → <code>flex-direction: column</code>. Grid → <code>grid-template-columns: 1fr</code>.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>"Row → stack" rule:</strong> everything horizontal on desktop becomes vertical on mobile. Flex → <code>flex-direction: column</code>. Grid → <code>grid-template-columns: 1fr</code>.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; PIXEL-PERFECT — 3 СПОСОБА</h2>
+    <h2 data-lang="en">&#x1F4DA; PIXEL-PERFECT — 3 METHODS</h2>
+
+    <ol data-lang="ru">
+        <li><strong>Side-by-side:</strong> Figma и браузер рядом (по половине экрана) — быстрый визуальный осмотр</li>
+        <li><strong>Overlay-скриншоты:</strong> наложить через Paint/Photoshop/tldraw с opacity 50%</li>
+        <li><strong>PerfectPixel extension:</strong> Chrome-расширение, Figma-скриншот поверх страницы</li>
+    </ol>
+    <ol data-lang="en">
+        <li><strong>Side-by-side:</strong> Figma and browser next to each other (half screen each) — quick visual</li>
+        <li><strong>Screenshot overlay:</strong> layer in Paint/Photoshop/tldraw at 50% opacity</li>
+        <li><strong>PerfectPixel extension:</strong> Chrome extension, Figma screenshot over the page</li>
+    </ol>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; 10 ЛОВУШЕК</h2>
+    <h2 data-lang="en">&#x1F4DA; 10 TRAPS</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td>Стили параллельно с HTML</td><td>Сначала весь HTML, потом CSS</td></tr>
+        <tr><td><code>width: 560px</code> буквально из Figma</td><td><code>max-width</code>, %, grid</td></tr>
+        <tr><td><code>style="..."</code> в HTML</td><td>Всё в CSS-файле</td></tr>
+        <tr><td>Повторяющиеся HEX-коды</td><td>В переменные <code>:root</code></td></tr>
+        <tr><td>Фото в 1x → размытие на Retina</td><td>2x всегда</td></tr>
+        <tr><td>Иконки в PNG</td><td>Иконки ТОЛЬКО SVG</td></tr>
+        <tr><td>Всё через <code>&lt;div&gt;</code></td><td>Семантические теги</td></tr>
+        <tr><td>Не проверяли pixel-perfect</td><td>Overlay скриншотов</td></tr>
+        <tr><td>Нет hover/focus — «мёртвая» страница</td><td>Интерактив везде</td></tr>
+        <tr><td>Не тестировали на мобильном</td><td>DevTools: 375/768/1440px</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td>Styles in parallel with HTML</td><td>Full HTML first, then CSS</td></tr>
+        <tr><td><code>width: 560px</code> literally from Figma</td><td><code>max-width</code>, %, grid</td></tr>
+        <tr><td><code>style="..."</code> in HTML</td><td>Everything in CSS file</td></tr>
+        <tr><td>Repeating HEX codes</td><td>Into <code>:root</code> variables</td></tr>
+        <tr><td>1x photos → blurry on Retina</td><td>Always 2x</td></tr>
+        <tr><td>PNG icons</td><td>Icons ONLY SVG</td></tr>
+        <tr><td>Everything via <code>&lt;div&gt;</code></td><td>Semantic tags</td></tr>
+        <tr><td>Didn't check pixel-perfect</td><td>Screenshot overlay</td></tr>
+        <tr><td>No hover/focus — "dead" page</td><td>Interactivity everywhere</td></tr>
+        <tr><td>Didn't test on mobile</td><td>DevTools: 375/768/1440px</td></tr>
+    </table>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li>Вёрстка — <strong>процесс</strong> из 9 шагов, не импровизация</li>
+            <li>10-15 минут <strong>анализа</strong> до написания кода экономят часы</li>
+            <li>Заведите <code>analysis.md</code> — карта макета (секции, цвета, компоненты)</li>
+            <li>Атомы → элементы → компоненты → секции</li>
+            <li>Структура папок: <code>css/tokens.css</code> + <code>base.css</code> + <code>components.css</code> + <code>style.css</code></li>
+            <li>Все цвета/шрифты/отступы — в <code>tokens.css</code> как переменные</li>
+            <li><strong>HTML целиком сначала</strong>, стили потом (не параллельно!)</li>
+            <li>Семантика: <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code></li>
+            <li>CSS-порядок: layout → размеры → отступы → визуал → типография → интерактив</li>
+            <li>Повторяющиеся блоки = <strong>один</strong> класс (.card, .btn)</li>
+            <li>Inline-стили в HTML запрещены</li>
+            <li>Цвета/шрифты только через <code>var(--token)</code></li>
+            <li>Адаптив: «ряд → стопка» на мобильном</li>
+            <li>Мобильный h1 в 1.5-2 раза меньше десктопного</li>
+            <li>Hover/focus/transition — обязательны для живого сайта</li>
+            <li>Pixel-perfect допуск ±2px, проверка через overlay</li>
+            <li>Картинки = 2x JPG, иконки = SVG, логотипы = PNG/SVG</li>
+            <li>Тестировать на 375px, 768px, 1440px</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li>Coding is a <strong>9-step process</strong>, not improvisation</li>
+            <li>10-15 min <strong>analysis</strong> before coding saves hours</li>
+            <li>Create <code>analysis.md</code> — layout map (sections, colors, components)</li>
+            <li>Atoms → elements → components → sections</li>
+            <li>Folder structure: <code>css/tokens.css</code> + <code>base.css</code> + <code>components.css</code> + <code>style.css</code></li>
+            <li>All colors/fonts/spacing — in <code>tokens.css</code> as variables</li>
+            <li><strong>Full HTML first</strong>, styles after (not in parallel!)</li>
+            <li>Semantics: <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code></li>
+            <li>CSS order: layout → size → spacing → visual → typography → interactive</li>
+            <li>Repeating blocks = <strong>one</strong> class (.card, .btn)</li>
+            <li>Inline styles in HTML — forbidden</li>
+            <li>Colors/fonts only via <code>var(--token)</code></li>
+            <li>Responsive: "row → stack" on mobile</li>
+            <li>Mobile h1 is 1.5-2× smaller than desktop</li>
+            <li>Hover/focus/transition — mandatory for a live site</li>
+            <li>Pixel-perfect ±2px tolerance, check via overlay</li>
+            <li>Images = 2x JPG, icons = SVG, logos = PNG/SVG</li>
+            <li>Test on 375px, 768px, 1440px</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Анализ:</strong> Откройте макет из Figma Community (из задания 28.1). Создайте <code>analysis.md</code>: список секций, компонентов, цветов, шрифтов.</li>
+            <li><strong>Структура:</strong> Создайте папку проекта со структурой: <code>index.html</code>, <code>css/{tokens,base,components,style}.css</code>, <code>images/</code>, <code>icons/</code>.</li>
+            <li><strong>Tokens:</strong> Перенесите все цвета, шрифты, отступы макета в <code>tokens.css</code> как CSS-переменные.</li>
+            <li><strong>HTML-скелет:</strong> Напишите <strong>весь HTML</strong> главной страницы без стилей. Семантические теги. Покажите странице в браузере — должна быть «поток сверху вниз».</li>
+            <li><strong>CSS layout:</strong> Добавьте только <code>display: flex/grid</code>, размеры, отступы секций. Без цветов и шрифтов.</li>
+            <li><strong>CSS детали:</strong> Добавьте цвета через <code>var(--...)</code>, шрифты, тени, скругления. Pixel-perfect сверка с Figma.</li>
+            <li><strong>Интерактив:</strong> Hover на кнопках, карточках, ссылках. <code>:focus</code> на input. <code>transition</code> везде.</li>
+            <li><strong>Адаптив:</strong> Media query для 768px и 1024px. Правило «ряд → стопка». Проверьте в DevTools.</li>
+            <li><strong>Pixel-perfect:</strong> Сделайте скриншот своей страницы и Figma, наложите в любом редакторе с opacity 50%. Приложите итоговый скриншот сравнения.</li>
+            <li><strong>Бонус:</strong> Установите расширение «PerfectPixel» и используйте его для финальной проверки.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Analysis:</strong> Open the Figma Community layout (from task 28.1). Create <code>analysis.md</code>: list of sections, components, colors, fonts.</li>
+            <li><strong>Structure:</strong> Create project folder: <code>index.html</code>, <code>css/{tokens,base,components,style}.css</code>, <code>images/</code>, <code>icons/</code>.</li>
+            <li><strong>Tokens:</strong> Transfer all colors, fonts, spacing from the layout into <code>tokens.css</code> as CSS variables.</li>
+            <li><strong>HTML skeleton:</strong> Write the <strong>entire HTML</strong> of the main page without styles. Semantic tags. Show in browser — should be "a stream top-down".</li>
+            <li><strong>CSS layout:</strong> Add only <code>display: flex/grid</code>, sizes, section spacing. No colors or fonts yet.</li>
+            <li><strong>CSS details:</strong> Add colors via <code>var(--...)</code>, fonts, shadows, radii. Pixel-perfect check with Figma.</li>
+            <li><strong>Interactivity:</strong> Hover on buttons, cards, links. <code>:focus</code> on inputs. <code>transition</code> everywhere.</li>
+            <li><strong>Responsive:</strong> Media query for 768px and 1024px. "Row → stack" rule. Test in DevTools.</li>
+            <li><strong>Pixel-perfect:</strong> Screenshot your page and Figma, overlay in any editor at 50% opacity. Attach the final comparison screenshot.</li>
+            <li><strong>Bonus:</strong> Install the "PerfectPixel" extension and use it for the final check.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

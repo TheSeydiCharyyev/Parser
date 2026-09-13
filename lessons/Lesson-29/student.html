@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 29 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 29: Знакомство с Figma</span>
+    <span class="nav-title" data-lang="en">Lesson 29: Introduction to Figma</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 29: Знакомство с Figma</p>
+    <p class="subtitle" data-lang="en">Lesson 29: Introduction to Figma</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧТО ТАКОЕ FIGMA</h2>
+    <h2 data-lang="en">&#x1F4DA; WHAT IS FIGMA</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Figma</strong> — стандарт индустрии для дизайна интерфейсов. 90% дизайнеров в мире работают в Figma. Используют Google, Microsoft, Airbnb. Разработчик <strong>получает готовый макет от дизайнера</strong> и верстает по нему.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Figma</strong> is the industry standard for interface design. 90% of designers worldwide use it. Google, Microsoft, Airbnb use it. Developer <strong>receives a ready layout from a designer</strong> and codes based on it.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Разработчик не рисует</strong> — разработчик <strong>читает</strong> макет. Аналогия: строитель не проектирует дом, а строит по чертежу архитектора.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Developer doesn't draw</strong> — developer <strong>reads</strong> the layout. Analogy: a builder doesn't design the house, they build from the architect's blueprint.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ИНТЕРФЕЙС — 3 ВАЖНЫЕ ЗОНЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; INTERFACE — 3 KEY ZONES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Зона</th><th>Расположение</th><th>Что делает</th></tr>
+        <tr><td><strong>Layers</strong></td><td>Слева</td><td>Дерево элементов (как HTML)</td></tr>
+        <tr><td><strong>Canvas</strong></td><td>Центр</td><td>Сам макет</td></tr>
+        <tr><td><strong>Inspect</strong></td><td>Справа</td><td>Все CSS-свойства выделенного</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Zone</th><th>Location</th><th>What it does</th></tr>
+        <tr><td><strong>Layers</strong></td><td>Left</td><td>Element tree (like HTML)</td></tr>
+        <tr><td><strong>Canvas</strong></td><td>Center</td><td>The layout itself</td></tr>
+        <tr><td><strong>Inspect</strong></td><td>Right</td><td>All CSS properties of selected</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ГОРЯЧИЕ КЛАВИШИ</h2>
+    <h2 data-lang="en">&#x1F4DA; HOTKEYS</h2>
+
+    <table data-lang="ru">
+        <tr><th>Сочетание</th><th>Действие</th></tr>
+        <tr><td><span class="kbd">Space</span> + drag</td><td>Перемещение по canvas</td></tr>
+        <tr><td><span class="kbd">Ctrl/Cmd</span> + колесо</td><td>Зум</td></tr>
+        <tr><td><span class="kbd">Shift</span> + 1</td><td>Весь макет на экран</td></tr>
+        <tr><td><span class="kbd">Shift</span> + 2</td><td>Zoom к выделенному</td></tr>
+        <tr><td><span class="kbd">Alt</span> + hover</td><td>Расстояние между элементами</td></tr>
+        <tr><td><span class="kbd">Ctrl/Cmd</span> + <span class="kbd">\</span></td><td>Спрятать/показать панели</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Shortcut</th><th>Action</th></tr>
+        <tr><td><span class="kbd">Space</span> + drag</td><td>Pan around canvas</td></tr>
+        <tr><td><span class="kbd">Ctrl/Cmd</span> + scroll</td><td>Zoom</td></tr>
+        <tr><td><span class="kbd">Shift</span> + 1</td><td>Fit entire layout on screen</td></tr>
+        <tr><td><span class="kbd">Shift</span> + 2</td><td>Zoom to selection</td></tr>
+        <tr><td><span class="kbd">Alt</span> + hover</td><td>Distance between elements</td></tr>
+        <tr><td><span class="kbd">Ctrl/Cmd</span> + <span class="kbd">\</span></td><td>Hide/show panels</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; FIGMA → CSS СЛОВАРЬ</h2>
+    <h2 data-lang="en">&#x1F4DA; FIGMA → CSS DICTIONARY</h2>
+
+    <table data-lang="ru">
+        <tr><th>В Figma</th><th>В CSS</th></tr>
+        <tr><td>Fill (заливка)</td><td><code>background</code> или <code>background-color</code></td></tr>
+        <tr><td>Stroke (обводка)</td><td><code>border</code></td></tr>
+        <tr><td>Corner radius</td><td><code>border-radius</code></td></tr>
+        <tr><td>Drop shadow</td><td><code>box-shadow</code></td></tr>
+        <tr><td>Opacity</td><td><code>opacity</code></td></tr>
+        <tr><td>W × H</td><td><code>width</code> × <code>height</code></td></tr>
+        <tr><td>Auto layout → padding</td><td><code>padding</code></td></tr>
+        <tr><td>Auto layout → gap</td><td><code>gap</code></td></tr>
+        <tr><td>Font: Inter, 24, SemiBold</td><td><code>font-family: 'Inter'; font-size: 24px; font-weight: 600</code></td></tr>
+        <tr><td>Line height: 32</td><td><code>line-height: 32px</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>In Figma</th><th>In CSS</th></tr>
+        <tr><td>Fill</td><td><code>background</code> or <code>background-color</code></td></tr>
+        <tr><td>Stroke</td><td><code>border</code></td></tr>
+        <tr><td>Corner radius</td><td><code>border-radius</code></td></tr>
+        <tr><td>Drop shadow</td><td><code>box-shadow</code></td></tr>
+        <tr><td>Opacity</td><td><code>opacity</code></td></tr>
+        <tr><td>W × H</td><td><code>width</code> × <code>height</code></td></tr>
+        <tr><td>Auto layout → padding</td><td><code>padding</code></td></tr>
+        <tr><td>Auto layout → gap</td><td><code>gap</code></td></tr>
+        <tr><td>Font: Inter, 24, SemiBold</td><td><code>font-family: 'Inter'; font-size: 24px; font-weight: 600</code></td></tr>
+        <tr><td>Line height: 32</td><td><code>line-height: 32px</code></td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; КАК ИЗМЕРЯТЬ РАССТОЯНИЯ</h2>
+    <h2 data-lang="en">&#x1F4DA; HOW TO MEASURE DISTANCES</h2>
+
+    <div class="key-point" data-lang="ru">
+        <ol>
+            <li>Кликни на элемент (выдели)</li>
+            <li>Зажми <span class="kbd">Alt</span></li>
+            <li>Наведи на другой элемент</li>
+            <li>Красные линии покажут расстояние в px</li>
+        </ol>
+    </div>
+    <div class="key-point" data-lang="en">
+        <ol>
+            <li>Click on element (select it)</li>
+            <li>Hold <span class="kbd">Alt</span></li>
+            <li>Hover over another element</li>
+            <li>Red lines show distance in px</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; DESIGN TOKENS — ПЕРЕМЕННЫЕ</h2>
+    <h2 data-lang="en">&#x1F4DA; DESIGN TOKENS — VARIABLES</h2>
+
+    <div class="definition" data-lang="ru">
+        В начале работы <strong>выпишите все цвета и шрифты</strong> из Figma в CSS-переменные. Потом во всех стилях ссылайтесь на них. Если дизайнер попросит сменить основной цвет — правите одну строку.
+    </div>
+    <div class="definition" data-lang="en">
+        At the start, <strong>extract all colors and fonts</strong> from Figma into CSS variables. Then reference them in all styles. If the designer asks to change the primary color — edit one line.
+    </div>
+
+<pre><code>:root {
+    --color-primary: #3B82F6;
+    --color-primary-dark: #1D4ED8;
+    --color-text: #1E293B;
+    --color-text-muted: #64748B;
+    --color-bg: #F8FAFC;
+    --color-border: #E2E8F0;
+}</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; GOOGLE FONTS</h2>
+    <h2 data-lang="en">&#x1F4DA; GOOGLE FONTS</h2>
+
+<pre><code>&lt;!-- В &lt;head&gt; --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;
+
+/* В CSS */
+body { font-family: 'Inter', sans-serif; }</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <code>@400;500;600;700</code> — грузите только нужные веса, не все 9. Иначе замедлите загрузку страницы.
+    </div>
+    <div class="key-point" data-lang="en">
+        <code>@400;500;600;700</code> — load only needed weights, not all 9. Otherwise page load slows down.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЭКСПОРТ</h2>
+    <h2 data-lang="en">&#x1F4DA; EXPORT</h2>
+
+    <table data-lang="ru">
+        <tr><th>Что</th><th>Формат</th><th>Масштаб</th></tr>
+        <tr><td>Иконки</td><td><strong>SVG</strong></td><td>1x (вектор)</td></tr>
+        <tr><td>Фотографии</td><td><strong>JPG</strong></td><td>2x (для Retina)</td></tr>
+        <tr><td>Логотипы (прозрачность)</td><td><strong>PNG</strong></td><td>2x</td></tr>
+        <tr><td>Скриншоты</td><td>PNG</td><td>2x</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>What</th><th>Format</th><th>Scale</th></tr>
+        <tr><td>Icons</td><td><strong>SVG</strong></td><td>1x (vector)</td></tr>
+        <tr><td>Photos</td><td><strong>JPG</strong></td><td>2x (for Retina)</td></tr>
+        <tr><td>Logos (transparency)</td><td><strong>PNG</strong></td><td>2x</td></tr>
+        <tr><td>Screenshots</td><td>PNG</td><td>2x</td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        <strong>2x для Retina</strong> — на Mac/iPhone/Samsung экраны высокой плотности. 1x-картинка на них размытая. Экспортируйте в 2x, в CSS ставьте половину размера.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>2x for Retina</strong> — Mac/iPhone/Samsung have high-DPI screens. 1x image looks blurry on them. Export at 2x, set half size in CSS.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>SVG — вектор.</strong> Масштабируется без потери качества, меньше в 5-10 раз, цвет меняется через CSS (<code>fill: currentColor</code>). Иконки — всегда SVG.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>SVG — vector.</strong> Scales without quality loss, 5-10× smaller, color changeable via CSS (<code>fill: currentColor</code>). Icons — always SVG.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; АЛГОРИТМ: ОТ МАКЕТА К КОДУ</h2>
+    <h2 data-lang="en">&#x1F4DA; ALGORITHM: FROM LAYOUT TO CODE</h2>
+
+    <ol data-lang="ru">
+        <li>Изучить макет целиком → определить секции</li>
+        <li>Определить сетку (колонки, max-width, gap)</li>
+        <li>Выписать цвета → CSS-переменные</li>
+        <li>Выписать шрифты → Google Fonts</li>
+        <li>Экспортировать изображения и иконки</li>
+        <li>Верстать сверху вниз, секция за секцией</li>
+        <li>Сверять с Figma (Alt + расстояния)</li>
+    </ol>
+    <ol data-lang="en">
+        <li>Study entire layout → identify sections</li>
+        <li>Determine grid (columns, max-width, gap)</li>
+        <li>List colors → CSS variables</li>
+        <li>List fonts → Google Fonts</li>
+        <li>Export images and icons</li>
+        <li>Code top to bottom, section by section</li>
+        <li>Compare with Figma (Alt + distances)</li>
+    </ol>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧАСТЫЕ ОШИБКИ</h2>
+    <h2 data-lang="en">&#x1F4DA; COMMON MISTAKES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td>Копировать <code>width</code>/<code>height</code> буквально</td><td>Использовать <code>max-width</code>, %, grid — для адаптива</td></tr>
+        <tr><td>Dev Mode генерирует <code>position: absolute</code></td><td>Использовать как справку, layout писать через flex/grid</td></tr>
+        <tr><td>Экспорт 1x на Retina = размыто</td><td>Всегда 2x для фото и логотипов</td></tr>
+        <tr><td>Шрифт не подключён — браузер подставляет</td><td>Подключить через Google Fonts в <code>&lt;head&gt;</code></td></tr>
+        <tr><td>HEX-цвета повторяются везде</td><td>Выписать в <code>:root</code> как переменные</td></tr>
+        <tr><td>Иконка PNG вместо SVG</td><td>Всегда экспортировать иконки в SVG</td></tr>
+        <tr><td>Загружать все 9 весов шрифта</td><td>Грузить только нужные (<code>@400;600;700</code>)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td>Copy <code>width</code>/<code>height</code> literally</td><td>Use <code>max-width</code>, %, grid — for responsive</td></tr>
+        <tr><td>Dev Mode generates <code>position: absolute</code></td><td>Use as reference, write layout with flex/grid</td></tr>
+        <tr><td>1x export on Retina = blurry</td><td>Always 2x for photos and logos</td></tr>
+        <tr><td>Font not loaded — browser substitutes</td><td>Load via Google Fonts in <code>&lt;head&gt;</code></td></tr>
+        <tr><td>HEX colors repeated everywhere</td><td>Extract to <code>:root</code> as variables</td></tr>
+        <tr><td>PNG icon instead of SVG</td><td>Always export icons as SVG</td></tr>
+        <tr><td>Loading all 9 font weights</td><td>Load only needed (<code>@400;600;700</code>)</td></tr>
+    </table>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li>Figma — стандарт индустрии для дизайна (90% всех макетов)</li>
+            <li>Разработчик <strong>читает</strong> макет, не рисует</li>
+            <li>Бесплатный план достаточен для разработчика</li>
+            <li>3 важные зоны: Layers (слева), Canvas (центр), Inspect (справа)</li>
+            <li>Dev Mode (<code>&lt;/&gt;</code>) — готовый CSS-код элемента</li>
+            <li>Inspect / Dev Mode — все CSS-свойства элемента</li>
+            <li><span class="kbd">Alt</span> + наведение = расстояние между элементами</li>
+            <li><span class="kbd">Space</span> + drag — перемещение по canvas</li>
+            <li><span class="kbd">Shift</span> + 1 — весь макет на экран</li>
+            <li>Fill = background, Stroke = border, Corner radius = border-radius</li>
+            <li>Drop shadow = box-shadow, W×H = width×height</li>
+            <li>Иконки = SVG, фото = JPG, логотипы = PNG</li>
+            <li>Для Retina — экспорт 2x (фото и логотипы)</li>
+            <li>SVG меняет цвет через <code>fill: currentColor</code></li>
+            <li>Выписать цвета в <code>:root</code> как переменные <strong>сразу</strong></li>
+            <li>Google Fonts — только нужные веса (<code>@400;600;700</code>)</li>
+            <li>Не копировать <code>width</code> буквально — использовать адаптив</li>
+            <li>Community (<code>figma.com/community</code>) — бесплатные макеты для практики</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li>Figma — industry standard for design (90% of all layouts)</li>
+            <li>Developer <strong>reads</strong> layout, doesn't draw</li>
+            <li>Free plan is enough for a developer</li>
+            <li>3 key zones: Layers (left), Canvas (center), Inspect (right)</li>
+            <li>Dev Mode (<code>&lt;/&gt;</code>) — ready CSS code for an element</li>
+            <li>Inspect / Dev Mode — all CSS properties of element</li>
+            <li><span class="kbd">Alt</span> + hover = distance between elements</li>
+            <li><span class="kbd">Space</span> + drag — pan around canvas</li>
+            <li><span class="kbd">Shift</span> + 1 — fit layout on screen</li>
+            <li>Fill = background, Stroke = border, Corner radius = border-radius</li>
+            <li>Drop shadow = box-shadow, W×H = width×height</li>
+            <li>Icons = SVG, photos = JPG, logos = PNG</li>
+            <li>For Retina — export 2x (photos and logos)</li>
+            <li>SVG color changes via <code>fill: currentColor</code></li>
+            <li>Extract colors to <code>:root</code> as variables <strong>upfront</strong></li>
+            <li>Google Fonts — load only needed weights (<code>@400;600;700</code>)</li>
+            <li>Don't copy <code>width</code> literally — use responsive</li>
+            <li>Community (<code>figma.com/community</code>) — free layouts for practice</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Регистрация:</strong> Зарегистрируйтесь в Figma (figma.com) — бесплатно, через Google или email.</li>
+            <li><strong>Community:</strong> Откройте <code>figma.com/community</code>, найдите бесплатный landing-макет (ищите по «free landing page»), нажмите «Duplicate» — макет скопируется в ваш аккаунт.</li>
+            <li><strong>Анализ цветов:</strong> Выпишите <strong>все цвета</strong> макета в таблицу (HEX-коды, где используется) — минимум 5 цветов.</li>
+            <li><strong>Анализ шрифтов:</strong> Какой шрифт? Какие размеры h1, h2, h3, body, buttons? Какие веса (400, 500, 600, 700)?</li>
+            <li><strong>Измерение:</strong> Используйте <span class="kbd">Alt</span> + hover — запишите 5 расстояний (padding секции, gap между карточками, margin заголовка и т.д.).</li>
+            <li><strong>Экспорт:</strong> Экспортируйте 2 фото (JPG, 2x), 2 иконки (SVG, 1x), 1 логотип (PNG, 2x).</li>
+            <li><strong>CSS-переменные:</strong> Создайте файл <code>tokens.css</code> с <code>:root { --color-...; }</code> для всех цветов макета.</li>
+            <li><strong>Бонус:</strong> Попробуйте собрать <strong>hero-секцию</strong> из макета в HTML+CSS. Pixel-perfect, с Google Fonts.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Registration:</strong> Sign up for Figma (figma.com) — free, via Google or email.</li>
+            <li><strong>Community:</strong> Open <code>figma.com/community</code>, find a free landing layout (search "free landing page"), click "Duplicate" — layout copies to your account.</li>
+            <li><strong>Color analysis:</strong> Extract <strong>all colors</strong> from the layout into a table (HEX codes, where used) — minimum 5 colors.</li>
+            <li><strong>Font analysis:</strong> Which font? Sizes for h1, h2, h3, body, buttons? Which weights (400, 500, 600, 700)?</li>
+            <li><strong>Measurement:</strong> Use <span class="kbd">Alt</span> + hover — record 5 distances (section padding, gap between cards, heading margin, etc.).</li>
+            <li><strong>Export:</strong> Export 2 photos (JPG, 2x), 2 icons (SVG, 1x), 1 logo (PNG, 2x).</li>
+            <li><strong>CSS variables:</strong> Create a <code>tokens.css</code> file with <code>:root { --color-...; }</code> for all layout colors.</li>
+            <li><strong>Bonus:</strong> Try to build the <strong>hero section</strong> from the layout in HTML+CSS. Pixel-perfect, with Google Fonts.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

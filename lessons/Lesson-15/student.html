@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 15 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 15: Flexbox — элементы</span>
+    <span class="nav-title" data-lang="en">Lesson 15: Flexbox — Items</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 15: Flexbox — элементы</p>
+    <p class="subtitle" data-lang="en">Lesson 15: Flexbox — Items</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <!-- =============================== -->
+    <!-- FLEX-GROW, FLEX-SHRINK, FLEX-BASIS -->
+    <!-- =============================== -->
+
+    <h2 data-lang="ru">&#x1F4DA; СВОЙСТВА FLEX-ЭЛЕМЕНТОВ</h2>
+    <h2 data-lang="en">&#x1F4DA; FLEX ITEM PROPERTIES</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>flex-grow</strong> — коэффициент растяжения. Определяет, какую долю свободного пространства элемент заберёт. По умолчанию <code>0</code> (не растягиваться).
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>flex-grow</strong> — growth factor. Determines what share of free space the item will take. Default is <code>0</code> (don't grow).
+    </div>
+
+    <div class="definition" data-lang="ru">
+        <strong>flex-shrink</strong> — коэффициент сжатия. Определяет, насколько элемент уменьшится, когда места не хватает. По умолчанию <code>1</code> (можно сжимать).
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>flex-shrink</strong> — shrink factor. Determines how much the item will shrink when there's not enough space. Default is <code>1</code> (can shrink).
+    </div>
+
+    <div class="definition" data-lang="ru">
+        <strong>flex-basis</strong> — начальный размер элемента до распределения свободного места. По умолчанию <code>auto</code> (размер контента или width/height).
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>flex-basis</strong> — initial size of the item before free space is distributed. Default is <code>auto</code> (content size or width/height).
+    </div>
+
+    <h3 data-lang="ru">Таблица свойств</h3>
+    <h3 data-lang="en">Properties table</h3>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что делает</th><th>По умолчанию</th></tr>
+        <tr><td><code>flex-grow</code></td><td>Растяжение (занять свободное место)</td><td><code>0</code></td></tr>
+        <tr><td><code>flex-shrink</code></td><td>Сжатие (когда места мало)</td><td><code>1</code></td></tr>
+        <tr><td><code>flex-basis</code></td><td>Начальный размер</td><td><code>auto</code></td></tr>
+        <tr><td><code>flex</code></td><td>Сокращение: grow shrink basis</td><td><code>0 1 auto</code></td></tr>
+        <tr><td><code>order</code></td><td>Визуальный порядок</td><td><code>0</code></td></tr>
+        <tr><td><code>align-self</code></td><td>Своё выравнивание по поперечной оси</td><td><code>auto</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it does</th><th>Default</th></tr>
+        <tr><td><code>flex-grow</code></td><td>Growing (fill free space)</td><td><code>0</code></td></tr>
+        <tr><td><code>flex-shrink</code></td><td>Shrinking (when not enough space)</td><td><code>1</code></td></tr>
+        <tr><td><code>flex-basis</code></td><td>Initial size</td><td><code>auto</code></td></tr>
+        <tr><td><code>flex</code></td><td>Shorthand: grow shrink basis</td><td><code>0 1 auto</code></td></tr>
+        <tr><td><code>order</code></td><td>Visual order</td><td><code>0</code></td></tr>
+        <tr><td><code>align-self</code></td><td>Individual cross-axis alignment</td><td><code>auto</code></td></tr>
+    </table>
+
+    <h3 data-lang="ru">Как flex-grow распределяет место</h3>
+    <h3 data-lang="en">How flex-grow distributes space</h3>
+
+    <div class="diagram" data-lang="ru">
+<pre>
+Контейнер 600px.  Три элемента по 100px.  Свободно: 300px.
+
+grow:0  grow:0  grow:0     (по умолчанию)
+|100px |100px |100px |          300px пусто          |
+
+grow:1  grow:1  grow:1     (поровну: +100px каждому)
+|  200px  |  200px  |  200px  |
+
+grow:1  grow:2  grow:1     (пропорционально: 75+150+75)
+| 175px |    250px    | 175px |
+
+grow:0  grow:1  grow:0     (всё среднему: +300px)
+|100px |       400px        |100px |
+</pre>
+    </div>
+    <div class="diagram" data-lang="en">
+<pre>
+Container 600px.  Three items 100px each.  Free: 300px.
+
+grow:0  grow:0  grow:0     (default)
+|100px |100px |100px |          300px empty           |
+
+grow:1  grow:1  grow:1     (equal: +100px each)
+|  200px  |  200px  |  200px  |
+
+grow:1  grow:2  grow:1     (proportional: 75+150+75)
+| 175px |    250px    | 175px |
+
+grow:0  grow:1  grow:0     (all to middle: +300px)
+|100px |       400px        |100px |
+</pre>
+    </div>
+
+    <hr>
+
+    <!-- =============================== -->
+    <!-- FLEX SHORTHAND                    -->
+    <!-- =============================== -->
+
+    <h2 data-lang="ru">&#x1F4DA; СОКРАЩЕНИЕ FLEX</h2>
+    <h2 data-lang="en">&#x1F4DA; FLEX SHORTHAND</h2>
+
+    <table data-lang="ru">
+        <tr><th>Запись</th><th>Значение</th><th>Когда использовать</th></tr>
+        <tr><td><code>flex: 1</code></td><td>grow:1, shrink:1, basis:0</td><td>Заполнить место (равные колонки)</td></tr>
+        <tr><td><code>flex: auto</code></td><td>grow:1, shrink:1, basis:auto</td><td>Заполнить, но от своего размера</td></tr>
+        <tr><td><code>flex: none</code></td><td>grow:0, shrink:0, basis:auto</td><td>Не менять размер</td></tr>
+        <tr><td><code>flex: 0 0 250px</code></td><td>Фиксированный 250px</td><td>Sidebar, фиксированная ширина</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Value</th><th>Meaning</th><th>When to use</th></tr>
+        <tr><td><code>flex: 1</code></td><td>grow:1, shrink:1, basis:0</td><td>Fill space (equal columns)</td></tr>
+        <tr><td><code>flex: auto</code></td><td>grow:1, shrink:1, basis:auto</td><td>Fill from own size</td></tr>
+        <tr><td><code>flex: none</code></td><td>grow:0, shrink:0, basis:auto</td><td>Don't change size</td></tr>
+        <tr><td><code>flex: 0 0 250px</code></td><td>Fixed 250px</td><td>Sidebar, fixed width</td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        <strong>flex: 1 — самое важное сокращение!</strong> Используй его везде, когда нужно, чтобы элемент занял всё свободное место. Это решение 90% задач с flex-элементами.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>flex: 1 — the most important shorthand!</strong> Use it everywhere you need an item to fill all free space. This solves 90% of flex item tasks.
+    </div>
+
+    <div class="note-box" data-lang="ru">
+        <strong>flex: 1 vs flex: auto — в чём разница?</strong><br>
+        <code>flex: 1</code> = basis: <strong>0</strong> — все элементы стартуют с нуля, потом делят место <em>поровну</em>.<br>
+        <code>flex: auto</code> = basis: <strong>auto</strong> — элементы стартуют от своего контента, потом делят <em>оставшееся</em> место.<br>
+        Результат: при <code>flex: 1</code> колонки одинаковой ширины, при <code>flex: auto</code> — пропорциональны контенту.
+    </div>
+    <div class="note-box" data-lang="en">
+        <strong>flex: 1 vs flex: auto — what's the difference?</strong><br>
+        <code>flex: 1</code> = basis: <strong>0</strong> — all items start from zero, then split space <em>equally</em>.<br>
+        <code>flex: auto</code> = basis: <strong>auto</strong> — items start from their content size, then split <em>remaining</em> space.<br>
+        Result: with <code>flex: 1</code> columns are equal width, with <code>flex: auto</code> — proportional to content.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>flex-shrink: 0 — для фиксированных сайдбаров.</strong> Если sidebar должен быть ровно 250px и не сжиматься при уменьшении окна, ставь <code>flex: 0 0 250px</code> (grow:0, shrink:0, basis:250px).
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>flex-shrink: 0 — for fixed sidebars.</strong> If a sidebar must be exactly 250px and never shrink when the window gets smaller, use <code>flex: 0 0 250px</code> (grow:0, shrink:0, basis:250px).
+    </div>
+
+    <hr>
+
+    <!-- =============================== -->
+    <!-- ORDER и ALIGN-SELF               -->
+    <!-- =============================== -->
+
+    <h2 data-lang="ru">&#x1F4DA; ORDER И ALIGN-SELF</h2>
+    <h2 data-lang="en">&#x1F4DA; ORDER AND ALIGN-SELF</h2>
+
+    <h3 data-lang="ru">order — визуальный порядок</h3>
+    <h3 data-lang="en">order — visual order</h3>
+
+    <div class="definition" data-lang="ru">
+        <strong>order</strong> — меняет визуальный порядок элемента, не трогая HTML. По умолчанию <code>0</code>. Чем меньше число — тем раньше элемент. Можно использовать отрицательные значения.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>order</strong> — changes the visual order of an item without touching HTML. Default is <code>0</code>. Lower number = earlier position. Negative values are allowed.
+    </div>
+
+<pre><code>/* HTML: A  B  C */
+.item-c { order: -1; }  /* Визуально: C  A  B */
+.item-a { order: 2; }   /* Визуально: C  B  A */</code></pre>
+
+    <h3 data-lang="ru">align-self — индивидуальное выравнивание</h3>
+    <h3 data-lang="en">align-self — individual alignment</h3>
+
+    <div class="definition" data-lang="ru">
+        <strong>align-self</strong> — переопределяет <code>align-items</code> контейнера для одного конкретного элемента. Значения те же: <code>stretch | flex-start | flex-end | center | baseline</code>.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>align-self</strong> — overrides the container's <code>align-items</code> for one specific item. Same values: <code>stretch | flex-start | flex-end | center | baseline</code>.
+    </div>
+
+<pre><code>.container { display: flex; align-items: flex-start; }
+.special   { align-self: center; }  /* Только этот — по центру */</code></pre>
+
+    <hr>
+
+    <!-- =============================== -->
+    <!-- MARGIN AUTO TRICK                -->
+    <!-- =============================== -->
+
+    <h2 data-lang="ru">&#x1F4DA; ТРЮК С MARGIN AUTO</h2>
+    <h2 data-lang="en">&#x1F4DA; MARGIN AUTO TRICK</h2>
+
+    <div class="key-point" data-lang="ru">
+        <strong>margin-left: auto / margin-top: auto — мощный трюк!</strong> Во flex-контейнере <code>margin: auto</code> «съедает» всё свободное пространство в указанном направлении. Это заменяет <code>justify-content</code> для отдельных элементов.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>margin-left: auto / margin-top: auto — powerful trick!</strong> In a flex container <code>margin: auto</code> "eats" all free space in the given direction. This replaces <code>justify-content</code> for individual items.
+    </div>
+
+<pre><code>/* Толкнуть последний элемент вправо (в row) */
+.last-item { margin-left: auto; }
+
+/* Толкнуть кнопку вниз карточки (в column) */
+.card-btn  { margin-top: auto; }
+
+/* Центрировать элемент по обеим осям */
+.centered  { margin: auto; }</code></pre>
+
+    <hr>
+
+    <!-- =============================== -->
+    <!-- ПАТТЕРНЫ                          -->
+    <!-- =============================== -->
+
+    <h2 data-lang="ru">&#x1F4DA; ПАТТЕРНЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; PATTERNS</h2>
+
+    <h3 data-lang="ru">Sidebar + Content</h3>
+    <h3 data-lang="en">Sidebar + Content</h3>
+
+<pre><code>.layout  { display: flex; }
+.sidebar { flex: 0 0 250px; }   /* Не растёт, не сжимается, ровно 250px */
+.content { flex: 1; }           /* Забирает всё остальное */</code></pre>
+
+    <h3 data-lang="ru">Прилипающий footer (Sticky footer)</h3>
+    <h3 data-lang="en">Sticky footer</h3>
+
+<pre><code>body { display: flex; flex-direction: column; min-height: 100vh; }
+main { flex: 1; }   /* main растягивается, footer прижат к низу */</code></pre>
+
+    <h3 data-lang="ru">Кнопка внизу карточки</h3>
+    <h3 data-lang="en">Button at bottom of card</h3>
+
+<pre><code>.card     { display: flex; flex-direction: column; }
+.card-btn { margin-top: auto; }  /* Прижата к низу */</code></pre>
+
+    <h3 data-lang="ru">Элемент вправо (Push right)</h3>
+    <h3 data-lang="en">Push item right</h3>
+
+<pre><code>/* Навбар: Logo  Home  About       Login */
+.login { margin-left: auto; }</code></pre>
+
+    <h3 data-lang="ru">Holy Grail Layout (вложенные flex)</h3>
+    <h3 data-lang="en">Holy Grail Layout (nested flex)</h3>
+
+    <div class="diagram" data-lang="ru">
+<pre>
++--------------------------------------------+
+|                 HEADER                     |   flex-direction: column
++----------+-------------------+-------------+       |
+|          |                   |             |       v
+| SIDEBAR  |     CONTENT       |   ASIDE     |   .middle { display: flex; }
+| flex:    |     flex: 1       |   flex:     |
+| 0 0 200px|                   |   0 0 150px |
+|          |                   |             |
++----------+-------------------+-------------+
+|                 FOOTER                     |
++--------------------------------------------+
+</pre>
+    </div>
+    <div class="diagram" data-lang="en">
+<pre>
++--------------------------------------------+
+|                 HEADER                     |   flex-direction: column
++----------+-------------------+-------------+       |
+|          |                   |             |       v
+| SIDEBAR  |     CONTENT       |   ASIDE     |   .middle { display: flex; }
+| flex:    |     flex: 1       |   flex:     |
+| 0 0 200px|                   |   0 0 150px |
+|          |                   |             |
++----------+-------------------+-------------+
+|                 FOOTER                     |
++--------------------------------------------+
+</pre>
+    </div>
+
+<pre><code>/* Holy Grail — вложенные flex-контейнеры */
+body    { display: flex; flex-direction: column; min-height: 100vh; }
+.middle { display: flex; flex: 1; }
+.sidebar { flex: 0 0 200px; }
+.content { flex: 1; }
+.aside   { flex: 0 0 150px; }</code></pre>
+
+    <hr>
+
+    <!-- =============================== -->
+    <!-- ЗАПОМНИ                            -->
+    <!-- =============================== -->
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>flex: 1</code> — заполнить доступное место (basis: 0, равные колонки)</li>
+            <li><code>flex: auto</code> — заполнить место, но от своего размера контента</li>
+            <li><code>flex: 0 0 250px</code> — фиксированный размер (sidebar)</li>
+            <li><code>flex-grow: 0</code> — не растягиваться</li>
+            <li><code>flex-shrink: 0</code> — не сжиматься (важно для фиксированных элементов!)</li>
+            <li><code>margin-left: auto</code> — толкнуть вправо</li>
+            <li><code>margin-top: auto</code> — толкнуть вниз (в column)</li>
+            <li><code>margin: auto</code> — центрировать во flex-контейнере</li>
+            <li><code>order</code> — поменять визуальный порядок (без изменения HTML)</li>
+            <li><code>align-self</code> — выровнять один элемент отдельно от остальных</li>
+            <li>Flex внутри flex = вложенные flex-контейнеры (Holy Grail!)</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>flex: 1</code> — fill available space (basis: 0, equal columns)</li>
+            <li><code>flex: auto</code> — fill space, but starting from content size</li>
+            <li><code>flex: 0 0 250px</code> — fixed size (sidebar)</li>
+            <li><code>flex-grow: 0</code> — don't grow</li>
+            <li><code>flex-shrink: 0</code> — don't shrink (important for fixed elements!)</li>
+            <li><code>margin-left: auto</code> — push right</li>
+            <li><code>margin-top: auto</code> — push down (in column)</li>
+            <li><code>margin: auto</code> — center in flex container</li>
+            <li><code>order</code> — change visual order (without changing HTML)</li>
+            <li><code>align-self</code> — align one item separately from the rest</li>
+            <li>Flex inside flex = nested flex containers (Holy Grail!)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- =============================== -->
+    <!-- ДОМАШНЕЕ ЗАДАНИЕ                  -->
+    <!-- =============================== -->
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Holy Grail:</strong> Создайте макет: header + sidebar (250px) + content (flex:1) + aside (150px) + footer. Используйте вложенные flex-контейнеры. Sidebar и aside не должны сжиматься.</li>
+            <li><strong>Карточки:</strong> 3 карточки одинаковой высоты (flex:1), в каждой — текст разной длины и кнопка, прижатая к низу (margin-top: auto).</li>
+            <li><strong>Навбар:</strong> Логотип + 3 ссылки слева, кнопка «Login» прижата вправо через margin-left: auto. Один элемент выровнен по-другому через align-self.</li>
+            <li><strong>Порядок:</strong> Создайте 5 блоков и с помощью order измените визуальный порядок на 3-1-5-2-4 (без изменения HTML).</li>
+            <li><strong>Бонус:</strong> Закончите Flexbox Froggy, если не закончили в занятии 13.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Holy Grail:</strong> Create layout: header + sidebar (250px) + content (flex:1) + aside (150px) + footer. Use nested flex containers. Sidebar and aside must not shrink.</li>
+            <li><strong>Cards:</strong> 3 equal-height cards (flex:1), each with different-length text and a button pushed to bottom (margin-top: auto).</li>
+            <li><strong>Navbar:</strong> Logo + 3 links on the left, "Login" button pushed right with margin-left: auto. One item aligned differently via align-self.</li>
+            <li><strong>Order:</strong> Create 5 blocks and use order to change the visual order to 3-1-5-2-4 (without changing HTML).</li>
+            <li><strong>Bonus:</strong> Finish Flexbox Froggy if you didn't in lesson 13.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

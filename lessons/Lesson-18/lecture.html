@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 18 — CSS Grid: продвинутый</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 18: CSS Grid — продвинутый</span>
+    <span class="nav-title" data-lang="en">Lesson 18: CSS Grid — Advanced</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 18: CSS Grid — продвинутый</h1>
+    <h1 data-lang="en">Lesson 18: CSS Grid — Advanced</h1>
+    <p class="subtitle" data-lang="ru">grid-template-areas, grid-column/row (span), именованные области, Grid vs Flexbox</p>
+    <p class="subtitle" data-lang="en">grid-template-areas, grid-column/row (span), named areas, Grid vs Flexbox</p>
+
+    <div class="why" data-lang="ru">
+        <p>На прошлом занятии мы научились создавать сетки — задавать столбцы, строки и отступы. Но все элементы распределялись <strong>автоматически</strong>, по порядку. А что если вам нужен элемент, который занимает <strong>два столбца</strong>? Или sidebar, который тянется на <strong>всю высоту</strong> страницы? Или header, который растянут <strong>от края до края</strong>?</p>
+        <p>Сегодня мы научимся <strong>управлять расположением</strong> каждого элемента в сетке и создавать сложные макеты, как настоящие сайты.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Размещать элементы в конкретных ячейках сетки</li>
+            <li>Объединять ячейки (как в Excel — merge cells)</li>
+            <li>«Рисовать» макет страницы текстом через grid-template-areas</li>
+            <li>Создавать полноценные макеты с header, sidebar, content, footer</li>
+            <li>Понимать, когда Grid, а когда Flexbox</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>In the last lesson we learned to create grids — define columns, rows, and gaps. But all elements were distributed <strong>automatically</strong>, in order. What if you need an element that spans <strong>two columns</strong>? Or a sidebar that stretches the <strong>full height</strong> of the page? Or a header that goes <strong>edge to edge</strong>?</p>
+        <p>Today we'll learn to <strong>control the placement</strong> of each element in the grid and create complex layouts like real websites.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Place elements in specific grid cells</li>
+            <li>Merge cells (like Excel — merge cells)</li>
+            <li>"Draw" a page layout with text using grid-template-areas</li>
+            <li>Create full layouts with header, sidebar, content, footer</li>
+            <li>Know when to use Grid vs Flexbox</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#recap">Повторение: что мы знаем о Grid</a></li>
+            <li><a href="#grid-lines">Линии Grid — нумерация</a></li>
+            <li><a href="#grid-column">grid-column — размещение по столбцам</a></li>
+            <li><a href="#grid-row">grid-row — размещение по строкам</a></li>
+            <li><a href="#span">span — объединение ячеек</a></li>
+            <li><a href="#areas-intro">grid-template-areas — именованные области</a></li>
+            <li><a href="#areas-syntax">Синтаксис grid-template-areas</a></li>
+            <li><a href="#areas-rules">Правила именованных областей</a></li>
+            <li><a href="#grid-area">grid-area — привязка элемента к области</a></li>
+            <li><a href="#complex-layout">Сложный макет с областями</a></li>
+            <li><a href="#grid-vs-flexbox">Grid vs Flexbox — когда что использовать</a></li>
+            <li><a href="#combining">Комбинирование Grid и Flexbox</a></li>
+            <li><a href="#practice">Практика: Dashboard-макет</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#recap">Recap: what we know about Grid</a></li>
+            <li><a href="#grid-lines">Grid lines — numbering</a></li>
+            <li><a href="#grid-column">grid-column — column placement</a></li>
+            <li><a href="#grid-row">grid-row — row placement</a></li>
+            <li><a href="#span">span — merging cells</a></li>
+            <li><a href="#areas-intro">grid-template-areas — named areas</a></li>
+            <li><a href="#areas-syntax">grid-template-areas syntax</a></li>
+            <li><a href="#areas-rules">Named areas rules</a></li>
+            <li><a href="#grid-area">grid-area — assigning element to area</a></li>
+            <li><a href="#complex-layout">Complex layout with areas</a></li>
+            <li><a href="#grid-vs-flexbox">Grid vs Flexbox — when to use which</a></li>
+            <li><a href="#combining">Combining Grid and Flexbox</a></li>
+            <li><a href="#practice">Practice: Dashboard layout</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПОВТОРЕНИЕ ==================== -->
+    <h2 id="recap" data-lang="ru">1. Повторение: что мы знаем о Grid</h2>
+    <h2 id="recap-en" data-lang="en">1. Recap: what we know about Grid</h2>
+
+    <p data-lang="ru">На прошлом занятии мы изучили <strong>свойства Grid-контейнера</strong> — как создавать сетку:</p>
+    <p data-lang="en">In the previous lesson we learned <strong>Grid container properties</strong> — how to create a grid:</p>
+
+<pre><code>.grid {
+    display: grid;                                        /* включить Grid */
+    grid-template-columns: repeat(3, 1fr);                /* 3 равных столбца */
+    grid-template-rows: auto;                             /* строки по содержимому */
+    gap: 20px;                                            /* отступы между ячейками */
+    place-items: center;                                  /* выравнивание в ячейках */
+}
+
+/* Адаптивная сетка: */
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));</code></pre>
+
+    <p data-lang="ru">Все эти свойства задаются <strong>контейнеру</strong> (родителю). Элементы внутри распределяются автоматически — по порядку, слева направо, сверху вниз.</p>
+    <p data-lang="en">All these properties are set on the <strong>container</strong> (parent). Items inside are distributed automatically — in order, left to right, top to bottom.</p>
+
+    <div class="analogy" data-lang="ru">
+        <p>Если Grid-контейнер — это <strong>шахматная доска</strong>, то до сих пор фигуры расставлялись автоматически: первая — в A1, вторая — в B1, третья — в C1 и так далее. Сегодня мы научимся <strong>ставить фигуры на конкретные клетки</strong> и объединять клетки в большие территории.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p>If the Grid container is a <strong>chessboard</strong>, until now pieces were placed automatically: first in A1, second in B1, third in C1, and so on. Today we'll learn to <strong>place pieces on specific squares</strong> and merge squares into large territories.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ЛИНИИ GRID ==================== -->
+    <h2 id="grid-lines" data-lang="ru">2. Линии Grid — нумерация</h2>
+    <h2 id="grid-lines-en" data-lang="en">2. Grid lines — numbering</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Чтобы разместить элемент в конкретном месте сетки, нам нужна <strong>система координат</strong>. В Grid координаты задаются через <strong>линии</strong> — невидимые границы между столбцами и строками. Каждая линия имеет номер, и мы говорим элементу: «займи пространство от линии 1 до линии 3».</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>To place an element in a specific grid position, we need a <strong>coordinate system</strong>. In Grid, coordinates are defined by <strong>lines</strong> — invisible boundaries between columns and rows. Each line has a number, and we tell an element: "occupy space from line 1 to line 3".</p>
+    </div>
+
+    <p data-lang="ru">Каждый столбец и строка ограничены <strong>линиями</strong>. Линии нумеруются с 1:</p>
+    <p data-lang="en">Each column and row is bounded by <strong>lines</strong>. Lines are numbered starting from 1:</p>
+
+    <div class="diagram" data-lang="ru">
+    grid-template-columns: 1fr 1fr 1fr;   (3 столбца)
+    grid-template-rows: auto auto;        (2 строки)
+
+    Линии столбцов:
+         1        2        3        4
+         │        │        │        │
+         ┌────────┬────────┬────────┐
+    1 ── │   A    │   B    │   C    │  ← строка 1
+         ├────────┼────────┼────────┤
+    2 ── │   D    │   E    │   F    │  ← строка 2
+         └────────┴────────┴────────┘
+    3 ──
+
+    3 столбца → 4 вертикальных линии (1, 2, 3, 4)
+    2 строки  → 3 горизонтальных линии (1, 2, 3)
+
+    Формула: N столбцов = N+1 линий</div>
+    <div class="diagram" data-lang="en">
+    grid-template-columns: 1fr 1fr 1fr;   (3 columns)
+    grid-template-rows: auto auto;        (2 rows)
+
+    Column lines:
+         1        2        3        4
+         │        │        │        │
+         ┌────────┬────────┬────────┐
+    1 ── │   A    │   B    │   C    │  ← row 1
+         ├────────┼────────┼────────┤
+    2 ── │   D    │   E    │   F    │  ← row 2
+         └────────┴────────┴────────┘
+    3 ──
+
+    3 columns → 4 vertical lines (1, 2, 3, 4)
+    2 rows    → 3 horizontal lines (1, 2, 3)
+
+    Formula: N columns = N+1 lines</div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Забор.</strong> Если у вас забор из 3 секций, то столбов будет 4 (один в начале, один в конце, два между секциями). Линии Grid — это столбы забора, а ячейки — секции между ними.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Fence.</strong> If you have a fence with 3 sections, there are 4 posts (one at the start, one at the end, two between sections). Grid lines are fence posts, and cells are the sections between them.</p>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Формула:</strong> N столбцов = N+1 линий столбцов. N строк = N+1 линий строк. Это важно запомнить!
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Formula:</strong> N columns = N+1 column lines. N rows = N+1 row lines. Important to remember!
+    </div>
+
+    <div class="try-it" data-lang="ru">
+        <p>Откройте DevTools (F12) на этой странице. Найдите любой grid-контейнер и нажмите на значок <strong>«grid»</strong>. Chrome подсветит <strong>номера линий</strong> прямо на странице! Это лучший способ понять нумерацию.</p>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p>Open DevTools (F12) on this page. Find any grid container and click the <strong>"grid"</strong> badge. Chrome will highlight <strong>line numbers</strong> right on the page! This is the best way to understand numbering.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== GRID-COLUMN ==================== -->
+    <h2 id="grid-column" data-lang="ru">3. grid-column — размещение по столбцам</h2>
+    <h2 id="grid-column-en" data-lang="en">3. grid-column — column placement</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Теперь, зная номера линий, мы можем сказать элементу: «займи место от линии 1 до линии 3» — и он растянется на 2 столбца. Это как в Excel объединить две ячейки.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Now, knowing line numbers, we can tell an element: "occupy space from line 1 to line 3" — and it stretches across 2 columns. Like merging two cells in Excel.</p>
+    </div>
+
+    <p data-lang="ru"><code>grid-column</code> указывает, от какой до какой линии столбца занимает элемент:</p>
+    <p data-lang="en"><code>grid-column</code> specifies from which to which column line an item occupies:</p>
+
+<pre><code>.item-a {
+    grid-column: 1 / 3;  /* от линии 1 до линии 3 = 2 столбца */
+}
+
+/* Можно записать отдельно: */
+grid-column-start: 1;
+grid-column-end: 3;
+
+/* Или сокращённо: */
+grid-column: 1 / 3;   /* start / end */</code></pre>
+
+    <div class="diagram" data-lang="ru">
+    grid-column: 1 / 3;    (элемент A занимает 2 столбца)
+
+         1        2        3        4
+         ┌────────────────┬────────┐
+         │    A (2 col)    │   B    │  ← строка 1
+         ├────────┬────────┼────────┤
+         │   C    │   D    │   E    │  ← строка 2
+         └────────┴────────┴────────┘
+
+    A начинается на линии 1, заканчивается на линии 3
+    → занимает 2 столбца (между линиями 1 и 3)</div>
+    <div class="diagram" data-lang="en">
+    grid-column: 1 / 3;    (item A spans 2 columns)
+
+         1        2        3        4
+         ┌────────────────┬────────┐
+         │    A (2 col)    │   B    │  ← row 1
+         ├────────┬────────┼────────┤
+         │   C    │   D    │   E    │  ← row 2
+         └────────┴────────┴────────┘
+
+    A starts at line 1, ends at line 3
+    → occupies 2 columns (between lines 1 and 3)</div>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">Элемент A: grid-column: 1 / 3 (занимает 2 столбца):</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">Item A: grid-column: 1 / 3 (spans 2 columns):</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+            <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 16px; text-align: center; font-weight: 700; border-radius: 6px; grid-column: 1 / 3;">A (2 столбца)</div>
+            <div style="background: #dcfce7; border: 2px solid #22c55e; padding: 16px; text-align: center; font-weight: 700; border-radius: 6px;">B</div>
+            <div style="background: #fef3c7; border: 2px solid #fbbf24; padding: 16px; text-align: center; font-weight: 700; border-radius: 6px;">C</div>
+            <div style="background: #fef3c7; border: 2px solid #fbbf24; padding: 16px; text-align: center; font-weight: 700; border-radius: 6px;">D</div>
+            <div style="background: #fef3c7; border: 2px solid #fbbf24; padding: 16px; text-align: center; font-weight: 700; border-radius: 6px;">E</div>
+        </div>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Отрицательные номера линий!</strong> <code>-1</code> — это <strong>последняя</strong> линия. Чтобы растянуть элемент на всю ширину, не считая столбцы:</p>
+<pre><code>grid-column: 1 / -1;  /* от первой до последней линии = ВСЯ ширина */</code></pre>
+        <p>Работает для любого количества столбцов! Очень полезно для header и footer.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Negative line numbers!</strong> <code>-1</code> is the <strong>last</strong> line. To stretch an element across the full width without counting columns:</p>
+<pre><code>grid-column: 1 / -1;  /* from first to last line = FULL width */</code></pre>
+        <p>Works for any number of columns! Very useful for header and footer.</p>
+    </div>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">grid-column: 1 / -1 (на всю ширину — 4 столбца):</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">grid-column: 1 / -1 (full width — 4 columns):</p>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+            <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 14px; text-align: center; font-weight: 700; border-radius: 6px; grid-column: 1 / -1;">Header (1 / -1) — вся ширина!</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem;">1</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem;">2</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem;">3</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem;">4</div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== GRID-ROW ==================== -->
+    <h2 id="grid-row" data-lang="ru">4. grid-row — размещение по строкам</h2>
+    <h2 id="grid-row-en" data-lang="en">4. grid-row — row placement</h2>
+
+    <p data-lang="ru"><code>grid-row</code> работает аналогично, но для строк. Это идеально для <strong>sidebar</strong>, который должен тянуться на несколько строк:</p>
+    <p data-lang="en"><code>grid-row</code> works the same way, but for rows. Perfect for a <strong>sidebar</strong> that should span multiple rows:</p>
+
+<pre><code>.sidebar {
+    grid-row: 1 / 3;  /* от линии 1 до линии 3 = 2 строки */
+}
+
+/* Сокращения: */
+grid-row-start: 1;
+grid-row-end: 3;</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">Sidebar: grid-row: 1 / 3 (занимает 2 строки):</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">Sidebar: grid-row: 1 / 3 (spans 2 rows):</p>
+        <div style="display: grid; grid-template-columns: 120px 1fr 1fr; grid-template-rows: 60px 80px; gap: 6px;">
+            <div style="background: #f3e8ff; border: 2px solid #a855f7; padding: 12px; text-align: center; font-weight: 700; border-radius: 6px; grid-row: 1 / 3; display: flex; align-items: center; justify-content: center;">Sidebar<br><span style="font-size: 0.75rem; font-weight: 400;">(2 строки)</span></div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem;">B</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem;">C</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem;">D</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem;">E</div>
+        </div>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    grid-row: 1 / 3;
+
+         ┌───────┬───────┬───────┐
+    1 ── │ SIDE  │  B    │  C    │
+         │  BAR  ├───────┼───────┤
+    2 ── │ (2    │  D    │  E    │
+         │ rows) │       │       │
+         └───────┴───────┴───────┘
+    3 ──
+
+    Sidebar занимает от линии строк 1 до 3 = 2 строки</div>
+    <div class="diagram" data-lang="en">
+    grid-row: 1 / 3;
+
+         ┌───────┬───────┬───────┐
+    1 ── │ SIDE  │  B    │  C    │
+         │  BAR  ├───────┼───────┤
+    2 ── │ (2    │  D    │  E    │
+         │ rows) │       │       │
+         └───────┴───────┴───────┘
+    3 ──
+
+    Sidebar spans from row line 1 to 3 = 2 rows</div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Где используется grid-row в реальных проектах:</strong></p>
+        <ul>
+            <li><strong>Sidebar</strong> — боковая панель на всю высоту (grid-row: 1 / -1)</li>
+            <li><strong>Featured-карточка</strong> — главная карточка в галерее, которая выше остальных</li>
+            <li><strong>Реклама</strong> — баннер, занимающий несколько строк сетки</li>
+        </ul>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Where grid-row is used in real projects:</strong></p>
+        <ul>
+            <li><strong>Sidebar</strong> — side panel full height (grid-row: 1 / -1)</li>
+            <li><strong>Featured card</strong> — main card in a gallery, taller than others</li>
+            <li><strong>Advertising</strong> — banner spanning multiple grid rows</li>
+        </ul>
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Ошибка на единицу (off-by-one).</strong> Новички путают номера линий и номера столбцов/строк:</p>
+<pre><code>/* НЕПРАВИЛЬНО: «хочу 2 столбца, пишу 1/2» */
+grid-column: 1 / 2;  /* Это только 1 столбец! (между линиями 1 и 2) */
+
+/* ПРАВИЛЬНО: 2 столбца = от линии 1 до линии 3 */
+grid-column: 1 / 3;  /* ✅ 2 столбца */</code></pre>
+        <p><strong>Помните:</strong> числа — это номера <strong>линий</strong>, а не столбцов. 2 столбца = 3 линии (1, 2, 3).</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Off-by-one error.</strong> Beginners confuse line numbers with column/row numbers:</p>
+<pre><code>/* WRONG: "I want 2 columns, so I write 1/2" */
+grid-column: 1 / 2;  /* This is only 1 column! (between lines 1 and 2) */
+
+/* CORRECT: 2 columns = from line 1 to line 3 */
+grid-column: 1 / 3;  /* ✅ 2 columns */</code></pre>
+        <p><strong>Remember:</strong> numbers are <strong>line</strong> numbers, not column numbers. 2 columns = 3 lines (1, 2, 3).</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SPAN ==================== -->
+    <h2 id="span" data-lang="ru">5. span — объединение ячеек</h2>
+    <h2 id="span-en" data-lang="en">5. span — merging cells</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Считать номера линий неудобно, особенно в больших сетках. Гораздо проще сказать: «займи 2 столбца» — без подсчёта линий. Для этого есть ключевое слово <code>span</code>.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Counting line numbers is inconvenient, especially in large grids. It's much easier to say: "take up 2 columns" — without counting lines. That's what the <code>span</code> keyword is for.</p>
+    </div>
+
+    <p data-lang="ru">Вместо указания конечной линии можно использовать <code>span</code> — сколько ячеек занять:</p>
+    <p data-lang="en">Instead of specifying the end line, you can use <code>span</code> — how many cells to occupy:</p>
+
+<pre><code>/* Все три записи делают ОДНО И ТО ЖЕ: */
+
+/* Способ 1: от линии до линии */
+grid-column: 1 / 3;
+
+/* Способ 2: span — занять 2 столбца (от текущей позиции) */
+grid-column: span 2;
+
+/* Способ 3: начало + span */
+grid-column: 1 / span 2;
+
+/* Для строк аналогично: */
+grid-row: span 3;  /* занять 3 строки */</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">Разные варианты span:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">Different span examples:</p>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+            <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 12px; text-align: center; font-weight: 700; border-radius: 6px; grid-column: span 2;">span 2</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.85rem;">C</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.85rem;">D</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.85rem;">E</div>
+            <div style="background: #f3e8ff; border: 2px solid #a855f7; padding: 12px; text-align: center; font-weight: 700; border-radius: 6px; grid-column: span 3;">span 3</div>
+            <div style="background: #fee2e2; border: 2px solid #ef4444; padding: 12px; text-align: center; font-weight: 700; border-radius: 6px; grid-column: span 4;">span 4 (вся ширина!)</div>
+        </div>
+    </div>
+
+    <div class="important" data-lang="ru">
+        <strong>span удобнее!</strong> Не нужно считать номера линий. <code>span 2</code> = «занять 2 ячейки» — просто и понятно. В реальных проектах <code>span</code> используется <strong>чаще</strong>, чем номера линий.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>span is more convenient!</strong> No need to count line numbers. <code>span 2</code> = "occupy 2 cells" — simple and clear. In real projects <code>span</code> is used <strong>more often</strong> than line numbers.
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Excel merge cells.</strong> <code>grid-column: span 2</code> — это как выделить 2 ячейки в Excel и нажать «Объединить». Элемент растягивается на 2 колонки, как объединённая ячейка в таблице.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Excel merge cells.</strong> <code>grid-column: span 2</code> is like selecting 2 cells in Excel and clicking "Merge". The element stretches across 2 columns, like a merged table cell.</p>
+    </div>
+
+    <div class="try-it" data-lang="ru">
+        <p>Создайте Grid 4x3 (4 столбца, 3 строки). Попробуйте:</p>
+        <ol>
+            <li>Первый элемент: <code>grid-column: span 2</code></li>
+            <li>Второй элемент: <code>grid-row: span 2</code></li>
+            <li>Последний элемент: <code>grid-column: span 4</code> (вся ширина)</li>
+        </ol>
+        <p>Посмотрите, как остальные элементы автоматически перераспределяются!</p>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p>Create a 4x3 Grid (4 columns, 3 rows). Try:</p>
+        <ol>
+            <li>First item: <code>grid-column: span 2</code></li>
+            <li>Second item: <code>grid-row: span 2</code></li>
+            <li>Last item: <code>grid-column: span 4</code> (full width)</li>
+        </ol>
+        <p>Watch how the remaining items automatically rearrange!</p>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Чем <code>grid-column: 1 / 3</code> отличается от <code>grid-column: span 2</code>? <em>(Первый явно указывает начало и конец (линии 1-3). Второй — «занять 2 столбца от текущей позиции». Результат может быть одинаков)</em></li>
+            <li>Как растянуть элемент на всю ширину сетки? <em>(grid-column: 1 / -1 или grid-column: span N, где N = число столбцов)</em></li>
+            <li>Сколько столбцов занимает <code>grid-column: 2 / 5</code>? <em>(3 столбца — от линии 2 до линии 5)</em></li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>How does <code>grid-column: 1 / 3</code> differ from <code>grid-column: span 2</code>? <em>(First explicitly sets start and end (lines 1-3). Second means "take 2 columns from current position". Result can be the same)</em></li>
+            <li>How to stretch an element across the full grid width? <em>(grid-column: 1 / -1 or grid-column: span N, where N = number of columns)</em></li>
+            <li>How many columns does <code>grid-column: 2 / 5</code> occupy? <em>(3 columns — from line 2 to line 5)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== AREAS INTRO ==================== -->
+    <h2 id="areas-intro" data-lang="ru">6. grid-template-areas — именованные области</h2>
+    <h2 id="areas-intro-en" data-lang="en">6. grid-template-areas — named areas</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Номера линий и span работают, но когда макет сложный (header + sidebar + content + footer), код с числами становится трудно читать. Попробуйте понять, что делает <code>grid-column: 2 / 4; grid-row: 1 / 3;</code> — нужно держать в голове всю сетку.</p>
+        <p><code>grid-template-areas</code> решает эту проблему: вы буквально <strong>рисуете макет текстом</strong>. Код читается как визуальная карта — сразу видно, где header, где sidebar, где content.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Line numbers and span work, but when the layout is complex (header + sidebar + content + footer), numeric code becomes hard to read. Try understanding what <code>grid-column: 2 / 4; grid-row: 1 / 3;</code> does — you have to keep the entire grid in your head.</p>
+        <p><code>grid-template-areas</code> solves this: you literally <strong>draw the layout with text</strong>. The code reads like a visual map — you immediately see where the header, sidebar, and content are.</p>
+    </div>
+
+<pre><code>.layout {
+    display: grid;
+    grid-template-areas:
+        "header  header  header"
+        "sidebar content content"
+        "footer  footer  footer";
+}</code></pre>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>План квартиры.</strong> Представьте, что вы архитектор. Вы рисуете план: «Здесь кухня, здесь спальня, здесь гостиная». Каждое слово — это комната (область). Одинаковые слова — это одна большая комната, занимающая несколько клеток.</p>
+        <p>Точно так же работает <code>grid-template-areas</code>: вы описываете, какой элемент где стоит, просто написав его имя в нужных ячейках.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Floor plan.</strong> Imagine you're an architect. You draw a plan: "Kitchen here, bedroom here, living room here". Each word is a room (area). Identical words form one large room spanning multiple cells.</p>
+        <p><code>grid-template-areas</code> works exactly like this: you describe which element goes where by writing its name in the right cells.</p>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><code>grid-template-areas</code> — одна из самых любимых фич CSS Grid среди разработчиков. Многие говорят, что это самый читаемый CSS-код, который они когда-либо видели. Вы буквально «видите» макет в коде!</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><code>grid-template-areas</code> is one of the most beloved CSS Grid features among developers. Many say it's the most readable CSS code they've ever seen. You literally "see" the layout in the code!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== AREAS SYNTAX ==================== -->
+    <h2 id="areas-syntax" data-lang="ru">7. Синтаксис grid-template-areas</h2>
+    <h2 id="areas-syntax-en" data-lang="en">7. grid-template-areas syntax</h2>
+
+<pre><code>.layout {
+    display: grid;
+    grid-template-columns: 250px 1fr 1fr;
+    grid-template-rows: 60px 1fr 50px;
+    grid-template-areas:
+        "header  header  header"
+        "sidebar content content"
+        "footer  footer  footer";
+    gap: 16px;
+    min-height: 100vh;
+}</code></pre>
+
+    <p data-lang="ru">Каждая строка в кавычках — это одна строка сетки. Количество слов в строке = количество столбцов. Одинаковые слова = одна область, растянутая на несколько ячеек.</p>
+    <p data-lang="en">Each quoted string is one grid row. Number of words per string = number of columns. Identical words = one area stretched across multiple cells.</p>
+
+    <div class="diagram" data-lang="ru">
+    "header  header  header"     ← строка 1: header на все 3 столбца
+    "sidebar content content"    ← строка 2: sidebar (1 col) + content (2 col)
+    "footer  footer  footer"     ← строка 3: footer на все 3 столбца
+
+    ┌───────────────────────────────┐
+    │           HEADER              │  60px
+    ├────────┬──────────────────────┤
+    │ SIDE   │                      │
+    │ BAR    │      CONTENT         │  1fr
+    │ 250px  │                      │
+    ├────────┴──────────────────────┤
+    │           FOOTER              │  50px
+    └───────────────────────────────┘</div>
+    <div class="diagram" data-lang="en">
+    "header  header  header"     ← row 1: header across all 3 columns
+    "sidebar content content"    ← row 2: sidebar (1 col) + content (2 col)
+    "footer  footer  footer"     ← row 3: footer across all 3 columns
+
+    ┌───────────────────────────────┐
+    │           HEADER              │  60px
+    ├────────┬──────────────────────┤
+    │ SIDE   │                      │
+    │ BAR    │      CONTENT         │  1fr
+    │ 250px  │                      │
+    ├────────┴──────────────────────┤
+    │           FOOTER              │  50px
+    └───────────────────────────────┘</div>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:6px;" data-lang="ru">Живой пример макета с areas:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:6px;" data-lang="en">Live layout example with areas:</p>
+        <div style="display: grid; grid-template-columns: 120px 1fr 1fr; grid-template-rows: 40px 100px 35px; grid-template-areas: 'header header header' 'sidebar content content' 'footer footer footer'; gap: 6px;">
+            <div style="grid-area: header; background: #dbeafe; border: 2px solid #3b82f6; padding: 8px; text-align: center; font-weight: 700; border-radius: 6px; display: flex; align-items: center; justify-content: center;">HEADER</div>
+            <div style="grid-area: sidebar; background: #f3e8ff; border: 2px solid #a855f7; padding: 8px; text-align: center; font-weight: 700; border-radius: 6px; display: flex; align-items: center; justify-content: center;">SIDEBAR</div>
+            <div style="grid-area: content; background: #dcfce7; border: 2px solid #22c55e; padding: 8px; text-align: center; font-weight: 700; border-radius: 6px; display: flex; align-items: center; justify-content: center;">CONTENT</div>
+            <div style="grid-area: footer; background: #fef3c7; border: 2px solid #fbbf24; padding: 8px; text-align: center; font-weight: 700; border-radius: 6px; display: flex; align-items: center; justify-content: center;">FOOTER</div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== AREAS RULES ==================== -->
+    <h2 id="areas-rules" data-lang="ru">8. Правила именованных областей</h2>
+    <h2 id="areas-rules-en" data-lang="en">8. Named areas rules</h2>
+
+    <div class="important" data-lang="ru">
+        <strong>Правила, которые нельзя нарушать:</strong>
+        <ol>
+            <li>Область должна быть <strong>прямоугольной</strong> (нельзя Г-образная или Т-образная)</li>
+            <li>Количество слов в каждой строке должно быть <strong>одинаковым</strong></li>
+            <li>Используйте <code>.</code> (точку) для <strong>пустых ячеек</strong></li>
+            <li>Имена областей — <strong>без кавычек</strong>, только буквы, цифры, дефис</li>
+        </ol>
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Rules that must not be broken:</strong>
+        <ol>
+            <li>An area must be <strong>rectangular</strong> (no L-shapes or T-shapes)</li>
+            <li>Number of words in each row must be <strong>the same</strong></li>
+            <li>Use <code>.</code> (dot) for <strong>empty cells</strong></li>
+            <li>Area names — <strong>no quotes</strong>, only letters, numbers, hyphens</li>
+        </ol>
+    </div>
+
+<pre><code>/* Пустая ячейка — точка */
+grid-template-areas:
+    "header header header"
+    "sidebar content ."       /* точка = пустая ячейка */
+    "footer  footer  footer";</code></pre>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">&#x274C; Неправильно — L-образная область</div>
+            <div class="label" data-lang="en">&#x274C; Wrong — L-shaped area</div>
+<pre><code>"header header ."
+"header sidebar sidebar"</code></pre>
+            <p data-lang="ru">header — не прямоугольник! CSS выдаст ошибку, Grid сломается.</p>
+            <p data-lang="en">header is not a rectangle! CSS will throw an error, Grid will break.</p>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">&#x2705; Правильно — прямоугольные области</div>
+            <div class="label" data-lang="en">&#x2705; Correct — rectangular areas</div>
+<pre><code>"header  header  header"
+".       sidebar sidebar"</code></pre>
+            <p data-lang="ru">Все области — прямоугольники. Точка = пустое место.</p>
+            <p data-lang="en">All areas are rectangles. Dot = empty space.</p>
+        </div>
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Самая частая ошибка — непрямоугольная область.</strong> Grid <strong>молча ломается</strong> — никакой красной ошибки в браузере. Элементы просто расположатся хаотично, и вы потратите 30 минут на отладку.</p>
+        <p>Если макет с areas выглядит сломанным — первым делом проверьте, что все области <strong>прямоугольные</strong>.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>The most common mistake — non-rectangular area.</strong> Grid <strong>silently breaks</strong> — no red error in the browser. Elements just get placed chaotically, and you'll spend 30 minutes debugging.</p>
+        <p>If an areas layout looks broken — first check that all areas are <strong>rectangular</strong>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== GRID-AREA ==================== -->
+    <h2 id="grid-area" data-lang="ru">9. grid-area — привязка элемента к области</h2>
+    <h2 id="grid-area-en" data-lang="en">9. grid-area — assigning element to area</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Мы нарисовали карту макета. Теперь нужно сказать каждому HTML-элементу: «Ты — header, встань в область header». Это делает свойство <code>grid-area</code>.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>We drew the layout map. Now we need to tell each HTML element: "You're the header, go to the header area." That's what <code>grid-area</code> does.</p>
+    </div>
+
+    <p data-lang="ru">После определения областей в контейнере, каждому элементу нужно указать его область:</p>
+    <p data-lang="en">After defining areas in the container, each element needs to be assigned its area:</p>
+
+<pre><code>&lt;div class="layout"&gt;
+    &lt;header class="head"&gt;Header&lt;/header&gt;
+    &lt;aside class="side"&gt;Sidebar&lt;/aside&gt;
+    &lt;main class="main"&gt;Content&lt;/main&gt;
+    &lt;footer class="foot"&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+
+<pre><code>.layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 60px 1fr 50px;
+    grid-template-areas:
+        "header  header"
+        "sidebar content"
+        "footer  footer";
+    gap: 16px;
+    min-height: 100vh;
+}
+
+/* Привязка: имя в CSS = имя в grid-template-areas */
+.head { grid-area: header; }
+.side { grid-area: sidebar; }
+.main { grid-area: content; }
+.foot { grid-area: footer; }</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Магия grid-area:</strong> порядок элементов в HTML <strong>не важен!</strong> Grid размещает их по именам областей. Вы можете поставить <code>&lt;footer&gt;</code> первым в HTML — он всё равно окажется внизу, потому что <code>grid-area: footer</code> ставит его в зону «footer».
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>grid-area magic:</strong> the order of elements in HTML <strong>doesn't matter!</strong> Grid places them by area names. You can put <code>&lt;footer&gt;</code> first in HTML — it will still be at the bottom, because <code>grid-area: footer</code> places it in the "footer" zone.
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Забыли написать <code>grid-area</code> для элемента.</strong> Если вы определили areas в контейнере, но не назначили <code>grid-area</code> элементу, он разместится автоматически (как обычно), <strong>игнорируя</strong> вашу красивую карту. Результат — хаос.</p>
+        <p>Правило: если используете <code>grid-template-areas</code>, <strong>каждому</strong> элементу нужен <code>grid-area</code>.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Forgot to write <code>grid-area</code> for an element.</strong> If you defined areas in the container but didn't assign <code>grid-area</code> to an element, it will be placed automatically (as usual), <strong>ignoring</strong> your beautiful map. Result — chaos.</p>
+        <p>Rule: if using <code>grid-template-areas</code>, <strong>every</strong> element needs a <code>grid-area</code>.</p>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Адаптивный макет с areas + media queries.</strong> Просто перерисуйте карту для мобильных — и макет полностью перестроится!</p>
+<pre><code>/* Десктоп: sidebar слева */
+grid-template-areas:
+    "header  header"
+    "sidebar content"
+    "footer  footer";
+
+/* Мобильный: всё в одну колонку */
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "content"
+            "sidebar"
+            "footer";
+    }
+}</code></pre>
+        <p>Ни строчки JavaScript! Просто меняете «рисунок» — и макет адаптируется. Это самый элегантный способ делать адаптивные макеты.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Responsive layout with areas + media queries.</strong> Just redraw the map for mobile — and the layout completely rearranges!</p>
+<pre><code>/* Desktop: sidebar on the left */
+grid-template-areas:
+    "header  header"
+    "sidebar content"
+    "footer  footer";
+
+/* Mobile: everything in one column */
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "content"
+            "sidebar"
+            "footer";
+    }
+}</code></pre>
+        <p>No JavaScript! Just change the "drawing" — and the layout adapts. This is the most elegant way to build responsive layouts.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== COMPLEX LAYOUT ==================== -->
+    <h2 id="complex-layout" data-lang="ru">10. Сложный макет с областями</h2>
+    <h2 id="complex-layout-en" data-lang="en">10. Complex layout with areas</h2>
+
+    <p data-lang="ru">Создадим Dashboard с 4 зонами — навигация слева на всю высоту, header сверху, основной контент и боковая панель:</p>
+    <p data-lang="en">Let's create a Dashboard with 4 zones — navigation on the left full height, header on top, main content and side panel:</p>
+
+<pre><code>.dashboard {
+    display: grid;
+    grid-template-columns: 220px 1fr 1fr;
+    grid-template-rows: 60px 1fr 1fr;
+    grid-template-areas:
+        "nav    header  header"
+        "nav    main    aside"
+        "nav    main    aside";
+    gap: 16px;
+    min-height: 100vh;
+}
+
+.dash-nav    { grid-area: nav; }
+.dash-header { grid-area: header; }
+.dash-main   { grid-area: main; }
+.dash-aside  { grid-area: aside; }</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:6px;" data-lang="ru">Живой Dashboard-макет:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:6px;" data-lang="en">Live Dashboard layout:</p>
+        <div style="display: grid; grid-template-columns: 100px 1fr 1fr; grid-template-rows: 40px 70px 70px; grid-template-areas: 'nav header header' 'nav main aside' 'nav main aside'; gap: 6px;">
+            <div style="grid-area: nav; background: #1e293b; color: white; padding: 8px; text-align: center; font-weight: 700; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">NAV</div>
+            <div style="grid-area: header; background: #dbeafe; border: 2px solid #3b82f6; padding: 8px; text-align: center; font-weight: 700; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">HEADER</div>
+            <div style="grid-area: main; background: #dcfce7; border: 2px solid #22c55e; padding: 8px; text-align: center; font-weight: 700; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">MAIN</div>
+            <div style="grid-area: aside; background: #fef3c7; border: 2px solid #fbbf24; padding: 8px; text-align: center; font-weight: 700; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">ASIDE</div>
+        </div>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    ┌──────┬────────────────────────┐
+    │      │          HEADER        │
+    │      ├────────────┬───────────┤
+    │ NAV  │            │           │
+    │      │   MAIN     │   ASIDE   │
+    │      │            │           │
+    └──────┴────────────┴───────────┘
+
+    nav занимает все 3 строки слева (220px)
+    header — верхнюю строку справа
+    main и aside — нижние 2 строки справа</div>
+    <div class="diagram" data-lang="en">
+    ┌──────┬────────────────────────┐
+    │      │          HEADER        │
+    │      ├────────────┬───────────┤
+    │ NAV  │            │           │
+    │      │   MAIN     │   ASIDE   │
+    │      │            │           │
+    └──────┴────────────┴───────────┘
+
+    nav spans all 3 rows on the left (220px)
+    header — top row on the right
+    main and aside — bottom 2 rows on the right</div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Такой макет используется в:</strong></p>
+        <ul>
+            <li><strong>Gmail</strong> — навигация слева, список писем по центру, чтение письма справа</li>
+            <li><strong>VS Code</strong> — sidebar слева, редактор по центру, панель справа</li>
+            <li><strong>Админ-панели</strong> — меню слева, контент справа, header сверху</li>
+            <li><strong>Slack / Discord</strong> — каналы слева, чат по центру, участники справа</li>
+        </ul>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>This layout is used in:</strong></p>
+        <ul>
+            <li><strong>Gmail</strong> — navigation left, email list center, email reading right</li>
+            <li><strong>VS Code</strong> — sidebar left, editor center, panel right</li>
+            <li><strong>Admin panels</strong> — menu left, content right, header top</li>
+            <li><strong>Slack / Discord</strong> — channels left, chat center, members right</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== GRID VS FLEXBOX ==================== -->
+    <h2 id="grid-vs-flexbox" data-lang="ru">11. Grid vs Flexbox — когда что использовать</h2>
+    <h2 id="grid-vs-flexbox-en" data-lang="en">11. Grid vs Flexbox — when to use which</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Это один из самых частых вопросов: «Когда Grid, а когда Flexbox?» Давайте разберём раз и навсегда с конкретными примерами.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>This is one of the most common questions: "When Grid, when Flexbox?" Let's settle this once and for all with specific examples.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Задача</th><th>Лучший выбор</th><th>Почему</th></tr>
+        <tr><td>Макет всей страницы</td><td><strong>Grid</strong></td><td>2D-раскладка: header, sidebar, content, footer</td></tr>
+        <tr><td>Навигация (меню)</td><td><strong>Flexbox</strong></td><td>Элементы в одну линию, гибкое распределение</td></tr>
+        <tr><td>Сетка карточек</td><td><strong>Grid</strong></td><td>Ровные столбцы и строки, auto-fit + minmax</td></tr>
+        <tr><td>Карточка товара (внутри)</td><td><strong>Flexbox</strong></td><td>Контент в столбец: картинка → текст → кнопка</td></tr>
+        <tr><td>Dashboard</td><td><strong>Grid</strong></td><td>Виджеты разных размеров в сетке</td></tr>
+        <tr><td>Центрирование элемента</td><td><strong>Оба</strong></td><td>Grid: place-items: center; Flex: justify+align</td></tr>
+        <tr><td>Footer прижатый к низу</td><td><strong>Grid</strong></td><td>grid-template-rows: auto 1fr auto</td></tr>
+        <tr><td>Хлебные крошки</td><td><strong>Flexbox</strong></td><td>Элементы в ряд с разделителями</td></tr>
+        <tr><td>Фотогалерея</td><td><strong>Grid</strong></td><td>Ровная сетка, объединение ячеек для featured</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Task</th><th>Best choice</th><th>Why</th></tr>
+        <tr><td>Full page layout</td><td><strong>Grid</strong></td><td>2D layout: header, sidebar, content, footer</td></tr>
+        <tr><td>Navigation (menu)</td><td><strong>Flexbox</strong></td><td>Items in a line, flexible distribution</td></tr>
+        <tr><td>Card grid</td><td><strong>Grid</strong></td><td>Even columns and rows, auto-fit + minmax</td></tr>
+        <tr><td>Product card (inside)</td><td><strong>Flexbox</strong></td><td>Content in column: image → text → button</td></tr>
+        <tr><td>Dashboard</td><td><strong>Grid</strong></td><td>Widgets of different sizes in a grid</td></tr>
+        <tr><td>Centering</td><td><strong>Both</strong></td><td>Grid: place-items: center; Flex: justify+align</td></tr>
+        <tr><td>Sticky footer</td><td><strong>Grid</strong></td><td>grid-template-rows: auto 1fr auto</td></tr>
+        <tr><td>Breadcrumbs</td><td><strong>Flexbox</strong></td><td>Items in a row with separators</td></tr>
+        <tr><td>Photo gallery</td><td><strong>Grid</strong></td><td>Even grid, cell merging for featured items</td></tr>
+    </table>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Простое правило:</strong>
+        <ul>
+            <li><strong>Одно направление</strong> (ряд кнопок, навигация, список) → <strong>Flexbox</strong></li>
+            <li><strong>Два направления</strong> (сетка карточек, макет страницы) → <strong>Grid</strong></li>
+            <li><strong>Не уверены?</strong> Начните с Flexbox. Если не хватает — переключитесь на Grid</li>
+        </ul>
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Simple rule:</strong>
+        <ul>
+            <li><strong>One direction</strong> (row of buttons, navigation, list) → <strong>Flexbox</strong></li>
+            <li><strong>Two directions</strong> (card grid, page layout) → <strong>Grid</strong></li>
+            <li><strong>Not sure?</strong> Start with Flexbox. If not enough — switch to Grid</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== COMBINING ==================== -->
+    <h2 id="combining" data-lang="ru">12. Комбинирование Grid и Flexbox</h2>
+    <h2 id="combining-en" data-lang="en">12. Combining Grid and Flexbox</h2>
+
+    <div class="why" data-lang="ru">
+        <p>На реальных сайтах Grid и Flexbox используются <strong>вместе</strong>. Grid отвечает за общую структуру страницы, а Flexbox — за компоненты внутри. Это не «или-или» — это «и-и»!</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>In real websites Grid and Flexbox are used <strong>together</strong>. Grid handles the overall page structure, Flexbox handles components inside. It's not "either-or" — it's "both-and"!</p>
+    </div>
+
+    <p data-lang="ru">Типичный паттерн: Grid для макета, Flexbox для компонентов внутри:</p>
+    <p data-lang="en">Typical pattern: Grid for layout, Flexbox for components inside:</p>
+
+<pre><code>/* Grid — общая раскладка страницы */
+.page {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-areas:
+        "header header"
+        "sidebar content"
+        "footer footer";
+}
+
+/* Flexbox — навигация внутри header */
+.header {
+    grid-area: header;
+    display: flex;               /* ← Flexbox внутри Grid-элемента! */
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Grid — сетка карточек внутри content */
+.content {
+    grid-area: content;
+    display: grid;               /* ← Grid внутри Grid-элемента! */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Flexbox — карточка товара */
+.card {
+    display: flex;               /* ← Flexbox внутри Grid-элемента! */
+    flex-direction: column;
+    gap: 12px;
+}</code></pre>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Архитектор и дизайнер интерьера.</strong> Grid — это <strong>архитектор</strong>, который проектирует этажи и комнаты здания (макет страницы). Flexbox — это <strong>дизайнер интерьера</strong>, который расставляет мебель внутри комнат (компоненты внутри секций). Они работают вместе — один создаёт структуру, другой наполняет деталями.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Architect and interior designer.</strong> Grid is the <strong>architect</strong> who designs the floors and rooms of a building (page layout). Flexbox is the <strong>interior designer</strong> who arranges furniture inside rooms (components inside sections). They work together — one creates structure, the other fills in details.</p>
+    </div>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:6px;" data-lang="ru">Grid (макет) + Flexbox (навигация + карточки):</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:6px;" data-lang="en">Grid (layout) + Flexbox (navigation + cards):</p>
+        <div style="display: grid; grid-template-columns: 100px 1fr; grid-template-rows: 36px 1fr; grid-template-areas: 'header header' 'sidebar content'; gap: 6px;">
+            <!-- Header with Flexbox inside -->
+            <div style="grid-area: header; background: #1e293b; color: white; padding: 6px 12px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem;">
+                <span style="font-weight: 700;">Logo</span>
+                <div style="display: flex; gap: 12px;">
+                    <span>Home</span>
+                    <span>About</span>
+                    <span>Contact</span>
+                </div>
+            </div>
+            <!-- Sidebar with Flexbox inside -->
+            <div style="grid-area: sidebar; background: #f3e8ff; border: 1px solid #c4b5fd; padding: 8px; border-radius: 6px; display: flex; flex-direction: column; gap: 4px; font-size: 0.75rem;">
+                <div style="padding: 4px 8px; background: #a855f7; color: white; border-radius: 4px; text-align: center;">Menu 1</div>
+                <div style="padding: 4px 8px; background: #e2e8f0; border-radius: 4px; text-align: center;">Menu 2</div>
+                <div style="padding: 4px 8px; background: #e2e8f0; border-radius: 4px; text-align: center;">Menu 3</div>
+            </div>
+            <!-- Content with Grid inside -->
+            <div style="grid-area: content; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+                <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; border-radius: 6px; text-align: center; font-size: 0.75rem;">Card 1</div>
+                <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; border-radius: 6px; text-align: center; font-size: 0.75rem;">Card 2</div>
+                <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; border-radius: 6px; text-align: center; font-size: 0.75rem;">Card 3</div>
+            </div>
+        </div>
+        <p style="font-size:0.75rem;color:#94a3b8;margin-top:6px;" data-lang="ru">Header: Flexbox (logo + навигация в ряд). Sidebar: Flexbox (меню в столбец). Content: Grid (карточки в сетке).</p>
+        <p style="font-size:0.75rem;color:#94a3b8;margin-top:6px;" data-lang="en">Header: Flexbox (logo + nav in a row). Sidebar: Flexbox (menu in column). Content: Grid (cards in grid).</p>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p>Элемент может быть <strong>одновременно</strong> grid-элементом (в макете) и flex/grid-контейнером (для своих потомков). Это как комната в здании: она часть этажа (grid-элемент) и при этом имеет собственную мебель (flex/grid-контейнер).</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p>An element can be <strong>simultaneously</strong> a grid item (in the layout) and a flex/grid container (for its children). Like a room in a building: it's part of a floor (grid item) and has its own furniture inside (flex/grid container).</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">13. Практика: Dashboard-макет</h2>
+    <h2 id="practice-en" data-lang="en">13. Practice: Dashboard layout</h2>
+
+    <p data-lang="ru">Применим <strong>всё изученное</strong>! Создадим полноценный Dashboard — Grid для макета, Flexbox для компонентов внутри, именованные области для читаемости.</p>
+    <p data-lang="en">Let's apply <strong>everything we learned</strong>! We'll create a complete Dashboard — Grid for layout, Flexbox for components inside, named areas for readability.</p>
+
+    <div class="highlight" data-lang="ru">
+        <strong>В этом примере мы используем:</strong>
+        <ul>
+            <li><code>grid-template-areas</code> — визуальная карта макета</li>
+            <li><code>grid-area</code> — привязка элементов к областям</li>
+            <li><code>display: flex</code> внутри sidebar — вертикальное меню</li>
+            <li><code>display: grid</code> внутри main — сетка виджетов</li>
+            <li><code>repeat(auto-fit, minmax(...))</code> — адаптивные виджеты</li>
+        </ul>
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>In this example we use:</strong>
+        <ul>
+            <li><code>grid-template-areas</code> — visual layout map</li>
+            <li><code>grid-area</code> — assigning elements to areas</li>
+            <li><code>display: flex</code> inside sidebar — vertical menu</li>
+            <li><code>display: grid</code> inside main — widget grid</li>
+            <li><code>repeat(auto-fit, minmax(...))</code> — responsive widgets</li>
+        </ul>
+    </div>
+
+<pre><code>&lt;div class="dashboard"&gt;
+    &lt;header class="dash-header"&gt;Dashboard Header&lt;/header&gt;
+    &lt;nav class="dash-sidebar"&gt;
+        &lt;a href="#"&gt;Home&lt;/a&gt;
+        &lt;a href="#"&gt;Analytics&lt;/a&gt;
+        &lt;a href="#"&gt;Settings&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;main class="dash-main"&gt;
+        &lt;div class="widget"&gt;Widget 1&lt;/div&gt;
+        &lt;div class="widget"&gt;Widget 2&lt;/div&gt;
+        &lt;div class="widget"&gt;Widget 3&lt;/div&gt;
+        &lt;div class="widget"&gt;Widget 4&lt;/div&gt;
+    &lt;/main&gt;
+    &lt;aside class="dash-aside"&gt;Notifications&lt;/aside&gt;
+&lt;/div&gt;</code></pre>
+
+<pre><code>.dashboard {
+    display: grid;
+    grid-template-columns: 220px 1fr 280px;
+    grid-template-rows: 60px 1fr;
+    grid-template-areas:
+        "sidebar header  header"
+        "sidebar main    aside";
+    gap: 16px;
+    min-height: 100vh;
+    padding: 16px;
+    background: #f1f5f9;
+}
+
+.dash-header  { grid-area: header; }
+.dash-sidebar { grid-area: sidebar; }
+.dash-main    { grid-area: main; }
+.dash-aside   { grid-area: aside; }
+
+/* Внутри sidebar — Flexbox (вертикальное меню) */
+.dash-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+}
+
+.dash-sidebar a {
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+}
+
+.dash-sidebar a:hover {
+    background: #334155;
+    color: white;
+}
+
+/* Внутри main — Grid (адаптивные виджеты) */
+.dash-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.widget {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}</code></pre>
+
+    <div class="try-it" data-lang="ru">
+        <p><strong>Создайте этот Dashboard и модифицируйте:</strong></p>
+        <ol>
+            <li>Добавьте footer под main и aside: <code>"sidebar footer footer"</code></li>
+            <li>Сделайте первый виджет на 2 столбца: <code>.widget:first-child { grid-column: span 2; }</code></li>
+            <li>Добавьте hover-эффект на виджеты: <code>transform: translateY(-2px)</code> + усиление тени</li>
+            <li>Сделайте мобильную версию через media query — перерисуйте areas в одну колонку</li>
+            <li>Добавьте 5-й и 6-й виджет — посмотрите, как сетка автоматически расширяется</li>
+        </ol>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p><strong>Create this Dashboard and modify it:</strong></p>
+        <ol>
+            <li>Add footer below main and aside: <code>"sidebar footer footer"</code></li>
+            <li>Make the first widget span 2 columns: <code>.widget:first-child { grid-column: span 2; }</code></li>
+            <li>Add hover effect on widgets: <code>transform: translateY(-2px)</code> + stronger shadow</li>
+            <li>Create a mobile version with media query — redraw areas into one column</li>
+            <li>Add 5th and 6th widget — watch how the grid automatically expands</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">Итоги занятия 17</h2>
+    <h2 data-lang="en">Lesson 18 Summary</h2>
+
+    <div class="summary" data-lang="ru">
+        <strong>Свойства Grid-элементов (новые):</strong>
+        <ul>
+            <li><code>grid-column: 1 / 3</code> — занять от линии 1 до линии 3 (2 столбца)</li>
+            <li><code>grid-column: span 2</code> — занять 2 столбца (проще!)</li>
+            <li><code>grid-column: 1 / -1</code> — на всю ширину (от первой до последней линии)</li>
+            <li><code>grid-row: 1 / 3</code> — занять 2 строки</li>
+            <li><code>grid-row: span 2</code> — занять 2 строки (проще!)</li>
+            <li><code>grid-area: name</code> — привязать к именованной области</li>
+        </ul>
+        <strong>Свойства Grid-контейнера (новые):</strong>
+        <ul>
+            <li><code>grid-template-areas</code> — визуальная карта макета (самый читаемый способ!)</li>
+        </ul>
+        <strong>Ключевые правила:</strong>
+        <ul>
+            <li>N столбцов = N+1 линий. Числа в grid-column/row — это линии, не столбцы!</li>
+            <li>Области в grid-template-areas должны быть <strong>прямоугольными</strong></li>
+            <li>Точка (.) = пустая ячейка в areas</li>
+            <li>Grid — для макета (2D). Flexbox — для компонентов (1D). Используйте <strong>вместе</strong>!</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>Grid item properties (new):</strong>
+        <ul>
+            <li><code>grid-column: 1 / 3</code> — span from line 1 to line 3 (2 columns)</li>
+            <li><code>grid-column: span 2</code> — span 2 columns (easier!)</li>
+            <li><code>grid-column: 1 / -1</code> — full width (first to last line)</li>
+            <li><code>grid-row: 1 / 3</code> — span 2 rows</li>
+            <li><code>grid-row: span 2</code> — span 2 rows (easier!)</li>
+            <li><code>grid-area: name</code> — assign to named area</li>
+        </ul>
+        <strong>Grid container properties (new):</strong>
+        <ul>
+            <li><code>grid-template-areas</code> — visual layout map (most readable way!)</li>
+        </ul>
+        <strong>Key rules:</strong>
+        <ul>
+            <li>N columns = N+1 lines. Numbers in grid-column/row are lines, not columns!</li>
+            <li>Areas in grid-template-areas must be <strong>rectangular</strong></li>
+            <li>Dot (.) = empty cell in areas</li>
+            <li>Grid — for layout (2D). Flexbox — for components (1D). Use them <strong>together</strong>!</li>
+        </ul>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <p><strong>Финальная проверка — ответьте на все вопросы:</strong></p>
+        <ol>
+            <li>Как занять 2 столбца с помощью <code>grid-column</code>? <em>(grid-column: span 2 или grid-column: 1 / 3)</em></li>
+            <li>Что делает <code>span 3</code> в grid-row? <em>(элемент занимает 3 строки)</em></li>
+            <li>Что означает <code>grid-column: 1 / -1</code>? <em>(от первой до последней линии = вся ширина)</em></li>
+            <li>Как создать именованную область? <em>(grid-template-areas на контейнере + grid-area на элементах)</em></li>
+            <li>Какие правила у grid-template-areas? <em>(области прямоугольные, одинаковое кол-во слов в строках, точка = пусто)</em></li>
+            <li>Когда лучше Grid, а когда Flexbox? <em>(Grid — 2D макет, Flexbox — 1D компоненты)</em></li>
+            <li>Можно ли использовать Flexbox внутри Grid-элемента? <em>(Да! Это стандартный паттерн)</em></li>
+            <li>Почему <code>grid-column: 1 / 2</code> — это <strong>один</strong> столбец, а не два? <em>(числа = линии, между линиями 1 и 2 — одна ячейка)</em></li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <p><strong>Final check — answer all questions:</strong></p>
+        <ol>
+            <li>How to span 2 columns with <code>grid-column</code>? <em>(grid-column: span 2 or grid-column: 1 / 3)</em></li>
+            <li>What does <code>span 3</code> do in grid-row? <em>(element occupies 3 rows)</em></li>
+            <li>What does <code>grid-column: 1 / -1</code> mean? <em>(from first to last line = full width)</em></li>
+            <li>How to create a named area? <em>(grid-template-areas on container + grid-area on elements)</em></li>
+            <li>What are the rules for grid-template-areas? <em>(areas must be rectangular, same word count per row, dot = empty)</em></li>
+            <li>When is Grid better, when Flexbox? <em>(Grid — 2D layout, Flexbox — 1D components)</em></li>
+            <li>Can you use Flexbox inside a Grid item? <em>(Yes! That's a standard pattern)</em></li>
+            <li>Why is <code>grid-column: 1 / 2</code> <strong>one</strong> column, not two? <em>(numbers = lines, between lines 1 and 2 is one cell)</em></li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

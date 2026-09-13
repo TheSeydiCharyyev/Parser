@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 22 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 22: Мини-проект — Сайт ресторана</span>
+    <span class="nav-title" data-lang="en">Lesson 22: Mini-project — Restaurant Website</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 22: Мини-проект #5 — Адаптивный сайт ресторана</p>
+    <p class="subtitle" data-lang="en">Lesson 22: Mini-project #5 — Responsive Restaurant Website</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 22.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 22.1: ПЛАНИРОВАНИЕ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 22.1: PLANNING</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 21.1: Спланируй сайт ресторана</span>
+            <span class="task-title" data-lang="en">Task 21.1: Plan the restaurant website</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Выбрать тему и спланировать содержание</div>
+        <div class="task-goal" data-lang="en">Choose a theme and plan the content</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Выбери тему:</strong> итальянский ресторан, суши-бар, кофейня, пиццерия, кондитерская, национальная кухня</li>
+            <li><strong>Название и слоган:</strong> короткое название + описание (1 предложение)</li>
+            <li><strong>Меню:</strong> 6 блюд — название, описание, цена</li>
+            <li><strong>Цветовая схема:</strong> основной цвет, тёмный, светлый фон (запиши HEX-коды)</li>
+            <li><strong>Заполни таблицу</strong> — что на каждом размере экрана (desktop, tablet, mobile)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Choose a theme:</strong> Italian restaurant, sushi bar, coffee shop, pizzeria, bakery, national cuisine</li>
+            <li><strong>Name and tagline:</strong> short name + description (1 sentence)</li>
+            <li><strong>Menu:</strong> 6 dishes — name, description, price</li>
+            <li><strong>Color scheme:</strong> primary color, dark, light background (write HEX codes)</li>
+            <li><strong>Fill in the table</strong> — what on each screen size (desktop, tablet, mobile)</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Пример таблицы адаптации:</strong><br>
+            <code>Header — Desktop: лого + 4 ссылки | Tablet: то же | Mobile: лого + бургер</code><br>
+            <code>Hero — Desktop: 100vh | Tablet: 80vh | Mobile: 70vh</code><br>
+            <code>Menu — Desktop: 3 колонки | Tablet: 2 | Mobile: 1</code><br>
+            <code>Gallery — Desktop: 4 колонки | Tablet: 3 | Mobile: 2</code><br>
+            Сохраните эту таблицу в отдельный файл <code>plan.md</code> — пригодится при написании CSS.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Example adaptation table:</strong><br>
+            <code>Header — Desktop: logo + 4 links | Tablet: same | Mobile: logo + burger</code><br>
+            <code>Hero — Desktop: 100vh | Tablet: 80vh | Mobile: 70vh</code><br>
+            <code>Menu — Desktop: 3 cols | Tablet: 2 | Mobile: 1</code><br>
+            <code>Gallery — Desktop: 4 cols | Tablet: 3 | Mobile: 2</code><br>
+            Save this table as a separate file <code>plan.md</code> — it'll help when you write CSS.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Тема, название, слоган</li>
+                <li>6 блюд записаны (название + описание + цена)</li>
+                <li>5 цветов определены: primary, dark, light, text, muted</li>
+                <li>Таблица адаптации для 3 размеров (все 6 секций)</li>
+                <li>Макет нарисован на бумаге или в Figma (фото, скан, скриншот)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Theme, name, tagline</li>
+                <li>6 dishes written (name + description + price)</li>
+                <li>5 colors defined: primary, dark, light, text, muted</li>
+                <li>Adaptation table for 3 sizes (all 6 sections)</li>
+                <li>Layout sketched on paper or Figma (photo, scan, screenshot)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 22.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 22.2: HTML + ДЕСКТОП</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 22.2: HTML + DESKTOP</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 21.2: Собери структуру и десктоп-версию</span>
+            <span class="task-title" data-lang="en">Task 21.2: Build structure and desktop version</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать HTML-структуру и десктоп-стили сайта</div>
+        <div class="task-goal" data-lang="en">Create HTML structure and desktop styles</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>restaurant</code> с <code>index.html</code> и <code>style.css</code>:</p>
+        <p data-lang="en">Create a folder <code>restaurant</code> with <code>index.html</code> and <code>style.css</code>:</p>
+
+        <ol data-lang="ru">
+            <li><strong>CSS-переменные:</strong> <code>:root { --color-primary, --color-dark, --color-light }</code></li>
+            <li><strong>Header:</strong> <code>position: fixed</code>, лого + навигация (Flexbox), подготовить checkbox + label для бургера</li>
+            <li><strong>Hero:</strong> <code>height: 100vh</code>, фоновое изображение + overlay, <code>clamp()</code> заголовок, кнопка CTA</li>
+            <li><strong>Menu:</strong> Grid 3 колонки, 6 карточек: изображение, название, описание, цена</li>
+            <li><strong>Gallery:</strong> Grid 4 колонки, 8 изображений с hover-эффектом</li>
+            <li><strong>Contacts:</strong> Flexbox row — инфо + форма (name, email, message, кнопка)</li>
+            <li><strong>Footer:</strong> Grid 3 колонки + копирайт</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>CSS variables:</strong> <code>:root { --color-primary, --color-dark, --color-light }</code></li>
+            <li><strong>Header:</strong> <code>position: fixed</code>, logo + nav (Flexbox), prepare checkbox + label for burger</li>
+            <li><strong>Hero:</strong> <code>height: 100vh</code>, background image + overlay, <code>clamp()</code> heading, CTA button</li>
+            <li><strong>Menu:</strong> Grid 3 columns, 6 cards: image, name, description, price</li>
+            <li><strong>Gallery:</strong> Grid 4 columns, 8 images with hover effect</li>
+            <li><strong>Contacts:</strong> Flexbox row — info + form (name, email, message, button)</li>
+            <li><strong>Footer:</strong> Grid 3 columns + copyright</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Пока не пишите media queries! Сначала сделайте красивую десктоп-версию, потом будем адаптировать.
+        </div>
+        <div class="hint" data-lang="en">
+            Don't write media queries yet! First make a beautiful desktop version, then we'll adapt it.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>6 секций: header, hero, menu, gallery, contacts, footer</li>
+                <li>Семантические теги (<code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code>)</li>
+                <li><code>* { box-sizing: border-box }</code> + CSS-переменные для цветов</li>
+                <li><code>.container { width: 90%; max-width: 1200px; margin: 0 auto }</code></li>
+                <li>Header: <code>position: fixed</code> + <code>backdrop-filter: blur</code> + <code>z-index: 100</code></li>
+                <li>Hero с фоном + overlay + <code>clamp()</code> заголовок</li>
+                <li>Grid для меню (3 col), галереи (4 col), footer (3 col)</li>
+                <li><code>overflow: hidden</code> + <code>object-fit: cover</code> для фото в карточках</li>
+                <li>Контактная форма: <code>font-family: inherit</code>, <code>resize: vertical</code> у textarea</li>
+                <li>Hover-эффекты на карточках и изображениях</li>
+                <li>CSS в отдельном файле <code>style.css</code></li>
+            </ul>
+            <ul data-lang="en">
+                <li>6 sections: header, hero, menu, gallery, contacts, footer</li>
+                <li>Semantic tags (<code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code>)</li>
+                <li><code>* { box-sizing: border-box }</code> + CSS variables for colors</li>
+                <li><code>.container { width: 90%; max-width: 1200px; margin: 0 auto }</code></li>
+                <li>Header: <code>position: fixed</code> + <code>backdrop-filter: blur</code> + <code>z-index: 100</code></li>
+                <li>Hero with background + overlay + <code>clamp()</code> heading</li>
+                <li>Grid for menu (3 col), gallery (4 col), footer (3 col)</li>
+                <li><code>overflow: hidden</code> + <code>object-fit: cover</code> for card photos</li>
+                <li>Contact form: <code>font-family: inherit</code>, <code>resize: vertical</code> on textarea</li>
+                <li>Hover effects on cards and images</li>
+                <li>CSS in separate file <code>style.css</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 22.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 22.3: АДАПТИВНОСТЬ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 22.3: RESPONSIVENESS</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 21.3: Сделай сайт адаптивным</span>
+            <span class="task-title" data-lang="en">Task 21.3: Make the site responsive</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Добавить media queries для планшета и мобильного</div>
+        <div class="task-goal" data-lang="en">Add media queries for tablet and mobile</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Добавьте media queries к сайту из задания 21.2:</p>
+        <p data-lang="en">Add media queries to the site from task 21.2:</p>
+
+        <h3 data-lang="ru">Планшет (≤ 992px):</h3>
+        <h3 data-lang="en">Tablet (≤ 992px):</h3>
+        <ul data-lang="ru">
+            <li>Меню: 2 колонки</li>
+            <li>Галерея: 3 колонки</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Menu: 2 columns</li>
+            <li>Gallery: 3 columns</li>
+        </ul>
+
+        <h3 data-lang="ru">Мобильный (≤ 768px):</h3>
+        <h3 data-lang="en">Mobile (≤ 768px):</h3>
+        <ul data-lang="ru">
+            <li><strong>Бургер-меню:</strong> показать иконку, скрыть навигацию, <code>:checked ~ .nav</code></li>
+            <li><strong>Hero:</strong> <code>height: 70vh</code></li>
+            <li><strong>About:</strong> <code>flex-direction: column</code></li>
+            <li><strong>Меню:</strong> 1 колонка</li>
+            <li><strong>Галерея:</strong> 2 колонки</li>
+            <li><strong>Контакты:</strong> <code>flex-direction: column</code></li>
+            <li><strong>Footer:</strong> 1 колонка</li>
+            <li><strong>Отступы:</strong> уменьшить padding секций</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>Burger menu:</strong> show icon, hide nav, <code>:checked ~ .nav</code></li>
+            <li><strong>Hero:</strong> <code>height: 70vh</code></li>
+            <li><strong>About:</strong> <code>flex-direction: column</code></li>
+            <li><strong>Menu:</strong> 1 column</li>
+            <li><strong>Gallery:</strong> 2 columns</li>
+            <li><strong>Contacts:</strong> <code>flex-direction: column</code></li>
+            <li><strong>Footer:</strong> 1 column</li>
+            <li><strong>Spacing:</strong> reduce section padding</li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            <strong>Бургер → крестик (копипаста):</strong>
+<pre><code>.menu-toggle:checked ~ .burger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+.menu-toggle:checked ~ .burger span:nth-child(2) { opacity: 0; }
+.menu-toggle:checked ~ .burger span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Burger → cross (copy-paste):</strong>
+<pre><code>.menu-toggle:checked ~ .burger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+.menu-toggle:checked ~ .burger span:nth-child(2) { opacity: 0; }
+.menu-toggle:checked ~ .burger span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>2 breakpoints: 992px (планшет) и 768px (мобильный)</li>
+                <li>Бургер-меню работает без JS (checkbox hack)</li>
+                <li>Анимация бургер → крестик (3 span с rotate/opacity)</li>
+                <li>Меню: 3 → 2 → 1 колонок. Галерея: 4 → 3 → 2. Футер: 3 → 1</li>
+                <li>About и Contacts: <code>flex-direction: column</code> на мобильном</li>
+                <li>Hero: <code>height: 70vh</code> на мобильном (чтобы не «давил»)</li>
+                <li>Отступы секций уменьшены на мобильном (<code>padding: 48px 0</code>)</li>
+                <li>Протестировано: iPhone SE (375px), iPad (768px), Desktop (1440px)</li>
+                <li>Текст читаем на всех размерах</li>
+                <li>Изображения не выходят за экран (нет горизонтального скролла)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>2 breakpoints: 992px (tablet) and 768px (mobile)</li>
+                <li>Burger menu works without JS (checkbox hack)</li>
+                <li>Burger → cross animation (3 spans with rotate/opacity)</li>
+                <li>Menu: 3 → 2 → 1 cols. Gallery: 4 → 3 → 2. Footer: 3 → 1</li>
+                <li>About and Contacts: <code>flex-direction: column</code> on mobile</li>
+                <li>Hero: <code>height: 70vh</code> on mobile (so it doesn't feel oppressive)</li>
+                <li>Section padding reduced on mobile (<code>padding: 48px 0</code>)</li>
+                <li>Tested: iPhone SE (375px), iPad (768px), Desktop (1440px)</li>
+                <li>Text readable at all sizes</li>
+                <li>Images don't overflow (no horizontal scroll)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 21.4: Smooth scroll + якорные ссылки</span>
+            <span class="task-title" data-lang="en">Task 21.4: Smooth scroll + anchor links</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Добавить плавную прокрутку к якорным ссылкам</div>
+        <div class="task-goal" data-lang="en">Add smooth scrolling to anchor links</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li>Добавьте <code>html { scroll-behavior: smooth; }</code></li>
+            <li>Убедитесь, что навигация ссылается на <code>#about</code>, <code>#menu</code>, <code>#gallery</code>, <code>#contact</code></li>
+            <li>Добавьте <code>scroll-padding-top: 80px</code> на html (чтобы фиксированный header не перекрывал)</li>
+            <li>Проверьте — при клике на ссылку страница плавно прокручивается к нужной секции</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Add <code>html { scroll-behavior: smooth; }</code></li>
+            <li>Make sure navigation links to <code>#about</code>, <code>#menu</code>, <code>#gallery</code>, <code>#contact</code></li>
+            <li>Add <code>scroll-padding-top: 80px</code> to html (so fixed header doesn't overlap)</li>
+            <li>Verify — clicking a link smoothly scrolls to the right section</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <code>scroll-behavior: smooth</code> — одна строка CSS, и все якорные ссылки (<code>href="#section"</code>) будут плавно прокручивать!
+        </div>
+        <div class="hint" data-lang="en">
+            <code>scroll-behavior: smooth</code> — one line of CSS, and all anchor links (<code>href="#section"</code>) will scroll smoothly!
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Плавная прокрутка работает</li>
+                <li>Header не перекрывает начало секций</li>
+                <li>Работает и на мобильном (через бургер-меню)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Smooth scrolling works</li>
+                <li>Header doesn't overlap section starts</li>
+                <li>Works on mobile too (via burger menu)</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

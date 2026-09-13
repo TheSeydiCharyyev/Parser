@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 15 — Flexbox: элементы</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 15: Flexbox — элементы</span>
+    <span class="nav-title" data-lang="en">Lesson 15: Flexbox — Items</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 15: Flexbox — элементы</h1>
+    <h1 data-lang="en">Lesson 15: Flexbox — Items</h1>
+    <p class="subtitle" data-lang="ru">flex-grow, flex-shrink, flex-basis, сокращение flex, order, align-self и реальные макеты</p>
+    <p class="subtitle" data-lang="en">flex-grow, flex-shrink, flex-basis, flex shorthand, order, align-self, and real layouts</p>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#recap">Повторение: контейнер vs элементы</a></li>
+            <li><a href="#flex-grow">flex-grow — растяжение</a></li>
+            <li><a href="#flex-shrink">flex-shrink — сжатие</a></li>
+            <li><a href="#flex-basis">flex-basis — начальный размер</a></li>
+            <li><a href="#flex-shorthand">Сокращение flex</a></li>
+            <li><a href="#order">order — порядок элементов</a></li>
+            <li><a href="#align-self">align-self — индивидуальное выравнивание</a></li>
+            <li><a href="#pattern-navbar">Паттерн: навигация с auto-margin</a></li>
+            <li><a href="#pattern-holy-grail">Паттерн: Holy Grail Layout</a></li>
+            <li><a href="#pattern-sticky-footer">Паттерн: прилипающий footer</a></li>
+            <li><a href="#pattern-cards">Паттерн: карточки равной высоты</a></li>
+            <li><a href="#practice">Практика: макет блога</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#recap">Recap: container vs items</a></li>
+            <li><a href="#flex-grow">flex-grow — growing</a></li>
+            <li><a href="#flex-shrink">flex-shrink — shrinking</a></li>
+            <li><a href="#flex-basis">flex-basis — initial size</a></li>
+            <li><a href="#flex-shorthand">flex shorthand</a></li>
+            <li><a href="#order">order — item order</a></li>
+            <li><a href="#align-self">align-self — individual alignment</a></li>
+            <li><a href="#pattern-navbar">Pattern: navigation with auto margin</a></li>
+            <li><a href="#pattern-holy-grail">Pattern: Holy Grail Layout</a></li>
+            <li><a href="#pattern-sticky-footer">Pattern: sticky footer</a></li>
+            <li><a href="#pattern-cards">Pattern: equal-height cards</a></li>
+            <li><a href="#practice">Practice: blog layout</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПОВТОРЕНИЕ ==================== -->
+    <h2 id="recap" data-lang="ru">1. Повторение: контейнер vs элементы</h2>
+    <h2 id="recap-en" data-lang="en">1. Recap: container vs items</h2>
+
+    <p data-lang="ru">В занятии 13 мы изучили свойства <strong>контейнера</strong> (родителя). Сегодня изучим свойства <strong>элементов</strong> (детей).</p>
+    <p data-lang="en">In lesson 13 we learned <strong>container</strong> (parent) properties. Today we'll learn <strong>item</strong> (children) properties.</p>
+
+    <table data-lang="ru">
+        <tr><th>Контейнер (занятие 13)</th><th>Элементы (Занятие 15)</th></tr>
+        <tr><td>display: flex</td><td>flex-grow</td></tr>
+        <tr><td>flex-direction</td><td>flex-shrink</td></tr>
+        <tr><td>flex-wrap</td><td>flex-basis</td></tr>
+        <tr><td>justify-content</td><td>flex (сокращение)</td></tr>
+        <tr><td>align-items</td><td>order</td></tr>
+        <tr><td>gap</td><td>align-self</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Container (lesson 13)</th><th>Items (Lesson 15)</th></tr>
+        <tr><td>display: flex</td><td>flex-grow</td></tr>
+        <tr><td>flex-direction</td><td>flex-shrink</td></tr>
+        <tr><td>flex-wrap</td><td>flex-basis</td></tr>
+        <tr><td>justify-content</td><td>flex (shorthand)</td></tr>
+        <tr><td>align-items</td><td>order</td></tr>
+        <tr><td>gap</td><td>align-self</td></tr>
+    </table>
+
+    <div class="analogy">
+        <p data-lang="ru">Представьте <strong>оркестр</strong>. В занятии 13 мы были дирижёром — управляли всем оркестром сразу (flex-direction, justify-content, align-items). Сегодня мы дадим инструкции <strong>каждому музыканту отдельно</strong>: кто играет громче (flex-grow), кто тише (flex-shrink), какой инструмент у кого (flex-basis), кто стоит где (order), и кто может стоять не в ряд (align-self).</p>
+        <p data-lang="en">Imagine an <strong>orchestra</strong>. In lesson 13 we were the conductor — controlling the whole orchestra at once (flex-direction, justify-content, align-items). Today we'll give instructions to <strong>each musician individually</strong>: who plays louder (flex-grow), who plays quieter (flex-shrink), what instrument each has (flex-basis), who stands where (order), and who can stand out of line (align-self).</p>
+    </div>
+
+    <div class="why">
+        <p data-lang="ru"><strong>После этого занятия вы сможете:</strong></p>
+        <p data-lang="en"><strong>After this lesson you will be able to:</strong></p>
+        <ul data-lang="ru">
+            <li>Управлять растяжением и сжатием элементов через <code>flex-grow</code> и <code>flex-shrink</code></li>
+            <li>Задавать начальный размер через <code>flex-basis</code> и использовать сокращение <code>flex</code></li>
+            <li>Менять визуальный порядок элементов с помощью <code>order</code></li>
+            <li>Индивидуально выравнивать элемент через <code>align-self</code></li>
+            <li>Использовать трюк <code>margin: auto</code> в flex-контейнерах</li>
+            <li>Собирать реальные макеты: Holy Grail, sticky footer, карточки равной высоты</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Control item stretching and shrinking with <code>flex-grow</code> and <code>flex-shrink</code></li>
+            <li>Set initial size with <code>flex-basis</code> and use the <code>flex</code> shorthand</li>
+            <li>Change the visual order of items using <code>order</code></li>
+            <li>Individually align an item with <code>align-self</code></li>
+            <li>Use the <code>margin: auto</code> trick in flex containers</li>
+            <li>Build real layouts: Holy Grail, sticky footer, equal-height cards</li>
+        </ul>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Где всё это используется на реальных сайтах:</strong></p>
+        <p data-lang="en"><strong>Where all of this is used on real websites:</strong></p>
+        <ul data-lang="ru">
+            <li><strong>Sidebar + контент</strong> — боковая панель фиксированной ширины, основное содержимое растягивается (<code>flex-grow</code>)</li>
+            <li><strong>Админ-панели и дашборды</strong> — несколько колонок разной ширины, метрики в карточках</li>
+            <li><strong>Сетки карточек</strong> — товары в интернет-магазине, статьи блога, портфолио</li>
+            <li><strong>Навигационные панели</strong> — логотип слева, кнопка «Войти» справа через auto-margin</li>
+            <li><strong>Макеты блогов</strong> — header, sidebar, content, footer (Holy Grail Layout)</li>
+            <li><strong>Мобильные версии</strong> — <code>order</code> меняет расположение блоков без переписывания HTML</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>Sidebar + content</strong> — fixed-width sidebar, main content stretches (<code>flex-grow</code>)</li>
+            <li><strong>Admin panels and dashboards</strong> — multiple columns of different widths, metric cards</li>
+            <li><strong>Card grids</strong> — products in an online store, blog articles, portfolio items</li>
+            <li><strong>Navigation bars</strong> — logo on the left, "Sign in" button on the right via auto-margin</li>
+            <li><strong>Blog layouts</strong> — header, sidebar, content, footer (Holy Grail Layout)</li>
+            <li><strong>Mobile versions</strong> — <code>order</code> rearranges blocks without rewriting HTML</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== FLEX-GROW ==================== -->
+    <h2 id="flex-grow" data-lang="ru">2. flex-grow — растяжение</h2>
+    <h2 id="flex-grow-en" data-lang="en">2. flex-grow — growing</h2>
+
+    <p data-lang="ru"><code>flex-grow</code> определяет, насколько элемент может <strong>растянуться</strong>, чтобы заполнить свободное пространство.</p>
+    <p data-lang="en"><code>flex-grow</code> determines how much an item can <strong>grow</strong> to fill available space.</p>
+
+    <table data-lang="ru">
+        <tr><th>Значение</th><th>Что делает</th></tr>
+        <tr><td><code>0</code></td><td>Не растягивается (по умолчанию)</td></tr>
+        <tr><td><code>1</code></td><td>Занимает свою долю свободного пространства</td></tr>
+        <tr><td><code>2</code></td><td>Занимает в 2 раза больше, чем элемент с grow: 1</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Value</th><th>What it does</th></tr>
+        <tr><td><code>0</code></td><td>Doesn't grow (default)</td></tr>
+        <tr><td><code>1</code></td><td>Takes its share of available space</td></tr>
+        <tr><td><code>2</code></td><td>Takes 2x more than an item with grow: 1</td></tr>
+    </table>
+
+<pre><code>&lt;div class="container"&gt;
+    &lt;div class="sidebar"&gt;Sidebar&lt;/div&gt;
+    &lt;div class="content"&gt;Content&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<pre><code>.container { display: flex; }
+.sidebar   { flex-grow: 0; width: 250px; }  /* фиксированная ширина */
+.content   { flex-grow: 1; }                 /* занимает ВСЁ остальное */</code></pre>
+
+    <div class="diagram" data-lang="ru">
+    flex-grow: 0 у всех (по умолчанию):
+    [  1  ][  2  ][  3  ]________________  &#x2190; свободное место
+
+    flex-grow: 1 у всех:
+    [     1     ][     2     ][     3     ]  &#x2190; заняли всё
+
+    grow:1, grow:2, grow:1:
+    [   1   ][       2       ][   3   ]     &#x2190; 2-й в 2 раза шире</div>
+    <div class="diagram" data-lang="en">
+    flex-grow: 0 on all (default):
+    [  1  ][  2  ][  3  ]________________  &#x2190; free space
+
+    flex-grow: 1 on all:
+    [     1     ][     2     ][     3     ]  &#x2190; filled all
+
+    grow:1, grow:2, grow:1:
+    [   1   ][       2       ][   3   ]     &#x2190; 2nd is 2x wider</div>
+
+    <div class="analogy" data-lang="ru">
+        <p><code>flex-grow</code> — как <strong>жадность</strong> элемента. <code>0</code> — не жадный, берёт только своё. <code>1</code> — делит свободное место поровну. <code>2</code> — берёт вдвое больше.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><code>flex-grow</code> is like an element's <strong>greediness</strong>. <code>0</code> — not greedy, takes only what it needs. <code>1</code> — splits free space equally. <code>2</code> — takes twice as much.</p>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Как считается flex-grow (математика):</strong> Допустим, контейнер 600px, три элемента по 100px. Свободное место = 600 - 300 = 300px. Если grow = 1, 2, 1 (сумма = 4), то первый получит 300 * 1/4 = 75px, второй 300 * 2/4 = 150px, третий 300 * 1/4 = 75px. Итого: 175px, 250px, 175px.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>How flex-grow is calculated (the math):</strong> Say the container is 600px, three items are 100px each. Free space = 600 - 300 = 300px. If grow = 1, 2, 1 (sum = 4), the first gets 300 * 1/4 = 75px, the second 300 * 2/4 = 150px, the third 300 * 1/4 = 75px. Totals: 175px, 250px, 175px.
+    </div>
+
+    <div class="result-box" data-lang="ru">
+        <div style="display:flex; gap:8px; padding:10px; background:#f8fafc; border-radius:8px;">
+            <div style="flex-grow:1; background:#3b82f6; color:#fff; padding:16px; border-radius:6px; text-align:center; font-weight:700;">grow: 1</div>
+            <div style="flex-grow:2; background:#8b5cf6; color:#fff; padding:16px; border-radius:6px; text-align:center; font-weight:700;">grow: 2</div>
+            <div style="flex-grow:1; background:#06b6d4; color:#fff; padding:16px; border-radius:6px; text-align:center; font-weight:700;">grow: 1</div>
+        </div>
+        <p style="margin-top:10px; font-size:14px;">Средний блок (<code>grow: 2</code>) получает вдвое больше свободного пространства, чем боковые (<code>grow: 1</code>).</p>
+    </div>
+    <div class="result-box" data-lang="en">
+        <div style="display:flex; gap:8px; padding:10px; background:#f8fafc; border-radius:8px;">
+            <div style="flex-grow:1; background:#3b82f6; color:#fff; padding:16px; border-radius:6px; text-align:center; font-weight:700;">grow: 1</div>
+            <div style="flex-grow:2; background:#8b5cf6; color:#fff; padding:16px; border-radius:6px; text-align:center; font-weight:700;">grow: 2</div>
+            <div style="flex-grow:1; background:#06b6d4; color:#fff; padding:16px; border-radius:6px; text-align:center; font-weight:700;">grow: 1</div>
+        </div>
+        <p style="margin-top:10px; font-size:14px;">The middle block (<code>grow: 2</code>) gets twice as much free space as the side blocks (<code>grow: 1</code>).</p>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>flex-grow + flex-basis: auto</strong> — если у элемента уже есть контент или width, то <code>flex-grow</code> распределяет только <em>оставшееся</em> свободное место. Элемент с <code>grow:1; basis:auto</code> и элемент с <code>grow:1; basis:0</code> получат разные размеры!</p>
+        <p data-lang="en"><strong>flex-grow + flex-basis: auto</strong> — if an item already has content or width, <code>flex-grow</code> only distributes the <em>remaining</em> free space. An item with <code>grow:1; basis:auto</code> and an item with <code>grow:1; basis:0</code> will end up different sizes!</p>
+<pre><code>/* basis:auto — распределяет СВОБОДНОЕ место после контента */
+.a { flex: 1 1 auto; }  /* "Привет" + доля свободного */
+.b { flex: 1 1 auto; }  /* "Здравствуйте, друзья!" + доля свободного */
+/* Результат: .b шире, потому что контент длиннее */
+
+/* basis:0 — ВСЁ пространство делится поровну */
+.a { flex: 1 1 0; }  /* ровно 50% */
+.b { flex: 1 1 0; }  /* ровно 50% */</code></pre>
+    </div>
+
+    <div class="fun-fact">
+        <p data-lang="ru">Свойство <code>flex-grow</code> принимает не только целые числа! Можно написать <code>flex-grow: 0.5</code> — и элемент получит половину от того, что получил бы элемент с <code>flex-grow: 1</code>. Это бывает полезно для тонкой настройки пропорций, хотя на практике чаще используют целые числа.</p>
+        <p data-lang="en">The <code>flex-grow</code> property accepts not just integers! You can write <code>flex-grow: 0.5</code> — and the item will get half of what an item with <code>flex-grow: 1</code> would get. This can be useful for fine-tuning proportions, though whole numbers are more common in practice.</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Создайте контейнер с тремя блоками. Дайте первому <code>flex-grow: 1</code>, второму <code>flex-grow: 3</code>, третьему <code>flex-grow: 1</code>. Как изменяются пропорции? Теперь поставьте всем <code>flex-grow: 0</code> — что произошло?</p>
+        <p data-lang="en">Create a container with three blocks. Give the first <code>flex-grow: 1</code>, the second <code>flex-grow: 3</code>, the third <code>flex-grow: 1</code>. How do the proportions change? Now set all to <code>flex-grow: 0</code> — what happened?</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== FLEX-SHRINK ==================== -->
+    <h2 id="flex-shrink" data-lang="ru">3. flex-shrink — сжатие</h2>
+    <h2 id="flex-shrink-en" data-lang="en">3. flex-shrink — shrinking</h2>
+
+    <p data-lang="ru"><code>flex-shrink</code> определяет, насколько элемент может <strong>сжиматься</strong>, когда места не хватает.</p>
+    <p data-lang="en"><code>flex-shrink</code> determines how much an item can <strong>shrink</strong> when there's not enough space.</p>
+
+    <table data-lang="ru">
+        <tr><th>Значение</th><th>Что делает</th></tr>
+        <tr><td><code>1</code></td><td>Может сжиматься (по умолчанию)</td></tr>
+        <tr><td><code>0</code></td><td>НЕ сжимается (сохраняет размер)</td></tr>
+        <tr><td><code>2</code></td><td>Сжимается в 2 раза сильнее, чем с shrink: 1</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Value</th><th>What it does</th></tr>
+        <tr><td><code>1</code></td><td>Can shrink (default)</td></tr>
+        <tr><td><code>0</code></td><td>Does NOT shrink (keeps size)</td></tr>
+        <tr><td><code>2</code></td><td>Shrinks 2x more than shrink: 1</td></tr>
+    </table>
+
+<pre><code>/* Sidebar не сжимается, content — сжимается */
+.sidebar { flex-shrink: 0; width: 250px; }
+.content { flex-shrink: 1; }</code></pre>
+
+    <div class="diagram" data-lang="ru">
+    Контейнер 400px, элементы по 200px (всего 600px — не влезают!):
+
+    Все shrink: 1 (сжимаются поровну):
+    [ 1: 133px ][ 2: 133px ][ 3: 133px ]
+
+    shrink:0, shrink:2, shrink:1 (первый не сжимается):
+    [  1: 200px  ][ 2: 100px ][ 3: 100px ]
+
+    Все shrink: 0 (никто не сжимается — переполнение!):
+    [  1: 200px  ][  2: 200px  ][  3: 200px  ] &#x2192; выходят за контейнер!</div>
+    <div class="diagram" data-lang="en">
+    Container 400px, items 200px each (total 600px — don't fit!):
+
+    All shrink: 1 (shrink equally):
+    [ 1: 133px ][ 2: 133px ][ 3: 133px ]
+
+    shrink:0, shrink:2, shrink:1 (first doesn't shrink):
+    [  1: 200px  ][ 2: 100px ][ 3: 100px ]
+
+    All shrink: 0 (nobody shrinks — overflow!):
+    [  1: 200px  ][  2: 200px  ][  3: 200px  ] &#x2192; overflow container!</div>
+
+    <div class="analogy">
+        <p data-lang="ru"><code>flex-shrink</code> — как <strong>уступчивость в переполненном автобусе</strong>. Представьте автобус Ашхабад-Мары, в котором мало места. <code>shrink: 0</code> — пассажир, который не двигается ни на сантиметр. <code>shrink: 1</code> — обычный пассажир, готовый немного подвинуться. <code>shrink: 2</code> — самый вежливый, уступает вдвое больше места.</p>
+        <p data-lang="en"><code>flex-shrink</code> is like <strong>willingness to give up space on a crowded bus</strong>. Imagine a packed bus with limited room. <code>shrink: 0</code> — the passenger who won't budge an inch. <code>shrink: 1</code> — a regular passenger willing to move over a little. <code>shrink: 2</code> — the most polite person, giving up twice as much space.</p>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Типичный случай:</strong> <code>flex-shrink: 0</code> на sidebar — чтобы боковая панель не сжималась на узких экранах.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Typical case:</strong> <code>flex-shrink: 0</code> on sidebar — so the sidebar doesn't shrink on narrow screens.
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">shrink: 1 (по умолчанию)</div>
+            <div class="label" data-lang="en">shrink: 1 (default)</div>
+<pre><code>.sidebar { width: 250px; }
+/* При сужении окна sidebar
+   сжимается и ломает дизайн */</code></pre>
+            <div style="display:flex; gap:4px; max-width:200px;">
+                <div style="flex:0 1 150px; background:#fca5a5; padding:6px; border-radius:4px; font-size:12px; text-align:center;">Sidebar (сжался)</div>
+                <div style="flex:1; background:#e5e7eb; padding:6px; border-radius:4px; font-size:12px; text-align:center;">Content</div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">shrink: 0 (правильно)</div>
+            <div class="label" data-lang="en">shrink: 0 (correct)</div>
+<pre><code>.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+}
+/* Sidebar сохраняет 250px */</code></pre>
+            <div style="display:flex; gap:4px; max-width:200px;">
+                <div style="flex:0 0 100px; background:#86efac; padding:6px; border-radius:4px; font-size:12px; text-align:center;">Sidebar (250px)</div>
+                <div style="flex:1; background:#e5e7eb; padding:6px; border-radius:4px; font-size:12px; text-align:center;">Content</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Создайте контейнер шириной 400px с тремя блоками по 200px каждый (суммарно 600px — не влезают!). Поставьте всем <code>flex-shrink: 1</code>. Теперь поставьте среднему <code>flex-shrink: 0</code>. Что произошло с крайними блоками?</p>
+        <p data-lang="en">Create a 400px container with three 200px blocks (total 600px — they don't fit!). Set all to <code>flex-shrink: 1</code>. Now set the middle one to <code>flex-shrink: 0</code>. What happened to the side blocks?</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== FLEX-BASIS ==================== -->
+    <h2 id="flex-basis" data-lang="ru">4. flex-basis — начальный размер</h2>
+    <h2 id="flex-basis-en" data-lang="en">4. flex-basis — initial size</h2>
+
+    <p data-lang="ru"><code>flex-basis</code> — начальный размер элемента <strong>до</strong> распределения свободного места (вместо width/height).</p>
+    <p data-lang="en"><code>flex-basis</code> — the initial size of an item <strong>before</strong> free space is distributed (instead of width/height).</p>
+
+    <table data-lang="ru">
+        <tr><th>Значение</th><th>Что делает</th></tr>
+        <tr><td><code>auto</code></td><td>Размер по содержимому или width/height (по умолчанию)</td></tr>
+        <tr><td><code>0</code></td><td>Начальный размер = 0, потом растёт через flex-grow</td></tr>
+        <tr><td><code>200px</code></td><td>Начальный размер = 200px</td></tr>
+        <tr><td><code>30%</code></td><td>30% от контейнера</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Value</th><th>What it does</th></tr>
+        <tr><td><code>auto</code></td><td>Size from content or width/height (default)</td></tr>
+        <tr><td><code>0</code></td><td>Initial size = 0, then grows via flex-grow</td></tr>
+        <tr><td><code>200px</code></td><td>Initial size = 200px</td></tr>
+        <tr><td><code>30%</code></td><td>30% of container</td></tr>
+    </table>
+
+<pre><code>/* Sidebar = 300px, content = остальное */
+.sidebar { flex-basis: 300px; flex-grow: 0; flex-shrink: 0; }
+.content { flex-basis: 0;     flex-grow: 1; }</code></pre>
+
+    <div class="analogy">
+        <p data-lang="ru"><code>flex-basis</code> — как <strong>стартовая позиция бегуна</strong> на стадионе. Один бегун стартует с 0 метров, другой — с 200 метров. После старта они могут бежать дальше (flex-grow) или их могут оттеснить назад (flex-shrink). Но <code>flex-basis</code> — это то, <strong>откуда</strong> начинается движение.</p>
+        <p data-lang="en"><code>flex-basis</code> is like a <strong>runner's starting position</strong> on a track. One runner starts at 0 meters, another at 200 meters. After the start, they can run further (flex-grow) or be pushed back (flex-shrink). But <code>flex-basis</code> is <strong>where</strong> the movement begins.</p>
+    </div>
+
+    <div class="why">
+        <p data-lang="ru"><strong>Зачем flex-basis, если есть width?</strong> Потому что <code>flex-basis</code> — это «размер до начала расчётов flex». Он учитывается <em>до</em> <code>flex-grow</code> и <code>flex-shrink</code>, а обычный <code>width</code> может быть переопределён flexbox-ом. Если задать оба, <code>flex-basis</code> побеждает (кроме <code>flex-basis: auto</code>, который берёт значение из <code>width</code>).</p>
+        <p data-lang="en"><strong>Why flex-basis when we have width?</strong> Because <code>flex-basis</code> is the "size before flex calculations begin." It is considered <em>before</em> <code>flex-grow</code> and <code>flex-shrink</code>, while a regular <code>width</code> can be overridden by flexbox. If both are set, <code>flex-basis</code> wins (except <code>flex-basis: auto</code>, which takes the value from <code>width</code>).</p>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">width: 200px</div>
+            <div class="label" data-lang="en">width: 200px</div>
+<pre><code>.item {
+    width: 200px;
+    flex-grow: 1;
+}
+/* width игнорируется, если
+   flex-basis не auto */</code></pre>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">flex-basis: 200px</div>
+            <div class="label" data-lang="en">flex-basis: 200px</div>
+<pre><code>.item {
+    flex-basis: 200px;
+    flex-grow: 1;
+}
+/* Начальный размер 200px,
+   потом растёт */</code></pre>
+        </div>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Создайте два flex-элемента. Первому дайте <code>width: 300px; flex-basis: 100px</code>, второму — <code>width: 100px; flex-basis: 300px</code>. Какой из них шире? Теперь поменяйте оба на <code>flex-basis: auto</code> — что произошло? Вывод: <code>flex-basis</code> побеждает <code>width</code>, но <code>auto</code> использует значение <code>width</code>.</p>
+        <p data-lang="en">Create two flex items. Give the first <code>width: 300px; flex-basis: 100px</code>, the second <code>width: 100px; flex-basis: 300px</code>. Which one is wider? Now change both to <code>flex-basis: auto</code> — what happened? Conclusion: <code>flex-basis</code> beats <code>width</code>, but <code>auto</code> uses the <code>width</code> value.</p>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    Приоритет размеров в flex:
+
+    flex-basis: 200px  &gt;  width: 200px  &gt;  содержимое
+         (1-й)              (2-й)           (3-й)
+
+    Исключение: flex-basis: auto &#x2192; берёт width
+    Если нет width &#x2192; размер по содержимому</div>
+    <div class="diagram" data-lang="en">
+    Size priority in flex:
+
+    flex-basis: 200px  &gt;  width: 200px  &gt;  content
+         (1st)              (2nd)           (3rd)
+
+    Exception: flex-basis: auto &#x2192; takes width value
+    If no width &#x2192; sizes by content</div>
+
+    <hr>
+
+    <!-- ==================== FLEX СОКРАЩЕНИЕ ==================== -->
+    <h2 id="flex-shorthand" data-lang="ru">5. Сокращение flex</h2>
+    <h2 id="flex-shorthand-en" data-lang="en">5. flex shorthand</h2>
+
+    <p data-lang="ru">Свойство <code>flex</code> — сокращение для <code>flex-grow</code>, <code>flex-shrink</code> и <code>flex-basis</code>:</p>
+    <p data-lang="en">The <code>flex</code> property is a shorthand for <code>flex-grow</code>, <code>flex-shrink</code>, and <code>flex-basis</code>:</p>
+
+<pre><code>/* flex: grow shrink basis */
+
+flex: 0 1 auto;    /* по умолчанию */
+flex: 1;           /* = flex: 1 1 0  — растянуться, заполнить */
+flex: auto;        /* = flex: 1 1 auto */
+flex: none;        /* = flex: 0 0 auto — не растягивать, не сжимать */
+flex: 0 0 300px;   /* фиксированный 300px */</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>Самые частые значения:</strong>
+        <ul>
+            <li><code>flex: 1</code> — элемент заполняет доступное место (равные колонки)</li>
+            <li><code>flex: none</code> или <code>flex: 0 0 250px</code> — фиксированный размер (sidebar)</li>
+        </ul>
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Most common values:</strong>
+        <ul>
+            <li><code>flex: 1</code> — item fills available space (equal columns)</li>
+            <li><code>flex: none</code> or <code>flex: 0 0 250px</code> — fixed size (sidebar)</li>
+        </ul>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    Расшифровка самых частых значений:
+
+    flex: 1         &#x2192;  flex-grow: 1  flex-shrink: 1  flex-basis: 0
+    flex: auto      &#x2192;  flex-grow: 1  flex-shrink: 1  flex-basis: auto
+    flex: none      &#x2192;  flex-grow: 0  flex-shrink: 0  flex-basis: auto
+    flex: 0 0 250px &#x2192;  flex-grow: 0  flex-shrink: 0  flex-basis: 250px
+    flex: 2         &#x2192;  flex-grow: 2  flex-shrink: 1  flex-basis: 0
+    flex: 0 1 auto  &#x2192;  (это значение по умолчанию!)</div>
+    <div class="diagram" data-lang="en">
+    Decoding the most common values:
+
+    flex: 1         &#x2192;  flex-grow: 1  flex-shrink: 1  flex-basis: 0
+    flex: auto      &#x2192;  flex-grow: 1  flex-shrink: 1  flex-basis: auto
+    flex: none      &#x2192;  flex-grow: 0  flex-shrink: 0  flex-basis: auto
+    flex: 0 0 250px &#x2192;  flex-grow: 0  flex-shrink: 0  flex-basis: 250px
+    flex: 2         &#x2192;  flex-grow: 2  flex-shrink: 1  flex-basis: 0
+    flex: 0 1 auto  &#x2192;  (this is the default value!)</div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Всегда предпочитайте сокращение <code>flex</code></strong> вместо отдельных <code>flex-grow</code>, <code>flex-shrink</code>, <code>flex-basis</code>. Сокращение <code>flex</code> корректно сбрасывает неуказанные значения. Например, <code>flex: 1</code> устанавливает <code>basis: 0</code>, а если написать просто <code>flex-grow: 1</code>, то <code>basis</code> останется <code>auto</code> — результат будет другим!</p>
+        <p data-lang="en"><strong>Always prefer the <code>flex</code> shorthand</strong> over separate <code>flex-grow</code>, <code>flex-shrink</code>, <code>flex-basis</code>. The <code>flex</code> shorthand correctly resets unspecified values. For example, <code>flex: 1</code> sets <code>basis: 0</code>, but if you just write <code>flex-grow: 1</code>, then <code>basis</code> stays <code>auto</code> — the result will be different!</p>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Путаница между <code>flex: 1</code> и <code>flex: auto</code></strong> — самая частая ошибка новичков!</p>
+        <p data-lang="en"><strong>Confusion between <code>flex: 1</code> and <code>flex: auto</code></strong> — the most common beginner mistake!</p>
+        <table data-lang="ru">
+            <tr><th>Свойство</th><th>Расшифровка</th><th>Поведение</th></tr>
+            <tr><td><code>flex: 1</code></td><td><code>flex: 1 1 0</code></td><td>basis = 0, потом ВСЁ пространство делится по grow</td></tr>
+            <tr><td><code>flex: auto</code></td><td><code>flex: 1 1 auto</code></td><td>basis = содержимое, потом СВОБОДНОЕ место делится</td></tr>
+        </table>
+        <table data-lang="en">
+            <tr><th>Property</th><th>Expands to</th><th>Behavior</th></tr>
+            <tr><td><code>flex: 1</code></td><td><code>flex: 1 1 0</code></td><td>basis = 0, then ALL space is divided by grow</td></tr>
+            <tr><td><code>flex: auto</code></td><td><code>flex: 1 1 auto</code></td><td>basis = content, then FREE space is divided</td></tr>
+        </table>
+    </div>
+
+    <div class="result-box" data-lang="ru">
+        <p style="font-weight:700; margin-bottom:8px;">flex: 1 (basis: 0) — все одинаковые:</p>
+        <div style="display:flex; gap:6px; margin-bottom:14px;">
+            <div style="flex:1; background:#3b82f6; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:13px;">Текст</div>
+            <div style="flex:1; background:#8b5cf6; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:13px;">Длинный текст здесь</div>
+            <div style="flex:1; background:#06b6d4; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:13px;">Ок</div>
+        </div>
+        <p style="font-weight:700; margin-bottom:8px;">flex: auto (basis: auto) — по размеру контента:</p>
+        <div style="display:flex; gap:6px;">
+            <div style="flex:auto; background:#f59e0b; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:13px;">Текст</div>
+            <div style="flex:auto; background:#ef4444; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:13px;">Длинный текст здесь</div>
+            <div style="flex:auto; background:#10b981; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:13px;">Ок</div>
+        </div>
+        <p style="margin-top:10px; font-size:13px;">Сверху (<code>flex: 1</code>) все блоки одинаковой ширины. Снизу (<code>flex: auto</code>) средний блок шире, потому что контент длиннее.</p>
+    </div>
+    <div class="result-box" data-lang="en">
+        <p style="font-weight:700; margin-bottom:8px;">flex: 1 (basis: 0) — all equal:</p>
+        <div style="display:flex; gap:6px; margin-bottom:14px;">
+            <div style="flex:1; background:#3b82f6; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:13px;">Text</div>
+            <div style="flex:1; background:#8b5cf6; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:13px;">Longer text here</div>
+            <div style="flex:1; background:#06b6d4; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:13px;">Ok</div>
+        </div>
+        <p style="font-weight:700; margin-bottom:8px;">flex: auto (basis: auto) — sized by content:</p>
+        <div style="display:flex; gap:6px;">
+            <div style="flex:auto; background:#f59e0b; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:13px;">Text</div>
+            <div style="flex:auto; background:#ef4444; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:13px;">Longer text here</div>
+            <div style="flex:auto; background:#10b981; color:#fff; padding:10px; border-radius:6px; text-align:center; font-size:13px;">Ok</div>
+        </div>
+        <p style="margin-top:10px; font-size:13px;">Top (<code>flex: 1</code>) all blocks are equal width. Bottom (<code>flex: auto</code>) the middle block is wider because its content is longer.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ORDER ==================== -->
+    <h2 id="order" data-lang="ru">6. order — порядок элементов</h2>
+    <h2 id="order-en" data-lang="en">6. order — item order</h2>
+
+    <p data-lang="ru"><code>order</code> меняет <strong>визуальный порядок</strong> элементов (не в HTML, только на экране):</p>
+    <p data-lang="en"><code>order</code> changes the <strong>visual order</strong> of items (not in HTML, only on screen):</p>
+
+<pre><code>.item-a { order: 2; }  /* покажется третьим */
+.item-b { order: 0; }  /* по умолчанию — первый */
+.item-c { order: 1; }  /* покажется вторым */
+
+/* В HTML: A B C → На экране: B C A */</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Значение</th><th>Описание</th></tr>
+        <tr><td><code>0</code></td><td>По умолчанию. Все элементы = 0.</td></tr>
+        <tr><td><code>-1</code></td><td>Перед всеми с order: 0</td></tr>
+        <tr><td><code>1, 2, 3...</code></td><td>Чем больше — тем позже</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Value</th><th>Description</th></tr>
+        <tr><td><code>0</code></td><td>Default. All items = 0.</td></tr>
+        <tr><td><code>-1</code></td><td>Before all items with order: 0</td></tr>
+        <tr><td><code>1, 2, 3...</code></td><td>Higher = later</td></tr>
+    </table>
+
+    <div class="result-box" data-lang="ru">
+        <p style="font-weight:700; margin-bottom:8px;">HTML порядок: A B C. Визуальный порядок: B C A</p>
+        <div style="display:flex; gap:8px; padding:10px; background:#f8fafc; border-radius:8px;">
+            <div style="order:2; background:#ef4444; color:#fff; padding:14px 20px; border-radius:6px; text-align:center; font-weight:700;">A (order: 2)</div>
+            <div style="order:0; background:#3b82f6; color:#fff; padding:14px 20px; border-radius:6px; text-align:center; font-weight:700;">B (order: 0)</div>
+            <div style="order:1; background:#10b981; color:#fff; padding:14px 20px; border-radius:6px; text-align:center; font-weight:700;">C (order: 1)</div>
+        </div>
+        <p style="margin-top:8px; font-size:13px;">В HTML: A, B, C. На экране: B (order:0), C (order:1), A (order:2).</p>
+    </div>
+    <div class="result-box" data-lang="en">
+        <p style="font-weight:700; margin-bottom:8px;">HTML order: A B C. Visual order: B C A</p>
+        <div style="display:flex; gap:8px; padding:10px; background:#f8fafc; border-radius:8px;">
+            <div style="order:2; background:#ef4444; color:#fff; padding:14px 20px; border-radius:6px; text-align:center; font-weight:700;">A (order: 2)</div>
+            <div style="order:0; background:#3b82f6; color:#fff; padding:14px 20px; border-radius:6px; text-align:center; font-weight:700;">B (order: 0)</div>
+            <div style="order:1; background:#10b981; color:#fff; padding:14px 20px; border-radius:6px; text-align:center; font-weight:700;">C (order: 1)</div>
+        </div>
+        <p style="margin-top:8px; font-size:13px;">In HTML: A, B, C. On screen: B (order:0), C (order:1), A (order:2).</p>
+    </div>
+
+    <div class="analogy">
+        <p data-lang="ru"><code>order</code> — как <strong>пульт от телевизора</strong>. Вы можете переключить каналы так, чтобы канал 3 показывался на кнопке 1, а канал 1 — на кнопке 3. Физическое оборудование (HTML-код) осталось на месте, но пользователь видит другой порядок. Так же <code>order</code> меняет только <strong>визуальное</strong> расположение, не трогая DOM.</p>
+        <p data-lang="en"><code>order</code> is like a <strong>TV remote control</strong>. You can remap channels so channel 3 appears on button 1 and channel 1 on button 3. The physical equipment (HTML code) stays in place, but the user sees a different order. Similarly, <code>order</code> only changes the <strong>visual</strong> arrangement without touching the DOM.</p>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Когда полезно:</strong> Изменить порядок на мобильных. Например, на десктопе sidebar слева, на мобильном — после контента.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>When useful:</strong> Change order on mobile. For example, sidebar on the left on desktop, after content on mobile.
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Не используйте order для критически важного контента!</strong> Скринридеры (для незрячих людей) и клавиатурная навигация (Tab) читают элементы в порядке HTML, а не в визуальном порядке. Если кнопка «Оплатить» визуально первая, но в HTML последняя — человек с клавиатурой дойдёт до неё в последнюю очередь.</p>
+        <p data-lang="en"><strong>Don't use order for critical content!</strong> Screen readers (for visually impaired users) and keyboard navigation (Tab) read elements in HTML order, not visual order. If the "Pay" button is visually first but last in HTML, a keyboard user will reach it last.</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Создайте навигацию из 4 ссылок: Главная, О нас, Контакты, Блог. Используя <code>order</code>, сделайте так, чтобы «Блог» был визуально первым, а «О нас» — последним. Проверьте: если нажать Tab, в каком порядке выделяются ссылки?</p>
+        <p data-lang="en">Create a navigation with 4 links: Home, About, Contacts, Blog. Using <code>order</code>, make "Blog" appear first visually and "About" last. Check: when you press Tab, in what order are the links highlighted?</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ALIGN-SELF ==================== -->
+    <h2 id="align-self" data-lang="ru">7. align-self — индивидуальное выравнивание</h2>
+    <h2 id="align-self-en" data-lang="en">7. align-self — individual alignment</h2>
+
+    <p data-lang="ru"><code>align-self</code> переопределяет <code>align-items</code> для <strong>одного конкретного</strong> элемента:</p>
+    <p data-lang="en"><code>align-self</code> overrides <code>align-items</code> for <strong>one specific</strong> item:</p>
+
+<pre><code>.container { display: flex; align-items: flex-start; }
+
+.special-item { align-self: center; }  /* только этот — по центру */</code></pre>
+
+    <p data-lang="ru">Значения такие же: <code>auto</code>, <code>flex-start</code>, <code>flex-end</code>, <code>center</code>, <code>baseline</code>, <code>stretch</code>.</p>
+    <p data-lang="en">Same values: <code>auto</code>, <code>flex-start</code>, <code>flex-end</code>, <code>center</code>, <code>baseline</code>, <code>stretch</code>.</p>
+
+    <div class="result-box" data-lang="ru">
+        <p style="font-weight:700; margin-bottom:8px;">Контейнер: align-items: flex-start, высота 120px</p>
+        <div style="display:flex; gap:8px; align-items:flex-start; height:120px; background:#f1f5f9; padding:10px; border-radius:8px;">
+            <div style="background:#3b82f6; color:#fff; padding:10px 16px; border-radius:6px; font-size:13px;">flex-start</div>
+            <div style="align-self:center; background:#8b5cf6; color:#fff; padding:10px 16px; border-radius:6px; font-size:13px;">align-self: center</div>
+            <div style="align-self:flex-end; background:#ef4444; color:#fff; padding:10px 16px; border-radius:6px; font-size:13px;">align-self: flex-end</div>
+            <div style="align-self:stretch; background:#10b981; color:#fff; padding:10px 16px; border-radius:6px; font-size:13px;">align-self: stretch</div>
+        </div>
+        <p style="margin-top:8px; font-size:13px;">Все элементы в одном контейнере, но каждый выровнен по-своему!</p>
+    </div>
+    <div class="result-box" data-lang="en">
+        <p style="font-weight:700; margin-bottom:8px;">Container: align-items: flex-start, height 120px</p>
+        <div style="display:flex; gap:8px; align-items:flex-start; height:120px; background:#f1f5f9; padding:10px; border-radius:8px;">
+            <div style="background:#3b82f6; color:#fff; padding:10px 16px; border-radius:6px; font-size:13px;">flex-start</div>
+            <div style="align-self:center; background:#8b5cf6; color:#fff; padding:10px 16px; border-radius:6px; font-size:13px;">align-self: center</div>
+            <div style="align-self:flex-end; background:#ef4444; color:#fff; padding:10px 16px; border-radius:6px; font-size:13px;">align-self: flex-end</div>
+            <div style="align-self:stretch; background:#10b981; color:#fff; padding:10px 16px; border-radius:6px; font-size:13px;">align-self: stretch</div>
+        </div>
+        <p style="margin-top:8px; font-size:13px;">All items in one container, but each aligned differently!</p>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    align-items: flex-start (на контейнере)
+
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502; [A]  [B]  [C]                              &#x2502; flex-start
+    &#x2502;                                            &#x2502;
+    &#x2502;       &#x2191;                                     &#x2502;
+    &#x2502;  align-self: center                        &#x2502;
+    &#x2502;      [B]                                   &#x2502; &#x2190; B переехал в центр
+    &#x2502;                                            &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    align-items: flex-start (on container)
+
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502; [A]  [B]  [C]                              &#x2502; flex-start
+    &#x2502;                                            &#x2502;
+    &#x2502;       &#x2191;                                     &#x2502;
+    &#x2502;  align-self: center                        &#x2502;
+    &#x2502;      [B]                                   &#x2502; &#x2190; B moved to center
+    &#x2502;                                            &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <div class="try-it">
+        <p data-lang="ru">Создайте flex-контейнер высотой 200px с <code>align-items: stretch</code>. Добавьте 4 элемента. Дайте каждому разное значение <code>align-self</code>: <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>stretch</code>. Убедитесь, что каждый элемент ведёт себя индивидуально.</p>
+        <p data-lang="en">Create a 200px-tall flex container with <code>align-items: stretch</code>. Add 4 items. Give each a different <code>align-self</code> value: <code>flex-start</code>, <code>center</code>, <code>flex-end</code>, <code>stretch</code>. Verify that each item behaves individually.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПАТТЕРН: NAVBAR ==================== -->
+    <h2 id="pattern-navbar" data-lang="ru">8. Паттерн: навигация с auto-margin</h2>
+    <h2 id="pattern-navbar-en" data-lang="en">8. Pattern: navigation with auto margin</h2>
+
+    <p data-lang="ru">Трюк: <code>margin-left: auto</code> на flex-элементе «толкает» его вправо:</p>
+    <p data-lang="en">Trick: <code>margin-left: auto</code> on a flex item "pushes" it to the right:</p>
+
+<pre><code>&lt;nav class="navbar"&gt;
+    &lt;a class="logo"&gt;Logo&lt;/a&gt;
+    &lt;a&gt;Home&lt;/a&gt;
+    &lt;a&gt;About&lt;/a&gt;
+    &lt;a class="login"&gt;Login&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+
+<pre><code>.navbar { display: flex; align-items: center; gap: 20px; }
+.login  { margin-left: auto; }  /* кнопка Login уедет вправо */</code></pre>
+
+    <div class="diagram" data-lang="ru">
+    [Logo] [Home] [About]              [Login]
+                          &#x2190; margin-left: auto &#x2192;</div>
+    <div class="diagram" data-lang="en">
+    [Logo] [Home] [About]              [Login]
+                          &#x2190; margin-left: auto &#x2192;</div>
+
+    <div class="result-box" data-lang="ru">
+        <div style="display:flex; align-items:center; gap:16px; background:#1e293b; padding:12px 20px; border-radius:8px; font-size:14px;">
+            <span style="color:#fff; font-weight:700;">Logo</span>
+            <a style="color:#94a3b8; text-decoration:none;">Главная</a>
+            <a style="color:#94a3b8; text-decoration:none;">О нас</a>
+            <a style="color:#94a3b8; text-decoration:none;">Контакты</a>
+            <a style="margin-left:auto; background:#3b82f6; color:#fff; padding:6px 16px; border-radius:6px; text-decoration:none; font-weight:600;">Войти</a>
+        </div>
+        <p style="margin-top:8px; font-size:13px;">Кнопка «Войти» прижата вправо через <code>margin-left: auto</code>.</p>
+    </div>
+    <div class="result-box" data-lang="en">
+        <div style="display:flex; align-items:center; gap:16px; background:#1e293b; padding:12px 20px; border-radius:8px; font-size:14px;">
+            <span style="color:#fff; font-weight:700;">Logo</span>
+            <a style="color:#94a3b8; text-decoration:none;">Home</a>
+            <a style="color:#94a3b8; text-decoration:none;">About</a>
+            <a style="color:#94a3b8; text-decoration:none;">Contacts</a>
+            <a style="margin-left:auto; background:#3b82f6; color:#fff; padding:6px 16px; border-radius:6px; text-decoration:none; font-weight:600;">Sign in</a>
+        </div>
+        <p style="margin-top:8px; font-size:13px;">The "Sign in" button is pushed right via <code>margin-left: auto</code>.</p>
+    </div>
+
+    <div class="why">
+        <p data-lang="ru"><strong>Как это работает?</strong> В flex-контейнере <code>margin: auto</code> ведёт себя особенно: автоматический margin поглощает <em>всё</em> свободное пространство. Это мощнее, чем <code>justify-content</code>, потому что можно точечно «оттолкнуть» один элемент, а не двигать всю группу.</p>
+        <p data-lang="en"><strong>How does this work?</strong> In a flex container, <code>margin: auto</code> behaves specially: auto margin absorbs <em>all</em> available free space. This is more powerful than <code>justify-content</code> because you can precisely "push" one item away, rather than moving the whole group.</p>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Где используется auto-margin:</strong></p>
+        <p data-lang="en"><strong>Where auto-margin is used:</strong></p>
+        <ul data-lang="ru">
+            <li><strong>Навигация</strong> — логотип + ссылки слева, кнопка «Войти» справа</li>
+            <li><strong>Панели управления</strong> — заголовок слева, кнопки действий справа</li>
+            <li><strong>Footer</strong> — копирайт слева, социальные иконки справа</li>
+            <li><strong>Карточки</strong> — <code>margin-top: auto</code> прижимает кнопку к низу</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>Navigation</strong> — logo + links on the left, "Sign in" button on the right</li>
+            <li><strong>Toolbars</strong> — title on the left, action buttons on the right</li>
+            <li><strong>Footer</strong> — copyright on the left, social icons on the right</li>
+            <li><strong>Cards</strong> — <code>margin-top: auto</code> pushes a button to the bottom</li>
+        </ul>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>margin-top: auto в column-layout</strong> — тот же трюк работает вертикально! Если flex-контейнер имеет <code>flex-direction: column</code> и фиксированную высоту, <code>margin-top: auto</code> на элементе толкает его вниз. Это основа sticky footer и кнопок внизу карточек.</p>
+        <p data-lang="en"><strong>margin-top: auto in column layout</strong> — the same trick works vertically! If a flex container has <code>flex-direction: column</code> and a fixed height, <code>margin-top: auto</code> on an item pushes it to the bottom. This is the foundation of sticky footers and buttons at the bottom of cards.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== HOLY GRAIL ==================== -->
+    <h2 id="pattern-holy-grail" data-lang="ru">9. Паттерн: Holy Grail Layout</h2>
+    <h2 id="pattern-holy-grail-en" data-lang="en">9. Pattern: Holy Grail Layout</h2>
+
+    <p data-lang="ru">Классический макет: header + sidebar + content + footer:</p>
+    <p data-lang="en">Classic layout: header + sidebar + content + footer:</p>
+
+    <div class="fun-fact">
+        <p data-lang="ru">Название «Holy Grail Layout» (макет Святого Грааля) появилось в начале 2000-х. Веб-разработчики десятилетиями мечтали о макете с header, footer, основным контентом и одним-двумя sidebar — но на чистом CSS это было невозможно без хаков с float и clearfix. Этот макет стал «святым граалем» — все его искали, но найти идеальное решение не удавалось. Flexbox решил эту задачу в несколько строк!</p>
+        <p data-lang="en">The name "Holy Grail Layout" emerged in the early 2000s. Web developers dreamed for decades of a layout with a header, footer, main content, and one or two sidebars — but achieving it with pure CSS was impossible without float hacks and clearfix tricks. This layout became the "Holy Grail" — everyone searched for it, but nobody could find the perfect solution. Flexbox solved it in just a few lines!</p>
+    </div>
+
+<pre><code>&lt;div class="page"&gt;
+    &lt;header&gt;Header&lt;/header&gt;
+    &lt;div class="body"&gt;
+        &lt;aside class="sidebar"&gt;Sidebar&lt;/aside&gt;
+        &lt;main class="content"&gt;Content&lt;/main&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+
+<pre><code>.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header { padding: 20px; background: #1e293b; color: #fff; }
+
+.body {
+    display: flex;
+    flex: 1;          /* занимает всё между header и footer */
+}
+
+.sidebar {
+    flex: 0 0 250px;  /* фиксированная ширина 250px */
+    background: #f1f5f9;
+    padding: 20px;
+}
+
+.content {
+    flex: 1;          /* заполняет остальное */
+    padding: 20px;
+}
+
+footer { padding: 20px; background: #1e293b; color: #fff; }</code></pre>
+
+    <div class="diagram" data-lang="ru">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;           HEADER                    &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;         &#x2502;                        &#x2502;
+    &#x2502; SIDEBAR &#x2502;      CONTENT           &#x2502;  flex: 1
+    &#x2502; 250px   &#x2502;      flex: 1           &#x2502;
+    &#x2502;         &#x2502;                        &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;           FOOTER                    &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;           HEADER                    &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;         &#x2502;                        &#x2502;
+    &#x2502; SIDEBAR &#x2502;      CONTENT           &#x2502;  flex: 1
+    &#x2502; 250px   &#x2502;      flex: 1           &#x2502;
+    &#x2502;         &#x2502;                        &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;           FOOTER                    &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <div class="important" data-lang="ru">
+        <strong>Ключевой трюк:</strong> <code>.page</code> — вертикальный flex (<code>flex-direction: column</code>). <code>.body</code> — горизонтальный flex (по умолчанию row). Flex внутри flex — <strong>вложенные flex-контейнеры</strong>!
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Key trick:</strong> <code>.page</code> — vertical flex (<code>flex-direction: column</code>). <code>.body</code> — horizontal flex (default row). Flex inside flex — <strong>nested flex containers</strong>!
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Где используется Holy Grail Layout:</strong></p>
+        <p data-lang="en"><strong>Where Holy Grail Layout is used:</strong></p>
+        <ul data-lang="ru">
+            <li><strong>Админ-панели</strong> — WordPress, Django Admin: sidebar с меню + основной контент</li>
+            <li><strong>Документация</strong> — MDN, DevDocs: оглавление слева, статья по центру</li>
+            <li><strong>Почтовые клиенты</strong> — Gmail, Outlook: папки слева, список писем в центре</li>
+            <li><strong>Мессенджеры</strong> — Telegram Web: список чатов + чат + информация</li>
+            <li><strong>IDE и редакторы кода</strong> — VS Code: проводник слева, код по центру, терминал снизу</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>Admin panels</strong> — WordPress, Django Admin: sidebar with menu + main content</li>
+            <li><strong>Documentation sites</strong> — MDN, DevDocs: table of contents on the left, article in the center</li>
+            <li><strong>Email clients</strong> — Gmail, Outlook: folders on the left, message list in the center</li>
+            <li><strong>Messengers</strong> — Telegram Web: chat list + chat + info panel</li>
+            <li><strong>IDEs and code editors</strong> — VS Code: file explorer on the left, code in the center, terminal below</li>
+        </ul>
+    </div>
+
+    <div class="result-box" data-lang="ru">
+        <div style="display:flex; flex-direction:column; min-height:280px; border:2px solid #e2e8f0; border-radius:8px; overflow:hidden; font-size:13px;">
+            <div style="background:#1e293b; color:#fff; padding:12px 16px; font-weight:700;">Header</div>
+            <div style="display:flex; flex:1;">
+                <div style="flex:0 0 120px; background:#f1f5f9; padding:12px; border-right:1px solid #e2e8f0;">
+                    <div style="font-weight:700; margin-bottom:8px;">Sidebar</div>
+                    <div style="font-size:12px; color:#64748b;">Меню<br>Ссылки<br>Виджеты</div>
+                </div>
+                <div style="flex:1; padding:12px;">
+                    <div style="font-weight:700; margin-bottom:8px;">Content (flex: 1)</div>
+                    <div style="font-size:12px; color:#64748b;">Основное содержимое страницы. Этот блок заполняет всё доступное пространство между sidebar и правым краем. А по вертикали .body с flex:1 растягивается между header и footer.</div>
+                </div>
+            </div>
+            <div style="background:#1e293b; color:#fff; padding:12px 16px; font-weight:700;">Footer</div>
+        </div>
+    </div>
+    <div class="result-box" data-lang="en">
+        <div style="display:flex; flex-direction:column; min-height:280px; border:2px solid #e2e8f0; border-radius:8px; overflow:hidden; font-size:13px;">
+            <div style="background:#1e293b; color:#fff; padding:12px 16px; font-weight:700;">Header</div>
+            <div style="display:flex; flex:1;">
+                <div style="flex:0 0 120px; background:#f1f5f9; padding:12px; border-right:1px solid #e2e8f0;">
+                    <div style="font-weight:700; margin-bottom:8px;">Sidebar</div>
+                    <div style="font-size:12px; color:#64748b;">Menu<br>Links<br>Widgets</div>
+                </div>
+                <div style="flex:1; padding:12px;">
+                    <div style="font-weight:700; margin-bottom:8px;">Content (flex: 1)</div>
+                    <div style="font-size:12px; color:#64748b;">Main page content. This block fills all available space between the sidebar and the right edge. Vertically, .body with flex:1 stretches between the header and footer.</div>
+                </div>
+            </div>
+            <div style="background:#1e293b; color:#fff; padding:12px 16px; font-weight:700;">Footer</div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== STICKY FOOTER ==================== -->
+    <h2 id="pattern-sticky-footer" data-lang="ru">10. Паттерн: прилипающий footer</h2>
+    <h2 id="pattern-sticky-footer-en" data-lang="en">10. Pattern: sticky footer</h2>
+
+    <p data-lang="ru">Проблема: если контента мало, footer «всплывает» вверх. Решение:</p>
+    <p data-lang="en">Problem: if there's little content, the footer "floats" up. Solution:</p>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">Проблема: footer всплывает</div>
+            <div class="label" data-lang="en">Problem: footer floats up</div>
+            <div style="border:2px solid #e5e7eb; border-radius:6px; overflow:hidden; height:180px; font-size:12px; position:relative;">
+                <div style="background:#1e293b; color:#fff; padding:6px 10px;">Header</div>
+                <div style="padding:6px 10px;">Мало контента</div>
+                <div style="background:#1e293b; color:#fff; padding:6px 10px;">Footer</div>
+                <div style="position:absolute; bottom:4px; right:4px; font-size:10px; color:#ef4444;">Пустота внизу!</div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">Решение: flex + min-height</div>
+            <div class="label" data-lang="en">Solution: flex + min-height</div>
+            <div style="display:flex; flex-direction:column; border:2px solid #86efac; border-radius:6px; overflow:hidden; height:180px; font-size:12px;">
+                <div style="background:#1e293b; color:#fff; padding:6px 10px;">Header</div>
+                <div style="flex:1; padding:6px 10px;">Мало контента, но main растянулся</div>
+                <div style="background:#1e293b; color:#fff; padding:6px 10px;">Footer внизу!</div>
+            </div>
+        </div>
+    </div>
+
+<pre><code>body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;  /* main заполняет всё между header и footer */
+}</code></pre>
+
+    <p data-lang="ru"><code>flex: 1</code> на <code>main</code> — и footer всегда внизу, даже если контента мало!</p>
+    <p data-lang="en"><code>flex: 1</code> on <code>main</code> — and the footer always stays at the bottom, even with little content!</p>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Альтернативный способ:</strong> вместо <code>flex: 1</code> на main можно использовать <code>margin-top: auto</code> на footer. Оба способа работают, но <code>flex: 1</code> — более явный и понятный для других разработчиков. В больших проектах всегда выбирайте читаемость.</p>
+        <p data-lang="en"><strong>Alternative approach:</strong> instead of <code>flex: 1</code> on main, you can use <code>margin-top: auto</code> on footer. Both work, but <code>flex: 1</code> is more explicit and readable for other developers. In large projects, always choose readability.</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Создайте страницу с header, main и footer. В main добавьте всего одно предложение. Без flex footer будет сразу под текстом. Теперь добавьте <code>display: flex; flex-direction: column; min-height: 100vh</code> на body и <code>flex: 1</code> на main. Footer прилип к низу!</p>
+        <p data-lang="en">Create a page with header, main, and footer. Add just one sentence to main. Without flex, the footer will be right below the text. Now add <code>display: flex; flex-direction: column; min-height: 100vh</code> to body and <code>flex: 1</code> to main. The footer sticks to the bottom!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== КАРТОЧКИ ==================== -->
+    <h2 id="pattern-cards" data-lang="ru">11. Паттерн: карточки равной высоты</h2>
+    <h2 id="pattern-cards-en" data-lang="en">11. Pattern: equal-height cards</h2>
+
+    <p data-lang="ru">Частая проблема: карточки разной высоты из-за разного контента. Flexbox решает это автоматически:</p>
+    <p data-lang="en">Common problem: cards of different heights due to different content. Flexbox solves this automatically:</p>
+
+<pre><code>.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+/* Кнопка внизу карточки */
+.card .btn {
+    margin-top: auto;  /* отталкивает кнопку вниз */
+}</code></pre>
+
+    <div class="result-box" data-lang="ru">
+        <div style="display:flex; gap:12px; font-size:13px;">
+            <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <div style="font-weight:700; margin-bottom:8px;">Ашхабад</div>
+                <p style="flex:1; font-size:12px; color:#64748b; margin:0 0 12px;">Столица Туркменистана. Город белого мрамора, занесённый в Книгу рекордов Гиннесса.</p>
+                <div style="background:#3b82f6; color:#fff; padding:8px; border-radius:6px; text-align:center; margin-top:auto;">Подробнее</div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <div style="font-weight:700; margin-bottom:8px;">Мары</div>
+                <p style="flex:1; font-size:12px; color:#64748b; margin:0 0 12px;">Древний город на Великом Шёлковом пути. Здесь находятся руины Мерва — объект ЮНЕСКО. Один из важнейших торговых центров Центральной Азии на протяжении тысячелетий.</p>
+                <div style="background:#3b82f6; color:#fff; padding:8px; border-radius:6px; text-align:center; margin-top:auto;">Подробнее</div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <div style="font-weight:700; margin-bottom:8px;">Туркменбаши</div>
+                <p style="flex:1; font-size:12px; color:#64748b; margin:0 0 12px;">Портовый город на берегу Каспийского моря.</p>
+                <div style="background:#3b82f6; color:#fff; padding:8px; border-radius:6px; text-align:center; margin-top:auto;">Подробнее</div>
+            </div>
+        </div>
+        <p style="margin-top:10px; font-size:13px;">Все карточки одной высоты, кнопки «Подробнее» выровнены внизу благодаря <code>margin-top: auto</code>.</p>
+    </div>
+    <div class="result-box" data-lang="en">
+        <div style="display:flex; gap:12px; font-size:13px;">
+            <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <div style="font-weight:700; margin-bottom:8px;">Ashgabat</div>
+                <p style="flex:1; font-size:12px; color:#64748b; margin:0 0 12px;">The capital of Turkmenistan. A city of white marble, listed in the Guinness Book of Records.</p>
+                <div style="background:#3b82f6; color:#fff; padding:8px; border-radius:6px; text-align:center; margin-top:auto;">Learn more</div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <div style="font-weight:700; margin-bottom:8px;">Mary</div>
+                <p style="flex:1; font-size:12px; color:#64748b; margin:0 0 12px;">An ancient city on the Great Silk Road. Home to the ruins of Merv — a UNESCO World Heritage Site. One of Central Asia's most important trade centers for thousands of years.</p>
+                <div style="background:#3b82f6; color:#fff; padding:8px; border-radius:6px; text-align:center; margin-top:auto;">Learn more</div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+                <div style="font-weight:700; margin-bottom:8px;">Turkmenbashi</div>
+                <p style="flex:1; font-size:12px; color:#64748b; margin:0 0 12px;">A port city on the Caspian Sea coast.</p>
+                <div style="background:#3b82f6; color:#fff; padding:8px; border-radius:6px; text-align:center; margin-top:auto;">Learn more</div>
+            </div>
+        </div>
+        <p style="margin-top:10px; font-size:13px;">All cards are the same height, "Learn more" buttons are aligned at the bottom thanks to <code>margin-top: auto</code>.</p>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>margin-top: auto</strong> на последнем элементе внутри flex-column контейнера — «прижимает» его к низу. Идеально для кнопок в карточках!
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>margin-top: auto</strong> on the last element inside a flex-column container "pushes" it to the bottom. Perfect for buttons in cards!
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Комбинация <code>flex: 1</code> + <code>flex-direction: column</code> внутри карточки</strong> — секрет идеальных карточек. Карточка сама является flex-column контейнером: заголовок и текст идут сверху, а кнопка с <code>margin-top: auto</code> всегда прижата к низу. Это работает при любом количестве текста.</p>
+        <p data-lang="en"><strong>Combining <code>flex: 1</code> + <code>flex-direction: column</code> inside a card</strong> is the secret to perfect cards. The card itself is a flex-column container: the title and text go at the top, and the button with <code>margin-top: auto</code> always sticks to the bottom. This works with any amount of text.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">12. Практика: макет блога</h2>
+    <h2 id="practice-en" data-lang="en">12. Practice: blog layout</h2>
+
+    <div class="summary" data-lang="ru">
+        <strong>Свойства flex-элементов (детей):</strong>
+        <ul>
+            <li><code>flex-grow</code> — насколько может растянуться (0 = нет, 1+ = да)</li>
+            <li><code>flex-shrink</code> — насколько может сжаться (0 = нет, 1 = да)</li>
+            <li><code>flex-basis</code> — начальный размер (auto, 0, px, %)</li>
+            <li><code>flex</code> — сокращение: <code>flex: 1</code> (заполнить), <code>flex: 0 0 250px</code> (фиксир.)</li>
+            <li><code>order</code> — визуальный порядок (0 по умолчанию)</li>
+            <li><code>align-self</code> — индивидуальное выравнивание по поперечной оси</li>
+        </ul>
+        <strong>Трюки:</strong>
+        <ul>
+            <li><code>margin-left: auto</code> — толкает элемент вправо</li>
+            <li><code>margin-top: auto</code> — толкает элемент вниз (в column)</li>
+            <li>Вложенные flex — flex внутри flex</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>Flex item (children) properties:</strong>
+        <ul>
+            <li><code>flex-grow</code> — how much it can grow (0 = no, 1+ = yes)</li>
+            <li><code>flex-shrink</code> — how much it can shrink (0 = no, 1 = yes)</li>
+            <li><code>flex-basis</code> — initial size (auto, 0, px, %)</li>
+            <li><code>flex</code> — shorthand: <code>flex: 1</code> (fill), <code>flex: 0 0 250px</code> (fixed)</li>
+            <li><code>order</code> — visual order (0 by default)</li>
+            <li><code>align-self</code> — individual cross-axis alignment</li>
+        </ul>
+        <strong>Tricks:</strong>
+        <ul>
+            <li><code>margin-left: auto</code> — pushes item to the right</li>
+            <li><code>margin-top: auto</code> — pushes item to the bottom (in column)</li>
+            <li>Nested flex — flex inside flex</li>
+        </ul>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru"><strong>Финальное задание:</strong> Создайте макет блога с нуля, используя все свойства из этого занятия:</p>
+        <p data-lang="en"><strong>Final task:</strong> Build a blog layout from scratch using all properties from this lesson:</p>
+        <ol data-lang="ru">
+            <li>Страница: header, sidebar (250px), content, footer (Holy Grail)</li>
+            <li>Footer всегда внизу (sticky footer через <code>flex: 1</code> на body)</li>
+            <li>Навигация в header: логотип слева, ссылки + кнопка «Войти» справа (<code>margin-left: auto</code>)</li>
+            <li>В content — сетка из 3 карточек равной высоты с кнопками внизу</li>
+            <li>На «мобильной» версии (уменьшите окно): sidebar после контента (<code>order</code>)</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Page: header, sidebar (250px), content, footer (Holy Grail)</li>
+            <li>Footer always at the bottom (sticky footer via <code>flex: 1</code> on body)</li>
+            <li>Navigation in header: logo on the left, links + "Sign in" button on the right (<code>margin-left: auto</code>)</li>
+            <li>In content — a grid of 3 equal-height cards with buttons at the bottom</li>
+            <li>On the "mobile" version (shrink the window): sidebar after content (<code>order</code>)</li>
+        </ol>
+    </div>
+
+    <div class="fun-fact">
+        <p data-lang="ru">Свойство <code>flex: 1</code> — самое часто используемое CSS-объявление в современных веб-приложениях после <code>display: flex</code>. По данным анализа CSS на топ-10000 сайтов, более 87% сайтов используют flexbox, и <code>flex: 1</code> встречается в среднем 15 раз на каждый сайт. До flexbox разработчики тратили часы на «магию float» — сейчас те же макеты создаются за минуты.</p>
+        <p data-lang="en">The <code>flex: 1</code> property is the most frequently used CSS declaration in modern web applications after <code>display: flex</code>. According to CSS analysis of the top 10,000 websites, over 87% of sites use flexbox, and <code>flex: 1</code> appears an average of 15 times per site. Before flexbox, developers spent hours on "float magic" — now the same layouts are built in minutes.</p>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Что делает <code>flex-grow: 1</code>?</li>
+            <li>Как сделать sidebar фиксированной ширины 300px?</li>
+            <li>Что значит <code>flex: 1</code>?</li>
+            <li>Как кнопку «прижать» к низу карточки?</li>
+            <li>Как поменять порядок элементов без изменения HTML?</li>
+            <li>Зачем нужен <code>align-self</code>?</li>
+            <li>В чём разница между <code>flex: 1</code> и <code>flex: auto</code>?</li>
+            <li>Почему <code>flex-basis</code> приоритетнее <code>width</code> в flex-контейнере?</li>
+            <li>Как работает <code>margin-left: auto</code> на flex-элементе и где это полезно?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>What does <code>flex-grow: 1</code> do?</li>
+            <li>How to make a sidebar with a fixed 300px width?</li>
+            <li>What does <code>flex: 1</code> mean?</li>
+            <li>How to "push" a button to the bottom of a card?</li>
+            <li>How to change item order without modifying HTML?</li>
+            <li>What is <code>align-self</code> for?</li>
+            <li>What is the difference between <code>flex: 1</code> and <code>flex: auto</code>?</li>
+            <li>Why does <code>flex-basis</code> take priority over <code>width</code> in a flex container?</li>
+            <li>How does <code>margin-left: auto</code> work on a flex item and where is it useful?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

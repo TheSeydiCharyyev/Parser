@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 2 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 2: Инструменты разработчика</span>
+    <span class="nav-title" data-lang="en">Lesson 2: Developer Tools</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 2: Инструменты разработчика</p>
+    <p class="subtitle" data-lang="en">Lesson 2: Developer Tools</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 2.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 2.1: ГОРЯЧИЕ КЛАВИШИ И EMMET</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 2.1: KEYBOARD SHORTCUTS AND EMMET</h2>
+
+    <!-- ЗАДАНИЕ 2.1 / TASK 2.1 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 2.1: Горячие клавиши — тренировка</span>
+            <span class="task-title" data-lang="en">Task 2.1: Keyboard Shortcuts — Practice</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Отработать основные горячие клавиши VS Code</div>
+        <div class="task-goal" data-lang="en">Practice essential VS Code keyboard shortcuts</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Создайте файл <code>shortcuts-practice.html</code> и выполните каждое действие:</p>
+        <p data-lang="en">Create a file <code>shortcuts-practice.html</code> and perform each action:</p>
+        <ol data-lang="ru">
+            <li>Напишите строку <code>&lt;p&gt;Привет, мир!&lt;/p&gt;</code></li>
+            <li>Дублируйте её 5 раз (<span class="kbd">Alt</span> + <span class="kbd">Shift</span> + <span class="kbd">&#8595;</span>)</li>
+            <li>Переместите третью строку наверх (<span class="kbd">Alt</span> + <span class="kbd">&#8593;</span>)</li>
+            <li>Удалите четвёртую строку (<span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">K</span>)</li>
+            <li>Закомментируйте вторую строку (<span class="kbd">Ctrl</span> + <span class="kbd">/</span>)</li>
+            <li>Выделите слово «мир» во всех строках одновременно (<span class="kbd">Ctrl</span> + <span class="kbd">D</span> несколько раз)</li>
+            <li>Замените «мир» на своё имя (просто начните печатать)</li>
+            <li>Сохраните (<span class="kbd">Ctrl</span> + <span class="kbd">S</span>)</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Write the line <code>&lt;p&gt;Привет, мир!&lt;/p&gt;</code></li>
+            <li>Duplicate it 5 times (<span class="kbd">Alt</span> + <span class="kbd">Shift</span> + <span class="kbd">&#8595;</span>)</li>
+            <li>Move the third line to the top (<span class="kbd">Alt</span> + <span class="kbd">&#8593;</span>)</li>
+            <li>Delete the fourth line (<span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">K</span>)</li>
+            <li>Comment out the second line (<span class="kbd">Ctrl</span> + <span class="kbd">/</span>)</li>
+            <li>Select the word "мир" in all lines at once (<span class="kbd">Ctrl</span> + <span class="kbd">D</span> several times)</li>
+            <li>Replace "мир" with your name (just start typing)</li>
+            <li>Save (<span class="kbd">Ctrl</span> + <span class="kbd">S</span>)</li>
+        </ol>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все 8 действий выполнены</li>
+                <li>Использованы горячие клавиши (не мышка!)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 8 actions completed</li>
+                <li>Keyboard shortcuts were used (not the mouse!)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 2.2 / TASK 2.2 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 2.2: Emmet — скоростной набор</span>
+            <span class="task-title" data-lang="en">Task 2.2: Emmet — Speed Coding</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться генерировать HTML с помощью Emmet</div>
+        <div class="task-goal" data-lang="en">Learn to generate HTML using Emmet</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Создайте файл <code>emmet-practice.html</code>. Используйте ТОЛЬКО Emmet (не печатайте теги вручную):</p>
+        <p data-lang="en">Create a file <code>emmet-practice.html</code>. Use ONLY Emmet (do not type tags manually):</p>
+        <ol data-lang="ru">
+            <li><code>!</code> + Tab &#8594; шаблон страницы</li>
+            <li><code>h1{Мой сайт}</code> + Tab &#8594; заголовок</li>
+            <li><code>p{Добро пожаловать на мой сайт}</code> + Tab &#8594; параграф</li>
+            <li><code>h2{Навигация}</code> + Tab &#8594; подзаголовок</li>
+            <li><code>nav&gt;ul&gt;li*4&gt;a{Страница $}</code> + Tab &#8594; навигация с 4 ссылками</li>
+            <li><code>h2{Карточки}</code> + Tab &#8594; подзаголовок</li>
+            <li><code>div.card*3&gt;h3{Карточка $}+p&gt;lorem</code> + Tab &#8594; 3 карточки с текстом</li>
+            <li><code>footer&gt;p{Сделано на занятии 2}</code> + Tab &#8594; подвал</li>
+        </ol>
+        <ol data-lang="en">
+            <li><code>!</code> + Tab &#8594; page template</li>
+            <li><code>h1{Мой сайт}</code> + Tab &#8594; heading</li>
+            <li><code>p{Добро пожаловать на мой сайт}</code> + Tab &#8594; paragraph</li>
+            <li><code>h2{Навигация}</code> + Tab &#8594; subheading</li>
+            <li><code>nav&gt;ul&gt;li*4&gt;a{Страница $}</code> + Tab &#8594; navigation with 4 links</li>
+            <li><code>h2{Карточки}</code> + Tab &#8594; subheading</li>
+            <li><code>div.card*3&gt;h3{Карточка $}+p&gt;lorem</code> + Tab &#8594; 3 cards with text</li>
+            <li><code>footer&gt;p{Сделано на занятии 2}</code> + Tab &#8594; footer</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Если Emmet не работает — убедитесь, что файл сохранён как <code>.html</code> и курсор стоит внутри <code>&lt;body&gt;</code>.
+        </div>
+        <div class="hint" data-lang="en">
+            If Emmet is not working — make sure the file is saved as <code>.html</code> and the cursor is inside <code>&lt;body&gt;</code>.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все 8 сокращений использованы</li>
+                <li>Страница содержит навигацию (4 ссылки) и 3 карточки</li>
+                <li>Ни один тег не набран вручную</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 8 abbreviations used</li>
+                <li>Page contains navigation (4 links) and 3 cards</li>
+                <li>No tags typed manually</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 2.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 2.2: DEVTOOLS</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 2.2: DEVTOOLS</h2>
+
+    <!-- ЗАДАНИЕ 2.3 / TASK 2.3 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 2.3: Инспектирование сайта</span>
+            <span class="task-title" data-lang="en">Task 2.3: Website Inspection</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться находить и анализировать элементы через DevTools</div>
+        <div class="task-goal" data-lang="en">Learn to find and analyze elements using DevTools</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Откройте сайт <strong>wikipedia.org</strong> (или любой другой). С помощью DevTools найдите:</p>
+        <p data-lang="en">Open <strong>wikipedia.org</strong> (or any other website). Using DevTools, find:</p>
+
+        <div class="write-box" data-lang="ru">
+            Сайт: ________________________________<br><br>
+            1. Главный заголовок (h1):<br>
+            Текст: ________________________________<br>
+            Размер шрифта (font-size): ____________<br>
+            Цвет (color): ________________________<br><br>
+
+            2. Любая ссылка (a):<br>
+            Текст ссылки: ________________________<br>
+            Адрес (href): ________________________<br>
+            Цвет ссылки: ________________________<br><br>
+
+            3. Любая картинка (img):<br>
+            Путь (src): __________________________<br>
+            Описание (alt): ______________________<br>
+            Размеры: ____________ x ____________ px<br><br>
+
+            4. Шрифт страницы (body &#8594; font-family): ________________________
+        </div>
+        <div class="write-box" data-lang="en">
+            Website: ________________________________<br><br>
+            1. Main heading (h1):<br>
+            Text: ________________________________<br>
+            Font size (font-size): ____________<br>
+            Color (color): ________________________<br><br>
+
+            2. Any link (a):<br>
+            Link text: ________________________<br>
+            Address (href): ________________________<br>
+            Link color: ________________________<br><br>
+
+            3. Any image (img):<br>
+            Path (src): __________________________<br>
+            Description (alt): ______________________<br>
+            Dimensions: ____________ x ____________ px<br><br>
+
+            4. Page font (body &#8594; font-family): ________________________
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Найдены и записаны данные для всех 4 пунктов</li>
+                <li>Указаны конкретные значения CSS-свойств</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Data found and recorded for all 4 items</li>
+                <li>Specific CSS property values provided</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 2.4 / TASK 2.4 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 2.4: Измени дизайн сайта</span>
+            <span class="task-title" data-lang="en">Task 2.4: Change a Website's Design</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться менять CSS-стили через DevTools</div>
+        <div class="task-goal" data-lang="en">Learn to modify CSS styles using DevTools</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Откройте <strong>google.com</strong> (или другой сайт) и с помощью DevTools сделайте:</p>
+        <p data-lang="en">Open <strong>google.com</strong> (or another website) and use DevTools to do the following:</p>
+        <ol data-lang="ru">
+            <li>Измените цвет фона страницы на любой другой (<code>background-color</code>)</li>
+            <li>Измените цвет главного заголовка или логотипа</li>
+            <li>Увеличьте размер текста какого-нибудь элемента до <code>36px</code></li>
+            <li>Добавьте рамку к любому элементу: <code>border: 3px solid red</code></li>
+            <li>Скруглите углы у какого-нибудь блока: <code>border-radius: 20px</code></li>
+            <li>Скройте какой-нибудь элемент: <code>display: none</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li>Change the page background color to any other (<code>background-color</code>)</li>
+            <li>Change the color of the main heading or logo</li>
+            <li>Increase the text size of any element to <code>36px</code></li>
+            <li>Add a border to any element: <code>border: 3px solid red</code></li>
+            <li>Round the corners of any block: <code>border-radius: 20px</code></li>
+            <li>Hide any element: <code>display: none</code></li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Чтобы добавить новое CSS-свойство: выберите элемент &#8594; в панели Styles нажмите на пустое место внутри любого правила &#8594; начните печатать имя свойства.
+        </div>
+        <div class="hint" data-lang="en">
+            To add a new CSS property: select an element &#8594; in the Styles panel click on an empty space inside any rule &#8594; start typing the property name.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Выполнены все 6 изменений</li>
+                <li>Результат показан преподавателю (или сделан скриншот)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 6 changes completed</li>
+                <li>Result shown to the instructor (or a screenshot taken)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 2.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 2.3: ПРАКТИЧЕСКИЙ ПРОЕКТ</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 2.3: PRACTICAL PROJECT</h2>
+
+    <!-- ЗАДАНИЕ 2.5 / TASK 2.5 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 2.5: Страница «Мои любимые [тема]»</span>
+            <span class="task-title" data-lang="en">Task 2.5: "My Favorite [topic]" Page</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать стилизованную HTML-страницу, используя Emmet и внутренние стили</div>
+        <div class="task-goal" data-lang="en">Create a styled HTML page using Emmet and internal styles</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Создайте страницу на одну из тем:</p>
+        <p data-lang="en">Create a page on one of the following topics:</p>
+        <ul data-lang="ru">
+            <li>Мои любимые фильмы / сериалы</li>
+            <li>Мои любимые игры</li>
+            <li>Мои любимые музыканты / песни</li>
+            <li>Мои любимые блюда</li>
+            <li>Своя тема</li>
+        </ul>
+        <ul data-lang="en">
+            <li>My favorite movies / TV shows</li>
+            <li>My favorite games</li>
+            <li>My favorite musicians / songs</li>
+            <li>My favorite dishes</li>
+            <li>Your own topic</li>
+        </ul>
+
+        <h3 data-lang="ru">Требования:</h3>
+        <h3 data-lang="en">Requirements:</h3>
+        <ol data-lang="ru">
+            <li>Создайте папку с понятным именем, откройте в VS Code</li>
+            <li>Используйте <strong>Emmet</strong> для набора HTML (не печатайте теги вручную!)</li>
+            <li>Добавьте <strong>внутренние CSS-стили</strong> (тег <code>&lt;style&gt;</code> в <code>&lt;head&gt;</code>)</li>
+            <li>Обязательные элементы:
+                <ul>
+                    <li>Заголовок <code>&lt;h1&gt;</code></li>
+                    <li>Минимум 2 подзаголовка <code>&lt;h2&gt;</code></li>
+                    <li>Минимум 3 «карточки» (блоки <code>&lt;div&gt;</code> с информацией)</li>
+                    <li>Список <code>&lt;ul&gt;</code> или <code>&lt;ol&gt;</code></li>
+                    <li>Минимум 1 ссылка <code>&lt;a&gt;</code></li>
+                </ul>
+            </li>
+            <li>Обязательные CSS-стили:
+                <ul>
+                    <li>Цвет фона страницы (<code>background-color</code>)</li>
+                    <li>Шрифт (<code>font-family</code>)</li>
+                    <li>Цвет заголовка (<code>color</code>)</li>
+                    <li>Стилизация карточек (фон, отступы, рамка или тень)</li>
+                    <li>Скругление углов (<code>border-radius</code>)</li>
+                </ul>
+            </li>
+            <li>Запустите через <strong>Live Server</strong></li>
+            <li>Поэкспериментируйте со стилями в <strong>DevTools</strong>, перенесите лучшие в код</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Create a folder with a clear name, open it in VS Code</li>
+            <li>Use <strong>Emmet</strong> to write HTML (do not type tags manually!)</li>
+            <li>Add <strong>internal CSS styles</strong> (<code>&lt;style&gt;</code> tag in <code>&lt;head&gt;</code>)</li>
+            <li>Required elements:
+                <ul>
+                    <li>Heading <code>&lt;h1&gt;</code></li>
+                    <li>At least 2 subheadings <code>&lt;h2&gt;</code></li>
+                    <li>At least 3 "cards" (<code>&lt;div&gt;</code> blocks with information)</li>
+                    <li>A list <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code></li>
+                    <li>At least 1 link <code>&lt;a&gt;</code></li>
+                </ul>
+            </li>
+            <li>Required CSS styles:
+                <ul>
+                    <li>Page background color (<code>background-color</code>)</li>
+                    <li>Font (<code>font-family</code>)</li>
+                    <li>Heading color (<code>color</code>)</li>
+                    <li>Card styling (background, padding, border or shadow)</li>
+                    <li>Rounded corners (<code>border-radius</code>)</li>
+                </ul>
+            </li>
+            <li>Launch via <strong>Live Server</strong></li>
+            <li>Experiment with styles in <strong>DevTools</strong>, transfer the best ones to your code</li>
+        </ol>
+
+        <div class="example">
+<pre><code>&lt;style&gt;
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    h1 { color: #e94560; text-align: center; }
+    .card {
+        background: white;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 10px;
+        border-left: 4px solid #e94560;
+    }
+&lt;/style&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>HTML набран с помощью Emmet</li>
+                <li>Есть h1, минимум 2 h2, минимум 3 карточки, список, ссылка</li>
+                <li>Есть внутренние CSS-стили (минимум 5 свойств)</li>
+                <li>Страница запущена через Live Server</li>
+                <li>Тема — уникальная (не копия примера)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>HTML written using Emmet</li>
+                <li>Contains h1, at least 2 h2, at least 3 cards, a list, a link</li>
+                <li>Has internal CSS styles (at least 5 properties)</li>
+                <li>Page launched via Live Server</li>
+                <li>Topic is unique (not a copy of the example)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 2.6 / TASK 2.6 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 2.6: Адаптивный режим (бонусное)</span>
+            <span class="task-title" data-lang="en">Task 2.6: Responsive Mode (bonus)</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Продвинутое</span>
+                <span class="badge badge-hard" data-lang="en">Advanced</span>
+                <span class="badge badge-time" data-lang="ru">5 минут</span>
+                <span class="badge badge-time" data-lang="en">5 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Познакомиться с адаптивным режимом DevTools</div>
+        <div class="task-goal" data-lang="en">Get familiar with DevTools responsive mode</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <ol data-lang="ru">
+            <li>Откройте свою страницу из задания 2.5</li>
+            <li>Откройте DevTools (<span class="kbd">F12</span>)</li>
+            <li>Включите адаптивный режим (<span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">M</span>)</li>
+            <li>Посмотрите страницу на размерах:
+                <ul>
+                    <li>iPhone SE (375px)</li>
+                    <li>iPad (768px)</li>
+                    <li>Ноутбук (1024px)</li>
+                </ul>
+            </li>
+            <li>Запишите, что выглядит хорошо, а что — нет</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Open your page from task 2.5</li>
+            <li>Open DevTools (<span class="kbd">F12</span>)</li>
+            <li>Enable responsive mode (<span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">M</span>)</li>
+            <li>View the page at these sizes:
+                <ul>
+                    <li>iPhone SE (375px)</li>
+                    <li>iPad (768px)</li>
+                    <li>Laptop (1024px)</li>
+                </ul>
+            </li>
+            <li>Write down what looks good and what doesn't</li>
+        </ol>
+
+        <div class="write-box" data-lang="ru">
+            Мобильный (375px):<br>
+            Выглядит хорошо: ________________________________<br>
+            Проблемы: ________________________________<br><br>
+            Планшет (768px):<br>
+            Выглядит хорошо: ________________________________<br>
+            Проблемы: ________________________________
+        </div>
+        <div class="write-box" data-lang="en">
+            Mobile (375px):<br>
+            Looks good: ________________________________<br>
+            Issues: ________________________________<br><br>
+            Tablet (768px):<br>
+            Looks good: ________________________________<br>
+            Issues: ________________________________
+        </div>
+
+        <div class="hint" data-lang="ru">
+            Не переживайте, если на мобильном выглядит плохо! Мы научимся делать адаптивный дизайн в модуле 7 (Media Queries).
+        </div>
+        <div class="hint" data-lang="en">
+            Don't worry if it looks bad on mobile! We will learn responsive design in module 7 (Media Queries).
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Адаптивный режим включён</li>
+                <li>Страница просмотрена на 3 размерах</li>
+                <li>Записаны наблюдения</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Responsive mode enabled</li>
+                <li>Page viewed at 3 different sizes</li>
+                <li>Observations recorded</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+    <h2 data-lang="ru">&#x1F4DA; ДОМАШНЕЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x1F4DA; HOMEWORK</h2>
+
+    <!-- ДЗ 2 / HW 2 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">ДЗ 2: Вторая страница + DevTools-исследование</span>
+            <span class="task-title" data-lang="en">HW 2: Second Page + DevTools Research</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">30 минут</span>
+                <span class="badge badge-time" data-lang="en">30 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Закрепить VS Code, Emmet и DevTools</div>
+        <div class="task-goal" data-lang="en">Reinforce VS Code, Emmet, and DevTools skills</div>
+
+        <h3 data-lang="ru">Часть 1: Создай вторую страницу</h3>
+        <h3 data-lang="en">Part 1: Create a second page</h3>
+        <p data-lang="ru">Создайте новую страницу на другую тему (не такую, как на занятии). Требования:</p>
+        <p data-lang="en">Create a new page on a different topic (not the same as in class). Requirements:</p>
+        <ul data-lang="ru">
+            <li>Используйте Emmet для всего HTML</li>
+            <li>Минимум 5 CSS-правил в теге <code>&lt;style&gt;</code></li>
+            <li>Минимум 4 карточки</li>
+            <li>Используйте <code>border-radius</code>, <code>box-shadow</code>, разные цвета</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Use Emmet for all HTML</li>
+            <li>At least 5 CSS rules in the <code>&lt;style&gt;</code> tag</li>
+            <li>At least 4 cards</li>
+            <li>Use <code>border-radius</code>, <code>box-shadow</code>, different colors</li>
+        </ul>
+
+        <h3 data-lang="ru">Часть 2: DevTools-исследование</h3>
+        <h3 data-lang="en">Part 2: DevTools Research</h3>
+        <p data-lang="ru">Откройте <strong>3 разных сайта</strong> и для каждого запишите:</p>
+        <p data-lang="en">Open <strong>3 different websites</strong> and for each one write down:</p>
+
+        <div class="write-box" data-lang="ru">
+            Сайт 1: ________________________________<br>
+            Шрифт (font-family): ________________________<br>
+            Цвет фона (background): ________________________<br>
+            Цвет заголовка: ________________________<br>
+            Что мне понравилось в дизайне: ________________________<br><br>
+
+            Сайт 2: ________________________________<br>
+            Шрифт: ________________________<br>
+            Цвет фона: ________________________<br>
+            Цвет заголовка: ________________________<br>
+            Что понравилось: ________________________<br><br>
+
+            Сайт 3: ________________________________<br>
+            Шрифт: ________________________<br>
+            Цвет фона: ________________________<br>
+            Цвет заголовка: ________________________<br>
+            Что понравилось: ________________________
+        </div>
+        <div class="write-box" data-lang="en">
+            Website 1: ________________________________<br>
+            Font (font-family): ________________________<br>
+            Background color (background): ________________________<br>
+            Heading color: ________________________<br>
+            What I liked about the design: ________________________<br><br>
+
+            Website 2: ________________________________<br>
+            Font: ________________________<br>
+            Background color: ________________________<br>
+            Heading color: ________________________<br>
+            What I liked: ________________________<br><br>
+
+            Website 3: ________________________________<br>
+            Font: ________________________<br>
+            Background color: ________________________<br>
+            Heading color: ________________________<br>
+            What I liked: ________________________
+        </div>
+
+        <h3 data-lang="ru">Часть 3: Горячие клавиши</h3>
+        <h3 data-lang="en">Part 3: Keyboard Shortcuts</h3>
+        <p data-lang="ru">Выучите и используйте минимум <strong>5 новых горячих клавиш</strong> при выполнении части 1. Запишите, какие выучили:</p>
+        <p data-lang="en">Learn and use at least <strong>5 new keyboard shortcuts</strong> while doing part 1. Write down which ones you learned:</p>
+
+        <div class="write-box" data-lang="ru">
+            1. ________________________________<br>
+            2. ________________________________<br>
+            3. ________________________________<br>
+            4. ________________________________<br>
+            5. ________________________________
+        </div>
+        <div class="write-box" data-lang="en">
+            1. ________________________________<br>
+            2. ________________________________<br>
+            3. ________________________________<br>
+            4. ________________________________<br>
+            5. ________________________________
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Создана вторая страница с CSS-стилями</li>
+                <li>Исследованы 3 сайта через DevTools</li>
+                <li>Записаны 5 выученных горячих клавиш</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Second page with CSS styles created</li>
+                <li>3 websites researched using DevTools</li>
+                <li>5 learned keyboard shortcuts recorded</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

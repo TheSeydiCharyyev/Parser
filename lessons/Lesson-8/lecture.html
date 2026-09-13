@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 8 — CSS Position</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 8: CSS Position</span>
+    <span class="nav-title" data-lang="en">Lesson 8: CSS Position</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 8: CSS Position</h1>
+    <h1 data-lang="en">Lesson 8: CSS Position</h1>
+    <p class="subtitle" data-lang="ru">Свойство position: static, relative, absolute, fixed, sticky. Containing block, z-index, stacking context. Реальные паттерны: sticky header, бейдж, кнопка «Наверх», модалка.</p>
+    <p class="subtitle" data-lang="en">The position property: static, relative, absolute, fixed, sticky. Containing block, z-index, stacking context. Real-world patterns: sticky header, badge, "Back to top" button, modal.</p>
+
+    <div class="why">
+        <p data-lang="ru">До сих пор все элементы у вас лежали друг под другом или в строку — браузер сам решал, где их разместить. Это называется <strong>нормальным потоком</strong> документа. Но в реальной вёрстке часто нужно поставить элемент <strong>именно туда, куда тебе надо</strong>: бейдж «-30%» в углу карточки, кнопку «Наверх» в правом нижнем углу экрана, шапку, которая «прилипает» к верху при скролле.</p>
+        <p data-lang="ru"><strong>После этого занятия вы сможете:</strong></p>
+        <ul data-lang="ru">
+            <li>Объяснить разницу между всеми 5 значениями <code>position</code></li>
+            <li>Использовать <code>top/right/bottom/left</code> для точного позиционирования</li>
+            <li>Сделать «липкую» навигацию (sticky header)</li>
+            <li>Поставить бейдж в угол карточки через <code>absolute</code></li>
+            <li>Прижать кнопку «Наверх» к экрану через <code>fixed</code></li>
+            <li>Понять, что такое <strong>containing block</strong> и почему <code>absolute</code> может «улететь»</li>
+            <li>Использовать <code>z-index</code>, чтобы один элемент был поверх другого</li>
+        </ul>
+
+        <p data-lang="en">Up to now, all your elements have stacked under each other or sat in a line — the browser decided where to put them. This is called the <strong>normal document flow</strong>. But in real layouts you often need to place an element <strong>exactly where you want</strong>: a "-30%" badge in the corner of a card, a "Back to top" button in the bottom-right of the screen, a header that "sticks" to the top when scrolling.</p>
+        <p data-lang="en"><strong>After this lesson you will be able to:</strong></p>
+        <ul data-lang="en">
+            <li>Explain the difference between all 5 <code>position</code> values</li>
+            <li>Use <code>top/right/bottom/left</code> for precise positioning</li>
+            <li>Make a "sticky" navigation header</li>
+            <li>Place a badge in a card corner with <code>absolute</code></li>
+            <li>Pin a "Back to top" button to the screen with <code>fixed</code></li>
+            <li>Understand <strong>containing block</strong> and why <code>absolute</code> can "fly away"</li>
+            <li>Use <code>z-index</code> to layer one element above another</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#what-is">Что такое position и зачем он нужен</a></li>
+            <li><a href="#static">position: static (значение по умолчанию)</a></li>
+            <li><a href="#relative">position: relative — сдвиг от своего места</a></li>
+            <li><a href="#trbl">top, right, bottom, left — координаты</a></li>
+            <li><a href="#absolute">position: absolute — вне потока</a></li>
+            <li><a href="#containing-block">Containing block — кто родитель для absolute</a></li>
+            <li><a href="#fixed">position: fixed — относительно экрана</a></li>
+            <li><a href="#sticky">position: sticky — гибрид relative и fixed</a></li>
+            <li><a href="#z-index">z-index и stacking context</a></li>
+            <li><a href="#patterns">Реальные паттерны: sticky header, бейдж, «Наверх», модалка</a></li>
+            <li><a href="#mistakes">Частые ошибки и как их избежать</a></li>
+            <li><a href="#summary">Итоги занятия</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#what-is">What position is and why we need it</a></li>
+            <li><a href="#static">position: static (default value)</a></li>
+            <li><a href="#relative">position: relative — shift from original place</a></li>
+            <li><a href="#trbl">top, right, bottom, left — coordinates</a></li>
+            <li><a href="#absolute">position: absolute — out of the flow</a></li>
+            <li><a href="#containing-block">Containing block — who is the parent for absolute</a></li>
+            <li><a href="#fixed">position: fixed — relative to the viewport</a></li>
+            <li><a href="#sticky">position: sticky — hybrid of relative and fixed</a></li>
+            <li><a href="#z-index">z-index and stacking context</a></li>
+            <li><a href="#patterns">Real patterns: sticky header, badge, "Back to top", modal</a></li>
+            <li><a href="#mistakes">Common mistakes and how to avoid them</a></li>
+            <li><a href="#summary">Lesson summary</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 1. WHAT IS POSITION ==================== -->
+    <h2 id="what-is" data-lang="ru">1. Что такое position и зачем он нужен</h2>
+    <h2 id="what-is-en" data-lang="en">1. What position is and why we need it</h2>
+
+    <p data-lang="ru">Свойство <code>position</code> определяет, <strong>как браузер размещает элемент на странице</strong>. По умолчанию все элементы участвуют в нормальном потоке: блочные становятся друг под другом, строчные — в одну строку. <code>position</code> позволяет вынуть элемент из этого потока и поставить его в любое место.</p>
+    <p data-lang="en">The <code>position</code> property defines <strong>how the browser places an element on the page</strong>. By default, all elements participate in the normal flow: blocks stack vertically, inline elements line up horizontally. <code>position</code> lets you take an element out of this flow and put it anywhere.</p>
+
+    <div class="analogy">
+        <p data-lang="ru">Представь библиотеку. По умолчанию книги стоят на полках по порядку — это нормальный поток. Но иногда библиотекарь берёт книгу с полки и кладёт её на стол, или приклеивает к потолку, или прибивает к стене. Это и есть <code>position</code> — способ сказать «эта книга не на полке, она вон там».</p>
+        <p data-lang="en">Imagine a library. By default, books sit on shelves in order — that's the normal flow. But sometimes the librarian takes a book off the shelf and puts it on a desk, glues it to the ceiling, or nails it to the wall. That's <code>position</code> — a way to say "this book isn't on the shelf, it's over there."</p>
+    </div>
+
+    <p data-lang="ru">У <code>position</code> 5 значений:</p>
+    <p data-lang="en">There are 5 values for <code>position</code>:</p>
+
+    <table>
+        <tr>
+            <th data-lang="ru">Значение</th>
+            <th data-lang="en">Value</th>
+            <th data-lang="ru">Что делает</th>
+            <th data-lang="en">What it does</th>
+        </tr>
+        <tr>
+            <td><code>static</code></td>
+            <td><code>static</code></td>
+            <td data-lang="ru">По умолчанию. Элемент в обычном потоке. <code>top/left</code> не работают.</td>
+            <td data-lang="en">Default. Element is in normal flow. <code>top/left</code> don't work.</td>
+        </tr>
+        <tr>
+            <td><code>relative</code></td>
+            <td><code>relative</code></td>
+            <td data-lang="ru">Элемент остаётся в потоке (место сохраняется), но можно сдвинуть через <code>top/left</code>.</td>
+            <td data-lang="en">Element stays in flow (its place is preserved), but you can shift it via <code>top/left</code>.</td>
+        </tr>
+        <tr>
+            <td><code>absolute</code></td>
+            <td><code>absolute</code></td>
+            <td data-lang="ru">Вырывается из потока. Позиционируется относительно ближайшего <code>relative</code>-предка.</td>
+            <td data-lang="en">Pulled out of flow. Positioned relative to the nearest <code>relative</code> ancestor.</td>
+        </tr>
+        <tr>
+            <td><code>fixed</code></td>
+            <td><code>fixed</code></td>
+            <td data-lang="ru">Вырывается из потока. Позиционируется относительно окна браузера. Не двигается при скролле.</td>
+            <td data-lang="en">Pulled out of flow. Positioned relative to the browser window. Doesn't move when scrolling.</td>
+        </tr>
+        <tr>
+            <td><code>sticky</code></td>
+            <td><code>sticky</code></td>
+            <td data-lang="ru">Гибрид: ведёт себя как <code>relative</code>, пока не достигнет порога — потом «прилипает» как <code>fixed</code>.</td>
+            <td data-lang="en">Hybrid: acts like <code>relative</code> until it hits a threshold — then "sticks" like <code>fixed</code>.</td>
+        </tr>
+    </table>
+
+    <div class="real-world">
+        <p data-lang="ru">Что мы видим на реальных сайтах благодаря position:</p>
+        <ul data-lang="ru">
+            <li><strong>YouTube</strong> — sticky-навигация сверху, плеер прилипает к низу при скролле комментариев</li>
+            <li><strong>GitHub</strong> — sticky-табы «Code / Issues / Pull requests», бейджи с числами на иконках через absolute</li>
+            <li><strong>Apple.com</strong> — fixed-шапка с прозрачным фоном (backdrop-filter) поверх hero-секции</li>
+            <li><strong>Telegram Web</strong> — fixed-кнопка «Новое сообщение», кнопка «Прокрутить вниз» появляется при скролле</li>
+            <li><strong>Любой интернет-магазин</strong> — бейджи «Скидка», «Новинка», «Хит» в углах карточек товаров</li>
+        </ul>
+        <p data-lang="en">What we see on real websites thanks to position:</p>
+        <ul data-lang="en">
+            <li><strong>YouTube</strong> — sticky top navigation, the player sticks to the bottom when scrolling comments</li>
+            <li><strong>GitHub</strong> — sticky tabs "Code / Issues / Pull requests", count badges on icons via absolute</li>
+            <li><strong>Apple.com</strong> — fixed header with transparent background (backdrop-filter) over the hero section</li>
+            <li><strong>Telegram Web</strong> — fixed "New message" button, "Scroll down" button appearing on scroll</li>
+            <li><strong>Any online store</strong> — "Sale", "New", "Hit" badges in corners of product cards</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 2. STATIC ==================== -->
+    <h2 id="static" data-lang="ru">2. position: static — значение по умолчанию</h2>
+    <h2 id="static-en" data-lang="en">2. position: static — the default value</h2>
+
+    <p data-lang="ru"><code>static</code> — это значение по умолчанию для всех HTML-элементов. Оно означает «никакого специального позиционирования, просто обычный поток». Вы никогда не пишете <code>position: static</code> явно — оно стоит само по себе.</p>
+    <p data-lang="en"><code>static</code> is the default value for all HTML elements. It means "no special positioning, just the normal flow." You never write <code>position: static</code> explicitly — it's there by default.</p>
+
+    <pre data-lang="ru"><code>/* Эти два правила ОДИНАКОВЫ */
+.box {
+    /* нет position — значит static */
+}
+
+.box {
+    position: static;  /* явно, но бессмысленно */
+}</code></pre>
+
+    <div class="important">
+        <p data-lang="ru"><strong>Запомни главное:</strong> у <code>static</code>-элементов <strong>не работают</strong> свойства <code>top, right, bottom, left, z-index</code>. Если ты напишешь <code>position: static; top: 50px;</code> — top будет проигнорирован.</p>
+        <p data-lang="en"><strong>Remember the key fact:</strong> for <code>static</code> elements, the <code>top, right, bottom, left, z-index</code> properties <strong>don't work</strong>. If you write <code>position: static; top: 50px;</code> — top will be ignored.</p>
+    </div>
+
+    <p data-lang="ru">Зачем тогда вообще знать про <code>static</code>? Иногда нужно <strong>сбросить</strong> позиционирование, которое было задано раньше или унаследовано из библиотеки CSS:</p>
+    <p data-lang="en">Why bother knowing about <code>static</code>? Sometimes you need to <strong>reset</strong> positioning that was set earlier or inherited from a CSS library:</p>
+
+    <pre><code>/* Bootstrap задаёт всем .navbar значение sticky */
+/* А я хочу отключить это для одной страницы */
+.special-page .navbar {
+    position: static;  /* возвращаем в поток */
+}</code></pre>
+
+    <hr>
+
+    <!-- ==================== 3. RELATIVE ==================== -->
+    <h2 id="relative" data-lang="ru">3. position: relative — сдвиг от своего места</h2>
+    <h2 id="relative-en" data-lang="en">3. position: relative — shift from original place</h2>
+
+    <p data-lang="ru"><code>relative</code> делает две вещи:</p>
+    <ol data-lang="ru">
+        <li>Элемент <strong>остаётся в потоке</strong> — его исходное место занято, другие элементы его «помнят» и не сдвигаются.</li>
+        <li>Можно сдвинуть элемент <strong>относительно его исходного места</strong> через <code>top/right/bottom/left</code>.</li>
+    </ol>
+    <p data-lang="en"><code>relative</code> does two things:</p>
+    <ol data-lang="en">
+        <li>The element <strong>stays in the flow</strong> — its original place is preserved, other elements "remember" it and don't shift.</li>
+        <li>You can shift the element <strong>relative to its original place</strong> via <code>top/right/bottom/left</code>.</li>
+    </ol>
+
+    <pre><code>.shifted {
+    position: relative;
+    top: 20px;     /* сдвинут вниз на 20px от исходного места */
+    left: 30px;    /* сдвинут вправо на 30px от исходного места */
+}</code></pre>
+
+    <div class="diagram">
+БЕЗ relative:                 С relative top:20px left:30px:
+
+[ Блок 1 ]                    [ Блок 1 ]
+[ Блок 2 ]                       [ Блок 2 ]   ← сдвинут, но место сохранено
+[ Блок 3 ]                    [ Блок 3 ]      ← НЕ подъехал к 1
+                              ↑
+                              место Блока 2 пустует, но «занято»</div>
+
+    <div class="analogy">
+        <p data-lang="ru">Представь, что ты сидишь в классе на 5-й парте. Тебе сказали «сдвинь свой стул на 30см вправо». Ты сдвинулся, НО на полу осталась пометка мелом «здесь сидит Сапар». Никто другой на это место не сядет, даже если оно физически свободно. Это и есть <code>relative</code>: визуально сдвинут, но «место занято».</p>
+        <p data-lang="en">Imagine you're sitting in class at desk 5. You're told "move your chair 30cm to the right." You move, BUT a chalk mark remains on the floor "Sapar sits here." Nobody else will take that spot, even though it's physically empty. That's <code>relative</code>: visually shifted, but "place is taken."</p>
+    </div>
+
+    <div class="why">
+        <p data-lang="ru"><strong>Зачем используют <code>relative</code> на практике?</strong></p>
+        <p data-lang="ru">Чаще всего — НЕ для сдвига элемента, а как <strong>контейнер для absolute-потомков</strong>. Это самый важный паттерн всего занятия. Когда ты ставишь <code>position: relative</code> на родителя, ты говоришь: «дети с absolute, считайте свои координаты от меня». Без этого absolute уйдёт «в начало координат» страницы.</p>
+        <p data-lang="en"><strong>Why is <code>relative</code> used in practice?</strong></p>
+        <p data-lang="en">Most often — NOT to shift the element, but as a <strong>container for absolute children</strong>. This is the most important pattern of the whole lesson. When you set <code>position: relative</code> on a parent, you're saying: "children with absolute, count your coordinates from me." Without this, absolute will go to the page's "origin point."</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 4. TRBL ==================== -->
+    <h2 id="trbl" data-lang="ru">4. top, right, bottom, left — координаты</h2>
+    <h2 id="trbl-en" data-lang="en">4. top, right, bottom, left — coordinates</h2>
+
+    <p data-lang="ru">Эти четыре свойства определяют, на сколько <strong>сдвинуть элемент от каждого края</strong> его системы отсчёта. Они работают только для элементов с <code>position</code> отличным от <code>static</code>.</p>
+    <p data-lang="en">These four properties define how far to <strong>shift an element from each edge</strong> of its reference frame. They only work for elements with <code>position</code> other than <code>static</code>.</p>
+
+    <table>
+        <tr>
+            <th data-lang="ru">Свойство</th>
+            <th data-lang="en">Property</th>
+            <th data-lang="ru">Что значит</th>
+            <th data-lang="en">What it means</th>
+        </tr>
+        <tr>
+            <td><code>top: 20px</code></td>
+            <td><code>top: 20px</code></td>
+            <td data-lang="ru">Отступ <strong>от верхнего края</strong> 20px (элемент сместится вниз)</td>
+            <td data-lang="en">Offset <strong>from the top edge</strong> 20px (element moves down)</td>
+        </tr>
+        <tr>
+            <td><code>right: 20px</code></td>
+            <td><code>right: 20px</code></td>
+            <td data-lang="ru">Отступ <strong>от правого края</strong> 20px (элемент сместится влево от правого края)</td>
+            <td data-lang="en">Offset <strong>from the right edge</strong> 20px (element moves left from the right edge)</td>
+        </tr>
+        <tr>
+            <td><code>bottom: 20px</code></td>
+            <td><code>bottom: 20px</code></td>
+            <td data-lang="ru">Отступ <strong>от нижнего края</strong> 20px (элемент сместится вверх)</td>
+            <td data-lang="en">Offset <strong>from the bottom edge</strong> 20px (element moves up)</td>
+        </tr>
+        <tr>
+            <td><code>left: 20px</code></td>
+            <td><code>left: 20px</code></td>
+            <td data-lang="ru">Отступ <strong>от левого края</strong> 20px (элемент сместится вправо)</td>
+            <td data-lang="en">Offset <strong>from the left edge</strong> 20px (element moves right)</td>
+        </tr>
+    </table>
+
+    <div class="important">
+        <p data-lang="ru"><strong>top и bottom вместе?</strong> Если задать оба, выиграет <code>top</code> (для left-to-right языков). Если хочешь растянуть элемент — задай <code>top: 0; bottom: 0;</code> и НЕ задавай <code>height</code>. Тогда элемент займёт всю высоту контейнера.</p>
+        <p data-lang="en"><strong>top and bottom together?</strong> If you set both, <code>top</code> wins (in left-to-right languages). If you want to stretch the element — set <code>top: 0; bottom: 0;</code> and DON'T set <code>height</code>. The element will then fill the container's full height.</p>
+    </div>
+
+    <pre><code>/* Растянуть элемент на всю высоту родителя */
+.fullheight {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 200px;  /* высота определится из top/bottom */
+}</code></pre>
+
+    <p data-lang="ru">Можно использовать <strong>отрицательные значения</strong> — элемент уйдёт в противоположную сторону:</p>
+    <p data-lang="en">You can use <strong>negative values</strong> — the element will move in the opposite direction:</p>
+
+    <pre><code>/* Бейдж торчит за угол карточки */
+.badge {
+    position: absolute;
+    top: -10px;    /* сдвинут на 10px ВЫШЕ верхнего края родителя */
+    right: -10px;  /* сдвинут на 10px ПРАВЕЕ правого края родителя */
+}</code></pre>
+
+    <hr>
+
+    <!-- ==================== 5. ABSOLUTE ==================== -->
+    <h2 id="absolute" data-lang="ru">5. position: absolute — вне потока</h2>
+    <h2 id="absolute-en" data-lang="en">5. position: absolute — out of the flow</h2>
+
+    <p data-lang="ru"><code>absolute</code> — это «волшебное» значение, которое:</p>
+    <ol data-lang="ru">
+        <li><strong>Вырывает элемент из потока</strong> — другие элементы его «не видят», смыкаются на его месте, как будто его нет.</li>
+        <li>Позиционирует относительно <strong>ближайшего предка</strong> с <code>position: relative</code> (или <code>absolute</code>, или <code>fixed</code>, или <code>sticky</code>).</li>
+        <li>Если такого предка нет — относительно <code>&lt;html&gt;</code> (всей страницы).</li>
+    </ol>
+    <p data-lang="en"><code>absolute</code> is the "magic" value that:</p>
+    <ol data-lang="en">
+        <li><strong>Pulls the element out of the flow</strong> — other elements don't "see" it, they close together as if it's not there.</li>
+        <li>Positions it relative to the <strong>nearest ancestor</strong> with <code>position: relative</code> (or <code>absolute</code>, or <code>fixed</code>, or <code>sticky</code>).</li>
+        <li>If no such ancestor exists — relative to <code>&lt;html&gt;</code> (the whole page).</li>
+    </ol>
+
+    <div class="diagram">
+БЕЗ absolute:                 С absolute (родитель .card relative):
+
+.card                         .card
+┌──────────────┐              ┌──────────────┐ ●—— badge top:-10 right:-10
+│ Картинка     │              │ Картинка     │
+│ Название     │              │ Название     │
+│ Цена         │              │ Цена         │
+│ [Бейдж]      │              └──────────────┘
+└──────────────┘              (бейдж "выпрыгнул" вверх-вправо)</div>
+
+    <pre><code>/* HTML */
+&lt;div class="card"&gt;
+    &lt;img src="product.jpg"&gt;
+    &lt;span class="badge"&gt;-30%&lt;/span&gt;
+&lt;/div&gt;
+
+/* CSS */
+.card {
+    position: relative;     /* ВАЖНО: иначе badge "улетит" к углу страницы */
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+}</code></pre>
+
+    <div class="important">
+        <p data-lang="ru"><strong>Главное правило absolute:</strong> 99% случаев на родителе ставят <code>position: relative</code>. Это «привязка». Без неё absolute считает координаты от <code>&lt;html&gt;</code> и улетает в угол страницы.</p>
+        <p data-lang="en"><strong>Main rule of absolute:</strong> in 99% of cases, the parent gets <code>position: relative</code>. This is the "anchor." Without it, absolute counts coordinates from <code>&lt;html&gt;</code> and flies to the corner of the page.</p>
+    </div>
+
+    <p data-lang="ru"><strong>Что меняется при <code>absolute</code>:</strong></p>
+    <p data-lang="en"><strong>What changes with <code>absolute</code>:</strong></p>
+    <ul data-lang="ru">
+        <li>Элемент вырван из потока — другие подвинутся на его место</li>
+        <li>Если не задать <code>width</code> — ширина равна содержимому (как у строчных)</li>
+        <li>Можно задать любую ширину/высоту, в отличие от <code>inline</code>-элементов</li>
+        <li>Считает позицию от ближайшего <code>position: relative/absolute/fixed/sticky</code>-предка</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Element is pulled out of flow — others move into its spot</li>
+        <li>If <code>width</code> isn't set — width equals content (like inline elements)</li>
+        <li>You can set any width/height, unlike <code>inline</code> elements</li>
+        <li>Counts position from the nearest <code>position: relative/absolute/fixed/sticky</code> ancestor</li>
+    </ul>
+
+    <div class="real-world">
+        <p data-lang="ru">Где используется <code>absolute</code> в реальных проектах:</p>
+        <ul data-lang="ru">
+            <li>Бейджи «-30%», «New», «Hit» в углах карточек товаров</li>
+            <li>Иконка-крестик «Закрыть» в углу модалки или поп-апа</li>
+            <li>Подпись поверх фото (overlay с градиентом снизу)</li>
+            <li>Иконка лупы внутри input для поиска</li>
+            <li>Tooltip-подсказка над кнопкой</li>
+            <li>Кружок-уведомление с числом на иконке (например, на колокольчике)</li>
+        </ul>
+        <p data-lang="en">Where <code>absolute</code> is used in real projects:</p>
+        <ul data-lang="en">
+            <li>"-30%", "New", "Hit" badges in corners of product cards</li>
+            <li>Close-X icon in the corner of a modal or popup</li>
+            <li>Caption over a photo (overlay with bottom gradient)</li>
+            <li>Magnifier icon inside a search input</li>
+            <li>Tooltip hint above a button</li>
+            <li>Number-circle notification on an icon (e.g., on a bell)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 6. CONTAINING BLOCK ==================== -->
+    <h2 id="containing-block" data-lang="ru">6. Containing block — кто родитель для absolute</h2>
+    <h2 id="containing-block-en" data-lang="en">6. Containing block — who is the parent for absolute</h2>
+
+    <p data-lang="ru">Самая частая боль с <code>absolute</code> — он улетает не туда, куда ты ожидал. Причина почти всегда одна: <strong>не тот родитель сделан relative</strong>. Разберёмся, как браузер ищет «родителя».</p>
+    <p data-lang="en">The most common pain with <code>absolute</code> — it flies to the wrong place. The reason is almost always one: <strong>the wrong parent is made relative</strong>. Let's see how the browser finds the "parent."</p>
+
+    <div class="definition" style="background:#faf5ff;border:1px solid #d8b4fe;padding:14px 18px;border-radius:8px;margin:12px 0;">
+        <p data-lang="ru"><strong>Containing block</strong> — «контейнер», от которого absolute считает свои <code>top/right/bottom/left</code>. Это <strong>ближайший предок</strong>, у которого <code>position</code> отличен от <code>static</code> (то есть relative, absolute, fixed или sticky). Если такого нет — это <code>&lt;html&gt;</code>.</p>
+        <p data-lang="en"><strong>Containing block</strong> — the "container" from which absolute counts its <code>top/right/bottom/left</code>. It's the <strong>nearest ancestor</strong> whose <code>position</code> is not <code>static</code> (i.e., relative, absolute, fixed, or sticky). If there's no such ancestor — it's <code>&lt;html&gt;</code>.</p>
+    </div>
+
+    <pre><code>/* HTML */
+&lt;body&gt;
+    &lt;main&gt;
+        &lt;section class="cards"&gt;
+            &lt;article class="card"&gt;
+                &lt;span class="badge"&gt;NEW&lt;/span&gt;
+            &lt;/article&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+
+/* CSS вариант 1 — БЕЗ relative нигде */
+.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+/* badge улетит в правый верхний угол ВСЕЙ страницы */
+
+/* CSS вариант 2 — relative на .card (правильно) */
+.card { position: relative; }
+.badge { position: absolute; top: 0; right: 0; }
+/* badge встанет в правый верхний угол .card ✓ */
+
+/* CSS вариант 3 — relative на .cards (тоже работает, но не то) */
+.cards { position: relative; }
+.badge { position: absolute; top: 0; right: 0; }
+/* badge встанет в правый верхний угол .cards (а не .card) */</code></pre>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Самая частая ошибка:</strong> ставят <code>position: absolute</code> на бейдж и забывают про <code>relative</code> на карточке. Бейдж улетает в правый верхний угол страницы. Симптом — открываешь сайт, видишь бейдж где-то рядом с шапкой, а должен быть на карточке.</p>
+        <p data-lang="ru"><strong>Лечение:</strong> на родителе, относительно которого должен позиционироваться элемент, добавь <code>position: relative</code>. Никаких <code>top/left</code> на самом родителе писать не нужно — relative «без координат» ничего не двигает, только включает «привязку».</p>
+        <p data-lang="en"><strong>Most common mistake:</strong> they put <code>position: absolute</code> on a badge and forget <code>relative</code> on the card. The badge flies to the top-right corner of the page. The symptom — you open the site and see the badge somewhere near the header instead of on the card.</p>
+        <p data-lang="en"><strong>Fix:</strong> on the parent that the element should be positioned relative to, add <code>position: relative</code>. No need to write any <code>top/left</code> on the parent itself — relative "without coordinates" doesn't move anything, just turns on the "anchor."</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 7. FIXED ==================== -->
+    <h2 id="fixed" data-lang="ru">7. position: fixed — относительно экрана</h2>
+    <h2 id="fixed-en" data-lang="en">7. position: fixed — relative to the viewport</h2>
+
+    <p data-lang="ru"><code>fixed</code> похож на <code>absolute</code>, но привязан не к родителю, а к <strong>окну браузера</strong> (viewport). Что бы ты ни делал — скроллил, прокручивал, переключал страницы — элемент остаётся <strong>на одном и том же месте экрана</strong>.</p>
+    <p data-lang="en"><code>fixed</code> is similar to <code>absolute</code>, but it's anchored not to a parent, but to the <strong>browser window</strong> (viewport). No matter what you do — scroll, switch pages — the element stays <strong>in the same spot on the screen</strong>.</p>
+
+    <pre><code>/* Кнопка "Наверх" в правом нижнем углу экрана */
+.back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #3b82f6;
+    color: white;
+}</code></pre>
+
+    <div class="diagram">
+СКРОЛЛИШЬ ВНИЗ ↓                СКРОЛЛИШЬ ЕЩЁ ↓
+
+┌─────────────────┐              ┌─────────────────┐
+│ Контент         │              │ Контент 100     │
+│ Контент         │              │ Контент 101     │
+│                 │              │                 │
+│            [ ↑ ]│ ← кнопка     │            [ ↑ ]│ ← всё на том же месте
+└─────────────────┘              └─────────────────┘
+браузерное окно                  браузерное окно</div>
+
+    <p data-lang="ru"><strong>Что важно про fixed:</strong></p>
+    <ul data-lang="ru">
+        <li>Игнорирует <code>relative</code>-родителей. Привязан только к viewport.</li>
+        <li>Элемент <strong>вырван из потока</strong> — как absolute. Места не занимает.</li>
+        <li>Не двигается при скролле страницы — это его главная фишка.</li>
+        <li>На мобильных может «прыгать» из-за адресной строки браузера. Тестируй на телефоне!</li>
+    </ul>
+    <p data-lang="en"><strong>What's important about fixed:</strong></p>
+    <ul data-lang="en">
+        <li>Ignores <code>relative</code> parents. Only anchored to the viewport.</li>
+        <li>Element is <strong>pulled out of flow</strong> — like absolute. Doesn't take up space.</li>
+        <li>Doesn't move when the page scrolls — this is its main feature.</li>
+        <li>On mobile, it may "jump" because of the browser's address bar. Test on a phone!</li>
+    </ul>
+
+    <div class="real-world">
+        <p data-lang="ru">Что обычно делают через <code>fixed</code>:</p>
+        <ul data-lang="ru">
+            <li>Шапка сайта, которая всегда сверху (Apple, Stripe, GitHub)</li>
+            <li>Кнопка «Наверх» в углу</li>
+            <li>Кнопка «Чат / Помощь» в правом нижнем углу</li>
+            <li>Cookie-баннер внизу страницы</li>
+            <li>Модальные окна (поверх всего контента)</li>
+            <li>Floating Action Button на мобильных приложениях</li>
+        </ul>
+        <p data-lang="en">What is typically done with <code>fixed</code>:</p>
+        <ul data-lang="en">
+            <li>Site header that's always on top (Apple, Stripe, GitHub)</li>
+            <li>"Back to top" button in the corner</li>
+            <li>"Chat / Help" button in the bottom-right corner</li>
+            <li>Cookie banner at the bottom of the page</li>
+            <li>Modal windows (over all content)</li>
+            <li>Floating Action Button in mobile apps</li>
+        </ul>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Частая ошибка:</strong> делают <code>position: fixed</code> на шапке высотой 70px, а потом первые 70px контента оказываются под шапкой и не видны. Лечение — добавь <code>padding-top: 70px</code> на <code>&lt;main&gt;</code> или <code>&lt;body&gt;</code>, чтобы освободить место под шапку.</p>
+        <p data-lang="en"><strong>Common mistake:</strong> they make a 70px-tall header <code>position: fixed</code>, and then the first 70px of content ends up under the header and isn't visible. Fix — add <code>padding-top: 70px</code> to <code>&lt;main&gt;</code> or <code>&lt;body&gt;</code> to make room for the header.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 8. STICKY ==================== -->
+    <h2 id="sticky" data-lang="ru">8. position: sticky — гибрид relative и fixed</h2>
+    <h2 id="sticky-en" data-lang="en">8. position: sticky — hybrid of relative and fixed</h2>
+
+    <p data-lang="ru"><code>sticky</code> — самое современное и удобное значение. Оно сочетает поведение <code>relative</code> и <code>fixed</code>:</p>
+    <ul data-lang="ru">
+        <li><strong>Пока скролл не достиг порога</strong> — ведёт себя как <code>relative</code> (стоит на своём месте, скроллится вместе со страницей).</li>
+        <li><strong>Когда дошёл до порога</strong> — «прилипает» как <code>fixed</code> (остаётся на экране при скролле).</li>
+        <li><strong>Когда родитель ушёл с экрана</strong> — sticky уходит вместе с ним.</li>
+    </ul>
+    <p data-lang="en"><code>sticky</code> is the most modern and convenient value. It combines the behavior of <code>relative</code> and <code>fixed</code>:</p>
+    <ul data-lang="en">
+        <li><strong>Before the scroll reaches the threshold</strong> — behaves like <code>relative</code> (stays in place, scrolls with the page).</li>
+        <li><strong>When it hits the threshold</strong> — "sticks" like <code>fixed</code> (stays on the screen while scrolling).</li>
+        <li><strong>When the parent leaves the screen</strong> — sticky leaves with it.</li>
+    </ul>
+
+    <pre><code>/* Самый частый пример — "липкая" шапка */
+.site-header {
+    position: sticky;
+    top: 0;            /* прилипает на 0px от верха */
+    background: white; /* ВАЖНО: фон, иначе текст под шапкой будет виден */
+    z-index: 100;      /* поверх остального контента */
+}</code></pre>
+
+    <div class="important">
+        <p data-lang="ru"><strong>Без указания <code>top</code> sticky не работает!</strong> Тебе обязательно нужно сказать «прилипни на N px от верха». Самое частое: <code>top: 0</code> (прилипнуть к самому верху).</p>
+        <p data-lang="en"><strong>Without specifying <code>top</code>, sticky doesn't work!</strong> You must say "stick to N px from the top." The most common: <code>top: 0</code> (stick to the very top).</p>
+    </div>
+
+    <div class="diagram">
+ДО ПОРОГА:                       ПОСЛЕ ПОРОГА:                  ПАПА УШЁЛ:
+
+┌─────────────────┐              ┌─────────────────┐            ┌─────────────────┐
+│ Большой hero    │              │ ШАПКА (sticky!) │ ← top:0    │ ШАПКА уехала   │
+│                 │              │ Контент 1       │            │ вместе с        │
+│ ШАПКА на месте  │              │ Контент 2       │            │ родителем       │
+│ Контент 1       │              │ Контент 3       │            │                 │
+└─────────────────┘              └─────────────────┘            └─────────────────┘</div>
+
+    <div class="why">
+        <p data-lang="ru"><strong>Почему sticky лучше fixed для шапок?</strong></p>
+        <ul data-lang="ru">
+            <li><strong>Не вырывается из потока</strong> — место занято, контент не «прячется» под шапкой</li>
+            <li>На мобильных не «прыгает» от адресной строки браузера</li>
+            <li>Можно ограничить «зону прилипания» родителем — например, прилипает только пока ты в одной секции</li>
+        </ul>
+        <p data-lang="en"><strong>Why is sticky better than fixed for headers?</strong></p>
+        <ul data-lang="en">
+            <li><strong>Doesn't get pulled from flow</strong> — place is preserved, content doesn't "hide" under the header</li>
+            <li>On mobile, doesn't "jump" from the browser address bar</li>
+            <li>You can limit the "sticky zone" by the parent — e.g., sticks only while you're in one section</li>
+        </ul>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru">Где используют <code>sticky</code>:</p>
+        <ul data-lang="ru">
+            <li>Шапки сайтов (YouTube, Twitter, GitHub)</li>
+            <li>Боковая навигация в документации (React docs, MDN)</li>
+            <li>Заголовки секций таблицы при скролле длинного списка</li>
+            <li>Кнопки «Купить» / «Записаться» в карточках товаров на мобильных</li>
+            <li>Sidebar с оглавлением в статьях блога</li>
+        </ul>
+        <p data-lang="en">Where <code>sticky</code> is used:</p>
+        <ul data-lang="en">
+            <li>Site headers (YouTube, Twitter, GitHub)</li>
+            <li>Side navigation in documentation (React docs, MDN)</li>
+            <li>Table section headers when scrolling a long list</li>
+            <li>"Buy" / "Sign up" buttons on product cards on mobile</li>
+            <li>Sidebar with table of contents in blog articles</li>
+        </ul>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Sticky не работает!</strong> 5 типичных причин:</p>
+        <ol data-lang="ru">
+            <li>Не указан <code>top</code> (или <code>bottom</code>, <code>left</code>, <code>right</code>) — браузер не знает порог.</li>
+            <li>На каком-то родителе стоит <code>overflow: hidden</code>, <code>overflow: scroll</code> или <code>overflow: auto</code>. Это ломает sticky. Убрать.</li>
+            <li>Родитель не выше элемента — sticky прилипнет, но сразу же уедет с родителем.</li>
+            <li>Старый IE — не поддерживает (но в 2026 это уже не проблема).</li>
+            <li>Забыл про <code>position: sticky</code> — пишут просто <code>top: 0</code>, без position. Не работает.</li>
+        </ol>
+        <p data-lang="en"><strong>Sticky doesn't work!</strong> 5 typical causes:</p>
+        <ol data-lang="en">
+            <li>Missing <code>top</code> (or <code>bottom</code>, <code>left</code>, <code>right</code>) — browser doesn't know the threshold.</li>
+            <li>Some parent has <code>overflow: hidden</code>, <code>overflow: scroll</code>, or <code>overflow: auto</code>. This breaks sticky. Remove.</li>
+            <li>Parent isn't taller than the element — sticky will stick, but immediately leave with the parent.</li>
+            <li>Old IE — doesn't support it (but in 2026 this is no longer an issue).</li>
+            <li>Forgot <code>position: sticky</code> — they write just <code>top: 0</code>, without position. Doesn't work.</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 9. Z-INDEX ==================== -->
+    <h2 id="z-index" data-lang="ru">9. z-index и stacking context</h2>
+    <h2 id="z-index-en" data-lang="en">9. z-index and stacking context</h2>
+
+    <p data-lang="ru">Когда у тебя несколько позиционированных элементов и они <strong>перекрывают друг друга</strong> — кто будет сверху? Управляется свойством <code>z-index</code>.</p>
+    <p data-lang="en">When you have multiple positioned elements that <strong>overlap each other</strong> — which one will be on top? Controlled by the <code>z-index</code> property.</p>
+
+    <div class="analogy">
+        <p data-lang="ru">Представь, что страница — это лист бумаги. <code>z-index</code> — это <strong>номер слоя стопки</strong> над листом. Чем больше число — тем выше слой.</p>
+        <p data-lang="en">Imagine the page is a sheet of paper. <code>z-index</code> is the <strong>layer number in the stack</strong> above the sheet. The bigger the number — the higher the layer.</p>
+    </div>
+
+    <pre><code>.modal {
+    position: fixed;
+    z-index: 1000;   /* высокое значение → сверху всего */
+}
+
+.dropdown {
+    position: absolute;
+    z-index: 50;     /* среднее значение → сверху обычного контента */
+}
+
+.background-image {
+    position: absolute;
+    z-index: -1;     /* отрицательное → ПОД остальным контентом */
+}</code></pre>
+
+    <div class="important">
+        <p data-lang="ru"><strong>z-index работает только если у элемента есть <code>position</code> отличный от <code>static</code>.</strong> Если ты пишешь <code>z-index: 100</code> на статичном элементе — он будет проигнорирован.</p>
+        <p data-lang="en"><strong>z-index only works if the element has <code>position</code> other than <code>static</code>.</strong> If you write <code>z-index: 100</code> on a static element — it will be ignored.</p>
+    </div>
+
+    <p data-lang="ru"><strong>Типичные значения:</strong></p>
+    <p data-lang="en"><strong>Typical values:</strong></p>
+    <table>
+        <tr>
+            <th>z-index</th>
+            <th data-lang="ru">Что обычно</th>
+            <th data-lang="en">Typical use</th>
+        </tr>
+        <tr>
+            <td>-1</td>
+            <td data-lang="ru">Декоративный фон, который должен быть под контентом</td>
+            <td data-lang="en">Decorative background that should be under content</td>
+        </tr>
+        <tr>
+            <td>1-10</td>
+            <td data-lang="ru">Бейджи, иконки в карточках, мелкие оверлеи</td>
+            <td data-lang="en">Badges, icons in cards, small overlays</td>
+        </tr>
+        <tr>
+            <td>50-100</td>
+            <td data-lang="ru">Sticky / fixed шапки, выпадающие меню</td>
+            <td data-lang="en">Sticky / fixed headers, dropdown menus</td>
+        </tr>
+        <tr>
+            <td>1000+</td>
+            <td data-lang="ru">Модальные окна, тостер-уведомления, поверх ВСЕГО</td>
+            <td data-lang="en">Modal windows, toast notifications, above EVERYTHING</td>
+        </tr>
+    </table>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Не пиши <code>z-index: 9999</code> «на всякий случай».</strong> В команде это превращается в гонку: один пишет 9999, другой 99999, третий 999999. Лучше держи общий список «ярусов» в комментарии CSS-файла или в дизайн-системе. Шкала 1, 10, 100, 1000 покрывает 99% задач.</p>
+        <p data-lang="en"><strong>Don't write <code>z-index: 9999</code> "just in case."</strong> On a team this turns into a race: one writes 9999, another 99999, the third 999999. Better keep a shared list of "tiers" in a CSS file comment or in the design system. The scale 1, 10, 100, 1000 covers 99% of cases.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 10. PATTERNS ==================== -->
+    <h2 id="patterns" data-lang="ru">10. Реальные паттерны</h2>
+    <h2 id="patterns-en" data-lang="en">10. Real-world patterns</h2>
+
+    <h3 data-lang="ru">Паттерн 1: Sticky-шапка</h3>
+    <h3 data-lang="en">Pattern 1: Sticky header</h3>
+
+    <pre><code>&lt;header class="site-header"&gt;
+    &lt;a href="/"&gt;Logo&lt;/a&gt;
+    &lt;nav&gt;...&lt;/nav&gt;
+&lt;/header&gt;
+
+.site-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 100;
+    padding: 16px 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}</code></pre>
+
+    <h3 data-lang="ru">Паттерн 2: Бейдж в углу карточки</h3>
+    <h3 data-lang="en">Pattern 2: Badge in card corner</h3>
+
+    <pre><code>&lt;article class="card"&gt;
+    &lt;img src="..." alt="..."&gt;
+    &lt;span class="badge"&gt;-30%&lt;/span&gt;
+    &lt;h3&gt;Название товара&lt;/h3&gt;
+&lt;/article&gt;
+
+.card {
+    position: relative;   /* контейнер для бейджа */
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #ef4444;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 700;
+}</code></pre>
+
+    <h3 data-lang="ru">Паттерн 3: Кнопка «Наверх» через fixed</h3>
+    <h3 data-lang="en">Pattern 3: "Back to top" button via fixed</h3>
+
+    <pre><code>&lt;a href="#top" class="back-to-top"&gt;↑&lt;/a&gt;
+
+.back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #3b82f6;
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 50;
+}</code></pre>
+
+    <h3 data-lang="ru">Паттерн 4: Модальное окно</h3>
+    <h3 data-lang="en">Pattern 4: Modal window</h3>
+
+    <pre><code>&lt;div class="modal-backdrop"&gt;
+    &lt;div class="modal"&gt;
+        &lt;button class="modal-close"&gt;×&lt;/button&gt;
+        &lt;h2&gt;Заголовок&lt;/h2&gt;
+        &lt;p&gt;Текст модалки&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;            /* растянули на весь экран */
+    background: rgba(0,0,0,0.5);
+    display: grid;
+    place-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    position: relative;   /* контейнер для крестика */
+    background: white;
+    padding: 32px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: #f1f5f9;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+}</code></pre>
+
+    <h3 data-lang="ru">Паттерн 5: Подпись поверх фото</h3>
+    <h3 data-lang="en">Pattern 5: Caption over a photo</h3>
+
+    <pre><code>&lt;figure class="photo"&gt;
+    &lt;img src="..." alt="..."&gt;
+    &lt;figcaption&gt;Утро в Каракумах&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+.photo {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.photo img {
+    width: 100%;
+    display: block;
+}
+
+.photo figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: white;
+    padding: 24px 16px 12px;
+    font-weight: 600;
+}</code></pre>
+
+    <hr>
+
+    <!-- ==================== 11. MISTAKES ==================== -->
+    <h2 id="mistakes" data-lang="ru">11. Частые ошибки и как их избежать</h2>
+    <h2 id="mistakes-en" data-lang="en">11. Common mistakes and how to avoid them</h2>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">❌ Так нельзя</div>
+            <div class="label" data-lang="en">❌ Don't do this</div>
+            <pre><code>.card {
+    /* нет position */
+}
+.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+/* badge улетел в угол страницы */</code></pre>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">✅ Так правильно</div>
+            <div class="label" data-lang="en">✅ Do this</div>
+            <pre><code>.card {
+    position: relative;  /* привязка */
+}
+.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+/* badge в углу .card ✓ */</code></pre>
+        </div>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">❌ Sticky без top</div>
+            <div class="label" data-lang="en">❌ Sticky without top</div>
+            <pre><code>.header {
+    position: sticky;
+    /* забыл top */
+}
+/* не прилипает */</code></pre>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">✅ Sticky с top</div>
+            <div class="label" data-lang="en">✅ Sticky with top</div>
+            <pre><code>.header {
+    position: sticky;
+    top: 0;     /* обязательно! */
+}
+/* прилипает к верху ✓ */</code></pre>
+        </div>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">❌ Прозрачная sticky-шапка</div>
+            <div class="label" data-lang="en">❌ Transparent sticky header</div>
+            <pre><code>.header {
+    position: sticky;
+    top: 0;
+    /* нет background */
+}
+/* контент будет виден сквозь шапку */</code></pre>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">✅ С фоном</div>
+            <div class="label" data-lang="en">✅ With background</div>
+            <pre><code>.header {
+    position: sticky;
+    top: 0;
+    background: white;  /* непрозрачный */
+    z-index: 100;       /* поверх контента */
+}</code></pre>
+        </div>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">❌ Fixed-шапка без отступа</div>
+            <div class="label" data-lang="en">❌ Fixed header without spacing</div>
+            <pre><code>.header {
+    position: fixed;
+    top: 0;
+    height: 70px;
+}
+/* первые 70px контента под шапкой */</code></pre>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">✅ С padding на main</div>
+            <div class="label" data-lang="en">✅ With padding on main</div>
+            <pre><code>.header {
+    position: fixed;
+    top: 0;
+    height: 70px;
+}
+main {
+    padding-top: 70px;  /* освободили место */
+}</code></pre>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SUMMARY ==================== -->
+    <h2 id="summary" data-lang="ru">12. Итоги занятия</h2>
+    <h2 id="summary-en" data-lang="en">12. Lesson summary</h2>
+
+    <div class="summary">
+        <p data-lang="ru"><strong>Что мы узнали:</strong></p>
+        <ul data-lang="ru">
+            <li><code>position</code> — свойство, управляющее размещением элемента на странице</li>
+            <li><code>static</code> — по умолчанию, в обычном потоке, <code>top/left</code> не работают</li>
+            <li><code>relative</code> — сдвигает от исходного места, но место сохраняется. Главное применение — контейнер для absolute</li>
+            <li><code>absolute</code> — вырывает из потока, считает от ближайшего relative-предка</li>
+            <li><code>fixed</code> — относительно окна браузера, не двигается при скролле</li>
+            <li><code>sticky</code> — гибрид: relative до порога, fixed после</li>
+            <li><code>top/right/bottom/left</code> — координаты сдвига от соответствующего края</li>
+            <li><code>z-index</code> — слой по оси Z, кто сверху. Работает только с position ≠ static</li>
+            <li>Containing block — родитель, от которого absolute считает координаты</li>
+        </ul>
+        <p data-lang="en"><strong>What we learned:</strong></p>
+        <ul data-lang="en">
+            <li><code>position</code> — the property that controls element placement on the page</li>
+            <li><code>static</code> — default, normal flow, <code>top/left</code> don't work</li>
+            <li><code>relative</code> — shifts from original place but place is preserved. Main use — container for absolute</li>
+            <li><code>absolute</code> — pulled out of flow, counts from nearest relative ancestor</li>
+            <li><code>fixed</code> — relative to browser window, doesn't move on scroll</li>
+            <li><code>sticky</code> — hybrid: relative before threshold, fixed after</li>
+            <li><code>top/right/bottom/left</code> — coordinates of shift from the corresponding edge</li>
+            <li><code>z-index</code> — Z-axis layer, who's on top. Only works with position ≠ static</li>
+            <li>Containing block — parent from which absolute counts coordinates</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p data-lang="ru"><strong>Проверь себя:</strong></p>
+        <ol data-lang="ru">
+            <li>Какое значение <code>position</code> по умолчанию у всех элементов?</li>
+            <li>Чем отличается <code>relative</code> от <code>absolute</code> в плане «занятого места»?</li>
+            <li>Почему бейдж с <code>position: absolute</code> «улетает в угол страницы»?</li>
+            <li>Можно ли использовать <code>top: 50px</code> на элементе с <code>position: static</code>?</li>
+            <li>Чем <code>sticky</code> отличается от <code>fixed</code>?</li>
+            <li>Зачем sticky-шапке <code>background</code>?</li>
+            <li>Какой <code>z-index</code> поставить на модальное окно?</li>
+            <li>Что такое containing block?</li>
+        </ol>
+        <p data-lang="en"><strong>Check yourself:</strong></p>
+        <ol data-lang="en">
+            <li>What's the default value of <code>position</code> for all elements?</li>
+            <li>How does <code>relative</code> differ from <code>absolute</code> in terms of "occupied space"?</li>
+            <li>Why does a badge with <code>position: absolute</code> "fly to the corner of the page"?</li>
+            <li>Can you use <code>top: 50px</code> on an element with <code>position: static</code>?</li>
+            <li>How does <code>sticky</code> differ from <code>fixed</code>?</li>
+            <li>Why does a sticky header need a <code>background</code>?</li>
+            <li>What <code>z-index</code> should you set on a modal window?</li>
+            <li>What is a containing block?</li>
+        </ol>
+    </div>
+
+    <div class="highlight">
+        <p data-lang="ru"><strong>Дальше:</strong> на следующем занятии вы примените все знания CSS (включая position) для создания мини-проекта — личной визитки.</p>
+        <p data-lang="en"><strong>Next up:</strong> in the next lesson, you'll apply all your CSS knowledge (including position) to create a mini-project — a personal business card.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

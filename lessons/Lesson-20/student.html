@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 20 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 20: Media Queries</span>
+    <span class="nav-title" data-lang="en">Lesson 20: Media Queries</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 20: Media Queries</p>
+    <p class="subtitle" data-lang="en">Lesson 20: Media Queries</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; META VIEWPORT (ОБЯЗАТЕЛЬНО!)</h2>
+    <h2 data-lang="en">&#x1F4DA; META VIEWPORT (REQUIRED!)</h2>
+
+    <div class="definition" data-lang="ru">
+        Без этого тега media queries <strong>не работают</strong> на мобильных:
+    </div>
+    <div class="definition" data-lang="en">
+        Without this tag media queries <strong>don't work</strong> on mobile:
+    </div>
+
+<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; СИНТАКСИС MEDIA QUERIES</h2>
+    <h2 data-lang="en">&#x1F4DA; MEDIA QUERIES SYNTAX</h2>
+
+<pre><code>/* Desktop-first (max-width = «если ≤») */
+@media (max-width: 768px) {
+    /* стили для мобильных */
+}
+
+/* Mobile-first (min-width = «если ≥») */
+@media (min-width: 768px) {
+    /* стили для десктопа */
+}</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Условие</th><th>Когда работает</th><th>Подход</th></tr>
+        <tr><td><code>max-width: 768px</code></td><td>Экран ≤ 768px</td><td>Desktop-first</td></tr>
+        <tr><td><code>min-width: 768px</code></td><td>Экран ≥ 768px</td><td>Mobile-first</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Condition</th><th>When it works</th><th>Approach</th></tr>
+        <tr><td><code>max-width: 768px</code></td><td>Screen ≤ 768px</td><td>Desktop-first</td></tr>
+        <tr><td><code>min-width: 768px</code></td><td>Screen ≥ 768px</td><td>Mobile-first</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; BREAKPOINTS (КОНТРОЛЬНЫЕ ТОЧКИ)</h2>
+    <h2 data-lang="en">&#x1F4DA; BREAKPOINTS (CONTROL POINTS)</h2>
+
+    <table data-lang="ru">
+        <tr><th>Название</th><th>Ширина</th><th>Устройства</th></tr>
+        <tr><td>Mobile</td><td>до 576px</td><td>Телефоны</td></tr>
+        <tr><td>Mobile L</td><td>до 768px</td><td>Большие телефоны</td></tr>
+        <tr><td>Tablet</td><td>до 992px</td><td>Планшеты</td></tr>
+        <tr><td>Laptop</td><td>до 1200px</td><td>Ноутбуки</td></tr>
+        <tr><td>Desktop</td><td>1200px+</td><td>Мониторы</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Name</th><th>Width</th><th>Devices</th></tr>
+        <tr><td>Mobile</td><td>up to 576px</td><td>Phones</td></tr>
+        <tr><td>Mobile L</td><td>up to 768px</td><td>Large phones</td></tr>
+        <tr><td>Tablet</td><td>up to 992px</td><td>Tablets</td></tr>
+        <tr><td>Laptop</td><td>up to 1200px</td><td>Laptops</td></tr>
+        <tr><td>Desktop</td><td>1200px+</td><td>Monitors</td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        Для большинства сайтов достаточно <strong>2-3 breakpoints</strong>: 768px и 992px (опционально 576px).
+    </div>
+    <div class="key-point" data-lang="en">
+        For most sites <strong>2-3 breakpoints</strong> are enough: 768px and 992px (optionally 576px).
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; MOBILE-FIRST ШАБЛОН</h2>
+    <h2 data-lang="en">&#x1F4DA; MOBILE-FIRST TEMPLATE</h2>
+
+<pre><code>/* Мобильный (базовые стили) */
+.grid { grid-template-columns: 1fr; }
+h1 { font-size: 1.5rem; }
+.container { padding: 16px; }
+.sidebar { display: none; }
+
+/* Планшет (768px+) */
+@media (min-width: 768px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    h1 { font-size: 2rem; }
+    .container { padding: 24px; }
+}
+
+/* Десктоп (1024px+) */
+@media (min-width: 1024px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }
+    h1 { font-size: 2.5rem; }
+    .container { padding: 32px; }
+    .sidebar { display: block; }
+}</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧТО МЕНЯТЬ ПРИ АДАПТАЦИИ</h2>
+    <h2 data-lang="en">&#x1F4DA; WHAT TO CHANGE WHEN ADAPTING</h2>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Десктоп</th><th>Мобильный</th></tr>
+        <tr><td>Колонки</td><td>3-4</td><td>1</td></tr>
+        <tr><td>Sidebar</td><td>Видим</td><td>Скрыт</td></tr>
+        <tr><td>Шрифт h1</td><td>2.5rem</td><td>1.5rem</td></tr>
+        <tr><td>Padding</td><td>32px</td><td>16px</td></tr>
+        <tr><td>flex-direction</td><td>row</td><td>column</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>Desktop</th><th>Mobile</th></tr>
+        <tr><td>Columns</td><td>3-4</td><td>1</td></tr>
+        <tr><td>Sidebar</td><td>Visible</td><td>Hidden</td></tr>
+        <tr><td>Font h1</td><td>2.5rem</td><td>1.5rem</td></tr>
+        <tr><td>Padding</td><td>32px</td><td>16px</td></tr>
+        <tr><td>flex-direction</td><td>row</td><td>column</td></tr>
+    </table>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>&lt;meta name="viewport"&gt;</code> — <strong>обязателен</strong>!</li>
+            <li><code>@media (max-width: 768px)</code> — если экран ≤ 768px (desktop-first)</li>
+            <li><code>@media (min-width: 768px)</code> — если экран ≥ 768px (mobile-first)</li>
+            <li><strong>Mobile-first</strong> — рекомендуемый подход</li>
+            <li>Breakpoints: 576px, 768px, 992px, 1200px</li>
+            <li>Достаточно 2-3 breakpoints</li>
+            <li>Тестируй через DevTools Device Toolbar (<span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">M</span>)</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>&lt;meta name="viewport"&gt;</code> — <strong>required</strong>!</li>
+            <li><code>@media (max-width: 768px)</code> — if screen ≤ 768px (desktop-first)</li>
+            <li><code>@media (min-width: 768px)</code> — if screen ≥ 768px (mobile-first)</li>
+            <li><strong>Mobile-first</strong> — recommended approach</li>
+            <li>Breakpoints: 576px, 768px, 992px, 1200px</li>
+            <li>2-3 breakpoints are enough</li>
+            <li>Test via DevTools Device Toolbar (<span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">M</span>)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Адаптивная страница:</strong> Возьмите любую из предыдущих работ (журнал, dashboard, галерею) и добавьте media queries для 768px и 576px.</li>
+            <li><strong>Mobile-first:</strong> Создайте новую страницу с mobile-first подходом: 1 колонка → 2 колонки (768px) → 3 колонки (1024px).</li>
+            <li><strong>Бонус:</strong> Откройте 3 популярных сайта в DevTools и найдите, при каких breakpoints они меняют раскладку.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Responsive page:</strong> Take any previous work (magazine, dashboard, gallery) and add media queries for 768px and 576px.</li>
+            <li><strong>Mobile-first:</strong> Create a new page with mobile-first approach: 1 column → 2 columns (768px) → 3 columns (1024px).</li>
+            <li><strong>Bonus:</strong> Open 3 popular websites in DevTools and find at which breakpoints they change layout.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

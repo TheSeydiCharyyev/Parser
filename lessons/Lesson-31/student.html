@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 31 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 31: Подготовка к финальному проекту</span>
+    <span class="nav-title" data-lang="en">Lesson 31: Final Project Preparation</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 31: Подготовка к финальному проекту</p>
+    <p class="subtitle" data-lang="en">Lesson 31: Final Project Preparation</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ГЛАВНЫЙ ПРИНЦИП</h2>
+    <h2 data-lang="en">&#x1F4DA; MAIN PRINCIPLE</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Час планирования = 3 часа экономии разработки.</strong> На этом занятии <strong>не пишем код</strong>. Делаем фундамент: тема, референсы, wireframe, palette, git. К следующему занятию всё должно быть готово.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>One hour of planning = three hours of development saved.</strong> This lesson — <strong>we don't write code</strong>. We build the foundation: topic, references, wireframe, palette, git. Everything ready for the next lesson.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; 5 КРИТЕРИЕВ ПОРТФОЛИО-ПРОЕКТА</h2>
+    <h2 data-lang="en">&#x1F4DA; 5 PORTFOLIO PROJECT CRITERIA</h2>
+
+    <table data-lang="ru">
+        <tr><th>Критерий</th><th>Объяснение</th></tr>
+        <tr><td>1. Многостраничность</td><td>3+ страниц с навигацией</td></tr>
+        <tr><td>2. Адаптив</td><td>375 / 768 / 1440px</td></tr>
+        <tr><td>3. Интерактив</td><td>Hover, transition, формы</td></tr>
+        <tr><td>4. Реальный контент</td><td>Не «lorem ipsum»</td></tr>
+        <tr><td>5. Задеплоен</td><td>GitHub Pages / Netlify</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Criterion</th><th>Description</th></tr>
+        <tr><td>1. Multi-page</td><td>3+ pages with navigation</td></tr>
+        <tr><td>2. Responsive</td><td>375 / 768 / 1440px</td></tr>
+        <tr><td>3. Interactive</td><td>Hover, transition, forms</td></tr>
+        <tr><td>4. Real content</td><td>Not "lorem ipsum"</td></tr>
+        <tr><td>5. Deployed</td><td>GitHub Pages / Netlify</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; 6 ИДЕЙ НА ВЫБОР</h2>
+    <h2 data-lang="en">&#x1F4DA; 6 IDEAS TO PICK FROM</h2>
+
+    <table data-lang="ru">
+        <tr><th>Идея</th><th>Страницы</th><th>Особенности</th></tr>
+        <tr><td>Портфолио</td><td>Home, About, Projects, Contact</td><td>Практично, показывает на собесе</td></tr>
+        <tr><td>Лендинг бизнеса</td><td>Home, Services, Pricing, Contact</td><td>Классика, компенсируй оригинальной темой</td></tr>
+        <tr><td>Музыка</td><td>Home, Music, Tour, About</td><td>Эмоционально, красочно</td></tr>
+        <tr><td>Магазин</td><td>Home, Catalog, Product, Cart</td><td>Сложнее, но серьёзно</td></tr>
+        <tr><td>Фестиваль</td><td>Home, Schedule, Speakers, Tickets</td><td>Креативность, своя тема</td></tr>
+        <tr><td>Туризм</td><td>Home, Destinations, Blog</td><td>Красивые фото (Unsplash)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Idea</th><th>Pages</th><th>Notes</th></tr>
+        <tr><td>Portfolio</td><td>Home, About, Projects, Contact</td><td>Practical, show at interview</td></tr>
+        <tr><td>Business landing</td><td>Home, Services, Pricing, Contact</td><td>Classic, original theme helps</td></tr>
+        <tr><td>Music</td><td>Home, Music, Tour, About</td><td>Emotional, colorful</td></tr>
+        <tr><td>Store</td><td>Home, Catalog, Product, Cart</td><td>Harder, but serious</td></tr>
+        <tr><td>Festival</td><td>Home, Schedule, Speakers, Tickets</td><td>Creative, own theme</td></tr>
+        <tr><td>Travel</td><td>Home, Destinations, Blog</td><td>Pretty photos (Unsplash)</td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        Если не можете выбрать — <strong>портфолио</strong>. Универсальный выбор, сразу помогает на собеседовании.
+    </div>
+    <div class="key-point" data-lang="en">
+        Can't decide — <strong>portfolio</strong>. Universal choice, immediately helps at interviews.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; МОЁ РЕШЕНИЕ</h2>
+    <h2 data-lang="en">&#x1F4DA; MY DECISION</h2>
+
+    <div class="write-box" data-lang="ru">
+        <strong>Тема проекта:</strong> ______________________________<br><br>
+        <strong>Конкретное название:</strong> ______________________________<br><br>
+        <strong>Слоган / описание (1 предложение):</strong><br>
+        ______________________________________________<br><br>
+        <strong>Страницы (3-5):</strong><br>
+        1. ______________________________<br>
+        2. ______________________________<br>
+        3. ______________________________<br>
+        4. ______________________________<br>
+        5. ______________________________
+    </div>
+    <div class="write-box" data-lang="en">
+        <strong>Project topic:</strong> ______________________________<br><br>
+        <strong>Specific name:</strong> ______________________________<br><br>
+        <strong>Tagline / description (1 sentence):</strong><br>
+        ______________________________________________<br><br>
+        <strong>Pages (3-5):</strong><br>
+        1. ______________________________<br>
+        2. ______________________________<br>
+        3. ______________________________<br>
+        4. ______________________________<br>
+        5. ______________________________
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; РЕСУРСЫ ДЛЯ ВДОХНОВЕНИЯ</h2>
+    <h2 data-lang="en">&#x1F4DA; INSPIRATION RESOURCES</h2>
+
+    <ul data-lang="ru">
+        <li><strong>Awwwards</strong> — awwwards.com (лучшие сайты)</li>
+        <li><strong>Landbook</strong> — landbook.com (лендинги)</li>
+        <li><strong>Dribbble</strong> — dribbble.com (UI-дизайны)</li>
+        <li><strong>Behance</strong> — behance.net (портфолио)</li>
+        <li><strong>SiteInspire</strong> — siteinspire.com</li>
+        <li><strong>Figma Community</strong> — figma.com/community</li>
+        <li><strong>Pinterest</strong> — запрос «web design [тема]»</li>
+        <li><strong>Godly</strong> — godly.website</li>
+    </ul>
+    <ul data-lang="en">
+        <li><strong>Awwwards</strong> — awwwards.com (best sites)</li>
+        <li><strong>Landbook</strong> — landbook.com (landings)</li>
+        <li><strong>Dribbble</strong> — dribbble.com (UI designs)</li>
+        <li><strong>Behance</strong> — behance.net (portfolios)</li>
+        <li><strong>SiteInspire</strong> — siteinspire.com</li>
+        <li><strong>Figma Community</strong> — figma.com/community</li>
+        <li><strong>Pinterest</strong> — search "web design [topic]"</li>
+        <li><strong>Godly</strong> — godly.website</li>
+    </ul>
+
+    <div class="key-point" data-lang="ru">
+        Соберите <strong>10-15 скриншотов</strong> в папку <code>inspiration/</code>. Микс из 5+ источников. Вдохновляться — не копировать.
+    </div>
+    <div class="key-point" data-lang="en">
+        Collect <strong>10-15 screenshots</strong> in <code>inspiration/</code> folder. Mix from 5+ sources. Inspire — don't copy.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ТРЕБОВАНИЯ К ПРОЕКТУ</h2>
+    <h2 data-lang="en">&#x1F4DA; PROJECT REQUIREMENTS</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Обязательно:</strong>
+        <ul>
+            <li>3+ страницы HTML с навигацией</li>
+            <li>Семантический HTML (header, main, section, footer)</li>
+            <li>CSS-переменные для цветов и размеров</li>
+            <li>Flexbox И Grid (обе техники)</li>
+            <li>Адаптив: 375 / 768 / 1440px</li>
+            <li>1+ форма</li>
+            <li>Hover + transition</li>
+            <li>Задеплоен на GitHub Pages / Netlify</li>
+            <li>README.md</li>
+        </ul>
+        <strong>Бонус (для хорошей оценки):</strong>
+        <ul>
+            <li>Dark mode</li>
+            <li>Load-анимации</li>
+            <li>Bootstrap или Tailwind</li>
+            <li>Google Fonts</li>
+            <li>Валидный HTML (validator.w3.org)</li>
+        </ul>
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Mandatory:</strong>
+        <ul>
+            <li>3+ HTML pages with navigation</li>
+            <li>Semantic HTML (header, main, section, footer)</li>
+            <li>CSS variables for colors and sizes</li>
+            <li>Flexbox AND Grid (both techniques)</li>
+            <li>Responsive: 375 / 768 / 1440px</li>
+            <li>1+ form</li>
+            <li>Hover + transition</li>
+            <li>Deployed on GitHub Pages / Netlify</li>
+            <li>README.md</li>
+        </ul>
+        <strong>Bonus (for good grade):</strong>
+        <ul>
+            <li>Dark mode</li>
+            <li>Load animations</li>
+            <li>Bootstrap or Tailwind</li>
+            <li>Google Fonts</li>
+            <li>Valid HTML (validator.w3.org)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; МОЙ SITEMAP</h2>
+    <h2 data-lang="en">&#x1F4DA; MY SITEMAP</h2>
+
+    <div class="write-box" data-lang="ru">
+        <strong>Список страниц с кратким описанием:</strong><br><br>
+        <code>1. index.html</code> — ______________________________<br>
+        Секции: ______________________________<br><br>
+        <code>2. ________.html</code> — ______________________________<br>
+        Секции: ______________________________<br><br>
+        <code>3. ________.html</code> — ______________________________<br>
+        Секции: ______________________________<br><br>
+        <code>4. ________.html</code> — ______________________________<br>
+        Секции: ______________________________<br><br>
+        <strong>Навигация (общая на всех страницах):</strong><br>
+        ______________________________
+    </div>
+    <div class="write-box" data-lang="en">
+        <strong>Page list with short descriptions:</strong><br><br>
+        <code>1. index.html</code> — ______________________________<br>
+        Sections: ______________________________<br><br>
+        <code>2. ________.html</code> — ______________________________<br>
+        Sections: ______________________________<br><br>
+        <code>3. ________.html</code> — ______________________________<br>
+        Sections: ______________________________<br><br>
+        <code>4. ________.html</code> — ______________________________<br>
+        Sections: ______________________________<br><br>
+        <strong>Navigation (same on all pages):</strong><br>
+        ______________________________
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; МОЯ ПАЛИТРА</h2>
+    <h2 data-lang="en">&#x1F4DA; MY PALETTE</h2>
+
+    <div class="write-box" data-lang="ru">
+        <strong>Заполните HEX-коды:</strong><br><br>
+        Primary: <code>#_______</code><br>
+        Primary Dark (hover): <code>#_______</code><br>
+        Accent: <code>#_______</code><br>
+        Text (основной): <code>#_______</code><br>
+        Text Muted (второстепенный): <code>#_______</code><br>
+        Background: <code>#_______</code><br>
+        Background Alt: <code>#_______</code><br>
+        Border: <code>#_______</code><br><br>
+        <strong>Инструменты:</strong> coolors.co, realtimecolors.com, tailwindcss.com/docs/customizing-colors
+    </div>
+    <div class="write-box" data-lang="en">
+        <strong>Fill in HEX codes:</strong><br><br>
+        Primary: <code>#_______</code><br>
+        Primary Dark (hover): <code>#_______</code><br>
+        Accent: <code>#_______</code><br>
+        Text (main): <code>#_______</code><br>
+        Text Muted (secondary): <code>#_______</code><br>
+        Background: <code>#_______</code><br>
+        Background Alt: <code>#_______</code><br>
+        Border: <code>#_______</code><br><br>
+        <strong>Tools:</strong> coolors.co, realtimecolors.com, tailwindcss.com/docs/customizing-colors
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; МОЯ ТИПОГРАФИКА</h2>
+    <h2 data-lang="en">&#x1F4DA; MY TYPOGRAPHY</h2>
+
+    <div class="write-box" data-lang="ru">
+        <strong>Шрифт(ы) из Google Fonts:</strong><br>
+        Основной: ______________________<br>
+        Для заголовков (если отличается): ______________________<br><br>
+        <strong>Веса:</strong> _______, _______, _______ (минимум 2)<br><br>
+        <strong>Размеры:</strong><br>
+        h1: _____ px<br>
+        h2: _____ px<br>
+        h3: _____ px<br>
+        body: _____ px (обычно 16px)<br>
+        small: _____ px
+    </div>
+    <div class="write-box" data-lang="en">
+        <strong>Font(s) from Google Fonts:</strong><br>
+        Main: ______________________<br>
+        For headings (if different): ______________________<br><br>
+        <strong>Weights:</strong> _______, _______, _______ (min 2)<br><br>
+        <strong>Sizes:</strong><br>
+        h1: _____ px<br>
+        h2: _____ px<br>
+        h3: _____ px<br>
+        body: _____ px (usually 16px)<br>
+        small: _____ px
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; СТРУКТУРА ПРОЕКТА (ПАПКИ)</h2>
+    <h2 data-lang="en">&#x1F4DA; PROJECT STRUCTURE (FOLDERS)</h2>
+
+<pre><code>my-project/
+├── index.html
+├── about.html
+├── contact.html
+├── css/
+│   ├── tokens.css       ← CSS-переменные
+│   ├── base.css         ← сброс + базовые стили
+│   ├── components.css   ← .card, .btn, .form
+│   └── style.css        ← секции
+├── images/              ← 2x JPG
+├── icons/               ← SVG
+├── inspiration/         ← скриншоты-референсы
+├── README.md            ← описание проекта
+├── plan.md              ← sitemap + wireframe
+└── .gitignore</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; GIT: КОМАНДЫ НА ПЕРВЫЙ ДЕНЬ</h2>
+    <h2 data-lang="en">&#x1F4DA; GIT: DAY ONE COMMANDS</h2>
+
+<pre><code># В папке проекта:
+git init
+git add .
+git commit -m "Initial setup: structure + plan"
+
+# Создайте public-репозиторий на github.com, потом:
+git remote add origin https://github.com/USERNAME/PROJECT.git
+git branch -M main
+git push -u origin main</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        Репозиторий должен быть <strong>public</strong> — иначе не задеплоите бесплатно на GitHub Pages.
+    </div>
+    <div class="key-point" data-lang="en">
+        Repo must be <strong>public</strong> — otherwise can't deploy free on GitHub Pages.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧЕКЛИСТ ГОТОВНОСТИ</h2>
+    <h2 data-lang="en">&#x1F4DA; READINESS CHECKLIST</h2>
+
+    <div class="write-box" data-lang="ru">
+        <strong>Отметьте, когда будет готово (не начинайте 31-й урок без всех галочек!):</strong><br><br>
+        ☐ Тема выбрана<br>
+        ☐ 10+ референсов собраны<br>
+        ☐ <code>plan.md</code> с sitemap готов<br>
+        ☐ Wireframes для всех страниц нарисованы<br>
+        ☐ Шрифты выбраны (Google Fonts)<br>
+        ☐ Палитра (5-8 цветов с HEX)<br>
+        ☐ <code>tokens.css</code> заполнен<br>
+        ☐ Git-репозиторий создан локально + на GitHub<br>
+        ☐ Структура папок создана<br>
+        ☐ README.md черновик написан<br>
+        ☐ Знаю, где брать реальный контент
+    </div>
+    <div class="write-box" data-lang="en">
+        <strong>Check when ready (don't start lesson 31 without all boxes!):</strong><br><br>
+        ☐ Topic picked<br>
+        ☐ 10+ references collected<br>
+        ☐ <code>plan.md</code> with sitemap ready<br>
+        ☐ Wireframes drawn for all pages<br>
+        ☐ Fonts picked (Google Fonts)<br>
+        ☐ Palette (5-8 colors with HEX)<br>
+        ☐ <code>tokens.css</code> filled<br>
+        ☐ Git repo created locally + on GitHub<br>
+        ☐ Folder structure created<br>
+        ☐ README.md draft written<br>
+        ☐ I know where to get real content
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; 8 ОШИБОК ПЛАНИРОВАНИЯ</h2>
+    <h2 data-lang="en">&#x1F4DA; 8 PLANNING MISTAKES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td>Слишком большой объём (10 страниц)</td><td>3-4 страницы качественно</td></tr>
+        <tr><td>Выбрали тему «для впечатления»</td><td>Выбирайте то, что нравится</td></tr>
+        <tr><td>Нет wireframe</td><td>15 мин на страницу — обязательно</td></tr>
+        <tr><td>Цвета выбираются в процессе</td><td>Палитра ДО кода</td></tr>
+        <tr><td>Копирование чужого дизайна</td><td>Микс из 5+ источников</td></tr>
+        <tr><td>«Lorem ipsum» вместо контента</td><td>Реальные тексты и фото (Unsplash)</td></tr>
+        <tr><td>Git «потом»</td><td>С первого дня</td></tr>
+        <tr><td>Нет README.md</td><td>Пишется сейчас, обновляется в конце</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td>Too large scope (10 pages)</td><td>3-4 pages done well</td></tr>
+        <tr><td>Picked theme "to impress"</td><td>Pick what you like</td></tr>
+        <tr><td>No wireframe</td><td>15 min per page — mandatory</td></tr>
+        <tr><td>Colors chosen during coding</td><td>Palette BEFORE code</td></tr>
+        <tr><td>Copying someone's design</td><td>Mix from 5+ sources</td></tr>
+        <tr><td>"Lorem ipsum" instead of content</td><td>Real text and photos (Unsplash)</td></tr>
+        <tr><td>Git "later"</td><td>From day one</td></tr>
+        <tr><td>No README.md</td><td>Write now, update at the end</td></tr>
+    </table>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li>1 час планирования = 3 часа экономии разработки</li>
+            <li>5 критериев портфолио: страницы, адаптив, интерактив, реальный контент, деплой</li>
+            <li>Выбор темы по матрице (5 критериев × 6 идей)</li>
+            <li>Не можете выбрать → <strong>портфолио</strong></li>
+            <li>Выбирайте то, что <strong>нравится</strong>, а не «впечатляет»</li>
+            <li>Вдохновение: Awwwards, Landbook, Dribbble, Pinterest, Figma Community</li>
+            <li>10-15 скриншотов-референсов в папке <code>inspiration/</code></li>
+            <li>Микс из 5+ источников, не клонирование</li>
+            <li>Требования: 3+ страниц, адаптив, семантика, переменные, формы, деплой</li>
+            <li>Sitemap — карта страниц (10 минут на бумаге)</li>
+            <li>Wireframes — скелеты (15 мин/страница, tldraw/бумага)</li>
+            <li>Палитра 5-8 цветов: primary, text, bg, muted, accent, border</li>
+            <li>Шрифты 1-2 из Google Fonts с нужными весами</li>
+            <li>Структура папок: css/, images/, icons/, inspiration/</li>
+            <li>Git + GitHub <strong>с первого дня</strong> (public репозиторий)</li>
+            <li>README.md обязателен</li>
+            <li>Не начинайте вёрстку без всех галочек из чеклиста</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li>1 hour planning = 3 hours dev saved</li>
+            <li>5 portfolio criteria: pages, responsive, interactive, real content, deploy</li>
+            <li>Topic choice by matrix (5 criteria × 6 ideas)</li>
+            <li>Can't decide → <strong>portfolio</strong></li>
+            <li>Pick what you <strong>like</strong>, not "impressive"</li>
+            <li>Inspiration: Awwwards, Landbook, Dribbble, Pinterest, Figma Community</li>
+            <li>10-15 reference screenshots in <code>inspiration/</code> folder</li>
+            <li>Mix from 5+ sources, not cloning</li>
+            <li>Requirements: 3+ pages, responsive, semantics, variables, forms, deploy</li>
+            <li>Sitemap — page map (10 min on paper)</li>
+            <li>Wireframes — skeletons (15 min/page, tldraw/paper)</li>
+            <li>Palette 5-8 colors: primary, text, bg, muted, accent, border</li>
+            <li>Fonts 1-2 from Google Fonts with needed weights</li>
+            <li>Folder structure: css/, images/, icons/, inspiration/</li>
+            <li>Git + GitHub <strong>from day one</strong> (public repo)</li>
+            <li>README.md mandatory</li>
+            <li>Don't start coding without all checklist boxes ticked</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Выбор темы:</strong> Выберите одну из 6 идей (или свою) и запишите название проекта в этот конспект.</li>
+            <li><strong>Вдохновение:</strong> Соберите 10+ скриншотов с 3+ ресурсов (Awwwards, Dribbble, Landbook, Pinterest). Сохраните в папку <code>inspiration/</code>.</li>
+            <li><strong>plan.md:</strong> Создайте файл с sitemap (список страниц + что на каждой) и wireframes всех страниц (прямоугольники, можно на бумаге + фото).</li>
+            <li><strong>Палитра:</strong> 5-8 цветов в HEX. Через coolors.co или выписать из выбранного референса.</li>
+            <li><strong>Шрифты:</strong> Выбрать 1-2 шрифта из Google Fonts. Определить размеры для h1, h2, h3, body, small.</li>
+            <li><strong>Структура:</strong> Создать папку проекта со всеми подпапками (<code>css/</code>, <code>images/</code>, <code>icons/</code>, <code>inspiration/</code>).</li>
+            <li><strong>tokens.css:</strong> Заполнить переменными все цвета, шрифты, размеры, spacing, shadows.</li>
+            <li><strong>Git:</strong> <code>git init</code>, первый коммит. Создать public-репозиторий на GitHub, сделать push.</li>
+            <li><strong>README.md:</strong> Черновая версия по шаблону (название, описание, страницы, tech stack, автор).</li>
+            <li><strong>Чеклист:</strong> Отметьте все 11 галочек готовности. Без этого не переходить к 31-му уроку.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Topic choice:</strong> Pick one of 6 ideas (or your own) and record the project name in these notes.</li>
+            <li><strong>Inspiration:</strong> Collect 10+ screenshots from 3+ resources (Awwwards, Dribbble, Landbook, Pinterest). Save in <code>inspiration/</code> folder.</li>
+            <li><strong>plan.md:</strong> Create the file with sitemap (page list + what's on each) and wireframes of all pages (rectangles, paper + photo ok).</li>
+            <li><strong>Palette:</strong> 5-8 colors in HEX. Via coolors.co or extracted from your reference.</li>
+            <li><strong>Fonts:</strong> Pick 1-2 fonts from Google Fonts. Define sizes for h1, h2, h3, body, small.</li>
+            <li><strong>Structure:</strong> Create project folder with all subfolders (<code>css/</code>, <code>images/</code>, <code>icons/</code>, <code>inspiration/</code>).</li>
+            <li><strong>tokens.css:</strong> Fill in variables for all colors, fonts, sizes, spacing, shadows.</li>
+            <li><strong>Git:</strong> <code>git init</code>, first commit. Create public repo on GitHub, push.</li>
+            <li><strong>README.md:</strong> Draft version per template (name, description, pages, tech stack, author).</li>
+            <li><strong>Checklist:</strong> Tick all 11 readiness boxes. Without this — don't move to lesson 31.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

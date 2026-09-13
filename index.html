@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML/CSS Essentials — Полный курс</title>
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/lang.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 100;
+        }
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #1e293b;
+        }
+        .header-logo span {
+            background: linear-gradient(135deg, #f97316, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .sidebar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            margin-right: 8px;
+            border-radius: 8px;
+            color: #1e293b;
+        }
+        .sidebar-toggle:hover { background: #f1f5f9; }
+        .header-info {
+            margin-left: auto;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* ========== SIDEBAR ========== */
+        .sidebar {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            bottom: 0;
+            width: 280px;
+            background: #fff;
+            border-right: 1px solid #e2e8f0;
+            overflow-y: auto;
+            padding: 16px 12px;
+            z-index: 50;
+            transition: transform 0.3s ease;
+        }
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            margin-bottom: 16px;
+        }
+        .sidebar-header span {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #94a3b8;
+        }
+        .sidebar-badge {
+            font-size: 0.7rem;
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .sidebar-group { margin-bottom: 20px; }
+        .sidebar-group-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #94a3b8;
+            padding: 0 8px;
+            margin-bottom: 6px;
+        }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #334155;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.15s ease;
+        }
+        .sidebar-link:hover {
+            background: #f1f5f9;
+            transform: translateX(4px);
+        }
+        .sidebar-link.disabled {
+            color: #cbd5e1;
+            pointer-events: none;
+        }
+        .sidebar-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            background: #f1f5f9;
+            color: #64748b;
+            flex-shrink: 0;
+        }
+        .sidebar-link.disabled .sidebar-num {
+            background: #f8fafc;
+            color: #cbd5e1;
+        }
+        .sidebar-divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 12px 8px;
+        }
+        .sidebar-special {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #7c3aed;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: #f5f3ff;
+            transition: all 0.15s ease;
+        }
+        .sidebar-special:hover {
+            background: #ede9fe;
+            transform: translateX(4px);
+        }
+
+        /* ========== MAIN ========== */
+        .main {
+            margin-left: 280px;
+            margin-top: 60px;
+            padding: 32px 32px 64px;
+            max-width: 1100px;
+        }
+
+        /* ========== HERO ========== */
+        .hero { margin-bottom: 40px; }
+        .hero-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .hero-title h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f97316, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-title .icon { font-size: 2.2rem; }
+        .hero-sub { color: #64748b; font-size: 1.05rem; }
+        .hero-sub b { color: #f97316; }
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .stat-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+        }
+        .stat-card .stat-icon { font-size: 1.4rem; }
+        .stat-label { font-size: 0.8rem; color: #94a3b8; }
+        .stat-value { font-weight: 700; font-size: 1rem; }
+
+        /* ========== MODULE ========== */
+        .module { margin-bottom: 40px; }
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .module-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .module-title { font-size: 1.2rem; font-weight: 700; }
+        .module-count { font-size: 0.8rem; color: #94a3b8; font-weight: 400; }
+
+        /* ========== CARD GRID ========== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        /* ========== LESSON CARD ========== */
+        .lesson-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+        .lesson-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+            border-color: transparent;
+        }
+        .lesson-card.locked {
+            opacity: 0.5;
+        }
+        .lesson-card.locked:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: #e2e8f0;
+        }
+        .card-number {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1e293b;
+        }
+        .card-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.15s ease;
+        }
+        .card-link:hover { transform: scale(1.05); }
+        .card-desc {
+            font-size: 0.8rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .card-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+        .card-topic {
+            font-size: 0.68rem;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: #f1f5f9;
+            color: #475569;
+            font-weight: 500;
+        }
+        .card-link.lecture { background: #dbeafe; color: #1d4ed8; }
+        .card-link.student { background: #dcfce7; color: #15803d; }
+        .card-link.tasks { background: #fef3c7; color: #a16207; }
+        .card-badge-locked {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: #f1f5f9;
+            color: #94a3b8;
+        }
+
+        /* ========== GITHUB SECTION ========== */
+        .github-section {
+            margin-bottom: 40px;
+            padding: 28px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+        }
+        .github-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .github-section .section-sub {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .github-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 12px;
+        }
+        .github-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #1e293b;
+            transition: all 0.2s ease;
+        }
+        .github-card:hover {
+            border-color: #7c3aed;
+            background: #faf5ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124,58,237,0.1);
+        }
+        .github-card .gh-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            background: #f5f3ff;
+        }
+        .github-card .gh-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #7c3aed;
+            margin-bottom: 2px;
+        }
+        .github-card .gh-desc {
+            font-size: 0.78rem;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        /* ========== SIDEBAR OVERLAY (mobile) ========== */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 40;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .sidebar-toggle { display: block; }
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .sidebar-overlay.open { display: block; }
+            .main { margin-left: 0; padding: 20px 16px 48px; }
+            .hero-title h1 { font-size: 1.5rem; }
+            .card-grid { grid-template-columns: 1fr; }
+            .github-grid { grid-template-columns: 1fr; }
+        }
+
+        .sidebar::-webkit-scrollbar { width: 4px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 2px; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Меню">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+        <a href="index.html" class="header-logo">
+            🌐 <span>HTML/CSS Essentials</span>
+        </a>
+        <div class="header-info" data-lang="ru">36 занятий • 12 недель</div>
+        <div class="header-info" data-lang="en">36 lessons • 12 weeks</div>
+        <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+    </header>
+
+    <!-- SIDEBAR OVERLAY -->
+    <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span data-lang="ru">Навигация</span>
+            <span data-lang="en">Navigation</span>
+            <span class="sidebar-badge" data-lang="ru">36 занятий</span>
+            <span class="sidebar-badge" data-lang="en">36 lessons</span>
+        </div>
+
+        <!-- Модуль 1 -->
+        <div class="sidebar-group">
+            <div class="sidebar-group-title" data-lang="ru">🌐 Введение и инструменты</div>
+            <div class="sidebar-group-title" data-lang="en">🌐 Introduction and Tools</div>
+            <a href="lessons/Lesson-1/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">1</span> Введение в веб-разработку</a>
+            <a href="lessons/Lesson-1/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">1</span> Introduction to Web Development</a>
+            <a href="lessons/Lesson-2/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">2</span> Инструменты разработчика</a>
+            <a href="lessons/Lesson-2/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">2</span> Developer Tools</a>
+        </div>
+
+        <!-- Модуль 2 -->
+        <div class="sidebar-group">
+            <div class="sidebar-group-title" data-lang="ru">📄 Основы HTML</div>
+            <div class="sidebar-group-title" data-lang="en">📄 HTML Basics</div>
+            <a href="lessons/Lesson-3/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">3</span> Структура HTML-документа</a>
+            <a href="lessons/Lesson-3/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">3</span> HTML Document Structure</a>
+            <a href="lessons/Lesson-4/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">4</span> Ссылки, изображения, пути</a>
+            <a href="lessons/Lesson-4/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">4</span> Links, Images, Paths</a>
+            <a href="lessons/Lesson-5/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">5</span> Списки и семантика</a>
+            <a href="lessons/Lesson-5/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">5</span> Lists and Semantics</a>
+        </div>
+
+        <!-- Модуль 3 -->
+        <div class="sidebar-group">
+            <div class="sidebar-group-title" data-lang="ru">🎨 Основы CSS</div>
+            <div class="sidebar-group-title" data-lang="en">🎨 CSS Basics</div>
+            <a href="lessons/Lesson-6/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">6</span> Введение в CSS</a>
+            <a href="lessons/Lesson-6/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">6</span> Introduction to CSS</a>
+            <a href="lessons/Lesson-7/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">7</span> Box Model</a>
+            <a href="lessons/Lesson-7/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">7</span> Box Model</a>
+            <a href="lessons/Lesson-8/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">8</span> CSS Position</a>
+            <a href="lessons/Lesson-8/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">8</span> CSS Position</a>
+            <a href="lessons/Lesson-9/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">9</span> Мини-проект — Визитка</a>
+            <a href="lessons/Lesson-9/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">9</span> Mini-project — Business Card</a>
+        </div>
+
+        <!-- Модуль 4 -->
+        <div class="sidebar-group">
+            <div class="sidebar-group-title" data-lang="ru">📋 Таблицы, формы, мультимедиа</div>
+            <div class="sidebar-group-title" data-lang="en">📋 Tables, Forms, Multimedia</div>
+            <a href="lessons/Lesson-10/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">10</span> Таблицы</a>
+            <a href="lessons/Lesson-10/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">10</span> Tables</a>
+            <a href="lessons/Lesson-11/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">11</span> Формы</a>
+            <a href="lessons/Lesson-11/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">11</span> Forms</a>
+            <a href="lessons/Lesson-12/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">12</span> Мультимедиа и iframe</a>
+            <a href="lessons/Lesson-12/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">12</span> Multimedia and iframe</a>
+            <a href="lessons/Lesson-13/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">13</span> Мини-проект — Landing</a>
+            <a href="lessons/Lesson-13/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">13</span> Mini-project — Landing Section</a>
+        </div>
+
+        <!-- Модуль 5 -->
+        <div class="sidebar-group">
+            <div class="sidebar-group-title" data-lang="ru">📐 Flexbox</div>
+            <div class="sidebar-group-title" data-lang="en">📐 Flexbox</div>
+            <a href="lessons/Lesson-14/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">14</span> Flexbox — основы</a>
+            <a href="lessons/Lesson-14/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">14</span> Flexbox — Basics</a>
+            <a href="lessons/Lesson-15/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">15</span> Flexbox — элементы</a>
+            <a href="lessons/Lesson-15/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">15</span> Flexbox — Elements</a>
+            <a href="lessons/Lesson-16/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">16</span> Мини-проект — Галерея</a>
+            <a href="lessons/Lesson-16/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">16</span> Mini-project — Card Gallery</a>
+        </div>
+
+        <!-- Модуль 6 -->
+        <div class="sidebar-group">
+            <div class="sidebar-group-title" data-lang="ru">🔲 CSS Grid</div>
+            <div class="sidebar-group-title" data-lang="en">🔲 CSS Grid</div>
+            <a href="lessons/Lesson-17/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">17</span> Grid — основы</a>
+            <a href="lessons/Lesson-17/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">17</span> CSS Grid — Basics</a>
+            <a href="lessons/Lesson-18/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">18</span> Grid — продвинутый</a>
+            <a href="lessons/Lesson-18/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">18</span> CSS Grid — Advanced</a>
+            <a href="lessons/Lesson-19/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">19</span> Мини-проект — Журнал</a>
+            <a href="lessons/Lesson-19/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">19</span> Mini-project — Magazine Layout</a>
+        </div>
+
+        <!-- Модуль 7 -->
+        <div class="sidebar-group">
+            <div class="sidebar-group-title" data-lang="ru">📱 Адаптивный дизайн</div>
+            <div class="sidebar-group-title" data-lang="en">📱 Responsive Design</div>
+            <a href="lessons/Lesson-20/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">20</span> Media Queries</a>
+            <a href="lessons/Lesson-20/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">20</span> Media Queries</a>
+            <a href="lessons/Lesson-21/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">21</span> Адаптивные паттерны</a>
+            <a href="lessons/Lesson-21/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">21</span> Responsive Patterns</a>
+            <a href="lessons/Lesson-22/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">22</span> Мини-проект — Ресторан</a>
+            <a href="lessons/Lesson-22/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">22</span> Mini-project — Restaurant Website</a>
+        </div>
+
+        <!-- Модуль 8 -->
+        <div class="sidebar-group">
+            <div class="sidebar-group-title" data-lang="ru">✨ Анимации и переходы</div>
+            <div class="sidebar-group-title" data-lang="en">✨ Animations and Transitions</div>
+            <a href="lessons/Lesson-23/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">23</span> Transitions и Transform</a>
+            <a href="lessons/Lesson-23/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">23</span> CSS Transitions and Transform</a>
+            <a href="lessons/Lesson-24/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">24</span> Мини-проект — Промо</a>
+            <a href="lessons/Lesson-24/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">24</span> Mini-project — Promo Page</a>
+        </div>
+
+        <!-- Модуль 9 -->
+        <div class="sidebar-group">
+            <div class="sidebar-group-title" data-lang="ru">🅱️ Bootstrap</div>
+            <div class="sidebar-group-title" data-lang="en">🅱️ Bootstrap</div>
+            <a href="lessons/Lesson-25/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">25</span> Bootstrap — основы</a>
+            <a href="lessons/Lesson-25/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">25</span> Bootstrap — Basics</a>
+            <a href="lessons/Lesson-26/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">26</span> Bootstrap — компоненты</a>
+            <a href="lessons/Lesson-26/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">26</span> Bootstrap — Components and Project</a>
+        </div>
+
+        <!-- Модуль 10 -->
+        <div class="sidebar-group">
+            <div class="sidebar-group-title" data-lang="ru">💨 Tailwind CSS</div>
+            <div class="sidebar-group-title" data-lang="en">💨 Tailwind CSS</div>
+            <a href="lessons/Lesson-27/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">27</span> Tailwind — основы</a>
+            <a href="lessons/Lesson-27/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">27</span> Tailwind CSS — Basics</a>
+            <a href="lessons/Lesson-28/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">28</span> Tailwind — проект</a>
+            <a href="lessons/Lesson-28/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">28</span> Tailwind CSS — Responsiveness and Project</a>
+        </div>
+
+        <!-- Модуль 11 -->
+        <div class="sidebar-group">
+            <div class="sidebar-group-title" data-lang="ru">🖼️ Вёрстка по Figma</div>
+            <div class="sidebar-group-title" data-lang="en">🖼️ Figma Layout</div>
+            <a href="lessons/Lesson-29/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">29</span> Знакомство с Figma</a>
+            <a href="lessons/Lesson-29/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">29</span> Introduction to Figma</a>
+            <a href="lessons/Lesson-30/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">30</span> Вёрстка по макету</a>
+            <a href="lessons/Lesson-30/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">30</span> Layout from Mockup</a>
+        </div>
+
+        <!-- Модуль 12 -->
+        <div class="sidebar-group">
+            <div class="sidebar-group-title" data-lang="ru">🚀 Финальный проект</div>
+            <div class="sidebar-group-title" data-lang="en">🚀 Final Project</div>
+            <a href="lessons/Lesson-31/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">31</span> Подготовка</a>
+            <a href="lessons/Lesson-31/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">31</span> Project Preparation</a>
+            <a href="lessons/Lesson-32/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">32</span> Разработка — Ч.1</a>
+            <a href="lessons/Lesson-32/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">32</span> Development — HTML Structure</a>
+            <a href="lessons/Lesson-33/lecture.html" class="sidebar-link" data-lang="ru"><span class="sidebar-num">33</span> Разработка — Ч.2</a>
+            <a href="lessons/Lesson-33/lecture.html" class="sidebar-link" data-lang="en"><span class="sidebar-num">33</span> Development — CSS Styles</a>
+            <span class="sidebar-link disabled" data-lang="ru"><span class="sidebar-num">34</span> Разработка — Ч.3</span>
+            <span class="sidebar-link disabled" data-lang="en"><span class="sidebar-num">34</span> Development — Layout</span>
+            <span class="sidebar-link disabled" data-lang="ru"><span class="sidebar-num">35</span> Разработка — Ч.4</span>
+            <span class="sidebar-link disabled" data-lang="en"><span class="sidebar-num">35</span> Development — Responsiveness</span>
+            <span class="sidebar-link disabled" data-lang="ru"><span class="sidebar-num">36</span> Деплой</span>
+            <span class="sidebar-link disabled" data-lang="en"><span class="sidebar-num">36</span> Deploy and Finalization</span>
+            <span class="sidebar-link disabled" data-lang="ru"><span class="sidebar-num">37</span> Презентация</span>
+            <span class="sidebar-link disabled" data-lang="en"><span class="sidebar-num">37</span> Project Presentations</span>
+        </div>
+
+        <div class="sidebar-divider"></div>
+        <a href="reference.html" class="sidebar-special" data-lang="ru">📋 Справочник пройденного</a>
+        <a href="reference.html" class="sidebar-special" data-lang="en">📋 Completed Reference</a>
+        <a href="#github-projects" class="sidebar-special" style="margin-top:6px;" onclick="closeSidebarMobile()" data-lang="ru">📦 GitHub-проекты</a>
+        <a href="#github-projects" class="sidebar-special" style="margin-top:6px;" onclick="closeSidebarMobile()" data-lang="en">📦 GitHub Projects</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+
+        <!-- HERO -->
+        <div class="hero">
+            <div class="hero-title">
+                <span class="icon">🌐</span>
+                <h1>HTML/CSS Essentials</h1>
+            </div>
+            <p class="hero-sub" data-lang="ru">Полный курс по HTML и CSS для начинающих: <b>36 занятий</b></p>
+            <p class="hero-sub" data-lang="en">Complete HTML and CSS course for beginners: <b>36 lessons</b></p>
+            <div class="hero-stats" data-lang="ru">
+                <div class="stat-card"><span class="stat-icon">📚</span><div><div class="stat-label">Модулей</div><div class="stat-value">13</div></div></div>
+                <div class="stat-card"><span class="stat-icon">📖</span><div><div class="stat-label">Занятий</div><div class="stat-value">37</div></div></div>
+                <div class="stat-card"><span class="stat-icon">📅</span><div><div class="stat-label">Длительность</div><div class="stat-value">12 недель</div></div></div>
+            </div>
+            <div class="hero-stats" data-lang="en">
+                <div class="stat-card"><span class="stat-icon">📚</span><div><div class="stat-label">Modules</div><div class="stat-value">13</div></div></div>
+                <div class="stat-card"><span class="stat-icon">📖</span><div><div class="stat-label">Lessons</div><div class="stat-value">37</div></div></div>
+                <div class="stat-card"><span class="stat-icon">📅</span><div><div class="stat-label">Duration</div><div class="stat-value">12 weeks</div></div></div>
+            </div>
+        </div>
+
+        <!-- ==================== МОДУЛЬ 1 ==================== -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">🌐</div>
+                <div>
+                    <div class="module-title" data-lang="ru">Введение и инструменты</div>
+                    <div class="module-title" data-lang="en">Introduction and Tools</div>
+                    <div class="module-count" data-lang="ru">Занятия 1-2 • Неделя 1</div>
+                    <div class="module-count" data-lang="en">Lessons 1-2 • Week 1</div>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">01</div>
+                    <div class="card-title" data-lang="ru">Введение в веб-разработку</div>
+                    <div class="card-title" data-lang="en">Introduction to Web Development</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Интернет</span>
+                        <span class="card-topic">Клиент-сервер</span>
+                        <span class="card-topic">HTML/CSS/JS</span>
+                        <span class="card-topic">Браузеры</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Internet</span>
+                        <span class="card-topic">Client-Server</span>
+                        <span class="card-topic">HTML/CSS/JS</span>
+                        <span class="card-topic">Browsers</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-1/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-1/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-1/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-1/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-1/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-1/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">02</div>
+                    <div class="card-title" data-lang="ru">Инструменты разработчика</div>
+                    <div class="card-title" data-lang="en">Developer Tools</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">VS Code</span>
+                        <span class="card-topic">Live Server</span>
+                        <span class="card-topic">DevTools</span>
+                        <span class="card-topic">Emmet</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">VS Code</span>
+                        <span class="card-topic">Live Server</span>
+                        <span class="card-topic">DevTools</span>
+                        <span class="card-topic">Emmet</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-2/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-2/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-2/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-2/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-2/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-2/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== МОДУЛЬ 2 ==================== -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon" style="background: linear-gradient(135deg, #f97316, #f59e0b);">📄</div>
+                <div>
+                    <div class="module-title" data-lang="ru">Основы HTML</div>
+                    <div class="module-title" data-lang="en">HTML Basics</div>
+                    <div class="module-count" data-lang="ru">Занятия 3-5 • Неделя 1-2</div>
+                    <div class="module-count" data-lang="en">Lessons 3-5 • Weeks 1-2</div>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #f97316, #f59e0b);">03</div>
+                    <div class="card-title" data-lang="ru">Структура HTML-документа</div>
+                    <div class="card-title" data-lang="en">HTML Document Structure</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">DOCTYPE</span>
+                        <span class="card-topic">head / body</span>
+                        <span class="card-topic">Метатеги</span>
+                        <span class="card-topic">Вложенность</span>
+                        <span class="card-topic">Теги и атрибуты</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">DOCTYPE</span>
+                        <span class="card-topic">head / body</span>
+                        <span class="card-topic">Meta tags</span>
+                        <span class="card-topic">Nesting</span>
+                        <span class="card-topic">Tags & attributes</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-3/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-3/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-3/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-3/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-3/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-3/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #f97316, #f59e0b);">04</div>
+                    <div class="card-title" data-lang="ru">Ссылки, изображения, пути</div>
+                    <div class="card-title" data-lang="en">Links, Images, Paths</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">&lt;a&gt; ссылки</span>
+                        <span class="card-topic">&lt;img&gt;</span>
+                        <span class="card-topic">Абс. пути</span>
+                        <span class="card-topic">Отн. пути</span>
+                        <span class="card-topic">target</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">&lt;a&gt; links</span>
+                        <span class="card-topic">&lt;img&gt;</span>
+                        <span class="card-topic">Abs. paths</span>
+                        <span class="card-topic">Rel. paths</span>
+                        <span class="card-topic">target</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-4/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-4/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-4/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-4/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-4/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-4/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #f97316, #f59e0b);">05</div>
+                    <div class="card-title" data-lang="ru">Списки и семантика</div>
+                    <div class="card-title" data-lang="en">Lists and Semantics</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">ul / ol / dl</span>
+                        <span class="card-topic">header</span>
+                        <span class="card-topic">nav</span>
+                        <span class="card-topic">main</span>
+                        <span class="card-topic">footer</span>
+                        <span class="card-topic">section</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">ul / ol / dl</span>
+                        <span class="card-topic">header</span>
+                        <span class="card-topic">nav</span>
+                        <span class="card-topic">main</span>
+                        <span class="card-topic">footer</span>
+                        <span class="card-topic">section</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-5/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-5/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-5/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-5/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-5/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-5/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== МОДУЛЬ 3 ==================== -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon" style="background: linear-gradient(135deg, #a855f7, #ec4899);">🎨</div>
+                <div>
+                    <div class="module-title" data-lang="ru">Основы CSS</div>
+                    <div class="module-title" data-lang="en">CSS Basics</div>
+                    <div class="module-count" data-lang="ru">Занятия 6-8 • Неделя 2-3</div>
+                    <div class="module-count" data-lang="en">Lessons 6-8 • Weeks 2-3</div>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #a855f7, #ec4899);">06</div>
+                    <div class="card-title" data-lang="ru">Введение в CSS — селекторы, цвета, шрифты</div>
+                    <div class="card-title" data-lang="en">Introduction to CSS — Selectors, Colors, Fonts</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Подключение CSS</span>
+                        <span class="card-topic">Селекторы</span>
+                        <span class="card-topic">Цвета</span>
+                        <span class="card-topic">font-family</span>
+                        <span class="card-topic">text-align</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">CSS linking</span>
+                        <span class="card-topic">Selectors</span>
+                        <span class="card-topic">Colors</span>
+                        <span class="card-topic">font-family</span>
+                        <span class="card-topic">text-align</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-6/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-6/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-6/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-6/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-6/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-6/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #a855f7, #ec4899);">07</div>
+                    <div class="card-title" data-lang="ru">Box Model — отступы, рамки, тени</div>
+                    <div class="card-title" data-lang="en">Box Model — Margins, Borders, Shadows</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">block / inline</span>
+                        <span class="card-topic">padding</span>
+                        <span class="card-topic">margin</span>
+                        <span class="card-topic">border</span>
+                        <span class="card-topic">box-sizing</span>
+                        <span class="card-topic">display</span>
+                        <span class="card-topic">overflow</span>
+                        <span class="card-topic">border-radius</span>
+                        <span class="card-topic">box-shadow</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">block / inline</span>
+                        <span class="card-topic">padding</span>
+                        <span class="card-topic">margin</span>
+                        <span class="card-topic">border</span>
+                        <span class="card-topic">box-sizing</span>
+                        <span class="card-topic">display</span>
+                        <span class="card-topic">overflow</span>
+                        <span class="card-topic">border-radius</span>
+                        <span class="card-topic">box-shadow</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-7/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-7/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-7/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-7/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-7/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-7/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #a855f7, #ec4899);">08</div>
+                    <div class="card-title" data-lang="ru">CSS Position</div>
+                    <div class="card-title" data-lang="en">CSS Position</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">static</span>
+                        <span class="card-topic">relative</span>
+                        <span class="card-topic">absolute</span>
+                        <span class="card-topic">fixed</span>
+                        <span class="card-topic">sticky</span>
+                        <span class="card-topic">z-index</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">static</span>
+                        <span class="card-topic">relative</span>
+                        <span class="card-topic">absolute</span>
+                        <span class="card-topic">fixed</span>
+                        <span class="card-topic">sticky</span>
+                        <span class="card-topic">z-index</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-8/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-8/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-8/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-8/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-8/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-8/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #a855f7, #ec4899);">09</div>
+                    <div class="card-title" data-lang="ru">Мини-проект #1 — Личная визитка</div>
+                    <div class="card-title" data-lang="en">Mini-project #1 — Personal Business Card</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Практика</span>
+                        <span class="card-topic">Фото</span>
+                        <span class="card-topic">Контакты</span>
+                        <span class="card-topic">Стилизация</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Practice</span>
+                        <span class="card-topic">Photo</span>
+                        <span class="card-topic">Contacts</span>
+                        <span class="card-topic">Styling</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-9/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-9/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-9/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-9/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-9/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-9/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== МОДУЛЬ 4 ==================== -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon" style="background: linear-gradient(135deg, #22c55e, #10b981);">📋</div>
+                <div>
+                    <div class="module-title" data-lang="ru">Таблицы, формы, мультимедиа</div>
+                    <div class="module-title" data-lang="en">Tables, Forms, Multimedia</div>
+                    <div class="module-count" data-lang="ru">Занятия 9-12 • Неделя 3-4</div>
+                    <div class="module-count" data-lang="en">Lessons 9-12 • Weeks 3-4</div>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #22c55e, #10b981);">10</div>
+                    <div class="card-title" data-lang="ru">Таблицы</div>
+                    <div class="card-title" data-lang="en">Tables</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">table / tr / td</span>
+                        <span class="card-topic">th</span>
+                        <span class="card-topic">colspan</span>
+                        <span class="card-topic">rowspan</span>
+                        <span class="card-topic">Стилизация</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">table / tr / td</span>
+                        <span class="card-topic">th</span>
+                        <span class="card-topic">colspan</span>
+                        <span class="card-topic">rowspan</span>
+                        <span class="card-topic">Styling</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-10/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-10/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-10/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-10/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-10/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-10/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #22c55e, #10b981);">11</div>
+                    <div class="card-title" data-lang="ru">Формы</div>
+                    <div class="card-title" data-lang="en">Forms</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">input</span>
+                        <span class="card-topic">textarea</span>
+                        <span class="card-topic">select</span>
+                        <span class="card-topic">label</span>
+                        <span class="card-topic">button</span>
+                        <span class="card-topic">Валидация</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">input</span>
+                        <span class="card-topic">textarea</span>
+                        <span class="card-topic">select</span>
+                        <span class="card-topic">label</span>
+                        <span class="card-topic">button</span>
+                        <span class="card-topic">Validation</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-11/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-11/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-11/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-11/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-11/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-11/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #22c55e, #10b981);">12</div>
+                    <div class="card-title" data-lang="ru">Мультимедиа и iframe</div>
+                    <div class="card-title" data-lang="en">Multimedia and iframe</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">video</span>
+                        <span class="card-topic">audio</span>
+                        <span class="card-topic">iframe</span>
+                        <span class="card-topic">YouTube</span>
+                        <span class="card-topic">Карты</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">video</span>
+                        <span class="card-topic">audio</span>
+                        <span class="card-topic">iframe</span>
+                        <span class="card-topic">YouTube</span>
+                        <span class="card-topic">Maps</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-12/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-12/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-12/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-12/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-12/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-12/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #22c55e, #10b981);">13</div>
+                    <div class="card-title" data-lang="ru">Мини-проект #2 — Landing-секция</div>
+                    <div class="card-title" data-lang="en">Mini-project #2 — Landing Section</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Практика</span>
+                        <span class="card-topic">Hero-секция</span>
+                        <span class="card-topic">CTA-кнопки</span>
+                        <span class="card-topic">Преимущества</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Practice</span>
+                        <span class="card-topic">Hero section</span>
+                        <span class="card-topic">CTA buttons</span>
+                        <span class="card-topic">Features</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-13/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-13/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-13/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-13/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-13/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-13/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== МОДУЛЬ 5 ==================== -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">📐</div>
+                <div>
+                    <div class="module-title" data-lang="ru">Flexbox</div>
+                    <div class="module-title" data-lang="en">Flexbox</div>
+                    <div class="module-count" data-lang="ru">Занятия 13-15 • Неделя 5</div>
+                    <div class="module-count" data-lang="en">Lessons 13-15 • Week 5</div>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">14</div>
+                    <div class="card-title" data-lang="ru">Flexbox — основы</div>
+                    <div class="card-title" data-lang="en">Flexbox — Basics</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">display: flex</span>
+                        <span class="card-topic">flex-direction</span>
+                        <span class="card-topic">justify-content</span>
+                        <span class="card-topic">align-items</span>
+                        <span class="card-topic">gap</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">display: flex</span>
+                        <span class="card-topic">flex-direction</span>
+                        <span class="card-topic">justify-content</span>
+                        <span class="card-topic">align-items</span>
+                        <span class="card-topic">gap</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-14/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-14/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-14/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-14/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-14/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-14/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">15</div>
+                    <div class="card-title" data-lang="ru">Flexbox — элементы</div>
+                    <div class="card-title" data-lang="en">Flexbox — Elements</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">flex-grow</span>
+                        <span class="card-topic">flex-shrink</span>
+                        <span class="card-topic">flex-basis</span>
+                        <span class="card-topic">order</span>
+                        <span class="card-topic">align-self</span>
+                        <span class="card-topic">flex-wrap</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">flex-grow</span>
+                        <span class="card-topic">flex-shrink</span>
+                        <span class="card-topic">flex-basis</span>
+                        <span class="card-topic">order</span>
+                        <span class="card-topic">align-self</span>
+                        <span class="card-topic">flex-wrap</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-15/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-15/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-15/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-15/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-15/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-15/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">16</div>
+                    <div class="card-title" data-lang="ru">Мини-проект #3 — Галерея карточек</div>
+                    <div class="card-title" data-lang="en">Mini-project #3 — Card Gallery</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Практика</span>
+                        <span class="card-topic">Flexbox-сетка</span>
+                        <span class="card-topic">Карточки</span>
+                        <span class="card-topic">Адаптивность</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Practice</span>
+                        <span class="card-topic">Flexbox grid</span>
+                        <span class="card-topic">Cards</span>
+                        <span class="card-topic">Responsive</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-16/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-16/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-16/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-16/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-16/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-16/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== МОДУЛЬ 6 ==================== -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon" style="background: linear-gradient(135deg, #14b8a6, #06b6d4);">🔲</div>
+                <div>
+                    <div class="module-title" data-lang="ru">CSS Grid</div>
+                    <div class="module-title" data-lang="en">CSS Grid</div>
+                    <div class="module-count" data-lang="ru">Занятия 16-18 • Неделя 6</div>
+                    <div class="module-count" data-lang="en">Lessons 16-18 • Week 6</div>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #14b8a6, #06b6d4);">17</div>
+                    <div class="card-title" data-lang="ru">CSS Grid — основы</div>
+                    <div class="card-title" data-lang="en">CSS Grid — Basics</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">display: grid</span>
+                        <span class="card-topic">columns / rows</span>
+                        <span class="card-topic">gap</span>
+                        <span class="card-topic">fr</span>
+                        <span class="card-topic">repeat</span>
+                        <span class="card-topic">minmax</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">display: grid</span>
+                        <span class="card-topic">columns / rows</span>
+                        <span class="card-topic">gap</span>
+                        <span class="card-topic">fr</span>
+                        <span class="card-topic">repeat</span>
+                        <span class="card-topic">minmax</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-17/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-17/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-17/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-17/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-17/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-17/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #14b8a6, #06b6d4);">18</div>
+                    <div class="card-title" data-lang="ru">CSS Grid — продвинутый</div>
+                    <div class="card-title" data-lang="en">CSS Grid — Advanced</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">grid-area</span>
+                        <span class="card-topic">Именованные линии</span>
+                        <span class="card-topic">auto-fill</span>
+                        <span class="card-topic">auto-fit</span>
+                        <span class="card-topic">span</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">grid-area</span>
+                        <span class="card-topic">Named lines</span>
+                        <span class="card-topic">auto-fill</span>
+                        <span class="card-topic">auto-fit</span>
+                        <span class="card-topic">span</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-18/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-18/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-18/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-18/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-18/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-18/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #14b8a6, #06b6d4);">19</div>
+                    <div class="card-title" data-lang="ru">Мини-проект #4 — Макет журнала</div>
+                    <div class="card-title" data-lang="en">Mini-project #4 — Magazine Layout</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Практика</span>
+                        <span class="card-topic">CSS Grid</span>
+                        <span class="card-topic">Многоколонка</span>
+                        <span class="card-topic">Макет газеты</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Practice</span>
+                        <span class="card-topic">CSS Grid</span>
+                        <span class="card-topic">Multi-column</span>
+                        <span class="card-topic">Newspaper layout</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-19/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-19/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-19/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-19/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-19/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-19/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== МОДУЛЬ 7 ==================== -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon" style="background: linear-gradient(135deg, #f43f5e, #ec4899);">📱</div>
+                <div>
+                    <div class="module-title" data-lang="ru">Адаптивный дизайн</div>
+                    <div class="module-title" data-lang="en">Responsive Design</div>
+                    <div class="module-count" data-lang="ru">Занятия 19-21 • Неделя 7</div>
+                    <div class="module-count" data-lang="en">Lessons 19-21 • Week 7</div>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #f97316, #ef4444);">20</div>
+                    <div class="card-title" data-lang="ru">Media Queries</div>
+                    <div class="card-title" data-lang="en">Media Queries</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">@media</span>
+                        <span class="card-topic">Breakpoints</span>
+                        <span class="card-topic">Mobile-first</span>
+                        <span class="card-topic">Desktop-first</span>
+                        <span class="card-topic">Viewport</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">@media</span>
+                        <span class="card-topic">Breakpoints</span>
+                        <span class="card-topic">Mobile-first</span>
+                        <span class="card-topic">Desktop-first</span>
+                        <span class="card-topic">Viewport</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-20/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-20/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-20/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-20/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-20/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-20/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #f97316, #ef4444);">21</div>
+                    <div class="card-title" data-lang="ru">Адаптивные паттерны</div>
+                    <div class="card-title" data-lang="en">Responsive Patterns</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Навигация</span>
+                        <span class="card-topic">Карточки</span>
+                        <span class="card-topic">Типография</span>
+                        <span class="card-topic">Изображения</span>
+                        <span class="card-topic">clamp()</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Navigation</span>
+                        <span class="card-topic">Cards</span>
+                        <span class="card-topic">Typography</span>
+                        <span class="card-topic">Images</span>
+                        <span class="card-topic">clamp()</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-21/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-21/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-21/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-21/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-21/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-21/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #f97316, #ef4444);">22</div>
+                    <div class="card-title" data-lang="ru">Мини-проект #5 — Сайт ресторана</div>
+                    <div class="card-title" data-lang="en">Mini-project #5 — Restaurant Website</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Практика</span>
+                        <span class="card-topic">Полный сайт</span>
+                        <span class="card-topic">Адаптивность</span>
+                        <span class="card-topic">Меню / Контакты</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Practice</span>
+                        <span class="card-topic">Full website</span>
+                        <span class="card-topic">Responsive</span>
+                        <span class="card-topic">Menu / Contacts</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-22/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-22/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-22/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-22/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-22/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-22/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== МОДУЛЬ 8 ==================== -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon" style="background: linear-gradient(135deg, #eab308, #f97316);">✨</div>
+                <div>
+                    <div class="module-title" data-lang="ru">Анимации и переходы</div>
+                    <div class="module-title" data-lang="en">Animations and Transitions</div>
+                    <div class="module-count" data-lang="ru">Занятия 22-23 • Неделя 8</div>
+                    <div class="module-count" data-lang="en">Lessons 22-23 • Week 8</div>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #a855f7, #ec4899);">23</div>
+                    <div class="card-title" data-lang="ru">CSS Transitions и Transform</div>
+                    <div class="card-title" data-lang="en">CSS Transitions and Transform</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">transition</span>
+                        <span class="card-topic">transform</span>
+                        <span class="card-topic">:hover</span>
+                        <span class="card-topic">scale / rotate</span>
+                        <span class="card-topic">translate</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">transition</span>
+                        <span class="card-topic">transform</span>
+                        <span class="card-topic">:hover</span>
+                        <span class="card-topic">scale / rotate</span>
+                        <span class="card-topic">translate</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-23/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-23/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-23/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-23/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-23/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-23/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #a855f7, #ec4899);">24</div>
+                    <div class="card-title" data-lang="ru">Мини-проект #6 — Промо-страница</div>
+                    <div class="card-title" data-lang="en">Mini-project #6 — Promo Page</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Практика</span>
+                        <span class="card-topic">Анимации</span>
+                        <span class="card-topic">Hover-эффекты</span>
+                        <span class="card-topic">Промо-дизайн</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Practice</span>
+                        <span class="card-topic">Animations</span>
+                        <span class="card-topic">Hover effects</span>
+                        <span class="card-topic">Promo design</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-24/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-24/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-24/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-24/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-24/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-24/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== МОДУЛЬ 9 ==================== -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon" style="background: linear-gradient(135deg, #8b5cf6, #a855f7);">🅱️</div>
+                <div>
+                    <div class="module-title" data-lang="ru">Bootstrap</div>
+                    <div class="module-title" data-lang="en">Bootstrap</div>
+                    <div class="module-count" data-lang="ru">Занятия 24-25 • Неделя 8-9</div>
+                    <div class="module-count" data-lang="en">Lessons 24-25 • Weeks 8-9</div>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #7c3aed, #6366f1);">25</div>
+                    <div class="card-title" data-lang="ru">Bootstrap — основы</div>
+                    <div class="card-title" data-lang="en">Bootstrap — Basics</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">CDN</span>
+                        <span class="card-topic">Сетка 12 колонок</span>
+                        <span class="card-topic">Утилиты</span>
+                        <span class="card-topic">Типография</span>
+                        <span class="card-topic">Цвета</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">CDN</span>
+                        <span class="card-topic">12-col grid</span>
+                        <span class="card-topic">Utilities</span>
+                        <span class="card-topic">Typography</span>
+                        <span class="card-topic">Colors</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-25/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-25/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-25/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-25/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-25/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-25/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #7c3aed, #6366f1);">26</div>
+                    <div class="card-title" data-lang="ru">Bootstrap — компоненты и проект</div>
+                    <div class="card-title" data-lang="en">Bootstrap — Components and Project</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Navbar</span>
+                        <span class="card-topic">Cards</span>
+                        <span class="card-topic">Buttons</span>
+                        <span class="card-topic">Modal</span>
+                        <span class="card-topic">Carousel</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Navbar</span>
+                        <span class="card-topic">Cards</span>
+                        <span class="card-topic">Buttons</span>
+                        <span class="card-topic">Modal</span>
+                        <span class="card-topic">Carousel</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-26/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-26/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-26/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-26/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-26/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-26/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== МОДУЛЬ 10 ==================== -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon" style="background: linear-gradient(135deg, #0ea5e9, #3b82f6);">💨</div>
+                <div>
+                    <div class="module-title" data-lang="ru">Tailwind CSS</div>
+                    <div class="module-title" data-lang="en">Tailwind CSS</div>
+                    <div class="module-count" data-lang="ru">Занятия 26-27 • Неделя 9</div>
+                    <div class="module-count" data-lang="en">Lessons 26-27 • Week 9</div>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">27</div>
+                    <div class="card-title" data-lang="ru">Tailwind CSS — основы</div>
+                    <div class="card-title" data-lang="en">Tailwind CSS — Basics</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Utility-first</span>
+                        <span class="card-topic">Классы</span>
+                        <span class="card-topic">Responsive</span>
+                        <span class="card-topic">Настройка</span>
+                        <span class="card-topic">CDN / CLI</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Utility-first</span>
+                        <span class="card-topic">Classes</span>
+                        <span class="card-topic">Responsive</span>
+                        <span class="card-topic">Config</span>
+                        <span class="card-topic">CDN / CLI</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-27/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-27/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-27/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-27/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-27/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-27/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">28</div>
+                    <div class="card-title" data-lang="ru">Tailwind CSS — адаптивность и проект</div>
+                    <div class="card-title" data-lang="en">Tailwind CSS — Responsiveness and Project</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Практика</span>
+                        <span class="card-topic">Лендинг</span>
+                        <span class="card-topic">sm / md / lg</span>
+                        <span class="card-topic">Dark mode</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Practice</span>
+                        <span class="card-topic">Landing</span>
+                        <span class="card-topic">sm / md / lg</span>
+                        <span class="card-topic">Dark mode</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-28/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-28/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-28/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-28/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-28/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-28/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== МОДУЛЬ 11 ==================== -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">🖼️</div>
+                <div>
+                    <div class="module-title" data-lang="ru">Вёрстка по макетам Figma</div>
+                    <div class="module-title" data-lang="en">Figma Layout</div>
+                    <div class="module-count" data-lang="ru">Занятия 28-29 • Неделя 10</div>
+                    <div class="module-count" data-lang="en">Lessons 28-29 • Week 10</div>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #f472b6, #a855f7);">29</div>
+                    <div class="card-title" data-lang="ru">Знакомство с Figma</div>
+                    <div class="card-title" data-lang="en">Introduction to Figma</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Интерфейс Figma</span>
+                        <span class="card-topic">Экспорт CSS</span>
+                        <span class="card-topic">Размеры</span>
+                        <span class="card-topic">Цвета</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Figma UI</span>
+                        <span class="card-topic">CSS export</span>
+                        <span class="card-topic">Dimensions</span>
+                        <span class="card-topic">Colors</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-29/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-29/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-29/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-29/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-29/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-29/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #f472b6, #a855f7);">30</div>
+                    <div class="card-title" data-lang="ru">Вёрстка по макету</div>
+                    <div class="card-title" data-lang="en">Layout from Mockup</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Pixel Perfect</span>
+                        <span class="card-topic">Figma → CSS</span>
+                        <span class="card-topic">Практика</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Pixel Perfect</span>
+                        <span class="card-topic">Figma → CSS</span>
+                        <span class="card-topic">Practice</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-30/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-30/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-30/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-30/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-30/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-30/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== МОДУЛЬ 12 ==================== -->
+        <div class="module">
+            <div class="module-header">
+                <div class="module-icon" style="background: linear-gradient(135deg, #ef4444, #f97316);">🚀</div>
+                <div>
+                    <div class="module-title" data-lang="ru">Финальный проект</div>
+                    <div class="module-title" data-lang="en">Final Project</div>
+                    <div class="module-count" data-lang="ru">Занятия 30-36 • Неделя 10-12</div>
+                    <div class="module-count" data-lang="en">Lessons 30-36 • Weeks 10-12</div>
+                </div>
+            </div>
+            <div class="card-grid">
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #ef4444, #f97316);">31</div>
+                    <div class="card-title" data-lang="ru">Подготовка к проекту</div>
+                    <div class="card-title" data-lang="en">Project Preparation</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">ТЗ</span>
+                        <span class="card-topic">Планирование</span>
+                        <span class="card-topic">Дизайн</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Spec</span>
+                        <span class="card-topic">Planning</span>
+                        <span class="card-topic">Design</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-31/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-31/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-31/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-31/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-31/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-31/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #ef4444, #f97316);">32</div>
+                    <div class="card-title" data-lang="ru">Разработка — HTML-структура</div>
+                    <div class="card-title" data-lang="en">Development — HTML Structure</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Семантика</span>
+                        <span class="card-topic">Секции</span>
+                        <span class="card-topic">Контент</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Semantics</span>
+                        <span class="card-topic">Sections</span>
+                        <span class="card-topic">Content</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-32/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-32/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-32/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-32/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-32/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-32/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="card-number" style="background: linear-gradient(135deg, #ef4444, #f97316);">33</div>
+                    <div class="card-title" data-lang="ru">Разработка — CSS-стили</div>
+                    <div class="card-title" data-lang="en">Development — CSS Styles</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Цвета</span>
+                        <span class="card-topic">Шрифты</span>
+                        <span class="card-topic">Компоненты</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Colors</span>
+                        <span class="card-topic">Fonts</span>
+                        <span class="card-topic">Components</span>
+                    </div>
+                    <div class="card-links" data-lang="ru">
+                        <a href="lessons/Lesson-33/lecture.html" class="card-link lecture">👨‍🏫 Лекция</a>
+                        <a href="lessons/Lesson-33/student.html" class="card-link student">👨‍🎓 Конспект</a>
+                        <a href="lessons/Lesson-33/tasks.html" class="card-link tasks">📋 Задания</a>
+                    </div>
+                    <div class="card-links" data-lang="en">
+                        <a href="lessons/Lesson-33/lecture.html" class="card-link lecture">👨‍🏫 Lecture</a>
+                        <a href="lessons/Lesson-33/student.html" class="card-link student">👨‍🎓 Notes</a>
+                        <a href="lessons/Lesson-33/tasks.html" class="card-link tasks">📋 Tasks</a>
+                    </div>
+                </div>
+                <div class="lesson-card locked">
+                    <div class="card-number" style="background: #cbd5e1;">34</div>
+                    <div class="card-title" data-lang="ru">Разработка — Раскладка</div>
+                    <div class="card-title" data-lang="en">Development — Layout</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Flex / Grid</span>
+                        <span class="card-topic">Секции</span>
+                        <span class="card-topic">Сетка</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Flex / Grid</span>
+                        <span class="card-topic">Sections</span>
+                        <span class="card-topic">Layout</span>
+                    </div>
+                    <div class="card-links" data-lang="ru"><span class="card-badge-locked">🔒 Скоро</span></div>
+                    <div class="card-links" data-lang="en"><span class="card-badge-locked">🔒 Coming soon</span></div>
+                </div>
+                <div class="lesson-card locked">
+                    <div class="card-number" style="background: #cbd5e1;">35</div>
+                    <div class="card-title" data-lang="ru">Разработка — Адаптивность</div>
+                    <div class="card-title" data-lang="en">Development — Responsiveness</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Media queries</span>
+                        <span class="card-topic">Mobile</span>
+                        <span class="card-topic">Тестирование</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Media queries</span>
+                        <span class="card-topic">Mobile</span>
+                        <span class="card-topic">Testing</span>
+                    </div>
+                    <div class="card-links" data-lang="ru"><span class="card-badge-locked">🔒 Скоро</span></div>
+                    <div class="card-links" data-lang="en"><span class="card-badge-locked">🔒 Coming soon</span></div>
+                </div>
+                <div class="lesson-card locked">
+                    <div class="card-number" style="background: #cbd5e1;">36</div>
+                    <div class="card-title" data-lang="ru">Деплой и финализация</div>
+                    <div class="card-title" data-lang="en">Deploy and Finalization</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">GitHub Pages</span>
+                        <span class="card-topic">Netlify</span>
+                        <span class="card-topic">Домен</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">GitHub Pages</span>
+                        <span class="card-topic">Netlify</span>
+                        <span class="card-topic">Domain</span>
+                    </div>
+                    <div class="card-links" data-lang="ru"><span class="card-badge-locked">🔒 Скоро</span></div>
+                    <div class="card-links" data-lang="en"><span class="card-badge-locked">🔒 Coming soon</span></div>
+                </div>
+                <div class="lesson-card locked">
+                    <div class="card-number" style="background: #cbd5e1;">37</div>
+                    <div class="card-title" data-lang="ru">Презентация проектов</div>
+                    <div class="card-title" data-lang="en">Project Presentations</div>
+                    <div class="card-topics" data-lang="ru">
+                        <span class="card-topic">Защита</span>
+                        <span class="card-topic">Демо</span>
+                        <span class="card-topic">Код-ревью</span>
+                    </div>
+                    <div class="card-topics" data-lang="en">
+                        <span class="card-topic">Defense</span>
+                        <span class="card-topic">Demo</span>
+                        <span class="card-topic">Code review</span>
+                    </div>
+                    <div class="card-links" data-lang="ru"><span class="card-badge-locked">🔒 Скоро</span></div>
+                    <div class="card-links" data-lang="en"><span class="card-badge-locked">🔒 Coming soon</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== GITHUB PROJECTS ==================== -->
+        <div class="github-section" id="github-projects">
+            <h2 data-lang="ru">📦 GitHub-проекты для занятий</h2>
+            <h2 data-lang="en">📦 GitHub Projects for Lessons</h2>
+            <p class="section-sub" data-lang="ru">Коллекции простых проектов для практики и вдохновения. Показывай ученикам как примеры.</p>
+            <p class="section-sub" data-lang="en">Collections of simple projects for practice and inspiration. Show them to students as examples.</p>
+
+            <h3 style="font-size:1rem; font-weight:600; margin: 20px 0 12px; color:#475569;" data-lang="ru">Большие коллекции</h3>
+            <h3 style="font-size:1rem; font-weight:600; margin: 20px 0 12px; color:#475569;" data-lang="en">Large Collections</h3>
+            <div class="github-grid">
+                <a href="https://github.com/bradtraversy/50projects50days" target="_blank" class="github-card">
+                    <div class="gh-icon">🔥</div>
+                    <div>
+                        <div class="gh-name">50projects50days</div>
+                        <div class="gh-desc" data-lang="ru">50 мини-проектов HTML/CSS/JS с демо. Brad Traversy. 37k+ звёзд</div>
+                        <div class="gh-desc" data-lang="en">50 mini-projects HTML/CSS/JS with demos. Brad Traversy. 37k+ stars</div>
+                    </div>
+                </a>
+                <a href="https://github.com/TonyStark-19/HTML-CSS-Projects" target="_blank" class="github-card">
+                    <div class="gh-icon">🎨</div>
+                    <div>
+                        <div class="gh-name">HTML-CSS-Projects</div>
+                        <div class="gh-desc" data-lang="ru">40+ чистых HTML/CSS компонентов с превью. Без JavaScript</div>
+                        <div class="gh-desc" data-lang="en">40+ pure HTML/CSS components with preview. No JavaScript</div>
+                    </div>
+                </a>
+                <a href="https://github.com/Fredy002/100-Days-Of-CSS-Projects" target="_blank" class="github-card">
+                    <div class="gh-icon">💯</div>
+                    <div>
+                        <div class="gh-name">100-Days-Of-CSS-Projects</div>
+                        <div class="gh-desc" data-lang="ru">100 уникальных CSS-проектов: анимации, панели, карточки</div>
+                        <div class="gh-desc" data-lang="en">100 unique CSS projects: animations, panels, cards</div>
+                    </div>
+                </a>
+                <a href="https://github.com/anshuopinion/10-Practice-Project-Html-CSS" target="_blank" class="github-card">
+                    <div class="gh-icon">📋</div>
+                    <div>
+                        <div class="gh-name">10 Practice Projects</div>
+                        <div class="gh-desc" data-lang="ru">10 полных проектов: портфолио, ресторан, лендинг, YouTube клон</div>
+                        <div class="gh-desc" data-lang="en">10 full projects: portfolio, restaurant, landing, YouTube clone</div>
+                    </div>
+                </a>
+                <a href="https://github.com/solygambas/html-css-javascript-projects" target="_blank" class="github-card">
+                    <div class="gh-icon">📚</div>
+                    <div>
+                        <div class="gh-name">100+ Web Projects</div>
+                        <div class="gh-desc" data-lang="ru">100+ мини-проектов в 2 томах. Есть CodePen и YouTube</div>
+                        <div class="gh-desc" data-lang="en">100+ mini-projects in 2 volumes. Includes CodePen and YouTube</div>
+                    </div>
+                </a>
+                <a href="https://github.com/didinj/25-beginner-html-projects" target="_blank" class="github-card">
+                    <div class="gh-icon">🌱</div>
+                    <div>
+                        <div class="gh-name">25 Beginner HTML Projects</div>
+                        <div class="gh-desc" data-lang="ru">25 проектов для начинающих: Hello World, резюме, портфолио</div>
+                        <div class="gh-desc" data-lang="en">25 projects for beginners: Hello World, resume, portfolio</div>
+                    </div>
+                </a>
+            </div>
+
+            <h3 style="font-size:1rem; font-weight:600; margin: 28px 0 12px; color:#475569;" data-lang="ru">По темам занятий</h3>
+            <h3 style="font-size:1rem; font-weight:600; margin: 28px 0 12px; color:#475569;" data-lang="en">By Lesson Topics</h3>
+            <div class="github-grid">
+                <a href="https://github.com/mdn/beginner-html-site" target="_blank" class="github-card">
+                    <div class="gh-icon">📄</div>
+                    <div>
+                        <div class="gh-name">MDN Beginner HTML Site</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 1-3: Простая HTML-страница от Mozilla</div>
+                        <div class="gh-desc" data-lang="en">Lessons 1-3: Simple HTML page by Mozilla</div>
+                    </div>
+                </a>
+                <a href="https://github.com/HimeshKohad/Cafe-Menu" target="_blank" class="github-card">
+                    <div class="gh-icon">☕</div>
+                    <div>
+                        <div class="gh-name">Cafe Menu</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 5: Меню кафе — списки, категории блюд</div>
+                        <div class="gh-desc" data-lang="en">Lesson 5: Cafe menu — lists, dish categories</div>
+                    </div>
+                </a>
+                <a href="https://github.com/mdn/beginner-html-site-styled" target="_blank" class="github-card">
+                    <div class="gh-icon">🎨</div>
+                    <div>
+                        <div class="gh-name">MDN Styled Site</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 6: Та же страница + CSS стили от Mozilla</div>
+                        <div class="gh-desc" data-lang="en">Lesson 6: Same page + CSS styles by Mozilla</div>
+                    </div>
+                </a>
+                <a href="https://github.com/bedimcode/productcard" target="_blank" class="github-card">
+                    <div class="gh-icon">🛒</div>
+                    <div>
+                        <div class="gh-name">Product Card</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 7: Карточка товара с hover-эффектами</div>
+                        <div class="gh-desc" data-lang="en">Lesson 7: Product card with hover effects</div>
+                    </div>
+                </a>
+                <a href="https://github.com/abdulrahmans0414/Business-Card" target="_blank" class="github-card">
+                    <div class="gh-icon">💼</div>
+                    <div>
+                        <div class="gh-name">Business Card</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 9: Визитка — фото, имя, контакты</div>
+                        <div class="gh-desc" data-lang="en">Lesson 9: Business card — photo, name, contacts</div>
+                    </div>
+                </a>
+                <a href="https://github.com/codrops/PricingTablesInspiration" target="_blank" class="github-card">
+                    <div class="gh-icon">💰</div>
+                    <div>
+                        <div class="gh-name">Pricing Tables</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 10: Таблицы тарифов — несколько стилей</div>
+                        <div class="gh-desc" data-lang="en">Lesson 10: Pricing tables — multiple styles</div>
+                    </div>
+                </a>
+                <a href="https://github.com/FREDVUNI/HTML-CSS-login-register" target="_blank" class="github-card">
+                    <div class="gh-icon">🔐</div>
+                    <div>
+                        <div class="gh-name">Login & Register Form</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 11: Форма входа и регистрации</div>
+                        <div class="gh-desc" data-lang="en">Lesson 11: Login and registration form</div>
+                    </div>
+                </a>
+                <a href="https://github.com/ShaifArfan/one-page-website-html-css-project" target="_blank" class="github-card">
+                    <div class="gh-icon">🚀</div>
+                    <div>
+                        <div class="gh-name">One Page Website</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 13: Одностраничный лендинг HTML/CSS</div>
+                        <div class="gh-desc" data-lang="en">Lesson 13: One-page HTML/CSS landing</div>
+                    </div>
+                </a>
+                <a href="https://github.com/kalawaja/freeCodeCamp_photoGallery" target="_blank" class="github-card">
+                    <div class="gh-icon">📐</div>
+                    <div>
+                        <div class="gh-name">Flexbox Photo Gallery</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 14-15: Фотогалерея на Flexbox (freeCodeCamp)</div>
+                        <div class="gh-desc" data-lang="en">Lessons 13-15: Photo gallery with Flexbox (freeCodeCamp)</div>
+                    </div>
+                </a>
+                <a href="https://github.com/georgewpark/Image-Gallery-with-CSS-Grid-and-Flexbox" target="_blank" class="github-card">
+                    <div class="gh-icon">🔲</div>
+                    <div>
+                        <div class="gh-name">CSS Grid Gallery</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 17-18: Адаптивная галерея на Grid + Flexbox</div>
+                        <div class="gh-desc" data-lang="en">Lessons 16-18: Responsive gallery with Grid + Flexbox</div>
+                    </div>
+                </a>
+                <a href="https://github.com/codewithsadee/grilli" target="_blank" class="github-card">
+                    <div class="gh-icon">🍽️</div>
+                    <div>
+                        <div class="gh-name">Grilli — Restaurant</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 20-21: Полностью адаптивный сайт ресторана</div>
+                        <div class="gh-desc" data-lang="en">Lessons 19-21: Fully responsive restaurant website</div>
+                    </div>
+                </a>
+                <a href="https://github.com/tobiasahlin/SpinKit" target="_blank" class="github-card">
+                    <div class="gh-icon">✨</div>
+                    <div>
+                        <div class="gh-name">SpinKit</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 23-23: CSS-анимации загрузки (спиннеры)</div>
+                        <div class="gh-desc" data-lang="en">Lessons 22-23: CSS loading animations (spinners)</div>
+                    </div>
+                </a>
+                <a href="https://github.com/IanLunn/Hover" target="_blank" class="github-card">
+                    <div class="gh-icon">👆</div>
+                    <div>
+                        <div class="gh-name">Hover.css</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 23-23: Коллекция hover-эффектов для кнопок и ссылок</div>
+                        <div class="gh-desc" data-lang="en">Lessons 22-23: Collection of hover effects for buttons and links</div>
+                    </div>
+                </a>
+                <a href="https://github.com/StartBootstrap/startbootstrap-landing-page" target="_blank" class="github-card">
+                    <div class="gh-icon">🅱️</div>
+                    <div>
+                        <div class="gh-name">Bootstrap Landing Page</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 25-25: Готовый лендинг на Bootstrap</div>
+                        <div class="gh-desc" data-lang="en">Lessons 24-25: Ready-made Bootstrap landing page</div>
+                    </div>
+                </a>
+                <a href="https://github.com/tailwindtoolbox/Landing-Page" target="_blank" class="github-card">
+                    <div class="gh-icon">💨</div>
+                    <div>
+                        <div class="gh-name">Tailwind Landing Page</div>
+                        <div class="gh-desc" data-lang="ru">Занятие 27-27: Стартовый лендинг на Tailwind CSS</div>
+                        <div class="gh-desc" data-lang="en">Lessons 26-27: Starter Tailwind CSS landing page</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('overlay').classList.toggle('open');
+        }
+        function closeSidebarMobile() {
+            if (window.innerWidth < 768) {
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('overlay').classList.remove('open');
+            }
+        }
+    </script>
+
+</body>
+</html>

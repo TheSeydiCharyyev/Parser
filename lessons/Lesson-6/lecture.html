@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 6 — Введение в CSS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #1e293b; background: #f8fafc; padding: 40px 20px; }
+        .container { max-width: 860px; margin: 0 auto; }
+        h1 { font-size: 2.2rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 12px; margin-bottom: 8px; }
+        h2 { font-size: 1.5rem; color: #7e22ce; margin: 48px 0 16px; padding: 10px 16px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 8px 8px 0; }
+        h3 { font-size: 1.25rem; color: #1e3a5f; margin: 28px 0 12px; }
+        .subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 24px; }
+        p { margin: 10px 0; }
+        .highlight { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .important { background: #fef2f2; border-left: 4px solid #ef4444; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy { background: #fff7ed; border-left: 4px solid #f97316; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy::before { content: '🎨 Аналогия'; display: block; font-weight: 700; color: #c2410c; margin-bottom: 6px; }
+        .fun-fact { background: #fdf4ff; border-left: 4px solid #a855f7; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .fun-fact::before { content: '💡 Интересный факт'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 6px; }
+        .try-it { background: #ecfdf5; border: 2px solid #6ee7b7; padding: 16px 20px; margin: 16px 0; border-radius: 10px; }
+        .try-it::before { content: '🔧 Попробуй сам'; display: block; font-weight: 700; color: #059669; margin-bottom: 6px; }
+        .result-box { background: #fff; border: 2px solid #e2e8f0; border-radius: 10px; padding: 20px; margin: 16px 0; }
+        .result-box::before { content: '👁️ Результат в браузере:'; display: block; font-weight: 700; color: #475569; margin-bottom: 10px; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; margin: 14px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        .diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 20px; border-radius: 10px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.5; margin: 16px 0; overflow-x: auto; font-size: 0.88rem; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { padding: 10px 14px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 10px 0 10px 24px; }
+        li { margin: 5px 0; }
+        strong { color: #0f172a; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 40px 0; }
+        .summary { background: #faf5ff; border: 2px solid #d8b4fe; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .summary::before { content: '📋 Итоги раздела'; display: block; font-weight: 700; color: #7e22ce; font-size: 1.1rem; margin-bottom: 10px; }
+        .quiz { background: #fef2f2; border: 2px solid #fca5a5; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .quiz::before { content: '✅ Проверь себя'; display: block; font-weight: 700; color: #dc2626; font-size: 1.1rem; margin-bottom: 10px; }
+        .toc { background: #f1f5f9; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+        .toc-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: #0f172a; }
+        .toc ol { margin: 0 0 0 20px; }
+        .toc li { margin: 6px 0; }
+        .toc a { color: #7e22ce; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+        .compare > div { padding: 16px; border-radius: 8px; }
+        .compare .wrong { background: #fef2f2; border: 2px solid #fca5a5; }
+        .compare .right { background: #f0fdf4; border: 2px solid #86efac; }
+        .compare .label { font-weight: 700; margin-bottom: 8px; }
+        .mistake { background: #fff8f1; border: 2px solid #fdba74; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .mistake::before { content: '🚫 Частая ошибка новичков'; display: block; font-weight: 700; color: #ea580c; font-size: 1.05rem; margin-bottom: 10px; }
+        .pro-tip { background: #f0f9ff; border: 2px solid #7dd3fc; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .pro-tip::before { content: '🏆 Совет профессионала'; display: block; font-weight: 700; color: #0284c7; font-size: 1.05rem; margin-bottom: 10px; }
+        .why { background: #fefce8; border-left: 4px solid #eab308; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .why::before { content: '🤔 Зачем это нужно?'; display: block; font-weight: 700; color: #a16207; margin-bottom: 6px; }
+        .real-world { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .real-world::before { content: '🌍 В реальных проектах'; display: block; font-weight: 700; color: #0f766e; margin-bottom: 6px; }
+        .color-demo { display: inline-block; width: 20px; height: 20px; border-radius: 4px; vertical-align: middle; margin-right: 6px; border: 1px solid #ccc; }
+        @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 6: Введение в CSS</span><span style="color:#cbd5e1;">|</span><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128104;&#8205;&#127979; Лекция</span><a href="student.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127891; Конспект</a><a href="tasks.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128203; Задания</a></div>
+<div class="container">
+
+    <h1>Занятие 6: Введение в CSS</h1>
+    <p class="subtitle">Что такое CSS. Способы подключения. Селекторы, цвета, шрифты и фон</p>
+
+    <div class="why">
+        <p>Сегодня мы изучим <strong>CSS — язык, который превращает скучный HTML в красивый сайт</strong>. Без CSS интернет выглядел бы как текстовый документ из 90-х: чёрный текст Times New Roman на белом фоне.</p>
+        <p>Представьте, что HTML — это скелет, а CSS — одежда, макияж и причёска. Один и тот же HTML можно «одеть» в совершенно разные стили!</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Подключать стили тремя способами (и знать, какой правильный)</li>
+            <li>Выбирать элементы через селекторы: тег, класс, id</li>
+            <li>Задавать цвета в любом формате: HEX, RGB, имена</li>
+            <li>Создавать красивые градиенты</li>
+            <li>Подключать шрифты из Google Fonts</li>
+            <li>Настраивать текст: выравнивание, межстрочный интервал, оформление</li>
+        </ul>
+    </div>
+
+    <div class="toc">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#what-css">Что такое CSS и зачем он нужен</a></li>
+            <li><a href="#syntax">Синтаксис CSS</a></li>
+            <li><a href="#inline">Способ 1: Inline-стили</a></li>
+            <li><a href="#internal">Способ 2: Internal (внутренний)</a></li>
+            <li><a href="#external">Способ 3: External (внешний)</a></li>
+            <li><a href="#compare-methods">Сравнение трёх способов</a></li>
+            <li><a href="#selector-tag">Селекторы: тег</a></li>
+            <li><a href="#selector-class">Селекторы: класс</a></li>
+            <li><a href="#selector-id">Селекторы: id</a></li>
+            <li><a href="#specificity">Приоритет селекторов (специфичность)</a></li>
+            <li><a href="#colors">Цвета в CSS</a></li>
+            <li><a href="#background">Фон и градиенты</a></li>
+            <li><a href="#fonts">Шрифты и Google Fonts</a></li>
+            <li><a href="#text">Свойства текста</a></li>
+            <li><a href="#practice">Практика: стилизация страницы-статьи</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== ЧТО ТАКОЕ CSS ===== -->
+    <h2 id="what-css">1. Что такое CSS и зачем он нужен</h2>
+
+    <p><strong>CSS</strong> (Cascading Style Sheets — каскадные таблицы стилей) — это язык, который отвечает за <strong>внешний вид</strong> веб-страницы: цвета, шрифты, отступы, размеры, расположение элементов.</p>
+
+    <div class="analogy">
+        <p>Если HTML — это <strong>скелет</strong> страницы (структура), то CSS — это <strong>одежда, макияж и причёска</strong> (оформление). Один и тот же HTML можно одеть в совершенно разные стили.</p>
+    </div>
+
+    <p><strong>Без CSS</strong> веб-страница выглядит как обычный текстовый документ — чёрный текст на белом фоне, стандартный шрифт Times New Roman. <strong>С CSS</strong> — это красивый, современный сайт.</p>
+
+    <div class="fun-fact">
+        CSS был создан Хокон Виум Ли (Hakon Wium Lie) и Бертом Босом (Bert Bos) в 1996 году. До этого стили писали прямо в HTML-тегах через атрибуты <code>color</code>, <code>bgcolor</code>, <code>face</code> — это было ужасно неудобно!
+    </div>
+
+    <p><strong>Зачем нужен CSS:</strong></p>
+    <ul>
+        <li><strong>Разделение</strong> — HTML отвечает за содержание, CSS — за оформление</li>
+        <li><strong>Повторное использование</strong> — один CSS-файл стилизует все страницы сайта</li>
+        <li><strong>Гибкость</strong> — можно полностью изменить дизайн, не трогая HTML</li>
+        <li><strong>Адаптивность</strong> — разные стили для телефона, планшета и компьютера</li>
+    </ul>
+
+    <div class="real-world">
+        <p>Откройте любой современный сайт (например, google.com или apple.com). Нажмите F12 и посмотрите вкладку Styles — вы увидите сотни CSS-правил, которые создают этот дизайн. Без CSS эти сайты выглядели бы одинаково скучно.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== СИНТАКСИС ===== -->
+    <h2 id="syntax">2. Синтаксис CSS</h2>
+
+    <p>CSS состоит из <strong>правил</strong>. Каждое правило описывает, <strong>какой элемент</strong> стилизовать и <strong>как</strong>:</p>
+
+    <div class="diagram">
+селектор {
+    свойство: значение;
+    свойство: значение;
+}
+
+Пример:
+──────────────────────────
+h1 {
+    color: blue;
+    font-size: 32px;
+}
+──────────────────────────
+h1           → селектор (ЧТО стилизуем)
+color        → свойство (ЧТО меняем)
+blue         → значение (НА ЧТО меняем)
+;            → точка с запятой (конец строки)
+{ }          → фигурные скобки (блок стилей)</div>
+
+    <div class="mistake">
+        <p><strong>Частые ошибки в синтаксисе CSS:</strong></p>
+        <ul>
+            <li>Забыли <code>;</code> в конце строки — следующее свойство не сработает</li>
+            <li>Забыли закрыть <code>}</code> — все стили после сломаются</li>
+            <li>Написали <code>=</code> вместо <code>:</code> (CSS использует двоеточие, не знак равно!)</li>
+        </ul>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">❌ Неправильно</div>
+<pre><code>h1 {
+    color = blue;
+    font-size: 32px
+}</code></pre>
+        </div>
+        <div class="right">
+            <div class="label">✅ Правильно</div>
+<pre><code>h1 {
+    color: blue;
+    font-size: 32px;
+}</code></pre>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ===== INLINE ===== -->
+    <h2 id="inline">3. Способ 1: Inline-стили (встроенные)</h2>
+
+    <p>Стили пишутся прямо в HTML-теге через атрибут <code>style</code>:</p>
+
+<pre><code>&lt;h1 style="color: red; font-size: 36px;"&gt;Привет, мир!&lt;/h1&gt;
+
+&lt;p style="color: green; background-color: yellow;"&gt;Зелёный текст на жёлтом фоне&lt;/p&gt;
+
+&lt;a href="#" style="color: white; background-color: blue; padding: 10px;"&gt;Кнопка&lt;/a&gt;</code></pre>
+
+    <div class="result-box">
+        <h1 style="color: red; font-size: 36px; border: none; margin: 0; padding: 0;">Привет, мир!</h1>
+        <p style="color: green; background-color: yellow; padding: 4px;">Зелёный текст на жёлтом фоне</p>
+        <a href="#" style="color: white; background-color: blue; padding: 10px; text-decoration: none; border-radius: 4px;">Кнопка</a>
+    </div>
+
+    <p><strong>Плюсы:</strong> быстро проверить один элемент.</p>
+    <p><strong>Минусы:</strong> стиль применяется только к одному элементу. Если у вас 50 заголовков — придётся писать style="" 50 раз. Нет повторного использования.</p>
+
+    <div class="important">
+        Inline-стили — <strong>плохая практика</strong>. Используйте их только для быстрого тестирования, но не в реальных проектах.
+    </div>
+
+    <hr>
+
+    <!-- ===== INTERNAL ===== -->
+    <h2 id="internal">4. Способ 2: Internal (внутренний)</h2>
+
+    <p>Стили пишутся в теге <code>&lt;style&gt;</code> внутри <code>&lt;head&gt;</code>:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Моя страница&lt;/title&gt;
+    &lt;style&gt;
+        h1 {
+            color: darkblue;
+            font-size: 36px;
+        }
+        p {
+            color: #333;
+            line-height: 1.8;
+        }
+        a {
+            color: orange;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Заголовок&lt;/h1&gt;
+    &lt;p&gt;Параграф текста...&lt;/p&gt;
+    &lt;a href="#"&gt;Ссылка&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <p><strong>Плюсы:</strong> стили применяются ко всем нужным элементам на странице. Не нужно повторять <code>style=""</code> у каждого тега.</p>
+    <p><strong>Минусы:</strong> стили работают только на этой одной странице. Если сайт имеет 10 страниц — копировать стили в каждую.</p>
+
+    <div class="highlight">
+        <strong>Когда использовать:</strong> Для одностраничных проектов, быстрого прототипирования или когда стили уникальны для конкретной страницы. Мы будем использовать этот способ на занятиях для простоты.
+    </div>
+
+    <hr>
+
+    <!-- ===== EXTERNAL ===== -->
+    <h2 id="external">5. Способ 3: External (внешний)</h2>
+
+    <p>Стили хранятся в <strong>отдельном файле</strong> с расширением <code>.css</code> и подключаются через тег <code>&lt;link&gt;</code>:</p>
+
+    <p><strong>Файл <code>style.css</code>:</strong></p>
+
+<pre><code>h1 {
+    color: darkblue;
+    font-size: 36px;
+}
+p {
+    color: #333;
+    line-height: 1.8;
+}
+a {
+    color: orange;
+}</code></pre>
+
+    <p><strong>Файл <code>index.html</code>:</strong></p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Моя страница&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Заголовок&lt;/h1&gt;
+    &lt;p&gt;Параграф текста...&lt;/p&gt;
+    &lt;a href="#"&gt;Ссылка&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="diagram">
+Структура проекта:
+──────────────────────────
+my-site/
+├── index.html        ← подключает style.css
+├── about.html        ← подключает style.css
+├── contacts.html     ← подключает style.css
+└── style.css         ← один файл для всех страниц!</div>
+
+    <p><strong>Плюсы:</strong></p>
+    <ul>
+        <li>Один файл стилизует весь сайт (все страницы)</li>
+        <li>Чистый HTML — в коде только содержание</li>
+        <li>Браузер кэширует CSS — сайт загружается быстрее</li>
+        <li>Легко менять дизайн — правишь один файл</li>
+    </ul>
+
+    <div class="highlight">
+        <strong>Это главный способ!</strong> В реальных проектах всегда используют внешние CSS-файлы. Все профессиональные сайты работают именно так.
+    </div>
+
+    <div class="important">
+        Тег <code>&lt;link&gt;</code> — одиночный (без закрывающего тега). Обязательные атрибуты:<br>
+        <code>rel="stylesheet"</code> — тип файла (таблица стилей)<br>
+        <code>href="style.css"</code> — путь к CSS-файлу
+    </div>
+
+    <div class="pro-tip">
+        <p>В больших проектах обычно создают несколько CSS-файлов: <code>reset.css</code> (сброс стилей), <code>layout.css</code> (структура), <code>components.css</code> (компоненты). Это помогает организовать код и упрощает работу в команде.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== СРАВНЕНИЕ ===== -->
+    <h2 id="compare-methods">6. Сравнение трёх способов</h2>
+
+    <table>
+        <tr><th>Способ</th><th>Где пишем</th><th>Область действия</th><th>Когда использовать</th></tr>
+        <tr>
+            <td><strong>Inline</strong></td>
+            <td>В атрибуте <code>style=""</code></td>
+            <td>Один элемент</td>
+            <td>Быстрый тест, никогда в продакшене</td>
+        </tr>
+        <tr>
+            <td><strong>Internal</strong></td>
+            <td>В теге <code>&lt;style&gt;</code> в <code>&lt;head&gt;</code></td>
+            <td>Одна страница</td>
+            <td>Одностраничные проекты, прототипы</td>
+        </tr>
+        <tr>
+            <td><strong>External</strong></td>
+            <td>В отдельном <code>.css</code> файле</td>
+            <td>Весь сайт</td>
+            <td>Всегда! Основной способ</td>
+        </tr>
+    </table>
+
+    <div class="analogy">
+        <ul>
+            <li><strong>Inline</strong> = наклейка на одной чашке (надпись «Моя»)</li>
+            <li><strong>Internal</strong> = правила в одной комнате (только тут не курить)</li>
+            <li><strong>External</strong> = правила для всего здания (пожарная безопасность)</li>
+        </ul>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li>Inline — быстро, но не масштабируется. Только для тестов.</li>
+            <li>Internal — удобно для одной страницы. Мы используем на занятиях.</li>
+            <li>External — <strong>единственный правильный способ</strong> в реальных проектах.</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ===== СЕЛЕКТОР ТЕГ ===== -->
+    <h2 id="selector-tag">7. Селекторы: тег</h2>
+
+    <p><strong>Селектор тега</strong> стилизует <strong>все</strong> элементы этого типа на странице:</p>
+
+<pre><code>/* Все заголовки h1 — синие */
+h1 {
+    color: blue;
+}
+
+/* Все параграфы — серые, с отступом */
+p {
+    color: #555;
+    margin-bottom: 16px;
+}
+
+/* Все ссылки — оранжевые, без подчёркивания */
+a {
+    color: orange;
+    text-decoration: none;
+}</code></pre>
+
+    <p>Селектор тега записывается <strong>без</strong> точки и решётки — просто имя тега:</p>
+
+    <table>
+        <tr><th>Селектор</th><th>Выбирает</th></tr>
+        <tr><td><code>h1</code></td><td>Все <code>&lt;h1&gt;</code> на странице</td></tr>
+        <tr><td><code>p</code></td><td>Все <code>&lt;p&gt;</code> на странице</td></tr>
+        <tr><td><code>a</code></td><td>Все <code>&lt;a&gt;</code> на странице</td></tr>
+        <tr><td><code>ul</code></td><td>Все <code>&lt;ul&gt;</code> на странице</td></tr>
+        <tr><td><code>body</code></td><td>Тело страницы (фон, общий шрифт)</td></tr>
+    </table>
+
+    <p><strong>Когда использовать:</strong> для базовых стилей — общий шрифт (<code>body</code>), сброс отступов, стилизация всех ссылок или всех заголовков.</p>
+
+    <div class="why">
+        <p>Селектор тега — самый простой, но и самый «грубый». Он стилизует ВСЕ элементы данного типа. Если вы напишете <code>p { color: red; }</code>, то ВСЕ параграфы на странице станут красными. Иногда это то, что нужно, но часто хочется стилизовать только конкретные элементы — для этого существуют классы.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== СЕЛЕКТОР КЛАСС ===== -->
+    <h2 id="selector-class">8. Селекторы: класс</h2>
+
+    <p><strong>Класс</strong> — самый популярный и мощный селектор! Позволяет стилизовать <strong>конкретные</strong> элементы, помечая их атрибутом <code>class</code>:</p>
+
+    <p><strong>HTML:</strong></p>
+<pre><code>&lt;p class="intro"&gt;Это вводный параграф — выделенный&lt;/p&gt;
+&lt;p&gt;Это обычный параграф — без класса&lt;/p&gt;
+&lt;p class="intro"&gt;Это тоже вводный — тот же стиль&lt;/p&gt;</code></pre>
+
+    <p><strong>CSS:</strong></p>
+<pre><code>/* Точка = класс */
+.intro {
+    color: darkblue;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-left: 4px solid blue;
+    padding-left: 12px;
+}</code></pre>
+
+    <div class="result-box">
+        <p style="color: darkblue; font-size: 1.2rem; font-weight: bold; border-left: 4px solid blue; padding-left: 12px; margin: 8px 0;">Это вводный параграф — выделенный</p>
+        <p style="margin: 8px 0;">Это обычный параграф — без класса</p>
+        <p style="color: darkblue; font-size: 1.2rem; font-weight: bold; border-left: 4px solid blue; padding-left: 12px; margin: 8px 0;">Это тоже вводный — тот же стиль</p>
+    </div>
+
+    <p><strong>Правила классов:</strong></p>
+    <ul>
+        <li>В CSS класс пишется с <strong>точкой</strong>: <code>.intro</code></li>
+        <li>В HTML — <strong>без точки</strong>: <code>class="intro"</code></li>
+        <li>Один класс можно использовать на <strong>многих</strong> элементах</li>
+        <li>У элемента может быть <strong>несколько</strong> классов: <code>class="card featured"</code></li>
+        <li>Имя класса — на английском, без пробелов, начинается с буквы</li>
+    </ul>
+
+    <h3>Несколько классов у одного элемента</h3>
+
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="card featured"&gt;Важная карточка&lt;/div&gt;
+&lt;div class="card"&gt;Обычная карточка&lt;/div&gt;
+
+&lt;!-- CSS --&gt;
+.card {
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.featured {
+    background-color: #fff3cd;
+    border-color: #ffc107;
+    font-weight: bold;
+}</code></pre>
+
+    <div class="mistake">
+        <p><strong>Помни:</strong> В CSS — <code>.имя-класса</code> (с точкой). В HTML — <code>class="имя-класса"</code> (без точки). Это самая частая ошибка новичков!</p>
+        <div class="compare">
+            <div class="wrong">
+                <div class="label">❌ Неправильно</div>
+                <code>&lt;p class=".intro"&gt;</code><br>
+                <code>intro { color: red; }</code>
+            </div>
+            <div class="right">
+                <div class="label">✅ Правильно</div>
+                <code>&lt;p class="intro"&gt;</code><br>
+                <code>.intro { color: red; }</code>
+            </div>
+        </div>
+    </div>
+
+    <div class="real-world">
+        <p>Классы используются в 95% случаев на реальных сайтах. Откройте DevTools на любом сайте — вы увидите десятки классов: <code>.header</code>, <code>.nav-link</code>, <code>.btn-primary</code>, <code>.card</code>. Профессионалы почти никогда не используют селекторы тегов (кроме <code>body</code>).</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== СЕЛЕКТОР ID ===== -->
+    <h2 id="selector-id">9. Селекторы: id</h2>
+
+    <p><strong>ID</strong> (идентификатор) — уникальный! Используется для <strong>одного</strong> элемента на странице:</p>
+
+    <p><strong>HTML:</strong></p>
+<pre><code>&lt;header id="main-header"&gt;
+    &lt;h1&gt;Мой сайт&lt;/h1&gt;
+&lt;/header&gt;</code></pre>
+
+    <p><strong>CSS:</strong></p>
+<pre><code>/* Решётка = id */
+#main-header {
+    background-color: #1e293b;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}</code></pre>
+
+    <table>
+        <tr><th>Селектор</th><th>Символ</th><th>HTML</th><th>CSS</th><th>Кол-во на странице</th></tr>
+        <tr><td>Тег</td><td>без символа</td><td><code>&lt;h1&gt;</code></td><td><code>h1 { }</code></td><td>Много</td></tr>
+        <tr><td>Класс</td><td>точка <code>.</code></td><td><code>class="card"</code></td><td><code>.card { }</code></td><td>Много (повторяемый)</td></tr>
+        <tr><td>ID</td><td>решётка <code>#</code></td><td><code>id="header"</code></td><td><code>#header { }</code></td><td>Один (уникальный)</td></tr>
+    </table>
+
+    <div class="highlight">
+        <strong>На практике:</strong> классы используются <strong>в 95% случаев</strong>. ID — редко, в основном для якорных ссылок и JavaScript. Для стилизации <strong>предпочитайте классы</strong>.
+    </div>
+
+    <div class="pro-tip">
+        <p>Многие опытные разработчики вообще <strong>не используют id для стилей</strong>. Причина: id имеет слишком высокий приоритет, и потом сложно «перебить» его стили. Используйте id только для якорных ссылок (<code>&lt;a href="#section"&gt;</code>) и JavaScript.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== СПЕЦИФИЧНОСТЬ ===== -->
+    <h2 id="specificity">10. Приоритет селекторов (специфичность)</h2>
+
+    <p>Что произойдёт, если разные правила конфликтуют? CSS имеет систему <strong>приоритетов</strong>:</p>
+
+    <div class="diagram">
+Приоритет (от низшего к высшему):
+──────────────────────────────────
+1. Селектор тега        h1 { }           → вес: 0-0-1
+2. Селектор класса      .title { }       → вес: 0-1-0
+3. Селектор id          #header { }      → вес: 1-0-0
+4. Inline-стиль         style="..."      → перебивает всё!</div>
+
+<pre><code>&lt;!-- HTML --&gt;
+&lt;h1 class="title" id="main-title"&gt;Заголовок&lt;/h1&gt;
+
+&lt;!-- CSS --&gt;
+h1 { color: blue; }           /* Вес: 0-0-1 */
+.title { color: green; }      /* Вес: 0-1-0 — Выше! */
+#main-title { color: red; }   /* Вес: 1-0-0 — Ещё выше! */
+
+/* Результат: заголовок будет КРАСНЫМ (id побеждает) */</code></pre>
+
+    <div class="analogy">
+        <p>Представьте армию: <strong>тег</strong> = рядовой солдат, <strong>класс</strong> = офицер, <strong>id</strong> = генерал, <strong>inline</strong> = главнокомандующий. Приказ генерала важнее приказа рядового.</p>
+    </div>
+
+    <p><strong>Ещё одно правило:</strong> при одинаковом весе побеждает правило, которое написано <strong>позже</strong> (ниже) в CSS:</p>
+
+<pre><code>p { color: blue; }
+p { color: red; }   /* Это правило позже — текст будет красным */</code></pre>
+
+    <div class="quiz">
+        <p><strong>Вопрос:</strong> Какого цвета будет текст?</p>
+<pre><code>&lt;p class="text" id="special"&gt;Привет&lt;/p&gt;
+
+p { color: blue; }
+.text { color: green; }
+#special { color: orange; }</code></pre>
+        <p><strong>Ответ:</strong> оранжевый, потому что id (#special) имеет наибольший вес (1-0-0).</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ЦВЕТА ===== -->
+    <h2 id="colors">11. Цвета в CSS</h2>
+
+    <p>В CSS есть несколько способов указать цвет:</p>
+
+    <h3>1. Именованные цвета (Color Names)</h3>
+    <p>CSS знает <strong>147 названий</strong> цветов на английском:</p>
+
+    <table>
+        <tr><th>Название</th><th>Цвет</th><th>Название</th><th>Цвет</th></tr>
+        <tr><td><code>red</code></td><td><span class="color-demo" style="background:red"></span> Красный</td><td><code>blue</code></td><td><span class="color-demo" style="background:blue"></span> Синий</td></tr>
+        <tr><td><code>green</code></td><td><span class="color-demo" style="background:green"></span> Зелёный</td><td><code>orange</code></td><td><span class="color-demo" style="background:orange"></span> Оранжевый</td></tr>
+        <tr><td><code>white</code></td><td><span class="color-demo" style="background:white"></span> Белый</td><td><code>black</code></td><td><span class="color-demo" style="background:black"></span> Чёрный</td></tr>
+        <tr><td><code>gray</code></td><td><span class="color-demo" style="background:gray"></span> Серый</td><td><code>purple</code></td><td><span class="color-demo" style="background:purple"></span> Фиолетовый</td></tr>
+        <tr><td><code>coral</code></td><td><span class="color-demo" style="background:coral"></span> Коралловый</td><td><code>tomato</code></td><td><span class="color-demo" style="background:tomato"></span> Томатный</td></tr>
+        <tr><td><code>gold</code></td><td><span class="color-demo" style="background:gold"></span> Золотой</td><td><code>teal</code></td><td><span class="color-demo" style="background:teal"></span> Бирюзовый</td></tr>
+    </table>
+
+    <h3>2. HEX (шестнадцатеричный)</h3>
+    <p>Самый популярный формат. Начинается с <code>#</code> и содержит 6 символов (Red, Green, Blue):</p>
+
+<pre><code>color: #ff0000;    /* Красный (ff=255, 00=0, 00=0) */
+color: #00ff00;    /* Зелёный */
+color: #0000ff;    /* Синий */
+color: #333333;    /* Тёмно-серый (сокращённо: #333) */
+color: #ffffff;    /* Белый (сокращённо: #fff) */
+color: #1e293b;    /* Тёмно-синий (как в этом курсе) */</code></pre>
+
+    <div class="highlight">
+        Если пары символов одинаковые, можно сократить: <code>#ff0000</code> → <code>#f00</code>, <code>#333333</code> → <code>#333</code>
+    </div>
+
+    <h3>3. RGB и RGBA</h3>
+    <p>RGB = Red, Green, Blue — каждый канал от <strong>0 до 255</strong>:</p>
+
+<pre><code>color: rgb(255, 0, 0);      /* Красный */
+color: rgb(0, 128, 0);      /* Зелёный */
+color: rgb(51, 51, 51);     /* Тёмно-серый */
+
+/* RGBA — с прозрачностью (Alpha: 0 = невидимый, 1 = полностью видимый) */
+color: rgba(0, 0, 0, 0.5);         /* Чёрный, 50% прозрачный */
+background: rgba(255, 0, 0, 0.3);  /* Красный фон, 30% прозрачный */</code></pre>
+
+    <div class="fun-fact">
+        В DevTools Chrome можно <strong>кликнуть на цветной квадратик</strong> рядом с цветом — откроется пипетка (color picker), где можно выбрать любой цвет! Также можно зажать Shift и кликать на квадратик, чтобы переключаться между HEX, RGB, HSL.
+    </div>
+
+    <h3>4. HSL (оттенок, насыщенность, яркость)</h3>
+
+<pre><code>color: hsl(0, 100%, 50%);    /* Красный */
+color: hsl(120, 100%, 25%);  /* Тёмно-зелёный */
+color: hsl(240, 100%, 50%);  /* Синий */
+color: hsla(0, 100%, 50%, 0.5); /* Красный, 50% прозрачный */</code></pre>
+
+    <p><strong>H</strong> — оттенок (0-360: 0=красный, 120=зелёный, 240=синий), <strong>S</strong> — насыщенность (0-100%), <strong>L</strong> — яркость (0-100%).</p>
+
+    <div class="real-world">
+        <p>На практике чаще всего используют <strong>HEX</strong> (короткий и удобный) и <strong>RGBA</strong> (когда нужна прозрачность). HSL реже, но его преимущество — легко подбирать оттенки: меняете только первое число (H), а насыщенность и яркость оставляете.</p>
+    </div>
+
+    <div class="try-it">
+        <ol>
+            <li>Откройте DevTools на любом сайте</li>
+            <li>Найдите свойство <code>color</code> или <code>background-color</code></li>
+            <li>Кликните на цветной квадратик — откроется палитра</li>
+            <li>Попробуйте HEX, RGB и HSL — переключайтесь</li>
+        </ol>
+    </div>
+
+    <h3>Часто используемые цвета в веб-дизайне</h3>
+
+    <table>
+        <tr><th>Цвет</th><th>HEX</th><th>Где</th></tr>
+        <tr><td><span class="color-demo" style="background:#ffffff"></span> Белый</td><td><code>#fff</code></td><td>Фон</td></tr>
+        <tr><td><span class="color-demo" style="background:#f8fafc"></span> Светло-серый</td><td><code>#f8fafc</code></td><td>Фон страницы</td></tr>
+        <tr><td><span class="color-demo" style="background:#1e293b"></span> Тёмный</td><td><code>#1e293b</code></td><td>Текст, шапка</td></tr>
+        <tr><td><span class="color-demo" style="background:#3b82f6"></span> Синий</td><td><code>#3b82f6</code></td><td>Ссылки, кнопки</td></tr>
+        <tr><td><span class="color-demo" style="background:#22c55e"></span> Зелёный</td><td><code>#22c55e</code></td><td>Успех</td></tr>
+        <tr><td><span class="color-demo" style="background:#ef4444"></span> Красный</td><td><code>#ef4444</code></td><td>Ошибка</td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ===== ФОН ===== -->
+    <h2 id="background">12. Фон и градиенты</h2>
+
+    <h3>background-color — цвет фона</h3>
+
+<pre><code>body {
+    background-color: #f8fafc;      /* Светло-серый фон */
+}
+
+.card {
+    background-color: white;
+}
+
+.warning {
+    background-color: #fef2f2;      /* Светло-красный */
+}</code></pre>
+
+    <h3>Градиенты</h3>
+    <p>Градиент — плавный переход между двумя или более цветами:</p>
+
+<pre><code>/* Линейный градиент (сверху вниз) */
+.header {
+    background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+}
+
+/* Градиент под углом */
+.banner {
+    background: linear-gradient(135deg, #f97316, #ec4899);
+}
+
+/* Градиент с тремя цветами */
+.rainbow {
+    background: linear-gradient(to right, red, yellow, green);
+}</code></pre>
+
+    <div class="result-box">
+        <div style="padding: 20px; color: white; font-weight: 700; border-radius: 8px; background: linear-gradient(to bottom, #3b82f6, #1d4ed8); margin-bottom: 10px;">linear-gradient(to bottom, #3b82f6, #1d4ed8)</div>
+        <div style="padding: 20px; color: white; font-weight: 700; border-radius: 8px; background: linear-gradient(135deg, #f97316, #ec4899); margin-bottom: 10px;">linear-gradient(135deg, #f97316, #ec4899)</div>
+        <div style="padding: 20px; color: white; font-weight: 700; border-radius: 8px; background: linear-gradient(to right, red, yellow, green);">linear-gradient(to right, red, yellow, green)</div>
+    </div>
+
+    <table>
+        <tr><th>Направление</th><th>Значение</th></tr>
+        <tr><td>Сверху вниз</td><td><code>to bottom</code> (по умолчанию)</td></tr>
+        <tr><td>Слева направо</td><td><code>to right</code></td></tr>
+        <tr><td>По диагонали</td><td><code>to bottom right</code> или <code>135deg</code></td></tr>
+        <tr><td>Снизу вверх</td><td><code>to top</code></td></tr>
+    </table>
+
+    <div class="why">
+        <p>Градиенты — один из самых простых способов сделать сайт визуально привлекательным. Шапка с градиентом, кнопка с градиентом, баннер с градиентом — всё это выглядит профессионально и современно.</p>
+    </div>
+
+    <div class="quiz">
+        <p>Мысленно ответьте:</p>
+        <ol>
+            <li>Какой формат цвета самый популярный среди разработчиков? <em>(HEX — <code>#3b82f6</code>)</em></li>
+            <li>Что значит <code>rgba(0, 0, 0, 0.5)</code>? <em>(Чёрный цвет с 50% прозрачностью)</em></li>
+            <li>Как написать градиент слева направо, от красного к синему? <em>(<code>linear-gradient(to right, red, blue)</code>)</em></li>
+            <li>Какой цвет даёт <code>#000</code>? А <code>#fff</code>? <em>(Чёрный и белый)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== ШРИФТЫ ===== -->
+    <h2 id="fonts">13. Шрифты и Google Fonts</h2>
+
+    <h3>font-family — семейство шрифтов</h3>
+
+<pre><code>body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+code {
+    font-family: 'Consolas', 'Courier New', monospace;
+}</code></pre>
+
+    <p>Указывайте <strong>несколько шрифтов</strong> через запятую — если первый не найден, браузер попробует следующий. Последним всегда пишите <strong>общее семейство</strong>:</p>
+
+    <table>
+        <tr><th>Семейство</th><th>Описание</th><th>Пример</th></tr>
+        <tr><td><code>sans-serif</code></td><td>Без засечек (современный)</td><td style="font-family: sans-serif;">Текст без засечек</td></tr>
+        <tr><td><code>serif</code></td><td>С засечками (классический)</td><td style="font-family: serif;">Текст с засечками</td></tr>
+        <tr><td><code>monospace</code></td><td>Моноширинный (для кода)</td><td style="font-family: monospace;">Моноширинный текст</td></tr>
+    </table>
+
+    <h3>font-size — размер шрифта</h3>
+
+<pre><code>h1 { font-size: 36px; }
+h2 { font-size: 28px; }
+p  { font-size: 16px; }
+
+/* Также можно использовать rem (относительные единицы) */
+h1 { font-size: 2.2rem; }     /* 2.2 × 16px = 35.2px */
+p  { font-size: 1rem; }       /* 1 × 16px = 16px */</code></pre>
+
+    <h3>font-weight — толщина шрифта</h3>
+
+<pre><code>.normal { font-weight: normal; }    /* или 400 */
+.bold   { font-weight: bold; }      /* или 700 */
+.light  { font-weight: 300; }
+.black  { font-weight: 900; }</code></pre>
+
+    <h3>font-style — наклон</h3>
+
+<pre><code>.italic { font-style: italic; }
+.normal { font-style: normal; }</code></pre>
+
+    <h3>Google Fonts — красивые бесплатные шрифты</h3>
+
+    <p>На сайте <strong>fonts.google.com</strong> можно выбрать из 1500+ бесплатных шрифтов и подключить к сайту:</p>
+
+    <p><strong>Шаг 1:</strong> Добавьте ссылку в <code>&lt;head&gt;</code>:</p>
+<pre><code>&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"&gt;</code></pre>
+
+    <p><strong>Шаг 2:</strong> Используйте шрифт в CSS:</p>
+<pre><code>body {
+    font-family: 'Inter', sans-serif;
+}</code></pre>
+
+    <p><strong>Популярные Google Fonts:</strong></p>
+    <table>
+        <tr><th>Шрифт</th><th>Стиль</th><th>Для чего</th></tr>
+        <tr><td>Inter</td><td>Современный, чистый</td><td>Интерфейсы, сайты</td></tr>
+        <tr><td>Roboto</td><td>Гибкий, нейтральный</td><td>Универсальный</td></tr>
+        <tr><td>Open Sans</td><td>Дружелюбный, читабельный</td><td>Тексты, блоги</td></tr>
+        <tr><td>Montserrat</td><td>Геометрический, стильный</td><td>Заголовки</td></tr>
+        <tr><td>Playfair Display</td><td>Элегантный, с засечками</td><td>Журналы, лендинги</td></tr>
+    </table>
+
+    <div class="try-it">
+        <ol>
+            <li>Зайдите на <strong>fonts.google.com</strong></li>
+            <li>Найдите шрифт «Inter»</li>
+            <li>Нажмите «Get font» → «Get embed code»</li>
+            <li>Скопируйте тег <code>&lt;link&gt;</code> и вставьте в <code>&lt;head&gt;</code></li>
+            <li>Пропишите <code>font-family: 'Inter', sans-serif;</code> для <code>body</code></li>
+        </ol>
+    </div>
+
+    <div class="pro-tip">
+        <p>Не подключайте больше 2-3 шрифтов на сайт — это замедляет загрузку. Используйте один шрифт для заголовков и один для текста. Также подключайте только нужные начертания (400, 600, 700), а не все.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ТЕКСТ ===== -->
+    <h2 id="text">14. Свойства текста</h2>
+
+    <table>
+        <tr><th>Свойство</th><th>Что делает</th><th>Пример</th></tr>
+        <tr><td><code>color</code></td><td>Цвет текста</td><td><code>color: #333;</code></td></tr>
+        <tr><td><code>text-align</code></td><td>Выравнивание</td><td><code>text-align: center;</code></td></tr>
+        <tr><td><code>text-decoration</code></td><td>Подчёркивание / зачёркивание</td><td><code>text-decoration: none;</code></td></tr>
+        <tr><td><code>text-transform</code></td><td>Регистр</td><td><code>text-transform: uppercase;</code></td></tr>
+        <tr><td><code>line-height</code></td><td>Межстрочный интервал</td><td><code>line-height: 1.6;</code></td></tr>
+        <tr><td><code>letter-spacing</code></td><td>Расстояние между буквами</td><td><code>letter-spacing: 2px;</code></td></tr>
+        <tr><td><code>word-spacing</code></td><td>Расстояние между словами</td><td><code>word-spacing: 4px;</code></td></tr>
+        <tr><td><code>text-indent</code></td><td>Отступ первой строки</td><td><code>text-indent: 30px;</code></td></tr>
+    </table>
+
+    <h3>text-align — выравнивание текста</h3>
+
+<pre><code>.left   { text-align: left; }      /* По левому краю (по умолчанию) */
+.center { text-align: center; }    /* По центру */
+.right  { text-align: right; }     /* По правому краю */
+.justify { text-align: justify; }  /* По ширине */</code></pre>
+
+    <div class="result-box">
+        <p style="text-align: left; margin: 6px 0;">text-align: left — текст по левому краю (по умолчанию)</p>
+        <p style="text-align: center; margin: 6px 0;">text-align: center — текст по центру</p>
+        <p style="text-align: right; margin: 6px 0;">text-align: right — текст по правому краю</p>
+    </div>
+
+    <h3>text-decoration — оформление текста</h3>
+
+<pre><code>a {
+    text-decoration: none;         /* Убрать подчёркивание у ссылок */
+}
+.underline {
+    text-decoration: underline;    /* Подчёркнутый */
+}
+.line-through {
+    text-decoration: line-through; /* Зачёркнутый */
+}</code></pre>
+
+    <h3>text-transform — изменение регистра</h3>
+
+<pre><code>.upper { text-transform: uppercase; }   /* ВСЕ ЗАГЛАВНЫЕ */
+.lower { text-transform: lowercase; }   /* все строчные */
+.cap   { text-transform: capitalize; }  /* Каждое Слово С Заглавной */</code></pre>
+
+    <h3>line-height — межстрочный интервал</h3>
+
+<pre><code>p {
+    line-height: 1.6;   /* 1.6 × размер шрифта — комфортно для чтения */
+}
+
+/* Сравнение: */
+.tight  { line-height: 1.0; }    /* Плотный */
+.normal { line-height: 1.5; }    /* Обычный */
+.loose  { line-height: 2.0; }    /* Просторный */</code></pre>
+
+    <div class="highlight">
+        <strong>Совет:</strong> Для основного текста используйте <code>line-height: 1.5-1.8</code> — это оптимально для комфортного чтения.
+    </div>
+
+    <hr>
+
+    <!-- ===== ПРАКТИКА ===== -->
+    <h2 id="practice">15. Практика: стилизация страницы-статьи</h2>
+
+    <p>Создадим красиво оформленную статью с использованием всех изученных свойств CSS:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Статья — CSS-стилизация&lt;/title&gt;
+    &lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"&gt;
+    &lt;style&gt;
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            color: #334155;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .article {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: #0f172a;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .author {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+        }
+
+        h2 {
+            color: #1e40af;
+            font-size: 1.4rem;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #dbeafe;
+            padding-bottom: 6px;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .highlight {
+            background-color: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            color: #94a3b8;
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.85rem;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;article class="article"&gt;
+        &lt;h1&gt;Почему CSS — это круто&lt;/h1&gt;
+        &lt;p class="author"&gt;Автор: Ваше имя | 19 марта 2026&lt;/p&gt;
+
+        &lt;p&gt;&lt;span class="tag"&gt;CSS&lt;/span&gt; &lt;span class="tag"&gt;Веб-дизайн&lt;/span&gt;&lt;/p&gt;
+
+        &lt;h2&gt;Введение&lt;/h2&gt;
+        &lt;p&gt;CSS (Cascading Style Sheets) — это язык стилей, который
+        превращает скучный HTML в красивый современный сайт.
+        Без CSS интернет выглядел бы как текстовый документ.&lt;/p&gt;
+
+        &lt;h2&gt;Что можно делать с CSS&lt;/h2&gt;
+        &lt;p&gt;С помощью CSS вы можете:&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Менять цвета и шрифты&lt;/li&gt;
+            &lt;li&gt;Добавлять красивые фоны и градиенты&lt;/li&gt;
+            &lt;li&gt;Создавать отступы и рамки&lt;/li&gt;
+            &lt;li&gt;Делать адаптивные сайты&lt;/li&gt;
+            &lt;li&gt;Добавлять анимации и эффекты&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;div class="highlight"&gt;
+            &lt;strong&gt;Факт:&lt;/strong&gt; Один CSS-файл может стилизовать
+            тысячи страниц сайта!
+        &lt;/div&gt;
+
+        &lt;h2&gt;Заключение&lt;/h2&gt;
+        &lt;p&gt;CSS — ваш лучший друг в веб-разработке.
+        Потратьте время на его изучение, и вы сможете
+        создавать потрясающие сайты!&lt;/p&gt;
+
+        &lt;footer&gt;
+            &amp;copy; 2026 Мой блог. Все права защищены.
+        &lt;/footer&gt;
+    &lt;/article&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="try-it">
+        <ol>
+            <li>Создайте этот файл и запустите через Live Server</li>
+            <li>Поменяйте цвета — попробуйте другие HEX-коды</li>
+            <li>Замените шрифт на «Roboto» или «Montserrat» через Google Fonts</li>
+            <li>Добавьте градиент на заголовок (<code>background: linear-gradient(...)</code>)</li>
+            <li>Поиграйте с <code>line-height</code>, <code>letter-spacing</code>, <code>text-transform</code></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <h2>Итоги занятия</h2>
+
+    <div class="summary">
+        <ul>
+            <li><strong>CSS</strong> — язык стилей для оформления веб-страниц</li>
+            <li><strong>3 способа подключения:</strong> inline (в теге), internal (в &lt;style&gt;), external (отдельный .css файл)</li>
+            <li><strong>External</strong> — основной способ в реальных проектах</li>
+            <li>Синтаксис: <code>селектор { свойство: значение; }</code></li>
+            <li><strong>Селектор тега:</strong> <code>h1 { }</code> — все элементы этого типа</li>
+            <li><strong>Селектор класса:</strong> <code>.card { }</code> — элементы с <code>class="card"</code> (самый используемый!)</li>
+            <li><strong>Селектор id:</strong> <code>#header { }</code> — один уникальный элемент</li>
+            <li><strong>Приоритет:</strong> тег &lt; класс &lt; id &lt; inline</li>
+            <li><strong>Цвета:</strong> имена (<code>red</code>), HEX (<code>#ff0000</code>), RGB (<code>rgb(255,0,0)</code>)</li>
+            <li><strong>Градиенты:</strong> <code>background: linear-gradient(направление, цвет1, цвет2)</code></li>
+            <li><strong>Шрифты:</strong> <code>font-family</code>, <code>font-size</code>, <code>font-weight</code>, Google Fonts</li>
+            <li><strong>Текст:</strong> <code>text-align</code>, <code>text-decoration</code>, <code>text-transform</code>, <code>line-height</code></li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <ol>
+            <li>Какой способ подключения CSS — основной в реальных проектах? <em>(External — отдельный .css файл)</em></li>
+            <li>Как выбрать все элементы с классом <code>card</code>? <em>(<code>.card { }</code>)</em></li>
+            <li>Какой приоритет выше: класс или id? <em>(id выше: тег &lt; класс &lt; id &lt; inline)</em></li>
+            <li>Как подключить шрифт из Google Fonts? <em>(Скопировать <code>&lt;link&gt;</code> в head и указать в <code>font-family</code>)</em></li>
+            <li>Как сделать текст заглавными буквами без перенабора? <em>(<code>text-transform: uppercase</code>)</em></li>
+            <li>Чем <code>color</code> отличается от <code>background-color</code>? <em>(color — цвет текста, background-color — цвет фона)</em></li>
+            <li>Как убрать подчёркивание у ссылки? <em>(<code>text-decoration: none</code>)</em></li>
+            <li>Что означает <code>font-weight: 700</code>? <em>(Жирный шрифт, аналог bold)</em></li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

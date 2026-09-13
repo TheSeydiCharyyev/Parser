@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 30 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 30: Вёрстка по макету</span>
+    <span class="nav-title" data-lang="en">Lesson 30: Coding from a Mockup</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 30: Вёрстка по макету</p>
+    <p class="subtitle" data-lang="en">Lesson 30: Coding from a Mockup</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 30.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 30.1: ПОДГОТОВКА ПРОЕКТА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 30.1: PROJECT SETUP</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 29.1: Анализ макета + tokens.css</span>
+            <span class="task-title" data-lang="en">Task 29.1: Layout analysis + tokens.css</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Провести анализ макета и настроить структуру проекта</div>
+        <div class="task-goal" data-lang="en">Analyze a layout and set up the project structure</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Откройте макет из Figma Community (из задания 28.1). Создайте папку <code>layout-project</code> с такой структурой:</p>
+        <p data-lang="en">Open the Figma Community layout (from task 28.1). Create <code>layout-project</code> folder with this structure:</p>
+
+<pre><code>layout-project/
+├── index.html
+├── analysis.md
+├── css/
+│   ├── tokens.css
+│   ├── base.css
+│   ├── components.css
+│   └── style.css
+├── images/
+└── icons/</code></pre>
+
+        <ol data-lang="ru">
+            <li><strong><code>analysis.md</code>:</strong> список секций, компонентов, 5+ цветов (HEX), шрифт, размеры h1-h3</li>
+            <li><strong><code>tokens.css</code>:</strong> все цвета, шрифты, отступы, скругления в <code>:root</code> как CSS-переменные</li>
+            <li><strong><code>index.html</code>:</strong> подключить все 4 CSS-файла + Google Fonts в правильном порядке</li>
+            <li><strong><code>base.css</code>:</strong> сброс (<code>* { margin: 0; padding: 0; box-sizing: border-box }</code>), базовые стили body, контейнер</li>
+            <li>Остальные файлы CSS оставить пустыми (пока)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong><code>analysis.md</code>:</strong> list of sections, components, 5+ colors (HEX), font, h1-h3 sizes</li>
+            <li><strong><code>tokens.css</code>:</strong> all colors, fonts, spacing, radii in <code>:root</code> as CSS variables</li>
+            <li><strong><code>index.html</code>:</strong> connect all 4 CSS files + Google Fonts in correct order</li>
+            <li><strong><code>base.css</code>:</strong> reset (<code>* { margin: 0; padding: 0; box-sizing: border-box }</code>), body base styles, container</li>
+            <li>Leave other CSS files empty (for now)</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Пример analysis.md:</strong>
+<pre><code># Analysis: [название макета]
+
+## Секции
+1. Header (logo + nav + button)
+2. Hero (text + image)
+3. Features (3 блока)
+4. Cards (6 карточек)
+5. CTA (заголовок + кнопка)
+6. Footer (3 колонки)
+
+## Компоненты (повторяющиеся)
+- .card (используется в секции Cards, 6 раз)
+- .btn (используется 5 раз)
+- .feature (используется 3 раза)
+
+## Цвета
+- Primary: #3B82F6
+- Primary Dark: #1D4ED8
+- Text: #1E293B
+- Muted: #64748B
+- Bg: #F8FAFC
+- Border: #E2E8F0
+
+## Шрифты
+- Font: Inter
+- Weights: 400, 600, 700
+- h1: 48px / 56px line-height / 700
+- h2: 32px / 40px / 600
+- h3: 20px / 28px / 600
+- body: 16px / 24px / 400
+
+## Отступы
+- Section padding: 96px (desktop), 48px (mobile)
+- Gap между карточками: 24px
+- Container max-width: 1200px</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>analysis.md example:</strong>
+<pre><code># Analysis: [layout name]
+
+## Sections
+1. Header (logo + nav + button)
+2. Hero (text + image)
+3. Features (3 blocks)
+4. Cards (6 cards)
+5. CTA (heading + button)
+6. Footer (3 columns)
+
+## Components (repeating)
+- .card (used in Cards section, 6 times)
+- .btn (used 5 times)
+- .feature (used 3 times)
+
+## Colors
+- Primary: #3B82F6
+- Primary Dark: #1D4ED8
+- Text: #1E293B
+- Muted: #64748B
+- Bg: #F8FAFC
+- Border: #E2E8F0
+
+## Fonts
+- Font: Inter
+- Weights: 400, 600, 700
+- h1: 48px / 56px line-height / 700
+- h2: 32px / 40px / 600
+- h3: 20px / 28px / 600
+- body: 16px / 24px / 400
+
+## Spacing
+- Section padding: 96px (desktop), 48px (mobile)
+- Card gap: 24px
+- Container max-width: 1200px</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Правильная структура папок (css/, images/, icons/)</li>
+                <li><code>analysis.md</code> с 4 разделами: секции, компоненты, цвета, шрифты</li>
+                <li>Минимум 5 цветов и 3 размера шрифта в <code>tokens.css</code></li>
+                <li>Google Fonts подключены (нужные веса только)</li>
+                <li>Все 4 CSS-файла подключены в правильном порядке в <code>&lt;head&gt;</code></li>
+                <li><code>base.css</code> содержит сброс <code>* { margin: 0; ... }</code></li>
+            </ul>
+            <ul data-lang="en">
+                <li>Correct folder structure (css/, images/, icons/)</li>
+                <li><code>analysis.md</code> with 4 sections: sections, components, colors, fonts</li>
+                <li>At least 5 colors and 3 font sizes in <code>tokens.css</code></li>
+                <li>Google Fonts connected (only needed weights)</li>
+                <li>All 4 CSS files connected in correct order in <code>&lt;head&gt;</code></li>
+                <li><code>base.css</code> contains reset <code>* { margin: 0; ... }</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 30.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 30.2: HTML-СКЕЛЕТ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 30.2: HTML SKELETON</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 29.2: Разметка всей страницы без стилей</span>
+            <span class="task-title" data-lang="en">Task 29.2: Mark up the entire page without styles</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">30 минут</span>
+                <span class="badge badge-time" data-lang="en">30 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Написать HTML всей страницы, не трогая CSS для секций/компонентов</div>
+        <div class="task-goal" data-lang="en">Write the full page HTML without touching CSS for sections/components</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li>По макету (из 29.1) напишите <strong>весь HTML</strong> главной страницы</li>
+            <li>Используйте <strong>семантические теги</strong>: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code></li>
+            <li>Проставьте <strong>классы</strong> для будущих стилей: <code>.header</code>, <code>.hero</code>, <code>.feature</code>, <code>.card</code>, <code>.btn</code>, <code>.btn-primary</code></li>
+            <li><strong>Никаких inline-стилей!</strong> В <code>components.css</code> и <code>style.css</code> ничего не пишите (пока)</li>
+            <li>Откройте результат в браузере — должен быть «поток тегов сверху вниз», без вёрстки. Это нормально.</li>
+            <li>Добавьте заглушки-тексты («Lorem ipsum») и заглушки-картинки (<code>picsum.photos</code>)</li>
+        </ol>
+        <ol data-lang="en">
+            <li>From the layout (from 29.1) write the <strong>entire HTML</strong> of the main page</li>
+            <li>Use <strong>semantic tags</strong>: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code></li>
+            <li>Add <strong>classes</strong> for future styling: <code>.header</code>, <code>.hero</code>, <code>.feature</code>, <code>.card</code>, <code>.btn</code>, <code>.btn-primary</code></li>
+            <li><strong>No inline styles!</strong> Leave <code>components.css</code> and <code>style.css</code> empty (for now)</li>
+            <li>Open the result in a browser — it should be "a stream of tags top-down", unstyled. That's normal.</li>
+            <li>Add placeholder texts ("Lorem ipsum") and placeholder images (<code>picsum.photos</code>)</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Шаблон структуры страницы:</strong>
+<pre><code>&lt;body&gt;
+    &lt;header class="header"&gt;
+        &lt;div class="container"&gt;
+            &lt;a href="#" class="logo"&gt;Brand&lt;/a&gt;
+            &lt;nav class="nav"&gt;
+                &lt;a href="#"&gt;Link 1&lt;/a&gt;
+                &lt;a href="#"&gt;Link 2&lt;/a&gt;
+            &lt;/nav&gt;
+            &lt;a href="#" class="btn btn-primary"&gt;CTA&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section class="hero"&gt;...&lt;/section&gt;
+        &lt;section class="features"&gt;...&lt;/section&gt;
+        &lt;section class="cards"&gt;...&lt;/section&gt;
+        &lt;section class="cta"&gt;...&lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer class="footer"&gt;...&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+            Не забудьте <code>&lt;main&gt;</code> вокруг основного контента (для SEO).
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Page structure template:</strong>
+<pre><code>&lt;body&gt;
+    &lt;header class="header"&gt;
+        &lt;div class="container"&gt;
+            &lt;a href="#" class="logo"&gt;Brand&lt;/a&gt;
+            &lt;nav class="nav"&gt;
+                &lt;a href="#"&gt;Link 1&lt;/a&gt;
+                &lt;a href="#"&gt;Link 2&lt;/a&gt;
+            &lt;/nav&gt;
+            &lt;a href="#" class="btn btn-primary"&gt;CTA&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section class="hero"&gt;...&lt;/section&gt;
+        &lt;section class="features"&gt;...&lt;/section&gt;
+        &lt;section class="cards"&gt;...&lt;/section&gt;
+        &lt;section class="cta"&gt;...&lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer class="footer"&gt;...&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+            Don't forget <code>&lt;main&gt;</code> around the main content (for SEO).
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Разметка <strong>всей</strong> страницы (все секции из макета)</li>
+                <li>Семантические теги (header, main, section, article, footer)</li>
+                <li>Классы расставлены для всех элементов</li>
+                <li><strong>Ноль строк стилей</strong> в <code>style.css</code>/<code>components.css</code></li>
+                <li>Ноль inline-стилей в HTML</li>
+                <li>В браузере — «поток тегов» (это ожидаемо)</li>
+                <li>Контент реалистичен (не «aaa bbb ccc»)</li>
+                <li>Картинки — из picsum.photos или реальные из макета</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Markup for the <strong>entire</strong> page (all layout sections)</li>
+                <li>Semantic tags (header, main, section, article, footer)</li>
+                <li>Classes set for all elements</li>
+                <li><strong>Zero lines of styles</strong> in <code>style.css</code>/<code>components.css</code></li>
+                <li>Zero inline styles in HTML</li>
+                <li>Browser shows "stream of tags" (expected)</li>
+                <li>Content is realistic (not "aaa bbb ccc")</li>
+                <li>Images from picsum.photos or real from layout</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 30.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 30.3: ПОЛНАЯ ВЁРСТКА СЕКЦИИ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 30.3: FULL SECTION CODING</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 29.3: Свёрстай hero + 1 секцию pixel-perfect</span>
+            <span class="task-title" data-lang="en">Task 29.3: Code hero + 1 section pixel-perfect</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">40 минут</span>
+                <span class="badge badge-time" data-lang="en">40 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Применить 9-шаговый процесс к двум секциям вашего макета</div>
+        <div class="task-goal" data-lang="en">Apply the 9-step process to two sections of your layout</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Возьмите <strong>2 секции</strong> из макета (рекомендуем: hero + features). Свёрстайте их pixel-perfect, следуя шагам 5-9:</p>
+        <p data-lang="en">Take <strong>2 sections</strong> from the layout (recommended: hero + features). Code them pixel-perfect, following steps 5-9:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Шаг 5 — Layout:</strong> в <code>style.css</code> напишите <code>display: flex/grid</code>, размеры, отступы секций</li>
+            <li><strong>Шаг 6 — Детали:</strong> цвета (через <code>var(--color-*)</code>), шрифты, тени, скругления</li>
+            <li><strong>Шаг 7 — Интерактив:</strong> <code>hover</code> на кнопках и карточках, <code>transition-all duration-300</code></li>
+            <li><strong>Шаг 8 — Адаптив:</strong> media query <code>@media (max-width: 768px)</code> с правилом «ряд → стопка»</li>
+            <li><strong>Шаг 9 — Pixel-perfect:</strong> скриншот Figma + скриншот браузера, наложение с opacity 50%</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Step 5 — Layout:</strong> in <code>style.css</code> write <code>display: flex/grid</code>, sizes, section spacing</li>
+            <li><strong>Step 6 — Details:</strong> colors (via <code>var(--color-*)</code>), fonts, shadows, radii</li>
+            <li><strong>Step 7 — Interactivity:</strong> <code>hover</code> on buttons and cards, <code>transition-all duration-300</code></li>
+            <li><strong>Step 8 — Responsive:</strong> media query <code>@media (max-width: 768px)</code> with "row → stack" rule</li>
+            <li><strong>Step 9 — Pixel-perfect:</strong> Figma screenshot + browser screenshot, overlay at 50% opacity</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Порядок свойств в каждом селекторе:</strong>
+<pre><code>.selector {
+    /* 1. Layout */
+    display: ...;
+    /* 2. Размеры */
+    width: ...; height: ...;
+    /* 3. Отступы */
+    padding: ...; margin: ...;
+    /* 4. Визуал */
+    background: ...; border: ...;
+    /* 5. Типография */
+    font-size: ...; color: ...;
+    /* 6. Интерактив */
+    transition: ...;
+}</code></pre>
+            <strong>Повторяющиеся компоненты</strong> (карточки, кнопки) стилизуйте в <code>components.css</code>, секции — в <code>style.css</code>.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Property order in each selector:</strong>
+<pre><code>.selector {
+    /* 1. Layout */
+    display: ...;
+    /* 2. Size */
+    width: ...; height: ...;
+    /* 3. Spacing */
+    padding: ...; margin: ...;
+    /* 4. Visual */
+    background: ...; border: ...;
+    /* 5. Typography */
+    font-size: ...; color: ...;
+    /* 6. Interactivity */
+    transition: ...;
+}</code></pre>
+            <strong>Repeating components</strong> (cards, buttons) go in <code>components.css</code>, sections in <code>style.css</code>.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>2 секции свёрстаны полностью (hero + ещё одна)</li>
+                <li>Все цвета через <code>var(--color-*)</code> (ни одного HEX в коде секций)</li>
+                <li>Все размеры шрифта через <code>var(--fs-*)</code></li>
+                <li>Компоненты (<code>.card</code>, <code>.btn</code>) в <code>components.css</code></li>
+                <li>Секции в <code>style.css</code></li>
+                <li>Hover + transition на кнопках и карточках</li>
+                <li>:focus на input (если есть)</li>
+                <li>Адаптив работает: стопка на мобильном (375px)</li>
+                <li>Pixel-perfect: скриншот наложения с опоцити приложен</li>
+                <li>Допуск ±2px (глаз не видит разницы)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>2 sections fully coded (hero + one more)</li>
+                <li>All colors via <code>var(--color-*)</code> (no HEX in section code)</li>
+                <li>All font sizes via <code>var(--fs-*)</code></li>
+                <li>Components (<code>.card</code>, <code>.btn</code>) in <code>components.css</code></li>
+                <li>Sections in <code>style.css</code></li>
+                <li>Hover + transition on buttons and cards</li>
+                <li>:focus on inputs (if any)</li>
+                <li>Responsive works: stack on mobile (375px)</li>
+                <li>Pixel-perfect: overlay screenshot attached</li>
+                <li>±2px tolerance (eye can't see difference)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 29.4: Свёрстай весь макет</span>
+            <span class="task-title" data-lang="en">Task 29.4: Code the entire layout</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">90 минут</span>
+                <span class="badge badge-time" data-lang="en">90 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Свёрстать весь макет из Figma Community pixel-perfect</div>
+        <div class="task-goal" data-lang="en">Code the entire Figma Community layout pixel-perfect</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li>Свёрстайте <strong>все</strong> секции макета (6-7 секций), а не только 2</li>
+            <li>Примените все 9 шагов процесса</li>
+            <li>Все изображения и иконки <strong>экспортированы</strong> из Figma (не picsum)</li>
+            <li>Установите расширение <strong>PerfectPixel</strong> (Chrome) — используйте для финальной проверки</li>
+            <li>Сделайте 3 скриншота сравнения: мобильный (375px), планшет (768px), десктоп (1440px)</li>
+            <li>Задеплойте на <strong>GitHub Pages</strong> или Netlify Drop — получите публичную ссылку</li>
+            <li>Покажите это реальному знакомому — получите обратную связь</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Code <strong>all</strong> layout sections (6-7 sections), not just 2</li>
+            <li>Apply all 9 process steps</li>
+            <li>All images and icons <strong>exported</strong> from Figma (not picsum)</li>
+            <li>Install <strong>PerfectPixel</strong> extension (Chrome) — use for final check</li>
+            <li>Take 3 comparison screenshots: mobile (375px), tablet (768px), desktop (1440px)</li>
+            <li>Deploy to <strong>GitHub Pages</strong> or Netlify Drop — get a public link</li>
+            <li>Show to a real person — get feedback</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Netlify Drop</strong> — самый быстрый способ задеплоить статику бесплатно: зайдите на <code>app.netlify.com/drop</code>, перетащите папку проекта — получаете рабочую ссылку за 30 секунд. Никакой регистрации (можно потом).
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Netlify Drop</strong> — fastest way to deploy static for free: go to <code>app.netlify.com/drop</code>, drag the project folder — get a working link in 30 seconds. No signup (can register later).
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все секции макета свёрстаны (минимум 6)</li>
+                <li>Все ресурсы экспортированы из Figma (реальные, не picsum)</li>
+                <li>Pixel-perfect проверено через PerfectPixel</li>
+                <li>3 скриншота сравнения на 375/768/1440px</li>
+                <li>Публичная ссылка на сайт (GitHub Pages / Netlify)</li>
+                <li>Получена обратная связь от хотя бы одного человека</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All layout sections coded (minimum 6)</li>
+                <li>All assets exported from Figma (real, not picsum)</li>
+                <li>Pixel-perfect verified with PerfectPixel</li>
+                <li>3 comparison screenshots at 375/768/1440px</li>
+                <li>Public site link (GitHub Pages / Netlify)</li>
+                <li>Feedback from at least one person</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

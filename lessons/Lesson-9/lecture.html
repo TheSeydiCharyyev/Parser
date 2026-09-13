@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 9 — Мини-проект: Личная визитка</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 9: Мини-проект — Личная визитка</span>
+    <span class="nav-title" data-lang="en">Lesson 9: Mini-project — Personal Business Card</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 9: Мини-проект #1 — Личная визитка</h1>
+    <h1 data-lang="en">Lesson 9: Mini-project #1 — Personal Business Card</h1>
+    <p class="subtitle" data-lang="ru">Планирование страницы, разбор макета и создание стилизованной визитки (HTML + CSS)</p>
+    <p class="subtitle" data-lang="en">Page planning, mockup analysis, and creating a styled business card (HTML + CSS)</p>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#intro">Что мы будем делать</a></li>
+            <li><a href="#planning">Планирование страницы</a></li>
+            <li><a href="#structure">Структура визитки</a></li>
+            <li><a href="#html-markup">HTML-разметка визитки</a></li>
+            <li><a href="#css-base">CSS: базовые стили</a></li>
+            <li><a href="#css-card">CSS: стилизация карточки</a></li>
+            <li><a href="#css-avatar">CSS: аватар</a></li>
+            <li><a href="#css-info">CSS: информация и ссылки</a></li>
+            <li><a href="#css-skills">CSS: навыки</a></li>
+            <li><a href="#full-code">Полный код примера</a></li>
+            <li><a href="#variations">Варианты оформления</a></li>
+            <li><a href="#practice">Создание своей визитки</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#intro">What we will build</a></li>
+            <li><a href="#planning">Page planning</a></li>
+            <li><a href="#structure">Business card structure</a></li>
+            <li><a href="#html-markup">HTML markup of the card</a></li>
+            <li><a href="#css-base">CSS: base styles</a></li>
+            <li><a href="#css-card">CSS: card styling</a></li>
+            <li><a href="#css-avatar">CSS: avatar</a></li>
+            <li><a href="#css-info">CSS: information and links</a></li>
+            <li><a href="#css-skills">CSS: skills</a></li>
+            <li><a href="#full-code">Full example code</a></li>
+            <li><a href="#variations">Design variations</a></li>
+            <li><a href="#practice">Creating your own card</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 1. ВВЕДЕНИЕ ==================== -->
+    <h2 id="intro" data-lang="ru">1. Что мы будем делать</h2>
+    <h2 id="intro-en" data-lang="en">1. What we will build</h2>
+
+    <p data-lang="ru">Сегодня мы создадим первый мини-проект курса — <strong>личную визитку</strong>. Это страница, которая рассказывает о человеке: имя, фото, профессия, контакты, навыки и ссылки на соцсети.</p>
+    <p data-lang="en">Today we will create the first mini-project of the course — a <strong>personal business card</strong>. It's a page that tells about a person: name, photo, profession, contacts, skills, and social media links.</p>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Цель занятия:</strong> Применить все знания из занятий 1-7 (HTML-структура, семантика, CSS-стили, Box Model) для создания красивой страницы-визитки. Это ваш первый полноценный проект!
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Lesson goal:</strong> Apply all knowledge from lessons 1-7 (HTML structure, semantics, CSS styles, Box Model) to create a beautiful business card page. This is your first real project!
+    </div>
+
+    <div class="why">
+        <p data-lang="ru">Мини-проект — это <strong>самый эффективный способ закрепить знания</strong>. Читать теорию и смотреть примеры — хорошо, но только когда вы создаёте что-то своё, знания по-настоящему усваиваются. Визитка идеально подходит для первого проекта: она достаточно простая, чтобы не запутаться, но достаточно сложная, чтобы применить все изученные свойства CSS.</p>
+        <p data-lang="en">A mini-project is <strong>the most effective way to solidify your knowledge</strong>. Reading theory and looking at examples is good, but only when you create something of your own do the concepts truly stick. A business card is perfect for a first project: it's simple enough not to be overwhelming, yet complex enough to apply all the CSS properties you've learned.</p>
+    </div>
+
+    <p data-lang="ru"><strong>Что будет на визитке:</strong></p>
+    <p data-lang="en"><strong>What the card will contain:</strong></p>
+    <ul data-lang="ru">
+        <li>Фотография (аватар) — круглая, с рамкой</li>
+        <li>Имя и профессия</li>
+        <li>Краткое описание (о себе)</li>
+        <li>Контактные данные (email, телефон)</li>
+        <li>Навыки (теги/бейджи)</li>
+        <li>Ссылки на соцсети (кнопки)</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Photo (avatar) — round, with a border</li>
+        <li>Name and profession</li>
+        <li>Short description (about me)</li>
+        <li>Contact details (email, phone)</li>
+        <li>Skills (tags/badges)</li>
+        <li>Social media links (buttons)</li>
+    </ul>
+
+    <div class="analogy">
+        <p data-lang="ru">Визитка — это как <strong>бумажная карточка</strong>, которую люди обмениваются при встрече. Только наша — цифровая и гораздо красивее! Её можно отправить ссылкой, и все увидят информацию о вас. Представьте: вы встречаетесь с работодателем и вместо обычной бумажки отправляете ему ссылку на красивую интерактивную страницу — вот это впечатление!</p>
+        <p data-lang="en">A business card is like a <strong>paper card</strong> people exchange when meeting. But ours is digital and much more beautiful! You can share it as a link, and everyone will see information about you. Imagine: you meet an employer and instead of an ordinary piece of paper, you send them a link to a beautiful interactive page — now that's an impression!</p>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru">Страницы-визитки используются повсюду в реальном мире:</p>
+        <ul data-lang="ru">
+            <li><strong>Портфолио разработчиков</strong> — почти у каждого программиста есть личная страница с проектами</li>
+            <li><strong>LinkedIn</strong> — по сути, это онлайн-визитка с навыками и опытом</li>
+            <li><strong>GitHub Pages</strong> — многие разработчики размещают свою визитку бесплатно</li>
+            <li><strong>Фрилансеры</strong> — дизайнеры, фотографы, копирайтеры используют визитки для привлечения клиентов</li>
+            <li><strong>Стартапы</strong> — одностраничные "landing page" для презентации идеи</li>
+        </ul>
+        <p data-lang="en">Business card pages are used everywhere in the real world:</p>
+        <ul data-lang="en">
+            <li><strong>Developer portfolios</strong> — almost every programmer has a personal page with projects</li>
+            <li><strong>LinkedIn</strong> — it's essentially an online business card with skills and experience</li>
+            <li><strong>GitHub Pages</strong> — many developers host their business card for free</li>
+            <li><strong>Freelancers</strong> — designers, photographers, copywriters use cards to attract clients</li>
+            <li><strong>Startups</strong> — one-page "landing pages" for presenting an idea</li>
+        </ul>
+    </div>
+
+    <div class="fun-fact">
+        <p data-lang="ru">Первые бумажные визитки появились в Китае в XV веке! Их использовали, чтобы объявить о своём визите. Сегодня цифровые визитки заменяют бумажные — и вы сейчас создадите свою.</p>
+        <p data-lang="en">The first paper business cards appeared in China in the 15th century! They were used to announce one's visit. Today digital business cards are replacing paper ones — and you're about to create yours.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 2. ПЛАНИРОВАНИЕ ==================== -->
+    <h2 id="planning" data-lang="ru">2. Планирование страницы</h2>
+    <h2 id="planning-en" data-lang="en">2. Page planning</h2>
+
+    <p data-lang="ru">Прежде чем писать код, нужно <strong>спланировать</strong>, что будет на странице. Профессиональные разработчики всегда начинают с плана!</p>
+    <p data-lang="en">Before writing code, you need to <strong>plan</strong> what will be on the page. Professional developers always start with a plan!</p>
+
+    <div class="why">
+        <p data-lang="ru">Планирование перед кодированием — это не трата времени, а его <strong>экономия</strong>. Когда вы начинаете писать код без плана, вы часто переписываете одно и то же по 3-4 раза: "ой, забыл про навыки", "ой, кнопки не туда попали", "ой, надо всё перестроить". Потратив 10 минут на план, вы сэкономите 40 минут на переделках.</p>
+        <p data-lang="en">Planning before coding is not wasting time — it's <strong>saving</strong> it. When you start writing code without a plan, you often rewrite the same thing 3-4 times: "oops, forgot the skills", "oops, buttons ended up in the wrong place", "oops, need to restructure everything". Spending 10 minutes on a plan saves 40 minutes on rework.</p>
+    </div>
+
+    <div class="analogy">
+        <p data-lang="ru"><strong>Строительство дома.</strong> Никто не начинает строить дом, кладя кирпичи наугад. Сначала архитектор рисует чертежи: где будут стены, где окна, где двери. Только потом строители берутся за работу. В веб-разработке то же самое: сначала <strong>чертёж</strong> (wireframe), потом код.</p>
+        <p data-lang="en"><strong>Building a house.</strong> Nobody starts building a house by laying bricks randomly. First, the architect draws blueprints: where the walls will be, where the windows, where the doors. Only then do builders get to work. In web development it's the same: first the <strong>blueprint</strong> (wireframe), then the code.</p>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Сразу открывать редактор и писать код.</strong> Новички часто думают: "Зачем планировать? Я же уже знаю, что хочу!" Но через 20 минут кодирования они понимают, что забыли про целый блок, или структура неудобная, или стили конфликтуют. Приходится удалять код и начинать заново. <strong>Правило:</strong> 5 минут с ручкой и бумагой = 30 сэкономленных минут.</p>
+        <p data-lang="en"><strong>Opening the editor and writing code right away.</strong> Beginners often think: "Why plan? I already know what I want!" But after 20 minutes of coding they realize they forgot an entire section, or the structure is awkward, or styles conflict. They have to delete code and start over. <strong>Rule:</strong> 5 minutes with pen and paper = 30 saved minutes.</p>
+    </div>
+
+    <h3 data-lang="ru">Шаг 1: Определить содержание</h3>
+    <h3 data-lang="en">Step 1: Define the content</h3>
+
+    <p data-lang="ru">Запишите, какая информация будет на странице:</p>
+    <p data-lang="en">Write down what information will be on the page:</p>
+
+    <ul data-lang="ru">
+        <li>Какой текст? (имя, профессия, описание)</li>
+        <li>Какие изображения? (фото, иконки)</li>
+        <li>Какие ссылки? (соцсети, email, портфолио)</li>
+        <li>Какие списки? (навыки, контакты)</li>
+    </ul>
+    <ul data-lang="en">
+        <li>What text? (name, profession, description)</li>
+        <li>What images? (photo, icons)</li>
+        <li>What links? (social media, email, portfolio)</li>
+        <li>What lists? (skills, contacts)</li>
+    </ul>
+
+    <h3 data-lang="ru">Шаг 2: Нарисовать макет (wireframe)</h3>
+    <h3 data-lang="en">Step 2: Draw a wireframe</h3>
+
+    <p data-lang="ru"><strong>Wireframe</strong> — это простой набросок страницы. Не нужно рисовать красиво — главное показать расположение элементов. Можно рисовать на бумаге, в тетради, или даже на салфетке!</p>
+    <p data-lang="en">A <strong>wireframe</strong> is a simple sketch of a page. No need to draw beautifully — the main point is to show the element placement. You can draw on paper, in a notebook, or even on a napkin!</p>
+
+    <div class="diagram" data-lang="ru">
+&#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+&#x2502;                                  &#x2502;
+&#x2502;          &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;            &#x2502;
+&#x2502;          &#x2502;  ФОТО  &#x2502;            &#x2502;
+&#x2502;          &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;            &#x2502;
+&#x2502;                                  &#x2502;
+&#x2502;           ИМЯ ФАМИЛИЯ            &#x2502;
+&#x2502;            Профессия              &#x2502;
+&#x2502;                                  &#x2502;
+&#x2502;   Краткое описание о себе...     &#x2502;
+&#x2502;                                  &#x2502;
+&#x2502;   &#x1F4E7; email   &#x1F4F1; телефон          &#x2502;
+&#x2502;                                  &#x2502;
+&#x2502;   [HTML] [CSS] [JS] [Git]       &#x2502;
+&#x2502;                                  &#x2502;
+&#x2502;   [GitHub] [Telegram] [LinkedIn] &#x2502;
+&#x2502;                                  &#x2502;
+&#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <div class="diagram" data-lang="en">
+&#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+&#x2502;                                  &#x2502;
+&#x2502;          &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;            &#x2502;
+&#x2502;          &#x2502; PHOTO  &#x2502;            &#x2502;
+&#x2502;          &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;            &#x2502;
+&#x2502;                                  &#x2502;
+&#x2502;           FIRST LAST NAME        &#x2502;
+&#x2502;            Profession             &#x2502;
+&#x2502;                                  &#x2502;
+&#x2502;   Short description about me...  &#x2502;
+&#x2502;                                  &#x2502;
+&#x2502;   &#x1F4E7; email   &#x1F4F1; phone            &#x2502;
+&#x2502;                                  &#x2502;
+&#x2502;   [HTML] [CSS] [JS] [Git]       &#x2502;
+&#x2502;                                  &#x2502;
+&#x2502;   [GitHub] [Telegram] [LinkedIn] &#x2502;
+&#x2502;                                  &#x2502;
+&#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <h3 data-lang="ru">Шаг 3: Определить HTML-структуру</h3>
+    <h3 data-lang="en">Step 3: Define the HTML structure</h3>
+
+    <p data-lang="ru">По wireframe определяем, какие HTML-теги понадобятся:</p>
+    <p data-lang="en">From the wireframe, we determine which HTML tags we'll need:</p>
+
+    <table data-lang="ru">
+        <tr><th>Блок визитки</th><th>HTML-теги</th></tr>
+        <tr><td>Фотография</td><td><code>&lt;img&gt;</code> с классом</td></tr>
+        <tr><td>Имя</td><td><code>&lt;h1&gt;</code></td></tr>
+        <tr><td>Профессия</td><td><code>&lt;p&gt;</code> с классом</td></tr>
+        <tr><td>Описание</td><td><code>&lt;p&gt;</code></td></tr>
+        <tr><td>Контакты</td><td><code>&lt;ul&gt;</code> + <code>&lt;li&gt;</code> + <code>&lt;a&gt;</code></td></tr>
+        <tr><td>Навыки</td><td><code>&lt;span&gt;</code> с классом (бейджи)</td></tr>
+        <tr><td>Соцсети</td><td><code>&lt;a&gt;</code> с классом (кнопки)</td></tr>
+        <tr><td>Обёртка</td><td><code>&lt;div class="card"&gt;</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Card section</th><th>HTML tags</th></tr>
+        <tr><td>Photo</td><td><code>&lt;img&gt;</code> with class</td></tr>
+        <tr><td>Name</td><td><code>&lt;h1&gt;</code></td></tr>
+        <tr><td>Profession</td><td><code>&lt;p&gt;</code> with class</td></tr>
+        <tr><td>Description</td><td><code>&lt;p&gt;</code></td></tr>
+        <tr><td>Contacts</td><td><code>&lt;ul&gt;</code> + <code>&lt;li&gt;</code> + <code>&lt;a&gt;</code></td></tr>
+        <tr><td>Skills</td><td><code>&lt;span&gt;</code> with class (badges)</td></tr>
+        <tr><td>Social links</td><td><code>&lt;a&gt;</code> with class (buttons)</td></tr>
+        <tr><td>Wrapper</td><td><code>&lt;div class="card"&gt;</code></td></tr>
+    </table>
+
+    <h3 data-lang="ru">Шаг 4: Определить стили</h3>
+    <h3 data-lang="en">Step 4: Define the styles</h3>
+
+    <p data-lang="ru">Какие CSS-свойства пригодятся:</p>
+    <p data-lang="en">Which CSS properties will be useful:</p>
+
+    <table data-lang="ru">
+        <tr><th>Что стилизуем</th><th>CSS-свойства</th></tr>
+        <tr><td>Фон страницы</td><td><code>background</code>, <code>min-height</code></td></tr>
+        <tr><td>Карточка</td><td><code>background</code>, <code>padding</code>, <code>border-radius</code>, <code>box-shadow</code>, <code>max-width</code>, <code>margin</code></td></tr>
+        <tr><td>Аватар</td><td><code>width</code>, <code>height</code>, <code>border-radius: 50%</code>, <code>border</code></td></tr>
+        <tr><td>Текст</td><td><code>font-family</code>, <code>font-size</code>, <code>color</code>, <code>text-align</code></td></tr>
+        <tr><td>Бейджи навыков</td><td><code>display: inline-block</code>, <code>padding</code>, <code>background</code>, <code>border-radius</code></td></tr>
+        <tr><td>Кнопки соцсетей</td><td><code>display: inline-block</code>, <code>padding</code>, <code>background</code>, <code>color</code>, <code>text-decoration</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>What to style</th><th>CSS properties</th></tr>
+        <tr><td>Page background</td><td><code>background</code>, <code>min-height</code></td></tr>
+        <tr><td>Card</td><td><code>background</code>, <code>padding</code>, <code>border-radius</code>, <code>box-shadow</code>, <code>max-width</code>, <code>margin</code></td></tr>
+        <tr><td>Avatar</td><td><code>width</code>, <code>height</code>, <code>border-radius: 50%</code>, <code>border</code></td></tr>
+        <tr><td>Text</td><td><code>font-family</code>, <code>font-size</code>, <code>color</code>, <code>text-align</code></td></tr>
+        <tr><td>Skill badges</td><td><code>display: inline-block</code>, <code>padding</code>, <code>background</code>, <code>border-radius</code></td></tr>
+        <tr><td>Social buttons</td><td><code>display: inline-block</code>, <code>padding</code>, <code>background</code>, <code>color</code>, <code>text-decoration</code></td></tr>
+    </table>
+
+    <div class="real-world">
+        <p data-lang="ru">Профессиональные команды всегда планируют перед кодированием. Они используют инструменты вроде <strong>Figma</strong>, <strong>Sketch</strong> или <strong>Adobe XD</strong> для создания макетов. Дизайнер рисует макет, утверждает с заказчиком, и только потом разработчик пишет код. Даже на хакатонах первые 20 минут тратятся на планирование!</p>
+        <p data-lang="en">Professional teams always plan before coding. They use tools like <strong>Figma</strong>, <strong>Sketch</strong>, or <strong>Adobe XD</strong> to create mockups. A designer draws the mockup, gets approval from the client, and only then the developer writes code. Even at hackathons, the first 20 minutes are spent planning!</p>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru">Для простых проектов, как наша визитка, достаточно наброска на бумаге. Но если хотите попробовать бесплатные инструменты для wireframing — посмотрите <strong>Figma</strong> (бесплатная версия) или <strong>Excalidraw</strong> (полностью бесплатный, работает в браузере). Это отличный навык для будущей работы!</p>
+        <p data-lang="en">For simple projects like our business card, a sketch on paper is enough. But if you want to try free wireframing tools — check out <strong>Figma</strong> (free version) or <strong>Excalidraw</strong> (completely free, works in the browser). It's a great skill for future work!</p>
+    </div>
+
+    <div class="important" data-lang="ru">
+        <strong>Правило:</strong> Всегда планируй перед кодированием! Даже 5 минут с ручкой и бумагой сэкономят 30 минут отладки.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Rule:</strong> Always plan before coding! Even 5 minutes with pen and paper will save 30 minutes of debugging.
+    </div>
+
+    <hr>
+
+    <!-- ==================== 3. СТРУКТУРА ==================== -->
+    <h2 id="structure" data-lang="ru">3. Структура визитки</h2>
+    <h2 id="structure-en" data-lang="en">3. Business card structure</h2>
+
+    <p data-lang="ru">Визитка состоит из нескольких логических блоков. Посмотрим на структуру HTML как на дерево:</p>
+    <p data-lang="en">A business card consists of several logical sections. Let's look at the HTML structure as a tree:</p>
+
+    <div class="analogy">
+        <p data-lang="ru"><strong>Скелет здания.</strong> HTML-структура — это как скелет (каркас) здания. Сначала строители возводят каркас из балок и колонн — это чистый HTML без стилей. Потом приходят отделочники и делают красиво: красят стены, кладут плитку, вешают люстры — это CSS. Без крепкого каркаса красивая отделка бесполезна. Поэтому сначала — правильная структура HTML!</p>
+        <p data-lang="en"><strong>Building skeleton.</strong> HTML structure is like a building's skeleton (framework). First, builders erect a frame of beams and columns — that's pure HTML without styles. Then the finishers come and make it beautiful: paint walls, lay tiles, hang chandeliers — that's CSS. Without a strong frame, beautiful finishing is useless. So first — proper HTML structure!</p>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+&lt;body&gt;
+  &#x2514;&#x2500; &lt;div class="card"&gt;           &#x2500;&#x2500; контейнер карточки
+       &#x251C;&#x2500; &lt;img class="avatar"&gt;    &#x2500;&#x2500; фотография
+       &#x251C;&#x2500; &lt;h1&gt;                    &#x2500;&#x2500; имя
+       &#x251C;&#x2500; &lt;p class="role"&gt;        &#x2500;&#x2500; профессия
+       &#x251C;&#x2500; &lt;p class="bio"&gt;         &#x2500;&#x2500; описание
+       &#x251C;&#x2500; &lt;div class="contacts"&gt;  &#x2500;&#x2500; блок контактов
+       &#x2502;    &#x251C;&#x2500; &lt;a&gt; email
+       &#x2502;    &#x2514;&#x2500; &lt;a&gt; телефон
+       &#x251C;&#x2500; &lt;div class="skills"&gt;    &#x2500;&#x2500; навыки (бейджи)
+       &#x2502;    &#x251C;&#x2500; &lt;span&gt; HTML
+       &#x2502;    &#x251C;&#x2500; &lt;span&gt; CSS
+       &#x2502;    &#x2514;&#x2500; &lt;span&gt; ...
+       &#x2514;&#x2500; &lt;div class="socials"&gt;   &#x2500;&#x2500; ссылки (кнопки)
+            &#x251C;&#x2500; &lt;a&gt; GitHub
+            &#x251C;&#x2500; &lt;a&gt; Telegram
+            &#x2514;&#x2500; &lt;a&gt; LinkedIn</div>
+
+    <div class="diagram" data-lang="en">
+&lt;body&gt;
+  &#x2514;&#x2500; &lt;div class="card"&gt;           &#x2500;&#x2500; card container
+       &#x251C;&#x2500; &lt;img class="avatar"&gt;    &#x2500;&#x2500; photo
+       &#x251C;&#x2500; &lt;h1&gt;                    &#x2500;&#x2500; name
+       &#x251C;&#x2500; &lt;p class="role"&gt;        &#x2500;&#x2500; profession
+       &#x251C;&#x2500; &lt;p class="bio"&gt;         &#x2500;&#x2500; description
+       &#x251C;&#x2500; &lt;div class="contacts"&gt;  &#x2500;&#x2500; contacts block
+       &#x2502;    &#x251C;&#x2500; &lt;a&gt; email
+       &#x2502;    &#x2514;&#x2500; &lt;a&gt; phone
+       &#x251C;&#x2500; &lt;div class="skills"&gt;    &#x2500;&#x2500; skills (badges)
+       &#x2502;    &#x251C;&#x2500; &lt;span&gt; HTML
+       &#x2502;    &#x251C;&#x2500; &lt;span&gt; CSS
+       &#x2502;    &#x2514;&#x2500; &lt;span&gt; ...
+       &#x2514;&#x2500; &lt;div class="socials"&gt;   &#x2500;&#x2500; links (buttons)
+            &#x251C;&#x2500; &lt;a&gt; GitHub
+            &#x251C;&#x2500; &lt;a&gt; Telegram
+            &#x2514;&#x2500; &lt;a&gt; LinkedIn</div>
+
+    <div class="fun-fact">
+        <p data-lang="ru">В HTML5 есть <strong>семантические теги</strong>, которые описывают смысл содержимого: <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;section&gt;</code>. Для нашей маленькой визитки мы используем <code>&lt;div&gt;</code>, но в большом проекте стоит использовать семантические теги — это помогает поисковым системам и людям с ограниченными возможностями лучше понимать вашу страницу.</p>
+        <p data-lang="en">HTML5 has <strong>semantic tags</strong> that describe the meaning of content: <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;section&gt;</code>. For our small business card we use <code>&lt;div&gt;</code>, but in a larger project you should use semantic tags — they help search engines and people with disabilities better understand your page.</p>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru">Обратите внимание: каждый блок визитки имеет свой <strong>класс</strong> (<code>avatar</code>, <code>role</code>, <code>bio</code>, <code>contacts</code>, <code>skills</code>, <code>socials</code>). Хорошие имена классов — это как подписи на папках: открыл код через месяц — и сразу понятно, что где.</p>
+        <p data-lang="en">Notice: each block of the card has its own <strong>class</strong> (<code>avatar</code>, <code>role</code>, <code>bio</code>, <code>contacts</code>, <code>skills</code>, <code>socials</code>). Good class names are like labels on folders: you open the code a month later — and immediately understand what's where.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 4. HTML-РАЗМЕТКА ==================== -->
+    <h2 id="html-markup" data-lang="ru">4. HTML-разметка визитки</h2>
+    <h2 id="html-markup-en" data-lang="en">4. HTML markup of the card</h2>
+
+    <p data-lang="ru">Начнём с HTML. Создаём файл <code>index.html</code>:</p>
+    <p data-lang="en">Let's start with HTML. Create a file <code>index.html</code>:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Алексей Петров — Веб-разработчик&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;div class="card"&gt;
+
+        &lt;!-- Аватар --&gt;
+        &lt;img src="https://i.pravatar.cc/150?img=11"
+             alt="Фото Алексея Петрова"
+             class="avatar"&gt;
+
+        &lt;!-- Имя и профессия --&gt;
+        &lt;h1&gt;Алексей Петров&lt;/h1&gt;
+        &lt;p class="role"&gt;Frontend-разработчик&lt;/p&gt;
+
+        &lt;!-- Описание --&gt;
+        &lt;p class="bio"&gt;
+            Люблю создавать красивые и удобные сайты.
+            Учусь в колледже, мечтаю работать в IT-компании.
+            Занимаюсь веб-разработкой уже 6 месяцев.
+        &lt;/p&gt;
+
+        &lt;!-- Контакты --&gt;
+        &lt;div class="contacts"&gt;
+            &lt;a href="mailto:alexey@example.com"&gt;&#x1F4E7; alexey@example.com&lt;/a&gt;
+            &lt;a href="tel:+79001234567"&gt;&#x1F4F1; +7 (900) 123-45-67&lt;/a&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Навыки --&gt;
+        &lt;div class="skills"&gt;
+            &lt;span class="skill"&gt;HTML&lt;/span&gt;
+            &lt;span class="skill"&gt;CSS&lt;/span&gt;
+            &lt;span class="skill"&gt;JavaScript&lt;/span&gt;
+            &lt;span class="skill"&gt;Git&lt;/span&gt;
+            &lt;span class="skill"&gt;VS Code&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Соцсети --&gt;
+        &lt;div class="socials"&gt;
+            &lt;a href="https://github.com" class="social-link"&gt;GitHub&lt;/a&gt;
+            &lt;a href="https://t.me" class="social-link"&gt;Telegram&lt;/a&gt;
+            &lt;a href="https://linkedin.com" class="social-link"&gt;LinkedIn&lt;/a&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Обрати внимание:</strong> Мы используем <code>https://i.pravatar.cc/150</code> — это бесплатный сервис для генерации аватаров. В своём проекте ты заменишь его на свою фотографию.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Note:</strong> We use <code>https://i.pravatar.cc/150</code> — a free service for generating avatars. In your own project, you'll replace it with your photo.
+    </div>
+
+    <p data-lang="ru">А теперь давайте посмотрим, как этот HTML выглядит <strong>без CSS</strong> — голый, нестилизованный. Это важно увидеть, чтобы понять, зачем нужны стили:</p>
+    <p data-lang="en">Now let's see how this HTML looks <strong>without CSS</strong> — raw, unstyled. It's important to see this to understand why we need styles:</p>
+
+    <div class="result-box">
+        <div style="font-family: Times New Roman, serif; text-align: left; padding: 10px; background: #fff;">
+            <div style="width: 150px; height: 150px; background: #ddd; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #666; border: 1px solid #ccc; margin-bottom: 5px;">150 x 150 avatar</div>
+            <div style="font-size: 2em; font-weight: bold; margin: 0.67em 0;">Alexey Petrov</div>
+            <div style="margin: 1em 0;">Frontend Developer</div>
+            <div style="margin: 1em 0;">I love creating beautiful and user-friendly websites. I'm studying at college and dream of working at an IT company. I've been doing web development for 6 months.</div>
+            <div style="margin: 1em 0;">
+                <a href="#" style="color: blue; text-decoration: underline;">alexey@example.com</a><br>
+                <a href="#" style="color: blue; text-decoration: underline;">+7 (900) 123-45-67</a>
+            </div>
+            <div style="margin: 1em 0;">HTML CSS JavaScript Git VS Code</div>
+            <div style="margin: 1em 0;">
+                <a href="#" style="color: blue; text-decoration: underline;">GitHub</a>
+                <a href="#" style="color: blue; text-decoration: underline;">Telegram</a>
+                <a href="#" style="color: blue; text-decoration: underline;">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+
+    <p data-lang="ru">Не очень впечатляет, правда? Всё текст слева, шрифт по умолчанию, ссылки синие и подчёркнутые... Но это <strong>нормально</strong>! Сейчас мы добавим CSS и превратим это в красивую визитку.</p>
+    <p data-lang="en">Not very impressive, right? All text is left-aligned, default font, links are blue and underlined... But this is <strong>normal</strong>! Now we'll add CSS and transform this into a beautiful business card.</p>
+
+    <div class="try-it">
+        <p data-lang="ru">Создай файл <code>index.html</code>, скопируй в него HTML-код выше и открой в браузере. Посмотри, как выглядит страница без стилей. Запомни этот момент — скоро ты увидишь, какую магию творит CSS!</p>
+        <p data-lang="en">Create a file <code>index.html</code>, copy the HTML code above into it and open it in the browser. See how the page looks without styles. Remember this moment — soon you'll see what magic CSS can do!</p>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Забывать закрывающие теги.</strong> Частая ошибка — написать <code>&lt;div class="card"&gt;</code> и забыть <code>&lt;/div&gt;</code> в конце. Или написать <code>&lt;p&gt;</code> и не закрыть. Браузер попытается «угадать», что вы имели в виду, но часто угадывает неправильно — и весь макет ломается. <strong>Совет:</strong> пишите открывающий и закрывающий тег сразу, а потом заполняйте содержимое.</p>
+        <p data-lang="en"><strong>Forgetting closing tags.</strong> A common mistake is writing <code>&lt;div class="card"&gt;</code> and forgetting <code>&lt;/div&gt;</code> at the end. Or writing <code>&lt;p&gt;</code> without closing it. The browser will try to "guess" what you meant, but it often guesses wrong — and the entire layout breaks. <strong>Tip:</strong> write the opening and closing tag immediately, then fill in the content.</p>
+    </div>
+
+    <div class="quiz">
+        <p data-lang="ru"><strong>Быстрый вопрос:</strong> Какой тег мы используем для имени человека — <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code> или <code>&lt;span&gt;</code>? Почему?</p>
+        <p data-lang="ru"><em>Ответ:</em> <code>&lt;h1&gt;</code> — потому что имя — это главный заголовок на странице. <code>&lt;p&gt;</code> — для обычного текста, а <code>&lt;span&gt;</code> — для выделения части текста внутри абзаца.</p>
+        <p data-lang="en"><strong>Quick question:</strong> Which tag do we use for the person's name — <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, or <code>&lt;span&gt;</code>? Why?</p>
+        <p data-lang="en"><em>Answer:</em> <code>&lt;h1&gt;</code> — because the name is the main heading on the page. <code>&lt;p&gt;</code> is for regular text, and <code>&lt;span&gt;</code> is for highlighting part of text within a paragraph.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 5. CSS: БАЗОВЫЕ СТИЛИ ==================== -->
+    <h2 id="css-base" data-lang="ru">5. CSS: базовые стили</h2>
+    <h2 id="css-base-en" data-lang="en">5. CSS: base styles</h2>
+
+    <p data-lang="ru">Создаём файл <code>style.css</code> и начинаем с базовых стилей:</p>
+    <p data-lang="en">Create a file <code>style.css</code> and start with base styles:</p>
+
+<pre><code>/* Сброс и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #667eea;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}</code></pre>
+
+    <div class="why">
+        <p data-lang="ru">Зачем нужен <strong>CSS-сброс</strong> (<code>* { margin: 0; padding: 0; }</code>)? Каждый браузер имеет свои стили по умолчанию: <code>&lt;h1&gt;</code> имеет огромные отступы, <code>&lt;body&gt;</code> имеет margin 8px, <code>&lt;ul&gt;</code> имеет отступ слева. Если мы не сбросим эти стили, наш макет будет выглядеть по-разному в Chrome, Firefox и Safari. Сброс делает все браузеры одинаковыми — как «чистый лист».</p>
+        <p data-lang="en">Why do we need a <strong>CSS reset</strong> (<code>* { margin: 0; padding: 0; }</code>)? Every browser has its own default styles: <code>&lt;h1&gt;</code> has huge margins, <code>&lt;body&gt;</code> has 8px margin, <code>&lt;ul&gt;</code> has left padding. If we don't reset these styles, our layout will look different in Chrome, Firefox, and Safari. The reset makes all browsers equal — like a "blank canvas".</p>
+    </div>
+
+    <p data-lang="ru">Разберём каждое свойство:</p>
+    <p data-lang="en">Let's break down each property:</p>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что делает</th></tr>
+        <tr><td><code>* { margin: 0; padding: 0; }</code></td><td>Сбрасывает стандартные отступы у всех элементов</td></tr>
+        <tr><td><code>box-sizing: border-box</code></td><td>Padding и border входят в ширину элемента (из Занятия 7!)</td></tr>
+        <tr><td><code>background: #667eea</code></td><td>Фиолетово-синий фон страницы</td></tr>
+        <tr><td><code>min-height: 100vh</code></td><td>Минимальная высота = вся видимая часть экрана</td></tr>
+        <tr><td><code>display: flex</code></td><td>Включаем Flexbox (мы его изучим подробно позже, а пока используем для центрирования)</td></tr>
+        <tr><td><code>justify-content: center</code></td><td>Центрирование по горизонтали</td></tr>
+        <tr><td><code>align-items: center</code></td><td>Центрирование по вертикали</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it does</th></tr>
+        <tr><td><code>* { margin: 0; padding: 0; }</code></td><td>Resets default spacing for all elements</td></tr>
+        <tr><td><code>box-sizing: border-box</code></td><td>Padding and border are included in the element width (from Lesson 7!)</td></tr>
+        <tr><td><code>background: #667eea</code></td><td>Purple-blue page background</td></tr>
+        <tr><td><code>min-height: 100vh</code></td><td>Minimum height = full visible screen area</td></tr>
+        <tr><td><code>display: flex</code></td><td>Enable Flexbox (we'll study it in detail later, for now we use it for centering)</td></tr>
+        <tr><td><code>justify-content: center</code></td><td>Horizontal centering</td></tr>
+        <tr><td><code>align-items: center</code></td><td>Vertical centering</td></tr>
+    </table>
+
+    <div class="result-box">
+        <p data-lang="ru" style="margin-bottom: 8px;"><em>Страница с базовыми стилями (фон + центрирование, но без стилей карточки):</em></p>
+        <p data-lang="en" style="margin-bottom: 8px;"><em>Page with base styles (background + centering, but no card styles):</em></p>
+        <div style="background: #667eea; padding: 40px; border-radius: 8px; display: flex; justify-content: center; align-items: center; min-height: 200px;">
+            <div style="background: transparent; text-align: left; font-family: 'Segoe UI', sans-serif; color: white;">
+                <div style="font-size: 1.8em; font-weight: bold; margin-bottom: 4px;">Alexey Petrov</div>
+                <div style="margin-bottom: 10px;">Frontend Developer</div>
+                <div style="margin-bottom: 10px; font-size: 0.9em;">I love creating beautiful websites...</div>
+                <div style="font-size: 0.85em;">alexey@example.com</div>
+                <div style="margin-top: 8px;">HTML CSS JavaScript Git</div>
+            </div>
+        </div>
+    </div>
+
+    <p data-lang="ru">Уже лучше! Фон появился, текст по центру. Но карточки пока нет — давайте добавим её в следующем разделе.</p>
+    <p data-lang="en">Already better! The background appeared, text is centered. But there's no card yet — let's add it in the next section.</p>
+
+    <div class="fun-fact">
+        <p data-lang="ru"><code>vh</code> — это единица измерения <strong>viewport height</strong> (высота видимой части окна). <code>100vh</code> = 100% высоты экрана. Есть ещё <code>vw</code> (viewport width), <code>vmin</code> и <code>vmax</code>. Мы подробнее изучим эти единицы в модуле «Адаптивный дизайн». А пока запомните: <code>100vh</code> — это «весь экран по высоте».</p>
+        <p data-lang="en"><code>vh</code> is a measurement unit for <strong>viewport height</strong>. <code>100vh</code> = 100% of the screen height. There's also <code>vw</code> (viewport width), <code>vmin</code>, and <code>vmax</code>. We'll study these units in detail in the "Responsive Design" module. For now, remember: <code>100vh</code> means "the entire screen height".</p>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Забыть <code>box-sizing: border-box</code>.</strong> Без этого свойства, если вы зададите <code>width: 400px</code> и <code>padding: 40px</code>, реальная ширина будет 480px (400 + 40 + 40). Элементы будут «вылезать» за пределы экрана, и вы потратите час, пытаясь понять почему. Всегда добавляйте <code>box-sizing: border-box</code> в сброс!</p>
+        <p data-lang="en"><strong>Forgetting <code>box-sizing: border-box</code>.</strong> Without this property, if you set <code>width: 400px</code> and <code>padding: 40px</code>, the actual width will be 480px (400 + 40 + 40). Elements will "overflow" beyond the screen, and you'll spend an hour trying to figure out why. Always add <code>box-sizing: border-box</code> to your reset!</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Попробуй изменить цвет фона! Замени <code>#667eea</code> на любой цвет: <code>#e74c3c</code> (красный), <code>#2ecc71</code> (зелёный), <code>#f39c12</code> (оранжевый). Или попробуй градиент: <code>background: linear-gradient(135deg, #667eea, #764ba2);</code> — это создаст плавный переход между двумя цветами!</p>
+        <p data-lang="en">Try changing the background color! Replace <code>#667eea</code> with any color: <code>#e74c3c</code> (red), <code>#2ecc71</code> (green), <code>#f39c12</code> (orange). Or try a gradient: <code>background: linear-gradient(135deg, #667eea, #764ba2);</code> — this creates a smooth transition between two colors!</p>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru">В реальных проектах вместо простого <code>* { margin: 0; padding: 0; }</code> используют более продуманные решения: <strong>normalize.css</strong> (приводит стили к единообразию, не убирая полезные) или <strong>CSS Reset от Meyer</strong> (сбрасывает абсолютно всё). Наш простой сброс отлично работает для учебных проектов.</p>
+        <p data-lang="en">In real projects, instead of a simple <code>* { margin: 0; padding: 0; }</code>, more thoughtful solutions are used: <strong>normalize.css</strong> (normalizes styles without removing useful ones) or <strong>Meyer's CSS Reset</strong> (resets absolutely everything). Our simple reset works great for learning projects.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 6. CSS: КАРТОЧКА ==================== -->
+    <h2 id="css-card" data-lang="ru">6. CSS: стилизация карточки</h2>
+    <h2 id="css-card-en" data-lang="en">6. CSS: card styling</h2>
+
+    <p data-lang="ru">Теперь добавим стили для самой карточки — белый контейнер со скруглёнными углами и тенью:</p>
+    <p data-lang="en">Now let's add styles for the card itself — a white container with rounded corners and shadow:</p>
+
+<pre><code>.card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}</code></pre>
+
+    <p data-lang="ru">Разбираем:</p>
+    <p data-lang="en">Breaking it down:</p>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что делает</th></tr>
+        <tr><td><code>background: #ffffff</code></td><td>Белый фон карточки</td></tr>
+        <tr><td><code>border-radius: 20px</code></td><td>Сильно скруглённые углы</td></tr>
+        <tr><td><code>padding: 40px</code></td><td>Внутренние отступы со всех сторон</td></tr>
+        <tr><td><code>max-width: 400px</code></td><td>Максимальная ширина (не растянется на весь экран)</td></tr>
+        <tr><td><code>width: 100%</code></td><td>На узких экранах займёт всю ширину</td></tr>
+        <tr><td><code>text-align: center</code></td><td>Весь текст по центру</td></tr>
+        <tr><td><code>box-shadow: 0 20px 60px rgba(0,0,0,0.3)</code></td><td>Глубокая тень — карточка «парит» над фоном</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it does</th></tr>
+        <tr><td><code>background: #ffffff</code></td><td>White card background</td></tr>
+        <tr><td><code>border-radius: 20px</code></td><td>Strongly rounded corners</td></tr>
+        <tr><td><code>padding: 40px</code></td><td>Inner spacing on all sides</td></tr>
+        <tr><td><code>max-width: 400px</code></td><td>Maximum width (won't stretch across full screen)</td></tr>
+        <tr><td><code>width: 100%</code></td><td>On narrow screens, it will take full width</td></tr>
+        <tr><td><code>text-align: center</code></td><td>All text centered</td></tr>
+        <tr><td><code>box-shadow: 0 20px 60px rgba(0,0,0,0.3)</code></td><td>Deep shadow — the card "floats" above the background</td></tr>
+    </table>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">Без тени (box-shadow: none)</div>
+            <div class="label" data-lang="en">Without shadow (box-shadow: none)</div>
+            <div style="background: #fff; border-radius: 16px; padding: 20px; text-align: center; max-width: 200px; margin: 0 auto; border: 1px solid #e0e0e0;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: #ddd; margin: 0 auto 8px;"></div>
+                <div style="font-weight: bold; font-size: 0.9rem;">Alexey P.</div>
+                <div style="font-size: 0.75rem; color: #667eea;">Frontend Dev</div>
+            </div>
+            <p data-lang="ru" style="font-size: 0.85rem; margin-top: 8px;">Карточка «плоская», сливается с фоном</p>
+            <p data-lang="en" style="font-size: 0.85rem; margin-top: 8px;">Card is "flat", blends with background</p>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">С тенью (box-shadow)</div>
+            <div class="label" data-lang="en">With shadow (box-shadow)</div>
+            <div style="background: #fff; border-radius: 16px; padding: 20px; text-align: center; max-width: 200px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: #ddd; margin: 0 auto 8px;"></div>
+                <div style="font-weight: bold; font-size: 0.9rem;">Alexey P.</div>
+                <div style="font-size: 0.75rem; color: #667eea;">Frontend Dev</div>
+            </div>
+            <p data-lang="ru" style="font-size: 0.85rem; margin-top: 8px;">Карточка «парит» — выглядит объёмно!</p>
+            <p data-lang="en" style="font-size: 0.85rem; margin-top: 8px;">Card "floats" — looks dimensional!</p>
+        </div>
+    </div>
+
+    <div class="result-box">
+        <p data-lang="ru" style="margin-bottom: 8px;"><em>Карточка с тенью на фиолетовом фоне:</em></p>
+        <p data-lang="en" style="margin-bottom: 8px;"><em>Card with shadow on purple background:</em></p>
+        <div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 30px; border-radius: 8px; display: flex; justify-content: center; align-items: center;">
+            <div style="background: #fff; border-radius: 20px; padding: 30px; max-width: 280px; width: 100%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); font-family: 'Segoe UI', sans-serif;">
+                <div style="width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.3rem;">A</div>
+                <div style="font-size: 1.3rem; font-weight: bold; color: #1a1a2e;">Alexey Petrov</div>
+                <div style="color: #667eea; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px;">Frontend Developer</div>
+                <div style="color: #666; font-size: 0.8rem; line-height: 1.5; margin-bottom: 12px;">I love creating beautiful and user-friendly websites.</div>
+                <div style="font-size: 0.75rem; color: #333; margin-bottom: 6px;">alexey@example.com</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Поэкспериментируй с <code>box-shadow</code>! Попробуй разные значения и посмотри, как меняется тень:</p>
+        <ul data-lang="ru">
+            <li><code>box-shadow: 0 4px 15px rgba(0,0,0,0.1);</code> — мягкая, нежная тень</li>
+            <li><code>box-shadow: 0 20px 60px rgba(0,0,0,0.3);</code> — глубокая тень (наш вариант)</li>
+            <li><code>box-shadow: 0 30px 80px rgba(0,0,0,0.4);</code> — карточка «парит» высоко</li>
+            <li><code>box-shadow: 5px 5px 0px #333;</code> — ретро-тень (жёсткая, без размытия)</li>
+        </ul>
+        <p data-lang="en">Experiment with <code>box-shadow</code>! Try different values and see how the shadow changes:</p>
+        <ul data-lang="en">
+            <li><code>box-shadow: 0 4px 15px rgba(0,0,0,0.1);</code> — soft, gentle shadow</li>
+            <li><code>box-shadow: 0 20px 60px rgba(0,0,0,0.3);</code> — deep shadow (our choice)</li>
+            <li><code>box-shadow: 0 30px 80px rgba(0,0,0,0.4);</code> — card "floats" high</li>
+            <li><code>box-shadow: 5px 5px 0px #333;</code> — retro shadow (hard, no blur)</li>
+        </ul>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru">Как подобрать правильный <code>border-radius</code>? Для маленьких элементов (кнопки, бейджи) — <strong>4-8px</strong>. Для средних (карточки) — <strong>12-24px</strong>. Для полного круга — <strong>50%</strong>. Слишком большой border-radius на большом элементе выглядит странно, слишком маленький — незаметен. Наши 20px для карточки — золотая середина.</p>
+        <p data-lang="en">How to choose the right <code>border-radius</code>? For small elements (buttons, badges) — <strong>4-8px</strong>. For medium ones (cards) — <strong>12-24px</strong>. For a full circle — <strong>50%</strong>. Too large a border-radius on a big element looks strange, too small — unnoticeable. Our 20px for the card is the golden middle.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 7. CSS: АВАТАР ==================== -->
+    <h2 id="css-avatar" data-lang="ru">7. CSS: аватар</h2>
+    <h2 id="css-avatar-en" data-lang="en">7. CSS: avatar</h2>
+
+    <p data-lang="ru">Один из самых эффектных приёмов — превращение квадратной фотографии в круг:</p>
+    <p data-lang="en">One of the most striking techniques — turning a square photo into a circle:</p>
+
+<pre><code>.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #667eea;
+    margin-bottom: 16px;
+    object-fit: cover;
+}</code></pre>
+
+    <p data-lang="ru">Ключевой момент: <code>border-radius: 50%</code> превращает квадратное изображение в <strong>круг</strong>!</p>
+    <p data-lang="en">Key point: <code>border-radius: 50%</code> turns a square image into a <strong>circle</strong>!</p>
+
+    <div class="result-box">
+        <p data-lang="ru" style="margin-bottom: 10px;"><em>Сравнение: квадрат vs круг</em></p>
+        <p data-lang="en" style="margin-bottom: 10px;"><em>Comparison: square vs circle</em></p>
+        <div style="display: flex; gap: 40px; justify-content: center; align-items: center; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #667eea, #764ba2); border: 4px solid #667eea; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 2rem;">A</div>
+                <div style="margin-top: 8px; font-size: 0.85rem; color: #666;">border-radius: 0</div>
+            </div>
+            <div style="font-size: 2rem; color: #ccc;">&#x2192;</div>
+            <div style="text-align: center;">
+                <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #667eea, #764ba2); border: 4px solid #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 2rem;">A</div>
+                <div style="margin-top: 8px; font-size: 0.85rem; color: #666;">border-radius: 50%</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">border-radius: 0</div>
+            <div class="label" data-lang="en">border-radius: 0</div>
+            <div style="text-align: center;">
+                <div style="width: 80px; height: 80px; background: #ddd; border: 3px solid #667eea; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: #999;">IMG</div>
+            </div>
+            <p data-lang="ru" style="text-align: center; margin-top: 8px;">Обычный квадрат</p>
+            <p data-lang="en" style="text-align: center; margin-top: 8px;">Regular square</p>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">border-radius: 50%</div>
+            <div class="label" data-lang="en">border-radius: 50%</div>
+            <div style="text-align: center;">
+                <div style="width: 80px; height: 80px; background: #ddd; border: 3px solid #667eea; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; color: #999;">IMG</div>
+            </div>
+            <p data-lang="ru" style="text-align: center; margin-top: 8px;">Идеальный круг!</p>
+            <p data-lang="en" style="text-align: center; margin-top: 8px;">Perfect circle!</p>
+        </div>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Разные width и height дают овал!</strong> Если вы напишете <code>width: 120px; height: 80px; border-radius: 50%;</code> — вы получите не круг, а <strong>овал</strong> (эллипс). Для идеального круга width и height должны быть <strong>одинаковыми</strong>.</p>
+        <p data-lang="en"><strong>Different width and height create an oval!</strong> If you write <code>width: 120px; height: 80px; border-radius: 50%;</code> — you get not a circle, but an <strong>oval</strong> (ellipse). For a perfect circle, width and height must be <strong>equal</strong>.</p>
+        <div style="display: flex; gap: 30px; justify-content: center; align-items: center; margin-top: 12px; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <div style="width: 100px; height: 60px; background: #fca5a5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #7f1d1d;">120 x 80</div>
+                <div style="font-size: 0.8rem; color: #dc2626; margin-top: 4px;">Oval :(</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="width: 80px; height: 80px; background: #86efac; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #14532d;">120 x 120</div>
+                <div style="font-size: 0.8rem; color: #16a34a; margin-top: 4px;">Circle!</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fun-fact">
+        <p data-lang="ru">Свойство <code>object-fit: cover</code> — настоящий спаситель для аватаров! Если фотография не квадратная (например, 800x600), то без <code>object-fit: cover</code> она сожмётся и исказится. С <code>object-fit: cover</code> изображение масштабируется так, чтобы заполнить весь контейнер, обрезая лишнее. Результат — идеальный круглый аватар из любой фотографии!</p>
+        <p data-lang="en">The <code>object-fit: cover</code> property is a lifesaver for avatars! If a photo isn't square (e.g., 800x600), without <code>object-fit: cover</code> it would be squished and distorted. With <code>object-fit: cover</code>, the image scales to fill the entire container, cropping the excess. Result — a perfect circular avatar from any photo!</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Попробуй изменить размер аватара! Замени <code>width: 120px</code> и <code>height: 120px</code> на <code>150px</code> или <code>80px</code>. Не забудь менять оба значения одинаково, чтобы аватар остался круглым!</p>
+        <p data-lang="en">Try changing the avatar size! Replace <code>width: 120px</code> and <code>height: 120px</code> with <code>150px</code> or <code>80px</code>. Don't forget to change both values equally to keep the avatar circular!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 8. CSS: ИНФОРМАЦИЯ ==================== -->
+    <h2 id="css-info" data-lang="ru">8. CSS: информация и ссылки</h2>
+    <h2 id="css-info-en" data-lang="en">8. CSS: information and links</h2>
+
+    <h3 data-lang="ru">Имя и профессия</h3>
+    <h3 data-lang="en">Name and profession</h3>
+
+<pre><code>h1 {
+    font-size: 1.8rem;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+}
+
+.role {
+    color: #667eea;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}</code></pre>
+
+    <h3 data-lang="ru">Описание</h3>
+    <h3 data-lang="en">Description</h3>
+
+<pre><code>.bio {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}</code></pre>
+
+    <h3 data-lang="ru">Контакты</h3>
+    <h3 data-lang="en">Contacts</h3>
+
+<pre><code>.contacts {
+    margin-bottom: 20px;
+}
+
+.contacts a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 0.9rem;
+}
+
+.contacts a:hover {
+    color: #667eea;
+}</code></pre>
+
+    <div class="result-box">
+        <p data-lang="ru" style="margin-bottom: 8px;"><em>Стилизованное имя, профессия, описание и контакты:</em></p>
+        <p data-lang="en" style="margin-bottom: 8px;"><em>Styled name, profession, description, and contacts:</em></p>
+        <div style="background: #fff; border-radius: 16px; padding: 25px; max-width: 320px; margin: 0 auto; text-align: center; font-family: 'Segoe UI', sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+            <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); border: 3px solid #667eea; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">A</div>
+            <div style="font-size: 1.5rem; font-weight: bold; color: #1a1a2e; margin-bottom: 2px;">Alexey Petrov</div>
+            <div style="color: #667eea; font-size: 0.9rem; font-weight: 600; margin-bottom: 12px;">Frontend Developer</div>
+            <div style="color: #666; font-size: 0.85rem; line-height: 1.6; margin-bottom: 16px; padding: 0 8px;">I love creating beautiful websites. Studying at college, dreaming of working in IT.</div>
+            <div style="margin-bottom: 12px;">
+                <div style="color: #333; font-size: 0.8rem; padding: 4px 0;">alexey@example.com</div>
+                <div style="color: #333; font-size: 0.8rem; padding: 4px 0;">+7 (900) 123-45-67</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Селектор <code>.contacts a</code></strong> — выбирает только ссылки <code>&lt;a&gt;</code> внутри элемента с классом <code>.contacts</code>. Это <strong>вложенный селектор</strong> (мы изучили его в занятии 6). Благодаря ему стили для ссылок контактов не повлияют на ссылки соцсетей.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Selector <code>.contacts a</code></strong> — selects only <code>&lt;a&gt;</code> links inside an element with class <code>.contacts</code>. This is a <strong>descendant selector</strong> (we learned it in lesson 6). Thanks to it, contact link styles won't affect social media links.
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Попробуй поменять цвета и шрифты! Замени <code>color: #1a1a2e</code> у заголовка на <code>#2c3e50</code>. Замени <code>color: #667eea</code> у профессии на <code>#e74c3c</code> (красный) или <code>#27ae60</code> (зелёный). Поиграйте с <code>font-size</code> — сделайте имя больше или меньше.</p>
+        <p data-lang="en">Try changing colors and fonts! Replace <code>color: #1a1a2e</code> on the heading with <code>#2c3e50</code>. Replace <code>color: #667eea</code> on the profession with <code>#e74c3c</code> (red) or <code>#27ae60</code> (green). Play with <code>font-size</code> — make the name bigger or smaller.</p>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru">Используйте единицу <code>rem</code> вместо <code>px</code> для размеров шрифтов. <code>1rem</code> = базовый размер шрифта (обычно 16px). Преимущество: если пользователь увеличит базовый шрифт в настройках браузера (например, для слабого зрения), все ваши размеры масштабируются автоматически. <code>px</code> — фиксированный и не масштабируется.</p>
+        <p data-lang="en">Use the <code>rem</code> unit instead of <code>px</code> for font sizes. <code>1rem</code> = the base font size (usually 16px). The advantage: if a user increases the base font in browser settings (e.g., for poor eyesight), all your sizes scale automatically. <code>px</code> is fixed and doesn't scale.</p>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Hover-эффекты</strong> (<code>:hover</code>) — обязательный элемент хорошего UX (user experience). Когда пользователь наводит курсор на ссылку и она меняет цвет — это <strong>обратная связь</strong>. Пользователь понимает: «Это кликабельно!» Без hover-эффектов сайт кажется «мёртвым». В нашем проекте мы добавили <code>.contacts a:hover { color: #667eea; }</code> — при наведении ссылка становится фиолетовой.</p>
+        <p data-lang="en"><strong>Hover effects</strong> (<code>:hover</code>) are an essential element of good UX (user experience). When a user hovers over a link and it changes color — that's <strong>feedback</strong>. The user understands: "This is clickable!" Without hover effects, a site feels "dead." In our project we added <code>.contacts a:hover { color: #667eea; }</code> — on hover, the link turns purple.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 9. CSS: НАВЫКИ ==================== -->
+    <h2 id="css-skills" data-lang="ru">9. CSS: навыки</h2>
+    <h2 id="css-skills-en" data-lang="en">9. CSS: skills</h2>
+
+<pre><code>.skills {
+    margin-bottom: 20px;
+}
+
+.skill {
+    display: inline-block;
+    background: #eff3ff;
+    color: #667eea;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 4px;
+}</code></pre>
+
+    <p data-lang="ru">Каждый навык — это <strong>бейдж</strong> (badge). Обрати внимание на <code>display: inline-block</code> — элементы <code>&lt;span&gt;</code> уже строчные, но <code>inline-block</code> позволяет задать им <code>padding</code> и <code>margin</code> (вспомни занятие 7!).</p>
+    <p data-lang="en">Each skill is a <strong>badge</strong>. Note the <code>display: inline-block</code> — <code>&lt;span&gt;</code> elements are already inline, but <code>inline-block</code> allows us to set <code>padding</code> and <code>margin</code> (remember lesson 7!).</p>
+
+    <div class="result-box">
+        <p data-lang="ru" style="margin-bottom: 10px;"><em>Навыки в виде бейджей:</em></p>
+        <p data-lang="en" style="margin-bottom: 10px;"><em>Skills as badges:</em></p>
+        <div style="text-align: center; padding: 10px;">
+            <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin: 4px; font-family: 'Segoe UI', sans-serif;">HTML</span>
+            <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin: 4px; font-family: 'Segoe UI', sans-serif;">CSS</span>
+            <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin: 4px; font-family: 'Segoe UI', sans-serif;">JavaScript</span>
+            <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin: 4px; font-family: 'Segoe UI', sans-serif;">Git</span>
+            <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin: 4px; font-family: 'Segoe UI', sans-serif;">VS Code</span>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <p data-lang="ru"><strong>Хештеги и ярлыки.</strong> Бейджи навыков — это как <strong>хештеги</strong> в Instagram или <strong>ярлыки</strong> на одежде. Они кратко сообщают ключевую информацию. Увидел бейдж «HTML» — сразу понятно, что человек знает HTML. Не нужно читать целый абзац текста!</p>
+        <p data-lang="en"><strong>Hashtags and labels.</strong> Skill badges are like <strong>hashtags</strong> on Instagram or <strong>labels</strong> on clothes. They briefly communicate key information. You see a "HTML" badge — and immediately understand the person knows HTML. No need to read an entire paragraph of text!</p>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Забыть <code>display: inline-block</code> у <code>&lt;span&gt;</code>.</strong> Элемент <code>&lt;span&gt;</code> по умолчанию — строчный (inline). Строчные элементы <strong>игнорируют</strong> вертикальный padding и margin. Если вы не добавите <code>display: inline-block</code>, бейджи будут выглядеть как обычный текст — без красивых отступов и скруглений. Вот сравнение:</p>
+        <p data-lang="en"><strong>Forgetting <code>display: inline-block</code> on <code>&lt;span&gt;</code>.</strong> A <code>&lt;span&gt;</code> element is inline by default. Inline elements <strong>ignore</strong> vertical padding and margin. If you don't add <code>display: inline-block</code>, badges will look like plain text — without nice padding and rounding. Here's a comparison:</p>
+        <div style="display: flex; gap: 20px; margin-top: 10px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 200px;">
+                <div style="font-size: 0.8rem; color: #ea580c; font-weight: 600; margin-bottom: 6px;" data-lang="ru">Без inline-block:</div>
+                <div style="font-size: 0.8rem; color: #ea580c; font-weight: 600; margin-bottom: 6px;" data-lang="en">Without inline-block:</div>
+                <div style="font-size: 0.85rem; color: #667eea;">HTML CSS JavaScript Git</div>
+            </div>
+            <div style="flex: 1; min-width: 200px;">
+                <div style="font-size: 0.8rem; color: #16a34a; font-weight: 600; margin-bottom: 6px;" data-lang="ru">С inline-block:</div>
+                <div style="font-size: 0.8rem; color: #16a34a; font-weight: 600; margin-bottom: 6px;" data-lang="en">With inline-block:</div>
+                <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 4px 10px; border-radius: 14px; font-size: 0.8rem; font-weight: 600; margin: 2px;">HTML</span>
+                <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 4px 10px; border-radius: 14px; font-size: 0.8rem; font-weight: 600; margin: 2px;">CSS</span>
+                <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 4px 10px; border-radius: 14px; font-size: 0.8rem; font-weight: 600; margin: 2px;">JS</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz">
+        <p data-lang="ru"><strong>Вопрос:</strong> Чем <code>inline-block</code> отличается от <code>inline</code>?</p>
+        <p data-lang="ru"><em>Ответ:</em> <code>inline</code> — элементы стоят в строку, но НЕ поддерживают width, height и вертикальные margin/padding. <code>inline-block</code> — элементы тоже стоят в строку, НО поддерживают все свойства: width, height, margin, padding. Это «лучшее из двух миров»!</p>
+        <p data-lang="en"><strong>Question:</strong> How is <code>inline-block</code> different from <code>inline</code>?</p>
+        <p data-lang="en"><em>Answer:</em> <code>inline</code> — elements sit in a line, but DON'T support width, height, and vertical margin/padding. <code>inline-block</code> — elements also sit in a line, BUT support all properties: width, height, margin, padding. It's "the best of both worlds"!</p>
+    </div>
+
+    <h3 data-lang="ru">Кнопки соцсетей</h3>
+    <h3 data-lang="en">Social media buttons</h3>
+
+<pre><code>.socials {
+    margin-top: 10px;
+}
+
+.social-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #667eea;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 4px;
+}
+
+.social-link:hover {
+    background: #5a6fd6;
+}</code></pre>
+
+    <div class="result-box">
+        <p data-lang="ru" style="margin-bottom: 10px;"><em>Кнопки соцсетей:</em></p>
+        <p data-lang="en" style="margin-bottom: 10px;"><em>Social media buttons:</em></p>
+        <div style="text-align: center; padding: 10px;">
+            <a style="display: inline-block; padding: 10px 20px; background: #667eea; color: #fff; text-decoration: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; margin: 4px; font-family: 'Segoe UI', sans-serif; cursor: pointer;">GitHub</a>
+            <a style="display: inline-block; padding: 10px 20px; background: #667eea; color: #fff; text-decoration: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; margin: 4px; font-family: 'Segoe UI', sans-serif; cursor: pointer;">Telegram</a>
+            <a style="display: inline-block; padding: 10px 20px; background: #667eea; color: #fff; text-decoration: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; margin: 4px; font-family: 'Segoe UI', sans-serif; cursor: pointer;">LinkedIn</a>
+        </div>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Попробуй сделать кнопки разных цветов! Добавь классы <code>.github</code>, <code>.telegram</code>, <code>.linkedin</code> и задай каждому свой <code>background</code>. Например:</p>
+        <p data-lang="en">Try making buttons of different colors! Add classes <code>.github</code>, <code>.telegram</code>, <code>.linkedin</code> and give each its own <code>background</code>. For example:</p>
+    </div>
+
+<pre><code>.github { background: #333; }
+.telegram { background: #0088cc; }
+.linkedin { background: #0077b5; }</code></pre>
+
+    <div class="result-box">
+        <p data-lang="ru" style="margin-bottom: 10px;"><em>Кнопки с разными цветами:</em></p>
+        <p data-lang="en" style="margin-bottom: 10px;"><em>Buttons with different colors:</em></p>
+        <div style="text-align: center; padding: 10px;">
+            <a style="display: inline-block; padding: 10px 20px; background: #333; color: #fff; text-decoration: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; margin: 4px; font-family: 'Segoe UI', sans-serif; cursor: pointer;">GitHub</a>
+            <a style="display: inline-block; padding: 10px 20px; background: #0088cc; color: #fff; text-decoration: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; margin: 4px; font-family: 'Segoe UI', sans-serif; cursor: pointer;">Telegram</a>
+            <a style="display: inline-block; padding: 10px 20px; background: #0077b5; color: #fff; text-decoration: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; margin: 4px; font-family: 'Segoe UI', sans-serif; cursor: pointer;">LinkedIn</a>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 10. ПОЛНЫЙ КОД ==================== -->
+    <h2 id="full-code" data-lang="ru">10. Полный код примера</h2>
+    <h2 id="full-code-en" data-lang="en">10. Full example code</h2>
+
+    <p data-lang="ru">Вот весь CSS-файл целиком (<code>style.css</code>):</p>
+    <p data-lang="en">Here's the complete CSS file (<code>style.css</code>):</p>
+
+<pre><code>/* ========== СБРОС / RESET ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========== СТРАНИЦА / PAGE ========== */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ========== КАРТОЧКА / CARD ========== */
+.card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== АВАТАР / AVATAR ========== */
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #667eea;
+    margin-bottom: 16px;
+    object-fit: cover;
+}
+
+/* ========== ИМЯ / NAME ========== */
+h1 {
+    font-size: 1.8rem;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+}
+
+/* ========== ПРОФЕССИЯ / ROLE ========== */
+.role {
+    color: #667eea;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+/* ========== ОПИСАНИЕ / BIO ========== */
+.bio {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+/* ========== КОНТАКТЫ / CONTACTS ========== */
+.contacts {
+    margin-bottom: 20px;
+}
+
+.contacts a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 0.9rem;
+}
+
+.contacts a:hover {
+    color: #667eea;
+}
+
+/* ========== НАВЫКИ / SKILLS ========== */
+.skills {
+    margin-bottom: 20px;
+}
+
+.skill {
+    display: inline-block;
+    background: #eff3ff;
+    color: #667eea;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 4px;
+}
+
+/* ========== СОЦСЕТИ / SOCIAL LINKS ========== */
+.socials {
+    margin-top: 10px;
+}
+
+.social-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #667eea;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 4px;
+}
+
+.social-link:hover {
+    background: #5a6fd6;
+}</code></pre>
+
+    <div class="result-box">
+        <p data-lang="ru" style="margin-bottom: 10px;"><em>Готовая визитка целиком:</em></p>
+        <p data-lang="en" style="margin-bottom: 10px;"><em>The finished business card:</em></p>
+        <div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 30px; border-radius: 12px; display: flex; justify-content: center; align-items: center;">
+            <div style="background: #fff; border-radius: 20px; padding: 30px; max-width: 320px; width: 100%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); font-family: 'Segoe UI', sans-serif;">
+                <div style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); border: 4px solid #667eea; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.8rem;">A</div>
+                <div style="font-size: 1.5rem; font-weight: bold; color: #1a1a2e; margin-bottom: 2px;">Alexey Petrov</div>
+                <div style="color: #667eea; font-size: 0.9rem; font-weight: 600; margin-bottom: 12px;">Frontend Developer</div>
+                <div style="color: #666; font-size: 0.8rem; line-height: 1.6; margin-bottom: 16px; padding: 0 8px;">I love creating beautiful and user-friendly websites. Studying at college, dreaming of working in IT.</div>
+                <div style="margin-bottom: 14px;">
+                    <div style="color: #333; font-size: 0.8rem; padding: 3px 0;">alexey@example.com</div>
+                    <div style="color: #333; font-size: 0.8rem; padding: 3px 0;">+7 (900) 123-45-67</div>
+                </div>
+                <div style="margin-bottom: 14px;">
+                    <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 4px 10px; border-radius: 14px; font-size: 0.75rem; font-weight: 600; margin: 2px;">HTML</span>
+                    <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 4px 10px; border-radius: 14px; font-size: 0.75rem; font-weight: 600; margin: 2px;">CSS</span>
+                    <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 4px 10px; border-radius: 14px; font-size: 0.75rem; font-weight: 600; margin: 2px;">JavaScript</span>
+                    <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 4px 10px; border-radius: 14px; font-size: 0.75rem; font-weight: 600; margin: 2px;">Git</span>
+                    <span style="display: inline-block; background: #eff3ff; color: #667eea; padding: 4px 10px; border-radius: 14px; font-size: 0.75rem; font-weight: 600; margin: 2px;">VS Code</span>
+                </div>
+                <div>
+                    <a style="display: inline-block; padding: 8px 16px; background: #667eea; color: #fff; text-decoration: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600; margin: 3px; cursor: pointer;">GitHub</a>
+                    <a style="display: inline-block; padding: 8px 16px; background: #667eea; color: #fff; text-decoration: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600; margin: 3px; cursor: pointer;">Telegram</a>
+                    <a style="display: inline-block; padding: 8px 16px; background: #667eea; color: #fff; text-decoration: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600; margin: 3px; cursor: pointer;">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary">
+        <p data-lang="ru"><strong>Все CSS-свойства, которые мы использовали в проекте:</strong></p>
+        <ul data-lang="ru">
+            <li><strong>Сброс:</strong> <code>margin</code>, <code>padding</code>, <code>box-sizing: border-box</code></li>
+            <li><strong>Фон:</strong> <code>background</code>, <code>linear-gradient()</code></li>
+            <li><strong>Размеры:</strong> <code>width</code>, <code>height</code>, <code>max-width</code>, <code>min-height</code></li>
+            <li><strong>Отступы:</strong> <code>padding</code>, <code>margin</code></li>
+            <li><strong>Скругления:</strong> <code>border-radius</code> (px и 50%)</li>
+            <li><strong>Тени:</strong> <code>box-shadow</code></li>
+            <li><strong>Текст:</strong> <code>font-family</code>, <code>font-size</code>, <code>font-weight</code>, <code>color</code>, <code>text-align</code>, <code>line-height</code></li>
+            <li><strong>Ссылки:</strong> <code>text-decoration: none</code>, <code>:hover</code></li>
+            <li><strong>Display:</strong> <code>flex</code>, <code>inline-block</code>, <code>block</code></li>
+            <li><strong>Центрирование:</strong> <code>justify-content: center</code>, <code>align-items: center</code></li>
+            <li><strong>Изображения:</strong> <code>object-fit: cover</code>, <code>border</code></li>
+            <li><strong>Единицы:</strong> px, rem, %, vh</li>
+        </ul>
+        <p data-lang="en"><strong>All CSS properties we used in the project:</strong></p>
+        <ul data-lang="en">
+            <li><strong>Reset:</strong> <code>margin</code>, <code>padding</code>, <code>box-sizing: border-box</code></li>
+            <li><strong>Background:</strong> <code>background</code>, <code>linear-gradient()</code></li>
+            <li><strong>Dimensions:</strong> <code>width</code>, <code>height</code>, <code>max-width</code>, <code>min-height</code></li>
+            <li><strong>Spacing:</strong> <code>padding</code>, <code>margin</code></li>
+            <li><strong>Rounding:</strong> <code>border-radius</code> (px and 50%)</li>
+            <li><strong>Shadows:</strong> <code>box-shadow</code></li>
+            <li><strong>Text:</strong> <code>font-family</code>, <code>font-size</code>, <code>font-weight</code>, <code>color</code>, <code>text-align</code>, <code>line-height</code></li>
+            <li><strong>Links:</strong> <code>text-decoration: none</code>, <code>:hover</code></li>
+            <li><strong>Display:</strong> <code>flex</code>, <code>inline-block</code>, <code>block</code></li>
+            <li><strong>Centering:</strong> <code>justify-content: center</code>, <code>align-items: center</code></li>
+            <li><strong>Images:</strong> <code>object-fit: cover</code>, <code>border</code></li>
+            <li><strong>Units:</strong> px, rem, %, vh</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 11. ВАРИАНТЫ ==================== -->
+    <h2 id="variations" data-lang="ru">11. Варианты оформления</h2>
+    <h2 id="variations-en" data-lang="en">11. Design variations</h2>
+
+    <p data-lang="ru">Одну и ту же визитку можно оформить совершенно по-разному, изменив всего несколько CSS-свойств! Это магия CSS — структура (HTML) остаётся той же, а внешний вид полностью меняется.</p>
+    <p data-lang="en">The same business card can look completely different by changing just a few CSS properties! This is the magic of CSS — the structure (HTML) stays the same, but the appearance changes completely.</p>
+
+    <div class="fun-fact">
+        <p data-lang="ru">Именно поэтому CSS существует отдельно от HTML! Разделение <strong>структуры</strong> (HTML) и <strong>оформления</strong> (CSS) — один из главных принципов веб-разработки. Один HTML-файл + разные CSS-файлы = совершенно разные дизайны. Существует даже сайт <a href="http://www.csszengarden.com/" style="color: inherit;">CSS Zen Garden</a>, где один и тот же HTML выглядит по-разному с разными CSS!</p>
+        <p data-lang="en">This is exactly why CSS exists separately from HTML! Separating <strong>structure</strong> (HTML) and <strong>presentation</strong> (CSS) is one of the main principles of web development. One HTML file + different CSS files = completely different designs. There's even a website called <a href="http://www.csszengarden.com/" style="color: inherit;">CSS Zen Garden</a>, where the same HTML looks different with different CSS!</p>
+    </div>
+
+    <h3 data-lang="ru">Вариант 1: Тёмная тема</h3>
+    <h3 data-lang="en">Variation 1: Dark theme</h3>
+
+<pre><code>body { background: #1a1a2e; }
+.card { background: #16213e; }
+h1 { color: #fff; }
+.role { color: #e94560; }
+.bio { color: #a0a0b0; }
+.skill { background: #0f3460; color: #e94560; }
+.social-link { background: #e94560; }</code></pre>
+
+    <div class="result-box">
+        <p data-lang="ru" style="margin-bottom: 10px;"><em>Тёмная тема:</em></p>
+        <p data-lang="en" style="margin-bottom: 10px;"><em>Dark theme:</em></p>
+        <div style="background: #1a1a2e; padding: 30px; border-radius: 12px; display: flex; justify-content: center; align-items: center;">
+            <div style="background: #16213e; border-radius: 20px; padding: 25px; max-width: 280px; width: 100%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.5); font-family: 'Segoe UI', sans-serif;">
+                <div style="width: 70px; height: 70px; border-radius: 50%; background: #0f3460; border: 3px solid #e94560; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; color: #e94560; font-weight: bold; font-size: 1.3rem;">A</div>
+                <div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 2px;">Alexey Petrov</div>
+                <div style="color: #e94560; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px;">Frontend Developer</div>
+                <div style="color: #a0a0b0; font-size: 0.75rem; line-height: 1.5; margin-bottom: 12px;">I love creating beautiful websites.</div>
+                <div style="margin-bottom: 10px;">
+                    <span style="display: inline-block; background: #0f3460; color: #e94560; padding: 4px 10px; border-radius: 14px; font-size: 0.7rem; font-weight: 600; margin: 2px;">HTML</span>
+                    <span style="display: inline-block; background: #0f3460; color: #e94560; padding: 4px 10px; border-radius: 14px; font-size: 0.7rem; font-weight: 600; margin: 2px;">CSS</span>
+                    <span style="display: inline-block; background: #0f3460; color: #e94560; padding: 4px 10px; border-radius: 14px; font-size: 0.7rem; font-weight: 600; margin: 2px;">JS</span>
+                </div>
+                <div>
+                    <a style="display: inline-block; padding: 6px 14px; background: #e94560; color: #fff; text-decoration: none; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin: 2px; cursor: pointer;">GitHub</a>
+                    <a style="display: inline-block; padding: 6px 14px; background: #e94560; color: #fff; text-decoration: none; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin: 2px; cursor: pointer;">Telegram</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 data-lang="ru">Вариант 2: Минималистичный</h3>
+    <h3 data-lang="en">Variation 2: Minimalist</h3>
+
+<pre><code>body { background: #f5f5f5; }
+.card {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    box-shadow: none;
+    border-radius: 8px;
+}
+.avatar { border: 2px solid #e0e0e0; }
+.social-link {
+    background: #fff;
+    color: #333;
+    border: 2px solid #333;
+}</code></pre>
+
+    <div class="result-box">
+        <p data-lang="ru" style="margin-bottom: 10px;"><em>Минималистичная тема:</em></p>
+        <p data-lang="en" style="margin-bottom: 10px;"><em>Minimalist theme:</em></p>
+        <div style="background: #f5f5f5; padding: 30px; border-radius: 12px; display: flex; justify-content: center; align-items: center;">
+            <div style="background: #fff; border-radius: 8px; padding: 25px; max-width: 280px; width: 100%; text-align: center; border: 2px solid #e0e0e0; font-family: 'Segoe UI', sans-serif;">
+                <div style="width: 70px; height: 70px; border-radius: 50%; background: #f5f5f5; border: 2px solid #e0e0e0; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; color: #999; font-weight: bold; font-size: 1.3rem;">A</div>
+                <div style="font-size: 1.3rem; font-weight: bold; color: #1a1a2e; margin-bottom: 2px;">Alexey Petrov</div>
+                <div style="color: #667eea; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px;">Frontend Developer</div>
+                <div style="color: #666; font-size: 0.75rem; line-height: 1.5; margin-bottom: 12px;">I love creating beautiful websites.</div>
+                <div style="margin-bottom: 10px;">
+                    <span style="display: inline-block; background: #f5f5f5; color: #333; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin: 2px;">HTML</span>
+                    <span style="display: inline-block; background: #f5f5f5; color: #333; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin: 2px;">CSS</span>
+                    <span style="display: inline-block; background: #f5f5f5; color: #333; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin: 2px;">JS</span>
+                </div>
+                <div>
+                    <a style="display: inline-block; padding: 6px 14px; background: #fff; color: #333; text-decoration: none; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin: 2px; border: 2px solid #333; cursor: pointer;">GitHub</a>
+                    <a style="display: inline-block; padding: 6px 14px; background: #fff; color: #333; text-decoration: none; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin: 2px; border: 2px solid #333; cursor: pointer;">Telegram</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 data-lang="ru">Вариант 3: Градиентный фон карточки</h3>
+    <h3 data-lang="en">Variation 3: Gradient card background</h3>
+
+<pre><code>body { background: #0f0c29; }
+.card {
+    background: linear-gradient(135deg, #302b63, #24243e);
+    color: #fff;
+}
+h1 { color: #fff; }
+.role { color: #ffd700; }
+.bio { color: #ccc; }
+.contacts a { color: #ddd; }
+.skill { background: rgba(255,255,255,0.1); color: #ffd700; }
+.social-link { background: #ffd700; color: #000; }</code></pre>
+
+    <div class="result-box">
+        <p data-lang="ru" style="margin-bottom: 10px;"><em>Градиентная тема:</em></p>
+        <p data-lang="en" style="margin-bottom: 10px;"><em>Gradient theme:</em></p>
+        <div style="background: #0f0c29; padding: 30px; border-radius: 12px; display: flex; justify-content: center; align-items: center;">
+            <div style="background: linear-gradient(135deg, #302b63, #24243e); border-radius: 20px; padding: 25px; max-width: 280px; width: 100%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.5); font-family: 'Segoe UI', sans-serif;">
+                <div style="width: 70px; height: 70px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 3px solid #ffd700; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; color: #ffd700; font-weight: bold; font-size: 1.3rem;">A</div>
+                <div style="font-size: 1.3rem; font-weight: bold; color: #fff; margin-bottom: 2px;">Alexey Petrov</div>
+                <div style="color: #ffd700; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px;">Frontend Developer</div>
+                <div style="color: #ccc; font-size: 0.75rem; line-height: 1.5; margin-bottom: 12px;">I love creating beautiful websites.</div>
+                <div style="margin-bottom: 10px;">
+                    <span style="display: inline-block; background: rgba(255,255,255,0.1); color: #ffd700; padding: 4px 10px; border-radius: 14px; font-size: 0.7rem; font-weight: 600; margin: 2px;">HTML</span>
+                    <span style="display: inline-block; background: rgba(255,255,255,0.1); color: #ffd700; padding: 4px 10px; border-radius: 14px; font-size: 0.7rem; font-weight: 600; margin: 2px;">CSS</span>
+                    <span style="display: inline-block; background: rgba(255,255,255,0.1); color: #ffd700; padding: 4px 10px; border-radius: 14px; font-size: 0.7rem; font-weight: 600; margin: 2px;">JS</span>
+                </div>
+                <div>
+                    <a style="display: inline-block; padding: 6px 14px; background: #ffd700; color: #000; text-decoration: none; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin: 2px; cursor: pointer;">GitHub</a>
+                    <a style="display: inline-block; padding: 6px 14px; background: #ffd700; color: #000; text-decoration: none; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin: 2px; cursor: pointer;">Telegram</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Выбери один из трёх вариантов (тёмный, минималистичный, градиентный) и попробуй применить его к своей визитке! Или придумай свою уникальную цветовую схему. Помни: нужно изменить всего несколько строк CSS, а HTML остаётся прежним!</p>
+        <p data-lang="en">Choose one of the three variations (dark, minimalist, gradient) and try applying it to your card! Or come up with your own unique color scheme. Remember: you only need to change a few lines of CSS, while HTML stays the same!</p>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru">Не знаете, какие цвета сочетаются? Используйте бесплатные инструменты: <strong>coolors.co</strong> (генерирует палитры), <strong>colorhunt.co</strong> (готовые палитры от дизайнеров), или <strong>Adobe Color</strong> (подбирает гармоничные цвета по цветовому кругу).</p>
+        <p data-lang="en">Don't know which colors go together? Use free tools: <strong>coolors.co</strong> (generates palettes), <strong>colorhunt.co</strong> (ready-made palettes from designers), or <strong>Adobe Color</strong> (picks harmonious colors using the color wheel).</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 12. ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">12. Создание своей визитки</h2>
+    <h2 id="practice-en" data-lang="en">12. Creating your own card</h2>
+
+    <p data-lang="ru">Теперь ваша очередь! Вы изучили все составляющие — пора создать свою личную визитку. Это будет <strong>ваш первый настоящий проект</strong>!</p>
+    <p data-lang="en">Now it's your turn! You've learned all the components — time to create your own personal business card. This will be <strong>your first real project</strong>!</p>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Рекомендуемый порядок работы:</strong></p>
+        <ol data-lang="ru">
+            <li>Нарисуйте макет на бумаге (2 минуты)</li>
+            <li>Создайте <code>index.html</code> — напишите весь HTML, откройте в браузере, проверьте</li>
+            <li>Создайте <code>style.css</code> — начните с CSS-сброса и фона</li>
+            <li>Стилизуйте карточку (border-radius, box-shadow, padding)</li>
+            <li>Стилизуйте аватар (круг, рамка)</li>
+            <li>Стилизуйте текст (шрифты, цвета, размеры)</li>
+            <li>Стилизуйте бейджи и кнопки (inline-block, фон, скругления)</li>
+            <li>Добавьте hover-эффекты</li>
+            <li>Поиграйте с цветами и подберите свою тему!</li>
+        </ol>
+        <p data-lang="en"><strong>Recommended workflow:</strong></p>
+        <ol data-lang="en">
+            <li>Draw a mockup on paper (2 minutes)</li>
+            <li>Create <code>index.html</code> — write all HTML, open in browser, check</li>
+            <li>Create <code>style.css</code> — start with CSS reset and background</li>
+            <li>Style the card (border-radius, box-shadow, padding)</li>
+            <li>Style the avatar (circle, border)</li>
+            <li>Style the text (fonts, colors, sizes)</li>
+            <li>Style badges and buttons (inline-block, background, rounding)</li>
+            <li>Add hover effects</li>
+            <li>Play with colors and pick your own theme!</li>
+        </ol>
+    </div>
+
+    <h3 data-lang="ru">Что нужно сделать:</h3>
+    <h3 data-lang="en">What you need to do:</h3>
+
+    <ol data-lang="ru">
+        <li>Создайте папку <code>my-card</code></li>
+        <li>Создайте <code>index.html</code> и <code>style.css</code></li>
+        <li>Замените данные на свои (имя, описание, навыки)</li>
+        <li>Выберите цветовую схему (или придумайте свою)</li>
+        <li>Добавьте свои соцсети (реальные или вымышленные)</li>
+        <li>Используйте свою фотографию (или аватар с <code>pravatar.cc</code>)</li>
+    </ol>
+    <ol data-lang="en">
+        <li>Create a folder <code>my-card</code></li>
+        <li>Create <code>index.html</code> and <code>style.css</code></li>
+        <li>Replace data with your own (name, description, skills)</li>
+        <li>Choose a color scheme (or create your own)</li>
+        <li>Add your social media (real or fictional)</li>
+        <li>Use your own photo (or an avatar from <code>pravatar.cc</code>)</li>
+    </ol>
+
+    <div class="important" data-lang="ru">
+        <strong>Требования к проекту:</strong>
+        <ul>
+            <li>HTML — в отдельном файле <code>index.html</code></li>
+            <li>CSS — в отдельном файле <code>style.css</code> (External!)</li>
+            <li>Минимум 5 CSS-свойств из пройденных занятий</li>
+            <li>Круглый аватар (<code>border-radius: 50%</code>)</li>
+            <li>Тень у карточки (<code>box-shadow</code>)</li>
+            <li>Hover-эффект хотя бы на одном элементе</li>
+        </ul>
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Project requirements:</strong>
+        <ul>
+            <li>HTML — in a separate file <code>index.html</code></li>
+            <li>CSS — in a separate file <code>style.css</code> (External!)</li>
+            <li>At least 5 CSS properties from previous lessons</li>
+            <li>Round avatar (<code>border-radius: 50%</code>)</li>
+            <li>Card shadow (<code>box-shadow</code>)</li>
+            <li>Hover effect on at least one element</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p data-lang="ru"><strong>Итоговые вопросы по занятию:</strong></p>
+        <ol data-lang="ru">
+            <li>Какое CSS-свойство делает изображение круглым?</li>
+            <li>Зачем нужен <code>box-sizing: border-box</code>?</li>
+            <li>Чем <code>inline-block</code> отличается от <code>inline</code>?</li>
+            <li>Что делает <code>box-shadow</code>?</li>
+            <li>Как центрировать карточку на странице? (назовите 3 свойства)</li>
+            <li>Зачем нужно свойство <code>object-fit: cover</code> для аватара?</li>
+            <li>Почему важно планировать перед кодированием?</li>
+        </ol>
+        <p data-lang="en"><strong>Final questions for the lesson:</strong></p>
+        <ol data-lang="en">
+            <li>Which CSS property makes an image round?</li>
+            <li>Why do we need <code>box-sizing: border-box</code>?</li>
+            <li>How is <code>inline-block</code> different from <code>inline</code>?</li>
+            <li>What does <code>box-shadow</code> do?</li>
+            <li>How to center a card on the page? (name 3 properties)</li>
+            <li>Why do we need <code>object-fit: cover</code> for the avatar?</li>
+            <li>Why is it important to plan before coding?</li>
+        </ol>
+    </div>
+
+    <div class="summary">
+        <p data-lang="ru"><strong>Что мы сделали в этом занятии:</strong></p>
+        <ul data-lang="ru">
+            <li>Научились <strong>планировать</strong> страницу перед кодированием (wireframe)</li>
+            <li>Создали <strong>HTML-структуру</strong> визитки (img, h1, p, div, span, a)</li>
+            <li>Применили <strong>CSS-сброс</strong> и базовые стили (background, flex, centering)</li>
+            <li>Стилизовали <strong>карточку</strong> (border-radius, box-shadow, padding)</li>
+            <li>Сделали <strong>круглый аватар</strong> (border-radius: 50%, object-fit: cover)</li>
+            <li>Создали <strong>бейджи навыков</strong> (inline-block) и <strong>кнопки</strong></li>
+            <li>Добавили <strong>hover-эффекты</strong> для интерактивности</li>
+            <li>Изучили <strong>3 варианта</strong> оформления (тёмная, минималистичная, градиентная)</li>
+        </ul>
+        <p data-lang="ru">Поздравляем! Это был ваш первый полноценный мини-проект. Вы применили знания из всех предыдущих занятий!</p>
+        <p data-lang="en"><strong>What we did in this lesson:</strong></p>
+        <ul data-lang="en">
+            <li>Learned to <strong>plan</strong> a page before coding (wireframe)</li>
+            <li>Created the <strong>HTML structure</strong> of a business card (img, h1, p, div, span, a)</li>
+            <li>Applied <strong>CSS reset</strong> and base styles (background, flex, centering)</li>
+            <li>Styled the <strong>card</strong> (border-radius, box-shadow, padding)</li>
+            <li>Made a <strong>round avatar</strong> (border-radius: 50%, object-fit: cover)</li>
+            <li>Created skill <strong>badges</strong> (inline-block) and <strong>buttons</strong></li>
+            <li>Added <strong>hover effects</strong> for interactivity</li>
+            <li>Explored <strong>3 design variations</strong> (dark, minimalist, gradient)</li>
+        </ul>
+        <p data-lang="en">Congratulations! This was your first complete mini-project. You applied knowledge from all previous lessons!</p>
+    </div>
+
+</div>
+
+</body>
+</html>

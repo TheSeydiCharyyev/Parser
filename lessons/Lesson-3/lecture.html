@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 3 — Структура HTML-документа</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #1e293b; background: #f8fafc; padding: 40px 20px; }
+        .container { max-width: 860px; margin: 0 auto; }
+        h1 { font-size: 2.2rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 12px; margin-bottom: 8px; }
+        h2 { font-size: 1.5rem; color: #7e22ce; margin: 48px 0 16px; padding: 10px 16px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 8px 8px 0; }
+        h3 { font-size: 1.25rem; color: #1e3a5f; margin: 28px 0 12px; }
+        .subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 24px; }
+        p { margin: 10px 0; }
+        .highlight { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .important { background: #fef2f2; border-left: 4px solid #ef4444; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy { background: #fff7ed; border-left: 4px solid #f97316; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy::before { content: '🎨 Аналогия'; display: block; font-weight: 700; color: #c2410c; margin-bottom: 6px; }
+        .fun-fact { background: #fdf4ff; border-left: 4px solid #a855f7; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .fun-fact::before { content: '💡 Интересный факт'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 6px; }
+        .try-it { background: #ecfdf5; border: 2px solid #6ee7b7; padding: 16px 20px; margin: 16px 0; border-radius: 10px; }
+        .try-it::before { content: '🔧 Попробуй сам'; display: block; font-weight: 700; color: #059669; margin-bottom: 6px; }
+        .result-box { background: #fff; border: 2px solid #e2e8f0; border-radius: 10px; padding: 20px; margin: 16px 0; }
+        .result-box::before { content: '👁️ Результат в браузере:'; display: block; font-weight: 700; color: #475569; margin-bottom: 10px; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; margin: 14px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        .diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 20px; border-radius: 10px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.5; margin: 16px 0; overflow-x: auto; font-size: 0.88rem; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { padding: 10px 14px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 10px 0 10px 24px; }
+        li { margin: 5px 0; }
+        strong { color: #0f172a; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 40px 0; }
+        .summary { background: #faf5ff; border: 2px solid #d8b4fe; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .summary::before { content: '📋 Итоги раздела'; display: block; font-weight: 700; color: #7e22ce; font-size: 1.1rem; margin-bottom: 10px; }
+        .quiz { background: #fef2f2; border: 2px solid #fca5a5; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .quiz::before { content: '✅ Проверь себя'; display: block; font-weight: 700; color: #dc2626; font-size: 1.1rem; margin-bottom: 10px; }
+        .toc { background: #f1f5f9; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+        .toc-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: #0f172a; }
+        .toc ol { margin: 0 0 0 20px; }
+        .toc li { margin: 6px 0; }
+        .toc a { color: #7e22ce; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+        .compare > div { padding: 16px; border-radius: 8px; }
+        .compare .wrong { background: #fef2f2; border: 2px solid #fca5a5; }
+        .compare .right { background: #f0fdf4; border: 2px solid #86efac; }
+        .compare .label { font-weight: 700; margin-bottom: 8px; }
+        .mistake { background: #fff8f1; border: 2px solid #fdba74; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .mistake::before { content: '🚫 Частая ошибка новичков'; display: block; font-weight: 700; color: #ea580c; font-size: 1.05rem; margin-bottom: 10px; }
+        .pro-tip { background: #f0f9ff; border: 2px solid #7dd3fc; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .pro-tip::before { content: '🏆 Совет профессионала'; display: block; font-weight: 700; color: #0284c7; font-size: 1.05rem; margin-bottom: 10px; }
+        .why { background: #fefce8; border-left: 4px solid #eab308; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .why::before { content: '🤔 Зачем это нужно?'; display: block; font-weight: 700; color: #a16207; margin-bottom: 6px; }
+        .real-world { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .real-world::before { content: '🌍 В реальных проектах'; display: block; font-weight: 700; color: #0f766e; margin-bottom: 6px; }
+        @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 3: Структура HTML-документа</span><span style="color:#cbd5e1;">|</span><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128104;&#8205;&#127979; Лекция</span><a href="student.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127891; Конспект</a><a href="tasks.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128203; Задания</a></div>
+<div class="container">
+
+    <h1>Занятие 3: Структура HTML-документа</h1>
+    <p class="subtitle">Теги, атрибуты, вложенность и основные текстовые элементы</p>
+
+    <div class="why">
+        <p>Сегодня мы изучим <strong>фундамент</strong> любой веб-страницы — структуру HTML-документа. Без понимания этой структуры невозможно создать ни один сайт: браузер не будет знать, что показывать, в какой кодировке читать текст, и как отображать содержимое.</p>
+        <p>Представьте, что вы строите дом. Сегодня мы изучаем <strong>каркас</strong> — фундамент, стены и крышу. Без каркаса дом не стоит, каким бы красивым ни был декор.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Создавать HTML-документы с правильной структурой с нуля</li>
+            <li>Понимать разницу между <code>&lt;head&gt;</code> и <code>&lt;body&gt;</code></li>
+            <li>Использовать заголовки, параграфы и форматирование текста</li>
+            <li>Правильно вкладывать теги друг в друга</li>
+            <li>Понимать, зачем нужны атрибуты и как их использовать</li>
+        </ul>
+    </div>
+
+    <div class="toc">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#what-is-tag">Что такое теги</a></li>
+            <li><a href="#attributes">Атрибуты тегов</a></li>
+            <li><a href="#nesting">Вложенность — принцип матрёшки</a></li>
+            <li><a href="#document-structure">Структура HTML-документа</a></li>
+            <li><a href="#head">Тег &lt;head&gt; — голова документа</a></li>
+            <li><a href="#body">Тег &lt;body&gt; — тело документа</a></li>
+            <li><a href="#headings">Заголовки h1–h6</a></li>
+            <li><a href="#paragraphs">Параграфы, переносы, линии</a></li>
+            <li><a href="#formatting">Форматирование текста</a></li>
+            <li><a href="#comments">Комментарии в HTML</a></li>
+            <li><a href="#practice">Практика: страница-статья</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== ТЕГИ ===== -->
+    <h2 id="what-is-tag">1. Что такое теги</h2>
+
+    <p>Весь HTML-код состоит из <strong>тегов</strong>. Тег — это команда для браузера, заключённая в угловые скобки <code>&lt; &gt;</code>. Теги говорят браузеру: «Это заголовок», «Это параграф», «Это картинка».</p>
+
+    <h3>Парные теги (открывающий + закрывающий)</h3>
+
+    <p>Большинство тегов работают в парах — у них есть <strong>открывающий</strong> и <strong>закрывающий</strong> тег. Закрывающий тег отличается косой чертой <code>/</code>:</p>
+
+<pre><code>&lt;h1&gt;Это заголовок&lt;/h1&gt;
+ ↑                  ↑
+открывающий     закрывающий
+   тег              тег
+
+&lt;p&gt;Это параграф текста.&lt;/p&gt;
+
+&lt;strong&gt;Это жирный текст&lt;/strong&gt;</code></pre>
+
+    <p>Всё, что находится <strong>между</strong> открывающим и закрывающим тегом — это <strong>содержимое</strong> (контент) тега.</p>
+
+    <h3>Одиночные теги (самозакрывающиеся)</h3>
+
+    <p>Некоторые теги не имеют содержимого и не нуждаются в закрывающем теге:</p>
+
+<pre><code>&lt;br&gt;          — перенос строки
+&lt;hr&gt;          — горизонтальная линия
+&lt;img src=""&gt;  — изображение
+&lt;input&gt;       — поле ввода
+&lt;meta&gt;        — метаданные
+&lt;link&gt;        — подключение файлов</code></pre>
+
+    <div class="analogy">
+        <p><strong>Теги как контейнеры:</strong> Парный тег — это коробка с крышкой. Вы кладёте внутрь содержимое (текст, картинки, другие теги), а потом закрываете крышку. Одиночный тег — это наклейка: она просто есть, ничего внутрь класть не нужно.</p>
+    </div>
+
+    <div class="important">
+        <strong>Забыли закрыть тег?</strong> Браузер попытается угадать, где он заканчивается. Иногда угадает правильно, иногда — нет, и страница сломается. Всегда закрывайте парные теги! VS Code помогает — при вводе открывающего тега автоматически добавляет закрывающий.
+    </div>
+
+    <div class="mistake">
+        <p>Начинающие часто забывают закрывающий тег или путают парные и одиночные теги:</p>
+<pre><code>&lt;!-- ❌ Забыли закрыть --&gt;
+&lt;p&gt;Текст без закрывающего тега
+
+&lt;!-- ❌ Добавили закрывающий к одиночному --&gt;
+&lt;br&gt;&lt;/br&gt;
+&lt;img src="photo.jpg"&gt;&lt;/img&gt;
+
+&lt;!-- ✅ Правильно --&gt;
+&lt;p&gt;Текст с закрывающим тегом&lt;/p&gt;
+&lt;br&gt;
+&lt;img src="photo.jpg"&gt;</code></pre>
+    </div>
+
+    <hr>
+
+    <!-- ===== АТРИБУТЫ ===== -->
+    <h2 id="attributes">2. Атрибуты тегов</h2>
+
+    <p><strong>Атрибуты</strong> — это дополнительная информация о теге. Они пишутся внутри открывающего тега и имеют формат <code>имя="значение"</code>:</p>
+
+<pre><code>&lt;a href="https://google.com" target="_blank"&gt;Ссылка&lt;/a&gt;
+    ↑                          ↑
+ атрибут 1                 атрибут 2
+
+&lt;img src="photo.jpg" alt="Моё фото" width="300"&gt;
+      ↑                ↑              ↑
+  атрибут 1        атрибут 2      атрибут 3</code></pre>
+
+    <h3>Правила атрибутов</h3>
+
+    <ul>
+        <li>Атрибуты пишутся <strong>только</strong> в открывающем теге (не в закрывающем!)</li>
+        <li>Между именем атрибута и <code>=</code> не ставится пробел</li>
+        <li>Значение берётся в <strong>двойные кавычки</strong> <code>"значение"</code></li>
+        <li>Между атрибутами ставится пробел</li>
+        <li>Порядок атрибутов не важен</li>
+    </ul>
+
+    <h3>Часто используемые атрибуты</h3>
+
+    <table>
+        <tr><th>Атрибут</th><th>Для какого тега</th><th>Что делает</th></tr>
+        <tr><td><code>href</code></td><td><code>&lt;a&gt;</code></td><td>Адрес ссылки</td></tr>
+        <tr><td><code>src</code></td><td><code>&lt;img&gt;</code>, <code>&lt;video&gt;</code></td><td>Путь к файлу (картинка, видео)</td></tr>
+        <tr><td><code>alt</code></td><td><code>&lt;img&gt;</code></td><td>Описание картинки (если не загрузилась)</td></tr>
+        <tr><td><code>width</code>, <code>height</code></td><td><code>&lt;img&gt;</code></td><td>Размеры в пикселях</td></tr>
+        <tr><td><code>target</code></td><td><code>&lt;a&gt;</code></td><td><code>_blank</code> — открыть в новой вкладке</td></tr>
+        <tr><td><code>class</code></td><td>Любой тег</td><td>Класс для CSS-стилей</td></tr>
+        <tr><td><code>id</code></td><td>Любой тег</td><td>Уникальный идентификатор</td></tr>
+        <tr><td><code>lang</code></td><td><code>&lt;html&gt;</code></td><td>Язык документа (<code>ru</code>, <code>en</code>)</td></tr>
+        <tr><td><code>charset</code></td><td><code>&lt;meta&gt;</code></td><td>Кодировка (<code>UTF-8</code>)</td></tr>
+    </table>
+
+    <div class="analogy">
+        <p><strong>Атрибуты как свойства предмета:</strong> Тег <code>&lt;img&gt;</code> — это команда «покажи картинку». Но какую? Откуда? Какого размера? На эти вопросы отвечают атрибуты: <code>src</code> (откуда), <code>alt</code> (описание), <code>width</code> (ширина).</p>
+    </div>
+
+    <div class="real-world">
+        <p>В реальных проектах атрибут <code>alt</code> у изображений — обязательный. Он нужен не только для случаев, когда картинка не загрузилась, но и для <strong>SEO</strong> (поисковики читают alt) и <strong>доступности</strong> (экранные дикторы озвучивают alt для незрячих пользователей).</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ВЛОЖЕННОСТЬ ===== -->
+    <h2 id="nesting">3. Вложенность — принцип матрёшки</h2>
+
+    <p>Теги можно <strong>вкладывать</strong> друг в друга — как матрёшки. Внутренний тег называется <strong>дочерним</strong> (child), а внешний — <strong>родительским</strong> (parent).</p>
+
+<pre><code>&lt;div&gt;                    ← родитель
+    &lt;h1&gt;Заголовок&lt;/h1&gt;   ← дочерний элемент
+    &lt;p&gt;Текст&lt;/p&gt;         ← дочерний элемент
+&lt;/div&gt;</code></pre>
+
+    <p>Вложенность может быть многоуровневой:</p>
+
+<pre><code>&lt;body&gt;                        ← уровень 1
+    &lt;div&gt;                     ← уровень 2
+        &lt;ul&gt;                  ← уровень 3
+            &lt;li&gt;              ← уровень 4
+                &lt;a href=""&gt;   ← уровень 5
+                    Ссылка
+                &lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+
+    <h3>Правила вложенности</h3>
+
+    <div class="compare">
+        <div class="right">
+            <div class="label">✅ Правильно (теги закрываются в обратном порядке):</div>
+<pre><code>&lt;p&gt;&lt;strong&gt;Жирный текст&lt;/strong&gt;&lt;/p&gt;</code></pre>
+            <p>Открыли p → открыли strong → закрыли strong → закрыли p</p>
+        </div>
+        <div class="wrong">
+            <div class="label">❌ Неправильно (теги пересекаются):</div>
+<pre><code>&lt;p&gt;&lt;strong&gt;Жирный текст&lt;/p&gt;&lt;/strong&gt;</code></pre>
+            <p>strong закрывается после p — это ошибка!</p>
+        </div>
+    </div>
+
+    <div class="important">
+        <strong>Золотое правило:</strong> Теги закрываются в <strong>обратном порядке</strong> открытия. Что открылось последним — закрывается первым. Как стопка тарелок: последняя поставленная тарелка снимается первой.
+    </div>
+
+    <h3>Отступы (индентация)</h3>
+
+    <p>Для читаемости кода каждый уровень вложенности сдвигается на <strong>один Tab</strong> (или 4 пробела) вправо. Это не обязательно для браузера (он проигнорирует отступы), но обязательно для <strong>вас</strong> — чтобы код было легко читать.</p>
+
+    <div class="compare">
+        <div class="right">
+            <div class="label">✅ С отступами (читаемо):</div>
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;Пункт 1&lt;/li&gt;
+    &lt;li&gt;Пункт 2&lt;/li&gt;
+    &lt;li&gt;Пункт 3&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+        <div class="wrong">
+            <div class="label">❌ Без отступов (каша):</div>
+<pre><code>&lt;ul&gt;
+&lt;li&gt;Пункт 1&lt;/li&gt;
+&lt;li&gt;Пункт 2&lt;/li&gt;
+&lt;li&gt;Пункт 3&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+    </div>
+
+    <div class="pro-tip">
+        <p>Если ваш код выглядит неаккуратно — нажмите <code>Shift + Alt + F</code> в VS Code (Prettier). Он автоматически выровняет все отступы. Это экономит часы работы.</p>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li><strong>Теги</strong>: парные (<code>&lt;p&gt;...&lt;/p&gt;</code>) и одиночные (<code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code>, <code>&lt;img&gt;</code>)</li>
+            <li><strong>Атрибуты</strong>: <code>имя="значение"</code> в открывающем теге (<code>href</code>, <code>src</code>, <code>alt</code>, <code>class</code>, <code>id</code>)</li>
+            <li><strong>Вложенность</strong>: теги внутри тегов, закрываются в обратном порядке (матрёшка)</li>
+            <li><strong>Отступы</strong>: каждый уровень = 1 Tab (для читаемости, не для браузера)</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p>Мысленно ответьте:</p>
+        <ol>
+            <li>Тег <code>&lt;img&gt;</code> — парный или одиночный? <em>(Одиночный — нет содержимого)</em></li>
+            <li>Где пишутся атрибуты — в открывающем или закрывающем теге? <em>(Только в открывающем)</em></li>
+            <li>Правильна ли вложенность: <code>&lt;p&gt;&lt;em&gt;текст&lt;/p&gt;&lt;/em&gt;</code>? <em>(Нет! em закрывается после p — теги пересекаются)</em></li>
+            <li>Зачем нужен атрибут <code>alt</code> у <code>&lt;img&gt;</code>? <em>(Описание для незрячих, SEO и если картинка не загрузилась)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== СТРУКТУРА ДОКУМЕНТА ===== -->
+    <h2 id="document-structure">4. Структура HTML-документа</h2>
+
+    <p>Каждая HTML-страница имеет строгую базовую структуру. Давайте разберём её подробно:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Название страницы&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Видимое содержимое страницы --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="diagram">
+HTML-документ
+│
+├── &lt;!DOCTYPE html&gt;         ← Объявление типа документа
+│
+└── &lt;html lang="ru"&gt;        ← Корневой элемент
+    │
+    ├── &lt;head&gt;               ← Голова (метаинформация)
+    │   ├── &lt;meta charset&gt;   ← Кодировка
+    │   ├── &lt;meta viewport&gt;  ← Для мобильных
+    │   ├── &lt;title&gt;          ← Заголовок вкладки
+    │   ├── &lt;link&gt;           ← Подключение CSS
+    │   └── &lt;style&gt;          ← Внутренние стили
+    │
+    └── &lt;body&gt;               ← Тело (видимое содержимое)
+        ├── &lt;h1&gt;             ← Заголовок
+        ├── &lt;p&gt;              ← Параграф
+        ├── &lt;img&gt;            ← Картинка
+        └── ...              ← и другие элементы</div>
+
+    <h3>Разбор каждого элемента</h3>
+
+    <table>
+        <tr><th>Элемент</th><th>Что делает</th><th>Обязателен?</th></tr>
+        <tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>Объявляет, что это HTML5-документ. Ставится самой первой строкой.</td><td>Да</td></tr>
+        <tr><td><code>&lt;html lang="ru"&gt;</code></td><td>Корневой тег. Всё остальное — внутри него. Атрибут <code>lang</code> указывает язык.</td><td>Да</td></tr>
+        <tr><td><code>&lt;head&gt;</code></td><td>Информация ДЛЯ БРАУЗЕРА. Не отображается на странице.</td><td>Да</td></tr>
+        <tr><td><code>&lt;meta charset="UTF-8"&gt;</code></td><td>Кодировка. UTF-8 поддерживает русский, эмодзи и другие символы.</td><td>Да</td></tr>
+        <tr><td><code>&lt;meta name="viewport"...&gt;</code></td><td>Правильное отображение на мобильных устройствах.</td><td>Да</td></tr>
+        <tr><td><code>&lt;title&gt;</code></td><td>Текст на вкладке браузера. Также используется в результатах поиска Google.</td><td>Да</td></tr>
+        <tr><td><code>&lt;body&gt;</code></td><td>ВСЁ видимое содержимое страницы.</td><td>Да</td></tr>
+    </table>
+
+    <div class="analogy">
+        <p><strong>Письмо:</strong> <code>&lt;head&gt;</code> — это конверт (адрес, марка — информация для почты, не для читателя). <code>&lt;body&gt;</code> — это само письмо (содержимое для читателя).</p>
+    </div>
+
+    <div class="why">
+        <p>Зачем нужен <code>&lt;!DOCTYPE html&gt;</code>? Без него браузер переходит в «режим совместимости» (quirks mode) — он начинает угадывать, как отображать страницу, и может показать её неправильно. Одна строка <code>&lt;!DOCTYPE html&gt;</code> гарантирует, что браузер будет использовать современные стандарты.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== HEAD ===== -->
+    <h2 id="head">5. Тег &lt;head&gt; — голова документа</h2>
+
+    <p>В <code>&lt;head&gt;</code> содержится информация, которую <strong>пользователь не видит</strong> на странице, но которая важна для браузера и поисковых систем.</p>
+
+    <h3>Что можно размещать в &lt;head&gt;</h3>
+
+<pre><code>&lt;head&gt;
+    &lt;!-- Кодировка (ОБЯЗАТЕЛЬНО первой!) --&gt;
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;!-- Адаптивность для мобильных --&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;!-- Заголовок вкладки --&gt;
+    &lt;title&gt;Мой сайт — Главная&lt;/title&gt;
+
+    &lt;!-- Описание для поисковиков (Google) --&gt;
+    &lt;meta name="description" content="Это мой первый сайт о кулинарии"&gt;
+
+    &lt;!-- Фавиконка (иконка на вкладке) --&gt;
+    &lt;link rel="icon" href="favicon.ico"&gt;
+
+    &lt;!-- Подключение CSS-файла --&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+
+    &lt;!-- Внутренние стили --&gt;
+    &lt;style&gt;
+        body { font-family: Arial; }
+    &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+
+    <div class="fun-fact">
+        Тег <code>&lt;title&gt;</code> очень важен для SEO (поисковой оптимизации). Именно этот текст показывается в результатах Google как заголовок вашей страницы. Хороший title может увеличить количество кликов в разы.
+    </div>
+
+    <div class="mistake">
+        <p>Новички часто забывают <code>&lt;meta charset="UTF-8"&gt;</code> — и русские буквы превращаются в кракозябры. Или забывают <code>&lt;meta viewport&gt;</code> — и сайт выглядит крошечным на телефоне. Всегда добавляйте оба мета-тега!</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== BODY ===== -->
+    <h2 id="body">6. Тег &lt;body&gt; — тело документа</h2>
+
+    <p>В <code>&lt;body&gt;</code> находится <strong>всё</strong>, что пользователь видит на странице: тексты, картинки, ссылки, кнопки, формы, видео — абсолютно всё визуальное содержимое.</p>
+
+    <p>Основные категории элементов, которые можно размещать в <code>&lt;body&gt;</code>:</p>
+
+    <table>
+        <tr><th>Категория</th><th>Примеры тегов</th><th>Что делают</th></tr>
+        <tr><td><strong>Текст</strong></td><td><code>h1-h6</code>, <code>p</code>, <code>span</code></td><td>Заголовки, параграфы, текст</td></tr>
+        <tr><td><strong>Ссылки</strong></td><td><code>a</code></td><td>Переходы на другие страницы</td></tr>
+        <tr><td><strong>Изображения</strong></td><td><code>img</code></td><td>Фото, иконки, графика</td></tr>
+        <tr><td><strong>Списки</strong></td><td><code>ul</code>, <code>ol</code>, <code>li</code></td><td>Маркированные и нумерованные списки</td></tr>
+        <tr><td><strong>Контейнеры</strong></td><td><code>div</code>, <code>section</code>, <code>article</code></td><td>Группировка элементов</td></tr>
+        <tr><td><strong>Таблицы</strong></td><td><code>table</code>, <code>tr</code>, <code>td</code></td><td>Табличные данные</td></tr>
+        <tr><td><strong>Формы</strong></td><td><code>form</code>, <code>input</code>, <code>button</code></td><td>Ввод данных пользователем</td></tr>
+        <tr><td><strong>Мультимедиа</strong></td><td><code>video</code>, <code>audio</code></td><td>Видео и аудио</td></tr>
+    </table>
+
+    <p>Все эти элементы мы подробно изучим в следующих занятиях. Сегодня сфокусируемся на текстовых элементах.</p>
+
+    <div class="real-world">
+        <p>На реальных сайтах в <code>&lt;body&gt;</code> обычно всё структурировано семантическими тегами: <code>&lt;header&gt;</code> (шапка), <code>&lt;nav&gt;</code> (навигация), <code>&lt;main&gt;</code> (основной контент), <code>&lt;footer&gt;</code> (подвал). Это не просто красиво — это помогает поисковикам и экранным дикторам понимать структуру страницы.</p>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li><code>&lt;!DOCTYPE html&gt;</code> — обязательная первая строка (без неё браузер «угадывает»)</li>
+            <li><code>&lt;html lang="ru"&gt;</code> — корень документа</li>
+            <li><code>&lt;head&gt;</code> — невидимое: meta, title, link, style</li>
+            <li><code>&lt;body&gt;</code> — видимое: весь контент страницы</li>
+            <li><code>&lt;meta charset="UTF-8"&gt;</code> — обязательно (иначе кракозябры)</li>
+            <li><code>&lt;title&gt;</code> — текст на вкладке + SEO</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p>Мысленно ответьте:</p>
+        <ol>
+            <li>Что будет если забыть <code>&lt;!DOCTYPE html&gt;</code>? <em>(Браузер перейдёт в quirks mode и может показать страницу неправильно)</em></li>
+            <li>Где виден текст из <code>&lt;title&gt;</code>? <em>(На вкладке браузера и в результатах Google)</em></li>
+            <li>Что случится без <code>&lt;meta charset="UTF-8"&gt;</code>? <em>(Русские буквы могут стать кракозябрами)</em></li>
+            <li>В каком теге находится видимое содержимое? <em>(<code>&lt;body&gt;</code>)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== ЗАГОЛОВКИ ===== -->
+    <h2 id="headings">7. Заголовки h1–h6</h2>
+
+    <p>В HTML есть 6 уровней заголовков — от <code>&lt;h1&gt;</code> (самый важный) до <code>&lt;h6&gt;</code> (самый мелкий):</p>
+
+<pre><code>&lt;h1&gt;Заголовок 1 уровня — самый главный&lt;/h1&gt;
+&lt;h2&gt;Заголовок 2 уровня — раздел&lt;/h2&gt;
+&lt;h3&gt;Заголовок 3 уровня — подраздел&lt;/h3&gt;
+&lt;h4&gt;Заголовок 4 уровня&lt;/h4&gt;
+&lt;h5&gt;Заголовок 5 уровня&lt;/h5&gt;
+&lt;h6&gt;Заголовок 6 уровня — самый мелкий&lt;/h6&gt;</code></pre>
+
+    <div class="result-box">
+        <h1 style="font-size: 2em; margin: 5px 0;">Заголовок 1 уровня</h1>
+        <h2 style="font-size: 1.5em; margin: 5px 0; background: none; border: none; padding: 0; color: #1e293b;">Заголовок 2 уровня</h2>
+        <h3 style="font-size: 1.17em; margin: 5px 0; color: #1e293b;">Заголовок 3 уровня</h3>
+        <h4 style="font-size: 1em; margin: 5px 0;">Заголовок 4 уровня</h4>
+        <h5 style="font-size: 0.83em; margin: 5px 0;">Заголовок 5 уровня</h5>
+        <h6 style="font-size: 0.67em; margin: 5px 0;">Заголовок 6 уровня</h6>
+    </div>
+
+    <h3>Правила использования заголовков</h3>
+
+    <ul>
+        <li><code>&lt;h1&gt;</code> — <strong>только один</strong> на странице. Это главный заголовок (название статьи, страницы).</li>
+        <li>Заголовки идут <strong>по порядку</strong>: после h1 идёт h2, после h2 — h3. Не перескакивайте (h1 → h3 — плохо).</li>
+        <li>Заголовки создают <strong>иерархию</strong> — как оглавление книги.</li>
+        <li>Не используйте заголовки для того, чтобы сделать текст жирным или крупным — для этого есть CSS.</li>
+    </ul>
+
+    <div class="analogy">
+        <p><strong>Книга:</strong> h1 — название книги. h2 — названия глав. h3 — разделы внутри главы. h4 — подразделы. Вы не напишете в книге название главы шрифтом мельче, чем подраздел.</p>
+    </div>
+
+    <div class="compare">
+        <div class="right">
+            <div class="label">✅ Правильная иерархия:</div>
+<pre><code>&lt;h1&gt;Рецепты пасты&lt;/h1&gt;
+  &lt;h2&gt;Карбонара&lt;/h2&gt;
+    &lt;h3&gt;Ингредиенты&lt;/h3&gt;
+    &lt;h3&gt;Приготовление&lt;/h3&gt;
+  &lt;h2&gt;Болоньезе&lt;/h2&gt;
+    &lt;h3&gt;Ингредиенты&lt;/h3&gt;
+    &lt;h3&gt;Приготовление&lt;/h3&gt;</code></pre>
+        </div>
+        <div class="wrong">
+            <div class="label">❌ Нарушенная иерархия:</div>
+<pre><code>&lt;h1&gt;Рецепты пасты&lt;/h1&gt;
+  &lt;h3&gt;Карбонара&lt;/h3&gt;
+  &lt;h2&gt;Ингредиенты&lt;/h2&gt;
+  &lt;h4&gt;Болоньезе&lt;/h4&gt;
+  &lt;h1&gt;Приготовление&lt;/h1&gt;</code></pre>
+        </div>
+    </div>
+
+    <div class="fun-fact">
+        Поисковые системы (Google, Яндекс) используют заголовки для понимания структуры страницы. Правильная иерархия заголовков улучшает SEO — ваш сайт будет лучше ранжироваться в поиске.
+    </div>
+
+    <div class="mistake">
+        <p>Новички часто используют <code>&lt;h1&gt;</code> несколько раз на странице или выбирают уровень заголовка по размеру шрифта. Не делайте так! Уровень заголовка отражает <strong>смысловую иерархию</strong>, а не размер. Размер можно изменить через CSS.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ПАРАГРАФЫ ===== -->
+    <h2 id="paragraphs">8. Параграфы, переносы, линии</h2>
+
+    <h3>Параграф &lt;p&gt;</h3>
+
+    <p>Тег <code>&lt;p&gt;</code> создаёт параграф (абзац) текста. Браузер автоматически добавляет отступы сверху и снизу:</p>
+
+<pre><code>&lt;p&gt;Это первый параграф. Он может быть длинным и содержать
+много текста. Браузер сам переносит текст по ширине окна.&lt;/p&gt;
+
+&lt;p&gt;Это второй параграф. Между параграфами автоматически
+добавляется отступ.&lt;/p&gt;</code></pre>
+
+    <div class="important">
+        <strong>Лишние пробелы и переносы строк в HTML игнорируются!</strong> Браузер «схлопывает» любое количество пробелов и переносов в один пробел. Чтобы сделать перенос строки, нужен специальный тег.
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">Вы написали в коде:</div>
+<pre><code>&lt;p&gt;Первая строка
+Вторая строка
+
+
+Третья строка     с пробелами&lt;/p&gt;</code></pre>
+        </div>
+        <div class="right">
+            <div class="label">Браузер покажет:</div>
+            <p style="background: #f8fafc; padding: 10px; border-radius: 6px;">Первая строка Вторая строка Третья строка с пробелами</p>
+        </div>
+    </div>
+
+    <h3>Перенос строки &lt;br&gt;</h3>
+
+    <p>Тег <code>&lt;br&gt;</code> (break) делает принудительный перенос строки:</p>
+
+<pre><code>&lt;p&gt;Строка первая&lt;br&gt;
+Строка вторая&lt;br&gt;
+Строка третья&lt;/p&gt;</code></pre>
+
+    <div class="highlight">
+        <strong>Когда использовать &lt;br&gt;:</strong> для стихов, адресов, коротких строк, которые логически связаны. <strong>Не используйте</strong> &lt;br&gt; для создания отступов между блоками — для этого есть CSS (margin, padding).
+    </div>
+
+    <h3>Горизонтальная линия &lt;hr&gt;</h3>
+
+    <p>Тег <code>&lt;hr&gt;</code> (horizontal rule) создаёт горизонтальную разделительную линию:</p>
+
+<pre><code>&lt;h2&gt;Раздел 1&lt;/h2&gt;
+&lt;p&gt;Содержимое раздела 1.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Раздел 2&lt;/h2&gt;
+&lt;p&gt;Содержимое раздела 2.&lt;/p&gt;</code></pre>
+
+    <p><code>&lt;hr&gt;</code> используется для визуального разделения тематических блоков.</p>
+
+    <div class="pro-tip">
+        <p>В реальных проектах <code>&lt;br&gt;</code> используется редко. Для создания отступов между элементами профессионалы используют CSS-свойства <code>margin</code> и <code>padding</code>. Множество <code>&lt;br&gt;&lt;br&gt;&lt;br&gt;</code> подряд — признак плохого кода.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ФОРМАТИРОВАНИЕ ===== -->
+    <h2 id="formatting">9. Форматирование текста</h2>
+
+    <p>HTML предоставляет теги для изменения внешнего вида текста:</p>
+
+    <table>
+        <tr><th>Тег</th><th>Что делает</th><th>Пример кода</th><th>Результат</th></tr>
+        <tr><td><code>&lt;strong&gt;</code></td><td>Жирный (важный) текст</td><td><code>&lt;strong&gt;важно&lt;/strong&gt;</code></td><td><strong>важно</strong></td></tr>
+        <tr><td><code>&lt;em&gt;</code></td><td>Курсив (акцент)</td><td><code>&lt;em&gt;акцент&lt;/em&gt;</code></td><td><em>акцент</em></td></tr>
+        <tr><td><code>&lt;u&gt;</code></td><td>Подчёркнутый текст</td><td><code>&lt;u&gt;подчёркнуто&lt;/u&gt;</code></td><td><u>подчёркнуто</u></td></tr>
+        <tr><td><code>&lt;s&gt;</code></td><td>Зачёркнутый текст</td><td><code>&lt;s&gt;зачёркнуто&lt;/s&gt;</code></td><td><s>зачёркнуто</s></td></tr>
+        <tr><td><code>&lt;mark&gt;</code></td><td>Выделенный (маркер)</td><td><code>&lt;mark&gt;выделено&lt;/mark&gt;</code></td><td><mark>выделено</mark></td></tr>
+        <tr><td><code>&lt;small&gt;</code></td><td>Мелкий текст</td><td><code>&lt;small&gt;мелко&lt;/small&gt;</code></td><td><small>мелко</small></td></tr>
+        <tr><td><code>&lt;sub&gt;</code></td><td>Подстрочный (нижний индекс)</td><td><code>H&lt;sub&gt;2&lt;/sub&gt;O</code></td><td>H<sub>2</sub>O</td></tr>
+        <tr><td><code>&lt;sup&gt;</code></td><td>Надстрочный (верхний индекс)</td><td><code>E=mc&lt;sup&gt;2&lt;/sup&gt;</code></td><td>E=mc<sup>2</sup></td></tr>
+    </table>
+
+    <h3>&lt;strong&gt; vs &lt;b&gt; и &lt;em&gt; vs &lt;i&gt;</h3>
+
+    <p>Есть два способа сделать жирный текст: <code>&lt;strong&gt;</code> и <code>&lt;b&gt;</code>. Визуально они одинаковы, но есть разница:</p>
+
+    <ul>
+        <li><code>&lt;strong&gt;</code> — текст <strong>важный по смыслу</strong> (поисковики обратят внимание)</li>
+        <li><code>&lt;b&gt;</code> — просто жирный визуально (без смысловой нагрузки)</li>
+        <li><code>&lt;em&gt;</code> — <em>смысловой акцент</em> (emphasis)</li>
+        <li><code>&lt;i&gt;</code> — просто курсив (например, для названий или терминов)</li>
+    </ul>
+
+    <div class="highlight">
+        <strong>Рекомендация:</strong> Используйте <code>&lt;strong&gt;</code> и <code>&lt;em&gt;</code> — они несут смысловую нагрузку. <code>&lt;b&gt;</code> и <code>&lt;i&gt;</code> используйте только для чисто визуального оформления.
+    </div>
+
+    <h3>Теги можно комбинировать</h3>
+
+<pre><code>&lt;p&gt;Это &lt;strong&gt;очень &lt;em&gt;важный&lt;/em&gt;&lt;/strong&gt; текст.&lt;/p&gt;
+&lt;p&gt;Формула воды: H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+&lt;p&gt;Цена: &lt;s&gt;1000 руб.&lt;/s&gt; &lt;strong&gt;750 руб.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;mark&gt;Внимание!&lt;/mark&gt; Дедлайн через 2 дня.&lt;/p&gt;</code></pre>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:10px;">Как теги форматирования выглядят на практике — карточка товара:</p>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px;max-width:300px;">
+            <div style="font-size:0.75rem;display:inline-block;padding:2px 8px;border-radius:4px;font-weight:600;"><mark style="background:#fef3c7;padding:2px 8px;border-radius:4px;">ХИТ ПРОДАЖ</mark></div>
+            <div style="font-weight:700;font-size:1.1rem;margin:8px 0 4px;">Наушники <em>ProMax</em></div>
+            <div style="margin:4px 0;">
+                <s style="color:#94a3b8;">5 000 ₽</s>
+                <strong style="color:#059669;font-size:1.2rem;margin-left:8px;">3 500 ₽</strong>
+            </div>
+            <div><small style="color:#94a3b8;">Доставка бесплатно от 3000 ₽</small></div>
+        </div>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;">Использованы: <code>&lt;mark&gt;</code> (бейдж), <code>&lt;em&gt;</code> (название), <code>&lt;s&gt;</code> (старая цена), <code>&lt;strong&gt;</code> (новая цена), <code>&lt;small&gt;</code> (условия)</p>
+    </div>
+
+    <div class="real-world">
+        <p>На интернет-магазинах теги форматирования используются повсюду: <code>&lt;s&gt;</code> — для старой цены, <code>&lt;strong&gt;</code> — для новой цены со скидкой, <code>&lt;mark&gt;</code> — для бейджей «АКЦИЯ» и «ХИТ», <code>&lt;small&gt;</code> — для условий доставки и юридических сносок.</p>
+    </div>
+
+    <div class="quiz">
+        <p>Мысленно ответьте:</p>
+        <ol>
+            <li>Сколько <code>&lt;h1&gt;</code> может быть на странице? <em>(Только один)</em></li>
+            <li>Что делает <code>&lt;br&gt;</code>? <em>(Перенос строки)</em></li>
+            <li>Чем <code>&lt;strong&gt;</code> отличается от <code>&lt;b&gt;</code>? <em>(strong — важный по смыслу, b — просто визуально жирный)</em></li>
+            <li>Почему лишние пробелы в HTML не работают? <em>(Браузер «схлопывает» их в один)</em></li>
+            <li>Как сделать зачёркнутую старую цену? <em>(<code>&lt;s&gt;1000 ₽&lt;/s&gt;</code>)</em></li>
+            <li>Как написать формулу H₂O? <em>(<code>H&lt;sub&gt;2&lt;/sub&gt;O</code>)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== КОММЕНТАРИИ ===== -->
+    <h2 id="comments">10. Комментарии в HTML</h2>
+
+    <p><strong>Комментарии</strong> — это заметки в коде, которые браузер полностью игнорирует. Они нужны для вас и других разработчиков — чтобы объяснить, что делает тот или иной кусок кода.</p>
+
+<pre><code>&lt;!-- Это комментарий. Браузер его не покажет. --&gt;
+
+&lt;!-- Шапка сайта --&gt;
+&lt;h1&gt;Мой сайт&lt;/h1&gt;
+
+&lt;!-- Основной контент --&gt;
+&lt;p&gt;Текст страницы.&lt;/p&gt;
+
+&lt;!--
+    Это многострочный комментарий.
+    Можно писать на нескольких строках.
+--&gt;</code></pre>
+
+    <p><strong>Когда использовать комментарии:</strong></p>
+
+    <ul>
+        <li>Чтобы отметить разделы кода (<code>&lt;!-- Шапка --&gt;</code>, <code>&lt;!-- Подвал --&gt;</code>)</li>
+        <li>Чтобы временно «отключить» кусок HTML (закомментировать)</li>
+        <li>Чтобы оставить заметку для себя или коллеги</li>
+    </ul>
+
+    <div class="highlight">
+        <strong>Горячая клавиша:</strong> В VS Code выделите строки и нажмите <code>Ctrl + /</code> — они превратятся в комментарий. Нажмите ещё раз — комментарий снимется.
+    </div>
+
+    <div class="pro-tip">
+        <p>Комментарии — признак профессионального кода. В больших проектах без комментариев вы через неделю забудете, что делает тот или иной блок. Комментируйте разделы, сложную логику и временные решения.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ПРАКТИКА ===== -->
+    <h2 id="practice">11. Практика: страница-статья</h2>
+
+    <p>Соберём всё вместе — создадим полноценную страницу-статью, используя все изученные теги:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Космос — удивительные факты&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;!-- Главный заголовок статьи --&gt;
+    &lt;h1&gt;Удивительные факты о космосе&lt;/h1&gt;
+    &lt;p&gt;Космос полон загадок, которые &lt;strong&gt;поражают воображение&lt;/strong&gt;.
+    В этой статье мы рассмотрим самые интересные факты.&lt;/p&gt;
+
+    &lt;hr&gt;
+
+    &lt;!-- Раздел 1 --&gt;
+    &lt;h2&gt;Солнечная система&lt;/h2&gt;
+    &lt;p&gt;Наша Солнечная система находится в галактике &lt;em&gt;Млечный Путь&lt;/em&gt;.
+    Она состоит из &lt;strong&gt;8 планет&lt;/strong&gt;, множества спутников,
+    астероидов и комет.&lt;/p&gt;
+
+    &lt;h3&gt;Интересные числа&lt;/h3&gt;
+    &lt;p&gt;Расстояние от Земли до Солнца — &lt;strong&gt;149,6 млн км&lt;/strong&gt;.&lt;br&gt;
+    Свет проходит это расстояние за &lt;em&gt;8 минут 20 секунд&lt;/em&gt;.&lt;br&gt;
+    Температура на поверхности Солнца — около 5500&lt;sup&gt;о&lt;/sup&gt;C.&lt;/p&gt;
+
+    &lt;h3&gt;Плутон&lt;/h3&gt;
+    &lt;p&gt;Плутон &lt;s&gt;является девятой планетой&lt;/s&gt; был переклассифицирован
+    в &lt;mark&gt;карликовую планету&lt;/mark&gt; в 2006 году.&lt;/p&gt;
+
+    &lt;hr&gt;
+
+    &lt;!-- Раздел 2 --&gt;
+    &lt;h2&gt;Чёрные дыры&lt;/h2&gt;
+    &lt;p&gt;Чёрная дыра — это область пространства, где гравитация
+    настолько сильна, что &lt;strong&gt;даже свет не может вырваться&lt;/strong&gt;.&lt;/p&gt;
+
+    &lt;p&gt;&lt;small&gt;Источник: NASA, 2024&lt;/small&gt;&lt;/p&gt;
+
+    &lt;hr&gt;
+
+    &lt;!-- Подвал --&gt;
+    &lt;p&gt;&lt;em&gt;Автор: [Ваше имя] | Дата: 2026&lt;/em&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:10px;">Так выглядит ваша страница-статья в браузере:</p>
+        <div style="background:white;border:1px solid #e2e8f0;border-radius:8px;padding:20px;max-width:500px;margin:0 auto;">
+            <h2 style="font-size:1.6rem;margin:0 0 8px;background:none;border:none;padding:0;color:#1e293b;">Удивительные факты о космосе</h2>
+            <p style="margin:0 0 12px;">Космос полон загадок, которые <strong>поражают воображение</strong>.</p>
+            <hr style="border:none;border-top:1px solid #e2e8f0;margin:12px 0;">
+            <h3 style="font-size:1.2rem;margin:0 0 6px;color:#1e3a5f;">Солнечная система</h3>
+            <p style="margin:0 0 8px;">Наша система в галактике <em>Млечный Путь</em>. Она состоит из <strong>8 планет</strong>.</p>
+            <p style="margin:0 0 8px;">Расстояние до Солнца — <strong>149,6 млн км</strong>.<br>Температура — 5500<sup>о</sup>C.</p>
+            <p style="margin:0 0 8px;">Плутон <s>является девятой планетой</s> был переклассифицирован в <mark>карликовую планету</mark>.</p>
+            <p style="margin:0;"><small style="color:#94a3b8;">Источник: NASA, 2024</small></p>
+        </div>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;">Чистый HTML без CSS — но уже есть структура, иерархия, форматирование. Здесь использованы: h1, h2, h3, p, br, hr, strong, em, mark, s, sup, small.</p>
+    </div>
+
+    <div class="try-it">
+        <p>Создайте эту страницу в VS Code и запустите через Live Server. Затем:</p>
+        <ol>
+            <li>Измените тему статьи на свою (спорт, музыка, игры, кулинария...)</li>
+            <li>Добавьте ещё один раздел <code>&lt;h2&gt;</code> с подразделами <code>&lt;h3&gt;</code></li>
+            <li>Используйте все теги форматирования: <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;mark&gt;</code>, <code>&lt;s&gt;</code>, <code>&lt;sub&gt;</code> или <code>&lt;sup&gt;</code></li>
+            <li>Добавьте комментарии для разделов</li>
+            <li>Откройте DevTools и изучите структуру своей страницы</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== ИТОГИ ===== -->
+    <h2>Итоги занятия</h2>
+
+    <div class="summary">
+        <ul>
+            <li><strong>Теги</strong> бывают парные (<code>&lt;p&gt;...&lt;/p&gt;</code>) и одиночные (<code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code>, <code>&lt;img&gt;</code>)</li>
+            <li><strong>Атрибуты</strong> — дополнительная информация в открывающем теге (<code>href=""</code>, <code>src=""</code>)</li>
+            <li><strong>Вложенность</strong> — теги внутри тегов (матрёшки). Закрываются в обратном порядке</li>
+            <li><strong>Структура</strong>: <code>&lt;!DOCTYPE&gt;</code> → <code>&lt;html&gt;</code> → <code>&lt;head&gt;</code> + <code>&lt;body&gt;</code></li>
+            <li><code>&lt;head&gt;</code> — невидимая информация для браузера (meta, title, link, style)</li>
+            <li><code>&lt;body&gt;</code> — видимое содержимое для пользователя</li>
+            <li><strong>Заголовки</strong> h1–h6 создают иерархию. h1 — один на странице</li>
+            <li><code>&lt;p&gt;</code> — параграф, <code>&lt;br&gt;</code> — перенос, <code>&lt;hr&gt;</code> — разделительная линия</li>
+            <li><strong>Форматирование</strong>: <code>&lt;strong&gt;</code> (жирный), <code>&lt;em&gt;</code> (курсив), <code>&lt;mark&gt;</code>, <code>&lt;s&gt;</code>, <code>&lt;sub&gt;</code>, <code>&lt;sup&gt;</code></li>
+            <li><code>&lt;!-- комментарий --&gt;</code> — заметки в коде, невидимые на странице</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <ol>
+            <li>Чем отличается парный тег от одиночного? Приведите примеры.</li>
+            <li>Что такое атрибут тега? Где он пишется?</li>
+            <li>Что произойдёт, если теги пересекутся (неправильная вложенность)?</li>
+            <li>Для чего нужен <code>&lt;!DOCTYPE html&gt;</code>?</li>
+            <li>Чем отличается <code>&lt;head&gt;</code> от <code>&lt;body&gt;</code>?</li>
+            <li>Что делает тег <code>&lt;title&gt;</code>? Где виден его текст?</li>
+            <li>Сколько <code>&lt;h1&gt;</code> может быть на одной странице?</li>
+            <li>Почему нельзя перескакивать уровни заголовков (h1 → h3)?</li>
+            <li>Чем отличается <code>&lt;strong&gt;</code> от <code>&lt;b&gt;</code>?</li>
+            <li>Для чего нужны комментарии <code>&lt;!-- --&gt;</code>?</li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

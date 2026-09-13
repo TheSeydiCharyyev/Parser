@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 27 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 27: Tailwind CSS — основы</span>
+    <span class="nav-title" data-lang="en">Lesson 27: Tailwind CSS — Basics</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 27: Tailwind CSS — основы</p>
+    <p class="subtitle" data-lang="en">Lesson 27: Tailwind CSS — Basics</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧТО ТАКОЕ TAILWIND</h2>
+    <h2 data-lang="en">&#x1F4DA; WHAT IS TAILWIND</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Tailwind CSS</strong> — utility-first фреймворк. Вместо готовых компонентов (как Bootstrap) даёт <strong>маленькие классы</strong> (<code>p-4</code>, <code>bg-blue-500</code>, <code>rounded-lg</code>), из которых собираете что угодно. Используется Vercel, Netflix, Shopify.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Tailwind CSS</strong> — utility-first framework. Instead of ready components (like Bootstrap), gives <strong>small classes</strong> (<code>p-4</code>, <code>bg-blue-500</code>, <code>rounded-lg</code>) to build anything. Used by Vercel, Netflix, Shopify.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Bootstrap</strong> = IKEA (готовые шкафы). <strong>Tailwind</strong> = LEGO (кирпичики, строй что хочешь).
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Bootstrap</strong> = IKEA (ready furniture). <strong>Tailwind</strong> = LEGO (bricks, build anything).
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; TAILWIND vs BOOTSTRAP — КОГДА ЧТО</h2>
+    <h2 data-lang="en">&#x1F4DA; TAILWIND vs BOOTSTRAP — WHEN TO PICK</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ситуация</th><th>Выбор</th></tr>
+        <tr><td>Админка, CRUD, быстрый MVP</td><td>Bootstrap</td></tr>
+        <tr><td>Стартап, уникальный дизайн</td><td>Tailwind</td></tr>
+        <tr><td>Проект на React/Vue/Next</td><td>Tailwind</td></tr>
+        <tr><td>Клиент без дизайнера</td><td>Bootstrap</td></tr>
+        <tr><td>Нужно 10 компонентов сразу</td><td>Bootstrap (navbar, modal, carousel готовы)</td></tr>
+        <tr><td>Нужен полный контроль</td><td>Tailwind</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Situation</th><th>Pick</th></tr>
+        <tr><td>Admin panel, CRUD, fast MVP</td><td>Bootstrap</td></tr>
+        <tr><td>Startup, unique design</td><td>Tailwind</td></tr>
+        <tr><td>React/Vue/Next project</td><td>Tailwind</td></tr>
+        <tr><td>Client without designer</td><td>Bootstrap</td></tr>
+        <tr><td>Need 10 components now</td><td>Bootstrap (navbar, modal, carousel ready)</td></tr>
+        <tr><td>Need full control</td><td>Tailwind</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ПОДКЛЮЧЕНИЕ</h2>
+    <h2 data-lang="en">&#x1F4DA; SETUP</h2>
+
+<pre><code>&lt;!-- В &lt;head&gt; — это &lt;script&gt;, не &lt;link&gt;! --&gt;
+&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Tailwind через &lt;script&gt;, не &lt;link&gt;!</strong> Отличие от Bootstrap. CDN-версия работает как JS: сканирует HTML и генерирует CSS на лету.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Tailwind via &lt;script&gt;, not &lt;link&gt;!</strong> Differs from Bootstrap. CDN version works as JS: scans HTML and generates CSS on the fly.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ШПАРГАЛКА КЛАССОВ</h2>
+    <h2 data-lang="en">&#x1F4DA; CLASS CHEAT SHEET</h2>
+
+    <table data-lang="ru">
+        <tr><th>Категория</th><th>Примеры</th><th>CSS</th></tr>
+        <tr><td><strong>Padding</strong></td><td><code>p-4</code>, <code>px-6</code>, <code>pt-8</code></td><td>16px, 24px lr, 32px top</td></tr>
+        <tr><td><strong>Margin</strong></td><td><code>m-4</code>, <code>mt-6</code>, <code>mx-auto</code></td><td>16px, 24px top, центр</td></tr>
+        <tr><td><strong>Текст цвет</strong></td><td><code>text-blue-500</code>, <code>text-gray-600</code></td><td>color: ...</td></tr>
+        <tr><td><strong>Фон</strong></td><td><code>bg-white</code>, <code>bg-gray-100</code></td><td>background: ...</td></tr>
+        <tr><td><strong>Размер текста</strong></td><td><code>text-sm</code>, <code>text-xl</code>, <code>text-3xl</code></td><td>14px, 20px, 30px</td></tr>
+        <tr><td><strong>Жирность</strong></td><td><code>font-bold</code>, <code>font-semibold</code></td><td>700, 600</td></tr>
+        <tr><td><strong>Flex</strong></td><td><code>flex</code>, <code>items-center</code>, <code>justify-between</code></td><td>display:flex ...</td></tr>
+        <tr><td><strong>Grid</strong></td><td><code>grid</code>, <code>grid-cols-3</code>, <code>gap-4</code></td><td>display:grid ...</td></tr>
+        <tr><td><strong>Скругление</strong></td><td><code>rounded-lg</code>, <code>rounded-xl</code>, <code>rounded-full</code></td><td>8px, 12px, 50%</td></tr>
+        <tr><td><strong>Тень</strong></td><td><code>shadow</code>, <code>shadow-md</code>, <code>shadow-lg</code></td><td>box-shadow: ...</td></tr>
+        <tr><td><strong>Ширина</strong></td><td><code>w-full</code>, <code>w-1/2</code>, <code>max-w-4xl</code></td><td>100%, 50%, max-width</td></tr>
+        <tr><td><strong>Высота</strong></td><td><code>h-screen</code>, <code>h-48</code>, <code>min-h-screen</code></td><td>100vh, 192px</td></tr>
+        <tr><td><strong>Изображения</strong></td><td><code>object-cover</code>, <code>w-full h-48</code></td><td>object-fit: cover</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Category</th><th>Examples</th><th>CSS</th></tr>
+        <tr><td><strong>Padding</strong></td><td><code>p-4</code>, <code>px-6</code>, <code>pt-8</code></td><td>16px, 24px lr, 32px top</td></tr>
+        <tr><td><strong>Margin</strong></td><td><code>m-4</code>, <code>mt-6</code>, <code>mx-auto</code></td><td>16px, 24px top, center</td></tr>
+        <tr><td><strong>Text color</strong></td><td><code>text-blue-500</code>, <code>text-gray-600</code></td><td>color: ...</td></tr>
+        <tr><td><strong>Background</strong></td><td><code>bg-white</code>, <code>bg-gray-100</code></td><td>background: ...</td></tr>
+        <tr><td><strong>Text size</strong></td><td><code>text-sm</code>, <code>text-xl</code>, <code>text-3xl</code></td><td>14px, 20px, 30px</td></tr>
+        <tr><td><strong>Weight</strong></td><td><code>font-bold</code>, <code>font-semibold</code></td><td>700, 600</td></tr>
+        <tr><td><strong>Flex</strong></td><td><code>flex</code>, <code>items-center</code>, <code>justify-between</code></td><td>display:flex ...</td></tr>
+        <tr><td><strong>Grid</strong></td><td><code>grid</code>, <code>grid-cols-3</code>, <code>gap-4</code></td><td>display:grid ...</td></tr>
+        <tr><td><strong>Rounded</strong></td><td><code>rounded-lg</code>, <code>rounded-xl</code>, <code>rounded-full</code></td><td>8px, 12px, 50%</td></tr>
+        <tr><td><strong>Shadow</strong></td><td><code>shadow</code>, <code>shadow-md</code>, <code>shadow-lg</code></td><td>box-shadow: ...</td></tr>
+        <tr><td><strong>Width</strong></td><td><code>w-full</code>, <code>w-1/2</code>, <code>max-w-4xl</code></td><td>100%, 50%, max-width</td></tr>
+        <tr><td><strong>Height</strong></td><td><code>h-screen</code>, <code>h-48</code>, <code>min-h-screen</code></td><td>100vh, 192px</td></tr>
+        <tr><td><strong>Images</strong></td><td><code>object-cover</code>, <code>w-full h-48</code></td><td>object-fit: cover</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ФОРМУЛА РАЗМЕРОВ</h2>
+    <h2 data-lang="en">&#x1F4DA; SIZE FORMULA</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Число × 4 = пиксели.</strong> <code>p-2</code> = 8px, <code>p-4</code> = 16px, <code>p-8</code> = 32px, <code>p-16</code> = 64px, <code>p-24</code> = 96px. Запомните — и отступы станут интуитивными.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Number × 4 = pixels.</strong> <code>p-2</code> = 8px, <code>p-4</code> = 16px, <code>p-8</code> = 32px, <code>p-16</code> = 64px, <code>p-24</code> = 96px. Memorize — and spacing becomes intuitive.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ПАЛИТРА ЦВЕТОВ</h2>
+    <h2 data-lang="en">&#x1F4DA; COLOR PALETTE</h2>
+
+    <div class="definition" data-lang="ru">
+        22 цвета × 11 оттенков (от 50 до 950). Формат: <code>text-{цвет}-{оттенок}</code>, <code>bg-{цвет}-{оттенок}</code>.
+    </div>
+    <div class="definition" data-lang="en">
+        22 colors × 11 shades (from 50 to 950). Format: <code>text-{color}-{shade}</code>, <code>bg-{color}-{shade}</code>.
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Оттенок</th><th>Назначение</th></tr>
+        <tr><td>50-100</td><td>Светлый фон (<code>bg-blue-50</code>)</td></tr>
+        <tr><td>200-300</td><td>Границы, приглушённые элементы</td></tr>
+        <tr><td>400-500</td><td>Основной цвет</td></tr>
+        <tr><td>600-700</td><td>Hover-состояние основного</td></tr>
+        <tr><td>800-900</td><td>Текст на светлом фоне</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Shade</th><th>Purpose</th></tr>
+        <tr><td>50-100</td><td>Light background (<code>bg-blue-50</code>)</td></tr>
+        <tr><td>200-300</td><td>Borders, muted elements</td></tr>
+        <tr><td>400-500</td><td>Base color</td></tr>
+        <tr><td>600-700</td><td>Hover state for base</td></tr>
+        <tr><td>800-900</td><td>Text on light background</td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Правило контраста:</strong> разница оттенков фона и текста ≥ 400. <code>bg-gray-200 + text-gray-800</code> — хорошо, <code>bg-gray-200 + text-gray-400</code> — нечитаемо.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Contrast rule:</strong> bg/text shade difference ≥ 400. <code>bg-gray-200 + text-gray-800</code> — good, <code>bg-gray-200 + text-gray-400</code> — unreadable.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧАСТЫЕ ОШИБКИ</h2>
+    <h2 data-lang="en">&#x1F4DA; COMMON MISTAKES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td>Подключение через <code>&lt;link&gt;</code></td><td>Tailwind CDN = <code>&lt;script&gt;</code></td></tr>
+        <tr><td>Сайт пустой (нет стилей)</td><td>Нужен интернет — CDN тянет с облака</td></tr>
+        <tr><td>Нужен <code>p-4.5</code> (18px)</td><td>Таких классов нет. Есть <code>p-4</code> (16px), <code>p-5</code> (20px). Или произвольное: <code>p-[18px]</code></td></tr>
+        <tr><td>Мало контраста текста</td><td>Разница оттенков ≥ 400</td></tr>
+        <tr><td>Длинный <code>class="..."</code> (50+ классов)</td><td>Повторяющиеся блоки выносить в компоненты (React/Vue)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td>Connect via <code>&lt;link&gt;</code></td><td>Tailwind CDN = <code>&lt;script&gt;</code></td></tr>
+        <tr><td>Site is unstyled</td><td>Needs internet — CDN pulls from cloud</td></tr>
+        <tr><td>Need <code>p-4.5</code> (18px)</td><td>No such class. Use <code>p-4</code> (16px), <code>p-5</code> (20px). Or arbitrary: <code>p-[18px]</code></td></tr>
+        <tr><td>Low text contrast</td><td>Shade difference ≥ 400</td></tr>
+        <tr><td>Long <code>class="..."</code> (50+ classes)</td><td>Extract repeating blocks to components (React/Vue)</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ШАБЛОН КАРТОЧКИ</h2>
+    <h2 data-lang="en">&#x1F4DA; CARD TEMPLATE</h2>
+
+<pre><code>&lt;div class="bg-white rounded-xl shadow-md overflow-hidden"&gt;
+  &lt;img src="..." class="w-full h-48 object-cover"&gt;
+  &lt;div class="p-5"&gt;
+    &lt;span class="text-xs font-semibold text-blue-600
+                 bg-blue-100 px-3 py-1 rounded-full"&gt;Tag&lt;/span&gt;
+    &lt;h3 class="mt-3 text-lg font-bold"&gt;Title&lt;/h3&gt;
+    &lt;p class="mt-2 text-sm text-gray-500"&gt;Text&lt;/p&gt;
+    &lt;button class="mt-4 px-5 py-2 bg-blue-600 text-white
+                   rounded-lg font-semibold"&gt;Button&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li>Tailwind = утилити-классы (LEGO), Bootstrap = компоненты (IKEA)</li>
+            <li>CDN через <code>&lt;script src="https://cdn.tailwindcss.com"&gt;</code> (не <code>&lt;link&gt;</code>!)</li>
+            <li>Формула размера: <strong>число × 4 = пиксели</strong></li>
+            <li>Spacing: <code>p-4</code>=16px, <code>p-6</code>=24px, <code>p-8</code>=32px, <code>p-16</code>=64px</li>
+            <li>Стороны: <code>p</code>, <code>px</code>, <code>py</code>, <code>pt</code>, <code>pr</code>, <code>pb</code>, <code>pl</code> (то же для <code>m</code>)</li>
+            <li>Цвета: 22 цвета × 11 оттенков (50-950). Основной = <code>-500</code>, светлый = <code>-50</code>/<code>-100</code></li>
+            <li>Контраст: разница оттенков фона и текста ≥ 400</li>
+            <li>Размеры текста: <code>text-sm</code>(14), <code>text-base</code>(16), <code>text-lg</code>(18), <code>text-xl</code>(20), <code>text-3xl</code>(30)</li>
+            <li>Жирность: <code>font-normal</code>(400), <code>font-semibold</code>(600), <code>font-bold</code>(700)</li>
+            <li>Flexbox: <code>flex items-center justify-between gap-4</code></li>
+            <li>Grid: <code>grid grid-cols-3 gap-6</code></li>
+            <li>Центрирование: <code>flex items-center justify-center min-h-screen</code></li>
+            <li>Контейнер: <code>max-w-6xl mx-auto px-4</code></li>
+            <li>Карточка: <code>bg-white rounded-xl shadow-md overflow-hidden</code></li>
+            <li>Картинка: <code>w-full h-48 object-cover</code></li>
+            <li>Не писать CSS — всё в классах HTML</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li>Tailwind = utility classes (LEGO), Bootstrap = components (IKEA)</li>
+            <li>CDN via <code>&lt;script src="https://cdn.tailwindcss.com"&gt;</code> (not <code>&lt;link&gt;</code>!)</li>
+            <li>Size formula: <strong>number × 4 = pixels</strong></li>
+            <li>Spacing: <code>p-4</code>=16px, <code>p-6</code>=24px, <code>p-8</code>=32px, <code>p-16</code>=64px</li>
+            <li>Sides: <code>p</code>, <code>px</code>, <code>py</code>, <code>pt</code>, <code>pr</code>, <code>pb</code>, <code>pl</code> (same for <code>m</code>)</li>
+            <li>Colors: 22 colors × 11 shades (50-950). Base = <code>-500</code>, light = <code>-50</code>/<code>-100</code></li>
+            <li>Contrast: bg/text shade difference ≥ 400</li>
+            <li>Text sizes: <code>text-sm</code>(14), <code>text-base</code>(16), <code>text-lg</code>(18), <code>text-xl</code>(20), <code>text-3xl</code>(30)</li>
+            <li>Weight: <code>font-normal</code>(400), <code>font-semibold</code>(600), <code>font-bold</code>(700)</li>
+            <li>Flexbox: <code>flex items-center justify-between gap-4</code></li>
+            <li>Grid: <code>grid grid-cols-3 gap-6</code></li>
+            <li>Centering: <code>flex items-center justify-center min-h-screen</code></li>
+            <li>Container: <code>max-w-6xl mx-auto px-4</code></li>
+            <li>Card: <code>bg-white rounded-xl shadow-md overflow-hidden</code></li>
+            <li>Image: <code>w-full h-48 object-cover</code></li>
+            <li>Don't write CSS — everything in HTML classes</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Setup:</strong> Создайте <code>tailwind.html</code> с <code>&lt;script src="https://cdn.tailwindcss.com"&gt;</code> в <code>&lt;head&gt;</code>.</li>
+            <li><strong>Карточки:</strong> 3 карточки товаров на Tailwind (<code>grid grid-cols-3 gap-6</code>). Каждая карточка: <code>bg-white rounded-xl shadow-md overflow-hidden</code>, изображение (<code>w-full h-48 object-cover</code>), тег (<code>bg-blue-100 text-blue-600 rounded-full</code>), название, описание, цена, кнопка. <strong>Ноль строк CSS!</strong></li>
+            <li><strong>Header:</strong> <code>flex items-center justify-between p-4 bg-white shadow</code> — лого + 3 ссылки (<code>flex gap-6</code>) + кнопка (<code>bg-blue-600 text-white rounded-lg px-4 py-2</code>).</li>
+            <li><strong>Hero:</strong> <code>min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 text-white</code>, заголовок <code>text-5xl font-bold</code>, подзаголовок <code>text-xl</code>, кнопка.</li>
+            <li><strong>Палитра цветов:</strong> Сделайте блок с 11 квадратами одного цвета (например, blue) с оттенками от 50 до 950, подписями.</li>
+            <li><strong>Bootstrap vs Tailwind:</strong> Опишите в комментариях в <code>&lt;!-- --&gt;</code> сверху файла — что вам нравится/не нравится в подходе Tailwind по сравнению с Bootstrap.</li>
+            <li><strong>Бонус:</strong> Добавьте hover-эффекты на карточки: <code>hover:shadow-xl hover:-translate-y-1 transition</code>.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Setup:</strong> Create <code>tailwind.html</code> with <code>&lt;script src="https://cdn.tailwindcss.com"&gt;</code> in <code>&lt;head&gt;</code>.</li>
+            <li><strong>Cards:</strong> 3 product cards on Tailwind (<code>grid grid-cols-3 gap-6</code>). Each card: <code>bg-white rounded-xl shadow-md overflow-hidden</code>, image (<code>w-full h-48 object-cover</code>), tag (<code>bg-blue-100 text-blue-600 rounded-full</code>), title, description, price, button. <strong>Zero lines of CSS!</strong></li>
+            <li><strong>Header:</strong> <code>flex items-center justify-between p-4 bg-white shadow</code> — logo + 3 links (<code>flex gap-6</code>) + button (<code>bg-blue-600 text-white rounded-lg px-4 py-2</code>).</li>
+            <li><strong>Hero:</strong> <code>min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 text-white</code>, heading <code>text-5xl font-bold</code>, subheading <code>text-xl</code>, button.</li>
+            <li><strong>Color palette:</strong> Make a block with 11 squares of one color (e.g., blue) with shades from 50 to 950, labeled.</li>
+            <li><strong>Bootstrap vs Tailwind:</strong> Describe in comments (<code>&lt;!-- --&gt;</code>) at the top of file — what you like/dislike about Tailwind approach vs Bootstrap.</li>
+            <li><strong>Bonus:</strong> Add hover effects on cards: <code>hover:shadow-xl hover:-translate-y-1 transition</code>.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

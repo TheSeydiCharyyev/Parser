@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 32 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 32: Разработка — HTML-структура</span>
+    <span class="nav-title" data-lang="en">Lesson 32: Development — HTML Structure</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 32: Разработка — HTML-структура</p>
+    <p class="subtitle" data-lang="en">Lesson 32: Development — HTML Structure</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 32.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 32.1: ГЛАВНАЯ СТРАНИЦА + HEADER/FOOTER</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 32.1: HOME PAGE + HEADER/FOOTER</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 31.1: Свёрстайте HTML главной страницы</span>
+            <span class="task-title" data-lang="en">Task 31.1: Build HTML of the home page</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">45 минут</span>
+                <span class="badge badge-time" data-lang="en">45 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Написать полный HTML главной страницы со всеми секциями</div>
+        <div class="task-goal" data-lang="en">Write complete HTML of the home page with all sections</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong><code>&lt;head&gt;</code>:</strong> Заполните все meta-теги (title, description, viewport, OG, favicon), подключите Google Fonts и все 4 CSS-файла.</li>
+            <li><strong>Header:</strong> Логотип, навигация (3-5 ссылок), CTA-кнопка. На главной странице первая ссылка в меню имеет класс <code>.active</code>.</li>
+            <li><strong>Main:</strong> Все секции из wireframe. Для каждой — свой <code>&lt;section&gt;</code> с классом (<code>.hero</code>, <code>.features</code>, <code>.gallery</code> и т.д.) и заголовком <code>&lt;h2&gt;</code>.</li>
+            <li><strong>Hero-секция:</strong> <code>&lt;h1&gt;</code> (главный заголовок страницы), подзаголовок, кнопка CTA.</li>
+            <li><strong>Повторяющиеся блоки:</strong> карточки оберните в <code>&lt;article class="card"&gt;</code>. Фичи — <code>&lt;article class="feature"&gt;</code>.</li>
+            <li><strong>Footer:</strong> 2-3 колонки (<code>&lt;div class="footer-col"&gt;</code>), копирайт внизу.</li>
+            <li><strong>Контент:</strong> реалистичный текст темы (не Lorem ipsum!). Картинки — через placeholder (<code>picsum.photos</code>) или из вашего <code>images/</code>.</li>
+            <li><strong>Проверка:</strong> открыть в браузере — все секции видны (хоть и уродливо).</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong><code>&lt;head&gt;</code>:</strong> Fill all meta tags (title, description, viewport, OG, favicon), connect Google Fonts and all 4 CSS files.</li>
+            <li><strong>Header:</strong> Logo, navigation (3-5 links), CTA button. On home page the first menu link has <code>.active</code> class.</li>
+            <li><strong>Main:</strong> All sections from wireframe. Each gets its own <code>&lt;section&gt;</code> with a class (<code>.hero</code>, <code>.features</code>, <code>.gallery</code> etc.) and <code>&lt;h2&gt;</code> heading.</li>
+            <li><strong>Hero section:</strong> <code>&lt;h1&gt;</code> (main page heading), subheading, CTA button.</li>
+            <li><strong>Repeating blocks:</strong> wrap cards in <code>&lt;article class="card"&gt;</code>. Features — <code>&lt;article class="feature"&gt;</code>.</li>
+            <li><strong>Footer:</strong> 2-3 columns (<code>&lt;div class="footer-col"&gt;</code>), copyright at bottom.</li>
+            <li><strong>Content:</strong> realistic theme text (not Lorem ipsum!). Images — via placeholder (<code>picsum.photos</code>) or from your <code>images/</code>.</li>
+            <li><strong>Check:</strong> open in browser — all sections visible (though ugly).</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Минимальная структура index.html:</strong>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Главная | Sladko — Кондитерская&lt;/title&gt;
+    &lt;meta name="description" content="..."&gt;
+    &lt;link rel="stylesheet" href="css/tokens.css"&gt;
+    &lt;link rel="stylesheet" href="css/base.css"&gt;
+    &lt;link rel="stylesheet" href="css/components.css"&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header class="header"&gt;
+        &lt;div class="container"&gt;
+            &lt;a class="logo" href="index.html"&gt;Sladko&lt;/a&gt;
+            &lt;nav class="nav"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="index.html" class="active"&gt;Главная&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="menu.html"&gt;Меню&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="about.html"&gt;О нас&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="contact.html"&gt;Контакты&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/nav&gt;
+            &lt;a href="contact.html" class="btn btn-primary"&gt;Заказать&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section class="hero"&gt;
+            &lt;div class="container"&gt;
+                &lt;h1&gt;Sladko — домашние торты и десерты&lt;/h1&gt;
+                &lt;p&gt;Печём только на натуральных ингредиентах. Доставка за 60 минут.&lt;/p&gt;
+                &lt;a href="menu.html" class="btn btn-primary"&gt;Смотреть меню&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class="features"&gt;
+            &lt;div class="container"&gt;
+                &lt;h2&gt;Почему мы&lt;/h2&gt;
+                &lt;div class="features-grid"&gt;
+                    &lt;article class="feature"&gt;
+                        &lt;img src="icons/natural.svg" alt=""&gt;
+                        &lt;h3&gt;Натуральные ингредиенты&lt;/h3&gt;
+                        &lt;p&gt;Сливки, фермерское масло, яйца от местных ферм&lt;/p&gt;
+                    &lt;/article&gt;
+                    &lt;!-- ещё 2 feature --&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;!-- остальные секции по wireframe --&gt;
+    &lt;/main&gt;
+
+    &lt;footer class="footer"&gt;
+        &lt;div class="container"&gt;
+            &lt;!-- колонки + копирайт --&gt;
+        &lt;/div&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Minimum index.html structure:</strong>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Home | Sladko — Bakery&lt;/title&gt;
+    &lt;meta name="description" content="..."&gt;
+    &lt;link rel="stylesheet" href="css/tokens.css"&gt;
+    &lt;link rel="stylesheet" href="css/base.css"&gt;
+    &lt;link rel="stylesheet" href="css/components.css"&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header class="header"&gt;
+        &lt;div class="container"&gt;
+            &lt;a class="logo" href="index.html"&gt;Sladko&lt;/a&gt;
+            &lt;nav class="nav"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="index.html" class="active"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="menu.html"&gt;Menu&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="about.html"&gt;About&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="contact.html"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/nav&gt;
+            &lt;a href="contact.html" class="btn btn-primary"&gt;Order&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section class="hero"&gt;
+            &lt;div class="container"&gt;
+                &lt;h1&gt;Sladko — homemade cakes and desserts&lt;/h1&gt;
+                &lt;p&gt;Only natural ingredients. 60-minute delivery.&lt;/p&gt;
+                &lt;a href="menu.html" class="btn btn-primary"&gt;See menu&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class="features"&gt;
+            &lt;div class="container"&gt;
+                &lt;h2&gt;Why us&lt;/h2&gt;
+                &lt;div class="features-grid"&gt;
+                    &lt;article class="feature"&gt;
+                        &lt;img src="icons/natural.svg" alt=""&gt;
+                        &lt;h3&gt;Natural ingredients&lt;/h3&gt;
+                        &lt;p&gt;Cream, farm butter, eggs from local farms&lt;/p&gt;
+                    &lt;/article&gt;
+                    &lt;!-- 2 more features --&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;!-- other sections per wireframe --&gt;
+    &lt;/main&gt;
+
+    &lt;footer class="footer"&gt;
+        &lt;div class="container"&gt;
+            &lt;!-- columns + copyright --&gt;
+        &lt;/div&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li><code>&lt;head&gt;</code> полный: title, description, viewport, fonts, все 4 CSS-файла</li>
+                <li><code>lang="ru"</code> на <code>&lt;html&gt;</code></li>
+                <li>Header с logo, nav, CTA-кнопкой</li>
+                <li>Ровно один <code>&lt;h1&gt;</code> (в hero)</li>
+                <li>Все секции обёрнуты в <code>&lt;section&gt;</code> с классом</li>
+                <li>Повторяющиеся блоки (карточки) — в <code>&lt;article&gt;</code></li>
+                <li>Footer с копирайтом</li>
+                <li>Все картинки имеют <code>alt</code></li>
+                <li>Реалистичный контент темы, не Lorem ipsum</li>
+                <li>Открывается в браузере без ошибок</li>
+            </ul>
+            <ul data-lang="en">
+                <li><code>&lt;head&gt;</code> complete: title, description, viewport, fonts, all 4 CSS files</li>
+                <li><code>lang="en"</code> on <code>&lt;html&gt;</code></li>
+                <li>Header with logo, nav, CTA button</li>
+                <li>Exactly one <code>&lt;h1&gt;</code> (in hero)</li>
+                <li>All sections wrapped in <code>&lt;section&gt;</code> with class</li>
+                <li>Repeating blocks (cards) — in <code>&lt;article&gt;</code></li>
+                <li>Footer with copyright</li>
+                <li>All images have <code>alt</code></li>
+                <li>Realistic theme content, no Lorem ipsum</li>
+                <li>Opens in browser without errors</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 32.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 32.2: ОСТАЛЬНЫЕ СТРАНИЦЫ + НАВИГАЦИЯ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 32.2: REMAINING PAGES + NAVIGATION</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 31.2: Свёрстайте все остальные страницы</span>
+            <span class="task-title" data-lang="en">Task 31.2: Build all remaining pages</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">45 минут</span>
+                <span class="badge badge-time" data-lang="en">45 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать HTML для всех остальных страниц проекта, настроить навигацию</div>
+        <div class="task-goal" data-lang="en">Create HTML for all other project pages, set up navigation</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Копирование:</strong> Для каждой оставшейся страницы (about.html, menu.html, contact.html и т.д.) — скопируйте весь HTML из index.html.</li>
+            <li><strong>Обновите <code>&lt;head&gt;</code>:</strong>
+                <ul>
+                    <li>Уникальный <code>&lt;title&gt;</code>: «О нас | Sladko», «Меню | Sladko»</li>
+                    <li>Уникальный <code>&lt;meta name="description"&gt;</code> — описание именно этой страницы</li>
+                    <li>Обновите OG-теги (og:title, og:description, og:url)</li>
+                </ul>
+            </li>
+            <li><strong>Замените <code>&lt;main&gt;</code>:</strong> удалите секции главной и добавьте секции текущей страницы по wireframe.</li>
+            <li><strong>Активная ссылка:</strong> в навигации класс <code>.active</code> должен быть на ссылке текущей страницы (на about.html класс стоит на ссылке About, не Home).</li>
+            <li><strong>На контактной странице</strong> — добавьте форму (name, email, message) с правильными <code>&lt;label&gt;</code> и <code>type</code>.</li>
+            <li><strong>Проверка навигации:</strong> откройте главную → кликните на About → должна открыться about.html. Кликните на Home → вернуться на главную. Проверьте все ссылки.</li>
+            <li><strong>Проверка <code>.active</code>:</strong> на каждой странице правильная ссылка подсвечена (пока в HTML, в CSS стилизуем на 32-м).</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Copy:</strong> For each remaining page (about.html, menu.html, contact.html etc.) — copy entire HTML from index.html.</li>
+            <li><strong>Update <code>&lt;head&gt;</code>:</strong>
+                <ul>
+                    <li>Unique <code>&lt;title&gt;</code>: "About | Sladko", "Menu | Sladko"</li>
+                    <li>Unique <code>&lt;meta name="description"&gt;</code> — description for this specific page</li>
+                    <li>Update OG tags (og:title, og:description, og:url)</li>
+                </ul>
+            </li>
+            <li><strong>Replace <code>&lt;main&gt;</code>:</strong> delete home sections and add current page sections per wireframe.</li>
+            <li><strong>Active link:</strong> in navigation the <code>.active</code> class must be on the current page link (on about.html the class is on About link, not Home).</li>
+            <li><strong>On contact page</strong> — add a form (name, email, message) with proper <code>&lt;label&gt;</code> and <code>type</code>.</li>
+            <li><strong>Navigation test:</strong> open home → click About → about.html should open. Click Home → return to home. Test all links.</li>
+            <li><strong><code>.active</code> test:</strong> on each page the correct link is highlighted (in HTML for now, we'll style in lesson 32).</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Шаблон <code>&lt;head&gt;</code> для разных страниц:</strong>
+<pre><code>&lt;!-- index.html --&gt;
+&lt;title&gt;Главная | Sladko — Кондитерская в Ашхабаде&lt;/title&gt;
+&lt;meta name="description" content="Домашние торты и десерты с доставкой по Ашхабаду"&gt;
+
+&lt;!-- about.html --&gt;
+&lt;title&gt;О нас | Sladko&lt;/title&gt;
+&lt;meta name="description" content="История кондитерской Sladko, наша команда и ценности"&gt;
+
+&lt;!-- menu.html --&gt;
+&lt;title&gt;Меню | Sladko&lt;/title&gt;
+&lt;meta name="description" content="Полное меню кондитерской: торты, эклеры, макаруны"&gt;
+
+&lt;!-- contact.html --&gt;
+&lt;title&gt;Контакты | Sladko&lt;/title&gt;
+&lt;meta name="description" content="Связаться с нами: телефон, адрес, форма заказа"&gt;</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong><code>&lt;head&gt;</code> template for different pages:</strong>
+<pre><code>&lt;!-- index.html --&gt;
+&lt;title&gt;Home | Sladko — Ashgabat Bakery&lt;/title&gt;
+&lt;meta name="description" content="Homemade cakes and desserts with Ashgabat delivery"&gt;
+
+&lt;!-- about.html --&gt;
+&lt;title&gt;About | Sladko&lt;/title&gt;
+&lt;meta name="description" content="Sladko bakery story, our team and values"&gt;
+
+&lt;!-- menu.html --&gt;
+&lt;title&gt;Menu | Sladko&lt;/title&gt;
+&lt;meta name="description" content="Full bakery menu: cakes, eclairs, macarons"&gt;
+
+&lt;!-- contact.html --&gt;
+&lt;title&gt;Contact | Sladko&lt;/title&gt;
+&lt;meta name="description" content="Reach us: phone, address, order form"&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все страницы проекта созданы (3-5 .html-файлов)</li>
+                <li>У каждой уникальный <code>&lt;title&gt;</code> и <code>description</code></li>
+                <li>Header и footer <strong>идентичны</strong> на всех страницах (до запятой)</li>
+                <li>Класс <code>.active</code> на правильной ссылке каждой страницы</li>
+                <li>На контактной странице есть форма с правильными label + type</li>
+                <li>Все переходы между страницами работают</li>
+                <li>Возврат на главную через клик на logo или Home тоже работает</li>
+                <li>Ссылки с <code>target="_blank"</code> имеют <code>rel="noopener"</code></li>
+            </ul>
+            <ul data-lang="en">
+                <li>All project pages created (3-5 .html files)</li>
+                <li>Each has unique <code>&lt;title&gt;</code> and <code>description</code></li>
+                <li>Header and footer <strong>identical</strong> on all pages (down to commas)</li>
+                <li><code>.active</code> class on correct link of each page</li>
+                <li>Contact page has a form with proper label + type</li>
+                <li>All navigation between pages works</li>
+                <li>Return to home via logo or Home click works too</li>
+                <li>Links with <code>target="_blank"</code> have <code>rel="noopener"</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 32.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 32.3: КОНСУЛЬТАЦИЯ + ПРОВЕРКА + ПУШ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 32.3: CONSULTATION + CHECK + PUSH</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 31.3: Полировка и индивидуальная консультация</span>
+            <span class="task-title" data-lang="en">Task 31.3: Polish + individual consultation</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">45 минут</span>
+                <span class="badge badge-time" data-lang="en">45 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Проверить HTML, получить обратную связь от преподавателя, закоммитить</div>
+        <div class="task-goal" data-lang="en">Verify HTML, get instructor feedback, commit</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Self-review (15 мин):</strong> Пройдитесь по каждой странице с чеклистом:
+                <ul>
+                    <li>Семантические теги (не только div)</li>
+                    <li>Ровно один h1 на страницу</li>
+                    <li>Иерархия h1 → h2 → h3 без пропусков</li>
+                    <li>Уникальные title и description</li>
+                    <li>Все img с alt</li>
+                    <li>Все input с label</li>
+                    <li>Header/footer одинаковые</li>
+                    <li>.active на текущей странице</li>
+                    <li>Навигация работает</li>
+                </ul>
+            </li>
+            <li><strong>Валидация (5 мин):</strong> Зайдите на <strong>validator.w3.org</strong> → Validate by Direct Input → вставьте HTML каждой страницы → исправьте все ошибки (предупреждения можно игнорировать).</li>
+            <li><strong>Консультация (20 мин):</strong> Покажите преподавателю:
+                <ul>
+                    <li>Все страницы в браузере</li>
+                    <li>Код в VS Code</li>
+                    <li>Список вопросов по неясным местам</li>
+                </ul>
+            </li>
+            <li><strong>Правки (5 мин):</strong> Внесите правки по комментариям преподавателя.</li>
+            <li><strong>Коммит в git (5 мин):</strong>
+<pre><code>git add .
+git commit -m "Lesson 32: HTML structure for all pages"
+git push</code></pre>
+            </li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Self-review (15 min):</strong> Go through each page with checklist:
+                <ul>
+                    <li>Semantic tags (not just div)</li>
+                    <li>Exactly one h1 per page</li>
+                    <li>Hierarchy h1 → h2 → h3 without skips</li>
+                    <li>Unique title and description</li>
+                    <li>All img with alt</li>
+                    <li>All input with label</li>
+                    <li>Header/footer identical</li>
+                    <li>.active on current page</li>
+                    <li>Navigation works</li>
+                </ul>
+            </li>
+            <li><strong>Validation (5 min):</strong> Go to <strong>validator.w3.org</strong> → Validate by Direct Input → paste HTML of each page → fix all errors (warnings can be ignored).</li>
+            <li><strong>Consultation (20 min):</strong> Show the instructor:
+                <ul>
+                    <li>All pages in browser</li>
+                    <li>Code in VS Code</li>
+                    <li>List of questions on unclear parts</li>
+                </ul>
+            </li>
+            <li><strong>Fixes (5 min):</strong> Apply fixes per instructor comments.</li>
+            <li><strong>Git commit (5 min):</strong>
+<pre><code>git add .
+git commit -m "Lesson 32: HTML structure for all pages"
+git push</code></pre>
+            </li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Вопросы, с которыми стоит прийти к преподавателю:</strong>
+            <ul>
+                <li>«Этот блок — section или article?»</li>
+                <li>«Правильные ли классы я дал элементам?»</li>
+                <li>«Как лучше структурировать форму контактов?»</li>
+                <li>«Хватает ли у меня секций на странице?»</li>
+                <li>«Реалистичный ли контент?»</li>
+            </ul>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Questions to bring to instructor:</strong>
+            <ul>
+                <li>"This block — section or article?"</li>
+                <li>"Are my element classes correct?"</li>
+                <li>"How to better structure the contact form?"</li>
+                <li>"Do I have enough sections on the page?"</li>
+                <li>"Is the content realistic?"</li>
+            </ul>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Self-review пройден (все пункты чеклиста)</li>
+                <li>HTML валиден на validator.w3.org (ошибок нет)</li>
+                <li>Преподаватель посмотрел и дал обратную связь</li>
+                <li>Правки по комментариям внесены</li>
+                <li>Коммит сделан с понятным сообщением</li>
+                <li>Изменения отправлены на GitHub (<code>git push</code>)</li>
+                <li>Репозиторий на GitHub показывает обновлённый код</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Self-review passed (all checklist items)</li>
+                <li>HTML valid on validator.w3.org (no errors)</li>
+                <li>Instructor reviewed and gave feedback</li>
+                <li>Fixes per comments applied</li>
+                <li>Commit made with clear message</li>
+                <li>Changes pushed to GitHub (<code>git push</code>)</li>
+                <li>GitHub repo shows updated code</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 31.4: Accessibility audit</span>
+            <span class="task-title" data-lang="en">Task 31.4: Accessibility audit</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Проверить доступность проекта инструментами</div>
+        <div class="task-goal" data-lang="en">Verify project accessibility with tools</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Lighthouse:</strong> Откройте DevTools (F12) → вкладка Lighthouse → Categories: Accessibility → Analyze page. Сделайте для главной страницы. Оценка должна быть <strong>85+</strong>. Исправьте все красные пункты.</li>
+            <li><strong>Keyboard navigation:</strong> Зайдите на сайт, закройте мышь. Нажмите Tab — фокус должен переходить по ссылкам и кнопкам в логичном порядке. Все интерактивные элементы должны быть доступны с клавиатуры.</li>
+            <li><strong>Screen reader тест:</strong>
+                <ul>
+                    <li>macOS: включите VoiceOver (<code>Cmd + F5</code>)</li>
+                    <li>Windows: установите NVDA (бесплатно, nvaccess.org)</li>
+                    <li>Прослушайте, как читается ваша страница. Понятно ли без визуала?</li>
+                </ul>
+            </li>
+            <li><strong>aria-атрибуты:</strong> Добавьте <code>aria-label</code> к бургер-кнопке (пока она не видна без CSS, но уже в HTML). Добавьте <code>aria-current="page"</code> вместо/вместе с class="active".</li>
+            <li><strong>Отчёт:</strong> в <code>plan.md</code> добавьте раздел «Accessibility», запишите оценку Lighthouse и что улучшили.</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Lighthouse:</strong> Open DevTools (F12) → Lighthouse tab → Categories: Accessibility → Analyze page. Run on home page. Score should be <strong>85+</strong>. Fix all red items.</li>
+            <li><strong>Keyboard navigation:</strong> Open the site, close the mouse. Press Tab — focus should move through links and buttons in a logical order. All interactive elements should be keyboard-accessible.</li>
+            <li><strong>Screen reader test:</strong>
+                <ul>
+                    <li>macOS: enable VoiceOver (<code>Cmd + F5</code>)</li>
+                    <li>Windows: install NVDA (free, nvaccess.org)</li>
+                    <li>Listen to how your page is read. Is it understandable without visuals?</li>
+                </ul>
+            </li>
+            <li><strong>aria attributes:</strong> Add <code>aria-label</code> to the burger button (not yet visible without CSS, but already in HTML). Add <code>aria-current="page"</code> instead of/alongside class="active".</li>
+            <li><strong>Report:</strong> in <code>plan.md</code> add an "Accessibility" section, record Lighthouse score and what you improved.</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Если Lighthouse показывает ошибки:</strong>
+            <ul>
+                <li>«Image missing alt» → добавьте <code>alt</code></li>
+                <li>«Form elements do not have labels» → добавьте <code>&lt;label&gt;</code></li>
+                <li>«Heading elements are not in sequentially-descending order» → не пропускайте уровни</li>
+                <li>«Background and foreground colors have low contrast» → это исправим на 32-м с CSS</li>
+            </ul>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>If Lighthouse shows errors:</strong>
+            <ul>
+                <li>"Image missing alt" → add <code>alt</code></li>
+                <li>"Form elements do not have labels" → add <code>&lt;label&gt;</code></li>
+                <li>"Heading elements are not in sequentially-descending order" → don't skip levels</li>
+                <li>"Background and foreground colors have low contrast" → we'll fix on lesson 32 with CSS</li>
+            </ul>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Lighthouse Accessibility: 85+</li>
+                <li>Все красные пункты исправлены</li>
+                <li>Keyboard navigation работает (проверено Tab'ом)</li>
+                <li>Screen reader протестирован хотя бы на главной</li>
+                <li><code>aria-label</code> на интерактивных элементах без видимого текста</li>
+                <li><code>aria-current="page"</code> на ссылке текущей страницы</li>
+                <li>Отчёт в <code>plan.md</code></li>
+            </ul>
+            <ul data-lang="en">
+                <li>Lighthouse Accessibility: 85+</li>
+                <li>All red items fixed</li>
+                <li>Keyboard navigation works (Tab-tested)</li>
+                <li>Screen reader tested at least on home page</li>
+                <li><code>aria-label</code> on interactive elements without visible text</li>
+                <li><code>aria-current="page"</code> on current page link</li>
+                <li>Report in <code>plan.md</code></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

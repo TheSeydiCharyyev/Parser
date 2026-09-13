@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 5 — Конспект ученика</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: #1e293b; background: #fff; padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { font-size: 1.8rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 10px; margin-bottom: 6px; }
+        h2 { font-size: 1.4rem; color: #7e22ce; margin: 36px 0 14px; padding: 8px 14px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 6px 6px 0; }
+        h3 { font-size: 1.15rem; color: #1e3a5f; margin: 20px 0 10px; }
+        .subtitle { color: #64748b; margin-bottom: 6px; }
+        .date-line { color: #94a3b8; font-style: italic; margin-bottom: 24px; }
+        .key-point { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 14px 18px; margin: 12px 0; border-radius: 0 6px 6px 0; }
+        .definition { background: #faf5ff; border: 1px solid #d8b4fe; padding: 14px 18px; border-radius: 8px; margin: 12px 0; }
+        .definition strong { color: #7e22ce; }
+        .diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 16px; border-radius: 8px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.4; margin: 14px 0; overflow-x: auto; font-size: 0.82rem; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 14px 18px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 0.9rem; line-height: 1.6; margin: 12px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+        th, td { padding: 8px 12px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 8px 0 8px 24px; }
+        li { margin: 4px 0; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 30px 0; }
+        .remember { background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+        .remember::before { content: '❗ Запомни:'; display: block; font-weight: 700; color: #dc2626; margin-bottom: 4px; }
+        .homework { background: #fdf4ff; border: 2px solid #d8b4fe; border-radius: 10px; padding: 18px; margin: 20px 0; }
+        .homework::before { content: '📚 ДОМАШНЕЕ ЗАДАНИЕ'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 5: Списки и семантика</span><span style="color:#cbd5e1;">|</span><a href="lecture.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127979; Лекция</a><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128104;&#8205;&#127891; Конспект</span><a href="tasks.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128203; Задания</a></div>
+<div class="container">
+
+    <h1>📓 КОНСПЕКТ УЧЕНИКА</h1>
+    <p class="subtitle">Занятие 5: Списки и семантика</p>
+    <p class="date-line">Дата: _______________</p>
+
+    <hr>
+
+    <h2>📋 СПИСКИ</h2>
+
+    <h3>Маркированный список &lt;ul&gt; (порядок не важен)</h3>
+
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;Молоко&lt;/li&gt;
+    &lt;li&gt;Хлеб&lt;/li&gt;
+    &lt;li&gt;Сыр&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+    <h3>Нумерованный список &lt;ol&gt; (порядок важен)</h3>
+
+<pre><code>&lt;ol&gt;
+    &lt;li&gt;Шаг первый&lt;/li&gt;
+    &lt;li&gt;Шаг второй&lt;/li&gt;
+    &lt;li&gt;Шаг третий&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+    <p>Атрибуты <code>&lt;ol&gt;</code>: <code>type="A"</code> (буквы), <code>start="5"</code> (начать с 5), <code>reversed</code> (обратный)</p>
+
+    <h3>Вложенные списки</h3>
+
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;Фрукты
+        &lt;ul&gt;
+            &lt;li&gt;Яблоки&lt;/li&gt;
+            &lt;li&gt;Бананы&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Овощи&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+    <h3>Описательный список &lt;dl&gt; (термин — определение)</h3>
+
+<pre><code>&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Язык разметки для веб-страниц&lt;/dd&gt;
+
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Таблицы стилей для оформления&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+
+    <p>Используется для: словарь, FAQ, характеристики товара</p>
+
+    <h3>Навигация (реальный пример)</h3>
+
+<pre><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Главная&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="about.html"&gt;О нас&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="contacts.html"&gt;Контакты&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+
+    <div class="remember">
+        <ul>
+            <li>Внутри <code>&lt;ul&gt;</code> и <code>&lt;ol&gt;</code> — <strong>только <code>&lt;li&gt;</code></strong>!</li>
+            <li>Внутри <code>&lt;li&gt;</code> — что угодно (текст, ссылки, картинки, другие списки)</li>
+            <li>Вложенный список размещается <strong>внутри <code>&lt;li&gt;</code></strong>, не после него!</li>
+        </ul>
+    </div>
+
+    <div class="key-point">
+        <strong>Запоминалка — какой список выбрать:</strong><br>
+        Порядок не важен? → <code>&lt;ul&gt;</code> (список покупок)<br>
+        Порядок важен? → <code>&lt;ol&gt;</code> (рецепт, рейтинг)<br>
+        Термин + определение? → <code>&lt;dl&gt;</code> (словарь, FAQ, характеристики)
+    </div>
+
+    <hr>
+
+    <h2>🏗️ СЕМАНТИЧЕСКИЕ ТЕГИ HTML5</h2>
+
+    <div class="definition">
+        <strong>Семантика</strong> = теги со смыслом. Вместо безликих <code>&lt;div&gt;</code> используем теги, которые описывают роль содержимого.
+    </div>
+
+    <div class="diagram">
+┌──────────────────────────────────────┐
+│            &lt;header&gt;                  │
+├──────────────────────────────────────┤
+│             &lt;nav&gt;                    │
+├─────────────────────┬────────────────┤
+│                     │                │
+│     &lt;main&gt;         │   &lt;aside&gt;      │
+│  ┌──────────────┐   │   Боковое      │
+│  │  &lt;article&gt;   │   │                │
+│  │  ┌────────┐  │   │                │
+│  │  │&lt;section│  │   │                │
+│  │  └────────┘  │   │                │
+│  └──────────────┘   │                │
+├─────────────────────┴────────────────┤
+│            &lt;footer&gt;                  │
+└──────────────────────────────────────┘</div>
+
+    <table>
+        <tr><th>Тег</th><th>Роль</th></tr>
+        <tr><td><code>&lt;header&gt;</code></td><td>Шапка (логотип, название)</td></tr>
+        <tr><td><code>&lt;nav&gt;</code></td><td>Навигация</td></tr>
+        <tr><td><code>&lt;main&gt;</code></td><td>Основной контент (один на странице!)</td></tr>
+        <tr><td><code>&lt;article&gt;</code></td><td>Самостоятельный контент (статья, пост)</td></tr>
+        <tr><td><code>&lt;section&gt;</code></td><td>Тематический раздел</td></tr>
+        <tr><td><code>&lt;aside&gt;</code></td><td>Боковой контент (sidebar)</td></tr>
+        <tr><td><code>&lt;footer&gt;</code></td><td>Подвал (копирайт, контакты)</td></tr>
+    </table>
+
+    <h3>Дополнительные теги</h3>
+
+    <table>
+        <tr><th>Тег</th><th>Что делает</th></tr>
+        <tr><td><code>&lt;details&gt; + &lt;summary&gt;</code></td><td>Раскрывающийся блок (без JS!)</td></tr>
+        <tr><td><code>&lt;time datetime="..."&gt;</code></td><td>Дата/время (для поисковиков)</td></tr>
+        <tr><td><code>&lt;figure&gt; + &lt;figcaption&gt;</code></td><td>Картинка с подписью</td></tr>
+    </table>
+
+    <h3>HTML-сущности</h3>
+
+    <table>
+        <tr><th>Код</th><th>Символ</th></tr>
+        <tr><td><code>&amp;copy;</code></td><td>&copy;</td></tr>
+        <tr><td><code>&amp;amp;</code></td><td>&amp;</td></tr>
+        <tr><td><code>&amp;lt;</code> / <code>&amp;gt;</code></td><td>&lt; / &gt;</td></tr>
+        <tr><td><code>&amp;nbsp;</code></td><td>Неразрывный пробел</td></tr>
+    </table>
+
+    <div class="remember">
+        <ul>
+            <li><code>&lt;div&gt;</code> используй только когда <strong>ни один семантический тег не подходит</strong></li>
+            <li><code>&lt;main&gt;</code> — только <strong>один</strong> на странице!</li>
+            <li><code>&lt;article&gt;</code> = самостоятелен (можно вырезать → понятен отдельно)</li>
+            <li><code>&lt;section&gt;</code> = часть чего-то большего</li>
+        </ul>
+    </div>
+
+    <div class="key-point">
+        <strong>Запоминалка:</strong> Семантические теги = подписанные коробки при переезде.<br>
+        <code>&lt;div&gt;</code> = неподписанная коробка (что внутри — неизвестно).<br>
+        <code>&lt;header&gt;</code> = коробка с надписью «Кухня» (сразу понятно).
+    </div>
+
+    <hr>
+
+    <h2>📝 ИТОГИ ЗАНЯТИЯ 5</h2>
+
+    <div class="key-point">
+        <ul>
+            <li><code>&lt;ul&gt;</code> — маркированный (порядок не важен)</li>
+            <li><code>&lt;ol&gt;</code> — нумерованный (порядок важен)</li>
+            <li><code>&lt;dl&gt;&lt;dt&gt;&lt;dd&gt;</code> — описательный (термин — определение)</li>
+            <li>Списки можно вкладывать друг в друга</li>
+            <li>Навигация = <code>nav &gt; ul &gt; li &gt; a</code></li>
+            <li>Семантика: header, nav, main, article, section, aside, footer</li>
+            <li><code>&lt;main&gt;</code> — один на странице</li>
+            <li><code>&lt;details&gt;</code> — раскрывающийся блок без JS</li>
+            <li><code>&amp;copy;</code> — символ &copy;</li>
+        </ul>
+    </div>
+
+    <div class="homework">
+        <ol>
+            <li>Создайте семантическую страницу блога (header, nav, main, article, aside, footer)</li>
+            <li>Добавьте 2 статьи (<code>&lt;article&gt;</code>) с разделами (<code>&lt;section&gt;</code>)</li>
+            <li>Используйте все 3 типа списков (ul, ol, dl)</li>
+            <li>Добавьте <code>&lt;details&gt;</code> с FAQ (3+ вопроса)</li>
+            <li>Навигация через <code>&lt;nav&gt; &gt; &lt;ul&gt; &gt; &lt;li&gt; &gt; &lt;a&gt;</code></li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

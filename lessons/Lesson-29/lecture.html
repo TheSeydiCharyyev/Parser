@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 29 — Знакомство с Figma</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 29: Знакомство с Figma</span>
+    <span class="nav-title" data-lang="en">Lesson 29: Introduction to Figma</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 29: Знакомство с Figma</h1>
+    <h1 data-lang="en">Lesson 29: Introduction to Figma</h1>
+    <p class="subtitle" data-lang="ru">Что такое Figma, интерфейс для разработчика, как читать макет, экспорт ресурсов</p>
+    <p class="subtitle" data-lang="en">What is Figma, developer interface, reading layouts, exporting assets</p>
+
+    <div class="why" data-lang="ru">
+        <p>До этого занятия вы создавали сайты «из головы»: сами придумывали структуру, цвета, шрифты, отступы. В реальной работе так бывает <strong>редко</strong>. Обычно разработчик получает <strong>готовый макет</strong> от дизайнера — и должен в точности его сверстать. В 95% коммерческих проектов макет лежит в <strong>Figma</strong>.</p>
+        <p>Figma — как <strong>чертёж</strong> для строителя. Вы не проектируете дом — вы строите по плану архитектора. Ваша задача: прочитать чертёж (размеры, цвета, шрифты), экспортировать материалы (картинки, иконки), и собрать здание из них (HTML + CSS).</p>
+        <p>Хорошая новость: <strong>рисовать в Figma не нужно</strong>. Вам нужно только уметь её <strong>читать</strong>. Это в 10 раз проще. Но без этого навыка — вы не сможете работать в команде с дизайнером. А это 99% вакансий фронтенд-разработчиков.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Открывать Figma-макеты в браузере (бесплатно)</li>
+            <li>Ориентироваться в интерфейсе: Layers, Canvas, Inspect</li>
+            <li>Использовать Dev Mode — готовый CSS прямо из макета</li>
+            <li>Читать размеры, отступы, цвета, шрифты</li>
+            <li>Измерять расстояния между элементами (Alt + hover)</li>
+            <li>Экспортировать картинки (JPG), иконки (SVG), логотипы (PNG)</li>
+            <li>Выстраивать алгоритм «от макета к коду»</li>
+            <li>Подготовиться к реальной работе с дизайнером в команде</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Up until now you built sites "from your head": invented structure, colors, fonts, spacing yourself. In real work — that's <strong>rare</strong>. Usually a dev gets a <strong>ready layout</strong> from a designer and must reproduce it exactly. In 95% of commercial projects, layouts live in <strong>Figma</strong>.</p>
+        <p>Figma is like a <strong>blueprint</strong> for a builder. You don't design the house — you build by the architect's plan. Your job: read the blueprint (sizes, colors, fonts), export materials (images, icons), assemble the building from them (HTML + CSS).</p>
+        <p>Good news: <strong>you don't need to draw in Figma</strong>. You only need to <strong>read</strong> it. 10× easier. But without this skill — you can't work on a team with a designer. And that's 99% of frontend job postings.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Open Figma layouts in the browser (free)</li>
+            <li>Navigate the interface: Layers, Canvas, Inspect</li>
+            <li>Use Dev Mode — ready CSS right from the layout</li>
+            <li>Read sizes, spacing, colors, fonts</li>
+            <li>Measure distances between elements (Alt + hover)</li>
+            <li>Export images (JPG), icons (SVG), logos (PNG)</li>
+            <li>Build a "layout → code" algorithm</li>
+            <li>Prepare for real team work with a designer</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#what">Что такое Figma и зачем она разработчику</a></li>
+            <li><a href="#register">Регистрация и первый вход</a></li>
+            <li><a href="#interface">Интерфейс Figma для разработчика</a></li>
+            <li><a href="#dev-mode">Dev Mode — режим разработчика</a></li>
+            <li><a href="#inspect">Inspect — чтение свойств элемента</a></li>
+            <li><a href="#sizes">Как читать размеры и отступы</a></li>
+            <li><a href="#colors">Как читать цвета</a></li>
+            <li><a href="#fonts">Как читать шрифты</a></li>
+            <li><a href="#spacing">Как измерять расстояния между элементами</a></li>
+            <li><a href="#export">Экспорт изображений и иконок</a></li>
+            <li><a href="#figma-to-css">От Figma к CSS — алгоритм</a></li>
+            <li><a href="#practice">Практика: анализируем макет</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#what">What is Figma and why developers need it</a></li>
+            <li><a href="#register">Registration and first login</a></li>
+            <li><a href="#interface">Figma interface for developers</a></li>
+            <li><a href="#dev-mode">Dev Mode — developer mode</a></li>
+            <li><a href="#inspect">Inspect — reading element properties</a></li>
+            <li><a href="#sizes">How to read sizes and spacing</a></li>
+            <li><a href="#colors">How to read colors</a></li>
+            <li><a href="#fonts">How to read fonts</a></li>
+            <li><a href="#spacing">How to measure distances between elements</a></li>
+            <li><a href="#export">Exporting images and icons</a></li>
+            <li><a href="#figma-to-css">From Figma to CSS — algorithm</a></li>
+            <li><a href="#practice">Practice: analyzing a layout</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ЧТО ТАКОЕ ==================== -->
+    <h2 id="what" data-lang="ru">1. Что такое Figma и зачем она разработчику</h2>
+    <h2 id="what-en" data-lang="en">1. What is Figma and why developers need it</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Figma запущена в 2016, а к 2022 стала <strong>стандартом индустрии</strong> для дизайна интерфейсов. Adobe хотел купить её за $20 млрд в 2022, но антимонопольные органы блокировали сделку. Это говорит о масштабе: Figma используют 90% всех UX/UI дизайнеров в мире. Google, Microsoft, Airbnb, Spotify — все работают в Figma.</p>
+        <p>Для разработчика это означает одно: если вы идёте работать в команду — вы будете получать макеты в Figma. Других вариантов практически нет. Photoshop и Sketch — устарели.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Figma launched in 2016 and became the <strong>industry standard</strong> for interface design by 2022. Adobe tried to buy it for $20bn in 2022, but antitrust regulators blocked the deal. That's the scale: 90% of all UX/UI designers use Figma. Google, Microsoft, Airbnb, Spotify — all work in Figma.</p>
+        <p>For a developer this means one thing: if you join a team — you'll get layouts in Figma. There's barely any other option. Photoshop and Sketch are outdated.</p>
+    </div>
+
+    <p data-lang="ru"><strong>Figma</strong> — это инструмент для дизайна интерфейсов. Дизайнер рисует макет в Figma, а разработчик <strong>верстает по этому макету</strong>.</p>
+    <p data-lang="en"><strong>Figma</strong> is an interface design tool. A designer creates a layout in Figma, and a developer <strong>codes it based on that layout</strong>.</p>
+
+    <div class="diagram" data-lang="ru">
+    Рабочий процесс:
+
+    Дизайнер              Разработчик
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;        &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502; Рисует      &#x2502;  &#x2500;&#x2500;&#x2500;&#x2500;  &#x2502; Читает      &#x2502;
+    &#x2502; макет в     &#x2502; Figma  &#x2502; макет в     &#x2502;
+    &#x2502; Figma       &#x2502;  &#x2500;&#x2500;&#x2500;&#x2500;  &#x2502; Figma       &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;        &#x2502;             &#x2502;
+                          &#x2502; Пишет       &#x2502;
+                          &#x2502; HTML + CSS  &#x2502;
+                          &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    Workflow:
+
+    Designer              Developer
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;        &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502; Creates     &#x2502;  &#x2500;&#x2500;&#x2500;&#x2500;  &#x2502; Reads       &#x2502;
+    &#x2502; layout in   &#x2502; Figma  &#x2502; layout in   &#x2502;
+    &#x2502; Figma       &#x2502;  &#x2500;&#x2500;&#x2500;&#x2500;  &#x2502; Figma       &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;        &#x2502;             &#x2502;
+                          &#x2502; Writes      &#x2502;
+                          &#x2502; HTML + CSS  &#x2502;
+                          &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Разработчику не нужно уметь рисовать в Figma!</strong> Нужно уметь <strong>читать макет</strong>: определять размеры, цвета, шрифты, отступы, и переводить это в CSS.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Developers don't need to draw in Figma!</strong> They need to <strong>read the layout</strong>: determine sizes, colors, fonts, spacing, and translate it to CSS.
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Строитель и архитектор.</strong> Архитектор рисует чертёж дома (Figma). Строитель читает чертёж и возводит здание (HTML + CSS). Строителю не нужно уметь проектировать — достаточно уметь читать планы. Если строитель не умеет читать — дом не построить.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Builder and architect.</strong> Architect draws the house blueprint (Figma). Builder reads the blueprint and erects the building (HTML + CSS). The builder doesn't need to design — just to read plans. A builder who can't read blueprints can't build.</p>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Как это реально происходит в команде:</strong></p>
+        <ol>
+            <li>Менеджер ставит задачу: «нужна страница регистрации»</li>
+            <li>Дизайнер рисует макет в Figma и пишет в Slack: «готово, ссылка: figma.com/file/...»</li>
+            <li>Разработчик открывает макет, переключается в Dev Mode, смотрит CSS-свойства</li>
+            <li>Разработчик собирает HTML + CSS по макету, коммитит в git</li>
+            <li>Ревью: дизайнер открывает задеплоенную страницу рядом с макетом и ищет расхождения</li>
+            <li>Если есть баги («отступ 24px, а ты сделал 20px») — задача возвращается</li>
+        </ol>
+        <p>Цикл повторяется до тех пор, пока страница не станет <strong>pixel-perfect</strong>.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>How it actually works on a team:</strong></p>
+        <ol>
+            <li>PM sets a task: "need a signup page"</li>
+            <li>Designer draws layout in Figma, pings in Slack: "done, link: figma.com/file/..."</li>
+            <li>Developer opens layout, switches to Dev Mode, reads CSS properties</li>
+            <li>Developer builds HTML + CSS from layout, commits to git</li>
+            <li>Review: designer opens deployed page next to layout, looks for differences</li>
+            <li>If there are bugs ("spacing should be 24px, you did 20px") — task comes back</li>
+        </ol>
+        <p>Cycle repeats until the page is <strong>pixel-perfect</strong>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== РЕГИСТРАЦИЯ ==================== -->
+    <h2 id="register" data-lang="ru">2. Регистрация и первый вход</h2>
+    <h2 id="register-en" data-lang="en">2. Registration and first login</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Хорошая новость: Figma <strong>бесплатна для разработчиков</strong>. Бесплатного плана более чем достаточно, чтобы читать чужие макеты (именно это и нужно junior-разработчику). Платный план нужен только дизайнерам или в больших командах с расширенными функциями.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Good news: Figma is <strong>free for developers</strong>. The free plan is more than enough to read others' layouts (exactly what a junior dev needs). Paid plan is only for designers or large teams with advanced features.</p>
+    </div>
+
+    <ol data-lang="ru">
+        <li>Откройте <strong>figma.com</strong></li>
+        <li>Нажмите <strong>Sign up</strong> (бесплатно)</li>
+        <li>Зарегистрируйтесь через Google или email</li>
+        <li>Figma работает <strong>в браузере</strong> — ничего устанавливать не нужно!</li>
+        <li>Также есть десктопное приложение (опционально)</li>
+    </ol>
+    <ol data-lang="en">
+        <li>Go to <strong>figma.com</strong></li>
+        <li>Click <strong>Sign up</strong> (free)</li>
+        <li>Register with Google or email</li>
+        <li>Figma works <strong>in the browser</strong> — no installation needed!</li>
+        <li>Desktop app is also available (optional)</li>
+    </ol>
+
+    <div class="fun-fact" data-lang="ru">
+        <p>Бесплатный план Figma позволяет работать с 3 проектами и неограниченным количеством файлов. Для обучения и работы с чужими макетами этого более чем достаточно.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p>Figma's free plan allows 3 projects and unlimited files. For learning and working with shared layouts, this is more than enough.</p>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Community — ваш учебный полигон.</strong> На <code>figma.com/community</code> тысячи <strong>бесплатных</strong> макетов (landing, дашборды, мобильные приложения) от дизайнеров. Нажимаете «Duplicate» — макет копируется в ваш аккаунт. Идеально для практики чтения макетов и pixel-perfect вёрстки, пока нет реального клиента.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Community — your training ground.</strong> On <code>figma.com/community</code> there are thousands of <strong>free</strong> layouts (landings, dashboards, mobile apps) from designers. Click "Duplicate" — layout is copied to your account. Perfect for practicing layout reading and pixel-perfect coding before you have a real client.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ИНТЕРФЕЙС ==================== -->
+    <h2 id="interface" data-lang="ru">3. Интерфейс Figma для разработчика</h2>
+    <h2 id="interface-en" data-lang="en">3. Figma interface for developers</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Интерфейс Figma для дизайнера — огромный (50+ инструментов). Но для разработчика важны только <strong>три зоны</strong>: Layers (слои), Canvas (холст) и Inspect (свойства). На них и сосредоточимся — остальное вам не нужно.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Figma's UI for designers is huge (50+ tools). But for a developer, only <strong>three zones</strong> matter: Layers (tree), Canvas (workspace) and Inspect (properties). Focus on these — the rest you don't need.</p>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;   Toolbar (инструменты сверху)          &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502; Layers &#x2502;                    &#x2502; Inspect  &#x2502;
+    &#x2502; (слои) &#x2502;    Canvas          &#x2502; (свой-   &#x2502;
+    &#x2502;        &#x2502;    (холст с        &#x2502;  ства)   &#x2502;
+    &#x2502; Pages  &#x2502;     макетом)       &#x2502;          &#x2502;
+    &#x2502;        &#x2502;                    &#x2502; Design   &#x2502;
+    &#x2502;        &#x2502;                    &#x2502; Prototype&#x2502;
+    &#x2502;        &#x2502;                    &#x2502; Inspect  &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;   Toolbar (tools at top)                &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502; Layers &#x2502;                    &#x2502; Inspect  &#x2502;
+    &#x2502;        &#x2502;    Canvas          &#x2502; (proper- &#x2502;
+    &#x2502;        &#x2502;    (canvas with    &#x2502;  ties)   &#x2502;
+    &#x2502; Pages  &#x2502;     layout)        &#x2502;          &#x2502;
+    &#x2502;        &#x2502;                    &#x2502; Design   &#x2502;
+    &#x2502;        &#x2502;                    &#x2502; Prototype&#x2502;
+    &#x2502;        &#x2502;                    &#x2502; Inspect  &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <table data-lang="ru">
+        <tr><th>Панель</th><th>Что показывает</th></tr>
+        <tr><td><strong>Layers (слева)</strong></td><td>Дерево элементов (как HTML). Можно кликать и выделять</td></tr>
+        <tr><td><strong>Canvas (центр)</strong></td><td>Макет. Зум колёсиком, перемещение Пробел + drag</td></tr>
+        <tr><td><strong>Inspect (справа)</strong></td><td>Свойства выделенного элемента: размер, цвет, шрифт, отступы</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Panel</th><th>What it shows</th></tr>
+        <tr><td><strong>Layers (left)</strong></td><td>Element tree (like HTML). Click to select</td></tr>
+        <tr><td><strong>Canvas (center)</strong></td><td>Layout. Zoom with scroll, pan with Space + drag</td></tr>
+        <tr><td><strong>Inspect (right)</strong></td><td>Properties of selected element: size, color, font, spacing</td></tr>
+    </table>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Горячие клавиши, которые сэкономят часы:</strong></p>
+        <ul>
+            <li><span class="kbd">Space</span> + drag — <strong>перемещение</strong> по canvas</li>
+            <li><span class="kbd">Ctrl/Cmd</span> + колесо — <strong>зум</strong> в точку курсора</li>
+            <li><span class="kbd">Shift</span> + 1 — <strong>fit</strong> весь макет на экран</li>
+            <li><span class="kbd">Shift</span> + 2 — <strong>zoom</strong> к выделенному</li>
+            <li><span class="kbd">Alt</span> + hover — <strong>расстояние</strong> между элементами</li>
+            <li><span class="kbd">Ctrl/Cmd</span> + <span class="kbd">\</span> — спрятать/показать боковые панели</li>
+        </ul>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Hotkeys that save hours:</strong></p>
+        <ul>
+            <li><span class="kbd">Space</span> + drag — <strong>pan</strong> around canvas</li>
+            <li><span class="kbd">Ctrl/Cmd</span> + scroll — <strong>zoom</strong> to cursor point</li>
+            <li><span class="kbd">Shift</span> + 1 — <strong>fit</strong> entire layout on screen</li>
+            <li><span class="kbd">Shift</span> + 2 — <strong>zoom</strong> to selection</li>
+            <li><span class="kbd">Alt</span> + hover — <strong>distance</strong> between elements</li>
+            <li><span class="kbd">Ctrl/Cmd</span> + <span class="kbd">\</span> — hide/show side panels</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== DEV MODE ==================== -->
+    <h2 id="dev-mode" data-lang="ru">4. Dev Mode — режим разработчика</h2>
+    <h2 id="dev-mode-en" data-lang="en">4. Dev Mode — developer mode</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Dev Mode — это <strong>подарок разработчикам</strong> от команды Figma (запущен в 2023). До этого приходилось вручную измерять всё в Inspect-панели. Теперь Figma <strong>сама генерирует CSS-код</strong> для выделенного элемента: готовые строки <code>background: #3B82F6; border-radius: 12px;</code> и т.д. — копируй и вставляй.</p>
+        <p>Dev Mode экономит часы: не нужно запоминать HEX-цвета, выписывать font-weight вручную, переводить rem в px. Всё уже в правой панели.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Dev Mode is a <strong>gift to developers</strong> from the Figma team (launched 2023). Previously you had to manually measure everything in the Inspect panel. Now Figma <strong>generates CSS code</strong> for the selected element: ready lines <code>background: #3B82F6; border-radius: 12px;</code> etc. — copy and paste.</p>
+        <p>Dev Mode saves hours: no memorizing HEX colors, no writing font-weight by hand, no converting rem to px. It's all in the right panel.</p>
+    </div>
+
+    <p data-lang="ru">В Figma есть специальный <strong>Dev Mode</strong> (кнопка <code>&lt;/&gt;</code> в правом верхнем углу). Он показывает:</p>
+    <p data-lang="en">Figma has a special <strong>Dev Mode</strong> (button <code>&lt;/&gt;</code> in top-right corner). It shows:</p>
+
+    <ul data-lang="ru">
+        <li><strong>CSS-код</strong> выделенного элемента (копируй и вставляй!)</li>
+        <li><strong>Размеры</strong> в пикселях</li>
+        <li><strong>Расстояния</strong> между элементами (наведи на элемент, зажми Alt)</li>
+        <li><strong>Цвета</strong> в HEX, RGB, HSL</li>
+        <li><strong>Шрифты</strong>: название, размер, вес, межстрочный</li>
+    </ul>
+    <ul data-lang="en">
+        <li><strong>CSS code</strong> of selected element (copy and paste!)</li>
+        <li><strong>Sizes</strong> in pixels</li>
+        <li><strong>Distances</strong> between elements (hover over element, hold Alt)</li>
+        <li><strong>Colors</strong> in HEX, RGB, HSL</li>
+        <li><strong>Fonts</strong>: name, size, weight, line-height</li>
+    </ul>
+
+    <div class="important" data-lang="ru">
+        <strong>Dev Mode</strong> может быть ограничен на бесплатном плане. Альтернатива: вкладка <strong>Inspect</strong> в правой панели (доступна всегда). Она показывает те же данные.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Dev Mode</strong> may be limited on the free plan. Alternative: <strong>Inspect</strong> tab in the right panel (always available). It shows the same data.
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Осторожно: Dev Mode — не «магия».</strong> CSS, который генерирует Figma — <strong>сырой</strong>. Там будут <code>position: absolute</code> и явные <code>top/left</code> — потому что Figma не знает о Flexbox или Grid. Используйте сгенерированный CSS как <strong>справку</strong> (размеры, цвета), но layout пишите сами через flex/grid.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Warning: Dev Mode isn't "magic".</strong> The CSS Figma generates is <strong>raw</strong>. It'll have <code>position: absolute</code> and explicit <code>top/left</code> — because Figma doesn't know about Flexbox or Grid. Use the generated CSS as a <strong>reference</strong> (sizes, colors), but write layout yourself with flex/grid.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== INSPECT ==================== -->
+    <h2 id="inspect" data-lang="ru">5. Inspect — чтение свойств элемента</h2>
+    <h2 id="inspect-en" data-lang="en">5. Inspect — reading element properties</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Inspect-панель показывает <strong>все свойства выделенного элемента</strong>. Это ваш главный инструмент. Кликнули на элемент — справа видите: размер в пикселях, цвет фона, бордер, скругление, тень. Каждое свойство в Figma имеет прямой «CSS-перевод». Запомните соответствия ниже — и сможете читать любой макет.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Inspect panel shows <strong>all properties of the selected element</strong>. Your main tool. Click an element — on the right you see: pixel size, background color, border, radius, shadow. Each Figma property has a direct "CSS translation". Memorize the mappings below — and you'll read any layout.</p>
+    </div>
+
+    <p data-lang="ru">Кликните на элемент в макете. В правой панели (вкладка Inspect / Design) вы увидите:</p>
+    <p data-lang="en">Click on an element in the layout. In the right panel (Inspect / Design tab) you'll see:</p>
+
+    <table data-lang="ru">
+        <tr><th>Свойство в Figma</th><th>CSS</th></tr>
+        <tr><td>W: 300, H: 200</td><td><code>width: 300px; height: 200px;</code></td></tr>
+        <tr><td>Fill: #3B82F6</td><td><code>background: #3B82F6;</code></td></tr>
+        <tr><td>Stroke: #E2E8F0, 1px</td><td><code>border: 1px solid #E2E8F0;</code></td></tr>
+        <tr><td>Corner radius: 12</td><td><code>border-radius: 12px;</code></td></tr>
+        <tr><td>Shadow: 0 4 6 rgba(0,0,0,0.1)</td><td><code>box-shadow: 0 4px 6px rgba(0,0,0,0.1);</code></td></tr>
+        <tr><td>Opacity: 80%</td><td><code>opacity: 0.8;</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Figma property</th><th>CSS</th></tr>
+        <tr><td>W: 300, H: 200</td><td><code>width: 300px; height: 200px;</code></td></tr>
+        <tr><td>Fill: #3B82F6</td><td><code>background: #3B82F6;</code></td></tr>
+        <tr><td>Stroke: #E2E8F0, 1px</td><td><code>border: 1px solid #E2E8F0;</code></td></tr>
+        <tr><td>Corner radius: 12</td><td><code>border-radius: 12px;</code></td></tr>
+        <tr><td>Shadow: 0 4 6 rgba(0,0,0,0.1)</td><td><code>box-shadow: 0 4px 6px rgba(0,0,0,0.1);</code></td></tr>
+        <tr><td>Opacity: 80%</td><td><code>opacity: 0.8;</code></td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ==================== РАЗМЕРЫ ==================== -->
+    <h2 id="sizes" data-lang="ru">6. Как читать размеры и отступы</h2>
+    <h2 id="sizes-en" data-lang="en">6. How to read sizes and spacing</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Отступы — самое частое, что спрашивает дизайнер. «Между кнопкой и заголовком должно быть 24px» — это то, что вы услышите на каждом ревью. Figma даёт <strong>идеальный способ</strong> измерять: <span class="kbd">Alt</span> + hover. Это сочетание — главный навык для работы с макетами.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Spacing is what designers ask about most. "There should be 24px between button and heading" — you'll hear this at every review. Figma gives a <strong>perfect way</strong> to measure: <span class="kbd">Alt</span> + hover. This combo is the key skill for working with layouts.</p>
+    </div>
+
+    <ol data-lang="ru">
+        <li><strong>Кликните</strong> на элемент — размеры W×H видны в правой панели</li>
+        <li><strong>Alt + наведение</strong> — показывает расстояние от выделенного элемента до того, на который навели</li>
+        <li><strong>Padding</strong> — кликните на контейнер, Figma покажет внутренние отступы (Auto layout → padding)</li>
+        <li><strong>Gap</strong> — расстояние между элементами в Auto layout</li>
+    </ol>
+    <ol data-lang="en">
+        <li><strong>Click</strong> on element — W×H sizes shown in right panel</li>
+        <li><strong>Alt + hover</strong> — shows distance from selected element to hovered one</li>
+        <li><strong>Padding</strong> — click container, Figma shows inner padding (Auto layout → padding)</li>
+        <li><strong>Gap</strong> — distance between elements in Auto layout</li>
+    </ol>
+
+    <div class="try-it" data-lang="ru">
+        <p>Выделите элемент в Figma, зажмите <span class="kbd">Alt</span> и наводите на другие элементы. Красные линии покажут расстояние в пикселях!</p>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p>Select an element in Figma, hold <span class="kbd">Alt</span> and hover over other elements. Red lines will show the distance in pixels!</p>
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Не пишите <code>width</code> и <code>height</code> буквально из Figma!</strong> Дизайнер рисует макет на фиксированной ширине (обычно 1440px или 1920px). Если вы поставите <code>width: 560px</code> на карточку — она не будет адаптивной. <strong>Правильно:</strong> используйте <code>max-width</code>, проценты, <code>grid-cols-3</code>. Буквальные пиксели — только для мелких вещей (иконки, border-radius, padding).</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Don't copy <code>width</code> and <code>height</code> literally from Figma!</strong> Designer draws layout at fixed width (usually 1440px or 1920px). If you set <code>width: 560px</code> on a card — it won't be responsive. <strong>Right way:</strong> use <code>max-width</code>, percentages, <code>grid-cols-3</code>. Literal pixels — only for small things (icons, border-radius, padding).</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ЦВЕТА ==================== -->
+    <h2 id="colors" data-lang="ru">7. Как читать цвета</h2>
+    <h2 id="colors-en" data-lang="en">7. How to read colors</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Цвет в Figma — это <strong>Fill</strong> (заливка) и <strong>Stroke</strong> (обводка). Это те же <code>background</code> и <code>border</code> из CSS, но с другими именами. Важно запомнить эту терминологию — дизайнеры говорят на этом языке.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Color in Figma is <strong>Fill</strong> and <strong>Stroke</strong>. Same as CSS <code>background</code> and <code>border</code>, but with different names. Memorize this terminology — designers speak this language.</p>
+    </div>
+
+    <p data-lang="ru">Кликните на элемент → в правой панели найдите <strong>Fill</strong> (заливка) или <strong>Stroke</strong> (обводка):</p>
+    <p data-lang="en">Click on element → in right panel find <strong>Fill</strong> or <strong>Stroke</strong>:</p>
+
+    <ul data-lang="ru">
+        <li>Кликните на цветной квадрат — откроется пипетка с HEX-кодом</li>
+        <li>Можно переключить на RGB, HSL</li>
+        <li><strong>Копируйте HEX</strong> (например, <code>#3B82F6</code>) и вставляйте в CSS</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Click the color square — color picker opens with HEX code</li>
+        <li>Can switch to RGB, HSL</li>
+        <li><strong>Copy HEX</strong> (e.g., <code>#3B82F6</code>) and paste into CSS</li>
+    </ul>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Design tokens — выписывайте цвета в переменные.</strong> В макете обычно 5-8 цветов повторяются везде. Выпишите их из Figma сразу и сохраните как CSS-переменные:</p>
+<pre><code>:root {
+    --color-primary: #3B82F6;
+    --color-primary-dark: #1D4ED8;
+    --color-text: #1E293B;
+    --color-text-muted: #64748B;
+    --color-bg: #F8FAFC;
+    --color-border: #E2E8F0;
+}</code></pre>
+        <p>Сделаете это <strong>один раз в начале</strong> — все остальные стили пишете через <code>var(--color-primary)</code>. Если дизайнер попросит поменять основной цвет — правите одну строку.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Design tokens — save colors as variables.</strong> A layout usually reuses 5-8 colors everywhere. Extract them from Figma upfront and save as CSS variables:</p>
+<pre><code>:root {
+    --color-primary: #3B82F6;
+    --color-primary-dark: #1D4ED8;
+    --color-text: #1E293B;
+    --color-text-muted: #64748B;
+    --color-bg: #F8FAFC;
+    --color-border: #E2E8F0;
+}</code></pre>
+        <p>Do this <strong>once at the start</strong> — write all other styles via <code>var(--color-primary)</code>. If the designer asks to change the primary color — you edit one line.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ШРИФТЫ ==================== -->
+    <h2 id="fonts" data-lang="ru">8. Как читать шрифты</h2>
+    <h2 id="fonts-en" data-lang="en">8. How to read fonts</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Шрифт — это <strong>целая система</strong>: family, size, weight, line-height, letter-spacing, color. Дизайнер в Figma задаёт все шесть параметров. Вы должны прочитать и перенести. Часто в макете используется <strong>не-системный</strong> шрифт (Inter, Poppins, Montserrat) — его нужно подключить через Google Fonts.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Font is an <strong>entire system</strong>: family, size, weight, line-height, letter-spacing, color. The designer sets all six in Figma. You need to read and transfer them. Often layouts use a <strong>non-system</strong> font (Inter, Poppins, Montserrat) — connect it via Google Fonts.</p>
+    </div>
+
+    <p data-lang="ru">Кликните на текстовый элемент → в правой панели:</p>
+    <p data-lang="en">Click on a text element → in the right panel:</p>
+
+    <table data-lang="ru">
+        <tr><th>Figma</th><th>CSS</th></tr>
+        <tr><td>Font: Inter</td><td><code>font-family: 'Inter', sans-serif;</code></td></tr>
+        <tr><td>Size: 24</td><td><code>font-size: 24px;</code></td></tr>
+        <tr><td>Weight: Semi Bold (600)</td><td><code>font-weight: 600;</code></td></tr>
+        <tr><td>Line height: 32</td><td><code>line-height: 32px;</code> или <code>1.33</code></td></tr>
+        <tr><td>Letter spacing: -0.5</td><td><code>letter-spacing: -0.5px;</code></td></tr>
+        <tr><td>Color: #1E293B</td><td><code>color: #1E293B;</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Figma</th><th>CSS</th></tr>
+        <tr><td>Font: Inter</td><td><code>font-family: 'Inter', sans-serif;</code></td></tr>
+        <tr><td>Size: 24</td><td><code>font-size: 24px;</code></td></tr>
+        <tr><td>Weight: Semi Bold (600)</td><td><code>font-weight: 600;</code></td></tr>
+        <tr><td>Line height: 32</td><td><code>line-height: 32px;</code> or <code>1.33</code></td></tr>
+        <tr><td>Letter spacing: -0.5</td><td><code>letter-spacing: -0.5px;</code></td></tr>
+        <tr><td>Color: #1E293B</td><td><code>color: #1E293B;</code></td></tr>
+    </table>
+
+    <div class="important" data-lang="ru">
+        <strong>Google Fonts:</strong> Если шрифт не стандартный (Inter, Poppins, Montserrat) — подключите его через Google Fonts в <code>&lt;head&gt;</code>.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Google Fonts:</strong> If the font isn't standard (Inter, Poppins, Montserrat) — connect it via Google Fonts in <code>&lt;head&gt;</code>.
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Подключение Google Fonts (пример для Inter):</strong></p>
+<pre><code>&lt;!-- В &lt;head&gt; --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;
+
+/* В CSS */
+body { font-family: 'Inter', sans-serif; }</code></pre>
+        <p>В URL через <code>@400;500;600;700</code> — указываете, <strong>какие веса</strong> грузить. Не грузите все 9 — замедлит загрузку.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Connecting Google Fonts (Inter example):</strong></p>
+<pre><code>&lt;!-- In &lt;head&gt; --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;
+
+/* In CSS */
+body { font-family: 'Inter', sans-serif; }</code></pre>
+        <p>In the URL via <code>@400;500;600;700</code> — specify <strong>which weights</strong> to load. Don't load all 9 — it'll slow load times.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== РАССТОЯНИЯ ==================== -->
+    <h2 id="spacing" data-lang="ru">9. Как измерять расстояния между элементами</h2>
+    <h2 id="spacing-en" data-lang="en">9. How to measure distances between elements</h2>
+
+    <ol data-lang="ru">
+        <li><strong>Выделите</strong> первый элемент (кликните)</li>
+        <li><strong>Зажмите Alt</strong></li>
+        <li><strong>Наведите</strong> на второй элемент — появится расстояние в px</li>
+        <li>Используйте это для <code>margin</code>, <code>gap</code>, <code>padding</code></li>
+    </ol>
+    <ol data-lang="en">
+        <li><strong>Select</strong> the first element (click it)</li>
+        <li><strong>Hold Alt</strong></li>
+        <li><strong>Hover</strong> over the second element — distance in px appears</li>
+        <li>Use this for <code>margin</code>, <code>gap</code>, <code>padding</code></li>
+    </ol>
+
+    <hr>
+
+    <!-- ==================== ЭКСПОРТ ==================== -->
+    <h2 id="export" data-lang="ru">10. Экспорт изображений и иконок</h2>
+    <h2 id="export-en" data-lang="en">10. Exporting images and icons</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Картинки и иконки в макете — это <strong>ресурсы</strong>, которые нужно выгрузить из Figma в ваш проект. Дизайнер не будет присылать вам файлы в Telegram — вы сами заходите и экспортируете. Формат важен: SVG для иконок (масштабируется без потери качества), JPG для фото (меньше размер), PNG для логотипов с прозрачностью.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Images and icons in a layout are <strong>assets</strong> that need to be exported from Figma into your project. The designer won't send files in Telegram — you export them yourself. Format matters: SVG for icons (scales without quality loss), JPG for photos (smaller size), PNG for logos with transparency.</p>
+    </div>
+
+    <ol data-lang="ru">
+        <li>Выделите изображение или иконку</li>
+        <li>В правой панели внизу найдите <strong>Export</strong></li>
+        <li>Выберите формат: <strong>PNG</strong> (фото), <strong>SVG</strong> (иконки), <strong>JPG</strong> (большие фото)</li>
+        <li>Выберите масштаб: <strong>1x</strong> (обычный), <strong>2x</strong> (для Retina)</li>
+        <li>Нажмите <strong>Export</strong></li>
+    </ol>
+    <ol data-lang="en">
+        <li>Select the image or icon</li>
+        <li>In the right panel at the bottom find <strong>Export</strong></li>
+        <li>Choose format: <strong>PNG</strong> (photos), <strong>SVG</strong> (icons), <strong>JPG</strong> (large photos)</li>
+        <li>Choose scale: <strong>1x</strong> (regular), <strong>2x</strong> (for Retina)</li>
+        <li>Click <strong>Export</strong></li>
+    </ol>
+
+    <table data-lang="ru">
+        <tr><th>Тип</th><th>Формат</th><th>Когда</th></tr>
+        <tr><td>Иконки</td><td>SVG</td><td>Векторные, масштабируемые</td></tr>
+        <tr><td>Фото</td><td>JPG</td><td>Большие фотографии</td></tr>
+        <tr><td>Логотипы</td><td>SVG или PNG</td><td>С прозрачностью — PNG</td></tr>
+        <tr><td>Скриншоты</td><td>PNG</td><td>Элементы интерфейса</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Type</th><th>Format</th><th>When</th></tr>
+        <tr><td>Icons</td><td>SVG</td><td>Vector, scalable</td></tr>
+        <tr><td>Photos</td><td>JPG</td><td>Large photographs</td></tr>
+        <tr><td>Logos</td><td>SVG or PNG</td><td>With transparency — PNG</td></tr>
+        <tr><td>Screenshots</td><td>PNG</td><td>UI elements</td></tr>
+    </table>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>2x для Retina.</strong> На Mac и современных телефонах (iPhone, Samsung) экраны имеют высокую плотность пикселей. Если экспортировать фото в 1x — оно будет <strong>размытым</strong>. Правило: для фото и логотипов всегда экспортируйте <strong>2x</strong>, в CSS указывайте половину размера — изображение станет чётким.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>2x for Retina.</strong> Mac and modern phones (iPhone, Samsung) have high-DPI screens. Export photos at 1x — they'll look <strong>blurry</strong>. Rule: always export photos and logos at <strong>2x</strong>, set half the size in CSS — image becomes sharp.</p>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><strong>SVG — векторный формат.</strong> В отличие от PNG/JPG (растровых), SVG — это <strong>формула</strong>, которая рисует картинку. Масштабируется бесконечно без потери качества. Вес — меньше в 5-10 раз. И bonus: цвет SVG-иконки можно <strong>менять через CSS</strong> (<code>fill: currentColor</code>). Всегда экспортируйте иконки как SVG.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><strong>SVG — vector format.</strong> Unlike PNG/JPG (raster), SVG is a <strong>formula</strong> that draws the image. Scales infinitely without quality loss. File size is 5-10× smaller. And bonus: SVG icon color can be <strong>changed via CSS</strong> (<code>fill: currentColor</code>). Always export icons as SVG.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== АЛГОРИТМ ==================== -->
+    <h2 id="figma-to-css" data-lang="ru">11. От Figma к CSS — алгоритм</h2>
+    <h2 id="figma-to-css-en" data-lang="en">11. From Figma to CSS — algorithm</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Получили макет — что делать? Хаотично прыгать от элемента к элементу? <strong>Нет.</strong> Есть чёткий алгоритм из 7 шагов, которому следуют все профессионалы. Он экономит часы и гарантирует pixel-perfect результат. Выучите его — и вы будете работать как senior.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Got a layout — what now? Jump chaotically between elements? <strong>No.</strong> There's a clear 7-step algorithm all pros follow. Saves hours and guarantees a pixel-perfect result. Learn it — and you'll work like a senior.</p>
+    </div>
+
+    <ol data-lang="ru">
+        <li><strong>Изучите макет целиком:</strong> определите секции (header, hero, features, footer)</li>
+        <li><strong>Определите сетку:</strong> сколько колонок, какие отступы, max-width</li>
+        <li><strong>Выпишите цвета:</strong> основной, фон, текст, акцент (создайте CSS-переменные)</li>
+        <li><strong>Выпишите шрифты:</strong> название, размеры для h1-h6, body (подключите Google Fonts)</li>
+        <li><strong>Экспортируйте ресурсы:</strong> изображения (JPG), иконки (SVG), логотип</li>
+        <li><strong>Начните вёрстку:</strong> сверху вниз, секция за секцией</li>
+        <li><strong>Сверяйтесь:</strong> открывайте Figma рядом с VS Code, проверяйте pixel-perfect</li>
+    </ol>
+    <ol data-lang="en">
+        <li><strong>Study the entire layout:</strong> identify sections (header, hero, features, footer)</li>
+        <li><strong>Determine the grid:</strong> how many columns, spacing, max-width</li>
+        <li><strong>List colors:</strong> primary, background, text, accent (create CSS variables)</li>
+        <li><strong>List fonts:</strong> name, sizes for h1-h6, body (connect Google Fonts)</li>
+        <li><strong>Export assets:</strong> images (JPG), icons (SVG), logo</li>
+        <li><strong>Start coding:</strong> top to bottom, section by section</li>
+        <li><strong>Compare:</strong> keep Figma open next to VS Code, check pixel-perfect</li>
+    </ol>
+
+    <div class="summary" data-lang="ru">
+        <ul>
+            <li><strong>Figma</strong> — инструмент дизайна; разработчик <strong>читает</strong>, не рисует</li>
+            <li><strong>Inspect / Dev Mode</strong> — размеры, цвета, шрифты, CSS-код</li>
+            <li><strong>Alt + наведение</strong> — расстояние между элементами</li>
+            <li><strong>Fill → background</strong>, <strong>Stroke → border</strong>, <strong>Corner radius → border-radius</strong></li>
+            <li><strong>Export:</strong> SVG для иконок, JPG для фото, PNG для логотипов</li>
+            <li>Алгоритм: изучить → выписать цвета/шрифты → экспорт → вёрстка</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <ul>
+            <li><strong>Figma</strong> — design tool; developer <strong>reads</strong>, doesn't draw</li>
+            <li><strong>Inspect / Dev Mode</strong> — sizes, colors, fonts, CSS code</li>
+            <li><strong>Alt + hover</strong> — distance between elements</li>
+            <li><strong>Fill → background</strong>, <strong>Stroke → border</strong>, <strong>Corner radius → border-radius</strong></li>
+            <li><strong>Export:</strong> SVG for icons, JPG for photos, PNG for logos</li>
+            <li>Algorithm: study → list colors/fonts → export → code</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">12. Практика: анализируем макет</h2>
+    <h2 id="practice-en" data-lang="en">12. Practice: analyzing a layout</h2>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Зачем разработчику Figma?</li>
+            <li>Как узнать расстояние между двумя элементами?</li>
+            <li>Где увидеть CSS-свойства элемента?</li>
+            <li>Какой формат для иконок? А для фото?</li>
+            <li>Что такое Fill в Figma? А Stroke?</li>
+            <li>Какие шаги нужно сделать перед вёрсткой по макету?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>Why do developers need Figma?</li>
+            <li>How to find the distance between two elements?</li>
+            <li>Where to see CSS properties of an element?</li>
+            <li>What format for icons? And for photos?</li>
+            <li>What is Fill in Figma? And Stroke?</li>
+            <li>What steps to take before coding from a layout?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

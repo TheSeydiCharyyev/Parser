@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 14 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 14: Flexbox — основы</span>
+    <span class="nav-title" data-lang="en">Lesson 14: Flexbox — Basics</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 14: Flexbox — основы</p>
+    <p class="subtitle" data-lang="en">Lesson 14: Flexbox — Basics</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <!-- ЧТО ТАКОЕ FLEXBOX -->
+    <h2 data-lang="ru">&#x1F4DA; ЧТО ТАКОЕ FLEXBOX</h2>
+    <h2 data-lang="en">&#x1F4DA; WHAT IS FLEXBOX</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Flexbox</strong> — CSS-модуль для гибкой раскладки элементов. Включается через <code>display: flex</code> на родителе. Управляет расположением прямых дочерних элементов.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Flexbox</strong> — a CSS module for flexible element layout. Enabled via <code>display: flex</code> on the parent. Controls placement of direct children.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>display: flex ставится на РОДИТЕЛЯ, а не на детей!</strong> Дочерние элементы автоматически становятся flex-элементами. Это самая частая ошибка новичков — писать <code>display: flex</code> на самих элементах вместо их контейнера.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>display: flex goes on the PARENT, not children!</strong> Child elements automatically become flex items. This is the most common beginner mistake — writing <code>display: flex</code> on the items themselves instead of their container.
+    </div>
+
+    <h3 data-lang="ru">Два участника</h3>
+    <h3 data-lang="en">Two participants</h3>
+
+    <table data-lang="ru">
+        <tr><th>Кто</th><th>Что делает</th></tr>
+        <tr><td><strong>Flex-контейнер</strong> (родитель)</td><td>Элемент с <code>display: flex</code>. Управляет раскладкой.</td></tr>
+        <tr><td><strong>Flex-элементы</strong> (дети)</td><td>Прямые дочерние элементы. Подчиняются контейнеру.</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Who</th><th>What it does</th></tr>
+        <tr><td><strong>Flex container</strong> (parent)</td><td>Element with <code>display: flex</code>. Controls layout.</td></tr>
+        <tr><td><strong>Flex items</strong> (children)</td><td>Direct child elements. Follow the container.</td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ДВЕ ОСИ -->
+    <h2 data-lang="ru">&#x1F4DA; ДВЕ ОСИ</h2>
+    <h2 data-lang="en">&#x1F4DA; TWO AXES</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Главная ось (Main Axis)</strong> — направление, в котором выстраиваются flex-элементы. По умолчанию — горизонтально (слева направо). Управляется свойством <code>justify-content</code>.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Main Axis</strong> — the direction in which flex items are laid out. By default — horizontal (left to right). Controlled by the <code>justify-content</code> property.
+    </div>
+
+    <div class="definition" data-lang="ru">
+        <strong>Поперечная ось (Cross Axis)</strong> — ось, перпендикулярная главной. По умолчанию — вертикально (сверху вниз). Управляется свойством <code>align-items</code>.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Cross Axis</strong> — the axis perpendicular to the main axis. By default — vertical (top to bottom). Controlled by the <code>align-items</code> property.
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Ось</th><th>Направление</th><th>Свойство</th></tr>
+        <tr><td><strong>Главная</strong> (main)</td><td>&#x2192; горизонтально</td><td><code>justify-content</code></td></tr>
+        <tr><td><strong>Поперечная</strong> (cross)</td><td>&#x2193; вертикально</td><td><code>align-items</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Axis</th><th>Direction</th><th>Property</th></tr>
+        <tr><td><strong>Main</strong></td><td>&#x2192; horizontal</td><td><code>justify-content</code></td></tr>
+        <tr><td><strong>Cross</strong></td><td>&#x2193; vertical</td><td><code>align-items</code></td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Оси меняются местами!</strong> При <code>flex-direction: column</code> главная ось становится вертикальной, а поперечная — горизонтальной. Это значит: <code>justify-content</code> будет работать по вертикали, а <code>align-items</code> — по горизонтали. Всегда помни, какое направление у контейнера!
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Axes swap!</strong> With <code>flex-direction: column</code> the main axis becomes vertical and the cross axis becomes horizontal. This means: <code>justify-content</code> will work vertically, and <code>align-items</code> — horizontally. Always remember which direction the container uses!
+    </div>
+
+    <hr>
+
+    <!-- СВОЙСТВА КОНТЕЙНЕРА -->
+    <h2 data-lang="ru">&#x1F4DA; СВОЙСТВА КОНТЕЙНЕРА</h2>
+    <h2 data-lang="en">&#x1F4DA; CONTAINER PROPERTIES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Значения</th><th>Что делает</th></tr>
+        <tr><td><code>display</code></td><td><code>flex</code></td><td>Включает Flexbox</td></tr>
+        <tr><td><code>flex-direction</code></td><td><code>row</code> | <code>column</code> | <code>row-reverse</code> | <code>column-reverse</code></td><td>Направление оси</td></tr>
+        <tr><td><code>flex-wrap</code></td><td><code>nowrap</code> | <code>wrap</code> | <code>wrap-reverse</code></td><td>Перенос строк</td></tr>
+        <tr><td><code>justify-content</code></td><td><code>flex-start</code> | <code>flex-end</code> | <code>center</code> | <code>space-between</code> | <code>space-around</code> | <code>space-evenly</code></td><td>Главная ось</td></tr>
+        <tr><td><code>align-items</code></td><td><code>stretch</code> | <code>flex-start</code> | <code>flex-end</code> | <code>center</code> | <code>baseline</code></td><td>Поперечная ось</td></tr>
+        <tr><td><code>gap</code></td><td>Размер (px, rem)</td><td>Отступы между элементами</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>Values</th><th>What it does</th></tr>
+        <tr><td><code>display</code></td><td><code>flex</code></td><td>Enables Flexbox</td></tr>
+        <tr><td><code>flex-direction</code></td><td><code>row</code> | <code>column</code> | <code>row-reverse</code> | <code>column-reverse</code></td><td>Axis direction</td></tr>
+        <tr><td><code>flex-wrap</code></td><td><code>nowrap</code> | <code>wrap</code> | <code>wrap-reverse</code></td><td>Line wrapping</td></tr>
+        <tr><td><code>justify-content</code></td><td><code>flex-start</code> | <code>flex-end</code> | <code>center</code> | <code>space-between</code> | <code>space-around</code> | <code>space-evenly</code></td><td>Main axis</td></tr>
+        <tr><td><code>align-items</code></td><td><code>stretch</code> | <code>flex-start</code> | <code>flex-end</code> | <code>center</code> | <code>baseline</code></td><td>Cross axis</td></tr>
+        <tr><td><code>gap</code></td><td>Size (px, rem)</td><td>Space between items</td></tr>
+    </table>
+
+    <h3 data-lang="ru">justify-content — шпаргалка</h3>
+    <h3 data-lang="en">justify-content — cheat sheet</h3>
+
+    <div class="diagram">
+flex-start:      [1][2][3]____________
+flex-end:        ____________[1][2][3]
+center:          ______[1][2][3]______
+space-between:   [1]______[2]______[3]
+space-around:    __[1]____[2]____[3]__
+space-evenly:    ___[1]___[2]___[3]___</div>
+
+    <h3 data-lang="ru">align-items — шпаргалка</h3>
+    <h3 data-lang="en">align-items — cheat sheet</h3>
+
+    <div class="diagram">
+stretch:     │[####1####][####2####][####3####]│  ← full height
+flex-start:  │[1]  [2]  [3]                   │  ← top
+flex-end:    │                   [1]  [2]  [3]│  ← bottom
+center:      │          [1]  [2]  [3]         │  ← middle
+baseline:    │ [BIG1]  [2]  [sm3]             │  ← text baseline</div>
+
+    <hr>
+
+    <!-- GAP И ПЕРЕНОС -->
+    <h2 data-lang="ru">&#x1F4DA; GAP И ПЕРЕНОС</h2>
+    <h2 data-lang="en">&#x1F4DA; GAP AND WRAPPING</h2>
+
+    <div class="note-box" data-lang="ru">
+        <strong>gap vs margin — в чём разница?</strong><br>
+        <code>gap</code> добавляет отступы <em>только между</em> элементами, но НЕ по краям контейнера. <code>margin</code> добавляет отступ вокруг каждого элемента (включая первый и последний). Используй <code>gap</code> — это проще, чище, и не нужно убирать лишний margin у крайних элементов.
+    </div>
+    <div class="note-box" data-lang="en">
+        <strong>gap vs margin — what's the difference?</strong><br>
+        <code>gap</code> adds spacing <em>only between</em> items, but NOT at the container edges. <code>margin</code> adds spacing around every element (including the first and last). Use <code>gap</code> — it's simpler, cleaner, and you don't need to remove extra margin from edge items.
+    </div>
+
+<pre><code>/* gap — отступы только между элементами */
+.container {
+    display: flex;
+    gap: 20px;        /* 20px между [1] и [2], между [2] и [3] */
+}                     /* но 0px перед [1] и после [3] */
+
+/* margin — отступ у каждого элемента */
+.item {
+    margin: 10px;     /* 10px со ВСЕХ сторон каждого элемента */
+}</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>flex-wrap: wrap — ключ к адаптивности!</strong> Без <code>wrap</code> все элементы сжимаются в одну строку, даже если не помещаются. С <code>flex-wrap: wrap</code> элементы переносятся на новую строку, когда места не хватает. Это основа адаптивных сеток без медиа-запросов.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>flex-wrap: wrap — key to responsiveness!</strong> Without <code>wrap</code>, all items squeeze into one line even if they don't fit. With <code>flex-wrap: wrap</code>, items move to a new line when there's not enough space. This is the foundation of responsive grids without media queries.
+    </div>
+
+    <hr>
+
+    <!-- ПОЛЕЗНЫЕ ПАТТЕРНЫ -->
+    <h2 data-lang="ru">&#x1F4DA; ПОЛЕЗНЫЕ ПАТТЕРНЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; USEFUL PATTERNS</h2>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Когда что использовать:</strong>
+        <ul>
+            <li><strong>Центрирование</strong> — для модальных окон, hero-секций, страниц загрузки</li>
+            <li><strong>space-between навбар</strong> — для шапок сайта (лого + меню + кнопки)</li>
+            <li><strong>Карточки с wrap</strong> — для каталогов, галерей, списков товаров</li>
+            <li><strong>Колонка (column)</strong> — для боковых панелей, форм, вертикальных меню</li>
+        </ul>
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>When to use each pattern:</strong>
+        <ul>
+            <li><strong>Centering</strong> — for modals, hero sections, loading pages</li>
+            <li><strong>space-between navbar</strong> — for site headers (logo + menu + buttons)</li>
+            <li><strong>Cards with wrap</strong> — for catalogs, galleries, product lists</li>
+            <li><strong>Column</strong> — for sidebars, forms, vertical menus</li>
+        </ul>
+    </div>
+
+    <h3 data-lang="ru">1. Идеальное центрирование</h3>
+    <h3 data-lang="en">1. Perfect centering</h3>
+
+<pre><code>.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;      /* на всю высоту экрана */
+}</code></pre>
+
+    <h3 data-lang="ru">2. Навигация: лого слева, ссылки справа</h3>
+    <h3 data-lang="en">2. Nav: logo left, links right</h3>
+
+<pre><code>.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}</code></pre>
+
+    <h3 data-lang="ru">3. Карточки в ряд с переносом</h3>
+    <h3 data-lang="en">3. Cards in a row with wrapping</h3>
+
+<pre><code>.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.card {
+    width: 300px;           /* фиксированная ширина карточки */
+}</code></pre>
+
+    <h3 data-lang="ru">4. Вертикальная колонка (sidebar / форма)</h3>
+    <h3 data-lang="en">4. Vertical column (sidebar / form)</h3>
+
+<pre><code>.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}</code></pre>
+
+    <h3 data-lang="ru">5. Футер: элементы равномерно</h3>
+    <h3 data-lang="en">5. Footer: items evenly spaced</h3>
+
+<pre><code>.footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+}</code></pre>
+
+    <hr>
+
+    <!-- ЗАПОМНИ -->
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>display: flex</code> — на родителя, не на детей!</li>
+            <li>Flexbox имеет две оси: <strong>главную</strong> и <strong>поперечную</strong></li>
+            <li>При <code>flex-direction: column</code> оси меняются местами</li>
+            <li><code>justify-content</code> = главная ось (горизонталь при row)</li>
+            <li><code>align-items</code> = поперечная ось (вертикаль при row)</li>
+            <li><code>space-between</code> — первый и последний по краям, между ними равные отступы</li>
+            <li><code>gap</code> — отступы только между элементами (не по краям!)</li>
+            <li><code>gap</code> лучше <code>margin</code> для flex-раскладки — проще и чище</li>
+            <li><code>flex-wrap: wrap</code> — разрешить перенос на новую строку</li>
+            <li>Центрирование: <code>justify-content: center</code> + <code>align-items: center</code></li>
+            <li>Без <code>wrap</code> элементы сжимаются в одну строку — не забывай!</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>display: flex</code> — on the parent, not the children!</li>
+            <li>Flexbox has two axes: <strong>main</strong> and <strong>cross</strong></li>
+            <li>With <code>flex-direction: column</code> the axes swap</li>
+            <li><code>justify-content</code> = main axis (horizontal with row)</li>
+            <li><code>align-items</code> = cross axis (vertical with row)</li>
+            <li><code>space-between</code> — first and last at edges, equal space between</li>
+            <li><code>gap</code> — spacing only between items (not at edges!)</li>
+            <li><code>gap</code> is better than <code>margin</code> for flex layout — simpler and cleaner</li>
+            <li><code>flex-wrap: wrap</code> — allow wrapping to new line</li>
+            <li>Centering: <code>justify-content: center</code> + <code>align-items: center</code></li>
+            <li>Without <code>wrap</code> items squeeze into one line — don't forget!</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ДОМАШНЕЕ ЗАДАНИЕ -->
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Навигация:</strong> Создайте навбар с логотипом, 4 ссылками и кнопкой. Используйте Flexbox для раскладки (<code>space-between</code> + <code>align-items: center</code>).</li>
+            <li><strong>Центрирование:</strong> Центрируйте карточку (из занятия 8) на всю высоту экрана с помощью Flexbox (<code>min-height: 100vh</code>).</li>
+            <li><strong>Карточки:</strong> 6 карточек в ряд с переносом (<code>flex-wrap: wrap</code>) и <code>gap</code>. Каждая карточка: картинка, заголовок, текст, кнопка.</li>
+            <li><strong>Колонка:</strong> Создайте боковое меню (<code>flex-direction: column</code>) с 5 ссылками и иконками. Ширина 250px, gap между ссылками.</li>
+            <li><strong>Футер:</strong> Создайте футер с 3 колонками (О нас, Ссылки, Контакты) с помощью <code>space-evenly</code>.</li>
+            <li><strong>Бонус:</strong> Пройдите игру <strong>Flexbox Froggy</strong> (flexboxfroggy.com) — все 24 уровня!</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Navigation:</strong> Create a navbar with logo, 4 links, and a button. Use Flexbox for layout (<code>space-between</code> + <code>align-items: center</code>).</li>
+            <li><strong>Centering:</strong> Center a card (from lesson 8) on full screen height using Flexbox (<code>min-height: 100vh</code>).</li>
+            <li><strong>Cards:</strong> 6 cards in a row with wrapping (<code>flex-wrap: wrap</code>) and <code>gap</code>. Each card: image, title, text, button.</li>
+            <li><strong>Column:</strong> Create a sidebar menu (<code>flex-direction: column</code>) with 5 links and icons. Width 250px, gap between links.</li>
+            <li><strong>Footer:</strong> Create a footer with 3 columns (About, Links, Contact) using <code>space-evenly</code>.</li>
+            <li><strong>Bonus:</strong> Complete the game <strong>Flexbox Froggy</strong> (flexboxfroggy.com) — all 24 levels!</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

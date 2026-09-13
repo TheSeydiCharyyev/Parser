@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 24 — Мини-проект: Анимированная промо-страница</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 24: Мини-проект — Анимированная промо-страница</span>
+    <span class="nav-title" data-lang="en">Lesson 24: Mini-project — Animated Promo Page</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 24: Мини-проект #6 — Анимированная промо-страница</h1>
+    <h1 data-lang="en">Lesson 24: Mini-project #6 — Animated Promo Page</h1>
+    <p class="subtitle" data-lang="ru">@keyframes, animation, CSS-переменные, загрузчики, появление элементов при загрузке</p>
+    <p class="subtitle" data-lang="en">@keyframes, animation, CSS variables, loaders, element appearance on load</p>
+
+    <div class="why" data-lang="ru">
+        <p>В 22-м уроке мы научились делать <code>transition</code> — плавные переходы между двумя состояниями (например, hover). Но что если нужно сделать <strong>бесконечно вращающийся спиннер загрузки</strong>? Или чтобы заголовок «прилетел» при открытии страницы? Или чтобы кнопка пульсировала, привлекая внимание? <code>transition</code> здесь бессилен — для таких вещей в CSS есть <strong><code>@keyframes</code> + <code>animation</code></strong>.</p>
+        <p>Ключевое отличие: <code>transition</code> запускается только по событию (hover, focus), а <code>animation</code> — <strong>сама, при загрузке страницы</strong>, и может повторяться бесконечно. Это два разных инструмента для двух разных задач.</p>
+        <p>Промо-страница — идеальный учебный проект: она простая по структуре (hero + features + CTA), но требует хорошей анимации, чтобы продавать продукт. Классический первый коммерческий заказ.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Определять свои анимации через <code>@keyframes</code></li>
+            <li>Применять их к элементам через <code>animation</code></li>
+            <li>Управлять количеством повторов и направлением (<code>infinite</code>, <code>alternate</code>)</li>
+            <li>Использовать <code>animation-fill-mode: forwards</code>, чтобы элемент оставался в конечном состоянии</li>
+            <li>Собирать классические анимации: спиннер, fadeIn, slideIn, pulse</li>
+            <li>Делать каскадное появление элементов через <code>animation-delay</code></li>
+            <li>Использовать CSS-переменные + <code>calc()</code> для автоматизации задержек</li>
+            <li>Собирать анимированную промо-страницу с нуля</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>In lesson 22 we learned <code>transition</code> — smooth transitions between two states (e.g., hover). But what if you need an <strong>infinitely spinning loader</strong>? Or a heading that "flies in" when the page opens? Or a button that pulses to grab attention? <code>transition</code> can't do that — CSS has <strong><code>@keyframes</code> + <code>animation</code></strong> for this.</p>
+        <p>Key difference: <code>transition</code> only runs on events (hover, focus), while <code>animation</code> runs <strong>automatically on page load</strong>, and can loop forever. Two different tools for two different jobs.</p>
+        <p>A promo page is a perfect learning project: simple structure (hero + features + CTA), but needs good animation to sell the product. A classic first commercial job.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Define animations via <code>@keyframes</code></li>
+            <li>Apply them to elements via <code>animation</code></li>
+            <li>Control repeats and direction (<code>infinite</code>, <code>alternate</code>)</li>
+            <li>Use <code>animation-fill-mode: forwards</code> so the element stays in final state</li>
+            <li>Build classic animations: spinner, fadeIn, slideIn, pulse</li>
+            <li>Create cascading element appearance via <code>animation-delay</code></li>
+            <li>Use CSS variables + <code>calc()</code> to automate delays</li>
+            <li>Assemble an animated promo page from scratch</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#transition-vs-animation">transition vs animation</a></li>
+            <li><a href="#keyframes">@keyframes — определение анимации</a></li>
+            <li><a href="#animation-props">Свойства animation</a></li>
+            <li><a href="#iteration">animation-iteration-count и direction</a></li>
+            <li><a href="#fill-mode">animation-fill-mode</a></li>
+            <li><a href="#loaders">Примеры: загрузчики (spinners)</a></li>
+            <li><a href="#fade-in">Появление элементов (fade-in)</a></li>
+            <li><a href="#slide-in">Выезжающие элементы (slide-in)</a></li>
+            <li><a href="#pulse">Пульсирующие элементы</a></li>
+            <li><a href="#css-vars">CSS-переменные для анимаций</a></li>
+            <li><a href="#promo">Собираем промо-страницу</a></li>
+            <li><a href="#practice">Создание своей промо-страницы</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#transition-vs-animation">transition vs animation</a></li>
+            <li><a href="#keyframes">@keyframes — defining animation</a></li>
+            <li><a href="#animation-props">animation properties</a></li>
+            <li><a href="#iteration">animation-iteration-count and direction</a></li>
+            <li><a href="#fill-mode">animation-fill-mode</a></li>
+            <li><a href="#loaders">Examples: loaders (spinners)</a></li>
+            <li><a href="#fade-in">Element appearance (fade-in)</a></li>
+            <li><a href="#slide-in">Sliding elements (slide-in)</a></li>
+            <li><a href="#pulse">Pulsing elements</a></li>
+            <li><a href="#css-vars">CSS variables for animations</a></li>
+            <li><a href="#promo">Building the promo page</a></li>
+            <li><a href="#practice">Creating your own promo page</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== TRANSITION VS ANIMATION ==================== -->
+    <h2 id="transition-vs-animation" data-lang="ru">1. transition vs animation</h2>
+    <h2 id="transition-vs-animation-en" data-lang="en">1. transition vs animation</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Перед тем как нырять в <code>@keyframes</code>, давайте чётко поймём: когда применять <code>transition</code>, а когда — <code>animation</code>. Новички часто путают, используют <code>transition</code> там, где нужна <code>animation</code>, и наоборот. Это важный выбор инструмента.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Before diving into <code>@keyframes</code>, let's clearly understand: when to use <code>transition</code>, and when — <code>animation</code>. Beginners often confuse them, using <code>transition</code> where <code>animation</code> is needed and vice versa. It's an important tool choice.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th></th><th>transition</th><th>animation</th></tr>
+        <tr><td>Запуск</td><td>Нужен триггер (:hover, :focus)</td><td>Запускается <strong>сама</strong> (при загрузке)</td></tr>
+        <tr><td>Состояния</td><td>Из A в B (2 состояния)</td><td>Любое количество шагов (@keyframes)</td></tr>
+        <tr><td>Повтор</td><td>Нет</td><td>Можно повторять бесконечно</td></tr>
+        <tr><td>Сложность</td><td>Простые hover-эффекты</td><td>Сложные многошаговые анимации</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th></th><th>transition</th><th>animation</th></tr>
+        <tr><td>Trigger</td><td>Needs trigger (:hover, :focus)</td><td>Runs <strong>automatically</strong> (on load)</td></tr>
+        <tr><td>States</td><td>From A to B (2 states)</td><td>Any number of steps (@keyframes)</td></tr>
+        <tr><td>Repeat</td><td>No</td><td>Can repeat infinitely</td></tr>
+        <tr><td>Complexity</td><td>Simple hover effects</td><td>Complex multi-step animations</td></tr>
+    </table>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Правило:</strong> hover-эффекты → <code>transition</code>. Автоматические анимации (загрузчики, появление, пульсация) → <code>animation</code>.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Rule:</strong> hover effects → <code>transition</code>. Automatic animations (loaders, appearance, pulse) → <code>animation</code>.
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Дверь и часы.</strong> <code>transition</code> — как дверь: она движется, только когда кто-то её толкает (hover). <code>animation</code> — как часы: стрелки двигаются сами, непрерывно. Для спиннера нужны «часы», а не «дверь».</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Door and clock.</strong> <code>transition</code> is like a door: it moves only when someone pushes it (hover). <code>animation</code> is like a clock: hands move by themselves, continuously. For a spinner you need a "clock", not a "door".</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== KEYFRAMES ==================== -->
+    <h2 id="keyframes" data-lang="ru">2. @keyframes — определение анимации</h2>
+    <h2 id="keyframes-en" data-lang="en">2. @keyframes — defining animation</h2>
+
+    <div class="why" data-lang="ru">
+        <p><code>@keyframes</code> — это <strong>сценарий</strong> анимации. Представьте мультфильм: есть ключевые кадры (в начале герой стоит, посередине бежит, в конце прыгает), а браузер сам рисует промежуточные. <code>@keyframes</code> — это и есть ключевые кадры.</p>
+        <p>Процесс из двух шагов: сначала <strong>описываем</strong> анимацию (<code>@keyframes fadeIn {...}</code>), потом <strong>применяем</strong> её к элементу (<code>animation: fadeIn 1s</code>). Разделение важно: одну анимацию можно применить ко многим элементам.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p><code>@keyframes</code> is the animation <strong>script</strong>. Picture a cartoon: there are key frames (hero stands, then runs, then jumps), and the browser draws what's in between. <code>@keyframes</code> are those key frames.</p>
+        <p>Two-step process: first <strong>describe</strong> the animation (<code>@keyframes fadeIn {...}</code>), then <strong>apply</strong> it to an element (<code>animation: fadeIn 1s</code>). Separation matters: one animation can be applied to many elements.</p>
+    </div>
+
+<pre><code>/* Шаг 1: определяем анимацию */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Шаг 2: применяем к элементу */
+.hero-title {
+    animation: fadeIn 1s ease;
+}</code></pre>
+
+    <p data-lang="ru"><code>from</code> = начальное состояние (0%). <code>to</code> = конечное (100%). Можно задать промежуточные шаги:</p>
+    <p data-lang="en"><code>from</code> = initial state (0%). <code>to</code> = final (100%). You can add intermediate steps:</p>
+
+<pre><code>@keyframes bounce {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}</code></pre>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Мультипликация кадр за кадром.</strong> До 1990-х мультики рисовали так: художник рисовал ключевые кадры (1-й, 12-й, 24-й), а «inbetweeners» дорисовывали промежуточные. Браузер работает так же: вы пишете <code>0%</code>, <code>50%</code>, <code>100%</code>, а он сам рисует все кадры между ними (60 в секунду).</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Frame-by-frame animation.</strong> Pre-1990s cartoons were drawn this way: the artist drew key frames (1st, 12th, 24th), and "inbetweeners" filled in the rest. The browser works the same: you write <code>0%</code>, <code>50%</code>, <code>100%</code>, it draws all frames between them (60 per second).</p>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><strong>from/to vs 0%/100%.</strong> Это <strong>одно и то же</strong>. <code>from</code> = <code>0%</code>, <code>to</code> = <code>100%</code>. Используйте <code>from/to</code>, когда шагов два (простая анимация). Когда шагов больше — переходите на проценты.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><strong>from/to vs 0%/100%.</strong> These are <strong>the same thing</strong>. <code>from</code> = <code>0%</code>, <code>to</code> = <code>100%</code>. Use <code>from/to</code> for two-step animations. Switch to percentages when you need more steps.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ANIMATION PROPS ==================== -->
+    <h2 id="animation-props" data-lang="ru">3. Свойства animation</h2>
+    <h2 id="animation-props-en" data-lang="en">3. animation properties</h2>
+
+    <div class="why" data-lang="ru">
+        <p>У <code>animation</code> <strong>7 параметров</strong> — больше, чем у <code>transition</code>. Звучит страшно, но на практике запоминать все не нужно. 90% времени вы пишете короткую форму: <code>animation: name duration timing</code>. Остальное добавляется по ситуации.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p><code>animation</code> has <strong>7 parameters</strong> — more than <code>transition</code>. Sounds scary, but in practice you don't need to memorize all. 90% of the time you write the short form: <code>animation: name duration timing</code>. The rest is added as needed.</p>
+    </div>
+
+<pre><code>animation: name duration timing-function delay iteration-count direction fill-mode;
+
+/* Пример: */
+animation: fadeIn 1s ease 0s 1 normal forwards;
+
+/* Сокращённо (чаще всего): */
+animation: fadeIn 1s ease;
+animation: spin 1s linear infinite;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что делает</th><th>Примеры</th></tr>
+        <tr><td><code>animation-name</code></td><td>Имя @keyframes</td><td><code>fadeIn</code>, <code>slideUp</code></td></tr>
+        <tr><td><code>animation-duration</code></td><td>Длительность</td><td><code>1s</code>, <code>0.5s</code>, <code>2s</code></td></tr>
+        <tr><td><code>animation-timing-function</code></td><td>Кривая</td><td><code>ease</code>, <code>linear</code>, <code>ease-in-out</code></td></tr>
+        <tr><td><code>animation-delay</code></td><td>Задержка</td><td><code>0s</code>, <code>0.3s</code>, <code>1s</code></td></tr>
+        <tr><td><code>animation-iteration-count</code></td><td>Сколько раз</td><td><code>1</code>, <code>3</code>, <code>infinite</code></td></tr>
+        <tr><td><code>animation-direction</code></td><td>Направление</td><td><code>normal</code>, <code>reverse</code>, <code>alternate</code></td></tr>
+        <tr><td><code>animation-fill-mode</code></td><td>Состояние после</td><td><code>forwards</code>, <code>backwards</code>, <code>both</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it does</th><th>Examples</th></tr>
+        <tr><td><code>animation-name</code></td><td>@keyframes name</td><td><code>fadeIn</code>, <code>slideUp</code></td></tr>
+        <tr><td><code>animation-duration</code></td><td>Duration</td><td><code>1s</code>, <code>0.5s</code>, <code>2s</code></td></tr>
+        <tr><td><code>animation-timing-function</code></td><td>Easing</td><td><code>ease</code>, <code>linear</code>, <code>ease-in-out</code></td></tr>
+        <tr><td><code>animation-delay</code></td><td>Delay</td><td><code>0s</code>, <code>0.3s</code>, <code>1s</code></td></tr>
+        <tr><td><code>animation-iteration-count</code></td><td>How many times</td><td><code>1</code>, <code>3</code>, <code>infinite</code></td></tr>
+        <tr><td><code>animation-direction</code></td><td>Direction</td><td><code>normal</code>, <code>reverse</code>, <code>alternate</code></td></tr>
+        <tr><td><code>animation-fill-mode</code></td><td>State after</td><td><code>forwards</code>, <code>backwards</code>, <code>both</code></td></tr>
+    </table>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Стандартный набор для 90% случаев:</strong></p>
+<pre><code>/* Одноразовая (появление): */
+animation: fadeIn 0.6s ease forwards;
+
+/* Бесконечная (спиннер): */
+animation: spin 1s linear infinite;
+
+/* Бесконечная туда-обратно (пульс): */
+animation: pulse 2s ease-in-out infinite alternate;</code></pre>
+        <p>Три варианта покрывают почти всё. Запомните их.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Standard set for 90% of cases:</strong></p>
+<pre><code>/* One-shot (appearance): */
+animation: fadeIn 0.6s ease forwards;
+
+/* Infinite (spinner): */
+animation: spin 1s linear infinite;
+
+/* Infinite back-and-forth (pulse): */
+animation: pulse 2s ease-in-out infinite alternate;</code></pre>
+        <p>Three variants cover almost everything. Memorize them.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ITERATION ==================== -->
+    <h2 id="iteration" data-lang="ru">4. animation-iteration-count и direction</h2>
+    <h2 id="iteration-en" data-lang="en">4. animation-iteration-count and direction</h2>
+
+    <div class="why" data-lang="ru">
+        <p>По умолчанию анимация выполняется <strong>один раз</strong> и останавливается. Но 80% декоративных анимаций — бесконечные: спиннер крутится всегда, уведомление пульсирует всегда. Для этого два ключевых слова: <code>infinite</code> (бесконечно) и <code>alternate</code> (туда-обратно).</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>By default an animation runs <strong>once</strong> and stops. But 80% of decorative animations are infinite: spinners spin forever, notifications pulse forever. Two key words for this: <code>infinite</code> (forever) and <code>alternate</code> (back and forth).</p>
+    </div>
+
+<pre><code>/* Бесконечный цикл */
+animation: spin 1s linear infinite;
+
+/* Туда-обратно (пульсация) */
+animation: pulse 2s ease-in-out infinite alternate;
+
+/* 3 раза и стоп */
+animation: bounce 0.5s ease 3;</code></pre>
+
+    <p data-lang="ru"><code>alternate</code> — анимация идёт вперёд, потом назад, потом вперёд... Идеально для пульсации!</p>
+    <p data-lang="en"><code>alternate</code> — animation goes forward, then backward, then forward... Perfect for pulsing!</p>
+
+    <div class="diagram" data-lang="ru">
+    normal       (1,2,3)→(1,2,3)→(1,2,3)  каждый раз перепрыг
+    reverse      (3,2,1)→(3,2,1)→(3,2,1)  задом наперёд
+    alternate    (1,2,3)→(3,2,1)→(1,2,3)  плавно туда-обратно ← лучший для пульса
+    alternate-reverse (3,2,1)→(1,2,3)→...</div>
+    <div class="diagram" data-lang="en">
+    normal       (1,2,3)→(1,2,3)→(1,2,3)  snap back each time
+    reverse      (3,2,1)→(3,2,1)→(3,2,1)  backwards
+    alternate    (1,2,3)→(3,2,1)→(1,2,3)  smooth back-and-forth ← best for pulse
+    alternate-reverse (3,2,1)→(1,2,3)→...</div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Без <code>alternate</code> пульс выглядит сломанным.</strong> Если написать <code>animation: pulse 2s ease infinite</code> с анимацией <code>from scale(1) to scale(1.1)</code> — в конце каждого цикла элемент <strong>резко</strong> возвращается в scale(1) и начинает расти заново. Вместо плавного пульса получаются «прыжки». Решение: либо добавить <code>alternate</code>, либо описать анимацию симметрично через <code>0%/50%/100%</code>.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Without <code>alternate</code> pulse looks broken.</strong> If you write <code>animation: pulse 2s ease infinite</code> with <code>from scale(1) to scale(1.1)</code> — at the end of each cycle the element <strong>snaps</strong> back to scale(1) and grows again. Instead of smooth pulse, you get "jumps". Fix: either add <code>alternate</code>, or describe the animation symmetrically via <code>0%/50%/100%</code>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== FILL MODE ==================== -->
+    <h2 id="fill-mode" data-lang="ru">5. animation-fill-mode</h2>
+    <h2 id="fill-mode-en" data-lang="en">5. animation-fill-mode</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Представьте: вы написали <code>fadeIn</code> с <code>opacity: 0 → 1</code>. Элемент плавно появляется, отлично. Но через 1 секунду после окончания анимации он <strong>моргает обратно в opacity: 0</strong>! Почему? Потому что по умолчанию браузер возвращает элемент в исходное (до-анимационное) состояние. Это и решает <code>animation-fill-mode</code>.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Imagine: you wrote <code>fadeIn</code> with <code>opacity: 0 → 1</code>. Element smoothly appears, great. But a second after the animation ends — it <strong>flashes back to opacity: 0</strong>! Why? By default the browser returns the element to its pre-animation state. <code>animation-fill-mode</code> solves this.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Значение</th><th>Что происходит после анимации</th></tr>
+        <tr><td><code>none</code></td><td>Элемент возвращается к исходному состоянию (по умолчанию)</td></tr>
+        <tr><td><code>forwards</code></td><td>Элемент <strong>остаётся</strong> в конечном состоянии</td></tr>
+        <tr><td><code>backwards</code></td><td>Элемент принимает начальное состояние до старта (при delay)</td></tr>
+        <tr><td><code>both</code></td><td>forwards + backwards</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Value</th><th>What happens after animation</th></tr>
+        <tr><td><code>none</code></td><td>Element returns to original state (default)</td></tr>
+        <tr><td><code>forwards</code></td><td>Element <strong>stays</strong> in final state</td></tr>
+        <tr><td><code>backwards</code></td><td>Element takes initial state before start (with delay)</td></tr>
+        <tr><td><code>both</code></td><td>forwards + backwards</td></tr>
+    </table>
+
+    <div class="important" data-lang="ru">
+        <strong>forwards — самый важный!</strong> Без него элемент «мигает» обратно после fadeIn. Всегда добавляйте <code>forwards</code> для анимаций появления.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>forwards — the most important!</strong> Without it, the element "flashes" back after fadeIn. Always add <code>forwards</code> for appearance animations.
+    </div>
+
+    <hr>
+
+    <!-- ==================== ЗАГРУЗЧИКИ ==================== -->
+    <h2 id="loaders" data-lang="ru">6. Примеры: загрузчики (spinners)</h2>
+    <h2 id="loaders-en" data-lang="en">6. Examples: loaders (spinners)</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Загрузчик (spinner) — это элемент, который сообщает пользователю «что-то происходит, подожди». Без него пользователь думает, что сайт сломался. По исследованиям, 40% пользователей закрывают вкладку, если она не реагирует 3 секунды без визуальной обратной связи. Спиннер покупает вам эти секунды.</p>
+        <p>Технически спиннер — просто элемент с <code>animation: spin infinite</code>. Это самая популярная CSS-анимация на планете.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>A loader (spinner) tells the user "something's happening, wait". Without one, the user thinks the site broke. Research shows 40% of users close a tab if it doesn't react for 3 seconds without visual feedback. The spinner buys you those seconds.</p>
+        <p>Technically a spinner is just an element with <code>animation: spin infinite</code>. The most popular CSS animation on the planet.</p>
+    </div>
+
+<pre><code>/* Вращающийся спиннер */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e2e8f0;
+    border-top: 4px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Три пульсирующие точки */
+@keyframes dotPulse {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
+.dot {
+    width: 12px; height: 12px;
+    background: #3b82f6;
+    border-radius: 50%;
+    animation: dotPulse 1.4s ease-in-out infinite;
+}
+.dot:nth-child(2) { animation-delay: 0.16s; }
+.dot:nth-child(3) { animation-delay: 0.32s; }</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="ru">Живые загрузчики:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="en">Live loaders:</p>
+        <style>
+            @keyframes l23-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+            @keyframes l23-dot-pulse { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+            .l23-loaders { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+            .l23-spinner { width: 40px; height: 40px; border: 4px solid #e2e8f0; border-top: 4px solid #3b82f6; border-radius: 50%; animation: l23-spin 0.8s linear infinite; }
+            .l23-dots { display: flex; gap: 8px; }
+            .l23-dot { width: 12px; height: 12px; background: #3b82f6; border-radius: 50%; animation: l23-dot-pulse 1.4s ease-in-out infinite; }
+            .l23-dot:nth-child(2) { animation-delay: 0.16s; }
+            .l23-dot:nth-child(3) { animation-delay: 0.32s; }
+        </style>
+        <div class="l23-loaders">
+            <div class="l23-spinner"></div>
+            <div class="l23-dots">
+                <span class="l23-dot"></span>
+                <span class="l23-dot"></span>
+                <span class="l23-dot"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><strong>Как работает спиннер технически.</strong> Это круг с прозрачными границами, только <strong>одна</strong> (<code>border-top</code>) — цветная. Когда круг вращается, видна только эта цветная линия — создаётся иллюзия движения. Четыре строчки CSS — и готов элемент, который увидят миллионы пользователей.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><strong>How the spinner works technically.</strong> It's a circle with transparent borders — only <strong>one</strong> (<code>border-top</code>) is colored. As the circle rotates, only that colored line is visible — creating the illusion of movement. Four lines of CSS — and you have an element seen by millions of users.</p>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong><code>linear</code>, не <code>ease</code>.</strong> Для спиннера используйте <code>linear</code> (равномерная скорость). С <code>ease</code> спиннер будет <strong>ускоряться и замедляться</strong> на каждом обороте — выглядит сломанным. Для вращения по кругу ТОЛЬКО <code>linear</code>.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong><code>linear</code>, not <code>ease</code>.</strong> For spinners use <code>linear</code> (constant speed). With <code>ease</code> the spinner <strong>speeds up and slows down</strong> each rotation — looks broken. For circular motion use ONLY <code>linear</code>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== FADE-IN ==================== -->
+    <h2 id="fade-in" data-lang="ru">7. Появление элементов (fade-in)</h2>
+    <h2 id="fade-in-en" data-lang="en">7. Element appearance (fade-in)</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Когда страница открывается — все элементы появляются мгновенно. Это функционально, но неинтересно. Профессиональные промо-сайты делают <strong>постепенное появление</strong>: сначала заголовок плавно выезжает, через 0.2 секунды — подзаголовок, ещё через 0.2 — кнопка. Это называется <strong>каскадный fade-in</strong>.</p>
+        <p>Эффект прост по механике (opacity 0→1 + translateY), но сильно повышает восприятие качества. Так делают Apple, Stripe, все лендинги на Product Hunt.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>When a page opens — all elements appear instantly. Functional, but boring. Professional promo sites use <strong>staggered appearance</strong>: heading fades in first, 0.2s later — subheading, another 0.2s — button. This is called a <strong>cascading fade-in</strong>.</p>
+        <p>Simple mechanically (opacity 0→1 + translateY), but dramatically boosts perceived quality. Used by Apple, Stripe, every landing on Product Hunt.</p>
+    </div>
+
+<pre><code>@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    animation: fadeInUp 0.8s ease forwards;
+}
+.hero p {
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+    opacity: 0; /* начальное состояние до анимации */
+}
+.hero .btn {
+    animation: fadeInUp 0.8s ease 0.4s forwards;
+    opacity: 0;
+}</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Каскадная задержка:</strong> h1 = 0s, p = 0.2s, button = 0.4s. Элементы появляются <strong>друг за другом</strong> — красивый эффект!
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Cascading delay:</strong> h1 = 0s, p = 0.2s, button = 0.4s. Elements appear <strong>one after another</strong> — beautiful effect!
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Почему <code>opacity: 0</code> в базовом состоянии?</strong> Если не указать <code>opacity: 0</code>, то во время <code>animation-delay: 0.4s</code> пользователь будет видеть элемент <strong>во всей красе</strong> первые 0.4 секунды — и только потом он «исчезнет и появится». Мигание! Решение: в базовом CSS элемента ставьте <code>opacity: 0</code>, чтобы до анимации он был невидимым. <code>forwards</code> + базовое <code>opacity: 0</code> — обязательная пара.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Why <code>opacity: 0</code> in base state?</strong> Without <code>opacity: 0</code>, during <code>animation-delay: 0.4s</code> the user would see the element <strong>fully visible</strong> for 0.4s — and only then it "disappears and reappears". A flash! Fix: set <code>opacity: 0</code> in the element's base CSS so it's invisible before the animation. <code>forwards</code> + base <code>opacity: 0</code> — a mandatory pair.</p>
+    </div>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="ru">Нажмите «Запустить» — увидите каскадное появление:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="en">Click "Run" — see the cascading appearance:</p>
+        <style>
+            @keyframes l23-fade-up {
+                from { opacity: 0; transform: translateY(30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .l23-fade-demo { border: 2px dashed #cbd5e1; border-radius: 12px; padding: 30px; text-align: center; min-height: 220px; }
+            .l23-fade-demo.active h3 { animation: l23-fade-up 0.8s ease forwards; }
+            .l23-fade-demo.active p { animation: l23-fade-up 0.8s ease 0.2s forwards; }
+            .l23-fade-demo.active .l23-fake-btn { animation: l23-fade-up 0.8s ease 0.4s forwards; }
+            .l23-fade-demo h3, .l23-fade-demo p, .l23-fade-demo .l23-fake-btn { opacity: 0; }
+            .l23-fake-btn { display: inline-block; padding: 12px 28px; background: #3b82f6; color: #fff; border-radius: 8px; font-weight: 600; cursor: pointer; }
+            .l23-replay { background: #f59e0b; color: #fff; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; margin-bottom: 12px; }
+        </style>
+        <button class="l23-replay" onclick="var d=this.nextElementSibling;d.classList.remove('active');void d.offsetWidth;d.classList.add('active');" data-lang="ru">▶ Запустить</button>
+        <button class="l23-replay" onclick="var d=this.nextElementSibling;d.classList.remove('active');void d.offsetWidth;d.classList.add('active');" data-lang="en">▶ Run</button>
+        <div class="l23-fade-demo active">
+            <h3 style="margin: 0 0 8px; font-size: 1.6rem;" data-lang="ru">Заголовок (0s)</h3>
+            <h3 style="margin: 0 0 8px; font-size: 1.6rem;" data-lang="en">Heading (0s)</h3>
+            <p style="color: #64748b; margin: 0 0 20px;" data-lang="ru">Подзаголовок (0.2s)</p>
+            <p style="color: #64748b; margin: 0 0 20px;" data-lang="en">Subheading (0.2s)</p>
+            <span class="l23-fake-btn" data-lang="ru">Кнопка (0.4s)</span>
+            <span class="l23-fake-btn" data-lang="en">Button (0.4s)</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SLIDE-IN ==================== -->
+    <h2 id="slide-in" data-lang="ru">8. Выезжающие элементы (slide-in)</h2>
+    <h2 id="slide-in-en" data-lang="en">8. Sliding elements (slide-in)</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Slide-in — вариант fade-in, но с <strong>движением сбоку</strong>: элемент «выезжает» слева или справа. Используется в секциях Features, где три блока: первый выезжает слева, второй поднимается снизу, третий — справа. Создаёт визуальный ритм.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Slide-in is a variant of fade-in but with <strong>side movement</strong>: the element "slides in" from left or right. Used in Features sections where three blocks: first slides from left, second rises from below, third — from right. Creates visual rhythm.</p>
+    </div>
+
+<pre><code>@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-60px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(60px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.feature:nth-child(1) { animation: slideInLeft 0.6s ease 0.1s forwards; opacity: 0; }
+.feature:nth-child(2) { animation: fadeInUp 0.6s ease 0.2s forwards; opacity: 0; }
+.feature:nth-child(3) { animation: slideInRight 0.6s ease 0.3s forwards; opacity: 0; }</code></pre>
+
+    <hr>
+
+    <!-- ==================== PULSE ==================== -->
+    <h2 id="pulse" data-lang="ru">9. Пульсирующие элементы</h2>
+    <h2 id="pulse-en" data-lang="en">9. Pulsing elements</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Пульс — это «визуальное сердцебиение». Используется для <strong>привлечения внимания</strong>: пульсирующая кнопка CTA, красная точка уведомления, индикатор «live» на стриминге. Глаз человека биологически реагирует на пульсацию — это древний механизм отслеживания движения.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Pulse is a "visual heartbeat". Used to <strong>grab attention</strong>: pulsing CTA button, red notification dot, "live" indicator on streams. The human eye biologically reacts to pulsing — an ancient motion-tracking mechanism.</p>
+    </div>
+
+<pre><code>@keyframes pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.cta-btn {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Пульсирующая тень (привлечение внимания) */
+@keyframes glowPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+    70%  { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.notification-dot {
+    animation: glowPulse 2s ease infinite;
+}</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="ru">Живые примеры: scale-пульс и glow-пульс:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="en">Live examples: scale pulse and glow pulse:</p>
+        <style>
+            @keyframes l23-pulse-scale {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+            }
+            @keyframes l23-glow-pulse {
+                0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+                70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+            }
+            .l23-pulse-row { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; padding: 20px; }
+            .l23-pulse-btn { background: #3b82f6; color: #fff; padding: 14px 32px; border: none; border-radius: 8px; font-weight: 600; animation: l23-pulse-scale 2s ease-in-out infinite; cursor: pointer; }
+            .l23-pulse-dot { width: 16px; height: 16px; background: #ef4444; border-radius: 50%; animation: l23-glow-pulse 2s ease infinite; }
+        </style>
+        <div class="l23-pulse-row">
+            <button class="l23-pulse-btn" data-lang="ru">Pulsing CTA</button>
+            <button class="l23-pulse-btn" data-lang="en">Pulsing CTA</button>
+            <div class="l23-pulse-dot" title="Live indicator"></div>
+        </div>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Не переусердствуйте с пульсом.</strong> Одна пульсирующая кнопка на странице — хорошо. Пять — спам. Пульс как восклицательный знак: одно на предложение.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Don't overdo pulse.</strong> One pulsing button on a page — good. Five — spam. Pulse is like an exclamation mark: one per sentence.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CSS VARS ==================== -->
+    <h2 id="css-vars" data-lang="ru">10. CSS-переменные для анимаций</h2>
+    <h2 id="css-vars-en" data-lang="en">10. CSS variables for animations</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Когда на странице 5-10 анимированных элементов с каскадными задержками — писать <code>delay: 0.1s, 0.2s, 0.3s...</code> вручную утомительно. А если клиент попросит замедлить всё вдвое — нужно менять 10 значений. Решение: CSS-переменные + <code>calc()</code>. Меняете <strong>одну</strong> переменную — анимация пересчитывается везде.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>With 5-10 animated elements with cascading delays — writing <code>delay: 0.1s, 0.2s, 0.3s...</code> manually is tedious. And if the client asks to slow everything down by half — you'd change 10 values. Solution: CSS variables + <code>calc()</code>. Change <strong>one</strong> variable — animation recalculates everywhere.</p>
+    </div>
+
+<pre><code>:root {
+    --anim-speed: 0.6s;
+    --anim-ease: ease;
+    --anim-delay-step: 0.15s;
+}
+
+.card:nth-child(1) { animation: fadeInUp var(--anim-speed) var(--anim-ease) calc(var(--anim-delay-step) * 1) forwards; }
+.card:nth-child(2) { animation: fadeInUp var(--anim-speed) var(--anim-ease) calc(var(--anim-delay-step) * 2) forwards; }
+.card:nth-child(3) { animation: fadeInUp var(--anim-speed) var(--anim-ease) calc(var(--anim-delay-step) * 3) forwards; }</code></pre>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><code>calc()</code> + CSS-переменные = автоматическая каскадная задержка! Каждая карточка появляется на 0.15s позже предыдущей.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><code>calc()</code> + CSS variables = automatic cascading delay! Each card appears 0.15s after the previous one.</p>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Доступность: не забывайте про <code>prefers-reduced-motion</code>.</strong> Анимации появления могут вызывать проблемы у пользователей с вестибулярными расстройствами. Обязательно добавляйте в конец CSS:</p>
+<pre><code>@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}</code></pre>
+        <p>Это отключает анимации для пользователей, которые поставили соответствующий флаг в ОС.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Accessibility: don't forget <code>prefers-reduced-motion</code>.</strong> Appearance animations can cause issues for users with vestibular disorders. Always add at the end of your CSS:</p>
+<pre><code>@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}</code></pre>
+        <p>This disables animations for users who set the corresponding OS flag.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРОМО-СТРАНИЦА ==================== -->
+    <h2 id="promo" data-lang="ru">11. Собираем промо-страницу</h2>
+    <h2 id="promo-en" data-lang="en">11. Building the promo page</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Теперь применим всё изученное в одном месте. Промо-страница — это простая одностраничная реклама продукта. Клиенты-новички (стартапы, малый бизнес) часто заказывают такие. Структура стандартная: hero с громким заголовком, features с преимуществами, CTA-блок с призывом к действию. Без анимаций страница выглядит дешёвой — с ними продаёт.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Now let's apply everything in one place. A promo page is a simple single-page product ad. Early clients (startups, small businesses) often order these. Standard structure: hero with a loud headline, features with benefits, CTA block with a call to action. Without animations the page feels cheap — with them, it sells.</p>
+    </div>
+
+    <p data-lang="ru">Комбинируем все анимации в промо-страницу:</p>
+    <p data-lang="en">Let's combine all animations into a promo page:</p>
+
+    <table data-lang="ru">
+        <tr><th>Секция</th><th>Анимация</th><th>Детали</th></tr>
+        <tr><td>Hero h1</td><td>fadeInUp</td><td>0.8s, delay 0s</td></tr>
+        <tr><td>Hero p</td><td>fadeInUp</td><td>0.8s, delay 0.2s</td></tr>
+        <tr><td>Hero кнопка</td><td>fadeInUp + pulse</td><td>Появляется, затем пульсирует</td></tr>
+        <tr><td>Features</td><td>slideInLeft / fadeInUp / slideInRight</td><td>Каскадная задержка</td></tr>
+        <tr><td>Карточки</td><td>fadeInUp</td><td>Каскадная задержка × n</td></tr>
+        <tr><td>CTA-секция</td><td>fadeIn</td><td>0.6s</td></tr>
+        <tr><td>Загрузчик</td><td>spin</td><td>infinite, появляется до загрузки</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Section</th><th>Animation</th><th>Details</th></tr>
+        <tr><td>Hero h1</td><td>fadeInUp</td><td>0.8s, delay 0s</td></tr>
+        <tr><td>Hero p</td><td>fadeInUp</td><td>0.8s, delay 0.2s</td></tr>
+        <tr><td>Hero button</td><td>fadeInUp + pulse</td><td>Appears, then pulses</td></tr>
+        <tr><td>Features</td><td>slideInLeft / fadeInUp / slideInRight</td><td>Cascading delay</td></tr>
+        <tr><td>Cards</td><td>fadeInUp</td><td>Cascading delay × n</td></tr>
+        <tr><td>CTA section</td><td>fadeIn</td><td>0.6s</td></tr>
+        <tr><td>Loader</td><td>spin</td><td>infinite, shows before load</td></tr>
+    </table>
+
+    <div class="summary" data-lang="ru">
+        <strong>@keyframes + animation:</strong>
+        <ul>
+            <li><code>@keyframes name { from {...} to {...} }</code> — определяем анимацию</li>
+            <li><code>animation: name duration ease</code> — применяем</li>
+            <li><code>infinite</code> — бесконечный цикл (спиннеры, пульсация)</li>
+            <li><code>alternate</code> — туда-обратно</li>
+            <li><code>forwards</code> — остаться в конечном состоянии</li>
+            <li><code>animation-delay</code> — каскадное появление элементов</li>
+            <li><code>opacity: 0</code> на элементах с delay (чтобы не мигали)</li>
+        </ul>
+        <strong>Готовые анимации:</strong>
+        <ul>
+            <li><code>fadeIn</code> — появление (opacity 0→1)</li>
+            <li><code>fadeInUp</code> — появление снизу</li>
+            <li><code>slideInLeft/Right</code> — выезд сбоку</li>
+            <li><code>spin</code> — вращение (загрузчик)</li>
+            <li><code>pulse</code> — пульсация (привлечение внимания)</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>@keyframes + animation:</strong>
+        <ul>
+            <li><code>@keyframes name { from {...} to {...} }</code> — define animation</li>
+            <li><code>animation: name duration ease</code> — apply it</li>
+            <li><code>infinite</code> — infinite loop (spinners, pulse)</li>
+            <li><code>alternate</code> — back and forth</li>
+            <li><code>forwards</code> — stay in final state</li>
+            <li><code>animation-delay</code> — cascading element appearance</li>
+            <li><code>opacity: 0</code> on delayed elements (so they don't flash)</li>
+        </ul>
+        <strong>Ready-made animations:</strong>
+        <ul>
+            <li><code>fadeIn</code> — appearance (opacity 0→1)</li>
+            <li><code>fadeInUp</code> — appear from below</li>
+            <li><code>slideInLeft/Right</code> — slide from side</li>
+            <li><code>spin</code> — rotation (loader)</li>
+            <li><code>pulse</code> — pulsing (attention grabber)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">12. Создание своей промо-страницы</h2>
+    <h2 id="practice-en" data-lang="en">12. Creating your own promo page</h2>
+
+    <p data-lang="ru">Создайте промо-страницу для продукта или сервиса с анимациями при загрузке.</p>
+    <p data-lang="en">Create a promo page for a product or service with animations on load.</p>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Чем <code>animation</code> отличается от <code>transition</code>?</li>
+            <li>Что делает <code>@keyframes</code>?</li>
+            <li>Зачем <code>animation-fill-mode: forwards</code>?</li>
+            <li>Как сделать бесконечно вращающийся спиннер?</li>
+            <li>Как добиться каскадного появления элементов?</li>
+            <li>Зачем ставить <code>opacity: 0</code> на элементах с animation-delay?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>How is <code>animation</code> different from <code>transition</code>?</li>
+            <li>What does <code>@keyframes</code> do?</li>
+            <li>Why <code>animation-fill-mode: forwards</code>?</li>
+            <li>How to make an infinitely spinning loader?</li>
+            <li>How to achieve cascading element appearance?</li>
+            <li>Why set <code>opacity: 0</code> on elements with animation-delay?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

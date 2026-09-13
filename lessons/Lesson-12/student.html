@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 12 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 12: Мультимедиа и iframe</span>
+    <span class="nav-title" data-lang="en">Lesson 12: Multimedia and iframe</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+
+    <p class="subtitle" data-lang="ru">Занятие 12: Мультимедиа и iframe</p>
+    <p class="subtitle" data-lang="en">Lesson 12: Multimedia and iframe</p>
+
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <!-- УРОК 12.1 -->
+    <h2 data-lang="ru">&#x1F4DA; УРОК 12.1: АУДИО И ВИДЕО</h2>
+    <h2 data-lang="en">&#x1F4DA; Lesson 12.1: AUDIO AND VIDEO</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Мультимедиа</strong> — это аудио и видео контент, встроенный прямо в веб-страницу. HTML5 позволяет воспроизводить медиа без сторонних плагинов (Flash больше не нужен!).
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Multimedia</strong> — audio and video content embedded directly in a web page. HTML5 allows playing media without third-party plugins (no more Flash!).
+    </div>
+
+    <div class="definition" data-lang="ru">
+        <strong>&lt;audio&gt;</strong> — тег для встраивания аудиоплеера на страницу. Внутри используется <code>&lt;source&gt;</code> для указания файла и формата.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>&lt;audio&gt;</strong> — tag for embedding an audio player on a page. Uses <code>&lt;source&gt;</code> inside to specify the file and format.
+    </div>
+
+    <div class="definition" data-lang="ru">
+        <strong>&lt;video&gt;</strong> — тег для встраивания видеоплеера на страницу. Поддерживает обложку (<code>poster</code>), размеры и управление воспроизведением.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>&lt;video&gt;</strong> — tag for embedding a video player on a page. Supports cover image (<code>poster</code>), dimensions, and playback controls.
+    </div>
+
+    <h3 data-lang="ru">Аудио</h3>
+    <h3 data-lang="en">Audio</h3>
+
+<pre><code>&lt;audio controls&gt;
+    &lt;source src="music.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre>
+
+    <h3 data-lang="ru">Видео</h3>
+    <h3 data-lang="en">Video</h3>
+
+<pre><code>&lt;video controls width="640" poster="cover.jpg"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>controls обязателен!</strong> Без атрибута <code>controls</code> пользователь не увидит кнопки play/pause, громкость и полосу прокрутки. Плеер будет невидимым.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>controls is required!</strong> Without the <code>controls</code> attribute, the user won't see play/pause buttons, volume, or the progress bar. The player will be invisible.
+    </div>
+
+    <h3 data-lang="ru">Атрибуты audio и video</h3>
+    <h3 data-lang="en">Audio and video attributes</h3>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут</th><th>Что делает</th></tr>
+        <tr><td><code>controls</code></td><td>Показывает плеер (обязательно!)</td></tr>
+        <tr><td><code>autoplay</code></td><td>Автозапуск (нужен <code>muted</code>!)</td></tr>
+        <tr><td><code>loop</code></td><td>Повтор</td></tr>
+        <tr><td><code>muted</code></td><td>Без звука</td></tr>
+        <tr><td><code>preload</code></td><td>Предзагрузка: <code>auto</code>, <code>metadata</code>, <code>none</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute</th><th>What it does</th></tr>
+        <tr><td><code>controls</code></td><td>Shows player (required!)</td></tr>
+        <tr><td><code>autoplay</code></td><td>Auto-play (needs <code>muted</code>!)</td></tr>
+        <tr><td><code>loop</code></td><td>Repeat</td></tr>
+        <tr><td><code>muted</code></td><td>Muted</td></tr>
+        <tr><td><code>preload</code></td><td>Preload: <code>auto</code>, <code>metadata</code>, <code>none</code></td></tr>
+    </table>
+
+    <h3 data-lang="ru">Сравнение audio и video</h3>
+    <h3 data-lang="en">Audio vs video comparison</h3>
+
+    <table data-lang="ru">
+        <tr><th></th><th>&lt;audio&gt;</th><th>&lt;video&gt;</th></tr>
+        <tr><td>Общие атрибуты</td><td colspan="2"><code>controls</code>, <code>autoplay</code>, <code>loop</code>, <code>muted</code>, <code>preload</code></td></tr>
+        <tr><td><code>poster</code></td><td>&#x2718; Нет</td><td>&#x2714; Да — обложка</td></tr>
+        <tr><td><code>width</code> / <code>height</code></td><td>&#x2718; Нет</td><td>&#x2714; Да — размеры</td></tr>
+        <tr><td>Лучший формат</td><td><strong>MP3</strong></td><td><strong>MP4</strong></td></tr>
+        <tr><td>Другие форматы</td><td>OGG, WAV</td><td>WebM, OGG</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th></th><th>&lt;audio&gt;</th><th>&lt;video&gt;</th></tr>
+        <tr><td>Shared attributes</td><td colspan="2"><code>controls</code>, <code>autoplay</code>, <code>loop</code>, <code>muted</code>, <code>preload</code></td></tr>
+        <tr><td><code>poster</code></td><td>&#x2718; No</td><td>&#x2714; Yes — cover image</td></tr>
+        <tr><td><code>width</code> / <code>height</code></td><td>&#x2718; No</td><td>&#x2714; Yes — dimensions</td></tr>
+        <tr><td>Best format</td><td><strong>MP3</strong></td><td><strong>MP4</strong></td></tr>
+        <tr><td>Other formats</td><td>OGG, WAV</td><td>WebM, OGG</td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        <strong>autoplay + muted:</strong> Браузеры блокируют автовоспроизведение со звуком. Чтобы <code>autoplay</code> работал, нужно добавить <code>muted</code>. Это правило безопасности браузера.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>autoplay + muted:</strong> Browsers block autoplay with sound. For <code>autoplay</code> to work, you must also add <code>muted</code>. This is a browser security rule.
+    </div>
+
+    <hr>
+
+    <!-- УРОК 12.2 -->
+    <h2 data-lang="ru">&#x1F4DA; УРОК 12.2: IFRAME, ФАВИКОНКА, МЕТА-ТЕГИ</h2>
+    <h2 data-lang="en">&#x1F4DA; Lesson 12.2: IFRAME, FAVICON, META TAGS</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>iframe</strong> — встраивает другую веб-страницу внутрь вашей. Используется для YouTube-видео, Google Maps и других сервисов.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>iframe</strong> — embeds another web page inside yours. Used for YouTube videos, Google Maps, and other services.
+    </div>
+
+    <div class="definition" data-lang="ru">
+        <strong>Фавиконка (favicon)</strong> — маленькая иконка сайта, которая отображается во вкладке браузера рядом с названием страницы. Задаётся через <code>&lt;link&gt;</code> в <code>&lt;head&gt;</code>.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Favicon</strong> — a small site icon displayed in the browser tab next to the page title. Set via <code>&lt;link&gt;</code> in <code>&lt;head&gt;</code>.
+    </div>
+
+    <div class="definition" data-lang="ru">
+        <strong>Мета-теги</strong> — теги <code>&lt;meta&gt;</code> в <code>&lt;head&gt;</code>, которые содержат информацию о странице для браузеров и поисковых систем (кодировка, описание, автор и т.д.).
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Meta tags</strong> — <code>&lt;meta&gt;</code> tags in <code>&lt;head&gt;</code> that contain page information for browsers and search engines (encoding, description, author, etc.).
+    </div>
+
+    <h3 data-lang="ru">YouTube iframe</h3>
+    <h3 data-lang="en">YouTube iframe</h3>
+
+<pre><code>&lt;iframe width="560" height="315"
+    src="https://www.youtube.com/embed/VIDEO_ID"
+    title="Video" allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>URL для YouTube iframe:</strong> Используйте <code>youtube.com/<strong>embed</strong>/VIDEO_ID</code>, а НЕ <code>youtube.com/watch?v=VIDEO_ID</code>! Обычная ссылка не будет работать в iframe.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>YouTube iframe URL:</strong> Use <code>youtube.com/<strong>embed</strong>/VIDEO_ID</code>, NOT <code>youtube.com/watch?v=VIDEO_ID</code>! A regular link won't work in an iframe.
+    </div>
+
+    <h3 data-lang="ru">Google Maps</h3>
+    <h3 data-lang="en">Google Maps</h3>
+
+    <p data-lang="ru">Google Maps &#x2192; Поделиться &#x2192; Встроить карту &#x2192; Скопировать <code>&lt;iframe&gt;</code></p>
+    <p data-lang="en">Google Maps &#x2192; Share &#x2192; Embed a map &#x2192; Copy <code>&lt;iframe&gt;</code></p>
+
+    <h3 data-lang="ru">Атрибуты iframe</h3>
+    <h3 data-lang="en">iframe attributes</h3>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут</th><th>Что делает</th></tr>
+        <tr><td><code>src</code></td><td>URL встраиваемой страницы</td></tr>
+        <tr><td><code>width</code> / <code>height</code></td><td>Размеры в пикселях</td></tr>
+        <tr><td><code>title</code></td><td>Описание для доступности</td></tr>
+        <tr><td><code>allowfullscreen</code></td><td>Разрешает полноэкранный режим</td></tr>
+        <tr><td><code>loading="lazy"</code></td><td>Ленивая загрузка (ускоряет страницу)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute</th><th>What it does</th></tr>
+        <tr><td><code>src</code></td><td>URL of the embedded page</td></tr>
+        <tr><td><code>width</code> / <code>height</code></td><td>Dimensions in pixels</td></tr>
+        <tr><td><code>title</code></td><td>Description for accessibility</td></tr>
+        <tr><td><code>allowfullscreen</code></td><td>Allows fullscreen mode</td></tr>
+        <tr><td><code>loading="lazy"</code></td><td>Lazy loading (speeds up page)</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Адаптивный iframe (CSS)</h3>
+    <h3 data-lang="en">Responsive iframe (CSS)</h3>
+
+<pre><code>iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+}</code></pre>
+
+    <h3 data-lang="ru">Фавиконка</h3>
+    <h3 data-lang="en">Favicon</h3>
+
+<pre><code>&lt;link rel="icon" href="favicon.png" type="image/png"&gt;</code></pre>
+
+    <div class="note-box" data-lang="ru">
+        Размер фавиконки: обычно 32x32 или 16x16 пикселей. Форматы: PNG, ICO, SVG. Файл должен лежать в корне сайта или рядом с HTML.
+    </div>
+    <div class="note-box" data-lang="en">
+        Favicon size: usually 32x32 or 16x16 pixels. Formats: PNG, ICO, SVG. The file should be in the site root or next to the HTML.
+    </div>
+
+    <h3 data-lang="ru">Важные мета-теги</h3>
+    <h3 data-lang="en">Important meta tags</h3>
+
+    <table data-lang="ru">
+        <tr><th>Мета-тег</th><th>Зачем</th></tr>
+        <tr><td><code>charset="UTF-8"</code></td><td>Кодировка (кириллица, эмодзи)</td></tr>
+        <tr><td><code>viewport</code></td><td>Адаптивность на мобильных</td></tr>
+        <tr><td><code>description</code></td><td>Описание для Google</td></tr>
+        <tr><td><code>author</code></td><td>Автор страницы</td></tr>
+        <tr><td><code>og:title, og:image</code></td><td>Превью в соцсетях (Open Graph)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Meta tag</th><th>Purpose</th></tr>
+        <tr><td><code>charset="UTF-8"</code></td><td>Encoding (Cyrillic, emojis)</td></tr>
+        <tr><td><code>viewport</code></td><td>Mobile responsiveness</td></tr>
+        <tr><td><code>description</code></td><td>Description for Google</td></tr>
+        <tr><td><code>author</code></td><td>Page author</td></tr>
+        <tr><td><code>og:title, og:image</code></td><td>Social media preview (Open Graph)</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Пример мета-тегов</h3>
+    <h3 data-lang="en">Meta tags example</h3>
+
+<pre><code>&lt;meta name="description" content="Мой музыкальный блог"&gt;
+&lt;meta name="author" content="Имя Автора"&gt;
+&lt;meta property="og:title" content="Музыкальный блог"&gt;
+&lt;meta property="og:image" content="preview.jpg"&gt;</code></pre>
+
+    <h3 data-lang="ru">Структура &lt;head&gt;</h3>
+    <h3 data-lang="en">&lt;head&gt; structure</h3>
+
+    <div class="diagram" data-lang="ru">
+&lt;head&gt;
+&#x251C;&#x2500; &lt;meta charset="UTF-8"&gt;              &#x2190; кодировка
+&#x251C;&#x2500; &lt;meta name="viewport" ...&gt;           &#x2190; адаптивность
+&#x251C;&#x2500; &lt;meta name="description" ...&gt;        &#x2190; SEO
+&#x251C;&#x2500; &lt;meta name="author" ...&gt;             &#x2190; автор
+&#x251C;&#x2500; &lt;meta property="og:title" ...&gt;       &#x2190; соцсети
+&#x251C;&#x2500; &lt;title&gt;Название&lt;/title&gt;              &#x2190; заголовок вкладки
+&#x251C;&#x2500; &lt;link rel="icon" href="fav.png"&gt;    &#x2190; фавиконка
+&#x2514;&#x2500; &lt;link rel="stylesheet" href="..."&gt;   &#x2190; стили
+&lt;/head&gt;
+    </div>
+    <div class="diagram" data-lang="en">
+&lt;head&gt;
+&#x251C;&#x2500; &lt;meta charset="UTF-8"&gt;              &#x2190; encoding
+&#x251C;&#x2500; &lt;meta name="viewport" ...&gt;           &#x2190; responsiveness
+&#x251C;&#x2500; &lt;meta name="description" ...&gt;        &#x2190; SEO
+&#x251C;&#x2500; &lt;meta name="author" ...&gt;             &#x2190; author
+&#x251C;&#x2500; &lt;meta property="og:title" ...&gt;       &#x2190; social media
+&#x251C;&#x2500; &lt;title&gt;Title&lt;/title&gt;                 &#x2190; tab title
+&#x251C;&#x2500; &lt;link rel="icon" href="fav.png"&gt;    &#x2190; favicon
+&#x2514;&#x2500; &lt;link rel="stylesheet" href="..."&gt;   &#x2190; styles
+&lt;/head&gt;
+    </div>
+
+    <hr>
+
+    <!-- УРОК 12.3 -->
+    <h2 data-lang="ru">&#x1F4DA; УРОК 12.3: ПРАКТИКА</h2>
+    <h2 data-lang="en">&#x1F4DA; Lesson 12.3: PRACTICE</h2>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Сегодня создаём:</strong> Страницу музыканта/блогера, которая включает:
+        <ol>
+            <li>YouTube-видео через <code>&lt;iframe&gt;</code></li>
+            <li>Аудиоплеер с <code>&lt;audio controls&gt;</code></li>
+            <li>Карту Google Maps через <code>&lt;iframe&gt;</code></li>
+            <li>Фавиконку через <code>&lt;link rel="icon"&gt;</code></li>
+            <li>Мета-теги: description, author, og:title</li>
+        </ol>
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Today we create:</strong> A musician/blogger page that includes:
+        <ol>
+            <li>YouTube video via <code>&lt;iframe&gt;</code></li>
+            <li>Audio player with <code>&lt;audio controls&gt;</code></li>
+            <li>Google Maps via <code>&lt;iframe&gt;</code></li>
+            <li>Favicon via <code>&lt;link rel="icon"&gt;</code></li>
+            <li>Meta tags: description, author, og:title</li>
+        </ol>
+    </div>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>&lt;audio controls&gt;</code> — аудиоплеер, <code>&lt;video controls&gt;</code> — видеоплеер</li>
+            <li><code>controls</code> — обязательный атрибут!</li>
+            <li><code>autoplay</code> работает только с <code>muted</code></li>
+            <li><code>poster</code> — обложка видео (только для <code>&lt;video&gt;</code>)</li>
+            <li>MP3 для аудио, MP4 для видео — самые надёжные форматы</li>
+            <li><code>&lt;iframe&gt;</code> — YouTube, Google Maps, другие сайты</li>
+            <li>YouTube embed URL: <code>/embed/VIDEO_ID</code> (не <code>/watch?v=</code>)</li>
+            <li><code>loading="lazy"</code> — ленивая загрузка (ускоряет страницу)</li>
+            <li><code>aspect-ratio: 16 / 9</code> — делает iframe адаптивным</li>
+            <li><code>&lt;link rel="icon"&gt;</code> — фавиконка в <code>&lt;head&gt;</code></li>
+            <li><code>&lt;meta name="description"&gt;</code> — важно для SEO</li>
+            <li>Open Graph теги (<code>og:</code>) — для превью в соцсетях</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>&lt;audio controls&gt;</code> — audio player, <code>&lt;video controls&gt;</code> — video player</li>
+            <li><code>controls</code> — required attribute!</li>
+            <li><code>autoplay</code> only works with <code>muted</code></li>
+            <li><code>poster</code> — video cover image (<code>&lt;video&gt;</code> only)</li>
+            <li>MP3 for audio, MP4 for video — most reliable formats</li>
+            <li><code>&lt;iframe&gt;</code> — YouTube, Google Maps, other sites</li>
+            <li>YouTube embed URL: <code>/embed/VIDEO_ID</code> (not <code>/watch?v=</code>)</li>
+            <li><code>loading="lazy"</code> — lazy loading (speeds up page)</li>
+            <li><code>aspect-ratio: 16 / 9</code> — makes iframe responsive</li>
+            <li><code>&lt;link rel="icon"&gt;</code> — favicon in <code>&lt;head&gt;</code></li>
+            <li><code>&lt;meta name="description"&gt;</code> — important for SEO</li>
+            <li>Open Graph tags (<code>og:</code>) — for social media previews</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Страница музыканта:</strong> Создайте страницу с именем, фото, 2 YouTube-видео (iframe), 1 аудиоплеером, Google Maps (локация), фавиконкой и мета-тегами (description, author, og:title).</li>
+            <li><strong>Мета-теги:</strong> Добавьте description, author и og:title к любой из предыдущих страниц.</li>
+            <li><strong>Бонус:</strong> Сделайте iframe адаптивным с помощью CSS (<code>width: 100%; aspect-ratio: 16 / 9;</code>).</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Musician page:</strong> Create a page with name, photo, 2 YouTube videos (iframe), 1 audio player, Google Maps (location), favicon, and meta tags (description, author, og:title).</li>
+            <li><strong>Meta tags:</strong> Add description, author, and og:title to any of your previous pages.</li>
+            <li><strong>Bonus:</strong> Make iframe responsive with CSS (<code>width: 100%; aspect-ratio: 16 / 9;</code>).</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

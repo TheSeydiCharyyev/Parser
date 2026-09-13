@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 27 — Tailwind CSS: основы</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 27: Tailwind CSS — основы</span>
+    <span class="nav-title" data-lang="en">Lesson 27: Tailwind CSS — Basics</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 27: Tailwind CSS — основы</h1>
+    <h1 data-lang="en">Lesson 27: Tailwind CSS — Basics</h1>
+    <p class="subtitle" data-lang="ru">Utility-first подход, подключение CDN, layout, spacing, цвета, типография, тени</p>
+    <p class="subtitle" data-lang="en">Utility-first approach, CDN setup, layout, spacing, colors, typography, shadows</p>
+
+    <div class="why" data-lang="ru">
+        <p>В уроках 24-25 мы изучили Bootstrap — классику индустрии. Bootstrap даёт <strong>готовые компоненты</strong> (карточки, кнопки, модалки). Это быстро, но есть проблема: все сайты на Bootstrap выглядят <strong>похоже</strong>. Если хотите уникальный дизайн — приходится много переопределять.</p>
+        <p>Tailwind CSS — <strong>радикально другой подход</strong>. Вместо готовых компонентов он даёт <strong>маленькие утилити-классы</strong> (<code>p-4</code>, <code>bg-blue-500</code>, <code>rounded-lg</code>), из которых вы собираете <strong>что угодно</strong>. Это как LEGO: ограничений нет.</p>
+        <p>Tailwind — тренд последних 5 лет. Его используют Vercel, Netflix, Shopify, Coinbase. Знание Tailwind — огромный плюс на собеседованиях в 2026 году. И многие современные React/Next.js/Vue-проекты построены именно на Tailwind.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Понимать utility-first философию и когда она лучше классического CSS</li>
+            <li>Подключать Tailwind через CDN за 30 секунд</li>
+            <li>Читать и писать Tailwind-классы (<code>p-4</code>, <code>bg-blue-500</code>, <code>text-xl</code>)</li>
+            <li>Использовать 22-цветную палитру с оттенками от 50 до 950</li>
+            <li>Строить layout через <code>flex</code> и <code>grid</code> утилиты</li>
+            <li>Стилизовать текст, формы, тени, рамки без CSS</li>
+            <li>Собирать карточки, кнопки, и другие компоненты с нуля</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>In lessons 24-25 we learned Bootstrap — the industry classic. Bootstrap gives <strong>ready components</strong> (cards, buttons, modals). Fast, but has a problem: all Bootstrap sites look <strong>similar</strong>. For unique designs, you override a lot.</p>
+        <p>Tailwind CSS — a <strong>radically different approach</strong>. Instead of ready components, it gives <strong>small utility classes</strong> (<code>p-4</code>, <code>bg-blue-500</code>, <code>rounded-lg</code>) to build <strong>anything</strong>. Like LEGO: no limits.</p>
+        <p>Tailwind is the trend of the last 5 years. Used by Vercel, Netflix, Shopify, Coinbase. Knowing Tailwind is a huge plus on 2026 interviews. And many modern React/Next.js/Vue projects are built on Tailwind.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Understand utility-first philosophy and when it beats classic CSS</li>
+            <li>Connect Tailwind via CDN in 30 seconds</li>
+            <li>Read and write Tailwind classes (<code>p-4</code>, <code>bg-blue-500</code>, <code>text-xl</code>)</li>
+            <li>Use the 22-color palette with shades from 50 to 950</li>
+            <li>Build layouts via <code>flex</code> and <code>grid</code> utilities</li>
+            <li>Style text, forms, shadows, borders without CSS</li>
+            <li>Assemble cards, buttons, and other components from scratch</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#what">Что такое Tailwind CSS</a></li>
+            <li><a href="#vs-bootstrap">Tailwind vs Bootstrap</a></li>
+            <li><a href="#cdn">Подключение через CDN</a></li>
+            <li><a href="#spacing">Spacing: отступы и размеры</a></li>
+            <li><a href="#colors">Цвета</a></li>
+            <li><a href="#typography">Типография</a></li>
+            <li><a href="#layout">Layout: Flexbox и Grid</a></li>
+            <li><a href="#borders">Borders, Shadows, Rounded</a></li>
+            <li><a href="#sizing">Width, Height, Max-width</a></li>
+            <li><a href="#card-example">Пример: карточка на Tailwind</a></li>
+            <li><a href="#practice">Практика: карточки товаров</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#what">What is Tailwind CSS</a></li>
+            <li><a href="#vs-bootstrap">Tailwind vs Bootstrap</a></li>
+            <li><a href="#cdn">CDN setup</a></li>
+            <li><a href="#spacing">Spacing: padding and margins</a></li>
+            <li><a href="#colors">Colors</a></li>
+            <li><a href="#typography">Typography</a></li>
+            <li><a href="#layout">Layout: Flexbox and Grid</a></li>
+            <li><a href="#borders">Borders, Shadows, Rounded</a></li>
+            <li><a href="#sizing">Width, Height, Max-width</a></li>
+            <li><a href="#card-example">Example: Tailwind card</a></li>
+            <li><a href="#practice">Practice: product cards</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ЧТО ТАКОЕ ==================== -->
+    <h2 id="what" data-lang="ru">1. Что такое Tailwind CSS</h2>
+    <h2 id="what-en" data-lang="en">1. What is Tailwind CSS</h2>
+
+    <p data-lang="ru"><strong>Tailwind CSS</strong> — utility-first CSS-фреймворк. Вместо готовых компонентов (как Bootstrap) он даёт <strong>маленькие утилити-классы</strong>, из которых вы собираете дизайн.</p>
+    <p data-lang="en"><strong>Tailwind CSS</strong> — a utility-first CSS framework. Instead of ready components (like Bootstrap), it gives you <strong>small utility classes</strong> that you combine to build designs.</p>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">Обычный CSS</div>
+            <div class="label" data-lang="en">Regular CSS</div>
+<pre><code>&lt;div class="card"&gt;...&lt;/div&gt;
+
+.card {
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px
+        rgba(0,0,0,0.1);
+}</code></pre>
+        </div>
+        <div class="right">
+            <div class="label">Tailwind &#x2705;</div>
+<pre><code>&lt;div class="p-6 bg-white
+     rounded-xl shadow-md"&gt;
+    ...
+&lt;/div&gt;
+
+/* Ноль строк CSS! */</code></pre>
+        </div>
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p>Bootstrap — это <strong>IKEA</strong>: готовые шкафы, просто собирай. Tailwind — это <strong>LEGO</strong>: маленькие кирпичики, строй что хочешь.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p>Bootstrap is <strong>IKEA</strong>: ready furniture, just assemble. Tailwind is <strong>LEGO</strong>: small bricks, build whatever you want.</p>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Как это работает на практике.</strong> В файле <code>index.html</code> вы пишете <code>&lt;div class="p-6 bg-white rounded-xl shadow-md"&gt;</code>. Tailwind читает ваш HTML, видит эти классы и <strong>генерирует CSS</strong> только для них: <code>.p-6 { padding: 24px } .bg-white { background: white } ...</code>. В итоге CSS-файл получается <strong>крошечный</strong> (15-30 KB) — в нём только те классы, которые реально использованы. Это делает Tailwind-сайты быстрее, чем Bootstrap.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>How it works in practice.</strong> In <code>index.html</code> you write <code>&lt;div class="p-6 bg-white rounded-xl shadow-md"&gt;</code>. Tailwind reads your HTML, sees these classes, and <strong>generates CSS</strong> only for them: <code>.p-6 { padding: 24px } .bg-white { background: white } ...</code>. The result is a <strong>tiny</strong> CSS file (15-30 KB) — containing only used classes. That makes Tailwind sites faster than Bootstrap.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== VS BOOTSTRAP ==================== -->
+    <h2 id="vs-bootstrap" data-lang="ru">2. Tailwind vs Bootstrap</h2>
+    <h2 id="vs-bootstrap-en" data-lang="en">2. Tailwind vs Bootstrap</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Это главный вопрос, который задаст любой начинающий: «Какой выбрать?» Правильный ответ: <strong>зависит от проекта</strong>. Оба инструмента живы и востребованы. Bootstrap царит в админ-панелях и старых проектах. Tailwind — в современных стартапах и Jamstack-приложениях.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>This is the main question every beginner asks: "Which one to pick?" Correct answer: <strong>depends on the project</strong>. Both tools are alive and in demand. Bootstrap rules in admin panels and legacy projects. Tailwind — in modern startups and Jamstack apps.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th></th><th>Bootstrap</th><th>Tailwind</th></tr>
+        <tr><td>Подход</td><td>Готовые компоненты</td><td>Утилити-классы</td></tr>
+        <tr><td>Стили</td><td>Один стиль (Bootstrap-look)</td><td>Полная свобода дизайна</td></tr>
+        <tr><td>HTML</td><td>Чистый, мало классов</td><td>Много классов в HTML</td></tr>
+        <tr><td>CSS-файл</td><td>Не пишете</td><td>Не пишете</td></tr>
+        <tr><td>Кривая обучения</td><td>Легче начать</td><td>Нужно запомнить классы</td></tr>
+        <tr><td>Гибкость</td><td>Ограниченная</td><td>Максимальная</td></tr>
+        <tr><td>Популярность</td><td>Классика (с 2011)</td><td>Растёт быстро (с 2019)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th></th><th>Bootstrap</th><th>Tailwind</th></tr>
+        <tr><td>Approach</td><td>Ready components</td><td>Utility classes</td></tr>
+        <tr><td>Styles</td><td>One look (Bootstrap-look)</td><td>Full design freedom</td></tr>
+        <tr><td>HTML</td><td>Clean, few classes</td><td>Many classes in HTML</td></tr>
+        <tr><td>CSS file</td><td>Don't write</td><td>Don't write</td></tr>
+        <tr><td>Learning curve</td><td>Easier to start</td><td>Need to memorize classes</td></tr>
+        <tr><td>Flexibility</td><td>Limited</td><td>Maximum</td></tr>
+        <tr><td>Popularity</td><td>Classic (since 2011)</td><td>Growing fast (since 2019)</td></tr>
+    </table>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Когда что выбирать:</strong></p>
+        <ul>
+            <li><strong>Bootstrap</strong> — если нужен быстрый результат, нет времени на дизайн, клиент не требует уникальности. Админки, MVP, CRUD-приложения.</li>
+            <li><strong>Tailwind</strong> — если дизайн критичен (стартап, продуктовый лендинг), проект на React/Vue/Next, команда знает CSS и хочет свободы.</li>
+            <li><strong>Чистый CSS</strong> — для небольших сайтов и учебных проектов, когда важно понимать фундамент.</li>
+        </ul>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>When to pick what:</strong></p>
+        <ul>
+            <li><strong>Bootstrap</strong> — for fast results, no time for design, client doesn't need uniqueness. Admins, MVPs, CRUD apps.</li>
+            <li><strong>Tailwind</strong> — when design matters (startup, product landing), React/Vue/Next project, team knows CSS and wants freedom.</li>
+            <li><strong>Pure CSS</strong> — for small sites and learning projects, where understanding fundamentals matters.</li>
+        </ul>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><strong>«Tailwind пишется прямо в HTML — это ужасно!»</strong> — самая частая критика новичков. Но вспомните: класс <code>p-4</code> — это <strong>имя</strong>, как <code>card</code>. Разница в том, что <code>card</code> описан в CSS (нужно искать, понимать), а <code>p-4</code> сразу говорит что делает. В больших проектах <strong>меньше</strong> файлов и <strong>быстрее</strong> находить нужное.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><strong>"Tailwind writes CSS in HTML — that's awful!"</strong> — the most common beginner critique. But remember: <code>p-4</code> is a <strong>name</strong>, like <code>card</code>. Difference: <code>card</code> lives in CSS (you have to find it, understand it), <code>p-4</code> instantly tells what it does. In large projects — <strong>fewer</strong> files and <strong>faster</strong> to find things.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CDN ==================== -->
+    <h2 id="cdn" data-lang="ru">3. Подключение через CDN</h2>
+    <h2 id="cdn-en" data-lang="en">3. CDN setup</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Tailwind Page&lt;/title&gt;
+    &lt;!-- Tailwind CSS (CDN для обучения) --&gt;
+    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body class="bg-gray-100 text-gray-800"&gt;
+
+    &lt;h1 class="text-3xl font-bold text-center p-8"&gt;Hello Tailwind!&lt;/h1&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>CDN — только для обучения!</strong> В реальных проектах Tailwind устанавливается через npm. Но для наших занятий CDN идеально подходит.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>CDN is for learning only!</strong> In real projects Tailwind is installed via npm. But for our lessons CDN works perfectly.
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Tailwind — это <code>&lt;script&gt;</code>, а не <code>&lt;link&gt;</code>!</strong> В отличие от Bootstrap, где CDN это <code>&lt;link rel="stylesheet"&gt;</code>, Tailwind CDN работает как JavaScript: он сканирует ваш HTML и генерирует CSS «на лету». Ставить нужно именно через <code>&lt;script src="https://cdn.tailwindcss.com"&gt;</code>. Это один из самых частых вопросов новичков.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Tailwind is <code>&lt;script&gt;</code>, not <code>&lt;link&gt;</code>!</strong> Unlike Bootstrap where CDN is <code>&lt;link rel="stylesheet"&gt;</code>, Tailwind CDN works as JavaScript: it scans your HTML and generates CSS on the fly. Connect via <code>&lt;script src="https://cdn.tailwindcss.com"&gt;</code>. One of the most common beginner questions.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SPACING ==================== -->
+    <h2 id="spacing" data-lang="ru">4. Spacing: отступы и размеры</h2>
+    <h2 id="spacing-en" data-lang="en">4. Spacing: padding and margins</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Отступы — самое частое действие в CSS. Tailwind даёт десятки классов (<code>p-0</code> до <code>p-96</code>) — покрывает все размеры от 0px до 384px. Формат похож на Bootstrap, но шкала <strong>гораздо детальнее</strong>: там были значения 1-5 (4/8/16/24/48px), в Tailwind — от 0 до 96 с шагом 4px. Больше контроля.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Spacing is the most common CSS action. Tailwind gives dozens of classes (<code>p-0</code> to <code>p-96</code>) — covers all sizes from 0px to 384px. Format is like Bootstrap, but the scale is <strong>much more detailed</strong>: there it was values 1-5 (4/8/16/24/48px), in Tailwind — from 0 to 96 with 4px step. More control.</p>
+    </div>
+
+    <p data-lang="ru">Формат такой же, как Bootstrap, но шкала другая:</p>
+    <p data-lang="en">Same format as Bootstrap, but different scale:</p>
+
+<pre><code>&lt;!-- Padding --&gt;
+&lt;div class="p-4"&gt;padding: 16px (все стороны)&lt;/div&gt;
+&lt;div class="px-6"&gt;padding-left + right: 24px&lt;/div&gt;
+&lt;div class="pt-8"&gt;padding-top: 32px&lt;/div&gt;
+
+&lt;!-- Margin --&gt;
+&lt;div class="m-4"&gt;margin: 16px&lt;/div&gt;
+&lt;div class="mt-6"&gt;margin-top: 24px&lt;/div&gt;
+&lt;div class="mx-auto"&gt;margin: 0 auto (центр)&lt;/div&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Класс</th><th>Значение</th><th>Пиксели</th></tr>
+        <tr><td><code>p-0</code></td><td>0</td><td>0px</td></tr>
+        <tr><td><code>p-1</code></td><td>0.25rem</td><td>4px</td></tr>
+        <tr><td><code>p-2</code></td><td>0.5rem</td><td>8px</td></tr>
+        <tr><td><code>p-3</code></td><td>0.75rem</td><td>12px</td></tr>
+        <tr><td><code>p-4</code></td><td>1rem</td><td>16px</td></tr>
+        <tr><td><code>p-6</code></td><td>1.5rem</td><td>24px</td></tr>
+        <tr><td><code>p-8</code></td><td>2rem</td><td>32px</td></tr>
+        <tr><td><code>p-12</code></td><td>3rem</td><td>48px</td></tr>
+        <tr><td><code>p-16</code></td><td>4rem</td><td>64px</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Class</th><th>Value</th><th>Pixels</th></tr>
+        <tr><td><code>p-0</code></td><td>0</td><td>0px</td></tr>
+        <tr><td><code>p-1</code></td><td>0.25rem</td><td>4px</td></tr>
+        <tr><td><code>p-2</code></td><td>0.5rem</td><td>8px</td></tr>
+        <tr><td><code>p-3</code></td><td>0.75rem</td><td>12px</td></tr>
+        <tr><td><code>p-4</code></td><td>1rem</td><td>16px</td></tr>
+        <tr><td><code>p-6</code></td><td>1.5rem</td><td>24px</td></tr>
+        <tr><td><code>p-8</code></td><td>2rem</td><td>32px</td></tr>
+        <tr><td><code>p-12</code></td><td>3rem</td><td>48px</td></tr>
+        <tr><td><code>p-16</code></td><td>4rem</td><td>64px</td></tr>
+    </table>
+
+    <p data-lang="ru">Суффиксы сторон: <code>t</code>(top), <code>b</code>(bottom), <code>l</code>(left), <code>r</code>(right), <code>x</code>(left+right), <code>y</code>(top+bottom).</p>
+    <p data-lang="en">Side suffixes: <code>t</code>(top), <code>b</code>(bottom), <code>l</code>(left), <code>r</code>(right), <code>x</code>(left+right), <code>y</code>(top+bottom).</p>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Быстрая математика Tailwind:</strong> число × 4 = пиксели. <code>p-2</code> = 8px. <code>p-4</code> = 16px. <code>p-8</code> = 32px. <code>p-16</code> = 64px. <code>p-24</code> = 96px. Есть исключение: <code>p-px</code> = 1px, <code>p-0.5</code> = 2px, <code>p-1.5</code> = 6px. Запомните формулу — и отступы станут интуитивными.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Quick Tailwind math:</strong> number × 4 = pixels. <code>p-2</code> = 8px. <code>p-4</code> = 16px. <code>p-8</code> = 32px. <code>p-16</code> = 64px. <code>p-24</code> = 96px. Exceptions: <code>p-px</code> = 1px, <code>p-0.5</code> = 2px, <code>p-1.5</code> = 6px. Memorize the formula — and spacing becomes intuitive.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ЦВЕТА ==================== -->
+    <h2 id="colors" data-lang="ru">5. Цвета</h2>
+    <h2 id="colors-en" data-lang="en">5. Colors</h2>
+
+    <div class="why" data-lang="ru">
+        <p>В Bootstrap было 8 цветов (primary, danger, success...). В Tailwind — <strong>22 цвета × 11 оттенков = 242 варианта</strong>. Это даёт огромную свободу дизайна. Каждый цвет имеет оттенки от <code>50</code> (почти белый) до <code>950</code> (почти чёрный). <code>500</code> — базовый средний оттенок.</p>
+        <p>Это главная причина, почему Tailwind-сайты выглядят <strong>разнообразно</strong>, а Bootstrap-сайты — однообразно (все используют один и тот же синий <code>#0d6efd</code>).</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Bootstrap had 8 colors (primary, danger, success...). Tailwind has <strong>22 colors × 11 shades = 242 variants</strong>. Huge design freedom. Each color has shades from <code>50</code> (nearly white) to <code>950</code> (nearly black). <code>500</code> — base middle shade.</p>
+        <p>This is the main reason Tailwind sites look <strong>diverse</strong>, while Bootstrap sites look uniform (everyone uses the same blue <code>#0d6efd</code>).</p>
+    </div>
+
+    <p data-lang="ru">Tailwind имеет палитру цветов с <strong>оттенками от 50 до 950</strong>:</p>
+    <p data-lang="en">Tailwind has a color palette with <strong>shades from 50 to 950</strong>:</p>
+
+<pre><code>&lt;!-- Текст --&gt;
+&lt;p class="text-blue-500"&gt;Синий текст&lt;/p&gt;
+&lt;p class="text-red-600"&gt;Красный текст&lt;/p&gt;
+&lt;p class="text-gray-400"&gt;Серый текст&lt;/p&gt;
+
+&lt;!-- Фон --&gt;
+&lt;div class="bg-blue-500 text-white"&gt;Синий фон&lt;/div&gt;
+&lt;div class="bg-green-100"&gt;Светло-зелёный фон&lt;/div&gt;
+&lt;div class="bg-gray-900 text-white"&gt;Почти чёрный&lt;/div&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Оттенок</th><th>Описание</th><th>Пример (blue)</th></tr>
+        <tr><td>50</td><td>Очень светлый</td><td><code>bg-blue-50</code></td></tr>
+        <tr><td>100-200</td><td>Светлый</td><td><code>bg-blue-100</code></td></tr>
+        <tr><td>300-400</td><td>Средний</td><td><code>bg-blue-400</code></td></tr>
+        <tr><td>500</td><td>Основной</td><td><code>bg-blue-500</code></td></tr>
+        <tr><td>600-700</td><td>Тёмный</td><td><code>bg-blue-700</code></td></tr>
+        <tr><td>800-950</td><td>Очень тёмный</td><td><code>bg-blue-900</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Shade</th><th>Description</th><th>Example (blue)</th></tr>
+        <tr><td>50</td><td>Very light</td><td><code>bg-blue-50</code></td></tr>
+        <tr><td>100-200</td><td>Light</td><td><code>bg-blue-100</code></td></tr>
+        <tr><td>300-400</td><td>Medium</td><td><code>bg-blue-400</code></td></tr>
+        <tr><td>500</td><td>Base</td><td><code>bg-blue-500</code></td></tr>
+        <tr><td>600-700</td><td>Dark</td><td><code>bg-blue-700</code></td></tr>
+        <tr><td>800-950</td><td>Very dark</td><td><code>bg-blue-900</code></td></tr>
+    </table>
+
+    <p data-lang="ru"><strong>Цвета:</strong> slate, gray, zinc, red, orange, amber, yellow, lime, green, emerald, teal, cyan, sky, blue, indigo, violet, purple, fuchsia, pink, rose.</p>
+    <p data-lang="en"><strong>Colors:</strong> slate, gray, zinc, red, orange, amber, yellow, lime, green, emerald, teal, cyan, sky, blue, indigo, violet, purple, fuchsia, pink, rose.</p>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Формула хорошей пары «фон + текст»:</strong></p>
+        <ul>
+            <li>Тёмный фон (<code>bg-blue-600</code>/<code>700</code>) + белый текст (<code>text-white</code>)</li>
+            <li>Светлый фон (<code>bg-blue-50</code>/<code>100</code>) + тёмный текст (<code>text-blue-900</code>)</li>
+            <li>Серые иконки (<code>text-gray-400</code>) + чёрный текст (<code>text-gray-900</code>)</li>
+        </ul>
+        <p>Правило: разница между оттенками фона и текста должна быть <strong>≥ 400</strong>. <code>bg-gray-200</code> + <code>text-gray-400</code> — нечитаемо. <code>bg-gray-200</code> + <code>text-gray-800</code> — хорошо.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Formula for good bg+text pair:</strong></p>
+        <ul>
+            <li>Dark bg (<code>bg-blue-600</code>/<code>700</code>) + white text (<code>text-white</code>)</li>
+            <li>Light bg (<code>bg-blue-50</code>/<code>100</code>) + dark text (<code>text-blue-900</code>)</li>
+            <li>Gray icons (<code>text-gray-400</code>) + black text (<code>text-gray-900</code>)</li>
+        </ul>
+        <p>Rule: difference between bg and text shades should be <strong>≥ 400</strong>. <code>bg-gray-200</code> + <code>text-gray-400</code> — unreadable. <code>bg-gray-200</code> + <code>text-gray-800</code> — good.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ТИПОГРАФИЯ ==================== -->
+    <h2 id="typography" data-lang="ru">6. Типография</h2>
+    <h2 id="typography-en" data-lang="en">6. Typography</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Типография = как выглядит текст. В Tailwind размеры шрифта — <strong>относительные</strong>: <code>text-sm</code> (14px), <code>text-base</code> (16px), <code>text-lg</code> (18px), <code>text-xl</code> (20px), <code>text-2xl</code> (24px) — и так до <code>text-9xl</code> (128px). Вместо запоминания точных пикселей — запоминаете имена размеров.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Typography = how text looks. In Tailwind, font sizes are <strong>relative</strong>: <code>text-sm</code> (14px), <code>text-base</code> (16px), <code>text-lg</code> (18px), <code>text-xl</code> (20px), <code>text-2xl</code> (24px) — all the way to <code>text-9xl</code> (128px). Instead of memorizing exact pixels — you remember size names.</p>
+    </div>
+
+<pre><code>&lt;!-- Размер шрифта --&gt;
+&lt;p class="text-sm"&gt;Маленький (14px)&lt;/p&gt;
+&lt;p class="text-base"&gt;Обычный (16px)&lt;/p&gt;
+&lt;p class="text-lg"&gt;Большой (18px)&lt;/p&gt;
+&lt;p class="text-xl"&gt;Очень большой (20px)&lt;/p&gt;
+&lt;p class="text-3xl"&gt;3XL (30px)&lt;/p&gt;
+&lt;p class="text-5xl"&gt;5XL (48px)&lt;/p&gt;
+
+&lt;!-- Жирность --&gt;
+&lt;p class="font-normal"&gt;Normal (400)&lt;/p&gt;
+&lt;p class="font-medium"&gt;Medium (500)&lt;/p&gt;
+&lt;p class="font-semibold"&gt;Semibold (600)&lt;/p&gt;
+&lt;p class="font-bold"&gt;Bold (700)&lt;/p&gt;
+
+&lt;!-- Выравнивание --&gt;
+&lt;p class="text-left"&gt;Слева&lt;/p&gt;
+&lt;p class="text-center"&gt;По центру&lt;/p&gt;
+&lt;p class="text-right"&gt;Справа&lt;/p&gt;
+
+&lt;!-- Прочее --&gt;
+&lt;p class="uppercase"&gt;верхний регистр&lt;/p&gt;
+&lt;p class="italic"&gt;Курсив&lt;/p&gt;
+&lt;p class="leading-relaxed"&gt;Увеличенный межстрочный&lt;/p&gt;</code></pre>
+
+    <hr>
+
+    <!-- ==================== LAYOUT ==================== -->
+    <h2 id="layout" data-lang="ru">7. Layout: Flexbox и Grid</h2>
+    <h2 id="layout-en" data-lang="en">7. Layout: Flexbox and Grid</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Вот где Tailwind ярко показывает свою силу. В отличие от Bootstrap (у которого «своя» 12-колоночная сетка с <code>row</code>/<code>col</code>), Tailwind <strong>напрямую маппит</strong> на CSS flexbox/grid: <code>flex</code> = <code>display: flex</code>, <code>grid-cols-3</code> = <code>grid-template-columns: repeat(3, 1fr)</code>. Если вы знаете flexbox и grid — вы уже знаете layout в Tailwind.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Here Tailwind shows its strength. Unlike Bootstrap (with its 12-column grid via <code>row</code>/<code>col</code>), Tailwind <strong>maps directly</strong> to CSS flexbox/grid: <code>flex</code> = <code>display: flex</code>, <code>grid-cols-3</code> = <code>grid-template-columns: repeat(3, 1fr)</code>. If you know flexbox and grid — you already know Tailwind layout.</p>
+    </div>
+
+<pre><code>&lt;!-- Flexbox --&gt;
+&lt;div class="flex items-center justify-between gap-4"&gt;
+    &lt;span&gt;Logo&lt;/span&gt;
+    &lt;nav class="flex gap-6"&gt;
+        &lt;a href="#"&gt;Home&lt;/a&gt;
+        &lt;a href="#"&gt;About&lt;/a&gt;
+    &lt;/nav&gt;
+&lt;/div&gt;
+
+&lt;!-- Flex column --&gt;
+&lt;div class="flex flex-col gap-4"&gt;...&lt;/div&gt;
+
+&lt;!-- Grid --&gt;
+&lt;div class="grid grid-cols-3 gap-6"&gt;
+    &lt;div&gt;1&lt;/div&gt;
+    &lt;div&gt;2&lt;/div&gt;
+    &lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Центрирование --&gt;
+&lt;div class="flex items-center justify-center min-h-screen"&gt;
+    &lt;h1&gt;Centered!&lt;/h1&gt;
+&lt;/div&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Tailwind</th><th>CSS</th></tr>
+        <tr><td><code>flex</code></td><td><code>display: flex</code></td></tr>
+        <tr><td><code>flex-col</code></td><td><code>flex-direction: column</code></td></tr>
+        <tr><td><code>items-center</code></td><td><code>align-items: center</code></td></tr>
+        <tr><td><code>justify-between</code></td><td><code>justify-content: space-between</code></td></tr>
+        <tr><td><code>justify-center</code></td><td><code>justify-content: center</code></td></tr>
+        <tr><td><code>gap-4</code></td><td><code>gap: 16px</code></td></tr>
+        <tr><td><code>grid</code></td><td><code>display: grid</code></td></tr>
+        <tr><td><code>grid-cols-3</code></td><td><code>grid-template-columns: repeat(3, 1fr)</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Tailwind</th><th>CSS</th></tr>
+        <tr><td><code>flex</code></td><td><code>display: flex</code></td></tr>
+        <tr><td><code>flex-col</code></td><td><code>flex-direction: column</code></td></tr>
+        <tr><td><code>items-center</code></td><td><code>align-items: center</code></td></tr>
+        <tr><td><code>justify-between</code></td><td><code>justify-content: space-between</code></td></tr>
+        <tr><td><code>justify-center</code></td><td><code>justify-content: center</code></td></tr>
+        <tr><td><code>gap-4</code></td><td><code>gap: 16px</code></td></tr>
+        <tr><td><code>grid</code></td><td><code>display: grid</code></td></tr>
+        <tr><td><code>grid-cols-3</code></td><td><code>grid-template-columns: repeat(3, 1fr)</code></td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ==================== BORDERS ==================== -->
+    <h2 id="borders" data-lang="ru">8. Borders, Shadows, Rounded</h2>
+    <h2 id="borders-en" data-lang="en">8. Borders, Shadows, Rounded</h2>
+
+<pre><code>&lt;!-- Скругление --&gt;
+&lt;div class="rounded"&gt;4px&lt;/div&gt;
+&lt;div class="rounded-lg"&gt;8px&lt;/div&gt;
+&lt;div class="rounded-xl"&gt;12px&lt;/div&gt;
+&lt;div class="rounded-2xl"&gt;16px&lt;/div&gt;
+&lt;div class="rounded-full"&gt;Круг&lt;/div&gt;
+
+&lt;!-- Тени --&gt;
+&lt;div class="shadow-sm"&gt;Маленькая&lt;/div&gt;
+&lt;div class="shadow"&gt;Обычная&lt;/div&gt;
+&lt;div class="shadow-md"&gt;Средняя&lt;/div&gt;
+&lt;div class="shadow-lg"&gt;Большая&lt;/div&gt;
+&lt;div class="shadow-xl"&gt;Очень большая&lt;/div&gt;
+
+&lt;!-- Бордеры --&gt;
+&lt;div class="border"&gt;1px border&lt;/div&gt;
+&lt;div class="border-2"&gt;2px border&lt;/div&gt;
+&lt;div class="border-gray-300"&gt;Серый бордер&lt;/div&gt;
+
+&lt;!-- Overflow --&gt;
+&lt;div class="overflow-hidden"&gt;Обрезать&lt;/div&gt;</code></pre>
+
+    <hr>
+
+    <!-- ==================== SIZING ==================== -->
+    <h2 id="sizing" data-lang="ru">9. Width, Height, Max-width</h2>
+    <h2 id="sizing-en" data-lang="en">9. Width, Height, Max-width</h2>
+
+<pre><code>&lt;!-- Ширина --&gt;
+&lt;div class="w-full"&gt;100%&lt;/div&gt;
+&lt;div class="w-1/2"&gt;50%&lt;/div&gt;
+&lt;div class="w-64"&gt;256px&lt;/div&gt;
+&lt;div class="max-w-4xl mx-auto"&gt;Контейнер&lt;/div&gt;
+
+&lt;!-- Высота --&gt;
+&lt;div class="h-screen"&gt;100vh&lt;/div&gt;
+&lt;div class="h-64"&gt;256px&lt;/div&gt;
+&lt;div class="min-h-screen"&gt;min-height: 100vh&lt;/div&gt;</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Паттерн контейнера в Tailwind:</strong> <code>max-w-6xl mx-auto px-4</code> — ограниченная ширина, центрирование, отступы по бокам.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Container pattern in Tailwind:</strong> <code>max-w-6xl mx-auto px-4</code> — constrained width, centering, side padding.
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><strong>Размеры max-width в Tailwind:</strong> <code>max-w-sm</code> (384px), <code>max-w-md</code> (448px), <code>max-w-lg</code> (512px), <code>max-w-xl</code> (576px), <code>max-w-2xl</code>...<code>max-w-7xl</code> (1280px). Ещё есть <code>max-w-screen-lg</code> — равно breakpoint'ам (992px). И <code>container</code> с автоматической max-width.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><strong>Max-width sizes in Tailwind:</strong> <code>max-w-sm</code> (384px), <code>max-w-md</code> (448px), <code>max-w-lg</code> (512px), <code>max-w-xl</code> (576px), <code>max-w-2xl</code>...<code>max-w-7xl</code> (1280px). Also <code>max-w-screen-lg</code> — matches breakpoints (992px). And <code>container</code> with auto max-width.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CARD EXAMPLE ==================== -->
+    <h2 id="card-example" data-lang="ru">10. Пример: карточка на Tailwind</h2>
+    <h2 id="card-example-en" data-lang="en">10. Example: Tailwind card</h2>
+
+<pre><code>&lt;div class="bg-white rounded-xl shadow-md overflow-hidden"&gt;
+    &lt;img src="https://picsum.photos/400/200" alt=""
+         class="w-full h-48 object-cover"&gt;
+    &lt;div class="p-5"&gt;
+        &lt;span class="text-xs font-semibold text-blue-600 bg-blue-100
+                     px-3 py-1 rounded-full"&gt;Technology&lt;/span&gt;
+        &lt;h3 class="mt-3 text-lg font-bold text-gray-900"&gt;Card Title&lt;/h3&gt;
+        &lt;p class="mt-2 text-sm text-gray-500"&gt;
+            A short description of this card content.
+        &lt;/p&gt;
+        &lt;button class="mt-4 px-5 py-2 bg-blue-600 text-white
+                       rounded-lg font-semibold hover:bg-blue-700
+                       transition-colors"&gt;
+            Read More
+        &lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <div class="fun-fact" data-lang="ru">
+        <p>Да, классов много! Но зато: ноль CSS, сразу видно что делает каждый элемент, легко менять. К такому стилю быстро привыкаешь.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p>Yes, lots of classes! But: zero CSS, you can see what each element does, easy to change. You get used to this style quickly.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">11. Практика: карточки товаров</h2>
+    <h2 id="practice-en" data-lang="en">11. Practice: product cards</h2>
+
+    <div class="summary" data-lang="ru">
+        <strong>Tailwind CSS — основные классы:</strong>
+        <ul>
+            <li><strong>Spacing:</strong> <code>p-4</code>, <code>m-6</code>, <code>px-8</code>, <code>mt-4</code>, <code>gap-4</code></li>
+            <li><strong>Цвета:</strong> <code>text-blue-500</code>, <code>bg-gray-100</code>, <code>border-gray-300</code></li>
+            <li><strong>Текст:</strong> <code>text-lg</code>, <code>font-bold</code>, <code>text-center</code>, <code>uppercase</code></li>
+            <li><strong>Layout:</strong> <code>flex</code>, <code>items-center</code>, <code>justify-between</code>, <code>grid grid-cols-3</code></li>
+            <li><strong>Формы:</strong> <code>rounded-xl</code>, <code>shadow-md</code>, <code>border</code>, <code>overflow-hidden</code></li>
+            <li><strong>Размеры:</strong> <code>w-full</code>, <code>h-screen</code>, <code>max-w-4xl</code>, <code>mx-auto</code></li>
+            <li><strong>Изображения:</strong> <code>w-full h-48 object-cover</code></li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>Tailwind CSS — main classes:</strong>
+        <ul>
+            <li><strong>Spacing:</strong> <code>p-4</code>, <code>m-6</code>, <code>px-8</code>, <code>mt-4</code>, <code>gap-4</code></li>
+            <li><strong>Colors:</strong> <code>text-blue-500</code>, <code>bg-gray-100</code>, <code>border-gray-300</code></li>
+            <li><strong>Text:</strong> <code>text-lg</code>, <code>font-bold</code>, <code>text-center</code>, <code>uppercase</code></li>
+            <li><strong>Layout:</strong> <code>flex</code>, <code>items-center</code>, <code>justify-between</code>, <code>grid grid-cols-3</code></li>
+            <li><strong>Shapes:</strong> <code>rounded-xl</code>, <code>shadow-md</code>, <code>border</code>, <code>overflow-hidden</code></li>
+            <li><strong>Sizing:</strong> <code>w-full</code>, <code>h-screen</code>, <code>max-w-4xl</code>, <code>mx-auto</code></li>
+            <li><strong>Images:</strong> <code>w-full h-48 object-cover</code></li>
+        </ul>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Чем Tailwind отличается от Bootstrap?</li>
+            <li>Что значит <code>p-6</code>? А <code>mt-4</code>?</li>
+            <li>Как задать синий фон в Tailwind?</li>
+            <li>Как сделать 3-колоночную Grid-сетку?</li>
+            <li>Что делает <code>object-cover</code>?</li>
+            <li>Как центрировать контейнер?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>How is Tailwind different from Bootstrap?</li>
+            <li>What does <code>p-6</code> mean? And <code>mt-4</code>?</li>
+            <li>How to set a blue background in Tailwind?</li>
+            <li>How to make a 3-column Grid?</li>
+            <li>What does <code>object-cover</code> do?</li>
+            <li>How to center a container?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

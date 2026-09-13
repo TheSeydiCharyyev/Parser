@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 20 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 20: Media Queries</span>
+    <span class="nav-title" data-lang="en">Lesson 20: Media Queries</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 20: Media Queries</p>
+    <p class="subtitle" data-lang="en">Lesson 20: Media Queries</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 20.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 20.1: ПЕРВЫЕ MEDIA QUERIES</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 20.1: FIRST MEDIA QUERIES</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 19.1: Цветовой индикатор</span>
+            <span class="task-title" data-lang="en">Task 19.1: Color indicator</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Понять, как работают media queries, через визуальную обратную связь</div>
+        <div class="task-goal" data-lang="en">Understand how media queries work through visual feedback</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>responsive-test.html</code>. Сделайте блок, который <strong>меняет цвет фона и текст</strong> при разных размерах экрана:</p>
+        <p data-lang="en">Create a file <code>responsive-test.html</code>. Make a block that <strong>changes background color and text</strong> at different screen sizes:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Базовый</strong> (мобильный): зелёный фон (<code>#22c55e</code>), текст «Mobile (до 576px)»</li>
+            <li><strong>576px+</strong>: жёлтый фон (<code>#eab308</code>), текст «Mobile L (576px — 768px)»</li>
+            <li><strong>768px+</strong>: оранжевый фон (<code>#f97316</code>), текст «Tablet (768px — 992px)»</li>
+            <li><strong>992px+</strong>: синий фон (<code>#3b82f6</code>), текст «Laptop (992px — 1200px)»</li>
+            <li><strong>1200px+</strong>: фиолетовый фон (<code>#8b5cf6</code>), текст «Desktop (1200px+)»</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Base</strong> (mobile): green background (<code>#22c55e</code>), text "Mobile (up to 576px)"</li>
+            <li><strong>576px+</strong>: yellow background (<code>#eab308</code>), text "Mobile L (576px — 768px)"</li>
+            <li><strong>768px+</strong>: orange background (<code>#f97316</code>), text "Tablet (768px — 992px)"</li>
+            <li><strong>992px+</strong>: blue background (<code>#3b82f6</code>), text "Laptop (992px — 1200px)"</li>
+            <li><strong>1200px+</strong>: purple background (<code>#8b5cf6</code>), text "Desktop (1200px+)"</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Для переключения текста: создайте 5 элементов <code>&lt;span&gt;</code> и показывайте нужный через <code>display: none / block</code> в media queries. Или используйте CSS <code>::after</code> с <code>content</code>.
+        </div>
+        <div class="hint" data-lang="en">
+            To switch text: create 5 <code>&lt;span&gt;</code> elements and show the right one via <code>display: none / block</code> in media queries. Or use CSS <code>::after</code> with <code>content</code>.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>5 breakpoints с разными цветами</li>
+                <li>Текст показывает текущий диапазон</li>
+                <li>Mobile-first подход (min-width)</li>
+                <li>Плавно сужайте окно и проверяйте переходы</li>
+            </ul>
+            <ul data-lang="en">
+                <li>5 breakpoints with different colors</li>
+                <li>Text shows current range</li>
+                <li>Mobile-first approach (min-width)</li>
+                <li>Smoothly resize window and check transitions</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 20.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 20.2: АДАПТИВНАЯ СЕТКА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 20.2: RESPONSIVE GRID</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 19.2: Сетка карточек с breakpoints</span>
+            <span class="task-title" data-lang="en">Task 19.2: Card grid with breakpoints</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать адаптивную сетку карточек с media queries</div>
+        <div class="task-goal" data-lang="en">Create a responsive card grid with media queries</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>responsive-grid.html</code> с 6 карточками. Используйте <strong>mobile-first</strong>:</p>
+        <p data-lang="en">Create a file <code>responsive-grid.html</code> with 6 cards. Use <strong>mobile-first</strong>:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Базовые стили</strong> (мобильный):
+                <ul>
+                    <li>Grid: <code>grid-template-columns: 1fr</code></li>
+                    <li><code>padding: 16px</code>, <code>gap: 16px</code></li>
+                    <li><code>h1 { font-size: 1.5rem; }</code></li>
+                </ul>
+            </li>
+            <li><strong>@media (min-width: 768px)</strong> — планшет:
+                <ul>
+                    <li>Grid: <code>repeat(2, 1fr)</code></li>
+                    <li><code>padding: 24px</code>, <code>gap: 20px</code></li>
+                    <li><code>h1 { font-size: 2rem; }</code></li>
+                </ul>
+            </li>
+            <li><strong>@media (min-width: 1024px)</strong> — десктоп:
+                <ul>
+                    <li>Grid: <code>repeat(3, 1fr)</code></li>
+                    <li><code>padding: 32px</code>, <code>gap: 24px</code></li>
+                    <li><code>h1 { font-size: 2.5rem; }</code></li>
+                </ul>
+            </li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Base styles</strong> (mobile):
+                <ul>
+                    <li>Grid: <code>grid-template-columns: 1fr</code></li>
+                    <li><code>padding: 16px</code>, <code>gap: 16px</code></li>
+                    <li><code>h1 { font-size: 1.5rem; }</code></li>
+                </ul>
+            </li>
+            <li><strong>@media (min-width: 768px)</strong> — tablet:
+                <ul>
+                    <li>Grid: <code>repeat(2, 1fr)</code></li>
+                    <li><code>padding: 24px</code>, <code>gap: 20px</code></li>
+                    <li><code>h1 { font-size: 2rem; }</code></li>
+                </ul>
+            </li>
+            <li><strong>@media (min-width: 1024px)</strong> — desktop:
+                <ul>
+                    <li>Grid: <code>repeat(3, 1fr)</code></li>
+                    <li><code>padding: 32px</code>, <code>gap: 24px</code></li>
+                    <li><code>h1 { font-size: 2.5rem; }</code></li>
+                </ul>
+            </li>
+        </ol>
+
+        <p data-lang="ru">Карточки: изображение (picsum.photos), заголовок, описание. Белый фон, <code>border-radius: 12px</code>, тень.</p>
+        <p data-lang="en">Cards: image (picsum.photos), title, description. White background, <code>border-radius: 12px</code>, shadow.</p>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Mobile-first подход (min-width)</li>
+                <li>3 уровня: 1 колонка → 2 → 3</li>
+                <li>Шрифты и отступы тоже меняются</li>
+                <li>6 карточек с изображениями</li>
+                <li>Проверено в DevTools Device Toolbar</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Mobile-first approach (min-width)</li>
+                <li>3 levels: 1 column → 2 → 3</li>
+                <li>Fonts and padding also change</li>
+                <li>6 cards with images</li>
+                <li>Tested in DevTools Device Toolbar</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 20.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 20.3: АДАПТИВНАЯ СТРАНИЦА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 20.3: RESPONSIVE PAGE</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 19.3: Адаптивная страница с sidebar</span>
+            <span class="task-title" data-lang="en">Task 19.3: Responsive page with sidebar</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Сделать полноценную адаптивную страницу</div>
+        <div class="task-goal" data-lang="en">Create a fully responsive page</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>responsive-page</code> с <code>index.html</code> и <code>style.css</code>. Сделайте страницу с header, main (карточки), sidebar и footer. Используйте <strong>mobile-first</strong>:</p>
+        <p data-lang="en">Create a folder <code>responsive-page</code> with <code>index.html</code> and <code>style.css</code>. Build a page with header, main (cards), sidebar and footer. Use <strong>mobile-first</strong>:</p>
+
+        <h3 data-lang="ru">Мобильный (базовые стили):</h3>
+        <h3 data-lang="en">Mobile (base styles):</h3>
+        <ul data-lang="ru">
+            <li>Всё в 1 колонку (header → main → sidebar → footer)</li>
+            <li>Карточки: 1 колонка</li>
+            <li>Навигация: вертикальная (flex-direction: column)</li>
+            <li>Padding: 16px</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Everything in 1 column (header → main → sidebar → footer)</li>
+            <li>Cards: 1 column</li>
+            <li>Navigation: vertical (flex-direction: column)</li>
+            <li>Padding: 16px</li>
+        </ul>
+
+        <h3 data-lang="ru">Планшет (768px+):</h3>
+        <h3 data-lang="en">Tablet (768px+):</h3>
+        <ul data-lang="ru">
+            <li>Навигация: горизонтальная (flex-direction: row)</li>
+            <li>Карточки: 2 колонки</li>
+            <li>Sidebar всё ещё под контентом</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Navigation: horizontal (flex-direction: row)</li>
+            <li>Cards: 2 columns</li>
+            <li>Sidebar still below content</li>
+        </ul>
+
+        <h3 data-lang="ru">Десктоп (1024px+):</h3>
+        <h3 data-lang="en">Desktop (1024px+):</h3>
+        <ul data-lang="ru">
+            <li>Grid areas: <code>"header header" "main sidebar" "footer footer"</code></li>
+            <li>Sidebar сбоку (300px)</li>
+            <li>Карточки: 2 колонки внутри main</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Grid areas: <code>"header header" "main sidebar" "footer footer"</code></li>
+            <li>Sidebar on the side (300px)</li>
+            <li>Cards: 2 columns inside main</li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            На мобильном не нужен <code>grid-template-areas</code> — просто все блоки идут друг за другом. Grid areas подключайте только с 1024px!
+        </div>
+        <div class="hint" data-lang="en">
+            On mobile you don't need <code>grid-template-areas</code> — blocks just stack vertically. Enable Grid areas only from 1024px!
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>3 breakpoints: мобильный, 768px, 1024px</li>
+                <li>Mobile-first подход</li>
+                <li>Sidebar: скрыт внизу на мобильном → сбоку на десктопе</li>
+                <li>Навигация: вертикальная → горизонтальная</li>
+                <li>Карточки: 1 → 2 колонки</li>
+                <li>Шрифты и отступы адаптируются</li>
+                <li>CSS в отдельном файле</li>
+                <li>Протестировано в DevTools (iPhone, iPad, Desktop)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>3 breakpoints: mobile, 768px, 1024px</li>
+                <li>Mobile-first approach</li>
+                <li>Sidebar: below content on mobile → side on desktop</li>
+                <li>Navigation: vertical → horizontal</li>
+                <li>Cards: 1 → 2 columns</li>
+                <li>Fonts and padding adapt</li>
+                <li>CSS in separate file</li>
+                <li>Tested in DevTools (iPhone, iPad, Desktop)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 19.4: Адаптируй макет журнала</span>
+            <span class="task-title" data-lang="en">Task 19.4: Make the magazine responsive</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Добавить media queries к макету журнала из занятия 18</div>
+        <div class="task-goal" data-lang="en">Add media queries to the magazine layout from lesson 18</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Откройте макет журнала из занятия 18 и сделайте его адаптивным:</p>
+        <p data-lang="en">Open the magazine layout from lesson 18 and make it responsive:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Планшет (≤ 992px):</strong>
+                <ul>
+                    <li>Убрать sidebar (<code>display: none</code>)</li>
+                    <li>Grid: <code>grid-template-columns: 1fr</code> (убрать 300px колонку)</li>
+                    <li>Areas: <code>"header" "main" "footer"</code></li>
+                    <li>Карточки: 2 колонки</li>
+                </ul>
+            </li>
+            <li><strong>Мобильный (≤ 768px):</strong>
+                <ul>
+                    <li>Карточки: 1 колонка</li>
+                    <li>Featured: <code>height: 200px</code> (вместо 300px)</li>
+                    <li>Навигация: <code>display: none</code> (или flex-direction: column)</li>
+                    <li>h1: 1.3rem, h3: 1rem</li>
+                    <li>Padding: 12px</li>
+                </ul>
+            </li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Tablet (≤ 992px):</strong>
+                <ul>
+                    <li>Hide sidebar (<code>display: none</code>)</li>
+                    <li>Grid: <code>grid-template-columns: 1fr</code> (remove 300px column)</li>
+                    <li>Areas: <code>"header" "main" "footer"</code></li>
+                    <li>Cards: 2 columns</li>
+                </ul>
+            </li>
+            <li><strong>Mobile (≤ 768px):</strong>
+                <ul>
+                    <li>Cards: 1 column</li>
+                    <li>Featured: <code>height: 200px</code> (instead of 300px)</li>
+                    <li>Navigation: <code>display: none</code> (or flex-direction: column)</li>
+                    <li>h1: 1.3rem, h3: 1rem</li>
+                    <li>Padding: 12px</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Журнал из занятия 18 стал адаптивным</li>
+                <li>Sidebar скрывается на планшете</li>
+                <li>1 колонка карточек на мобильном</li>
+                <li>Шрифты и отступы уменьшены</li>
+                <li>Проверено на iPhone, iPad, Desktop в DevTools</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Magazine from lesson 18 is now responsive</li>
+                <li>Sidebar hidden on tablet</li>
+                <li>1 column of cards on mobile</li>
+                <li>Fonts and padding reduced</li>
+                <li>Tested on iPhone, iPad, Desktop in DevTools</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

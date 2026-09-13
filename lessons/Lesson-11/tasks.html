@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 11 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 11: Формы</span>
+    <span class="nav-title" data-lang="en">Lesson 11: Forms</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 11: Формы</p>
+    <p class="subtitle" data-lang="en">Lesson 11: Forms</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 11.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 11.1: ПОЛЯ ВВОДА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 11.1: INPUT FIELDS</h2>
+
+    <!-- ЗАДАНИЕ 10.1 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 10.1: Каталог типов input</span>
+            <span class="task-title" data-lang="en">Task 10.1: Input types catalog</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Познакомиться со всеми типами input на практике</div>
+        <div class="task-goal" data-lang="en">Get hands-on experience with all input types</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>input-catalog.html</code>. На одной странице покажите <strong>все 10 типов input</strong>:</p>
+        <p data-lang="en">Create a file <code>input-catalog.html</code>. On one page, show <strong>all 10 input types</strong>:</p>
+
+        <ol data-lang="ru">
+            <li><code>text</code> — Имя</li>
+            <li><code>email</code> — Email</li>
+            <li><code>password</code> — Пароль</li>
+            <li><code>number</code> — Возраст</li>
+            <li><code>tel</code> — Телефон</li>
+            <li><code>url</code> — Сайт</li>
+            <li><code>date</code> — Дата рождения</li>
+            <li><code>color</code> — Любимый цвет</li>
+            <li><code>range</code> — Уровень навыков (0-100)</li>
+            <li><code>file</code> — Загрузить фото</li>
+        </ol>
+        <ol data-lang="en">
+            <li><code>text</code> — Name</li>
+            <li><code>email</code> — Email</li>
+            <li><code>password</code> — Password</li>
+            <li><code>number</code> — Age</li>
+            <li><code>tel</code> — Phone</li>
+            <li><code>url</code> — Website</li>
+            <li><code>date</code> — Date of birth</li>
+            <li><code>color</code> — Favorite color</li>
+            <li><code>range</code> — Skill level (0-100)</li>
+            <li><code>file</code> — Upload photo</li>
+        </ol>
+
+        <h3 data-lang="ru">Требования:</h3>
+        <h3 data-lang="en">Requirements:</h3>
+        <ul data-lang="ru">
+            <li>Каждое поле имеет <code>&lt;label&gt;</code></li>
+            <li>Все поля внутри одного <code>&lt;form&gt;</code></li>
+            <li>У каждого input есть <code>placeholder</code></li>
+            <li>В конце — кнопка <code>&lt;button type="submit"&gt;</code></li>
+        </ul>
+        <ul data-lang="en">
+            <li>Each field has a <code>&lt;label&gt;</code></li>
+            <li>All fields inside one <code>&lt;form&gt;</code></li>
+            <li>Each input has a <code>placeholder</code></li>
+            <li>At the end — a <code>&lt;button type="submit"&gt;</code></li>
+        </ul>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>10 типов input на странице</li>
+                <li>Каждый с label</li>
+                <li>Кнопка отправки есть</li>
+                <li>Открой страницу и проверь каждый тип!</li>
+            </ul>
+            <ul data-lang="en">
+                <li>10 input types on the page</li>
+                <li>Each with a label</li>
+                <li>Submit button is present</li>
+                <li>Open the page and test each type!</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 11.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 11.2: ЭЛЕМЕНТЫ ФОРМ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 11.2: FORM ELEMENTS</h2>
+
+    <!-- ЗАДАНИЕ 10.2 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 10.2: Форма регистрации</span>
+            <span class="task-title" data-lang="en">Task 10.2: Registration form</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать стилизованную форму регистрации с валидацией</div>
+        <div class="task-goal" data-lang="en">Create a styled registration form with validation</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>registration</code> с файлами <code>index.html</code> и <code>style.css</code>. Сделайте красивую форму регистрации:</p>
+        <p data-lang="en">Create a folder <code>registration</code> with files <code>index.html</code> and <code>style.css</code>. Make a beautiful registration form:</p>
+
+        <h3 data-lang="ru">Поля формы:</h3>
+        <h3 data-lang="en">Form fields:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Полное имя</strong> — <code>type="text"</code>, <code>required</code>, <code>minlength="2"</code></li>
+            <li><strong>Email</strong> — <code>type="email"</code>, <code>required</code></li>
+            <li><strong>Пароль</strong> — <code>type="password"</code>, <code>required</code>, <code>minlength="8"</code></li>
+            <li><strong>Повторите пароль</strong> — <code>type="password"</code>, <code>required</code></li>
+            <li><strong>Дата рождения</strong> — <code>type="date"</code></li>
+            <li><strong>Город</strong> — <code>&lt;select&gt;</code> с 5 городами</li>
+            <li><strong>Пол</strong> — <code>radio</code> (Мужской / Женский)</li>
+            <li><strong>Навыки</strong> — <code>checkbox</code> (HTML, CSS, JS, Git — минимум 4)</li>
+            <li><strong>О себе</strong> — <code>&lt;textarea&gt;</code></li>
+            <li><strong>Согласие</strong> — <code>checkbox</code> + <code>required</code></li>
+            <li><strong>Кнопка</strong> — «Зарегистрироваться»</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Full name</strong> — <code>type="text"</code>, <code>required</code>, <code>minlength="2"</code></li>
+            <li><strong>Email</strong> — <code>type="email"</code>, <code>required</code></li>
+            <li><strong>Password</strong> — <code>type="password"</code>, <code>required</code>, <code>minlength="8"</code></li>
+            <li><strong>Repeat password</strong> — <code>type="password"</code>, <code>required</code></li>
+            <li><strong>Date of birth</strong> — <code>type="date"</code></li>
+            <li><strong>City</strong> — <code>&lt;select&gt;</code> with 5 cities</li>
+            <li><strong>Gender</strong> — <code>radio</code> (Male / Female)</li>
+            <li><strong>Skills</strong> — <code>checkbox</code> (HTML, CSS, JS, Git — at least 4)</li>
+            <li><strong>About me</strong> — <code>&lt;textarea&gt;</code></li>
+            <li><strong>Agreement</strong> — <code>checkbox</code> + <code>required</code></li>
+            <li><strong>Button</strong> — "Register"</li>
+        </ol>
+
+        <h3 data-lang="ru">CSS-требования:</h3>
+        <h3 data-lang="en">CSS requirements:</h3>
+
+        <ul data-lang="ru">
+            <li>Форма в белой карточке с тенью, отцентрирована на странице</li>
+            <li>Все поля стилизованы (padding, border-radius, border)</li>
+            <li><code>:focus</code> — синяя рамка при фокусе</li>
+            <li>Кнопка стилизована с <code>:hover</code></li>
+            <li>CSS подключён через <code>&lt;link&gt;</code></li>
+        </ul>
+        <ul data-lang="en">
+            <li>Form in a white card with shadow, centered on page</li>
+            <li>All fields styled (padding, border-radius, border)</li>
+            <li><code>:focus</code> — blue border on focus</li>
+            <li>Button styled with <code>:hover</code></li>
+            <li>CSS linked via <code>&lt;link&gt;</code></li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Оберни каждое поле в <code>&lt;div class="form-group"&gt;</code> для удобных отступов:
+<pre><code>.form-group {
+    margin-bottom: 18px;
+}</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            Wrap each field in <code>&lt;div class="form-group"&gt;</code> for easy spacing:
+<pre><code>.form-group {
+    margin-bottom: 18px;
+}</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>11 элементов формы (как в списке выше)</li>
+                <li>Все label связаны с input через for/id</li>
+                <li>Валидация: required, minlength работают</li>
+                <li>Форма стилизована, выглядит аккуратно</li>
+                <li>:focus и :hover работают</li>
+                <li>CSS в отдельном файле</li>
+            </ul>
+            <ul data-lang="en">
+                <li>11 form elements (as listed above)</li>
+                <li>All labels linked to inputs via for/id</li>
+                <li>Validation: required, minlength work</li>
+                <li>Form is styled, looks clean</li>
+                <li>:focus and :hover work</li>
+                <li>CSS in a separate file</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 11.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 11.3: ФОРМА ОБРАТНОЙ СВЯЗИ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 11.3: CONTACT FORM</h2>
+
+    <!-- ЗАДАНИЕ 10.3 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 10.3: Форма «Напишите нам»</span>
+            <span class="task-title" data-lang="en">Task 10.3: "Contact Us" form</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать стилизованную форму обратной связи</div>
+        <div class="task-goal" data-lang="en">Create a styled contact form</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>contact.html</code> (CSS можно в <code>&lt;style&gt;</code> или отдельным файлом). Сделайте форму обратной связи:</p>
+        <p data-lang="en">Create a file <code>contact.html</code> (CSS can be in <code>&lt;style&gt;</code> or a separate file). Make a contact form:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Имя</strong> — <code>type="text"</code>, <code>required</code></li>
+            <li><strong>Email</strong> — <code>type="email"</code>, <code>required</code></li>
+            <li><strong>Телефон</strong> — <code>type="tel"</code></li>
+            <li><strong>Тема обращения</strong> — <code>&lt;select&gt;</code>:
+                <ul>
+                    <li>Общий вопрос</li>
+                    <li>Техническая поддержка</li>
+                    <li>Сотрудничество</li>
+                    <li>Жалоба</li>
+                    <li>Другое</li>
+                </ul>
+            </li>
+            <li><strong>Сообщение</strong> — <code>&lt;textarea&gt;</code>, <code>required</code>, <code>rows="6"</code></li>
+            <li><strong>Кнопка</strong> — «Отправить сообщение»</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Name</strong> — <code>type="text"</code>, <code>required</code></li>
+            <li><strong>Email</strong> — <code>type="email"</code>, <code>required</code></li>
+            <li><strong>Phone</strong> — <code>type="tel"</code></li>
+            <li><strong>Subject</strong> — <code>&lt;select&gt;</code>:
+                <ul>
+                    <li>General question</li>
+                    <li>Technical support</li>
+                    <li>Collaboration</li>
+                    <li>Complaint</li>
+                    <li>Other</li>
+                </ul>
+            </li>
+            <li><strong>Message</strong> — <code>&lt;textarea&gt;</code>, <code>required</code>, <code>rows="6"</code></li>
+            <li><strong>Button</strong> — "Send message"</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Для textarea добавьте в CSS:
+<pre><code>textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical; /* только вертикальное изменение размера */
+}</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            For textarea add to CSS:
+<pre><code>textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical; /* only vertical resizing */
+}</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>6 элементов формы</li>
+                <li>select с 5 вариантами</li>
+                <li>textarea для сообщения</li>
+                <li>Валидация (required) работает</li>
+                <li>Форма стилизована</li>
+            </ul>
+            <ul data-lang="en">
+                <li>6 form elements</li>
+                <li>select with 5 options</li>
+                <li>textarea for message</li>
+                <li>Validation (required) works</li>
+                <li>Form is styled</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 10.4: Заказ пиццы</span>
+            <span class="task-title" data-lang="en">Task 10.4: Pizza order form</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать интерактивную форму заказа пиццы</div>
+        <div class="task-goal" data-lang="en">Create an interactive pizza order form</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте форму заказа пиццы с использованием всех изученных элементов:</p>
+        <p data-lang="en">Create a pizza order form using all the elements you've learned:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Имя</strong> — <code>text</code>, <code>required</code></li>
+            <li><strong>Телефон</strong> — <code>tel</code>, <code>required</code></li>
+            <li><strong>Адрес доставки</strong> — <code>text</code>, <code>required</code></li>
+            <li><strong>Размер пиццы</strong> — <code>radio</code>: Маленькая (25 см), Средняя (30 см), Большая (35 см)</li>
+            <li><strong>Тесто</strong> — <code>radio</code>: Тонкое, Толстое</li>
+            <li><strong>Топпинги</strong> — <code>checkbox</code>: Грибы, Оливки, Перец, Ветчина, Сыр, Ананас (минимум 6)</li>
+            <li><strong>Количество</strong> — <code>number</code>, <code>min="1"</code>, <code>max="10"</code></li>
+            <li><strong>Время доставки</strong> — <code>select</code>: Как можно скорее, 30 мин, 1 час, К определённому времени</li>
+            <li><strong>Комментарий</strong> — <code>textarea</code></li>
+            <li><strong>Кнопка</strong> — «Заказать пиццу»</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Name</strong> — <code>text</code>, <code>required</code></li>
+            <li><strong>Phone</strong> — <code>tel</code>, <code>required</code></li>
+            <li><strong>Delivery address</strong> — <code>text</code>, <code>required</code></li>
+            <li><strong>Pizza size</strong> — <code>radio</code>: Small (25 cm), Medium (30 cm), Large (35 cm)</li>
+            <li><strong>Crust</strong> — <code>radio</code>: Thin, Thick</li>
+            <li><strong>Toppings</strong> — <code>checkbox</code>: Mushrooms, Olives, Peppers, Ham, Cheese, Pineapple (at least 6)</li>
+            <li><strong>Quantity</strong> — <code>number</code>, <code>min="1"</code>, <code>max="10"</code></li>
+            <li><strong>Delivery time</strong> — <code>select</code>: ASAP, 30 min, 1 hour, Specific time</li>
+            <li><strong>Comment</strong> — <code>textarea</code></li>
+            <li><strong>Button</strong> — "Order pizza"</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Используйте тёплые цвета (красный, оранжевый) для темы пиццерии! Кнопку можно сделать красной.
+        </div>
+        <div class="hint" data-lang="en">
+            Use warm colors (red, orange) for a pizzeria theme! The button can be red.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все 10 элементов формы присутствуют</li>
+                <li>Два набора radio-кнопок (размер + тесто)</li>
+                <li>Минимум 6 checkbox-ов для топпингов</li>
+                <li>Стилизация в теме пиццерии</li>
+                <li>Валидация работает</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 10 form elements are present</li>
+                <li>Two sets of radio buttons (size + crust)</li>
+                <li>At least 6 checkboxes for toppings</li>
+                <li>Styling in pizzeria theme</li>
+                <li>Validation works</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

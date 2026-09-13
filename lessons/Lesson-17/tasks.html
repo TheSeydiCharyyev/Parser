@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 17 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 17: CSS Grid — основы</span>
+    <span class="nav-title" data-lang="en">Lesson 17: CSS Grid — Basics</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 17: CSS Grid — основы</p>
+    <p class="subtitle" data-lang="en">Lesson 17: CSS Grid — Basics</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 17.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 17.1: GRID-КОНТЕЙНЕР</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 17.1: GRID CONTAINER</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 16.1: Лаборатория Grid</span>
+            <span class="task-title" data-lang="en">Task 16.1: Grid Laboratory</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Попробовать разные способы задания колонок</div>
+        <div class="task-goal" data-lang="en">Try different ways to define columns</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>grid-lab.html</code>. Сделайте контейнер с 8 цветными блоками. Покажите <strong>6 вариантов</strong> Grid-сетки на одной странице (каждый в своём контейнере с подписью):</p>
+        <p data-lang="en">Create a file <code>grid-lab.html</code>. Make a container with 8 colored blocks. Show <strong>6 Grid variations</strong> on one page (each in its own container with a label):</p>
+
+        <ol data-lang="ru">
+            <li><code>grid-template-columns: 200px 200px 200px</code> — 3 фиксированных</li>
+            <li><code>grid-template-columns: 1fr 1fr 1fr</code> — 3 равных</li>
+            <li><code>grid-template-columns: 1fr 2fr 1fr</code> — средний шире</li>
+            <li><code>grid-template-columns: 250px 1fr</code> — sidebar + content</li>
+            <li><code>grid-template-columns: repeat(4, 1fr)</code> — 4 равных</li>
+            <li><code>grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))</code> — адаптивная</li>
+        </ol>
+        <ol data-lang="en">
+            <li><code>grid-template-columns: 200px 200px 200px</code> — 3 fixed</li>
+            <li><code>grid-template-columns: 1fr 1fr 1fr</code> — 3 equal</li>
+            <li><code>grid-template-columns: 1fr 2fr 1fr</code> — middle wider</li>
+            <li><code>grid-template-columns: 250px 1fr</code> — sidebar + content</li>
+            <li><code>grid-template-columns: repeat(4, 1fr)</code> — 4 equal</li>
+            <li><code>grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))</code> — responsive</li>
+        </ol>
+
+        <p data-lang="ru">Добавьте <code>gap: 10px</code> ко всем контейнерам.</p>
+        <p data-lang="en">Add <code>gap: 10px</code> to all containers.</p>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>6 вариантов сетки на одной странице</li>
+                <li>Подпись с кодом над каждым вариантом</li>
+                <li>Разница между вариантами визуально заметна</li>
+                <li>Последний вариант — адаптивный (попробуй сузить окно!)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>6 grid variations on one page</li>
+                <li>Label with code above each variation</li>
+                <li>Difference between variations is visually clear</li>
+                <li>Last variation is responsive (try resizing the window!)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 17.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 17.2: ВЫРАВНИВАНИЕ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 17.2: ALIGNMENT</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 16.2: Выравнивание в Grid</span>
+            <span class="task-title" data-lang="en">Task 16.2: Grid alignment</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Освоить justify-items, align-items и place-items</div>
+        <div class="task-goal" data-lang="en">Master justify-items, align-items, and place-items</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте Grid 3&#xD7;2 с <code>grid-template-rows: 150px 150px</code>. Покажите 4 варианта <code>place-items</code>:</p>
+        <p data-lang="en">Create a 3&#xD7;2 Grid with <code>grid-template-rows: 150px 150px</code>. Show 4 <code>place-items</code> variations:</p>
+
+        <ol data-lang="ru">
+            <li><code>place-items: stretch</code> (по умолчанию)</li>
+            <li><code>place-items: center</code></li>
+            <li><code>place-items: start end</code></li>
+            <li><code>place-items: end center</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><code>place-items: stretch</code> (default)</li>
+            <li><code>place-items: center</code></li>
+            <li><code>place-items: start end</code></li>
+            <li><code>place-items: end center</code></li>
+        </ol>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>4 Grid-контейнера с разным place-items</li>
+                <li>Ячейки с фиксированной высотой (чтобы видеть выравнивание)</li>
+                <li>Подписи есть</li>
+            </ul>
+            <ul data-lang="en">
+                <li>4 Grid containers with different place-items</li>
+                <li>Cells with fixed height (to see alignment)</li>
+                <li>Labels are present</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 17.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 17.3: ФОТОГАЛЕРЕЯ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 17.3: PHOTO GALLERY</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 16.3: Фотогалерея на Grid</span>
+            <span class="task-title" data-lang="en">Task 16.3: Grid photo gallery</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать адаптивную фотогалерею с помощью CSS Grid</div>
+        <div class="task-goal" data-lang="en">Create a responsive photo gallery using CSS Grid</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>photo-gallery</code> с файлами <code>index.html</code> и <code>style.css</code>:</p>
+        <p data-lang="en">Create a folder <code>photo-gallery</code> with files <code>index.html</code> and <code>style.css</code>:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Шапка:</strong> Заголовок «Фотогалерея» + описание</li>
+            <li><strong>9-12 изображений</strong> (picsum.photos или свои)</li>
+            <li><strong>Grid-сетка:</strong> <code>repeat(auto-fit, minmax(250px, 1fr))</code></li>
+            <li><strong>Изображения:</strong> <code>width: 100%; height: 220px; object-fit: cover; border-radius: 12px</code></li>
+            <li><strong>Hover:</strong> <code>transform: scale(1.03)</code> + <code>box-shadow</code></li>
+            <li><strong>gap:</strong> 16px</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Header:</strong> "Photo Gallery" title + description</li>
+            <li><strong>9-12 images</strong> (picsum.photos or your own)</li>
+            <li><strong>Grid:</strong> <code>repeat(auto-fit, minmax(250px, 1fr))</code></li>
+            <li><strong>Images:</strong> <code>width: 100%; height: 220px; object-fit: cover; border-radius: 12px</code></li>
+            <li><strong>Hover:</strong> <code>transform: scale(1.03)</code> + <code>box-shadow</code></li>
+            <li><strong>gap:</strong> 16px</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Проверь адаптивность! Сужай окно браузера — количество колонок должно меняться автоматически: 4 &#x2192; 3 &#x2192; 2 &#x2192; 1.
+        </div>
+        <div class="hint" data-lang="en">
+            Check responsiveness! Resize the browser window — the number of columns should change automatically: 4 &#x2192; 3 &#x2192; 2 &#x2192; 1.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>9-12 изображений</li>
+                <li>Grid с auto-fit + minmax</li>
+                <li>Адаптивность (без media queries!)</li>
+                <li>object-fit: cover</li>
+                <li>Hover-эффект</li>
+                <li>border-radius и gap</li>
+                <li>CSS в отдельном файле</li>
+            </ul>
+            <ul data-lang="en">
+                <li>9-12 images</li>
+                <li>Grid with auto-fit + minmax</li>
+                <li>Responsive (no media queries!)</li>
+                <li>object-fit: cover</li>
+                <li>Hover effect</li>
+                <li>border-radius and gap</li>
+                <li>CSS in separate file</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 16.4: Grid Garden</span>
+            <span class="task-title" data-lang="en">Task 16.4: Grid Garden</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Закрепить CSS Grid через интерактивную игру</div>
+        <div class="task-goal" data-lang="en">Reinforce CSS Grid through an interactive game</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li>Откройте <strong>cssgridgarden.com</strong></li>
+            <li>Пройдите все <strong>28 уровней</strong></li>
+            <li>Запишите новые свойства, которые встретите (grid-column, grid-row, grid-area)</li>
+            <li>Эти свойства мы подробно изучим на следующем занятии!</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Open <strong>cssgridgarden.com</strong></li>
+            <li>Complete all <strong>28 levels</strong></li>
+            <li>Write down new properties you encounter (grid-column, grid-row, grid-area)</li>
+            <li>We'll study these properties in detail in the next lesson!</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Grid Garden — бесплатная игра, где нужно поливать морковки с помощью CSS Grid. Очень наглядно и затягивает!
+        </div>
+        <div class="hint" data-lang="en">
+            Grid Garden is a free game where you water carrots using CSS Grid. Very visual and addictive!
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все 28 уровней пройдены</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 28 levels completed</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

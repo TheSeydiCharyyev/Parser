@@ -1,0 +1,215 @@
+/* ========== TASKS PAGE STYLES ========== */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.7;
+    color: #1e293b;
+    background: #ffffff;
+    padding: 40px 20px;
+}
+.container { max-width: 800px; margin: 0 auto; }
+
+h1 {
+    font-size: 1.8rem;
+    color: #0f172a;
+    border-bottom: 3px solid #f59e0b;
+    padding-bottom: 10px;
+    margin-bottom: 6px;
+}
+h2 {
+    font-size: 1.4rem;
+    color: #92400e;
+    margin: 36px 0 14px;
+    padding: 8px 14px;
+    background: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    border-radius: 0 6px 6px 0;
+}
+h3 {
+    font-size: 1.15rem;
+    color: #1e3a5f;
+    margin: 20px 0 10px;
+}
+.subtitle {
+    color: #64748b;
+    margin-bottom: 24px;
+}
+
+/* ========== TASK CARD ========== */
+.task {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+}
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+.task-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+.task-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.badge-easy {
+    background: #dcfce7;
+    color: #15803d;
+}
+.badge-medium {
+    background: #fef9c3;
+    color: #a16207;
+}
+.badge-time {
+    background: #e0e7ff;
+    color: #3730a3;
+}
+.badge-hard {
+    background: #fce7f3;
+    color: #9d174d;
+}
+
+/* ========== TASK GOAL ========== */
+.task-goal {
+    background: #eff6ff;
+    border-left: 3px solid #3b82f6;
+    padding: 10px 14px;
+    margin: 10px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.95rem;
+}
+.task-goal::before {
+    font-weight: 700;
+    color: #1d4ed8;
+}
+html[lang="ru"] .task-goal::before { content: '\1F3AF  Цель: '; }
+html[lang="en"] .task-goal::before { content: '\1F3AF  Goal: '; }
+
+/* ========== CODE ========== */
+pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 14px 18px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 12px 0;
+}
+code {
+    background: #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9rem;
+}
+pre code { background: none; padding: 0; }
+
+/* ========== TABLE ========== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+}
+th, td {
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+}
+th { background: #f1f5f9; font-weight: 600; }
+
+/* ========== LISTS ========== */
+ul, ol { margin: 8px 0 8px 24px; }
+li { margin: 4px 0; }
+
+hr {
+    border: none;
+    border-top: 2px solid #e2e8f0;
+    margin: 30px 0;
+}
+
+/* ========== CRITERIA ========== */
+.criteria {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+}
+.criteria::before {
+    display: block;
+    font-weight: 700;
+    color: #15803d;
+    margin-bottom: 6px;
+}
+html[lang="ru"] .criteria::before { content: '\2705  Критерии оценки:'; }
+html[lang="en"] .criteria::before { content: '\2705  Evaluation criteria:'; }
+
+/* ========== EXAMPLE ========== */
+.example {
+    background: #fefce8;
+    border: 1px solid #fde047;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+}
+.example::before {
+    display: block;
+    font-weight: 700;
+    color: #a16207;
+    margin-bottom: 6px;
+}
+html[lang="ru"] .example::before { content: '\1F4CB  Пример выполнения:'; }
+html[lang="en"] .example::before { content: '\1F4CB  Example:'; }
+
+/* ========== HINT ========== */
+.hint {
+    background: #fdf4ff;
+    border: 1px solid #e9d5ff;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+}
+.hint::before {
+    display: block;
+    font-weight: 700;
+    color: #7e22ce;
+    margin-bottom: 4px;
+}
+html[lang="ru"] .hint::before { content: '\1F4A1  Подсказка:'; }
+html[lang="en"] .hint::before { content: '\1F4A1  Hint:'; }
+
+/* ========== WRITE BOX ========== */
+.write-box {
+    background: #fff;
+    border: 2px dashed #94a3b8;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 14px 0;
+    min-height: 120px;
+}
+.write-box::before {
+    display: block;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 8px;
+}
+html[lang="ru"] .write-box::before { content: '\270F\FE0F  Запиши в тетрадь:'; }
+html[lang="en"] .write-box::before { content: '\270F\FE0F  Write in your notebook:'; }

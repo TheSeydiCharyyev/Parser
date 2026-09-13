@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 10 — Таблицы</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 10: Таблицы</span>
+    <span class="nav-title" data-lang="en">Lesson 10: Tables</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 10: Таблицы</h1>
+    <h1 data-lang="en">Lesson 10: Tables</h1>
+    <p class="subtitle" data-lang="ru">HTML-таблицы: строки, ячейки, заголовки, объединение ячеек и стилизация через CSS</p>
+    <p class="subtitle" data-lang="en">HTML tables: rows, cells, headers, merging cells, and CSS styling</p>
+
+    <div class="why">
+        <p data-lang="ru">Сегодня мы изучим <strong>HTML-таблицы</strong> — один из самых полезных инструментов для представления структурированных данных. Таблицы позволяют организовать информацию в строки и столбцы так, чтобы пользователь мог быстро найти нужное, сравнить варианты и понять закономерности.</p>
+        <p data-lang="en">Today we will learn <strong>HTML tables</strong> — one of the most useful tools for presenting structured data. Tables organize information into rows and columns so users can quickly find what they need, compare options, and spot patterns.</p>
+        <p data-lang="ru"><strong>После этого занятия вы сможете:</strong></p>
+        <p data-lang="en"><strong>After this lesson you will be able to:</strong></p>
+        <ul data-lang="ru">
+            <li>Создавать таблицы с заголовками, строками и ячейками</li>
+            <li>Объединять ячейки по горизонтали и вертикали</li>
+            <li>Использовать семантическую структуру (thead, tbody, tfoot)</li>
+            <li>Стилизовать таблицы: полоски, hover, border-collapse</li>
+            <li>Создать красивую таблицу тарифов (Pricing Table)</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Create tables with headers, rows, and cells</li>
+            <li>Merge cells horizontally and vertically</li>
+            <li>Use semantic structure (thead, tbody, tfoot)</li>
+            <li>Style tables: stripes, hover, border-collapse</li>
+            <li>Build a beautiful Pricing Table</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#intro">Зачем нужны таблицы</a></li>
+            <li><a href="#basic">Базовая таблица: table, tr, td</a></li>
+            <li><a href="#th">Заголовки: th</a></li>
+            <li><a href="#colspan">colspan — объединение столбцов</a></li>
+            <li><a href="#rowspan">rowspan — объединение строк</a></li>
+            <li><a href="#structure">Структура: thead, tbody, tfoot</a></li>
+            <li><a href="#caption">caption — подпись таблицы</a></li>
+            <li><a href="#css-basic">CSS: базовая стилизация</a></li>
+            <li><a href="#css-borders">CSS: рамки и border-collapse</a></li>
+            <li><a href="#css-zebra">CSS: полосатая таблица (zebra)</a></li>
+            <li><a href="#css-hover">CSS: подсветка строки при наведении</a></li>
+            <li><a href="#css-pricing">CSS: таблица тарифов (Pricing Table)</a></li>
+            <li><a href="#when-not">Когда НЕ использовать таблицы</a></li>
+            <li><a href="#practice">Практика</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#intro">Why we need tables</a></li>
+            <li><a href="#basic">Basic table: table, tr, td</a></li>
+            <li><a href="#th">Headers: th</a></li>
+            <li><a href="#colspan">colspan — merging columns</a></li>
+            <li><a href="#rowspan">rowspan — merging rows</a></li>
+            <li><a href="#structure">Structure: thead, tbody, tfoot</a></li>
+            <li><a href="#caption">caption — table title</a></li>
+            <li><a href="#css-basic">CSS: basic styling</a></li>
+            <li><a href="#css-borders">CSS: borders and border-collapse</a></li>
+            <li><a href="#css-zebra">CSS: striped table (zebra)</a></li>
+            <li><a href="#css-hover">CSS: row highlight on hover</a></li>
+            <li><a href="#css-pricing">CSS: Pricing Table</a></li>
+            <li><a href="#when-not">When NOT to use tables</a></li>
+            <li><a href="#practice">Practice</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 1. ВВЕДЕНИЕ ==================== -->
+    <h2 id="intro" data-lang="ru">1. Зачем нужны таблицы</h2>
+    <h2 id="intro-en" data-lang="en">1. Why we need tables</h2>
+
+    <p data-lang="ru"><strong>Таблицы</strong> — это способ организовать данные в строки и столбцы. Они идеально подходят для отображения структурированной информации: расписаний, прайс-листов, статистики, сравнений.</p>
+    <p data-lang="en"><strong>Tables</strong> are a way to organize data into rows and columns. They are perfect for displaying structured information: schedules, price lists, statistics, comparisons.</p>
+
+    <div class="why">
+        <p data-lang="ru">Организация данных — одна из <strong>фундаментальных потребностей</strong> человечества. Вспомните школьный журнал: строки — это ученики, столбцы — даты, а ячейки — оценки. Или расписание поездов на вокзале, банковские выписки, меню в ресторане. Все это — таблицы. HTML даёт нам инструмент, чтобы представить такие данные в интернете.</p>
+        <p data-lang="en">Organizing data is one of <strong>humanity's fundamental needs</strong>. Think of a school gradebook: rows are students, columns are dates, and cells are grades. Or train schedules at a station, bank statements, restaurant menus. All of these are tables. HTML gives us a tool to present such data on the web.</p>
+    </div>
+
+    <div class="analogy">
+        <p data-lang="ru">Таблица в HTML — это как <strong>таблица в Excel</strong>. Есть строки (ряды), столбцы (колонки), и в каждой ячейке — данные. Только вместо Excel мы используем HTML-теги.</p>
+        <p data-lang="en">An HTML table is like a <strong>spreadsheet in Excel</strong>. There are rows, columns, and data in each cell. But instead of Excel, we use HTML tags.</p>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Где вы видите таблицы каждый день:</strong></p>
+        <p data-lang="en"><strong>Where you see tables every day:</strong></p>
+        <ul data-lang="ru">
+            <li><strong>Amazon / Wildberries</strong> — сравнение характеристик товаров (экран, батарея, процессор)</li>
+            <li><strong>Авиакомпании</strong> — расписание рейсов (время вылета, прилёта, цена)</li>
+            <li><strong>GitHub</strong> — списки репозиториев (звёзды, форки, язык)</li>
+            <li><strong>Спорт</strong> — турнирные таблицы (команда, очки, голы)</li>
+            <li><strong>Банки</strong> — история транзакций (дата, описание, сумма)</li>
+            <li><strong>Расписание уроков / поездов / сеансов</strong></li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>Amazon</strong> — product specification comparisons (screen, battery, processor)</li>
+            <li><strong>Airlines</strong> — flight schedules (departure, arrival, price)</li>
+            <li><strong>GitHub</strong> — repository lists (stars, forks, language)</li>
+            <li><strong>Sports</strong> — league standings (team, points, goals)</li>
+            <li><strong>Banks</strong> — transaction history (date, description, amount)</li>
+            <li><strong>Class / train / showtime schedules</strong></li>
+        </ul>
+    </div>
+
+    <div class="fun-fact">
+        <p data-lang="ru">Таблицы — один из <strong>старейших элементов HTML</strong>. Тег <code>&lt;table&gt;</code> появился в стандарте <strong>HTML 3.2 в 1997 году</strong>. В те времена таблицы использовались не только для данных, но и для вёрстки всей страницы! Сейчас для вёрстки используют Flexbox и Grid, а таблицы остались только для табличных данных.</p>
+        <p data-lang="en">Tables are one of the <strong>oldest HTML elements</strong>. The <code>&lt;table&gt;</code> tag appeared in the <strong>HTML 3.2 standard in 1997</strong>. Back then, tables were used not only for data but for laying out entire pages! Today we use Flexbox and Grid for layout, and tables are reserved for tabular data only.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 2. БАЗОВАЯ ТАБЛИЦА ==================== -->
+    <h2 id="basic" data-lang="ru">2. Базовая таблица: table, tr, td</h2>
+    <h2 id="basic-en" data-lang="en">2. Basic table: table, tr, td</h2>
+
+    <p data-lang="ru">Для создания таблицы нужны три тега:</p>
+    <p data-lang="en">To create a table, you need three tags:</p>
+
+    <table data-lang="ru">
+        <tr><th>Тег</th><th>Расшифровка</th><th>Что делает</th></tr>
+        <tr><td><code>&lt;table&gt;</code></td><td>table</td><td>Создаёт таблицу (контейнер)</td></tr>
+        <tr><td><code>&lt;tr&gt;</code></td><td>table row</td><td>Создаёт строку</td></tr>
+        <tr><td><code>&lt;td&gt;</code></td><td>table data</td><td>Создаёт ячейку с данными</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Tag</th><th>Stands for</th><th>What it does</th></tr>
+        <tr><td><code>&lt;table&gt;</code></td><td>table</td><td>Creates a table (container)</td></tr>
+        <tr><td><code>&lt;tr&gt;</code></td><td>table row</td><td>Creates a row</td></tr>
+        <tr><td><code>&lt;td&gt;</code></td><td>table data</td><td>Creates a data cell</td></tr>
+    </table>
+
+    <div class="why">
+        <p data-lang="ru">Эти три тега образуют <strong>иерархию вложенности</strong>: <code>&lt;table&gt;</code> содержит <code>&lt;tr&gt;</code>, а <code>&lt;tr&gt;</code> содержит <code>&lt;td&gt;</code>. Нельзя поставить <code>&lt;td&gt;</code> напрямую внутрь <code>&lt;table&gt;</code> без <code>&lt;tr&gt;</code> — браузер запутается, и таблица отобразится неправильно.</p>
+        <p data-lang="en">These three tags form a <strong>nesting hierarchy</strong>: <code>&lt;table&gt;</code> contains <code>&lt;tr&gt;</code>, and <code>&lt;tr&gt;</code> contains <code>&lt;td&gt;</code>. You cannot place <code>&lt;td&gt;</code> directly inside <code>&lt;table&gt;</code> without <code>&lt;tr&gt;</code> — the browser will get confused and the table will render incorrectly.</p>
+    </div>
+
+    <div class="analogy">
+        <p data-lang="ru"><strong>Электронная таблица (Excel / Google Sheets):</strong></p>
+        <p data-lang="en"><strong>Spreadsheet (Excel / Google Sheets):</strong></p>
+        <ul data-lang="ru">
+            <li><code>&lt;table&gt;</code> = весь лист (Sheet1)</li>
+            <li><code>&lt;tr&gt;</code> = одна строка (ряд 1, ряд 2, ряд 3...)</li>
+            <li><code>&lt;td&gt;</code> = одна ячейка (A1, B1, C1...)</li>
+        </ul>
+        <ul data-lang="en">
+            <li><code>&lt;table&gt;</code> = the entire sheet (Sheet1)</li>
+            <li><code>&lt;tr&gt;</code> = one row (row 1, row 2, row 3...)</li>
+            <li><code>&lt;td&gt;</code> = one cell (A1, B1, C1...)</li>
+        </ul>
+        <p data-lang="ru">Точно так же, как вы не можете ввести данные в ячейку, не выбрав строку — <code>&lt;td&gt;</code> всегда живёт внутри <code>&lt;tr&gt;</code>.</p>
+        <p data-lang="en">Just like you can't enter data in a cell without selecting a row — <code>&lt;td&gt;</code> always lives inside <code>&lt;tr&gt;</code>.</p>
+    </div>
+
+    <h3 data-lang="ru">Пример: простая таблица 3&#xD7;3</h3>
+    <h3 data-lang="en">Example: simple 3&#xD7;3 table</h3>
+
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Яблоко&lt;/td&gt;
+        &lt;td&gt;Красный&lt;/td&gt;
+        &lt;td&gt;50 тг&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Банан&lt;/td&gt;
+        &lt;td&gt;Жёлтый&lt;/td&gt;
+        &lt;td&gt;40 тг&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Виноград&lt;/td&gt;
+        &lt;td&gt;Зелёный&lt;/td&gt;
+        &lt;td&gt;120 тг&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+    <div class="result-box">
+        <table data-lang="ru" style="width:100%;border-collapse:collapse;">
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Яблоко</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Красный</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">50 тг</td></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Банан</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Жёлтый</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">40 тг</td></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Виноград</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Зелёный</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">120 тг</td></tr>
+        </table>
+        <table data-lang="en" style="width:100%;border-collapse:collapse;">
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Apple</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Red</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">50 tg</td></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Banana</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Yellow</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">40 tg</td></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Grape</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Green</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">120 tg</td></tr>
+        </table>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    &lt;table&gt;                       &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+      &lt;tr&gt;  &#x2500; 1-я строка      &#x2502; Яблоко  &#x2502; Красный &#x2502; 50 тг&#x2502;
+      &lt;tr&gt;  &#x2500; 2-я строка      &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+      &lt;tr&gt;  &#x2500; 3-я строка      &#x2502; Банан   &#x2502; Жёлтый  &#x2502; 40 тг&#x2502;
+    &lt;/table&gt;                      &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+       &#x2502;                       &#x2502;Виноград &#x2502; Зелёный &#x2502;120 тг&#x2502;
+     &lt;td&gt; &lt;td&gt; &lt;td&gt;             &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+     (3 ячейки в каждой строке)</div>
+    <div class="diagram" data-lang="en">
+    &lt;table&gt;                       &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+      &lt;tr&gt;  &#x2500; row 1            &#x2502; Apple  &#x2502; Red    &#x2502; 50 tg &#x2502;
+      &lt;tr&gt;  &#x2500; row 2            &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+      &lt;tr&gt;  &#x2500; row 3            &#x2502; Banana &#x2502; Yellow &#x2502; 40 tg &#x2502;
+    &lt;/table&gt;                      &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+       &#x2502;                       &#x2502; Grape  &#x2502; Green  &#x2502;120 tg &#x2502;
+     &lt;td&gt; &lt;td&gt; &lt;td&gt;             &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+     (3 cells in each row)</div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Ситуация:</strong> новичок создаёт таблицу, но в первой строке пишет 3 ячейки <code>&lt;td&gt;</code>, а во второй — только 2. Результат? Таблица «поедет» — столбцы не будут совпадать, и всё выглядит криво.</p>
+        <p data-lang="en"><strong>Situation:</strong> a beginner creates a table with 3 <code>&lt;td&gt;</code> cells in the first row but only 2 in the second. Result? The table breaks — columns won't align and everything looks crooked.</p>
+<pre><code>&lt;!-- НЕПРАВИЛЬНО / WRONG --&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;A1&lt;/td&gt;
+        &lt;td&gt;B1&lt;/td&gt;
+        &lt;td&gt;C1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;A2&lt;/td&gt;
+        &lt;td&gt;B2&lt;/td&gt;
+        &lt;!-- C2 забыли! / C2 is missing! --&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+        <p data-lang="ru"><strong>Правило:</strong> количество <code>&lt;td&gt;</code> в каждой <code>&lt;tr&gt;</code> должно быть <strong>одинаковым</strong> (если нет colspan/rowspan). Если данных нет — поставьте пустую ячейку: <code>&lt;td&gt;&lt;/td&gt;</code>.</p>
+        <p data-lang="en"><strong>Rule:</strong> the number of <code>&lt;td&gt;</code> in each <code>&lt;tr&gt;</code> must be <strong>the same</strong> (unless using colspan/rowspan). If there's no data, use an empty cell: <code>&lt;td&gt;&lt;/td&gt;</code>.</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Создайте простую таблицу 3&#xD7;2 (3 строки, 2 столбца) с информацией о ваших любимых фильмах: название и год выхода. Откройте любой HTML-файл (или создайте новый) и напишите код прямо сейчас!</p>
+        <p data-lang="en">Create a simple 3&#xD7;2 table (3 rows, 2 columns) with information about your favorite movies: title and release year. Open any HTML file (or create a new one) and write the code right now!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 3. ЗАГОЛОВКИ ==================== -->
+    <h2 id="th" data-lang="ru">3. Заголовки: th</h2>
+    <h2 id="th-en" data-lang="en">3. Headers: th</h2>
+
+    <p data-lang="ru">Тег <code>&lt;th&gt;</code> (table header) — это ячейка-заголовок. Браузер автоматически делает текст в <code>&lt;th&gt;</code> <strong>жирным</strong> и <strong>центрированным</strong>.</p>
+    <p data-lang="en">The <code>&lt;th&gt;</code> tag (table header) is a header cell. The browser automatically makes text in <code>&lt;th&gt;</code> <strong>bold</strong> and <strong>centered</strong>.</p>
+
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Фрукт&lt;/th&gt;
+        &lt;th&gt;Цвет&lt;/th&gt;
+        &lt;th&gt;Цена&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Яблоко&lt;/td&gt;
+        &lt;td&gt;Красный&lt;/td&gt;
+        &lt;td&gt;50 тг&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Банан&lt;/td&gt;
+        &lt;td&gt;Жёлтый&lt;/td&gt;
+        &lt;td&gt;40 тг&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+    <div class="result-box">
+        <table data-lang="ru" style="width:100%;border-collapse:collapse;">
+            <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;">Фрукт</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;">Цвет</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;">Цена</th></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Яблоко</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Красный</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">50 тг</td></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Банан</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Жёлтый</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">40 тг</td></tr>
+        </table>
+        <table data-lang="en" style="width:100%;border-collapse:collapse;">
+            <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;">Fruit</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;">Color</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;">Price</th></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Apple</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Red</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">50 tg</td></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Banana</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Yellow</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">40 tg</td></tr>
+        </table>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>th vs td:</strong> <code>&lt;th&gt;</code> — заголовок (жирный, центрированный). <code>&lt;td&gt;</code> — обычные данные. Используйте <code>&lt;th&gt;</code> в первой строке таблицы для названий столбцов.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>th vs td:</strong> <code>&lt;th&gt;</code> — header (bold, centered). <code>&lt;td&gt;</code> — regular data. Use <code>&lt;th&gt;</code> in the first row for column names.
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Доступность (Accessibility):</strong> тег <code>&lt;th&gt;</code> — не просто визуальное украшение. Он сообщает <strong>скринридерам</strong> (программам для слабовидящих), что эта ячейка является заголовком. Когда незрячий пользователь перемещается по таблице, скринридер произносит: «Фрукт: Яблоко, Цвет: Красный, Цена: 50 тг». Без <code>&lt;th&gt;</code> пользователь услышит просто «Яблоко, Красный, 50 тг» — без контекста.</p>
+        <p data-lang="en"><strong>Accessibility:</strong> the <code>&lt;th&gt;</code> tag is not just visual decoration. It tells <strong>screen readers</strong> (software for visually impaired users) that this cell is a header. When a blind user navigates the table, the screen reader says: "Fruit: Apple, Color: Red, Price: 50 tg". Without <code>&lt;th&gt;</code>, the user would hear just "Apple, Red, 50 tg" — with no context.</p>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">td (no header)</div>
+<pre><code>&lt;tr&gt;
+  &lt;td&gt;Фрукт&lt;/td&gt;
+  &lt;td&gt;Цвет&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+            <p data-lang="ru">Визуально — обычный текст. Скринридер не знает, что это заголовки.</p>
+            <p data-lang="en">Visually — plain text. Screen reader doesn't know these are headers.</p>
+        </div>
+        <div class="right">
+            <div class="label">th (header)</div>
+<pre><code>&lt;tr&gt;
+  &lt;th&gt;Фрукт&lt;/th&gt;
+  &lt;th&gt;Цвет&lt;/th&gt;
+&lt;/tr&gt;</code></pre>
+            <p data-lang="ru">Жирный, центрированный. Скринридер понимает структуру.</p>
+            <p data-lang="en">Bold, centered. Screen reader understands the structure.</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 4. COLSPAN ==================== -->
+    <h2 id="colspan" data-lang="ru">4. colspan — объединение столбцов</h2>
+    <h2 id="colspan-en" data-lang="en">4. colspan — merging columns</h2>
+
+    <p data-lang="ru">Атрибут <code>colspan</code> позволяет ячейке <strong>занять несколько столбцов</strong>:</p>
+    <p data-lang="en">The <code>colspan</code> attribute allows a cell to <strong>span multiple columns</strong>:</p>
+
+    <div class="analogy">
+        <p data-lang="ru"><strong>Как объединение ячеек в Excel.</strong> Вы выделяете несколько ячеек в одной строке, нажимаете «Объединить» — и они превращаются в одну широкую ячейку. В HTML вместо кнопки «Объединить» мы пишем атрибут <code>colspan="3"</code>, который означает: «эта ячейка занимает место трёх столбцов».</p>
+        <p data-lang="en"><strong>Like merging cells in Excel.</strong> You select several cells in one row, click "Merge" — and they become one wide cell. In HTML, instead of a "Merge" button, we write the attribute <code>colspan="3"</code>, which means: "this cell takes up the space of three columns."</p>
+    </div>
+
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th colspan="3"&gt;Меню кафе&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Блюдо&lt;/th&gt;
+        &lt;th&gt;Порция&lt;/th&gt;
+        &lt;th&gt;Цена&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Плов&lt;/td&gt;
+        &lt;td&gt;300г&lt;/td&gt;
+        &lt;td&gt;45 TMT&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Шурпа&lt;/td&gt;
+        &lt;td&gt;350мл&lt;/td&gt;
+        &lt;td&gt;35 TMT&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+    <div class="result-box">
+        <table data-lang="ru" style="width:100%;border-collapse:collapse;">
+            <tr><th colspan="3" style="padding:12px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:center;font-size:1.1rem;">Меню кафе</th></tr>
+            <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;">Блюдо</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;">Порция</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;">Цена</th></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Плов</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">300г</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">45 TMT</td></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Шурпа</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">350мл</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">35 TMT</td></tr>
+        </table>
+        <table data-lang="en" style="width:100%;border-collapse:collapse;">
+            <tr><th colspan="3" style="padding:12px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:center;font-size:1.1rem;">Cafe Menu</th></tr>
+            <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;">Dish</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;">Portion</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;">Price</th></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Plov</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">300g</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">45 TMT</td></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Shurpa</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">350ml</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">35 TMT</td></tr>
+        </table>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;       Меню кафе            &#x2502;  &#x2190; colspan="3"
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502; Блюдо   &#x2502; Порция  &#x2502; Цена   &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502; Плов    &#x2502; 300г    &#x2502; 45 TMT &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502; Шурпа   &#x2502; 350мл   &#x2502; 35 TMT &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;        Cafe Menu            &#x2502;  &#x2190; colspan="3"
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502; Dish    &#x2502; Portion &#x2502; Price  &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502; Plov    &#x2502; 300g    &#x2502; 45 TMT &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502; Shurpa  &#x2502; 350ml   &#x2502; 35 TMT &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Ситуация:</strong> новичок добавляет <code>colspan="3"</code>, но оставляет все 3 ячейки <code>&lt;td&gt;</code> в этой же строке. Результат — в строке оказывается 5 столбцов вместо 3, и таблица «расползается».</p>
+        <p data-lang="en"><strong>Situation:</strong> a beginner adds <code>colspan="3"</code> but keeps all 3 <code>&lt;td&gt;</code> cells in the same row. Result — the row has 5 columns instead of 3, and the table breaks apart.</p>
+<pre><code>&lt;!-- НЕПРАВИЛЬНО / WRONG --&gt;
+&lt;tr&gt;
+    &lt;th colspan="3"&gt;Заголовок&lt;/th&gt;
+    &lt;td&gt;Лишняя 1&lt;/td&gt;  &lt;!-- Убери! --&gt;
+    &lt;td&gt;Лишняя 2&lt;/td&gt;  &lt;!-- Убери! --&gt;
+&lt;/tr&gt;
+
+&lt;!-- ПРАВИЛЬНО / CORRECT --&gt;
+&lt;tr&gt;
+    &lt;th colspan="3"&gt;Заголовок&lt;/th&gt;
+    &lt;!-- Всё! Одна ячейка занимает место трёх --&gt;
+&lt;/tr&gt;</code></pre>
+        <p data-lang="ru"><strong>Правило:</strong> когда используете <code>colspan="N"</code>, уберите <code>N - 1</code> ячеек из этой строки. Ячейка с <code>colspan="3"</code> заменяет 3 обычные ячейки, поэтому остальные 2 нужно удалить.</p>
+        <p data-lang="en"><strong>Rule:</strong> when using <code>colspan="N"</code>, remove <code>N - 1</code> cells from that row. A cell with <code>colspan="3"</code> replaces 3 regular cells, so the other 2 must be removed.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 5. ROWSPAN ==================== -->
+    <h2 id="rowspan" data-lang="ru">5. rowspan — объединение строк</h2>
+    <h2 id="rowspan-en" data-lang="en">5. rowspan — merging rows</h2>
+
+    <p data-lang="ru">Атрибут <code>rowspan</code> позволяет ячейке <strong>занять несколько строк</strong>:</p>
+    <p data-lang="en">The <code>rowspan</code> attribute allows a cell to <strong>span multiple rows</strong>:</p>
+
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;День&lt;/th&gt;
+        &lt;th&gt;Время&lt;/th&gt;
+        &lt;th&gt;Предмет&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td rowspan="2"&gt;Понедельник&lt;/td&gt;
+        &lt;td&gt;09:00&lt;/td&gt;
+        &lt;td&gt;HTML&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;!-- td для "Понедельник" НЕ нужен -- rowspan занял это место --&gt;
+        &lt;td&gt;10:00&lt;/td&gt;
+        &lt;td&gt;CSS&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Среда&lt;/td&gt;
+        &lt;td&gt;09:00&lt;/td&gt;
+        &lt;td&gt;JavaScript&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+    <div class="result-box">
+        <table data-lang="ru" style="width:100%;border-collapse:collapse;">
+            <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;">День</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;">Время</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;">Предмет</th></tr>
+            <tr><td rowspan="2" style="padding:10px 14px;border:1px solid #e2e8f0;vertical-align:middle;font-weight:600;">Понедельник</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">09:00</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">HTML</td></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">10:00</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">CSS</td></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;font-weight:600;">Среда</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">09:00</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">JavaScript</td></tr>
+        </table>
+        <table data-lang="en" style="width:100%;border-collapse:collapse;">
+            <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;">Day</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;">Time</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;">Subject</th></tr>
+            <tr><td rowspan="2" style="padding:10px 14px;border:1px solid #e2e8f0;vertical-align:middle;font-weight:600;">Monday</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">09:00</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">HTML</td></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">10:00</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">CSS</td></tr>
+            <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;font-weight:600;">Wednesday</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">09:00</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">JavaScript</td></tr>
+        </table>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502; День        &#x2502; Время &#x2502; Предмет    &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;             &#x2502; 09:00 &#x2502; HTML       &#x2502;
+    &#x2502; Понедельник &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;  &#x2190; rowspan="2"
+    &#x2502;             &#x2502; 10:00 &#x2502; CSS        &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502; Среда       &#x2502; 09:00 &#x2502; JavaScript &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502; Day      &#x2502; Time  &#x2502; Subject    &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;          &#x2502; 09:00 &#x2502; HTML       &#x2502;
+    &#x2502; Monday   &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;  &#x2190; rowspan="2"
+    &#x2502;          &#x2502; 10:00 &#x2502; CSS        &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;Wednesday &#x2502; 09:00 &#x2502; JavaScript &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Самая коварная ошибка с rowspan:</strong> вы добавляете <code>rowspan="2"</code> к ячейке в первой строке, но забываете убрать соответствующую ячейку из <strong>следующей</strong> строки. В результате таблица «съезжает» — лишняя ячейка выталкивает остальные вправо.</p>
+        <p data-lang="en"><strong>The trickiest rowspan mistake:</strong> you add <code>rowspan="2"</code> to a cell in the first row but forget to remove the corresponding cell from the <strong>next</strong> row. The table shifts — the extra cell pushes others to the right.</p>
+<pre><code>&lt;!-- НЕПРАВИЛЬНО / WRONG --&gt;
+&lt;tr&gt;
+    &lt;td rowspan="2"&gt;Понедельник&lt;/td&gt;
+    &lt;td&gt;09:00&lt;/td&gt;&lt;td&gt;HTML&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;Понедельник&lt;/td&gt;  &lt;!-- ЛИШНЯЯ! rowspan уже занял это место --&gt;
+    &lt;td&gt;10:00&lt;/td&gt;&lt;td&gt;CSS&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- ПРАВИЛЬНО / CORRECT --&gt;
+&lt;tr&gt;
+    &lt;td rowspan="2"&gt;Понедельник&lt;/td&gt;
+    &lt;td&gt;09:00&lt;/td&gt;&lt;td&gt;HTML&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;!-- Здесь НЕТ первой ячейки — rowspan её заменил --&gt;
+    &lt;td&gt;10:00&lt;/td&gt;&lt;td&gt;CSS&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Создайте таблицу расписания с <code>rowspan</code> для дней недели, в которых 2-3 урока. Например: Понедельник — 3 урока, Среда — 2 урока, Пятница — 1 урок.</p>
+        <p data-lang="en">Create a schedule table with <code>rowspan</code> for days that have 2-3 lessons. For example: Monday — 3 lessons, Wednesday — 2 lessons, Friday — 1 lesson.</p>
+    </div>
+
+    <div class="quiz">
+        <p data-lang="ru">Мысленно ответьте:</p>
+        <p data-lang="en">Answer in your head:</p>
+        <ol data-lang="ru">
+            <li>Если в таблице 4 столбца, и вы пишете <code>colspan="4"</code> — сколько ячеек <code>&lt;td&gt;</code> нужно в этой строке? <em>(Только 1 — она занимает место всех четырёх)</em></li>
+            <li>Вы добавили <code>rowspan="3"</code> к ячейке. Из скольких следующих строк нужно убрать соответствующую ячейку? <em>(Из 2 следующих строк)</em></li>
+            <li>Можно ли использовать <code>colspan</code> и <code>rowspan</code> одновременно на одной ячейке? <em>(Да! Ячейка займёт несколько строк И столбцов)</em></li>
+        </ol>
+        <ol data-lang="en">
+            <li>If a table has 4 columns and you write <code>colspan="4"</code> — how many <code>&lt;td&gt;</code> cells do you need in that row? <em>(Only 1 — it takes the space of all four)</em></li>
+            <li>You added <code>rowspan="3"</code> to a cell. From how many following rows do you need to remove the corresponding cell? <em>(From the next 2 rows)</em></li>
+            <li>Can you use <code>colspan</code> and <code>rowspan</code> on the same cell at once? <em>(Yes! The cell will span multiple rows AND columns)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 6. THEAD, TBODY, TFOOT ==================== -->
+    <h2 id="structure" data-lang="ru">6. Структура: thead, tbody, tfoot</h2>
+    <h2 id="structure-en" data-lang="en">6. Structure: thead, tbody, tfoot</h2>
+
+    <p data-lang="ru">Для семантичности таблицу разделяют на три части:</p>
+    <p data-lang="en">For semantic clarity, a table is divided into three parts:</p>
+
+    <table data-lang="ru">
+        <tr><th>Тег</th><th>Расшифровка</th><th>Что содержит</th></tr>
+        <tr><td><code>&lt;thead&gt;</code></td><td>table head</td><td>Шапка — строки с заголовками столбцов</td></tr>
+        <tr><td><code>&lt;tbody&gt;</code></td><td>table body</td><td>Тело — основные данные</td></tr>
+        <tr><td><code>&lt;tfoot&gt;</code></td><td>table foot</td><td>Подвал — итоги, суммы</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Tag</th><th>Stands for</th><th>Contains</th></tr>
+        <tr><td><code>&lt;thead&gt;</code></td><td>table head</td><td>Header — rows with column titles</td></tr>
+        <tr><td><code>&lt;tbody&gt;</code></td><td>table body</td><td>Body — main data</td></tr>
+        <tr><td><code>&lt;tfoot&gt;</code></td><td>table foot</td><td>Footer — totals, summaries</td></tr>
+    </table>
+
+    <div class="why">
+        <p data-lang="ru">Зачем разделять таблицу на части, если визуально это ничего не меняет? Потому что <strong>семантическая структура</strong> помогает:</p>
+        <p data-lang="en">Why split a table into parts if it looks the same visually? Because <strong>semantic structure</strong> helps:</p>
+        <ul data-lang="ru">
+            <li><strong>Браузеру</strong> — при печати длинных таблиц <code>&lt;thead&gt;</code> повторяется на каждой странице</li>
+            <li><strong>Скринридерам</strong> — незрячие пользователи понимают, где заголовки, где данные, где итоги</li>
+            <li><strong>CSS</strong> — можно стилизовать шапку, тело и подвал по-разному</li>
+            <li><strong>JavaScript</strong> — легче обращаться к отдельным секциям таблицы</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>Browser</strong> — when printing long tables, <code>&lt;thead&gt;</code> repeats on each page</li>
+            <li><strong>Screen readers</strong> — visually impaired users understand where headers, data, and totals are</li>
+            <li><strong>CSS</strong> — you can style the header, body, and footer differently</li>
+            <li><strong>JavaScript</strong> — easier to access specific table sections</li>
+        </ul>
+    </div>
+
+    <div class="analogy">
+        <p data-lang="ru"><strong>Таблица — это как книга:</strong></p>
+        <p data-lang="en"><strong>A table is like a book:</strong></p>
+        <ul data-lang="ru">
+            <li><code>&lt;thead&gt;</code> = <strong>оглавление</strong> — сразу видно, какие данные в каждом столбце</li>
+            <li><code>&lt;tbody&gt;</code> = <strong>главы</strong> — основное содержание, ради которого мы открыли книгу</li>
+            <li><code>&lt;tfoot&gt;</code> = <strong>приложение / итоги</strong> — выводы, суммы, общие результаты</li>
+        </ul>
+        <ul data-lang="en">
+            <li><code>&lt;thead&gt;</code> = <strong>table of contents</strong> — immediately see what data is in each column</li>
+            <li><code>&lt;tbody&gt;</code> = <strong>chapters</strong> — the main content we opened the book for</li>
+            <li><code>&lt;tfoot&gt;</code> = <strong>appendix / summary</strong> — conclusions, totals, overall results</li>
+        </ul>
+    </div>
+
+<pre><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Товар&lt;/th&gt;
+            &lt;th&gt;Количество&lt;/th&gt;
+            &lt;th&gt;Цена&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Ноутбук&lt;/td&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;5000 TMT&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Мышь&lt;/td&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;200 TMT&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td colspan="2"&gt;&lt;strong&gt;Итого:&lt;/strong&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;strong&gt;5200 TMT&lt;/strong&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+
+    <div class="result-box">
+        <table data-lang="ru" style="width:100%;border-collapse:collapse;">
+            <thead>
+                <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;">Товар</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;">Количество</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;">Цена</th></tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Ноутбук</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">1</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">5000 TMT</td></tr>
+                <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Мышь</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">2</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">200 TMT</td></tr>
+            </tbody>
+            <tfoot>
+                <tr><td colspan="2" style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;"><strong>Итого:</strong></td><td style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;"><strong>5200 TMT</strong></td></tr>
+            </tfoot>
+        </table>
+        <table data-lang="en" style="width:100%;border-collapse:collapse;">
+            <thead>
+                <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;">Product</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;">Quantity</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;">Price</th></tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Laptop</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">1</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">5000 TMT</td></tr>
+                <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">Mouse</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">2</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">200 TMT</td></tr>
+            </tbody>
+            <tfoot>
+                <tr><td colspan="2" style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;"><strong>Total:</strong></td><td style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;"><strong>5200 TMT</strong></td></tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Печать и скроллинг:</strong> В длинных таблицах (например, бухгалтерские отчёты на 100+ строк) браузер при печати может повторять <code>&lt;thead&gt;</code> на каждой странице. А в некоторых CSS-фреймворках <code>&lt;thead&gt;</code> фиксируется при прокрутке — заголовки всегда видны, пока вы скроллите данные. Без семантической структуры это невозможно.</p>
+        <p data-lang="en"><strong>Printing and scrolling:</strong> In long tables (e.g., accounting reports with 100+ rows), the browser can repeat <code>&lt;thead&gt;</code> on each printed page. And in some CSS frameworks, <code>&lt;thead&gt;</code> stays fixed during scrolling — headers remain visible while you scroll through data. Without semantic structure, this is impossible.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 7. CAPTION ==================== -->
+    <h2 id="caption" data-lang="ru">7. caption — подпись таблицы</h2>
+    <h2 id="caption-en" data-lang="en">7. caption — table title</h2>
+
+    <p data-lang="ru">Тег <code>&lt;caption&gt;</code> добавляет заголовок/подпись к таблице. Он пишется <strong>сразу после <code>&lt;table&gt;</code></strong>:</p>
+    <p data-lang="en">The <code>&lt;caption&gt;</code> tag adds a title/caption to a table. It goes <strong>right after <code>&lt;table&gt;</code></strong>:</p>
+
+<pre><code>&lt;table&gt;
+    &lt;caption&gt;Расписание на понедельник&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;Время&lt;/th&gt;&lt;th&gt;Предмет&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;09:00&lt;/td&gt;&lt;td&gt;Математика&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;10:00&lt;/td&gt;&lt;td&gt;Информатика&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+    <div class="result-box">
+        <table data-lang="ru" style="width:100%;border-collapse:collapse;">
+            <caption style="caption-side:top;font-weight:700;font-size:1.05rem;padding:8px 0;color:#1e293b;">Расписание на понедельник</caption>
+            <thead>
+                <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;">Время</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;">Предмет</th></tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">09:00</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Математика</td></tr>
+                <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">10:00</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Информатика</td></tr>
+            </tbody>
+        </table>
+        <table data-lang="en" style="width:100%;border-collapse:collapse;">
+            <caption style="caption-side:top;font-weight:700;font-size:1.05rem;padding:8px 0;color:#1e293b;">Monday Schedule</caption>
+            <thead>
+                <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;">Time</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#f1f5f9;">Subject</th></tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">09:00</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Mathematics</td></tr>
+                <tr><td style="padding:10px 14px;border:1px solid #e2e8f0;">10:00</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Computer Science</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru">По умолчанию <code>&lt;caption&gt;</code> отображается <strong>сверху</strong> таблицы. Но с помощью CSS-свойства <code>caption-side: bottom</code> его можно переместить <strong>под таблицу</strong> — это удобно, когда подпись выглядит как сноска. Просто добавьте:</p>
+        <p data-lang="en">By default, <code>&lt;caption&gt;</code> appears <strong>above</strong> the table. But with the CSS property <code>caption-side: bottom</code> you can move it <strong>below the table</strong> — useful when the caption looks like a footnote. Just add:</p>
+<pre><code>caption {
+    caption-side: bottom;
+    font-style: italic;
+    color: #64748b;
+}</code></pre>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <code>&lt;caption&gt;</code> важен для доступности: скринридеры произносят его перед чтением таблицы, давая пользователю контекст о том, какие данные будут представлены.
+    </div>
+    <div class="highlight" data-lang="en">
+        <code>&lt;caption&gt;</code> is important for accessibility: screen readers announce it before reading the table, giving users context about what data will be presented.
+    </div>
+
+    <hr>
+
+    <!-- ==================== 8. CSS: БАЗОВАЯ СТИЛИЗАЦИЯ ==================== -->
+    <h2 id="css-basic" data-lang="ru">8. CSS: базовая стилизация</h2>
+    <h2 id="css-basic-en" data-lang="en">8. CSS: basic styling</h2>
+
+    <div class="why">
+        <p data-lang="ru">Почему таблицы нужно стилизовать? Потому что <strong>по умолчанию таблица в HTML выглядит ужасно</strong> — без рамок, без отступов, без фона. Текст сливается, данные трудно читать. Несколько строк CSS превращают эту «голую» таблицу в читаемый, профессиональный компонент.</p>
+        <p data-lang="en">Why do tables need styling? Because <strong>a default HTML table looks terrible</strong> — no borders, no padding, no background. Text merges together, data is hard to read. A few lines of CSS transform this "bare" table into a readable, professional component.</p>
+    </div>
+
+    <p data-lang="ru">Вот базовый набор CSS для любой таблицы:</p>
+    <p data-lang="en">Here is a basic CSS set for any table:</p>
+
+<pre><code>table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border: 1px solid #e2e8f0;
+}
+
+th {
+    background: #f1f5f9;
+    font-weight: 600;
+    color: #1e293b;
+}</code></pre>
+
+    <p data-lang="ru">Разбираем ключевые свойства:</p>
+    <p data-lang="en">Key properties explained:</p>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что делает</th></tr>
+        <tr><td><code>width: 100%</code></td><td>Таблица на всю ширину контейнера</td></tr>
+        <tr><td><code>border-collapse: collapse</code></td><td>Рамки ячеек сливаются в одну линию (без двойных рамок)</td></tr>
+        <tr><td><code>padding: 12px 16px</code></td><td>Отступы внутри ячеек</td></tr>
+        <tr><td><code>text-align: left</code></td><td>Текст по левому краю</td></tr>
+        <tr><td><code>border: 1px solid #e2e8f0</code></td><td>Светлая рамка вокруг ячеек</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it does</th></tr>
+        <tr><td><code>width: 100%</code></td><td>Table spans full container width</td></tr>
+        <tr><td><code>border-collapse: collapse</code></td><td>Cell borders merge into a single line (no double borders)</td></tr>
+        <tr><td><code>padding: 12px 16px</code></td><td>Spacing inside cells</td></tr>
+        <tr><td><code>text-align: left</code></td><td>Left-aligned text</td></tr>
+        <tr><td><code>border: 1px solid #e2e8f0</code></td><td>Light border around cells</td></tr>
+    </table>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">Без стилей (по умолчанию)</div>
+            <div class="label" data-lang="en">No styles (default)</div>
+            <table style="border-collapse:separate;border-spacing:0;">
+                <tr><td>HTML</td><td>CSS</td><td>JS</td></tr>
+                <tr><td>Теги</td><td>Стили</td><td>Логика</td></tr>
+            </table>
+            <p data-lang="ru" style="font-size:0.85rem;margin-top:8px;color:#64748b;">Нет рамок, нет отступов, данные сливаются</p>
+            <p data-lang="en" style="font-size:0.85rem;margin-top:8px;color:#64748b;">No borders, no padding, data merges together</p>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">Со стилями</div>
+            <div class="label" data-lang="en">With styles</div>
+            <table style="width:100%;border-collapse:collapse;">
+                <tr><th style="padding:8px 12px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;text-align:left;">HTML</th><th style="padding:8px 12px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;text-align:left;">CSS</th><th style="padding:8px 12px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;text-align:left;">JS</th></tr>
+                <tr><td style="padding:8px 12px;border:1px solid #e2e8f0;">Теги</td><td style="padding:8px 12px;border:1px solid #e2e8f0;">Стили</td><td style="padding:8px 12px;border:1px solid #e2e8f0;">Логика</td></tr>
+            </table>
+            <p data-lang="ru" style="font-size:0.85rem;margin-top:8px;color:#64748b;">Чистый, профессиональный вид</p>
+            <p data-lang="en" style="font-size:0.85rem;margin-top:8px;color:#64748b;">Clean, professional look</p>
+        </div>
+    </div>
+
+    <div class="result-box">
+        <p data-lang="ru" style="font-size:0.9rem;color:#64748b;margin-bottom:10px;">Полностью стилизованная таблица:</p>
+        <p data-lang="en" style="font-size:0.9rem;color:#64748b;margin-bottom:10px;">Fully styled table:</p>
+        <table data-lang="ru" style="width:100%;border-collapse:collapse;">
+            <thead>
+                <tr>
+                    <th style="padding:12px 16px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;text-align:left;color:#1e293b;">Язык</th>
+                    <th style="padding:12px 16px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;text-align:left;color:#1e293b;">Назначение</th>
+                    <th style="padding:12px 16px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;text-align:left;color:#1e293b;">Сложность</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding:12px 16px;border:1px solid #e2e8f0;">HTML</td><td style="padding:12px 16px;border:1px solid #e2e8f0;">Структура страницы</td><td style="padding:12px 16px;border:1px solid #e2e8f0;">Легко</td></tr>
+                <tr><td style="padding:12px 16px;border:1px solid #e2e8f0;">CSS</td><td style="padding:12px 16px;border:1px solid #e2e8f0;">Стилизация</td><td style="padding:12px 16px;border:1px solid #e2e8f0;">Средне</td></tr>
+                <tr><td style="padding:12px 16px;border:1px solid #e2e8f0;">JavaScript</td><td style="padding:12px 16px;border:1px solid #e2e8f0;">Интерактивность</td><td style="padding:12px 16px;border:1px solid #e2e8f0;">Сложно</td></tr>
+            </tbody>
+        </table>
+        <table data-lang="en" style="width:100%;border-collapse:collapse;">
+            <thead>
+                <tr>
+                    <th style="padding:12px 16px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;text-align:left;color:#1e293b;">Language</th>
+                    <th style="padding:12px 16px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;text-align:left;color:#1e293b;">Purpose</th>
+                    <th style="padding:12px 16px;border:1px solid #e2e8f0;background:#f1f5f9;font-weight:600;text-align:left;color:#1e293b;">Difficulty</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="padding:12px 16px;border:1px solid #e2e8f0;">HTML</td><td style="padding:12px 16px;border:1px solid #e2e8f0;">Page structure</td><td style="padding:12px 16px;border:1px solid #e2e8f0;">Easy</td></tr>
+                <tr><td style="padding:12px 16px;border:1px solid #e2e8f0;">CSS</td><td style="padding:12px 16px;border:1px solid #e2e8f0;">Styling</td><td style="padding:12px 16px;border:1px solid #e2e8f0;">Medium</td></tr>
+                <tr><td style="padding:12px 16px;border:1px solid #e2e8f0;">JavaScript</td><td style="padding:12px 16px;border:1px solid #e2e8f0;">Interactivity</td><td style="padding:12px 16px;border:1px solid #e2e8f0;">Hard</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 9. BORDER-COLLAPSE ==================== -->
+    <h2 id="css-borders" data-lang="ru">9. CSS: рамки и border-collapse</h2>
+    <h2 id="css-borders-en" data-lang="en">9. CSS: borders and border-collapse</h2>
+
+    <p data-lang="ru">Самое важное свойство для таблиц — <code>border-collapse</code>:</p>
+    <p data-lang="en">The most important property for tables is <code>border-collapse</code>:</p>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">border-collapse: separate</div>
+            <p data-lang="ru">Между ячейками — зазоры. Двойные рамки. Так по умолчанию.</p>
+            <p data-lang="en">Gaps between cells. Double borders. This is the default.</p>
+        </div>
+        <div class="right">
+            <div class="label">border-collapse: collapse</div>
+            <p data-lang="ru">Рамки сливаются. Чистый вид. Почти всегда используем это!</p>
+            <p data-lang="en">Borders merge. Clean look. Almost always use this!</p>
+        </div>
+    </div>
+
+    <div class="result-box">
+        <p data-lang="ru" style="font-weight:600;margin-bottom:8px;">border-collapse: separate (по умолчанию):</p>
+        <p data-lang="en" style="font-weight:600;margin-bottom:8px;">border-collapse: separate (default):</p>
+        <table style="width:100%;border-collapse:separate;border-spacing:4px;">
+            <tr><th style="padding:8px 12px;border:2px solid #94a3b8;background:#f1f5f9;">A</th><th style="padding:8px 12px;border:2px solid #94a3b8;background:#f1f5f9;">B</th><th style="padding:8px 12px;border:2px solid #94a3b8;background:#f1f5f9;">C</th></tr>
+            <tr><td style="padding:8px 12px;border:2px solid #94a3b8;">1</td><td style="padding:8px 12px;border:2px solid #94a3b8;">2</td><td style="padding:8px 12px;border:2px solid #94a3b8;">3</td></tr>
+            <tr><td style="padding:8px 12px;border:2px solid #94a3b8;">4</td><td style="padding:8px 12px;border:2px solid #94a3b8;">5</td><td style="padding:8px 12px;border:2px solid #94a3b8;">6</td></tr>
+        </table>
+        <p data-lang="ru" style="font-size:0.85rem;color:#ef4444;margin:4px 0 16px;">Видите зазоры между ячейками и двойные рамки?</p>
+        <p data-lang="en" style="font-size:0.85rem;color:#ef4444;margin:4px 0 16px;">See the gaps between cells and double borders?</p>
+
+        <p data-lang="ru" style="font-weight:600;margin-bottom:8px;">border-collapse: collapse:</p>
+        <p data-lang="en" style="font-weight:600;margin-bottom:8px;">border-collapse: collapse:</p>
+        <table style="width:100%;border-collapse:collapse;">
+            <tr><th style="padding:8px 12px;border:2px solid #94a3b8;background:#f1f5f9;">A</th><th style="padding:8px 12px;border:2px solid #94a3b8;background:#f1f5f9;">B</th><th style="padding:8px 12px;border:2px solid #94a3b8;background:#f1f5f9;">C</th></tr>
+            <tr><td style="padding:8px 12px;border:2px solid #94a3b8;">1</td><td style="padding:8px 12px;border:2px solid #94a3b8;">2</td><td style="padding:8px 12px;border:2px solid #94a3b8;">3</td></tr>
+            <tr><td style="padding:8px 12px;border:2px solid #94a3b8;">4</td><td style="padding:8px 12px;border:2px solid #94a3b8;">5</td><td style="padding:8px 12px;border:2px solid #94a3b8;">6</td></tr>
+        </table>
+        <p data-lang="ru" style="font-size:0.85rem;color:#22c55e;margin:4px 0 0;">Чистые, аккуратные рамки без зазоров!</p>
+        <p data-lang="en" style="font-size:0.85rem;color:#22c55e;margin:4px 0 0;">Clean, neat borders with no gaps!</p>
+    </div>
+
+<pre><code>/* Всегда добавляй это! / Always add this! */
+table {
+    border-collapse: collapse;
+}</code></pre>
+
+    <div class="fun-fact">
+        <p data-lang="ru">Почему <code>separate</code> — значение по умолчанию, а не <code>collapse</code>? Потому что стандарт CSS был написан в конце 90-х, когда таблицы использовались для вёрстки страниц. В те времена зазоры между ячейками были нужны для создания отступов в макете. Сегодня это наследие прошлого — почти все разработчики сразу добавляют <code>border-collapse: collapse</code>.</p>
+        <p data-lang="en">Why is <code>separate</code> the default value instead of <code>collapse</code>? Because the CSS standard was written in the late 90s when tables were used for page layout. Back then, gaps between cells were needed to create spacing in layouts. Today it's a legacy — almost all developers immediately add <code>border-collapse: collapse</code>.</p>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru">Если вам <em>нужны</em> зазоры между ячейками (например, для карточного дизайна), используйте <code>border-collapse: separate</code> вместе с <code>border-spacing: 8px</code>. Это даёт контролируемые равномерные зазоры.</p>
+        <p data-lang="en">If you <em>do</em> need gaps between cells (e.g., for a card-style design), use <code>border-collapse: separate</code> together with <code>border-spacing: 8px</code>. This gives controlled, even gaps.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 10. ZEBRA ==================== -->
+    <h2 id="css-zebra" data-lang="ru">10. CSS: полосатая таблица (zebra)</h2>
+    <h2 id="css-zebra-en" data-lang="en">10. CSS: striped table (zebra)</h2>
+
+    <p data-lang="ru">«Полосатая» таблица чередует цвет фона строк — это улучшает читаемость:</p>
+    <p data-lang="en">A "striped" table alternates row background colors — this improves readability:</p>
+
+<pre><code>/* Каждая чётная строка — серая / Every even row is gray */
+tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+/* Или каждая нечётная — серая / Or every odd row */
+tbody tr:nth-child(odd) {
+    background: #f8fafc;
+}</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Псевдокласс <code>:nth-child(even)</code></strong> выбирает каждый чётный элемент (2-й, 4-й, 6-й...). <code>:nth-child(odd)</code> — каждый нечётный (1-й, 3-й, 5-й...).
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Pseudo-class <code>:nth-child(even)</code></strong> selects every even element (2nd, 4th, 6th...). <code>:nth-child(odd)</code> — every odd one (1st, 3rd, 5th...).
+    </div>
+
+    <div class="result-box">
+        <p data-lang="ru" style="font-size:0.9rem;color:#64748b;margin-bottom:10px;">Полосатая таблица (чётные строки — серые):</p>
+        <p data-lang="en" style="font-size:0.9rem;color:#64748b;margin-bottom:10px;">Striped table (even rows are gray):</p>
+        <table data-lang="ru" style="width:100%;border-collapse:collapse;">
+            <thead>
+                <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:left;">Город</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:left;">Страна</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:left;">Население</th></tr>
+            </thead>
+            <tbody>
+                <tr style="background:#fff;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">Ашхабад</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Туркменистан</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">1 000 000</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">Стамбул</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Турция</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">15 000 000</td></tr>
+                <tr style="background:#fff;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">Москва</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Россия</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">12 000 000</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">Дубай</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">ОАЭ</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">3 400 000</td></tr>
+                <tr style="background:#fff;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">Пекин</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Китай</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">21 500 000</td></tr>
+            </tbody>
+        </table>
+        <table data-lang="en" style="width:100%;border-collapse:collapse;">
+            <thead>
+                <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:left;">City</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:left;">Country</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:left;">Population</th></tr>
+            </thead>
+            <tbody>
+                <tr style="background:#fff;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">Ashgabat</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Turkmenistan</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">1,000,000</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">Istanbul</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Turkey</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">15,000,000</td></tr>
+                <tr style="background:#fff;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">Moscow</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Russia</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">12,000,000</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">Dubai</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">UAE</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">3,400,000</td></tr>
+                <tr style="background:#fff;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">Beijing</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">China</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">21,500,000</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Полосатые таблицы — повсюду!</strong> Откройте Gmail — письма чередуют фон. Откройте Google Sheets — строки слегка различаются по цвету. Даже в бумажных бухгалтерских книгах строки чередовались цветом (зелёная бумага). Этот паттерн существует десятилетиями, потому что он реально работает: глаз легче отслеживает данные по горизонтали.</p>
+        <p data-lang="en"><strong>Striped tables are everywhere!</strong> Open Gmail — emails alternate backgrounds. Open Google Sheets — rows differ slightly in color. Even paper accounting ledgers alternated row colors (green paper). This pattern has existed for decades because it truly works: the eye more easily tracks data horizontally.</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Попробуйте изменить цвет полосок на <code>#eff6ff</code> (голубой) или <code>#f0fdf4</code> (зелёный) — таблица заиграет по-другому! Экспериментируйте с разными оттенками, но помните: полоски должны быть <strong>едва заметными</strong>, не яркими.</p>
+        <p data-lang="en">Try changing the stripe color to <code>#eff6ff</code> (light blue) or <code>#f0fdf4</code> (light green) — the table will look different! Experiment with different shades, but remember: stripes should be <strong>subtle</strong>, not bold.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 11. HOVER ==================== -->
+    <h2 id="css-hover" data-lang="ru">11. CSS: подсветка строки при наведении</h2>
+    <h2 id="css-hover-en" data-lang="en">11. CSS: row highlight on hover</h2>
+
+    <p data-lang="ru">При наведении мыши на строку — она подсвечивается. Это помогает пользователю отслеживать данные в широких таблицах.</p>
+    <p data-lang="en">When the mouse hovers over a row — it highlights. This helps users track data in wide tables.</p>
+
+<pre><code>tbody tr:hover {
+    background: #dbeafe;
+}</code></pre>
+
+    <p data-lang="ru">Можно добавить плавный переход:</p>
+    <p data-lang="en">You can add a smooth transition:</p>
+
+<pre><code>tbody tr {
+    transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+    background: #dbeafe;
+}</code></pre>
+
+    <div class="result-box">
+        <p data-lang="ru" style="font-size:0.9rem;color:#64748b;margin-bottom:10px;">Наведите мышь на строки таблицы:</p>
+        <p data-lang="en" style="font-size:0.9rem;color:#64748b;margin-bottom:10px;">Hover your mouse over the table rows:</p>
+        <style>
+            .hover-demo-table tbody tr { transition: background 0.2s ease; }
+            .hover-demo-table tbody tr:hover { background: #dbeafe !important; }
+        </style>
+        <table class="hover-demo-table" data-lang="ru" style="width:100%;border-collapse:collapse;">
+            <thead>
+                <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:left;">Курс</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:left;">Длительность</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:left;">Уровень</th></tr>
+            </thead>
+            <tbody>
+                <tr style="background:#fff;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">HTML & CSS</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">4 недели</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Начальный</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">JavaScript</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">6 недель</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Средний</td></tr>
+                <tr style="background:#fff;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">React</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">8 недель</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Продвинутый</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">Node.js</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">6 недель</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Средний</td></tr>
+            </tbody>
+        </table>
+        <table class="hover-demo-table" data-lang="en" style="width:100%;border-collapse:collapse;">
+            <thead>
+                <tr><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:left;">Course</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:left;">Duration</th><th style="padding:10px 14px;border:1px solid #e2e8f0;background:#1e293b;color:#fff;text-align:left;">Level</th></tr>
+            </thead>
+            <tbody>
+                <tr style="background:#fff;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">HTML & CSS</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">4 weeks</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Beginner</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">JavaScript</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">6 weeks</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Intermediate</td></tr>
+                <tr style="background:#fff;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">React</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">8 weeks</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Advanced</td></tr>
+                <tr style="background:#f8fafc;"><td style="padding:10px 14px;border:1px solid #e2e8f0;">Node.js</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">6 weeks</td><td style="padding:10px 14px;border:1px solid #e2e8f0;">Intermediate</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Hover-подсветка</strong> — стандарт в дата-дашбордах (панелях аналитики). Представьте таблицу с 50 столбцами (как в Google Analytics или финансовых отчётах). Без подсветки строки глаз легко «соскакивает» на соседнюю строку. С hover пользователь всегда видит, какую строку он читает.</p>
+        <p data-lang="en"><strong>Hover highlighting</strong> is standard in data dashboards (analytics panels). Imagine a table with 50 columns (like in Google Analytics or financial reports). Without row highlighting, the eye easily "jumps" to an adjacent row. With hover, the user always sees which row they're reading.</p>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru">Совмещайте <strong>полоски (zebra) + hover</strong> для лучшего UX. Полоски помогают при статичном чтении, а hover — при интерактивном. Убедитесь, что цвет hover <strong>отличается</strong> от цвета полосок, иначе эффект будет незаметен.</p>
+        <p data-lang="en">Combine <strong>stripes (zebra) + hover</strong> for the best UX. Stripes help during static reading, while hover helps during interaction. Make sure the hover color is <strong>different</strong> from the stripe color, otherwise the effect won't be visible.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 12. PRICING TABLE ==================== -->
+    <h2 id="css-pricing" data-lang="ru">12. CSS: таблица тарифов (Pricing Table)</h2>
+    <h2 id="css-pricing-en" data-lang="en">12. CSS: Pricing Table</h2>
+
+    <p data-lang="ru">Таблица тарифов — классический пример красиво стилизованной таблицы. Вот полный код:</p>
+    <p data-lang="en">A pricing table is a classic example of a beautifully styled table. Here's the full code:</p>
+
+    <h3>HTML:</h3>
+
+<pre><code>&lt;table class="pricing"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;&lt;/th&gt;
+            &lt;th&gt;Базовый&lt;/th&gt;
+            &lt;th class="popular"&gt;Про&lt;/th&gt;
+            &lt;th&gt;Бизнес&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Цена / месяц&lt;/td&gt;
+            &lt;td&gt;Бесплатно&lt;/td&gt;
+            &lt;td class="popular"&gt;&lt;strong&gt;$9&lt;/strong&gt;&lt;/td&gt;
+            &lt;td&gt;$29&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Проекты&lt;/td&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td class="popular"&gt;Безлимит&lt;/td&gt;
+            &lt;td&gt;Безлимит&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Хранилище&lt;/td&gt;
+            &lt;td&gt;1 ГБ&lt;/td&gt;
+            &lt;td class="popular"&gt;50 ГБ&lt;/td&gt;
+            &lt;td&gt;500 ГБ&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Поддержка&lt;/td&gt;
+            &lt;td&gt;Email&lt;/td&gt;
+            &lt;td class="popular"&gt;Чат 24/7&lt;/td&gt;
+            &lt;td&gt;Персональный менеджер&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Аналитика&lt;/td&gt;
+            &lt;td&gt;&#x2717;&lt;/td&gt;
+            &lt;td class="popular"&gt;&#x2713;&lt;/td&gt;
+            &lt;td&gt;&#x2713;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+    <h3>CSS:</h3>
+
+<pre><code>.pricing {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.pricing th,
+.pricing td {
+    padding: 14px 20px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+}
+
+.pricing thead th {
+    background: #1e293b;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 18px 20px;
+}
+
+.pricing thead th.popular {
+    background: #3b82f6;
+    position: relative;
+}
+
+.pricing td.popular {
+    background: #eff6ff;
+}
+
+.pricing tbody tr:hover {
+    background: #f1f5f9;
+}
+
+.pricing tbody tr:hover td.popular {
+    background: #dbeafe;
+}</code></pre>
+
+    <div class="result-box">
+        <p data-lang="ru" style="font-size:0.9rem;color:#64748b;margin-bottom:10px;">Готовая таблица тарифов:</p>
+        <p data-lang="en" style="font-size:0.9rem;color:#64748b;margin-bottom:10px;">Complete pricing table:</p>
+        <style>
+            .pricing-demo { width: 100%; border-collapse: collapse; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-radius: 12px; }
+            .pricing-demo th, .pricing-demo td { padding: 14px 20px; text-align: center; border: 1px solid #e2e8f0; }
+            .pricing-demo thead th { background: #1e293b; color: #fff; font-size: 1.05rem; padding: 16px 20px; }
+            .pricing-demo thead th.pop { background: #3b82f6; }
+            .pricing-demo td.pop { background: #eff6ff; }
+            .pricing-demo tbody tr { transition: background 0.2s ease; }
+            .pricing-demo tbody tr:hover { background: #f1f5f9; }
+            .pricing-demo tbody tr:hover td.pop { background: #dbeafe; }
+        </style>
+        <table class="pricing-demo" data-lang="ru">
+            <thead>
+                <tr><th></th><th>Базовый</th><th class="pop">Про</th><th>Бизнес</th></tr>
+            </thead>
+            <tbody>
+                <tr><td style="text-align:left;font-weight:600;">Цена / месяц</td><td>Бесплатно</td><td class="pop"><strong style="font-size:1.2rem;">$9</strong></td><td>$29</td></tr>
+                <tr><td style="text-align:left;font-weight:600;">Проекты</td><td>3</td><td class="pop">Безлимит</td><td>Безлимит</td></tr>
+                <tr><td style="text-align:left;font-weight:600;">Хранилище</td><td>1 ГБ</td><td class="pop">50 ГБ</td><td>500 ГБ</td></tr>
+                <tr><td style="text-align:left;font-weight:600;">Поддержка</td><td>Email</td><td class="pop">Чат 24/7</td><td>Персональный менеджер</td></tr>
+                <tr><td style="text-align:left;font-weight:600;">Аналитика</td><td style="color:#ef4444;">&#x2717;</td><td class="pop" style="color:#22c55e;">&#x2713;</td><td style="color:#22c55e;">&#x2713;</td></tr>
+            </tbody>
+        </table>
+        <table class="pricing-demo" data-lang="en">
+            <thead>
+                <tr><th></th><th>Basic</th><th class="pop">Pro</th><th>Business</th></tr>
+            </thead>
+            <tbody>
+                <tr><td style="text-align:left;font-weight:600;">Price / month</td><td>Free</td><td class="pop"><strong style="font-size:1.2rem;">$9</strong></td><td>$29</td></tr>
+                <tr><td style="text-align:left;font-weight:600;">Projects</td><td>3</td><td class="pop">Unlimited</td><td>Unlimited</td></tr>
+                <tr><td style="text-align:left;font-weight:600;">Storage</td><td>1 GB</td><td class="pop">50 GB</td><td>500 GB</td></tr>
+                <tr><td style="text-align:left;font-weight:600;">Support</td><td>Email</td><td class="pop">Chat 24/7</td><td>Personal manager</td></tr>
+                <tr><td style="text-align:left;font-weight:600;">Analytics</td><td style="color:#ef4444;">&#x2717;</td><td class="pop" style="color:#22c55e;">&#x2713;</td><td style="color:#22c55e;">&#x2713;</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Pricing Table</strong> — один из самых распространённых компонентов на SaaS-сайтах (Software as a Service). Откройте любой сервис — Notion, Figma, GitHub, Spotify — и вы увидите таблицу тарифов. Обычно 3-4 столбца: бесплатный, стандартный, премиум (и иногда корпоративный).</p>
+        <p data-lang="en"><strong>Pricing Table</strong> is one of the most common components on SaaS sites (Software as a Service). Open any service — Notion, Figma, GitHub, Spotify — and you'll see a pricing table. Usually 3-4 columns: free, standard, premium (and sometimes enterprise).</p>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>UX-паттерн: выделяй рекомендуемый тариф!</strong> В нашем примере столбец «Про» выделен синим цветом. Это не случайно — это <strong>классический приём</strong> UX-дизайна. Большинство сервисов хотят, чтобы пользователь выбрал средний тариф (не самый дешёвый и не самый дорогой). Поэтому его выделяют цветом, надписью «Популярный» или даже делают его чуть шире остальных.</p>
+        <p data-lang="en"><strong>UX pattern: highlight the recommended plan!</strong> In our example, the "Pro" column is highlighted in blue. This is not accidental — it's a <strong>classic UX design technique</strong>. Most services want users to choose the middle tier (not the cheapest and not the most expensive). So they highlight it with color, a "Popular" badge, or even make it slightly wider than others.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 13. КОГДА НЕ ИСПОЛЬЗОВАТЬ ==================== -->
+    <h2 id="when-not" data-lang="ru">13. Когда НЕ использовать таблицы</h2>
+    <h2 id="when-not-en" data-lang="en">13. When NOT to use tables</h2>
+
+    <div class="important" data-lang="ru">
+        <strong>Таблицы — только для табличных данных!</strong> Не используйте <code>&lt;table&gt;</code> для:
+        <ul>
+            <li>Раскладки страницы (вёрстки) — используйте Flexbox или Grid</li>
+            <li>Создания колонок — используйте CSS</li>
+            <li>Навигации — используйте <code>&lt;nav&gt;</code> + <code>&lt;ul&gt;</code></li>
+            <li>Карточек товаров — используйте <code>&lt;div&gt;</code> + Flexbox/Grid</li>
+        </ul>
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Tables are only for tabular data!</strong> Do NOT use <code>&lt;table&gt;</code> for:
+        <ul>
+            <li>Page layout — use Flexbox or Grid</li>
+            <li>Creating columns — use CSS</li>
+            <li>Navigation — use <code>&lt;nav&gt;</code> + <code>&lt;ul&gt;</code></li>
+            <li>Product cards — use <code>&lt;div&gt;</code> + Flexbox/Grid</li>
+        </ul>
+    </div>
+
+    <div class="fun-fact">
+        <p data-lang="ru"><strong>История табличной вёрстки.</strong> В 1990-х и начале 2000-х сайты строились целиком на таблицах. Шапка сайта — строка таблицы, боковое меню — ячейка, основной контент — другая ячейка. Это было <em>единственным</em> способом создать многоколоночную раскладку. Посмотрите <a href="https://web.archive.org" target="_blank">web.archive.org</a> — там можно увидеть, как выглядели сайты Amazon, Yahoo, NASA в те времена. Все они были на таблицах!</p>
+        <p data-lang="en"><strong>History of table-based layout.</strong> In the 1990s and early 2000s, entire websites were built with tables. The site header was a table row, the sidebar was a cell, the main content was another cell. This was the <em>only</em> way to create multi-column layouts. Check <a href="https://web.archive.org" target="_blank">web.archive.org</a> — you can see how Amazon, Yahoo, NASA websites looked back then. They were all built with tables!</p>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Ситуация:</strong> новичок хочет расположить 3 карточки товаров в ряд и использует таблицу: каждая карточка — ячейка <code>&lt;td&gt;</code>. Карточки вроде бы стоят в ряд, но:</p>
+        <p data-lang="en"><strong>Situation:</strong> a beginner wants to arrange 3 product cards in a row and uses a table: each card is a <code>&lt;td&gt;</code> cell. The cards seem to be in a row, but:</p>
+        <ul data-lang="ru">
+            <li>На мобильном телефоне таблица не адаптируется — карточки будут крошечными</li>
+            <li>Скринридер объявит «таблица» — незрячий пользователь будет искать табличные данные, а не карточки</li>
+            <li>Код становится запутанным — куча вложенных тегов</li>
+        </ul>
+        <ul data-lang="en">
+            <li>On mobile the table won't adapt — cards will be tiny</li>
+            <li>Screen reader will announce "table" — a blind user will expect tabular data, not cards</li>
+            <li>Code becomes confusing — lots of nested tags</li>
+        </ul>
+        <p data-lang="ru"><strong>Решение:</strong> используйте <code>display: flex</code> или <code>display: grid</code> на контейнере <code>&lt;div&gt;</code>. Это правильный, современный подход.</p>
+        <p data-lang="en"><strong>Solution:</strong> use <code>display: flex</code> or <code>display: grid</code> on a <code>&lt;div&gt;</code> container. This is the correct, modern approach.</p>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Простое правило:</strong> спросите себя: «Эти данные имеют строки и столбцы с заголовками?» Если да — таблица. Если нет — используйте другие элементы.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Simple rule:</strong> ask yourself: "Does this data have rows and columns with headers?" If yes — table. If no — use other elements.
+    </div>
+
+    <hr>
+
+    <!-- ==================== 14. ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">14. Практика</h2>
+    <h2 id="practice-en" data-lang="en">14. Practice</h2>
+
+    <p data-lang="ru">Сегодня мы создадим:</p>
+    <p data-lang="en">Today we will create:</p>
+
+    <ol data-lang="ru">
+        <li><strong>Таблицу-расписание</strong> — с <code>thead</code>, <code>tbody</code>, <code>rowspan</code>, полосатую, с hover-эффектом</li>
+        <li><strong>Pricing Table</strong> — таблицу тарифов с выделенным столбцом</li>
+    </ol>
+    <ol data-lang="en">
+        <li><strong>Schedule table</strong> — with <code>thead</code>, <code>tbody</code>, <code>rowspan</code>, striped, with hover effect</li>
+        <li><strong>Pricing Table</strong> — tariff table with a highlighted column</li>
+    </ol>
+
+    <div class="summary">
+        <ul data-lang="ru">
+            <li><code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code>, <code>&lt;th&gt;</code> — базовые теги таблиц</li>
+            <li><code>colspan</code> — объединить несколько столбцов</li>
+            <li><code>rowspan</code> — объединить несколько строк</li>
+            <li><code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code> — семантическая структура</li>
+            <li><code>&lt;caption&gt;</code> — подпись таблицы (важно для доступности)</li>
+            <li><code>border-collapse: collapse</code> — убрать двойные рамки</li>
+            <li><code>:nth-child(even/odd)</code> — полосатая таблица</li>
+            <li><code>tr:hover</code> — подсветка строки</li>
+            <li>Таблицы — <strong>только для табличных данных</strong>, не для вёрстки!</li>
+        </ul>
+        <ul data-lang="en">
+            <li><code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code>, <code>&lt;th&gt;</code> — basic table tags</li>
+            <li><code>colspan</code> — merge multiple columns</li>
+            <li><code>rowspan</code> — merge multiple rows</li>
+            <li><code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code> — semantic structure</li>
+            <li><code>&lt;caption&gt;</code> — table caption (important for accessibility)</li>
+            <li><code>border-collapse: collapse</code> — remove double borders</li>
+            <li><code>:nth-child(even/odd)</code> — striped table</li>
+            <li><code>tr:hover</code> — row highlight</li>
+            <li>Tables are <strong>only for tabular data</strong>, not for layout!</li>
+        </ul>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Отлаживайте таблицы в DevTools!</strong> Если таблица «поехала» — откройте DevTools (F12), найдите элемент <code>&lt;table&gt;</code> и проверьте:</p>
+        <p data-lang="en"><strong>Debug tables in DevTools!</strong> If a table looks broken — open DevTools (F12), find the <code>&lt;table&gt;</code> element and check:</p>
+        <ul data-lang="ru">
+            <li>Одинаковое ли количество ячеек в каждой строке?</li>
+            <li>Правильно ли указаны <code>colspan</code> / <code>rowspan</code>?</li>
+            <li>Наведите на ячейку — DevTools подсветит её границы</li>
+            <li>Посмотрите Computed-стили, чтобы увидеть реальные padding и border</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Is the number of cells the same in each row?</li>
+            <li>Are <code>colspan</code> / <code>rowspan</code> values correct?</li>
+            <li>Hover over a cell — DevTools will highlight its boundaries</li>
+            <li>Check Computed styles to see actual padding and border values</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p data-lang="ru">Мысленно ответьте:</p>
+        <p data-lang="en">Answer in your head:</p>
+        <ol data-lang="ru">
+            <li>Какой тег создаёт строку таблицы? <em>(<code>&lt;tr&gt;</code> — table row)</em></li>
+            <li>Чем <code>&lt;th&gt;</code> отличается от <code>&lt;td&gt;</code>? <em>(th — заголовок: жирный, центрированный, семантический. td — обычные данные)</em></li>
+            <li>Что делает атрибут <code>colspan="3"</code>? <em>(Ячейка занимает место 3 столбцов)</em></li>
+            <li>Зачем нужен <code>border-collapse: collapse</code>? <em>(Убирает двойные рамки и зазоры между ячейками)</em></li>
+            <li>Как сделать каждую чётную строку серой? <em>(<code>tbody tr:nth-child(even) { background: #f8fafc; }</code>)</em></li>
+            <li>Можно ли использовать таблицу для вёрстки страницы? <em>(Нет! Используйте Flexbox или Grid)</em></li>
+            <li>Зачем нужны <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code>? <em>(Семантика, доступность, возможность стилизовать секции раздельно, повтор заголовков при печати)</em></li>
+        </ol>
+        <ol data-lang="en">
+            <li>Which tag creates a table row? <em>(<code>&lt;tr&gt;</code> — table row)</em></li>
+            <li>How is <code>&lt;th&gt;</code> different from <code>&lt;td&gt;</code>? <em>(th is a header: bold, centered, semantic. td is regular data)</em></li>
+            <li>What does the <code>colspan="3"</code> attribute do? <em>(The cell takes up the space of 3 columns)</em></li>
+            <li>Why do we need <code>border-collapse: collapse</code>? <em>(Removes double borders and gaps between cells)</em></li>
+            <li>How to make every even row gray? <em>(<code>tbody tr:nth-child(even) { background: #f8fafc; }</code>)</em></li>
+            <li>Can you use a table for page layout? <em>(No! Use Flexbox or Grid)</em></li>
+            <li>Why do we need <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code>? <em>(Semantics, accessibility, ability to style sections separately, header repetition when printing)</em></li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

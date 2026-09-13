@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 6 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 6: Введение в CSS</span>
+    <span class="nav-title" data-lang="en">Lesson 6: Introduction to CSS</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+
+    <p class="subtitle" data-lang="ru">Занятие 6: Введение в CSS</p>
+    <p class="subtitle" data-lang="en">Lesson 6: Introduction to CSS</p>
+
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <!-- ЧТО ТАКОЕ CSS / WHAT IS CSS -->
+    <h2 data-lang="ru">&#x1F3A8; ЧТО ТАКОЕ CSS</h2>
+    <h2 data-lang="en">&#x1F3A8; WHAT IS CSS</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>CSS</strong> (Cascading Style Sheets) — язык стилей, отвечающий за <strong>внешний вид</strong> веб-страницы: цвета, шрифты, отступы, размеры и расположение элементов.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>CSS</strong> (Cascading Style Sheets) — a styling language responsible for the <strong>appearance</strong> of a web page: colors, fonts, spacing, sizes, and layout of elements.
+    </div>
+
+    <p data-lang="ru">HTML = структура (скелет), CSS = оформление (одежда)</p>
+    <p data-lang="en">HTML = structure (skeleton), CSS = styling (clothing)</p>
+
+    <h3 data-lang="ru">Синтаксис CSS</h3>
+    <h3 data-lang="en">CSS Syntax</h3>
+
+<pre><code>селектор {
+    свойство: значение;
+}</code></pre>
+
+<pre><code>h1 {
+    color: blue;
+    font-size: 32px;
+}</code></pre>
+
+    <hr>
+
+    <!-- ТРИ СПОСОБА ПОДКЛЮЧЕНИЯ CSS / THREE WAYS TO INCLUDE CSS -->
+    <h2 data-lang="ru">&#x1F517; ТРИ СПОСОБА ПОДКЛЮЧЕНИЯ CSS</h2>
+    <h2 data-lang="en">&#x1F517; THREE WAYS TO INCLUDE CSS</h2>
+
+    <table data-lang="ru">
+        <tr><th>Способ</th><th>Где пишем</th><th>Область</th><th>Использование</th></tr>
+        <tr><td><strong>Inline</strong></td><td>В атрибуте <code>style=""</code></td><td>Один элемент</td><td>Только для тестов</td></tr>
+        <tr><td><strong>Internal</strong></td><td>В <code>&lt;style&gt;</code> в <code>&lt;head&gt;</code></td><td>Одна страница</td><td>Прототипы, занятия</td></tr>
+        <tr><td><strong>External</strong></td><td>В отдельном <code>.css</code> файле</td><td>Весь сайт</td><td>Всегда! Основной</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Method</th><th>Where to write</th><th>Scope</th><th>Usage</th></tr>
+        <tr><td><strong>Inline</strong></td><td>In the <code>style=""</code> attribute</td><td>One element</td><td>Testing only</td></tr>
+        <tr><td><strong>Internal</strong></td><td>In <code>&lt;style&gt;</code> inside <code>&lt;head&gt;</code></td><td>One page</td><td>Prototypes, lessons</td></tr>
+        <tr><td><strong>External</strong></td><td>In a separate <code>.css</code> file</td><td>Entire site</td><td>Always! Primary method</td></tr>
+    </table>
+
+    <h3>Inline</h3>
+<pre><code>&lt;h1 style="color: red; font-size: 36px;"&gt;Привет!&lt;/h1&gt;</code></pre>
+
+    <h3>Internal</h3>
+<pre><code>&lt;head&gt;
+    &lt;style&gt;
+        h1 { color: red; font-size: 36px; }
+    &lt;/style&gt;
+&lt;/head&gt;</code></pre>
+
+    <h3 data-lang="ru">External (основной!)</h3>
+    <h3 data-lang="en">External (primary!)</h3>
+<pre><code>&lt;!-- В HTML: --&gt;
+&lt;link rel="stylesheet" href="style.css"&gt;
+
+&lt;!-- В style.css: --&gt;
+h1 { color: red; font-size: 36px; }</code></pre>
+
+    <div class="remember" data-lang="ru">
+        В реальных проектах <strong>всегда</strong> используют External (внешний CSS-файл). Inline — плохая практика!
+    </div>
+    <div class="remember" data-lang="en">
+        In real projects, <strong>always</strong> use External (an external CSS file). Inline is bad practice!
+    </div>
+
+    <hr>
+
+    <!-- СЕЛЕКТОРЫ / SELECTORS -->
+    <h2 data-lang="ru">&#x1F3AF; СЕЛЕКТОРЫ</h2>
+    <h2 data-lang="en">&#x1F3AF; SELECTORS</h2>
+
+    <table data-lang="ru">
+        <tr><th>Тип</th><th>Символ</th><th>CSS</th><th>HTML</th><th>Кол-во на странице</th></tr>
+        <tr><td><strong>Тег</strong></td><td>—</td><td><code>h1 { }</code></td><td><code>&lt;h1&gt;</code></td><td>Все такие элементы</td></tr>
+        <tr><td><strong>Класс</strong></td><td>точка <code>.</code></td><td><code>.card { }</code></td><td><code>class="card"</code></td><td>Много (повторяемый)</td></tr>
+        <tr><td><strong>ID</strong></td><td>решётка <code>#</code></td><td><code>#header { }</code></td><td><code>id="header"</code></td><td>Один (уникальный)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Type</th><th>Symbol</th><th>CSS</th><th>HTML</th><th>Count per page</th></tr>
+        <tr><td><strong>Tag</strong></td><td>—</td><td><code>h1 { }</code></td><td><code>&lt;h1&gt;</code></td><td>All such elements</td></tr>
+        <tr><td><strong>Class</strong></td><td>dot <code>.</code></td><td><code>.card { }</code></td><td><code>class="card"</code></td><td>Many (reusable)</td></tr>
+        <tr><td><strong>ID</strong></td><td>hash <code>#</code></td><td><code>#header { }</code></td><td><code>id="header"</code></td><td>One (unique)</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Примеры</h3>
+    <h3 data-lang="en">Examples</h3>
+<pre><code>/* Селектор тега — ВСЕ параграфы */
+p { color: #333; }
+
+/* Селектор класса — только элементы с class="intro" */
+.intro { font-weight: bold; color: darkblue; }
+
+/* Селектор id — ОДИН элемент с id="main-header" */
+#main-header { background-color: #1e293b; color: white; }</code></pre>
+
+    <h3 data-lang="ru">Несколько классов</h3>
+    <h3 data-lang="en">Multiple Classes</h3>
+<pre><code>&lt;div class="card featured"&gt;...&lt;/div&gt;
+&lt;!-- У элемента ДВА класса: card и featured --&gt;</code></pre>
+
+    <h3 data-lang="ru">Приоритет (специфичность)</h3>
+    <h3 data-lang="en">Priority (Specificity)</h3>
+
+    <div class="diagram" data-lang="ru">
+тег        → 0-0-1  (низший)
+класс      → 0-1-0
+id         → 1-0-0
+inline     → перебивает всё!</div>
+    <div class="diagram" data-lang="en">
+tag        → 0-0-1  (lowest)
+class      → 0-1-0
+id         → 1-0-0
+inline     → overrides everything!</div>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li>В CSS: <code>.класс</code> (с точкой). В HTML: <code>class="класс"</code> (без точки!)</li>
+            <li>В CSS: <code>#id</code> (с решёткой). В HTML: <code>id="id"</code> (без решётки!)</li>
+            <li>Классы используются в <strong>95% случаев</strong>. Предпочитайте классы, не id</li>
+            <li>Один элемент может иметь <strong>несколько классов</strong>: <code>class="card featured"</code></li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li>In CSS: <code>.class</code> (with dot). In HTML: <code>class="class"</code> (no dot!)</li>
+            <li>In CSS: <code>#id</code> (with hash). In HTML: <code>id="id"</code> (no hash!)</li>
+            <li>Classes are used <strong>95% of the time</strong>. Prefer classes over id</li>
+            <li>One element can have <strong>multiple classes</strong>: <code>class="card featured"</code></li>
+        </ul>
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Запоминалка приоритетов:</strong> Тег (1) &lt; Класс (10) &lt; ID (100) &lt; Inline (1000).<br>
+        Чем точнее селектор — тем выше приоритет. Inline перебивает всё (поэтому его не используют).
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Priority mnemonic:</strong> Tag (1) &lt; Class (10) &lt; ID (100) &lt; Inline (1000).<br>
+        The more specific the selector — the higher the priority. Inline overrides everything (that's why we don't use it).
+    </div>
+
+    <hr>
+
+    <!-- ЦВЕТА / COLORS -->
+    <h2 data-lang="ru">&#x1F308; ЦВЕТА</h2>
+    <h2 data-lang="en">&#x1F308; COLORS</h2>
+
+    <table data-lang="ru">
+        <tr><th>Формат</th><th>Пример</th><th>Описание</th></tr>
+        <tr><td>Имя</td><td><code>red</code>, <code>blue</code>, <code>tomato</code></td><td>147 названий цветов</td></tr>
+        <tr><td>HEX</td><td><code>#ff0000</code>, <code>#333</code></td><td>Самый популярный (#RRGGBB)</td></tr>
+        <tr><td>RGB</td><td><code>rgb(255, 0, 0)</code></td><td>Красный, Зелёный, Синий (0-255)</td></tr>
+        <tr><td>RGBA</td><td><code>rgba(0, 0, 0, 0.5)</code></td><td>RGB + прозрачность (0-1)</td></tr>
+        <tr><td>HSL</td><td><code>hsl(0, 100%, 50%)</code></td><td>Оттенок, Насыщенность, Яркость</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Format</th><th>Example</th><th>Description</th></tr>
+        <tr><td>Name</td><td><code>red</code>, <code>blue</code>, <code>tomato</code></td><td>147 named colors</td></tr>
+        <tr><td>HEX</td><td><code>#ff0000</code>, <code>#333</code></td><td>Most popular (#RRGGBB)</td></tr>
+        <tr><td>RGB</td><td><code>rgb(255, 0, 0)</code></td><td>Red, Green, Blue (0-255)</td></tr>
+        <tr><td>RGBA</td><td><code>rgba(0, 0, 0, 0.5)</code></td><td>RGB + transparency (0-1)</td></tr>
+        <tr><td>HSL</td><td><code>hsl(0, 100%, 50%)</code></td><td>Hue, Saturation, Lightness</td></tr>
+    </table>
+
+    <p data-lang="ru">Часто используемые цвета:</p>
+    <p data-lang="en">Commonly used colors:</p>
+
+    <table data-lang="ru">
+        <tr><th>Цвет</th><th>HEX</th><th>Где</th></tr>
+        <tr><td><span class="color-demo" style="background:#ffffff"></span> Белый</td><td><code>#fff</code></td><td>Фон</td></tr>
+        <tr><td><span class="color-demo" style="background:#f8fafc"></span> Светло-серый</td><td><code>#f8fafc</code></td><td>Фон страницы</td></tr>
+        <tr><td><span class="color-demo" style="background:#1e293b"></span> Тёмный</td><td><code>#1e293b</code></td><td>Текст, шапка</td></tr>
+        <tr><td><span class="color-demo" style="background:#3b82f6"></span> Синий</td><td><code>#3b82f6</code></td><td>Ссылки, кнопки</td></tr>
+        <tr><td><span class="color-demo" style="background:#22c55e"></span> Зелёный</td><td><code>#22c55e</code></td><td>Успех</td></tr>
+        <tr><td><span class="color-demo" style="background:#ef4444"></span> Красный</td><td><code>#ef4444</code></td><td>Ошибка</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Color</th><th>HEX</th><th>Where</th></tr>
+        <tr><td><span class="color-demo" style="background:#ffffff"></span> White</td><td><code>#fff</code></td><td>Background</td></tr>
+        <tr><td><span class="color-demo" style="background:#f8fafc"></span> Light gray</td><td><code>#f8fafc</code></td><td>Page background</td></tr>
+        <tr><td><span class="color-demo" style="background:#1e293b"></span> Dark</td><td><code>#1e293b</code></td><td>Text, header</td></tr>
+        <tr><td><span class="color-demo" style="background:#3b82f6"></span> Blue</td><td><code>#3b82f6</code></td><td>Links, buttons</td></tr>
+        <tr><td><span class="color-demo" style="background:#22c55e"></span> Green</td><td><code>#22c55e</code></td><td>Success</td></tr>
+        <tr><td><span class="color-demo" style="background:#ef4444"></span> Red</td><td><code>#ef4444</code></td><td>Error</td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ФОН И ГРАДИЕНТЫ / BACKGROUNDS AND GRADIENTS -->
+    <h2 data-lang="ru">&#x1F5BC;&#xFE0F; ФОН И ГРАДИЕНТЫ</h2>
+    <h2 data-lang="en">&#x1F5BC;&#xFE0F; BACKGROUNDS AND GRADIENTS</h2>
+
+<pre><code>/* Цвет фона */
+body { background-color: #f8fafc; }
+
+/* Линейный градиент */
+.header {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+/* Градиент с тремя цветами */
+.banner {
+    background: linear-gradient(to right, red, yellow, green);
+}</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Направление</th><th>Значение</th></tr>
+        <tr><td>Сверху вниз</td><td><code>to bottom</code></td></tr>
+        <tr><td>Слева направо</td><td><code>to right</code></td></tr>
+        <tr><td>По диагонали</td><td><code>135deg</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Direction</th><th>Value</th></tr>
+        <tr><td>Top to bottom</td><td><code>to bottom</code></td></tr>
+        <tr><td>Left to right</td><td><code>to right</code></td></tr>
+        <tr><td>Diagonal</td><td><code>135deg</code></td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ШРИФТЫ / FONTS -->
+    <h2 data-lang="ru">&#x1F524; ШРИФТЫ</h2>
+    <h2 data-lang="en">&#x1F524; FONTS</h2>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что делает</th><th>Пример</th></tr>
+        <tr><td><code>font-family</code></td><td>Шрифт</td><td><code>'Inter', sans-serif</code></td></tr>
+        <tr><td><code>font-size</code></td><td>Размер</td><td><code>16px</code> или <code>1rem</code></td></tr>
+        <tr><td><code>font-weight</code></td><td>Толщина</td><td><code>normal</code> (400), <code>bold</code> (700)</td></tr>
+        <tr><td><code>font-style</code></td><td>Наклон</td><td><code>italic</code>, <code>normal</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it does</th><th>Example</th></tr>
+        <tr><td><code>font-family</code></td><td>Font</td><td><code>'Inter', sans-serif</code></td></tr>
+        <tr><td><code>font-size</code></td><td>Size</td><td><code>16px</code> or <code>1rem</code></td></tr>
+        <tr><td><code>font-weight</code></td><td>Weight</td><td><code>normal</code> (400), <code>bold</code> (700)</td></tr>
+        <tr><td><code>font-style</code></td><td>Style</td><td><code>italic</code>, <code>normal</code></td></tr>
+    </table>
+
+    <h3 data-lang="ru">Google Fonts (бесплатные шрифты)</h3>
+    <h3 data-lang="en">Google Fonts (free fonts)</h3>
+<pre><code>&lt;!-- 1. Подключаем в &lt;head&gt;: --&gt;
+&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"&gt;
+
+&lt;!-- 2. Используем в CSS: --&gt;
+body { font-family: 'Inter', sans-serif; }</code></pre>
+
+    <p data-lang="ru">Популярные: Inter, Roboto, Open Sans, Montserrat, Playfair Display</p>
+    <p data-lang="en">Popular: Inter, Roboto, Open Sans, Montserrat, Playfair Display</p>
+
+    <hr>
+
+    <!-- СВОЙСТВА ТЕКСТА / TEXT PROPERTIES -->
+    <h2 data-lang="ru">&#x1F4DD; СВОЙСТВА ТЕКСТА</h2>
+    <h2 data-lang="en">&#x1F4DD; TEXT PROPERTIES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что делает</th><th>Значения</th></tr>
+        <tr><td><code>color</code></td><td>Цвет текста</td><td><code>#333</code>, <code>red</code>, <code>rgb(..)</code></td></tr>
+        <tr><td><code>text-align</code></td><td>Выравнивание</td><td><code>left</code>, <code>center</code>, <code>right</code>, <code>justify</code></td></tr>
+        <tr><td><code>text-decoration</code></td><td>Оформление</td><td><code>none</code>, <code>underline</code>, <code>line-through</code></td></tr>
+        <tr><td><code>text-transform</code></td><td>Регистр</td><td><code>uppercase</code>, <code>lowercase</code>, <code>capitalize</code></td></tr>
+        <tr><td><code>line-height</code></td><td>Межстрочный</td><td><code>1.6</code> (рекомендуется 1.5–1.8)</td></tr>
+        <tr><td><code>letter-spacing</code></td><td>Между буквами</td><td><code>2px</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it does</th><th>Values</th></tr>
+        <tr><td><code>color</code></td><td>Text color</td><td><code>#333</code>, <code>red</code>, <code>rgb(..)</code></td></tr>
+        <tr><td><code>text-align</code></td><td>Alignment</td><td><code>left</code>, <code>center</code>, <code>right</code>, <code>justify</code></td></tr>
+        <tr><td><code>text-decoration</code></td><td>Decoration</td><td><code>none</code>, <code>underline</code>, <code>line-through</code></td></tr>
+        <tr><td><code>text-transform</code></td><td>Case</td><td><code>uppercase</code>, <code>lowercase</code>, <code>capitalize</code></td></tr>
+        <tr><td><code>line-height</code></td><td>Line spacing</td><td><code>1.6</code> (recommended 1.5–1.8)</td></tr>
+        <tr><td><code>letter-spacing</code></td><td>Between letters</td><td><code>2px</code></td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ИТОГИ ЗАНЯТИЯ 6 / LESSON 6 SUMMARY -->
+    <h2 data-lang="ru">&#x1F4DD; ИТОГИ ЗАНЯТИЯ 6</h2>
+    <h2 data-lang="en">&#x1F4DD; LESSON 6 SUMMARY</h2>
+
+    <div class="key-point" data-lang="ru">
+        <ul>
+            <li><strong>CSS</strong> = стили (цвета, шрифты, фон, отступы)</li>
+            <li>Синтаксис: <code>селектор { свойство: значение; }</code></li>
+            <li>3 способа: inline, internal, <strong>external</strong> (основной!)</li>
+            <li>External: <code>&lt;link rel="stylesheet" href="style.css"&gt;</code></li>
+            <li>Селектор тега: <code>h1 { }</code>, класса: <code>.card { }</code>, id: <code>#header { }</code></li>
+            <li>Приоритет: тег &lt; класс &lt; id &lt; inline</li>
+            <li>Цвета: имена, HEX (<code>#ff0000</code>), RGB (<code>rgb(255,0,0)</code>), RGBA</li>
+            <li>Градиент: <code>linear-gradient(направление, цвет1, цвет2)</code></li>
+            <li>Google Fonts: подключение через <code>&lt;link&gt;</code> + <code>font-family</code></li>
+            <li><code>text-align: center</code> — центрирование текста</li>
+            <li><code>text-decoration: none</code> — убрать подчёркивание ссылок</li>
+        </ul>
+    </div>
+    <div class="key-point" data-lang="en">
+        <ul>
+            <li><strong>CSS</strong> = styles (colors, fonts, backgrounds, spacing)</li>
+            <li>Syntax: <code>selector { property: value; }</code></li>
+            <li>3 methods: inline, internal, <strong>external</strong> (primary!)</li>
+            <li>External: <code>&lt;link rel="stylesheet" href="style.css"&gt;</code></li>
+            <li>Tag selector: <code>h1 { }</code>, class: <code>.card { }</code>, id: <code>#header { }</code></li>
+            <li>Priority: tag &lt; class &lt; id &lt; inline</li>
+            <li>Colors: names, HEX (<code>#ff0000</code>), RGB (<code>rgb(255,0,0)</code>), RGBA</li>
+            <li>Gradient: <code>linear-gradient(direction, color1, color2)</code></li>
+            <li>Google Fonts: include via <code>&lt;link&gt;</code> + <code>font-family</code></li>
+            <li><code>text-align: center</code> — center text</li>
+            <li><code>text-decoration: none</code> — remove link underline</li>
+        </ul>
+    </div>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li>Создайте страницу-статью с <strong>internal CSS</strong> (в <code>&lt;style&gt;</code>)</li>
+            <li>Подключите Google Font (Inter, Roboto или другой)</li>
+            <li>Используйте <strong>минимум 3 селектора</strong>: тег, класс, id</li>
+            <li>Используйте <strong>минимум 3 способа указания цвета</strong>: имя, HEX, RGB</li>
+            <li>Добавьте <strong>градиент</strong> на фон заголовка или шапки</li>
+            <li>Настройте: <code>font-size</code>, <code>line-height</code>, <code>text-align</code>, <code>text-decoration</code></li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li>Create an article page with <strong>internal CSS</strong> (in <code>&lt;style&gt;</code>)</li>
+            <li>Include a Google Font (Inter, Roboto or another)</li>
+            <li>Use <strong>at least 3 selectors</strong>: tag, class, id</li>
+            <li>Use <strong>at least 3 color formats</strong>: name, HEX, RGB</li>
+            <li>Add a <strong>gradient</strong> to the heading or header background</li>
+            <li>Set up: <code>font-size</code>, <code>line-height</code>, <code>text-align</code>, <code>text-decoration</code></li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

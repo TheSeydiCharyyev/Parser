@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 3 — Конспект ученика</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: #1e293b; background: #fff; padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { font-size: 1.8rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 10px; margin-bottom: 6px; }
+        h2 { font-size: 1.4rem; color: #7e22ce; margin: 36px 0 14px; padding: 8px 14px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 6px 6px 0; }
+        h3 { font-size: 1.15rem; color: #1e3a5f; margin: 20px 0 10px; }
+        .subtitle { color: #64748b; margin-bottom: 6px; }
+        .date-line { color: #94a3b8; font-style: italic; margin-bottom: 24px; }
+        .key-point { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 14px 18px; margin: 12px 0; border-radius: 0 6px 6px 0; }
+        .definition { background: #faf5ff; border: 1px solid #d8b4fe; padding: 14px 18px; border-radius: 8px; margin: 12px 0; }
+        .definition strong { color: #7e22ce; }
+        .diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 16px; border-radius: 8px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.4; margin: 14px 0; overflow-x: auto; font-size: 0.82rem; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 14px 18px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 0.9rem; line-height: 1.6; margin: 12px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+        th, td { padding: 8px 12px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 8px 0 8px 24px; }
+        li { margin: 4px 0; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 30px 0; }
+        .remember { background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+        .remember::before { content: '❗ Запомни:'; display: block; font-weight: 700; color: #dc2626; margin-bottom: 4px; }
+        .homework { background: #fdf4ff; border: 2px solid #d8b4fe; border-radius: 10px; padding: 18px; margin: 20px 0; }
+        .homework::before { content: '📚 ДОМАШНЕЕ ЗАДАНИЕ'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 8px; }
+        .note-box { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+        .note-box::before { content: '📝 Заметка:'; display: block; font-weight: 700; color: #a16207; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 3: Структура HTML-документа</span><span style="color:#cbd5e1;">|</span><a href="lecture.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127979; Лекция</a><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128104;&#8205;&#127891; Конспект</span><a href="tasks.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128203; Задания</a></div>
+<div class="container">
+
+    <h1>📓 КОНСПЕКТ УЧЕНИКА</h1>
+    <p class="subtitle">Занятие 3: Структура HTML-документа</p>
+    <p class="date-line">Дата: _______________</p>
+
+    <hr>
+
+    <h2>📚 ТЕГИ</h2>
+
+    <div class="definition">
+        <strong>Тег</strong> — команда для браузера в угловых скобках <code>&lt; &gt;</code>.
+    </div>
+
+    <h3>Парные теги</h3>
+<pre><code>&lt;h1&gt;Содержимое&lt;/h1&gt;
+ ↑ открывающий    ↑ закрывающий (с /)</code></pre>
+
+    <h3>Одиночные теги (без закрывающего)</h3>
+
+    <p><code>&lt;br&gt;</code> — перенос строки, <code>&lt;hr&gt;</code> — линия, <code>&lt;img&gt;</code> — картинка, <code>&lt;input&gt;</code> — поле ввода</p>
+
+    <div class="note-box">
+        Парный тег = коробка с крышкой (кладёшь содержимое, закрываешь).<br>
+        Одиночный тег = наклейка (просто есть, ничего внутрь не кладёшь).
+    </div>
+
+    <hr>
+
+    <h2>📚 АТРИБУТЫ</h2>
+
+    <div class="definition">
+        <strong>Атрибуты</strong> — дополнительная информация о теге. Пишутся в открывающем теге: <code>имя="значение"</code>
+    </div>
+
+<pre><code>&lt;a href="https://google.com" target="_blank"&gt;Ссылка&lt;/a&gt;
+&lt;img src="photo.jpg" alt="Описание" width="300"&gt;</code></pre>
+
+    <table>
+        <tr><th>Атрибут</th><th>Тег</th><th>Что делает</th></tr>
+        <tr><td><code>href</code></td><td><code>&lt;a&gt;</code></td><td>Адрес ссылки</td></tr>
+        <tr><td><code>src</code></td><td><code>&lt;img&gt;</code></td><td>Путь к картинке</td></tr>
+        <tr><td><code>alt</code></td><td><code>&lt;img&gt;</code></td><td>Описание картинки</td></tr>
+        <tr><td><code>class</code></td><td>Любой</td><td>CSS-класс</td></tr>
+        <tr><td><code>id</code></td><td>Любой</td><td>Уникальный идентификатор</td></tr>
+        <tr><td><code>target="_blank"</code></td><td><code>&lt;a&gt;</code></td><td>Открыть в новой вкладке</td></tr>
+    </table>
+
+    <hr>
+
+    <h2>📚 ВЛОЖЕННОСТЬ</h2>
+
+    <div class="remember">
+        Теги закрываются в <strong>обратном порядке</strong> открытия!<br>
+        ✅ <code>&lt;p&gt;&lt;strong&gt;текст&lt;/strong&gt;&lt;/p&gt;</code><br>
+        ❌ <code>&lt;p&gt;&lt;strong&gt;текст&lt;/p&gt;&lt;/strong&gt;</code>
+    </div>
+
+    <p>Каждый уровень вложенности — отступ в 1 Tab:</p>
+<pre><code>&lt;div&gt;
+    &lt;h1&gt;Заголовок&lt;/h1&gt;
+    &lt;p&gt;Параграф&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+    <div class="key-point">
+        <strong>Совет:</strong> <code>Shift + Alt + F</code> в VS Code — автоматическое выравнивание отступов.
+    </div>
+
+    <hr>
+
+    <h2>📚 СТРУКТУРА HTML-ДОКУМЕНТА</h2>
+
+    <div class="diagram">
+&lt;!DOCTYPE html&gt;        ← Тип документа
+&lt;html lang="ru"&gt;        ← Корневой тег
+│
+├── &lt;head&gt;               ← Невидимое (для браузера)
+│   ├── &lt;meta charset&gt;
+│   ├── &lt;meta viewport&gt;
+│   ├── &lt;title&gt;          ← Текст на вкладке
+│   └── &lt;link&gt; / &lt;style&gt;
+│
+└── &lt;body&gt;               ← Видимое (для пользователя)
+    └── Весь контент</div>
+
+    <table>
+        <tr><th>Тег</th><th>Назначение</th></tr>
+        <tr><td><code>&lt;!DOCTYPE html&gt;</code></td><td>Объявление HTML5</td></tr>
+        <tr><td><code>&lt;html lang="ru"&gt;</code></td><td>Корень документа</td></tr>
+        <tr><td><code>&lt;head&gt;</code></td><td>Метаинформация (невидимая)</td></tr>
+        <tr><td><code>&lt;meta charset="UTF-8"&gt;</code></td><td>Кодировка (русские буквы)</td></tr>
+        <tr><td><code>&lt;title&gt;</code></td><td>Заголовок вкладки (и для Google)</td></tr>
+        <tr><td><code>&lt;body&gt;</code></td><td>Всё видимое содержимое</td></tr>
+    </table>
+
+    <div class="remember">
+        <code>&lt;head&gt;</code> = конверт (информация для почты).<br>
+        <code>&lt;body&gt;</code> = само письмо (содержимое для читателя).
+    </div>
+
+    <hr>
+
+    <h2>📚 ЗАГОЛОВКИ h1–h6</h2>
+
+<pre><code>&lt;h1&gt;Главный заголовок&lt;/h1&gt;  ← только 1 на странице
+&lt;h2&gt;Раздел&lt;/h2&gt;
+&lt;h3&gt;Подраздел&lt;/h3&gt;
+&lt;h4&gt;...&lt;/h4&gt;
+&lt;h5&gt;...&lt;/h5&gt;
+&lt;h6&gt;самый мелкий&lt;/h6&gt;</code></pre>
+
+    <div class="remember">
+        <ul>
+            <li><code>&lt;h1&gt;</code> — только <strong>один</strong> на странице</li>
+            <li>Не перескакивать: h1 → h2 → h3 (не h1 → h3)</li>
+            <li>Заголовки = оглавление книги</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>📚 ПАРАГРАФЫ И ПЕРЕНОСЫ</h2>
+
+    <table>
+        <tr><th>Тег</th><th>Что делает</th></tr>
+        <tr><td><code>&lt;p&gt;...&lt;/p&gt;</code></td><td>Параграф (абзац) с автоотступами</td></tr>
+        <tr><td><code>&lt;br&gt;</code></td><td>Перенос строки</td></tr>
+        <tr><td><code>&lt;hr&gt;</code></td><td>Горизонтальная линия-разделитель</td></tr>
+    </table>
+
+    <div class="remember">
+        Лишние пробелы и переносы строк в HTML <strong>игнорируются</strong> браузером! Для переноса нужен <code>&lt;br&gt;</code>.
+    </div>
+
+    <div class="note-box">
+        <code>&lt;br&gt;</code> — для стихов, адресов, коротких строк. Не используйте <code>&lt;br&gt;&lt;br&gt;&lt;br&gt;</code> для создания отступов — для этого есть CSS!
+    </div>
+
+    <hr>
+
+    <h2>📚 ФОРМАТИРОВАНИЕ ТЕКСТА</h2>
+
+    <table>
+        <tr><th>Тег</th><th>Результат</th><th>Пример</th></tr>
+        <tr><td><code>&lt;strong&gt;</code></td><td><strong>Жирный (важный)</strong></td><td>Ключевые слова</td></tr>
+        <tr><td><code>&lt;em&gt;</code></td><td><em>Курсив (акцент)</em></td><td>Выделение</td></tr>
+        <tr><td><code>&lt;u&gt;</code></td><td><u>Подчёркнутый</u></td><td>Ссылки, термины</td></tr>
+        <tr><td><code>&lt;s&gt;</code></td><td><s>Зачёркнутый</s></td><td>Старая цена</td></tr>
+        <tr><td><code>&lt;mark&gt;</code></td><td><mark>Выделенный</mark></td><td>Важное</td></tr>
+        <tr><td><code>&lt;small&gt;</code></td><td><small>Мелкий</small></td><td>Сноски</td></tr>
+        <tr><td><code>&lt;sub&gt;</code></td><td>H<sub>2</sub>O</td><td>Формулы</td></tr>
+        <tr><td><code>&lt;sup&gt;</code></td><td>E=mc<sup>2</sup></td><td>Степени</td></tr>
+    </table>
+
+    <div class="remember">
+        <ul>
+            <li><code>&lt;strong&gt;</code> = важный по <strong>смыслу</strong> (Google обращает внимание) → используйте его!</li>
+            <li><code>&lt;b&gt;</code> = просто визуально жирный (без смысла)</li>
+            <li><code>&lt;em&gt;</code> = смысловой <em>акцент</em> → используйте его!</li>
+            <li><code>&lt;i&gt;</code> = просто курсив (для терминов, названий)</li>
+        </ul>
+    </div>
+
+    <div class="key-point">
+        <strong>Запоминалка для реальной жизни:</strong><br>
+        <code>&lt;s&gt;</code> = старая цена (<s>1000 ₽</s>)<br>
+        <code>&lt;strong&gt;</code> = новая цена (<strong>750 ₽</strong>)<br>
+        <code>&lt;mark&gt;</code> = бейдж (<mark>АКЦИЯ</mark>)<br>
+        <code>&lt;small&gt;</code> = мелкий шрифт (<small>условия доставки</small>)<br>
+        <code>&lt;sub&gt;</code>/<code>&lt;sup&gt;</code> = формулы (H<sub>2</sub>O, E=mc<sup>2</sup>)
+    </div>
+
+    <hr>
+
+    <h2>📚 КОММЕНТАРИИ</h2>
+
+<pre><code>&lt;!-- Это комментарий, браузер его не покажет --&gt;
+
+&lt;!-- Шапка сайта --&gt;
+&lt;h1&gt;Заголовок&lt;/h1&gt;</code></pre>
+
+    <p>Горячая клавиша: <code>Ctrl + /</code></p>
+
+    <hr>
+
+    <h2>📝 ИТОГИ ЗАНЯТИЯ 3</h2>
+
+    <div class="key-point">
+        <ul>
+            <li>Теги: парные (<code>&lt;p&gt;...&lt;/p&gt;</code>) и одиночные (<code>&lt;br&gt;</code>)</li>
+            <li>Атрибуты: <code>имя="значение"</code> в открывающем теге</li>
+            <li>Вложенность: закрывай в обратном порядке</li>
+            <li>Структура: <code>DOCTYPE → html → head + body</code></li>
+            <li><code>head</code> = невидимое, <code>body</code> = видимое</li>
+            <li>h1–h6: иерархия заголовков, h1 один раз</li>
+            <li><code>p</code>, <code>br</code>, <code>hr</code> — текст, перенос, линия</li>
+            <li>Форматирование: <code>strong</code>, <code>em</code>, <code>mark</code>, <code>s</code>, <code>sub</code>, <code>sup</code></li>
+            <li><code>&lt;!-- --&gt;</code> — комментарии</li>
+        </ul>
+    </div>
+
+    <table>
+        <tr><th>Концепция</th><th>Запоминалка</th></tr>
+        <tr><td>Парный тег</td><td>Коробка с крышкой — кладёшь содержимое, закрываешь</td></tr>
+        <tr><td>Одиночный тег</td><td>Наклейка — просто есть, ничего внутрь</td></tr>
+        <tr><td>Атрибуты</td><td>Свойства предмета: «какая картинка?», «куда ссылка?»</td></tr>
+        <tr><td>Вложенность</td><td>Матрёшка: что открыл последним — закрывай первым</td></tr>
+        <tr><td><code>&lt;head&gt;</code></td><td>Конверт: информация для почты (браузера)</td></tr>
+        <tr><td><code>&lt;body&gt;</code></td><td>Письмо: содержимое для читателя (пользователя)</td></tr>
+        <tr><td>h1–h6</td><td>Оглавление книги: h1=название, h2=главы, h3=разделы</td></tr>
+    </table>
+
+    <div class="homework">
+        <ol>
+            <li>Создайте страницу-статью на любую тему (минимум 3 раздела h2)</li>
+            <li>Используйте все изученные теги: h1-h3, p, br, hr, strong, em, mark, s, sub/sup</li>
+            <li>Добавьте комментарии к разделам</li>
+            <li>Проверьте вложенность тегов — всё ли закрыто правильно</li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 17 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 17: CSS Grid — основы</span>
+    <span class="nav-title" data-lang="en">Lesson 17: CSS Grid — Basics</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 17: CSS Grid — основы</p>
+    <p class="subtitle" data-lang="en">Lesson 17: CSS Grid — Basics</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; FLEXBOX VS GRID</h2>
+    <h2 data-lang="en">&#x1F4DA; FLEXBOX VS GRID</h2>
+
+    <table data-lang="ru">
+        <tr><th></th><th>Flexbox</th><th>Grid</th></tr>
+        <tr><td>Измерения</td><td>1D (ряд ИЛИ столбец)</td><td>2D (ряды И столбцы)</td></tr>
+        <tr><td>Лучше для</td><td>Компоненты, навбар</td><td>Макеты, сетки, галереи</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th></th><th>Flexbox</th><th>Grid</th></tr>
+        <tr><td>Dimensions</td><td>1D (row OR column)</td><td>2D (rows AND columns)</td></tr>
+        <tr><td>Best for</td><td>Components, navbar</td><td>Layouts, grids, galleries</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; СВОЙСТВА GRID-КОНТЕЙНЕРА</h2>
+    <h2 data-lang="en">&#x1F4DA; GRID CONTAINER PROPERTIES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что делает</th><th>Пример</th></tr>
+        <tr><td><code>display: grid</code></td><td>Включает Grid</td><td></td></tr>
+        <tr><td><code>grid-template-columns</code></td><td>Столбцы</td><td><code>1fr 1fr 1fr</code></td></tr>
+        <tr><td><code>grid-template-rows</code></td><td>Строки</td><td><code>100px auto</code></td></tr>
+        <tr><td><code>gap</code></td><td>Отступы</td><td><code>20px</code></td></tr>
+        <tr><td><code>justify-items</code></td><td>Горизонтально в ячейке</td><td><code>center</code></td></tr>
+        <tr><td><code>align-items</code></td><td>Вертикально в ячейке</td><td><code>center</code></td></tr>
+        <tr><td><code>place-items</code></td><td>Оба сразу</td><td><code>center center</code></td></tr>
+        <tr><td><code>justify-content</code></td><td>Сетка горизонтально</td><td><code>center</code></td></tr>
+        <tr><td><code>align-content</code></td><td>Сетка вертикально</td><td><code>center</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it does</th><th>Example</th></tr>
+        <tr><td><code>display: grid</code></td><td>Enables Grid</td><td></td></tr>
+        <tr><td><code>grid-template-columns</code></td><td>Columns</td><td><code>1fr 1fr 1fr</code></td></tr>
+        <tr><td><code>grid-template-rows</code></td><td>Rows</td><td><code>100px auto</code></td></tr>
+        <tr><td><code>gap</code></td><td>Spacing</td><td><code>20px</code></td></tr>
+        <tr><td><code>justify-items</code></td><td>Horizontal in cell</td><td><code>center</code></td></tr>
+        <tr><td><code>align-items</code></td><td>Vertical in cell</td><td><code>center</code></td></tr>
+        <tr><td><code>place-items</code></td><td>Both at once</td><td><code>center center</code></td></tr>
+        <tr><td><code>justify-content</code></td><td>Grid horizontal</td><td><code>center</code></td></tr>
+        <tr><td><code>align-content</code></td><td>Grid vertical</td><td><code>center</code></td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЕДИНИЦА FR И REPEAT</h2>
+    <h2 data-lang="en">&#x1F4DA; FR UNIT AND REPEAT</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>fr</strong> (fraction) — доля свободного пространства. <code>1fr 2fr 1fr</code> = первый 25%, второй 50%, третий 25%.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>fr</strong> (fraction) — a share of available space. <code>1fr 2fr 1fr</code> = first 25%, second 50%, third 25%.
+    </div>
+
+<pre><code>/* 3 равных столбца */
+grid-template-columns: repeat(3, 1fr);
+
+/* 4 столбца по 200px */
+grid-template-columns: repeat(4, 200px);
+
+/* sidebar + content */
+grid-template-columns: 250px 1fr;</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; АДАПТИВНАЯ СЕТКА (САМОЕ ВАЖНОЕ!)</h2>
+    <h2 data-lang="en">&#x1F4DA; RESPONSIVE GRID (MOST IMPORTANT!)</h2>
+
+<pre><code>grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        Эта одна строка создаёт полностью адаптивную сетку:
+        <ul>
+            <li>Минимум 280px на колонку</li>
+            <li>Максимум 1fr (равномерное растяжение)</li>
+            <li>auto-fit = столько колонок, сколько поместится</li>
+            <li>Без media queries!</li>
+        </ul>
+    </div>
+    <div class="key-point" data-lang="en">
+        This single line creates a fully responsive grid:
+        <ul>
+            <li>Minimum 280px per column</li>
+            <li>Maximum 1fr (even stretching)</li>
+            <li>auto-fit = as many columns as will fit</li>
+            <li>No media queries!</li>
+        </ul>
+    </div>
+
+    <h3 data-lang="ru">auto-fill vs auto-fit</h3>
+    <h3 data-lang="en">auto-fill vs auto-fit</h3>
+
+    <table data-lang="ru">
+        <tr><th>auto-fill</th><th>auto-fit</th></tr>
+        <tr><td>Пустые колонки остаются</td><td>Пустые колонки схлопываются</td></tr>
+        <tr><td>Элементы не растягиваются</td><td>Элементы растягиваются</td></tr>
+        <tr><td>Реже используется</td><td>Чаще используется!</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>auto-fill</th><th>auto-fit</th></tr>
+        <tr><td>Empty columns remain</td><td>Empty columns collapse</td></tr>
+        <tr><td>Items don't stretch</td><td>Items stretch</td></tr>
+        <tr><td>Less common</td><td>More common!</td></tr>
+    </table>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>display: grid</code> — включить Grid (на родителе!)</li>
+            <li><code>grid-template-columns</code> — задаёт столбцы</li>
+            <li><code>fr</code> — доля свободного пространства (лучше чем %)</li>
+            <li><code>repeat(3, 1fr)</code> — 3 равных столбца</li>
+            <li><code>repeat(auto-fit, minmax(280px, 1fr))</code> — адаптивная сетка!</li>
+            <li><code>gap</code> — отступы между ячейками</li>
+            <li><code>place-items: center</code> — центрирование в ячейках</li>
+            <li>Grid = 2D (строки И столбцы), Flexbox = 1D</li>
+            <li>Grid и Flexbox дополняют друг друга!</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>display: grid</code> — enable Grid (on parent!)</li>
+            <li><code>grid-template-columns</code> — defines columns</li>
+            <li><code>fr</code> — fraction of available space (better than %)</li>
+            <li><code>repeat(3, 1fr)</code> — 3 equal columns</li>
+            <li><code>repeat(auto-fit, minmax(280px, 1fr))</code> — responsive grid!</li>
+            <li><code>gap</code> — spacing between cells</li>
+            <li><code>place-items: center</code> — centering in cells</li>
+            <li>Grid = 2D (rows AND columns), Flexbox = 1D</li>
+            <li>Grid and Flexbox complement each other!</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Фотогалерея:</strong> 9-12 изображений в адаптивной Grid-сетке (<code>auto-fit + minmax</code>). Hover-эффект. Gap.</li>
+            <li><strong>Макет:</strong> Sidebar (250px) + Content (1fr) на Grid.</li>
+            <li><strong>Бонус:</strong> Пройдите игру <strong>Grid Garden</strong> (cssgridgarden.com) — все уровни!</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Photo gallery:</strong> 9-12 images in responsive Grid (<code>auto-fit + minmax</code>). Hover effect. Gap.</li>
+            <li><strong>Layout:</strong> Sidebar (250px) + Content (1fr) with Grid.</li>
+            <li><strong>Bonus:</strong> Complete the game <strong>Grid Garden</strong> (cssgridgarden.com) — all levels!</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

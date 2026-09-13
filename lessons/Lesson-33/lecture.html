@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 33 — Разработка: CSS-стили</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 33: Разработка — CSS-стили</span>
+    <span class="nav-title" data-lang="en">Lesson 33: Development — CSS Styles</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 33: Разработка — CSS-стили</h1>
+    <h1 data-lang="en">Lesson 33: Development — CSS Styles</h1>
+    <p class="subtitle" data-lang="ru">Базовая стилизация: шрифты, цвета, типографика, кнопки, карточки, формы</p>
+    <p class="subtitle" data-lang="en">Base styling: fonts, colors, typography, buttons, cards, forms</p>
+
+    <div class="why" data-lang="ru">
+        <p>На прошлом занятии вы написали HTML всех страниц. В браузере он выглядит <strong>уродливо</strong> — поток текста сверху вниз. Сегодня это изменится: подключим <code>tokens.css</code>, выставим красивую типографику, стилизуем кнопки и карточки. К концу занятия <strong>страница начнёт выглядеть как сайт</strong> — хоть и без финальной раскладки.</p>
+        <p>Сегодня мы <strong>не трогаем Flexbox и Grid</strong>. Секции останутся в «потоке» — одна под другой. Компоненты (кнопки, карточки, формы) — получат полную стилизацию. Layout займёмся на занятии 33. Это <strong>правильный порядок</strong>: сначала «одежда» элементов, потом «расстановка» по странице.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Применять CSS reset и базовые стили body</li>
+            <li>Строить типографическую систему: h1-h6, параграфы, ссылки</li>
+            <li>Создавать компонент-кнопки: .btn + модификаторы (.btn-primary, .btn-outline)</li>
+            <li>Стилизовать состояния: :hover, :focus, :active, :disabled</li>
+            <li>Делать карточку как переиспользуемый компонент</li>
+            <li>Стилизовать формы: input, textarea, label, focus-ring</li>
+            <li>Правильно использовать CSS-переменные из <code>tokens.css</code></li>
+            <li>Применять BEM-именование для читаемого кода</li>
+            <li>Избегать 10 частых ошибок CSS-стилизации</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Last lesson you wrote HTML for all pages. In the browser it looks <strong>ugly</strong> — a stream of text top-down. Today changes that: we'll load <code>tokens.css</code>, set up nice typography, style buttons and cards. By lesson's end <strong>the page starts looking like a site</strong> — minus the final layout.</p>
+        <p>Today we <strong>don't touch Flexbox or Grid</strong>. Sections stay in the "flow" — stacked. Components (buttons, cards, forms) get full styling. Layout is for lesson 33. This is the <strong>correct order</strong>: "clothing" elements first, "arranging" on the page after.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Apply a CSS reset and base body styles</li>
+            <li>Build a typographic system: h1-h6, paragraphs, links</li>
+            <li>Create a button component: .btn + modifiers (.btn-primary, .btn-outline)</li>
+            <li>Style states: :hover, :focus, :active, :disabled</li>
+            <li>Build a card as a reusable component</li>
+            <li>Style forms: input, textarea, label, focus-ring</li>
+            <li>Use CSS variables from <code>tokens.css</code> correctly</li>
+            <li>Apply BEM naming for readable code</li>
+            <li>Avoid 10 common CSS styling mistakes</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#order">Порядок работы: base → components → sections</a></li>
+            <li><a href="#reset">CSS reset — что убираем, что ставим</a></li>
+            <li><a href="#typography">Типографика: система h1-body</a></li>
+            <li><a href="#links">Ссылки: базовый стиль</a></li>
+            <li><a href="#container">Контейнер: паттерн <code>.container</code></a></li>
+            <li><a href="#buttons">Кнопки: .btn + модификаторы</a></li>
+            <li><a href="#button-states">Состояния кнопок: hover, focus, active, disabled</a></li>
+            <li><a href="#cards">Карточки: компонент .card</a></li>
+            <li><a href="#forms">Формы: input, textarea, focus-ring</a></li>
+            <li><a href="#bem">BEM-именование (опционально)</a></li>
+            <li><a href="#pitfalls">10 ошибок CSS-стилизации</a></li>
+            <li><a href="#consult">Индивидуальная консультация</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#order">Work order: base → components → sections</a></li>
+            <li><a href="#reset">CSS reset — what to remove, what to set</a></li>
+            <li><a href="#typography">Typography: h1-body system</a></li>
+            <li><a href="#links">Links: base style</a></li>
+            <li><a href="#container">Container: <code>.container</code> pattern</a></li>
+            <li><a href="#buttons">Buttons: .btn + modifiers</a></li>
+            <li><a href="#button-states">Button states: hover, focus, active, disabled</a></li>
+            <li><a href="#cards">Cards: .card component</a></li>
+            <li><a href="#forms">Forms: input, textarea, focus-ring</a></li>
+            <li><a href="#bem">BEM naming (optional)</a></li>
+            <li><a href="#pitfalls">10 CSS styling mistakes</a></li>
+            <li><a href="#consult">Individual consultation</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ORDER ==================== -->
+    <h2 id="order" data-lang="ru">1. Порядок работы: base → components → sections</h2>
+    <h2 id="order-en" data-lang="en">1. Work order: base → components → sections</h2>
+
+    <div class="why" data-lang="ru">
+        <p>На уроке 29 мы уже говорили о правильном порядке CSS. Повторим: <strong>снизу вверх</strong>. Сначала атомы, потом компоненты, потом секции. Это правило ещё важнее в реальном проекте.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Lesson 29 covered the correct CSS order. Recap: <strong>bottom-up</strong>. Atoms first, then components, then sections. The rule matters even more in a real project.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Файл</th><th>Что внутри</th><th>Занятие</th></tr>
+        <tr><td><code>tokens.css</code></td><td>CSS-переменные (цвета, шрифты, spacing)</td><td>30 (готово)</td></tr>
+        <tr><td><code>base.css</code></td><td>Reset + стили <code>body</code>, <code>h1-h6</code>, <code>a</code>, <code>.container</code></td><td><strong>32.1 — сегодня</strong></td></tr>
+        <tr><td><code>components.css</code></td><td><code>.btn</code>, <code>.card</code>, <code>.form</code></td><td><strong>32.2 — сегодня</strong></td></tr>
+        <tr><td><code>style.css</code></td><td>Стили секций (hero, features, footer), flex/grid</td><td>33</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>File</th><th>Contents</th><th>Lesson</th></tr>
+        <tr><td><code>tokens.css</code></td><td>CSS variables (colors, fonts, spacing)</td><td>30 (done)</td></tr>
+        <tr><td><code>base.css</code></td><td>Reset + <code>body</code>, <code>h1-h6</code>, <code>a</code>, <code>.container</code> styles</td><td><strong>32.1 — today</strong></td></tr>
+        <tr><td><code>components.css</code></td><td><code>.btn</code>, <code>.card</code>, <code>.form</code></td><td><strong>32.2 — today</strong></td></tr>
+        <tr><td><code>style.css</code></td><td>Section styles (hero, features, footer), flex/grid</td><td>33</td></tr>
+    </table>
+
+    <div class="important" data-lang="ru">
+        <strong>Сегодня трогаем только <code>base.css</code> и <code>components.css</code>.</strong> <code>style.css</code> оставляем пустым — он для занятия 33. Так вы не смешаете уровни: базовые стили ≠ компоненты ≠ расстановка на странице.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Today we only touch <code>base.css</code> and <code>components.css</code>.</strong> Leave <code>style.css</code> empty — it's for lesson 33. This way levels don't mix: base styles ≠ components ≠ page layout.
+    </div>
+
+    <hr>
+
+    <!-- ==================== RESET ==================== -->
+    <h2 id="reset" data-lang="ru">2. CSS reset — что убираем, что ставим</h2>
+    <h2 id="reset-en" data-lang="en">2. CSS reset — what to remove, what to set</h2>
+
+    <div class="why" data-lang="ru">
+        <p>У каждого браузера есть <strong>встроенные стили по умолчанию</strong>: h1 имеет margin, список с буллитами, ссылка подчёркнута и синяя. Эти стили разные в Chrome, Safari, Firefox — из-за этого сайт выглядит по-разному в разных браузерах.</p>
+        <p><strong>CSS reset</strong> обнуляет эти стили, чтобы все браузеры стартовали «с одной точки». Это <strong>первое</strong>, что вы пишете в проекте.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Every browser has <strong>built-in default styles</strong>: h1 has margin, list has bullets, link is underlined and blue. These differ between Chrome, Safari, Firefox — so sites look different across browsers.</p>
+        <p><strong>CSS reset</strong> zeroes out these styles so all browsers start "from the same point". The <strong>first</strong> thing you write in a project.</p>
+    </div>
+
+<pre><code>/* base.css */
+
+/* 1. Универсальный сброс */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Убираем маркеры у списков, стилизуем в своём коде */
+ul, ol {
+    list-style: none;
+}
+
+/* 3. Ссылки: без подчёркивания, наследуют цвет */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* 4. Изображения не вылезают за родителя */
+img, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 5. Кнопки/инпуты наследуют шрифт */
+button, input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+/* 6. Плавная прокрутка для якорных ссылок */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 7. Отступ сверху, когда якорь под fixed header */
+html {
+    scroll-padding-top: 80px;
+}</code></pre>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong><code>box-sizing: border-box</code>.</strong> Самое важное правило. По умолчанию <code>width: 300px</code> = ширина контента. Padding и border добавляются сверху → блок становится шире. С <code>border-box</code> — <code>width: 300px</code> включает padding и border. Интуитивнее и предсказуемее. Индустриальный стандарт.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong><code>box-sizing: border-box</code>.</strong> Most important rule. By default <code>width: 300px</code> = content width. Padding and border add on top → block gets wider. With <code>border-box</code> — <code>width: 300px</code> includes padding and border. More intuitive and predictable. Industry standard.</p>
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Не используйте старые reset'ы.</strong> «Meyer reset» или «normalize.css» — старая школа, сбрасывают всё включая полезное. Современный reset — минималистичный (как выше). Если нужен совсем готовый — используйте <strong>Josh Comeau's CSS Reset</strong> (поисковик найдёт).</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Don't use old resets.</strong> "Meyer reset" or "normalize.css" — old school, reset everything including useful defaults. Modern reset is minimalist (like above). For a ready-made option — use <strong>Josh Comeau's CSS Reset</strong> (Google it).</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== TYPOGRAPHY ==================== -->
+    <h2 id="typography" data-lang="ru">3. Типографика: система h1-body</h2>
+    <h2 id="typography-en" data-lang="en">3. Typography: h1-body system</h2>
+
+    <div class="why" data-lang="ru">
+        <p>После reset заголовки и параграфы — «голый» текст одного размера. Нужно задать <strong>типографическую систему</strong>: размеры, веса, межстрочный интервал для body и всех h1-h6. Это делается <strong>один раз</strong> в <code>base.css</code>, и потом работает везде без дополнительных стилей.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>After reset, headings and paragraphs are "naked" text of one size. You need to set up a <strong>typographic system</strong>: sizes, weights, line-height for body and all h1-h6. Do this <strong>once</strong> in <code>base.css</code>, and it works everywhere without extra styles.</p>
+    </div>
+
+<pre><code>/* base.css — после reset */
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--fs-body);         /* 16px */
+    line-height: 1.6;
+    color: var(--color-text);
+    background: var(--color-bg);
+}
+
+/* Заголовки */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.2;                  /* короче для заголовков */
+    color: var(--color-text);
+}
+
+h1 {
+    font-size: var(--fs-h1);           /* 48px */
+    letter-spacing: -0.02em;            /* -2% для плотности */
+}
+h2 { font-size: var(--fs-h2); }        /* 32px */
+h3 { font-size: var(--fs-h3); }        /* 20px */
+h4 { font-size: var(--fs-h4); }        /* 18px */
+
+/* Параграфы */
+p {
+    margin-bottom: var(--space-md);     /* 16px между абзацами */
+}
+
+/* Выделения */
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* Код и маленький текст */
+small { font-size: var(--fs-small); }  /* 14px */</code></pre>
+
+    <h3 data-lang="ru">Пояснение ключевых свойств:</h3>
+    <h3 data-lang="en">Key property explanations:</h3>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Значение</th><th>Почему</th></tr>
+        <tr><td><code>line-height</code> для body</td><td>1.5-1.7</td><td>Читабельность длинных текстов</td></tr>
+        <tr><td><code>line-height</code> для заголовков</td><td>1.1-1.3</td><td>Заголовки плотнее смотрятся</td></tr>
+        <tr><td><code>letter-spacing</code> h1</td><td>-0.01em до -0.03em</td><td>Крупный текст выглядит плотнее</td></tr>
+        <tr><td><code>letter-spacing</code> uppercase</td><td>+0.05em до +0.1em</td><td>ПРОПИСНОЙ текст лучше читается с разрядкой</td></tr>
+        <tr><td><code>font-weight: 700</code></td><td>Bold заголовки</td><td>400 — обычный, 700 — жирный, 900 — чёрный</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>Value</th><th>Why</th></tr>
+        <tr><td><code>line-height</code> for body</td><td>1.5-1.7</td><td>Readability of long text</td></tr>
+        <tr><td><code>line-height</code> for headings</td><td>1.1-1.3</td><td>Headings look denser</td></tr>
+        <tr><td><code>letter-spacing</code> h1</td><td>-0.01em to -0.03em</td><td>Large text looks tighter</td></tr>
+        <tr><td><code>letter-spacing</code> uppercase</td><td>+0.05em to +0.1em</td><td>UPPERCASE reads better with extra spacing</td></tr>
+        <tr><td><code>font-weight: 700</code></td><td>Bold headings</td><td>400 — regular, 700 — bold, 900 — black</td></tr>
+    </table>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Правило <code>em</code> для letter-spacing.</strong> Используйте <code>em</code>, не <code>px</code>. <code>em</code> = относительно текущего font-size. <code>letter-spacing: -0.02em</code> на h1 (48px) даст -0.96px. На h2 (32px) тот же код даст -0.64px. Масштабируется автоматически.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong><code>em</code> rule for letter-spacing.</strong> Use <code>em</code>, not <code>px</code>. <code>em</code> = relative to current font-size. <code>letter-spacing: -0.02em</code> on h1 (48px) gives -0.96px. On h2 (32px) same code gives -0.64px. Scales automatically.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== LINKS ==================== -->
+    <h2 id="links" data-lang="ru">4. Ссылки: базовый стиль</h2>
+    <h2 id="links-en" data-lang="en">4. Links: base style</h2>
+
+    <div class="why" data-lang="ru">
+        <p>В reset мы убрали стандартный стиль ссылок (синий + подчёркивание). Теперь нужно задать свой — для всех <code>&lt;a&gt;</code> по умолчанию. Правило: ссылки в тексте выглядят как ссылки (подчёркнуты или цветные), ссылки в навигации — просто текст.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>The reset removed the default link style (blue + underline). Now set your own — for all <code>&lt;a&gt;</code> by default. Rule: links in text look like links (underlined or colored), links in navigation — plain text.</p>
+    </div>
+
+<pre><code>/* Базовый стиль ссылки */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+
+/* Ссылки внутри параграфов всегда подчёркнуты */
+p a {
+    text-decoration: underline;
+    text-underline-offset: 3px;     /* отступ линии от текста */
+}
+
+/* Ссылки навигации — без подчёркивания */
+.nav a,
+.footer a {
+    text-decoration: none;
+}
+.nav a:hover {
+    color: var(--color-primary);
+    text-decoration: none;
+}</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>Контраст цвета важен.</strong> Цвет ссылки должен быть <strong>заметно</strong> отличаться от основного текста. Минимум WCAG AA: контрастность 4.5:1. Проверка: <code>webaim.org/resources/contrastchecker</code>.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Color contrast matters.</strong> Link color must be <strong>noticeably</strong> different from main text. WCAG AA minimum: 4.5:1 contrast. Check: <code>webaim.org/resources/contrastchecker</code>.
+    </div>
+
+    <hr>
+
+    <!-- ==================== CONTAINER ==================== -->
+    <h2 id="container" data-lang="ru">5. Контейнер: паттерн <code>.container</code></h2>
+    <h2 id="container-en" data-lang="en">5. Container: <code>.container</code> pattern</h2>
+
+    <div class="why" data-lang="ru">
+        <p><code>.container</code> — это <strong>обёртка</strong>, которая ограничивает ширину контента и центрирует его. Используется на каждой секции: хоть header, хоть hero, хоть footer. Без контейнера на больших экранах контент растянется на 2000px — нечитаемо.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p><code>.container</code> — a <strong>wrapper</strong> that limits content width and centers it. Used on every section: header, hero, or footer. Without it, on large screens content stretches to 2000px — unreadable.</p>
+    </div>
+
+<pre><code>.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);        /* 16px по бокам */
+}</code></pre>
+
+    <div class="diagram" data-lang="ru">
+    На экране 1920px:
+
+    ├───── 1920px (весь viewport) ──────┤
+    │                                    │
+    │        ┌────────────────┐          │
+    │        │  .container    │          │
+    │        │  max-width:    │          │
+    │        │  1200px        │          │
+    │        │  центр.        │          │
+    │        └────────────────┘          │
+    │                                    │
+    │←  auto  →│              │←  auto  →│</div>
+    <div class="diagram" data-lang="en">
+    On 1920px screen:
+
+    ├───── 1920px (full viewport) ──────┤
+    │                                    │
+    │        ┌────────────────┐          │
+    │        │  .container    │          │
+    │        │  max-width:    │          │
+    │        │  1200px        │          │
+    │        │  centered      │          │
+    │        └────────────────┘          │
+    │                                    │
+    │←  auto  →│              │←  auto  →│</div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Широкий фон, узкий контент.</strong> Если нужна секция с градиентом на всю ширину, но контент ограничен 1200px — фон ставьте на <code>&lt;section&gt;</code>, а <code>.container</code> внутрь:</p>
+<pre><code>&lt;section class="hero"&gt;     &lt;!-- фон на всю ширину --&gt;
+    &lt;div class="container"&gt; &lt;!-- контент ограничен --&gt;
+        &lt;h1&gt;...&lt;/h1&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Wide background, narrow content.</strong> If you need a full-width gradient section but content limited to 1200px — put the background on <code>&lt;section&gt;</code>, and <code>.container</code> inside:</p>
+<pre><code>&lt;section class="hero"&gt;     &lt;!-- full-width bg --&gt;
+    &lt;div class="container"&gt; &lt;!-- limited content --&gt;
+        &lt;h1&gt;...&lt;/h1&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+    </div>
+
+    <hr>
+
+    <!-- ==================== BUTTONS ==================== -->
+    <h2 id="buttons" data-lang="ru">6. Кнопки: .btn + модификаторы</h2>
+    <h2 id="buttons-en" data-lang="en">6. Buttons: .btn + modifiers</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Кнопка — самый частый элемент на сайте. Используется 10-30 раз на странице. Писать стиль для каждой кнопки отдельно — ад. Решение: <strong>базовый класс <code>.btn</code></strong> со всеми общими стилями + <strong>модификаторы</strong> для разных вариантов.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>A button is the most common element on a site. Used 10-30 times per page. Writing style for each separately — hell. Solution: <strong>base class <code>.btn</code></strong> with all common styles + <strong>modifiers</strong> for variants.</p>
+    </div>
+
+<pre><code>/* components.css */
+
+/* Базовый класс: общее для всех кнопок */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 12px 28px;
+    font-size: var(--fs-body);
+    font-weight: 600;
+    line-height: 1;
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+/* Модификаторы цвета */
+.btn-primary {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+.btn-primary:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+.btn-outline:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--color-text);
+    border-color: transparent;
+}
+.btn-ghost:hover {
+    background: var(--color-bg-alt);
+}
+
+/* Модификаторы размера */
+.btn-sm { padding: 8px 16px; font-size: var(--fs-small); }
+.btn-lg { padding: 16px 36px; font-size: 18px; }
+
+/* Модификатор ширины */
+.btn-full { width: 100%; }</code></pre>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Использование:</strong></p>
+<pre><code>&lt;a href="#" class="btn btn-primary"&gt;Заказать&lt;/a&gt;
+&lt;button class="btn btn-outline"&gt;Подробнее&lt;/button&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Большая CTA&lt;/button&gt;
+&lt;button class="btn btn-ghost btn-sm"&gt;Малая ссылка&lt;/button&gt;
+&lt;button class="btn btn-primary btn-full"&gt;На всю ширину&lt;/button&gt;</code></pre>
+        <p>Два класса — и получаете любую нужную кнопку. Это и есть <strong>component pattern</strong>.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Usage:</strong></p>
+<pre><code>&lt;a href="#" class="btn btn-primary"&gt;Order&lt;/a&gt;
+&lt;button class="btn btn-outline"&gt;Learn more&lt;/button&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Large CTA&lt;/button&gt;
+&lt;button class="btn btn-ghost btn-sm"&gt;Small link&lt;/button&gt;
+&lt;button class="btn btn-primary btn-full"&gt;Full width&lt;/button&gt;</code></pre>
+        <p>Two classes — any button you need. That's the <strong>component pattern</strong>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== BUTTON STATES ==================== -->
+    <h2 id="button-states" data-lang="ru">7. Состояния кнопок</h2>
+    <h2 id="button-states-en" data-lang="en">7. Button states</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Кнопка должна реагировать на взаимодействие: <strong>hover</strong> (курсор навёлся), <strong>focus</strong> (в фокусе, например с клавиатуры), <strong>active</strong> (нажата), <strong>disabled</strong> (неактивна). Каждое состояние визуально отличается.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>A button must react to interaction: <strong>hover</strong> (cursor over), <strong>focus</strong> (focused, e.g., via keyboard), <strong>active</strong> (pressed), <strong>disabled</strong> (inactive). Each state visually distinct.</p>
+    </div>
+
+<pre><code>.btn {
+    /* базовые стили */
+    transition: all 0.2s ease;
+}
+
+/* hover — курсор наведён */
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* focus — в фокусе (клавиатура) */
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+}
+
+/* active — нажата */
+.btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* disabled — неактивна */
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+.btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong><code>:focus-visible</code> вместо <code>:focus</code>.</strong> <code>:focus</code> срабатывает всегда (даже при клике мышкой — появляется ненужная рамка). <code>:focus-visible</code> — только при клавиатурной навигации. Правильный выбор для accessibility.
+    </div>
+    <div class="important" data-lang="en">
+        <strong><code>:focus-visible</code> instead of <code>:focus</code>.</strong> <code>:focus</code> triggers always (even on mouse click — unwanted ring). <code>:focus-visible</code> — only on keyboard navigation. The right choice for accessibility.
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Не убирайте <code>outline</code> без замены!</strong> <code>outline: none</code> без <code>box-shadow</code> — катастрофа для доступности. Люди с клавиатуры не видят, где они находятся. Всегда замена: <code>outline: none; box-shadow: 0 0 0 3px color;</code>.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Don't remove <code>outline</code> without replacement!</strong> <code>outline: none</code> without <code>box-shadow</code> — accessibility disaster. Keyboard users can't see where they are. Always replace: <code>outline: none; box-shadow: 0 0 0 3px color;</code>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CARDS ==================== -->
+    <h2 id="cards" data-lang="ru">8. Карточки: компонент .card</h2>
+    <h2 id="cards-en" data-lang="en">8. Cards: .card component</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Карточка — второй по частоте компонент после кнопки. Товары, фичи, команда, отзывы — всё это карточки. По той же схеме: базовый класс + внутренние элементы + модификаторы.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Card is the second most common component after button. Products, features, team, testimonials — all cards. Same pattern: base class + inner elements + modifiers.</p>
+    </div>
+
+<pre><code>/* components.css */
+
+.card {
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;               /* обрежет картинку под скругление */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Элементы карточки */
+.card-image {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: var(--space-md);
+}
+
+.card-title {
+    font-size: var(--fs-h4);
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+}
+
+.card-text {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md);
+    border-top: 1px solid var(--color-border);
+}
+
+.card-price {
+    font-size: var(--fs-h3);
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* Модификаторы */
+.card-outlined {
+    box-shadow: none;
+    border: 1px solid var(--color-border);
+}</code></pre>
+
+    <p data-lang="ru"><strong>Использование:</strong></p>
+    <p data-lang="en"><strong>Usage:</strong></p>
+<pre><code>&lt;article class="card"&gt;
+    &lt;img src="cake.jpg" alt="Торт Наполеон" class="card-image"&gt;
+    &lt;div class="card-body"&gt;
+        &lt;h3 class="card-title"&gt;Наполеон&lt;/h3&gt;
+        &lt;p class="card-text"&gt;Классический многослойный торт с заварным кремом&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="card-footer"&gt;
+        &lt;span class="card-price"&gt;450 TMT&lt;/span&gt;
+        &lt;a href="#" class="btn btn-primary btn-sm"&gt;В корзину&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>overflow: hidden — обязательно.</strong> Без него картинка с прямыми углами «вылезет» за скруглённые углы карточки. <code>overflow: hidden</code> на родителе — картинка обрезается по форме родителя.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>overflow: hidden — mandatory.</strong> Without it, a rectangular image "breaks out" of the card's rounded corners. <code>overflow: hidden</code> on parent — image clips to parent's shape.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== FORMS ==================== -->
+    <h2 id="forms" data-lang="ru">9. Формы: input, textarea, focus-ring</h2>
+    <h2 id="forms-en" data-lang="en">9. Forms: input, textarea, focus-ring</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Дефолтные стили input/textarea отличаются в Chrome/Safari/Firefox, да ещё и на мобильных. Надо их привести к единому стилю. Особенно важен <strong>focus-ring</strong> — визуальное обозначение фокуса.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Default input/textarea styles differ in Chrome/Safari/Firefox, and on mobile too. Bring them to a uniform style. Especially important — <strong>focus-ring</strong>, visual indication of focus.</p>
+    </div>
+
+<pre><code>/* components.css */
+
+/* Общий контейнер поля формы */
+.form-group {
+    margin-bottom: var(--space-md);
+}
+
+/* Label */
+.form-label {
+    display: block;
+    font-size: var(--fs-small);
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+    color: var(--color-text);
+}
+
+/* Input и textarea — общий стиль */
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: var(--fs-body);
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Focus state */
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Placeholder */
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: var(--color-text-muted);
+}
+
+/* Textarea */
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;      /* только по высоте, не по ширине */
+    font-family: inherit;  /* важно! */
+}
+
+/* Error state */
+.form-input.error,
+.form-textarea.error {
+    border-color: var(--color-error);
+}
+.form-error-text {
+    color: var(--color-error);
+    font-size: var(--fs-small);
+    margin-top: var(--space-xs);
+}
+
+/* Checkbox */
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    cursor: pointer;
+}
+.form-checkbox input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-primary);
+}</code></pre>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong><code>accent-color</code></strong> — современный способ стилизовать нативные checkbox/radio/range. Одна строка — и элемент принимает ваш цвет. Работает во всех современных браузерах.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong><code>accent-color</code></strong> — modern way to style native checkbox/radio/range. One line — and the element uses your color. Works in all modern browsers.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== BEM ==================== -->
+    <h2 id="bem" data-lang="ru">10. BEM-именование (опционально)</h2>
+    <h2 id="bem-en" data-lang="en">10. BEM naming (optional)</h2>
+
+    <div class="why" data-lang="ru">
+        <p>BEM (Block-Element-Modifier) — система именования CSS-классов, которую используют во многих командах. Делает код предсказуемым и самодокументируемым.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>BEM (Block-Element-Modifier) — a CSS class naming system used by many teams. Makes code predictable and self-documenting.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Тип</th><th>Синтаксис</th><th>Пример</th></tr>
+        <tr><td><strong>Block</strong></td><td><code>.block</code></td><td><code>.card</code>, <code>.btn</code>, <code>.header</code></td></tr>
+        <tr><td><strong>Element</strong></td><td><code>.block__element</code></td><td><code>.card__title</code>, <code>.btn__icon</code></td></tr>
+        <tr><td><strong>Modifier</strong></td><td><code>.block--modifier</code></td><td><code>.btn--primary</code>, <code>.card--outlined</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Type</th><th>Syntax</th><th>Example</th></tr>
+        <tr><td><strong>Block</strong></td><td><code>.block</code></td><td><code>.card</code>, <code>.btn</code>, <code>.header</code></td></tr>
+        <tr><td><strong>Element</strong></td><td><code>.block__element</code></td><td><code>.card__title</code>, <code>.btn__icon</code></td></tr>
+        <tr><td><strong>Modifier</strong></td><td><code>.block--modifier</code></td><td><code>.btn--primary</code>, <code>.card--outlined</code></td></tr>
+    </table>
+
+<pre><code>&lt;!-- С BEM --&gt;
+&lt;article class="card card--outlined"&gt;
+    &lt;img class="card__image" src="..."&gt;
+    &lt;h3 class="card__title"&gt;...&lt;/h3&gt;
+    &lt;p class="card__text"&gt;...&lt;/p&gt;
+&lt;/article&gt;
+
+&lt;!-- Без BEM (что мы делали выше) --&gt;
+&lt;article class="card card-outlined"&gt;
+    &lt;img class="card-image" src="..."&gt;
+    &lt;h3 class="card-title"&gt;...&lt;/h3&gt;
+    &lt;p class="card-text"&gt;...&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>BEM — опция, не обязательство.</strong> Если вам нравится — используйте <code>__</code> и <code>--</code>. Если нет — дефис-разделитель (<code>card-title</code>) тоже работает. Главное — <strong>единообразие</strong> в проекте.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>BEM is optional, not mandatory.</strong> If you like it — use <code>__</code> and <code>--</code>. If not — hyphen separator (<code>card-title</code>) works too. Main thing — <strong>consistency</strong> within the project.
+    </div>
+
+    <hr>
+
+    <!-- ==================== PITFALLS ==================== -->
+    <h2 id="pitfalls" data-lang="ru">11. 10 ошибок CSS-стилизации</h2>
+    <h2 id="pitfalls-en" data-lang="en">11. 10 CSS styling mistakes</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td>HEX-цвета прямо в <code>components.css</code></td><td>Только <code>var(--color-*)</code> из tokens</td></tr>
+        <tr><td>Размеры шрифта px, в обход переменных</td><td><code>var(--fs-h2)</code> всегда</td></tr>
+        <tr><td>Нет <code>box-sizing: border-box</code> в reset</td><td>Самое первое правило</td></tr>
+        <tr><td><code>outline: none</code> без замены</td><td>Вместе с <code>box-shadow</code> как focus-ring</td></tr>
+        <tr><td>Одинаковый <code>line-height</code> для body и h1</td><td>1.6 для body, 1.2 для заголовков</td></tr>
+        <tr><td>Один стиль для кнопки «одноразовый»</td><td>.btn + модификаторы (переиспользование)</td></tr>
+        <tr><td>Нет <code>:hover</code>/<code>:focus</code> на интерактивных</td><td>Всегда и с <code>transition</code></td></tr>
+        <tr><td><code>&lt;input&gt;</code> без <code>font-family: inherit</code></td><td>Наследовать от body</td></tr>
+        <tr><td>Нет <code>overflow: hidden</code> у карточки</td><td>Для скруглённых картинок внутри</td></tr>
+        <tr><td>Inline-стили вместо класса</td><td>Всё в CSS-файле</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td>HEX colors right in <code>components.css</code></td><td>Only <code>var(--color-*)</code> from tokens</td></tr>
+        <tr><td>Font sizes in px, bypassing variables</td><td><code>var(--fs-h2)</code> always</td></tr>
+        <tr><td>No <code>box-sizing: border-box</code> in reset</td><td>The very first rule</td></tr>
+        <tr><td><code>outline: none</code> without replacement</td><td>Together with <code>box-shadow</code> as focus-ring</td></tr>
+        <tr><td>Same <code>line-height</code> for body and h1</td><td>1.6 for body, 1.2 for headings</td></tr>
+        <tr><td>"One-off" button styles</td><td>.btn + modifiers (reusable)</td></tr>
+        <tr><td>No <code>:hover</code>/<code>:focus</code> on interactive</td><td>Always, with <code>transition</code></td></tr>
+        <tr><td><code>&lt;input&gt;</code> without <code>font-family: inherit</code></td><td>Inherit from body</td></tr>
+        <tr><td>No <code>overflow: hidden</code> on card</td><td>For rounded images inside</td></tr>
+        <tr><td>Inline styles instead of class</td><td>Everything in CSS file</td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ==================== CONSULT ==================== -->
+    <h2 id="consult" data-lang="ru">12. Индивидуальная консультация</h2>
+    <h2 id="consult-en" data-lang="en">12. Individual consultation</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Третий урок — ваше время с преподавателем. К нему вы приходите с <strong>стилизованными элементами</strong>: кнопки работают, карточки красивые, формы с правильным focus. Покажите результат и обсудите вопросы.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Third lesson — your time with the instructor. You arrive with <strong>styled elements</strong>: buttons work, cards look nice, forms have proper focus. Show results and discuss questions.</p>
+    </div>
+
+    <h3 data-lang="ru">Вопросы к преподавателю:</h3>
+    <h3 data-lang="en">Questions for the instructor:</h3>
+    <ul data-lang="ru">
+        <li>«Правильно ли я использую <code>var(--token)</code> везде?»</li>
+        <li>«Мои кнопки выглядят так же, как в макете?»</li>
+        <li>«Какие модификаторы кнопок ещё нужны?»</li>
+        <li>«Line-height достаточен для читабельности?»</li>
+        <li>«Нужно ли добавлять <code>:disabled</code> состояние?»</li>
+    </ul>
+    <ul data-lang="en">
+        <li>"Am I using <code>var(--token)</code> everywhere correctly?"</li>
+        <li>"Do my buttons look like the mockup?"</li>
+        <li>"What other button modifiers do I need?"</li>
+        <li>"Is line-height enough for readability?"</li>
+        <li>"Should I add a <code>:disabled</code> state?"</li>
+    </ul>
+
+    <hr>
+
+    <div class="summary" data-lang="ru">
+        <strong>К концу занятия 32 должно быть готово:</strong>
+        <ul>
+            <li><code>base.css</code>: reset + типографика (body, h1-h4, p, a) + <code>.container</code></li>
+            <li><code>components.css</code>: <code>.btn</code> + 3 модификатора + 3 состояния</li>
+            <li><code>components.css</code>: <code>.card</code> с элементами</li>
+            <li><code>components.css</code>: стили форм (input, textarea, label, focus)</li>
+            <li>Все цвета и шрифты через <code>var(--token)</code></li>
+            <li>В браузере: страница выглядит <strong>намного лучше</strong>, хоть и без layout</li>
+            <li>Коммит: «Lesson 33: Base styles + components»</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>By the end of Lesson 33 ready:</strong>
+        <ul>
+            <li><code>base.css</code>: reset + typography (body, h1-h4, p, a) + <code>.container</code></li>
+            <li><code>components.css</code>: <code>.btn</code> + 3 modifiers + 3 states</li>
+            <li><code>components.css</code>: <code>.card</code> with elements</li>
+            <li><code>components.css</code>: form styles (input, textarea, label, focus)</li>
+            <li>All colors and fonts via <code>var(--token)</code></li>
+            <li>In browser: page looks <strong>much better</strong>, though without layout yet</li>
+            <li>Commit: "Lesson 33: Base styles + components"</li>
+        </ul>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Что такое CSS reset и зачем он нужен?</li>
+            <li>Что делает <code>box-sizing: border-box</code>?</li>
+            <li>Какой <code>line-height</code> для body и для заголовков?</li>
+            <li>Чем <code>:focus</code> отличается от <code>:focus-visible</code>?</li>
+            <li>Как устроен component pattern (.btn + модификаторы)?</li>
+            <li>Зачем карточке <code>overflow: hidden</code>?</li>
+            <li>Зачем <code>font-family: inherit</code> на input/textarea?</li>
+            <li>Что такое BEM и обязателен ли он?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>What is a CSS reset and why do you need it?</li>
+            <li>What does <code>box-sizing: border-box</code> do?</li>
+            <li>What <code>line-height</code> for body and for headings?</li>
+            <li>How does <code>:focus</code> differ from <code>:focus-visible</code>?</li>
+            <li>How does the component pattern work (.btn + modifiers)?</li>
+            <li>Why does a card need <code>overflow: hidden</code>?</li>
+            <li>Why <code>font-family: inherit</code> on input/textarea?</li>
+            <li>What is BEM and is it mandatory?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

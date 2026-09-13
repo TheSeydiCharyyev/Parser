@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 16 — Мини-проект: Галерея карточек</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 16: Мини-проект — Галерея карточек</span>
+    <span class="nav-title" data-lang="en">Lesson 16: Mini-project — Card Gallery</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 16: Мини-проект #3 — Галерея карточек</h1>
+    <h1 data-lang="en">Lesson 16: Mini-project #3 — Card Gallery</h1>
+    <p class="subtitle" data-lang="ru">Flexbox-галерея карточек с изображениями, hover-эффектами и переносом строк</p>
+    <p class="subtitle" data-lang="en">Flexbox card gallery with images, hover effects, and line wrapping</p>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#intro">Что мы будем строить</a></li>
+            <li><a href="#planning">Планирование галереи</a></li>
+            <li><a href="#html">HTML-структура</a></li>
+            <li><a href="#css-base">CSS: базовые стили и сетка</a></li>
+            <li><a href="#css-card">CSS: карточка</a></li>
+            <li><a href="#css-image">CSS: изображение в карточке</a></li>
+            <li><a href="#css-content">CSS: контент карточки</a></li>
+            <li><a href="#css-badges">CSS: бейджи и рейтинг</a></li>
+            <li><a href="#css-hover">CSS: hover-эффекты</a></li>
+            <li><a href="#css-header">CSS: шапка галереи</a></li>
+            <li><a href="#full-code">Полный код</a></li>
+            <li><a href="#practice">Создание своей галереи</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#intro">What we will build</a></li>
+            <li><a href="#planning">Gallery planning</a></li>
+            <li><a href="#html">HTML structure</a></li>
+            <li><a href="#css-base">CSS: base styles and grid</a></li>
+            <li><a href="#css-card">CSS: card</a></li>
+            <li><a href="#css-image">CSS: card image</a></li>
+            <li><a href="#css-content">CSS: card content</a></li>
+            <li><a href="#css-badges">CSS: badges and rating</a></li>
+            <li><a href="#css-hover">CSS: hover effects</a></li>
+            <li><a href="#css-header">CSS: gallery header</a></li>
+            <li><a href="#full-code">Full code</a></li>
+            <li><a href="#practice">Creating your own gallery</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ВВЕДЕНИЕ ==================== -->
+    <h2 id="intro" data-lang="ru">1. Что мы будем строить</h2>
+    <h2 id="intro-en" data-lang="en">1. What we will build</h2>
+
+    <p data-lang="ru">Сегодня создаём <strong>галерею карточек</strong> — сетку из красивых карточек с изображениями. Это один из самых частых паттернов в вебе: каталог товаров, фильмов, игр, рецептов, статей.</p>
+    <p data-lang="en">Today we're building a <strong>card gallery</strong> — a grid of beautiful cards with images. This is one of the most common web patterns: product catalogs, movies, games, recipes, articles.</p>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Цель:</strong> Применить все знания по Flexbox (занятия 13-14) для создания реальной галереи с wrap, gap, flex-grow, hover-эффектами и красивым дизайном.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Goal:</strong> Apply all Flexbox knowledge (lessons 13-14) to build a real gallery with wrap, gap, flex-grow, hover effects, and beautiful design.
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  &#x1F3AC; Галерея фильмов         [Фильтр] &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502; [IMAGE] &#x2502; &#x2502; [IMAGE] &#x2502; &#x2502; [IMAGE] &#x2502; &#x2502;
+    &#x2502; &#x2502; Title   &#x2502; &#x2502; Title   &#x2502; &#x2502; Title   &#x2502; &#x2502;
+    &#x2502; &#x2502; &#x2605;&#x2605;&#x2605;&#x2605;&#x2606; &#x2502; &#x2502; &#x2605;&#x2605;&#x2605;&#x2606;&#x2606; &#x2502; &#x2502; &#x2605;&#x2605;&#x2605;&#x2605;&#x2605; &#x2502; &#x2502;
+    &#x2502; &#x2502; [Badge] &#x2502; &#x2502; [Badge] &#x2502; &#x2502; [Badge] &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502;  ...    &#x2502; &#x2502;  ...    &#x2502; &#x2502;  ...    &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  &#x1F3AC; Movie Gallery           [Filter] &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502; [IMAGE] &#x2502; &#x2502; [IMAGE] &#x2502; &#x2502; [IMAGE] &#x2502; &#x2502;
+    &#x2502; &#x2502; Title   &#x2502; &#x2502; Title   &#x2502; &#x2502; Title   &#x2502; &#x2502;
+    &#x2502; &#x2502; &#x2605;&#x2605;&#x2605;&#x2605;&#x2606; &#x2502; &#x2502; &#x2605;&#x2605;&#x2605;&#x2606;&#x2606; &#x2502; &#x2502; &#x2605;&#x2605;&#x2605;&#x2605;&#x2605; &#x2502; &#x2502;
+    &#x2502; &#x2502; [Badge] &#x2502; &#x2502; [Badge] &#x2502; &#x2502; [Badge] &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <hr>
+
+    <!-- ==================== ПЛАНИРОВАНИЕ ==================== -->
+    <h2 id="planning" data-lang="ru">2. Планирование галереи</h2>
+    <h2 id="planning-en" data-lang="en">2. Gallery planning</h2>
+
+    <p data-lang="ru">Создадим галерею <strong>фильмов</strong>. Каждая карточка содержит:</p>
+    <p data-lang="en">We'll create a <strong>movie</strong> gallery. Each card contains:</p>
+
+    <table data-lang="ru">
+        <tr><th>Элемент</th><th>HTML</th><th>CSS</th></tr>
+        <tr><td>Постер</td><td><code>&lt;img&gt;</code></td><td>width: 100%, border-radius сверху</td></tr>
+        <tr><td>Название</td><td><code>&lt;h3&gt;</code></td><td>font-weight, color</td></tr>
+        <tr><td>Год и жанр</td><td><code>&lt;p&gt;</code></td><td>color: серый, мелкий шрифт</td></tr>
+        <tr><td>Рейтинг</td><td><code>&lt;span&gt;</code> со звёздами</td><td>color: жёлтый</td></tr>
+        <tr><td>Бейджи жанра</td><td><code>&lt;span class="badge"&gt;</code></td><td>inline-block, цветной фон</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Element</th><th>HTML</th><th>CSS</th></tr>
+        <tr><td>Poster</td><td><code>&lt;img&gt;</code></td><td>width: 100%, border-radius top</td></tr>
+        <tr><td>Title</td><td><code>&lt;h3&gt;</code></td><td>font-weight, color</td></tr>
+        <tr><td>Year and genre</td><td><code>&lt;p&gt;</code></td><td>color: gray, small font</td></tr>
+        <tr><td>Rating</td><td><code>&lt;span&gt;</code> with stars</td><td>color: yellow</td></tr>
+        <tr><td>Genre badges</td><td><code>&lt;span class="badge"&gt;</code></td><td>inline-block, colored bg</td></tr>
+    </table>
+
+    <p data-lang="ru"><strong>Flexbox-раскладка:</strong></p>
+    <p data-lang="en"><strong>Flexbox layout:</strong></p>
+    <ul data-lang="ru">
+        <li><code>display: flex</code> + <code>flex-wrap: wrap</code> — карточки переносятся на новую строку</li>
+        <li><code>gap: 24px</code> — отступы между карточками</li>
+        <li><code>flex: 1 1 280px</code> — минимальная ширина 280px, растягиваются равномерно</li>
+        <li>Каждая карточка — тоже flex-column (кнопка внизу)</li>
+    </ul>
+    <ul data-lang="en">
+        <li><code>display: flex</code> + <code>flex-wrap: wrap</code> — cards wrap to new line</li>
+        <li><code>gap: 24px</code> — spacing between cards</li>
+        <li><code>flex: 1 1 280px</code> — minimum width 280px, grow evenly</li>
+        <li>Each card is also flex-column (button at bottom)</li>
+    </ul>
+
+    <hr>
+
+    <!-- ==================== HTML ==================== -->
+    <h2 id="html" data-lang="ru">3. HTML-структура</h2>
+    <h2 id="html-en" data-lang="en">3. HTML structure</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Галерея фильмов&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="container"&gt;
+
+    &lt;!-- Шапка галереи --&gt;
+    &lt;header class="gallery-header"&gt;
+        &lt;h1&gt;&#x1F3AC; Галерея фильмов&lt;/h1&gt;
+        &lt;p&gt;Лучшие фильмы всех времён&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Сетка карточек --&gt;
+    &lt;div class="gallery"&gt;
+
+        &lt;div class="card"&gt;
+            &lt;img src="https://picsum.photos/400/250?random=1" alt="Фильм 1"&gt;
+            &lt;div class="card-body"&gt;
+                &lt;h3&gt;Начало&lt;/h3&gt;
+                &lt;p class="meta"&gt;2010 &#x2022; Кристофер Нолан&lt;/p&gt;
+                &lt;div class="rating"&gt;&#x2605;&#x2605;&#x2605;&#x2605;&#x2605; &lt;span&gt;9.3&lt;/span&gt;&lt;/div&gt;
+                &lt;div class="badges"&gt;
+                    &lt;span class="badge"&gt;Фантастика&lt;/span&gt;
+                    &lt;span class="badge"&gt;Триллер&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="card"&gt;
+            &lt;img src="https://picsum.photos/400/250?random=2" alt="Фильм 2"&gt;
+            &lt;div class="card-body"&gt;
+                &lt;h3&gt;Интерстеллар&lt;/h3&gt;
+                &lt;p class="meta"&gt;2014 &#x2022; Кристофер Нолан&lt;/p&gt;
+                &lt;div class="rating"&gt;&#x2605;&#x2605;&#x2605;&#x2605;&#x2606; &lt;span&gt;8.7&lt;/span&gt;&lt;/div&gt;
+                &lt;div class="badges"&gt;
+                    &lt;span class="badge"&gt;Фантастика&lt;/span&gt;
+                    &lt;span class="badge"&gt;Драма&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="card"&gt;
+            &lt;img src="https://picsum.photos/400/250?random=3" alt="Фильм 3"&gt;
+            &lt;div class="card-body"&gt;
+                &lt;h3&gt;Матрица&lt;/h3&gt;
+                &lt;p class="meta"&gt;1999 &#x2022; Вачовски&lt;/p&gt;
+                &lt;div class="rating"&gt;&#x2605;&#x2605;&#x2605;&#x2605;&#x2606; &lt;span&gt;8.7&lt;/span&gt;&lt;/div&gt;
+                &lt;div class="badges"&gt;
+                    &lt;span class="badge"&gt;Экшн&lt;/span&gt;
+                    &lt;span class="badge"&gt;Фантастика&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="card"&gt;
+            &lt;img src="https://picsum.photos/400/250?random=4" alt="Фильм 4"&gt;
+            &lt;div class="card-body"&gt;
+                &lt;h3&gt;Побег из Шоушенка&lt;/h3&gt;
+                &lt;p class="meta"&gt;1994 &#x2022; Фрэнк Дарабонт&lt;/p&gt;
+                &lt;div class="rating"&gt;&#x2605;&#x2605;&#x2605;&#x2605;&#x2605; &lt;span&gt;9.3&lt;/span&gt;&lt;/div&gt;
+                &lt;div class="badges"&gt;
+                    &lt;span class="badge"&gt;Драма&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="card"&gt;
+            &lt;img src="https://picsum.photos/400/250?random=5" alt="Фильм 5"&gt;
+            &lt;div class="card-body"&gt;
+                &lt;h3&gt;Тёмный рыцарь&lt;/h3&gt;
+                &lt;p class="meta"&gt;2008 &#x2022; Кристофер Нолан&lt;/p&gt;
+                &lt;div class="rating"&gt;&#x2605;&#x2605;&#x2605;&#x2605;&#x2605; &lt;span&gt;9.0&lt;/span&gt;&lt;/div&gt;
+                &lt;div class="badges"&gt;
+                    &lt;span class="badge"&gt;Экшн&lt;/span&gt;
+                    &lt;span class="badge"&gt;Криминал&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="card"&gt;
+            &lt;img src="https://picsum.photos/400/250?random=6" alt="Фильм 6"&gt;
+            &lt;div class="card-body"&gt;
+                &lt;h3&gt;Форрест Гамп&lt;/h3&gt;
+                &lt;p class="meta"&gt;1994 &#x2022; Роберт Земекис&lt;/p&gt;
+                &lt;div class="rating"&gt;&#x2605;&#x2605;&#x2605;&#x2605;&#x2606; &lt;span&gt;8.8&lt;/span&gt;&lt;/div&gt;
+                &lt;div class="badges"&gt;
+                    &lt;span class="badge"&gt;Драма&lt;/span&gt;
+                    &lt;span class="badge"&gt;Комедия&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>picsum.photos</strong> — бесплатный сервис для случайных изображений. <code>?random=1</code> даёт каждый раз разные картинки. В реальном проекте используйте настоящие постеры.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>picsum.photos</strong> — a free service for random images. <code>?random=1</code> gives different images each time. In a real project, use actual posters.
+    </div>
+
+    <hr>
+
+    <!-- ==================== CSS BASE ==================== -->
+    <h2 id="css-base" data-lang="ru">4. CSS: базовые стили и сетка</h2>
+    <h2 id="css-base-en" data-lang="en">4. CSS: base styles and grid</h2>
+
+<pre><code>* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ========== СЕТКА ГАЛЕРЕИ ========== */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}</code></pre>
+
+    <p data-lang="ru"><strong>Ключевые свойства сетки:</strong></p>
+    <p data-lang="en"><strong>Key grid properties:</strong></p>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Зачем</th></tr>
+        <tr><td><code>display: flex</code></td><td>Карточки в ряд</td></tr>
+        <tr><td><code>flex-wrap: wrap</code></td><td>Перенос на новую строку</td></tr>
+        <tr><td><code>gap: 24px</code></td><td>Равные отступы между карточками</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>Purpose</th></tr>
+        <tr><td><code>display: flex</code></td><td>Cards in a row</td></tr>
+        <tr><td><code>flex-wrap: wrap</code></td><td>Wrap to new line</td></tr>
+        <tr><td><code>gap: 24px</code></td><td>Equal spacing between cards</td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ==================== CSS CARD ==================== -->
+    <h2 id="css-card" data-lang="ru">5. CSS: карточка</h2>
+    <h2 id="css-card-en" data-lang="en">5. CSS: card</h2>
+
+<pre><code>.card {
+    flex: 1 1 280px;
+    max-width: 400px;
+    background: #1e293b;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Зачем</th></tr>
+        <tr><td><code>flex: 1 1 280px</code></td><td>Мин. ширина 280px, растягивается равномерно</td></tr>
+        <tr><td><code>max-width: 400px</code></td><td>Не шире 400px (чтобы не растягивалась слишком)</td></tr>
+        <tr><td><code>overflow: hidden</code></td><td>Обрезает углы изображения по border-radius</td></tr>
+        <tr><td><code>display: flex; flex-direction: column</code></td><td>Карточка — вертикальный flex (бейджи внизу)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>Purpose</th></tr>
+        <tr><td><code>flex: 1 1 280px</code></td><td>Min width 280px, grows evenly</td></tr>
+        <tr><td><code>max-width: 400px</code></td><td>No wider than 400px</td></tr>
+        <tr><td><code>overflow: hidden</code></td><td>Clips image corners to border-radius</td></tr>
+        <tr><td><code>display: flex; flex-direction: column</code></td><td>Card is vertical flex (badges at bottom)</td></tr>
+    </table>
+
+    <div class="important" data-lang="ru">
+        <strong>flex: 1 1 280px</strong> — ключевое свойство! Это значит: «Начальная ширина 280px. Можешь расти (1) и сжиматься (1)». Карточки автоматически заполняют ряд и переносятся.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>flex: 1 1 280px</strong> — the key property! It means: "Initial width 280px. Can grow (1) and shrink (1)." Cards automatically fill the row and wrap.
+    </div>
+
+    <hr>
+
+    <!-- ==================== CSS IMAGE ==================== -->
+    <h2 id="css-image" data-lang="ru">6. CSS: изображение в карточке</h2>
+    <h2 id="css-image-en" data-lang="en">6. CSS: card image</h2>
+
+<pre><code>.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}</code></pre>
+
+    <p data-lang="ru"><code>object-fit: cover</code> — изображение заполняет всю область, сохраняя пропорции (как background-size: cover). Лишнее обрезается.</p>
+    <p data-lang="en"><code>object-fit: cover</code> — the image fills the entire area while keeping proportions (like background-size: cover). Excess is cropped.</p>
+
+    <hr>
+
+    <!-- ==================== CSS CONTENT ==================== -->
+    <h2 id="css-content" data-lang="ru">7. CSS: контент карточки</h2>
+    <h2 id="css-content-en" data-lang="en">7. CSS: card content</h2>
+
+<pre><code>.card-body {
+    padding: 16px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-body h3 {
+    font-size: 1.15rem;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.meta {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}</code></pre>
+
+    <hr>
+
+    <!-- ==================== CSS BADGES ==================== -->
+    <h2 id="css-badges" data-lang="ru">8. CSS: бейджи и рейтинг</h2>
+    <h2 id="css-badges-en" data-lang="en">8. CSS: badges and rating</h2>
+
+<pre><code>.rating {
+    color: #fbbf24;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.rating span {
+    color: #94a3b8;
+    margin-left: 6px;
+}
+
+.badges {
+    margin-top: auto;   /* прижимает бейджи к низу карточки */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #334155;
+    color: #94a3b8;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>margin-top: auto</strong> на <code>.badges</code> — бейджи прижимаются к низу карточки. Все карточки выглядят аккуратно, даже если названия разной длины!
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>margin-top: auto</strong> on <code>.badges</code> — badges are pushed to the bottom of the card. All cards look neat, even if titles are different lengths!
+    </div>
+
+    <hr>
+
+    <!-- ==================== CSS HOVER ==================== -->
+    <h2 id="css-hover" data-lang="ru">9. CSS: hover-эффекты</h2>
+    <h2 id="css-hover-en" data-lang="en">9. CSS: hover effects</h2>
+
+<pre><code>/* Подъём карточки + тень */
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Увеличение изображения */
+.card img {
+    transition: transform 0.3s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}</code></pre>
+
+    <p data-lang="ru">Два hover-эффекта:</p>
+    <p data-lang="en">Two hover effects:</p>
+
+    <ol data-lang="ru">
+        <li><strong>Карточка поднимается</strong> (<code>translateY(-8px)</code>) и появляется глубокая тень</li>
+        <li><strong>Изображение увеличивается</strong> (<code>scale(1.05)</code>) — лёгкий «zoom»</li>
+    </ol>
+    <ol data-lang="en">
+        <li><strong>Card lifts up</strong> (<code>translateY(-8px)</code>) with a deep shadow</li>
+        <li><strong>Image zooms</strong> (<code>scale(1.05)</code>) — subtle zoom effect</li>
+    </ol>
+
+    <div class="try-it" data-lang="ru">
+        <p>Попробуй добавить <code>filter: brightness(1.1)</code> при hover на изображение — оно станет немного ярче!</p>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p>Try adding <code>filter: brightness(1.1)</code> on image hover — it'll become slightly brighter!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CSS HEADER ==================== -->
+    <h2 id="css-header" data-lang="ru">10. CSS: шапка галереи</h2>
+    <h2 id="css-header-en" data-lang="en">10. CSS: gallery header</h2>
+
+<pre><code>.gallery-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.gallery-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+.gallery-header p {
+    color: #64748b;
+    font-size: 1.1rem;
+}</code></pre>
+
+    <hr>
+
+    <!-- ==================== ПОЛНЫЙ КОД ==================== -->
+    <h2 id="full-code" data-lang="ru">11. Полный код</h2>
+    <h2 id="full-code-en" data-lang="en">11. Full code</h2>
+
+    <div class="summary" data-lang="ru">
+        <strong>Что мы применили из Flexbox:</strong>
+        <ul>
+            <li><code>display: flex</code> + <code>flex-wrap: wrap</code> — сетка с переносом</li>
+            <li><code>flex: 1 1 280px</code> — гибкая ширина карточек</li>
+            <li><code>gap: 24px</code> — отступы</li>
+            <li><code>flex-direction: column</code> — вертикальная раскладка внутри карточки</li>
+            <li><code>margin-top: auto</code> — бейджи прижаты к низу</li>
+            <li><code>flex: 1</code> на card-body — заполнить доступное место</li>
+        </ul>
+        <strong>Новое:</strong>
+        <ul>
+            <li><code>object-fit: cover</code> — обрезка изображения</li>
+            <li><code>overflow: hidden</code> — обрезка по border-radius</li>
+            <li><code>transform: scale(1.05)</code> — zoom-эффект на hover</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>Flexbox applied:</strong>
+        <ul>
+            <li><code>display: flex</code> + <code>flex-wrap: wrap</code> — wrapping grid</li>
+            <li><code>flex: 1 1 280px</code> — flexible card width</li>
+            <li><code>gap: 24px</code> — spacing</li>
+            <li><code>flex-direction: column</code> — vertical layout inside card</li>
+            <li><code>margin-top: auto</code> — badges pushed to bottom</li>
+            <li><code>flex: 1</code> on card-body — fill available space</li>
+        </ul>
+        <strong>New:</strong>
+        <ul>
+            <li><code>object-fit: cover</code> — image cropping</li>
+            <li><code>overflow: hidden</code> — clip to border-radius</li>
+            <li><code>transform: scale(1.05)</code> — zoom effect on hover</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">12. Создание своей галереи</h2>
+    <h2 id="practice-en" data-lang="en">12. Creating your own gallery</h2>
+
+    <p data-lang="ru"><strong>Идеи для галереи:</strong></p>
+    <p data-lang="en"><strong>Gallery ideas:</strong></p>
+    <ul data-lang="ru">
+        <li>Фильмы / сериалы</li>
+        <li>Видеоигры</li>
+        <li>Музыкальные альбомы</li>
+        <li>Рецепты блюд</li>
+        <li>Туристические места</li>
+        <li>Портфолио работ</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Movies / TV shows</li>
+        <li>Video games</li>
+        <li>Music albums</li>
+        <li>Food recipes</li>
+        <li>Travel destinations</li>
+        <li>Portfolio works</li>
+    </ul>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Что делает <code>flex: 1 1 280px</code>?</li>
+            <li>Зачем нужен <code>overflow: hidden</code> на карточке?</li>
+            <li>Что делает <code>object-fit: cover</code>?</li>
+            <li>Как прижать бейджи к низу карточки?</li>
+            <li>Какие свойства Flexbox используются для сетки?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>What does <code>flex: 1 1 280px</code> do?</li>
+            <li>Why is <code>overflow: hidden</code> needed on the card?</li>
+            <li>What does <code>object-fit: cover</code> do?</li>
+            <li>How to push badges to the bottom of a card?</li>
+            <li>Which Flexbox properties are used for the grid?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 11 — Формы</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 11: Формы</span>
+    <span class="nav-title" data-lang="en">Lesson 11: Forms</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 11: Формы</h1>
+    <h1 data-lang="en">Lesson 11: Forms</h1>
+    <p class="subtitle" data-lang="ru">HTML-формы: поля ввода, выпадающие списки, переключатели, кнопки, валидация и стилизация</p>
+    <p class="subtitle" data-lang="en">HTML forms: input fields, dropdowns, radio buttons, checkboxes, buttons, validation, and styling</p>
+
+    <div class="why">
+        <p data-lang="ru">Сегодня мы изучим <strong>HTML-формы</strong> — главный инструмент взаимодействия с пользователем. До этого мы показывали информацию пользователю (текст, изображения, таблицы). Теперь пользователь сможет <strong>отправлять данные нам</strong>: регистрироваться, входить в аккаунт, писать сообщения, оформлять заказы.</p>
+        <p data-lang="en">Today we will learn <strong>HTML forms</strong> — the main tool for interacting with users. Until now we've been showing information to users (text, images, tables). Now users will be able to <strong>send data to us</strong>: register, log in, write messages, place orders.</p>
+        <p data-lang="ru"><strong>После этого занятия вы сможете:</strong></p>
+        <p data-lang="en"><strong>After this lesson you will be able to:</strong></p>
+        <ul data-lang="ru">
+            <li>Создавать формы с текстовыми полями, паролями, email</li>
+            <li>Использовать выпадающие списки, radio-кнопки и checkbox</li>
+            <li>Связывать label с input для удобства и доступности</li>
+            <li>Добавлять HTML-валидацию без единой строки JavaScript</li>
+            <li>Стилизовать формы так, чтобы они выглядели профессионально</li>
+            <li>Создать полноценную форму регистрации</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Create forms with text fields, passwords, email</li>
+            <li>Use dropdowns, radio buttons, and checkboxes</li>
+            <li>Link labels with inputs for usability and accessibility</li>
+            <li>Add HTML validation without a single line of JavaScript</li>
+            <li>Style forms to look professional</li>
+            <li>Build a complete registration form</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#intro">Зачем нужны формы</a></li>
+            <li><a href="#form-tag">Тег form</a></li>
+            <li><a href="#input-text">input type="text" и label</a></li>
+            <li><a href="#input-types">Типы input: email, password, number, tel, url, date</a></li>
+            <li><a href="#placeholder">placeholder и value</a></li>
+            <li><a href="#textarea">textarea — многострочное поле</a></li>
+            <li><a href="#select">select — выпадающий список</a></li>
+            <li><a href="#radio">input type="radio" — переключатели</a></li>
+            <li><a href="#checkbox">input type="checkbox" — флажки</a></li>
+            <li><a href="#button">button и input type="submit"</a></li>
+            <li><a href="#validation">HTML-валидация: required, minlength, pattern</a></li>
+            <li><a href="#css-forms">CSS: стилизация форм</a></li>
+            <li><a href="#full-example">Полный пример: форма регистрации</a></li>
+            <li><a href="#practice">Практика</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#intro">Why we need forms</a></li>
+            <li><a href="#form-tag">The form tag</a></li>
+            <li><a href="#input-text">input type="text" and label</a></li>
+            <li><a href="#input-types">Input types: email, password, number, tel, url, date</a></li>
+            <li><a href="#placeholder">placeholder and value</a></li>
+            <li><a href="#textarea">textarea — multi-line field</a></li>
+            <li><a href="#select">select — dropdown list</a></li>
+            <li><a href="#radio">input type="radio" — radio buttons</a></li>
+            <li><a href="#checkbox">input type="checkbox" — checkboxes</a></li>
+            <li><a href="#button">button and input type="submit"</a></li>
+            <li><a href="#validation">HTML validation: required, minlength, pattern</a></li>
+            <li><a href="#css-forms">CSS: form styling</a></li>
+            <li><a href="#full-example">Full example: registration form</a></li>
+            <li><a href="#practice">Practice</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 1. ВВЕДЕНИЕ ==================== -->
+    <h2 id="intro" data-lang="ru">1. Зачем нужны формы</h2>
+    <h2 id="intro-en" data-lang="en">1. Why we need forms</h2>
+
+    <p data-lang="ru"><strong>Формы</strong> — это способ получить данные от пользователя. Каждый раз, когда вы регистрируетесь на сайте, входите в аккаунт, пишете комментарий или оформляете заказ — вы заполняете форму.</p>
+    <p data-lang="en"><strong>Forms</strong> are a way to collect data from the user. Every time you register on a website, log in to an account, write a comment, or place an order — you're filling out a form.</p>
+
+    <div class="why">
+        <p data-lang="ru">До этого занятия мы учились <strong>показывать</strong> информацию пользователю: заголовки, абзацы, изображения, списки, таблицы. Но веб — это не телевизор, а <strong>диалог</strong>. Пользователь должен иметь возможность ответить, ввести данные, сделать выбор. Именно формы превращают статичную страницу в <strong>интерактивное приложение</strong>.</p>
+        <p data-lang="en">Until this lesson, we learned how to <strong>display</strong> information to users: headings, paragraphs, images, lists, tables. But the web is not a TV — it's a <strong>dialogue</strong>. Users need to be able to respond, enter data, make choices. Forms are what turn a static page into an <strong>interactive application</strong>.</p>
+    </div>
+
+    <div class="analogy">
+        <p data-lang="ru">Форма в HTML — это как <strong>бумажная анкета</strong> в поликлинике или банке. Есть пустые поля для заполнения (имя, дата рождения), варианты для выбора (пол: М / Ж), место для длинного текста (причина обращения) и кнопка «Отправить» (сдать анкету в окошко). В HTML всё то же самое, только вместо ручки и бумаги — теги.</p>
+        <p data-lang="en">An HTML form is like a <strong>paper questionnaire</strong> at a clinic or bank. There are blank fields to fill in (name, date of birth), choices to select (gender: M / F), a space for long text (reason for visit), and a "Submit" button (hand the form to the clerk). In HTML it's the same thing, but instead of pen and paper — we use tags.</p>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Где вы видите формы каждый день:</strong></p>
+        <p data-lang="en"><strong>Where you see forms every day:</strong></p>
+        <ul data-lang="ru">
+            <li><strong>Google</strong> — строка поиска (одно текстовое поле + кнопка)</li>
+            <li><strong>Instagram / TikTok</strong> — форма регистрации (имя, email, пароль)</li>
+            <li><strong>YouTube</strong> — комментарии (textarea + кнопка)</li>
+            <li><strong>Wildberries / Amazon</strong> — оформление заказа (адрес, телефон, способ оплаты)</li>
+            <li><strong>Gmail</strong> — написать письмо (кому, тема, текст)</li>
+            <li><strong>Банковские приложения</strong> — переводы (номер карты, сумма)</li>
+            <li><strong>Госуслуги</strong> — подача заявлений (десятки полей!)</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>Google</strong> — search bar (one text field + button)</li>
+            <li><strong>Instagram / TikTok</strong> — registration form (name, email, password)</li>
+            <li><strong>YouTube</strong> — comments (textarea + button)</li>
+            <li><strong>Amazon</strong> — checkout (address, phone, payment method)</li>
+            <li><strong>Gmail</strong> — compose email (to, subject, body)</li>
+            <li><strong>Banking apps</strong> — transfers (card number, amount)</li>
+            <li><strong>Government portals</strong> — applications (dozens of fields!)</li>
+        </ul>
+    </div>
+
+    <div class="fun-fact">
+        <p data-lang="ru">Формы появились в <strong>HTML 2.0 в 1995 году</strong> — это один из самых ранних интерактивных элементов веба. Но настоящая революция произошла с <strong>HTML5</strong>, который добавил типы <code>email</code>, <code>date</code>, <code>color</code>, <code>range</code> и встроенную валидацию. До HTML5 разработчикам приходилось писать сотни строк JavaScript для проверки формата email!</p>
+        <p data-lang="en">Forms appeared in <strong>HTML 2.0 in 1995</strong> — one of the earliest interactive web elements. But the real revolution came with <strong>HTML5</strong>, which added types like <code>email</code>, <code>date</code>, <code>color</code>, <code>range</code>, and built-in validation. Before HTML5, developers had to write hundreds of lines of JavaScript just to validate an email format!</p>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;       &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502; &#x1F464; Пользов. &#x2502; &#x2500;&#x2500;&#x2500;&#x25B6; &#x2502; &#x1F4DD; Форма    &#x2502;
+    &#x2502; вводит     &#x2502;       &#x2502; собирает   &#x2502;
+    &#x2502; данные     &#x2502;       &#x2502; данные     &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;       &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+                                    &#x2502;
+                              &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+                              &#x2502; &#x1F4E4; Отправка  &#x2502;
+                              &#x2502; на сервер    &#x2502;
+                              &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;       &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502; &#x1F464; User     &#x2502; &#x2500;&#x2500;&#x2500;&#x25B6; &#x2502; &#x1F4DD; Form     &#x2502;
+    &#x2502; enters     &#x2502;       &#x2502; collects    &#x2502;
+    &#x2502; data       &#x2502;       &#x2502; data        &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;       &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+                                    &#x2502;
+                              &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+                              &#x2502; &#x1F4E4; Sent to   &#x2502;
+                              &#x2502; the server   &#x2502;
+                              &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <hr>
+
+    <!-- ==================== 2. FORM ==================== -->
+    <h2 id="form-tag" data-lang="ru">2. Тег form</h2>
+    <h2 id="form-tag-en" data-lang="en">2. The form tag</h2>
+
+    <p data-lang="ru">Все поля ввода должны находиться внутри тега <code>&lt;form&gt;</code>. Это контейнер, который группирует поля и знает, куда отправлять данные:</p>
+    <p data-lang="en">All input fields must be inside a <code>&lt;form&gt;</code> tag. It's a container that groups fields and knows where to send the data:</p>
+
+<pre><code>&lt;form action="/submit" method="POST"&gt;
+    &lt;!-- поля формы здесь / form fields here --&gt;
+&lt;/form&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут</th><th>Что делает</th><th>Пример</th></tr>
+        <tr><td><code>action</code></td><td>Куда отправить данные (URL)</td><td><code>action="/register"</code></td></tr>
+        <tr><td><code>method</code></td><td>Как отправить: GET или POST</td><td><code>method="POST"</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute</th><th>What it does</th><th>Example</th></tr>
+        <tr><td><code>action</code></td><td>Where to send data (URL)</td><td><code>action="/register"</code></td></tr>
+        <tr><td><code>method</code></td><td>How to send: GET or POST</td><td><code>method="POST"</code></td></tr>
+    </table>
+
+    <div class="analogy">
+        <p data-lang="ru"><strong>Конверт с адресом.</strong> Тег <code>&lt;form&gt;</code> — это как конверт для письма. Внутри конверта — данные (поля формы). На конверте написан адрес (<code>action</code>) и способ доставки (<code>method</code>). Без конверта письмо никуда не отправится — так же и поля без <code>&lt;form&gt;</code> не будут знать, куда отправлять данные.</p>
+        <p data-lang="en"><strong>An envelope with an address.</strong> The <code>&lt;form&gt;</code> tag is like an envelope for a letter. Inside the envelope is the data (form fields). On the envelope is the address (<code>action</code>) and the delivery method (<code>method</code>). Without an envelope, the letter won't be sent — likewise, fields without <code>&lt;form&gt;</code> won't know where to send the data.</p>
+    </div>
+
+    <div class="why">
+        <p data-lang="ru"><strong>GET vs POST — когда что использовать?</strong></p>
+        <p data-lang="en"><strong>GET vs POST — when to use which?</strong></p>
+        <ul data-lang="ru">
+            <li><strong>GET</strong> — данные видны в URL: <code>google.com/search?q=html+forms</code>. Подходит для поиска — можно скопировать ссылку и отправить другу.</li>
+            <li><strong>POST</strong> — данные скрыты в теле запроса. Подходит для паролей, регистрации, оплаты — всё, что не должно быть в URL.</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>GET</strong> — data is visible in the URL: <code>google.com/search?q=html+forms</code>. Good for search — you can copy the link and send it to a friend.</li>
+            <li><strong>POST</strong> — data is hidden in the request body. Good for passwords, registration, payments — anything that shouldn't appear in the URL.</li>
+        </ul>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        На этом курсе мы пока не работаем с серверами, поэтому <code>action</code> и <code>method</code> можно не указывать. Мы сосредоточимся на HTML-разметке и CSS-стилизации форм. Серверная обработка — это следующий этап (JavaScript / backend).
+    </div>
+    <div class="fun-fact" data-lang="en">
+        In this course we don't work with servers yet, so <code>action</code> and <code>method</code> are optional. We'll focus on HTML markup and CSS styling of forms. Server-side processing is the next step (JavaScript / backend).
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    &lt;form&gt;                        &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+      &lt;label&gt; + &lt;input&gt;          &#x2502;  &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;  &#x2502;
+      &lt;label&gt; + &lt;input&gt;          &#x2502;  &#x2502; Имя: [________]  &#x2502;  &#x2502;
+      &lt;label&gt; + &lt;select&gt;         &#x2502;  &#x2502; Email: [_______]  &#x2502;  &#x2502;
+      &lt;label&gt; + &lt;textarea&gt;       &#x2502;  &#x2502; Город: [&#x25BC; ...]   &#x2502;  &#x2502;
+      &lt;button&gt;                    &#x2502;  &#x2502; [  Отправить  ]   &#x2502;  &#x2502;
+    &lt;/form&gt;                       &#x2502;  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;  &#x2502;
+                                  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    &lt;form&gt;                        &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+      &lt;label&gt; + &lt;input&gt;          &#x2502;  &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;  &#x2502;
+      &lt;label&gt; + &lt;input&gt;          &#x2502;  &#x2502; Name: [_______]   &#x2502;  &#x2502;
+      &lt;label&gt; + &lt;select&gt;         &#x2502;  &#x2502; Email: [______]   &#x2502;  &#x2502;
+      &lt;label&gt; + &lt;textarea&gt;       &#x2502;  &#x2502; City: [&#x25BC; ...]    &#x2502;  &#x2502;
+      &lt;button&gt;                    &#x2502;  &#x2502; [   Submit    ]   &#x2502;  &#x2502;
+    &lt;/form&gt;                       &#x2502;  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;  &#x2502;
+                                  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <hr>
+
+    <!-- ==================== 3. INPUT TEXT + LABEL ==================== -->
+    <h2 id="input-text" data-lang="ru">3. input type="text" и label</h2>
+    <h2 id="input-text-en" data-lang="en">3. input type="text" and label</h2>
+
+    <p data-lang="ru"><code>&lt;input&gt;</code> — основной тег для полей ввода. Это самый универсальный элемент формы — меняя атрибут <code>type</code>, он превращается в текстовое поле, пароль, календарь, ползунок и даже палитру цветов!</p>
+    <p data-lang="en"><code>&lt;input&gt;</code> — the main tag for input fields. It's the most versatile form element — by changing the <code>type</code> attribute, it becomes a text field, password, calendar, slider, and even a color picker!</p>
+
+    <p data-lang="ru"><code>&lt;label&gt;</code> — подпись к полю. Без неё пользователь не поймёт, что вводить.</p>
+    <p data-lang="en"><code>&lt;label&gt;</code> — a label for the field. Without it, users won't know what to enter.</p>
+
+<pre><code>&lt;label for="username"&gt;Имя пользователя:&lt;/label&gt;
+&lt;input type="text" id="username" name="username"&gt;</code></pre>
+
+    <div class="result-box">
+        <div style="max-width:400px;font-family:'Segoe UI',sans-serif;">
+            <label for="demo-username" style="display:block;margin-bottom:6px;font-weight:600;color:#334155;font-size:0.9rem;" data-lang="ru">Имя пользователя:</label>
+            <label for="demo-username" style="display:block;margin-bottom:6px;font-weight:600;color:#334155;font-size:0.9rem;" data-lang="en">Username:</label>
+            <input type="text" id="demo-username" style="width:100%;padding:12px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;outline:none;" disabled>
+        </div>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут</th><th>Зачем</th><th>Пример</th></tr>
+        <tr><td><code>type="text"</code></td><td>Тип поля — обычный текст</td><td>Имя, фамилия, адрес</td></tr>
+        <tr><td><code>id="username"</code></td><td>Уникальный идентификатор (связь с label)</td><td>Одинаковый с <code>for</code></td></tr>
+        <tr><td><code>name="username"</code></td><td>Имя поля (отправляется на сервер)</td><td><code>username=Мерген</code></td></tr>
+        <tr><td><code>for="username"</code></td><td>Атрибут label — клик на подпись ставит фокус в поле</td><td>Совпадает с <code>id</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute</th><th>Purpose</th><th>Example</th></tr>
+        <tr><td><code>type="text"</code></td><td>Field type — plain text</td><td>Name, surname, address</td></tr>
+        <tr><td><code>id="username"</code></td><td>Unique identifier (links to label)</td><td>Same as <code>for</code></td></tr>
+        <tr><td><code>name="username"</code></td><td>Field name (sent to server)</td><td><code>username=Mergen</code></td></tr>
+        <tr><td><code>for="username"</code></td><td>Label attribute — clicking label focuses the field</td><td>Matches <code>id</code></td></tr>
+    </table>
+
+    <div class="why">
+        <p data-lang="ru"><strong>Зачем связывать label и input?</strong> Связь через <code>for</code> + <code>id</code> даёт два преимущества:</p>
+        <p data-lang="en"><strong>Why link label and input?</strong> The <code>for</code> + <code>id</code> connection gives two advantages:</p>
+        <ul data-lang="ru">
+            <li><strong>Удобство</strong> — клик на подпись «Имя пользователя» сразу ставит курсор в поле. Попробуйте на любом сайте — это работает!</li>
+            <li><strong>Доступность</strong> — скринридеры (программы для незрячих) читают подпись, когда пользователь фокусируется на поле. Без label незрячий пользователь не знает, что вводить.</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>Usability</strong> — clicking the "Username" text immediately focuses the field. Try it on any website — it works!</li>
+            <li><strong>Accessibility</strong> — screen readers (software for blind users) read the label when the user focuses on the field. Without a label, blind users don't know what to enter.</li>
+        </ul>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Доступность (Accessibility):</strong> по статистике <strong>15% населения</strong> имеют ту или иную инвалидность. Связь <code>&lt;label&gt;</code> с <code>&lt;input&gt;</code> — это не просто «хорошая практика», это <strong>требование</strong> стандартов доступности WCAG. Многие крупные компании (Google, Apple, Microsoft) обязаны соблюдать эти стандарты по закону. Привыкайте писать доступный код с самого начала!</p>
+        <p data-lang="en"><strong>Accessibility:</strong> statistically, <strong>15% of the population</strong> has some form of disability. Linking <code>&lt;label&gt;</code> with <code>&lt;input&gt;</code> is not just "best practice" — it's a <strong>requirement</strong> of WCAG accessibility standards. Many large companies (Google, Apple, Microsoft) are legally required to follow these standards. Get used to writing accessible code from the start!</p>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Ситуация:</strong> новичок пишет label и input, но забывает связать их через <code>for</code> и <code>id</code>. Визуально всё выглядит нормально, но клик на подпись ничего не делает, а скринридер не понимает, какому полю принадлежит подпись.</p>
+        <p data-lang="en"><strong>Situation:</strong> a beginner writes a label and input but forgets to link them via <code>for</code> and <code>id</code>. Visually everything looks fine, but clicking the label does nothing, and screen readers can't tell which field the label belongs to.</p>
+<pre><code>&lt;!-- НЕПРАВИЛЬНО / WRONG --&gt;
+&lt;label&gt;Имя:&lt;/label&gt;
+&lt;input type="text" name="name"&gt;
+&lt;!-- for и id отсутствуют! Связи нет! --&gt;
+
+&lt;!-- ПРАВИЛЬНО / CORRECT --&gt;
+&lt;label for="name"&gt;Имя:&lt;/label&gt;
+&lt;input type="text" id="name" name="name"&gt;
+&lt;!-- for="name" совпадает с id="name" &#x2714; --&gt;</code></pre>
+        <p data-lang="ru"><strong>Правило:</strong> атрибут <code>for</code> у label <strong>всегда</strong> должен совпадать с <code>id</code> у input. Без этого связи нет.</p>
+        <p data-lang="en"><strong>Rule:</strong> the <code>for</code> attribute on a label must <strong>always</strong> match the <code>id</code> on the input. Without this, there's no connection.</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Создай HTML-файл с формой, в которой есть label и input. Открой в браузере и кликни на текст подписи — курсор должен появиться в поле. Если не появился — проверь <code>for</code> и <code>id</code>!</p>
+        <p data-lang="en">Create an HTML file with a form that has a label and input. Open in the browser and click on the label text — the cursor should appear in the field. If it doesn't — check <code>for</code> and <code>id</code>!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 4. ТИПЫ INPUT ==================== -->
+    <h2 id="input-types" data-lang="ru">4. Типы input</h2>
+    <h2 id="input-types-en" data-lang="en">4. Input types</h2>
+
+    <p data-lang="ru">HTML5 предлагает множество типов <code>&lt;input&gt;</code>. Браузер сам подбирает клавиатуру на мобильном и проверяет формат!</p>
+    <p data-lang="en">HTML5 offers many <code>&lt;input&gt;</code> types. The browser automatically selects the keyboard on mobile and validates the format!</p>
+
+    <div class="why">
+        <p data-lang="ru">Почему важно использовать правильный тип? Потому что <strong>браузер делает работу за вас</strong>:</p>
+        <p data-lang="en">Why is it important to use the correct type? Because <strong>the browser does the work for you</strong>:</p>
+        <ul data-lang="ru">
+            <li><code>type="email"</code> — на мобильном появится клавиатура с символом <strong>@</strong>, браузер проверит формат</li>
+            <li><code>type="tel"</code> — на мобильном откроется <strong>цифровая</strong> клавиатура</li>
+            <li><code>type="date"</code> — вместо текстового поля появится <strong>календарь</strong></li>
+            <li><code>type="number"</code> — появятся стрелки &#x25B2;&#x25BC; и нельзя будет ввести буквы</li>
+        </ul>
+        <ul data-lang="en">
+            <li><code>type="email"</code> — on mobile, a keyboard with the <strong>@</strong> symbol appears, browser validates format</li>
+            <li><code>type="tel"</code> — on mobile, a <strong>numeric</strong> keyboard opens</li>
+            <li><code>type="date"</code> — instead of a text field, a <strong>calendar</strong> appears</li>
+            <li><code>type="number"</code> — arrows &#x25B2;&#x25BC; appear and letters can't be entered</li>
+        </ul>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Тип</th><th>Что показывает</th><th>Пример</th></tr>
+        <tr><td><code>text</code></td><td>Обычное текстовое поле</td><td>Имя, фамилия</td></tr>
+        <tr><td><code>email</code></td><td>Поле для email (проверяет @)</td><td>user@mail.com</td></tr>
+        <tr><td><code>password</code></td><td>Скрывает ввод точками</td><td>&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;</td></tr>
+        <tr><td><code>number</code></td><td>Только цифры + стрелки &#x25B2;&#x25BC;</td><td>Возраст, количество</td></tr>
+        <tr><td><code>tel</code></td><td>Телефон (на мобильном — цифровая клавиатура)</td><td>+993 65 123456</td></tr>
+        <tr><td><code>url</code></td><td>URL-адрес (проверяет формат)</td><td>https://example.com</td></tr>
+        <tr><td><code>date</code></td><td>Выбор даты (календарь)</td><td>2025-03-30</td></tr>
+        <tr><td><code>color</code></td><td>Выбор цвета (палитра)</td><td>#ff0000</td></tr>
+        <tr><td><code>range</code></td><td>Ползунок (слайдер)</td><td>0&#x2500;&#x2500;&#x25CF;&#x2500;&#x2500;100</td></tr>
+        <tr><td><code>file</code></td><td>Загрузка файла</td><td>Выберите файл...</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Type</th><th>What it shows</th><th>Example</th></tr>
+        <tr><td><code>text</code></td><td>Regular text field</td><td>First name, last name</td></tr>
+        <tr><td><code>email</code></td><td>Email field (validates @)</td><td>user@mail.com</td></tr>
+        <tr><td><code>password</code></td><td>Hides input with dots</td><td>&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;</td></tr>
+        <tr><td><code>number</code></td><td>Numbers only + arrows &#x25B2;&#x25BC;</td><td>Age, quantity</td></tr>
+        <tr><td><code>tel</code></td><td>Phone (numeric keyboard on mobile)</td><td>+993 65 123456</td></tr>
+        <tr><td><code>url</code></td><td>URL address (validates format)</td><td>https://example.com</td></tr>
+        <tr><td><code>date</code></td><td>Date picker (calendar)</td><td>2025-03-30</td></tr>
+        <tr><td><code>color</code></td><td>Color picker (palette)</td><td>#ff0000</td></tr>
+        <tr><td><code>range</code></td><td>Slider</td><td>0&#x2500;&#x2500;&#x25CF;&#x2500;&#x2500;100</td></tr>
+        <tr><td><code>file</code></td><td>File upload</td><td>Choose file...</td></tr>
+    </table>
+
+<pre><code>&lt;label for="email"&gt;Email:&lt;/label&gt;
+&lt;input type="email" id="email" name="email"&gt;
+
+&lt;label for="pass"&gt;Пароль:&lt;/label&gt;
+&lt;input type="password" id="pass" name="password"&gt;
+
+&lt;label for="age"&gt;Возраст:&lt;/label&gt;
+&lt;input type="number" id="age" name="age" min="12" max="100"&gt;
+
+&lt;label for="bday"&gt;Дата рождения:&lt;/label&gt;
+&lt;input type="date" id="bday" name="birthday"&gt;</code></pre>
+
+    <div class="result-box">
+        <div style="max-width:400px;font-family:'Segoe UI',sans-serif;display:flex;flex-direction:column;gap:12px;">
+            <div>
+                <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.9rem;">Email:</label>
+                <input type="email" placeholder="user@mail.com" style="width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;font-size:0.95rem;outline:none;" disabled>
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.9rem;" data-lang="ru">Пароль:</label>
+                <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.9rem;" data-lang="en">Password:</label>
+                <input type="password" value="secretpass" style="width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;font-size:0.95rem;outline:none;" disabled>
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.9rem;" data-lang="ru">Возраст:</label>
+                <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.9rem;" data-lang="en">Age:</label>
+                <input type="number" value="16" style="width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;font-size:0.95rem;outline:none;" disabled>
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.9rem;" data-lang="ru">Дата рождения:</label>
+                <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.9rem;" data-lang="en">Date of birth:</label>
+                <input type="date" style="width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;font-size:0.95rem;outline:none;" disabled>
+            </div>
+        </div>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Ситуация:</strong> новичок использует <code>type="text"</code> для email, пароля и возраста. Визуально разницы нет, но:</p>
+        <p data-lang="en"><strong>Situation:</strong> a beginner uses <code>type="text"</code> for email, password, and age. Visually there's no difference, but:</p>
+<pre><code>&lt;!-- НЕПРАВИЛЬНО / WRONG --&gt;
+&lt;input type="text" name="email"&gt;  &lt;!-- Нет проверки @ --&gt;
+&lt;input type="text" name="pass"&gt;   &lt;!-- Пароль видно! --&gt;
+&lt;input type="text" name="age"&gt;    &lt;!-- Можно ввести "abc" --&gt;
+
+&lt;!-- ПРАВИЛЬНО / CORRECT --&gt;
+&lt;input type="email" name="email"&gt; &lt;!-- Проверяет @ &#x2714; --&gt;
+&lt;input type="password" name="pass"&gt; &lt;!-- Скрывает ввод &#x2714; --&gt;
+&lt;input type="number" name="age"&gt;  &lt;!-- Только цифры &#x2714; --&gt;</code></pre>
+        <p data-lang="ru"><strong>Правило:</strong> всегда используйте <strong>самый подходящий</strong> тип. Это даёт бесплатную валидацию, правильную клавиатуру на мобильном и лучший UX.</p>
+        <p data-lang="en"><strong>Rule:</strong> always use the <strong>most appropriate</strong> type. This gives you free validation, the right keyboard on mobile, and better UX.</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Создай HTML-файл и добавь все 10 типов input из таблицы выше. Открой в браузере и попробуй каждый — посмотри, как date открывает календарь, color — палитру, а range — ползунок!</p>
+        <p data-lang="en">Create an HTML file and add all 10 input types from the table above. Open in the browser and try each one — see how date opens a calendar, color — a palette, and range — a slider!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 5. PLACEHOLDER ==================== -->
+    <h2 id="placeholder" data-lang="ru">5. placeholder и value</h2>
+    <h2 id="placeholder-en" data-lang="en">5. placeholder and value</h2>
+
+    <p data-lang="ru">Два атрибута, которые часто путают новички:</p>
+    <p data-lang="en">Two attributes that beginners often confuse:</p>
+
+<pre><code>&lt;!-- placeholder — подсказка (исчезает при вводе) --&gt;
+&lt;input type="text" placeholder="Введите ваше имя"&gt;
+
+&lt;!-- value — значение по умолчанию (не исчезает) --&gt;
+&lt;input type="text" value="Алексей"&gt;</code></pre>
+
+    <div class="result-box">
+        <div style="max-width:400px;font-family:'Segoe UI',sans-serif;display:flex;flex-direction:column;gap:12px;">
+            <div>
+                <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.85rem;">placeholder:</label>
+                <input type="text" placeholder="Введите ваше имя" style="width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;font-size:0.95rem;outline:none;" disabled>
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.85rem;">value:</label>
+                <input type="text" value="Алексей" style="width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;font-size:0.95rem;outline:none;" disabled>
+            </div>
+        </div>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">placeholder</div>
+            <p data-lang="ru">Серый текст-подсказка. <strong>Исчезает</strong> при вводе. <strong>Не отправляется</strong> на сервер. Используй для примеров: «user@mail.com», «+993 65...»</p>
+            <p data-lang="en">Gray hint text. <strong>Disappears</strong> on input. <strong>Not sent</strong> to server. Use for examples: "user@mail.com", "+993 65..."</p>
+        </div>
+        <div class="right">
+            <div class="label">value</div>
+            <p data-lang="ru">Реальное значение поля. <strong>Остаётся</strong> в поле. <strong>Отправляется</strong> на сервер. Используй для значений по умолчанию: город, страна.</p>
+            <p data-lang="en">Actual field value. <strong>Stays</strong> in the field. <strong>Sent</strong> to server. Use for default values: city, country.</p>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <p data-lang="ru"><strong>Бумажная анкета:</strong> <code>placeholder</code> — это как серый текст-образец, напечатанный в поле анкеты: «Фамилия Имя Отчество». Как только вы начинаете писать ручкой — образец «исчезает» (вы пишете поверх). А <code>value</code> — это как уже заполненное поле, где кто-то уже написал «Россия» — можно стереть и написать другое, но по умолчанию оно заполнено.</p>
+        <p data-lang="en"><strong>Paper form:</strong> <code>placeholder</code> is like the gray sample text printed in a form field: "First Last Middle name". As soon as you start writing with a pen — the sample "disappears" (you write over it). And <code>value</code> is like a pre-filled field where someone already wrote "Russia" — you can erase it and write something else, but by default it's filled in.</p>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Распространённая ошибка:</strong> использовать placeholder <strong>вместо</strong> label. Placeholder исчезает при вводе — пользователь забывает, что нужно было вводить! Всегда используйте label + placeholder вместе.</p>
+        <p data-lang="en"><strong>Common mistake:</strong> using placeholder <strong>instead of</strong> label. Placeholder disappears on input — the user forgets what they were supposed to enter! Always use label + placeholder together.</p>
+<pre><code>&lt;!-- НЕПРАВИЛЬНО / WRONG --&gt;
+&lt;input type="text" placeholder="Ваше имя"&gt;
+&lt;!-- Нет label! При вводе подсказка исчезнет --&gt;
+
+&lt;!-- ПРАВИЛЬНО / CORRECT --&gt;
+&lt;label for="name"&gt;Ваше имя:&lt;/label&gt;
+&lt;input type="text" id="name" placeholder="Мерген Атаев"&gt;
+&lt;!-- label остаётся, placeholder — пример формата --&gt;</code></pre>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 6. TEXTAREA ==================== -->
+    <h2 id="textarea" data-lang="ru">6. textarea — многострочное поле</h2>
+    <h2 id="textarea-en" data-lang="en">6. textarea — multi-line field</h2>
+
+    <p data-lang="ru">Для длинного текста (сообщения, комментарии, отзывы) используется <code>&lt;textarea&gt;</code>:</p>
+    <p data-lang="en">For long text (messages, comments, reviews) use <code>&lt;textarea&gt;</code>:</p>
+
+<pre><code>&lt;label for="message"&gt;Сообщение:&lt;/label&gt;
+&lt;textarea id="message" name="message" rows="5" cols="40"
+          placeholder="Напишите ваше сообщение..."&gt;&lt;/textarea&gt;</code></pre>
+
+    <div class="result-box">
+        <div style="max-width:400px;font-family:'Segoe UI',sans-serif;">
+            <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.9rem;" data-lang="ru">Сообщение:</label>
+            <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.9rem;" data-lang="en">Message:</label>
+            <textarea rows="4" placeholder="Напишите ваше сообщение..." style="width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;font-size:0.95rem;font-family:inherit;outline:none;resize:vertical;" disabled></textarea>
+        </div>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут</th><th>Что делает</th><th>Пример</th></tr>
+        <tr><td><code>rows="5"</code></td><td>Количество видимых строк (высота)</td><td>5 строк = примерно 120px</td></tr>
+        <tr><td><code>cols="40"</code></td><td>Количество символов в строке (ширина)</td><td>Лучше управлять через CSS</td></tr>
+        <tr><td><code>placeholder</code></td><td>Подсказка внутри поля</td><td>«Напишите сообщение...»</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute</th><th>What it does</th><th>Example</th></tr>
+        <tr><td><code>rows="5"</code></td><td>Number of visible rows (height)</td><td>5 rows = roughly 120px</td></tr>
+        <tr><td><code>cols="40"</code></td><td>Number of characters per line (width)</td><td>Better to control via CSS</td></tr>
+        <tr><td><code>placeholder</code></td><td>Hint text inside the field</td><td>"Write your message..."</td></tr>
+    </table>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">&lt;input type="text"&gt;</div>
+            <p data-lang="ru">Одна строка. Для коротких данных: имя, email, телефон.</p>
+            <p data-lang="en">Single line. For short data: name, email, phone.</p>
+        </div>
+        <div class="right">
+            <div class="label">&lt;textarea&gt;</div>
+            <p data-lang="ru">Много строк. Для длинных текстов: сообщения, комментарии, описания. <strong>Парный тег</strong> — нужен <code>&lt;/textarea&gt;</code>!</p>
+            <p data-lang="en">Multiple lines. For long texts: messages, comments, descriptions. <strong>Paired tag</strong> — needs <code>&lt;/textarea&gt;</code>!</p>
+        </div>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Ситуация:</strong> новичок пишет <code>&lt;textarea&gt;</code> как <code>&lt;input&gt;</code> — без закрывающего тега.</p>
+        <p data-lang="en"><strong>Situation:</strong> a beginner writes <code>&lt;textarea&gt;</code> like <code>&lt;input&gt;</code> — without a closing tag.</p>
+<pre><code>&lt;!-- НЕПРАВИЛЬНО / WRONG --&gt;
+&lt;textarea name="msg" /&gt;
+&lt;!-- textarea — НЕ самозакрывающийся тег! --&gt;
+
+&lt;!-- ПРАВИЛЬНО / CORRECT --&gt;
+&lt;textarea name="msg"&gt;&lt;/textarea&gt;
+&lt;!-- Парный тег: открывающий + закрывающий --&gt;</code></pre>
+        <p data-lang="ru"><strong>Правило:</strong> <code>&lt;input&gt;</code> — самозакрывающийся (нет <code>&lt;/input&gt;</code>). <code>&lt;textarea&gt;</code> — парный (нужен <code>&lt;/textarea&gt;</code>). Если забыть закрывающий тег — всё содержимое страницы после textarea попадёт «внутрь» поля!</p>
+        <p data-lang="en"><strong>Rule:</strong> <code>&lt;input&gt;</code> is self-closing (no <code>&lt;/input&gt;</code>). <code>&lt;textarea&gt;</code> is paired (needs <code>&lt;/textarea&gt;</code>). If you forget the closing tag, all page content after textarea will end up "inside" the field!</p>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Совет:</strong> в CSS добавьте <code>resize: vertical</code> к textarea — тогда пользователь сможет тянуть поле только вверх/вниз, но не в стороны. Это сохраняет аккуратную вёрстку, но даёт гибкость.</p>
+        <p data-lang="en"><strong>Tip:</strong> in CSS, add <code>resize: vertical</code> to textarea — then users can only resize vertically, not horizontally. This keeps the layout clean while giving flexibility.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 7. SELECT ==================== -->
+    <h2 id="select" data-lang="ru">7. select — выпадающий список</h2>
+    <h2 id="select-en" data-lang="en">7. select — dropdown list</h2>
+
+    <p data-lang="ru">Когда нужно дать пользователю выбрать один вариант из нескольких заранее определённых — используйте <code>&lt;select&gt;</code>:</p>
+    <p data-lang="en">When you need the user to choose one option from several predefined choices — use <code>&lt;select&gt;</code>:</p>
+
+<pre><code>&lt;label for="city"&gt;Город:&lt;/label&gt;
+&lt;select id="city" name="city"&gt;
+    &lt;option value=""&gt;Выберите город...&lt;/option&gt;
+    &lt;option value="ashgabat"&gt;Ашхабад&lt;/option&gt;
+    &lt;option value="mary"&gt;Мары&lt;/option&gt;
+    &lt;option value="turkmenabat"&gt;Туркменабат&lt;/option&gt;
+    &lt;option value="dashoguz"&gt;Дашогуз&lt;/option&gt;
+    &lt;option value="balkanabat"&gt;Балканабат&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+    <div class="result-box">
+        <div style="max-width:400px;font-family:'Segoe UI',sans-serif;">
+            <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.9rem;" data-lang="ru">Город:</label>
+            <label style="display:block;margin-bottom:4px;font-weight:600;color:#334155;font-size:0.9rem;" data-lang="en">City:</label>
+            <select style="width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:8px;font-size:0.95rem;outline:none;background:#fff;" disabled>
+                <option data-lang="ru">Выберите город...</option>
+                <option data-lang="en">Select a city...</option>
+            </select>
+        </div>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Тег / Атрибут</th><th>Что делает</th></tr>
+        <tr><td><code>&lt;select&gt;</code></td><td>Создаёт выпадающий список</td></tr>
+        <tr><td><code>&lt;option&gt;</code></td><td>Один вариант в списке</td></tr>
+        <tr><td><code>value=""</code></td><td>Значение, которое отправляется на сервер</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Tag / Attribute</th><th>What it does</th></tr>
+        <tr><td><code>&lt;select&gt;</code></td><td>Creates a dropdown list</td></tr>
+        <tr><td><code>&lt;option&gt;</code></td><td>One option in the list</td></tr>
+        <tr><td><code>value=""</code></td><td>The value sent to the server</td></tr>
+    </table>
+
+    <div class="analogy">
+        <p data-lang="ru"><strong>Меню в ресторане.</strong> <code>&lt;select&gt;</code> — это как меню, где вы выбираете одно блюдо. Каждый <code>&lt;option&gt;</code> — это одно блюдо. Пользователь видит название («Ашхабад»), а на сервер уходит код (<code>value="ashgabat"</code>). Это как в ресторане: вы говорите «Плов», а официант записывает номер блюда в системе.</p>
+        <p data-lang="en"><strong>Restaurant menu.</strong> <code>&lt;select&gt;</code> is like a menu where you choose one dish. Each <code>&lt;option&gt;</code> is one dish. The user sees the name ("Ashgabat"), but the server receives the code (<code>value="ashgabat"</code>). It's like in a restaurant: you say "Plov", but the waiter enters the dish number in the system.</p>
+    </div>
+
+    <div class="why">
+        <p data-lang="ru">Первый <code>&lt;option&gt;</code> с пустым <code>value</code> — это подсказка «Выберите...». Она нужна, чтобы при загрузке формы не было автоматически выбранного города. Если добавить <code>required</code> к <code>&lt;select&gt;</code>, то выбрать пустой вариант не получится — форма потребует реальный выбор.</p>
+        <p data-lang="en">The first <code>&lt;option&gt;</code> with an empty <code>value</code> is the "Select..." hint. It's needed so no city is automatically selected when the form loads. If you add <code>required</code> to <code>&lt;select&gt;</code>, the empty option won't be accepted — the form will require a real choice.</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Добавь в свою форму выпадающий список с 5 городами Туркменистана. Открой в браузере и убедись, что список раскрывается и можно выбрать город.</p>
+        <p data-lang="en">Add a dropdown list with 5 cities to your form. Open in the browser and make sure the list opens and you can select a city.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 8. RADIO ==================== -->
+    <h2 id="radio" data-lang="ru">8. input type="radio" — переключатели</h2>
+    <h2 id="radio-en" data-lang="en">8. input type="radio" — radio buttons</h2>
+
+    <p data-lang="ru">Radio-кнопки позволяют выбрать <strong>только один</strong> вариант из нескольких:</p>
+    <p data-lang="en">Radio buttons allow selecting <strong>only one</strong> option from several:</p>
+
+<pre><code>&lt;p&gt;Пол:&lt;/p&gt;
+&lt;label&gt;
+    &lt;input type="radio" name="gender" value="male"&gt; Мужской
+&lt;/label&gt;
+&lt;label&gt;
+    &lt;input type="radio" name="gender" value="female"&gt; Женский
+&lt;/label&gt;</code></pre>
+
+    <div class="result-box">
+        <div style="max-width:400px;font-family:'Segoe UI',sans-serif;">
+            <p style="font-weight:600;color:#334155;margin-bottom:8px;" data-lang="ru">Пол:</p>
+            <p style="font-weight:600;color:#334155;margin-bottom:8px;" data-lang="en">Gender:</p>
+            <label style="margin-right:20px;cursor:pointer;">
+                <input type="radio" name="demo-gender" value="male" disabled> <span data-lang="ru">Мужской</span><span data-lang="en">Male</span>
+            </label>
+            <label style="cursor:pointer;">
+                <input type="radio" name="demo-gender" value="female" disabled> <span data-lang="ru">Женский</span><span data-lang="en">Female</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <p data-lang="ru"><strong>Кнопки на старом радиоприёмнике.</strong> Помните (или видели в фильмах) радиоприёмники с физическими кнопками для выбора станций? Нажимаешь одну — предыдущая «выскакивает». Нельзя нажать две одновременно. Именно поэтому эти кнопки называются <strong>radio buttons</strong> — как на радио!</p>
+        <p data-lang="en"><strong>Buttons on an old radio.</strong> Remember (or seen in movies) radios with physical buttons for selecting stations? Press one — the previous one pops out. You can't press two at once. That's why they're called <strong>radio buttons</strong> — like on a radio!</p>
+    </div>
+
+    <div class="why">
+        <p data-lang="ru"><strong>Почему <code>name</code> должен быть одинаковым?</strong> Атрибут <code>name</code> объединяет radio-кнопки в группу. Браузер смотрит: «все кнопки с <code>name="gender"</code> — это одна группа, можно выбрать только одну». Если <code>name</code> разный — браузер считает их разными группами, и можно выбрать все!</p>
+        <p data-lang="en"><strong>Why must <code>name</code> be the same?</strong> The <code>name</code> attribute groups radio buttons together. The browser checks: "all buttons with <code>name="gender"</code> are one group, only one can be selected." If <code>name</code> is different — the browser treats them as different groups, and all can be selected!</p>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Самая частая ошибка с radio:</strong> разные значения <code>name</code> у кнопок одной группы.</p>
+        <p data-lang="en"><strong>The most common radio mistake:</strong> different <code>name</code> values for buttons in the same group.</p>
+<pre><code>&lt;!-- НЕПРАВИЛЬНО / WRONG --&gt;
+&lt;input type="radio" name="gender1" value="male"&gt; Мужской
+&lt;input type="radio" name="gender2" value="female"&gt; Женский
+&lt;!-- Разные name = можно выбрать ОБА! --&gt;
+
+&lt;!-- ПРАВИЛЬНО / CORRECT --&gt;
+&lt;input type="radio" name="gender" value="male"&gt; Мужской
+&lt;input type="radio" name="gender" value="female"&gt; Женский
+&lt;!-- Одинаковый name = только один из группы &#x2714; --&gt;</code></pre>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    Radio (name="gender"):       Выбрано: &#x25CF;
+    &#x25CB; Мужской   &#x25CB; Женский
+
+    Клик на "Женский":
+    &#x25CB; Мужской   &#x25CF; Женский   &#x2190; "Мужской" автоматически снялся!
+
+    Нельзя выбрать два:
+    &#x25CF; Мужской   &#x25CF; Женский   &#x2190; НЕВОЗМОЖНО (если name одинаковый)</div>
+    <div class="diagram" data-lang="en">
+    Radio (name="gender"):       Selected: &#x25CF;
+    &#x25CB; Male      &#x25CB; Female
+
+    Click on "Female":
+    &#x25CB; Male      &#x25CF; Female    &#x2190; "Male" is automatically deselected!
+
+    Cannot select both:
+    &#x25CF; Male      &#x25CF; Female    &#x2190; IMPOSSIBLE (if name is the same)</div>
+
+    <hr>
+
+    <!-- ==================== 9. CHECKBOX ==================== -->
+    <h2 id="checkbox" data-lang="ru">9. input type="checkbox" — флажки</h2>
+    <h2 id="checkbox-en" data-lang="en">9. input type="checkbox" — checkboxes</h2>
+
+    <p data-lang="ru">Checkbox позволяет выбрать <strong>несколько</strong> вариантов (или ни одного):</p>
+    <p data-lang="en">Checkbox allows selecting <strong>multiple</strong> options (or none):</p>
+
+<pre><code>&lt;p&gt;Навыки:&lt;/p&gt;
+&lt;label&gt;
+    &lt;input type="checkbox" name="skills" value="html"&gt; HTML
+&lt;/label&gt;
+&lt;label&gt;
+    &lt;input type="checkbox" name="skills" value="css"&gt; CSS
+&lt;/label&gt;
+&lt;label&gt;
+    &lt;input type="checkbox" name="skills" value="js"&gt; JavaScript
+&lt;/label&gt;
+&lt;label&gt;
+    &lt;input type="checkbox" name="skills" value="git"&gt; Git
+&lt;/label&gt;</code></pre>
+
+    <div class="result-box">
+        <div style="max-width:400px;font-family:'Segoe UI',sans-serif;">
+            <p style="font-weight:600;color:#334155;margin-bottom:8px;" data-lang="ru">Навыки:</p>
+            <p style="font-weight:600;color:#334155;margin-bottom:8px;" data-lang="en">Skills:</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px 20px;">
+                <label style="cursor:pointer;"><input type="checkbox" disabled> HTML</label>
+                <label style="cursor:pointer;"><input type="checkbox" disabled> CSS</label>
+                <label style="cursor:pointer;"><input type="checkbox" disabled> JavaScript</label>
+                <label style="cursor:pointer;"><input type="checkbox" disabled> Git</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">&#x25CB; radio</div>
+            <p data-lang="ru">Только <strong>один</strong> из группы. <strong>Круглые</strong> кнопки. Одинаковый <code>name</code> обязателен.</p>
+            <p data-lang="en">Only <strong>one</strong> from a group. <strong>Round</strong> buttons. Same <code>name</code> is required.</p>
+        </div>
+        <div class="right">
+            <div class="label">&#x2610; checkbox</div>
+            <p data-lang="ru"><strong>Несколько</strong> одновременно. <strong>Квадратные</strong> флажки. <code>name</code> может быть разным.</p>
+            <p data-lang="en"><strong>Multiple</strong> at once. <strong>Square</strong> checkboxes. <code>name</code> can be different.</p>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <p data-lang="ru"><strong>Пицца vs Напиток.</strong> Radio — это как выбор напитка: «Кола ИЛИ Фанта ИЛИ Вода» — только один. Checkbox — это как выбор топпингов для пиццы: «Грибы И Оливки И Сыр» — можно выбрать сколько хочешь!</p>
+        <p data-lang="en"><strong>Pizza vs Drink.</strong> Radio is like choosing a drink: "Coke OR Fanta OR Water" — only one. Checkbox is like choosing pizza toppings: "Mushrooms AND Olives AND Cheese" — pick as many as you want!</p>
+    </div>
+
+    <p data-lang="ru">Для «согласия с условиями» — один checkbox:</p>
+    <p data-lang="en">For "terms agreement" — a single checkbox:</p>
+
+<pre><code>&lt;label&gt;
+    &lt;input type="checkbox" name="agree" required&gt;
+    Я согласен с условиями использования
+&lt;/label&gt;</code></pre>
+
+    <div class="result-box">
+        <div style="max-width:400px;font-family:'Segoe UI',sans-serif;">
+            <label style="cursor:pointer;">
+                <input type="checkbox" disabled> <span data-lang="ru">Я согласен с условиями использования</span><span data-lang="en">I agree to the terms of use</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    Checkbox (навыки):            Можно выбрать НЕСКОЛЬКО:
+    &#x2610; HTML                       &#x2611; HTML
+    &#x2610; CSS          &#x2500;&#x25B6;           &#x2611; CSS
+    &#x2610; JavaScript                 &#x2610; JavaScript
+    &#x2610; Git                        &#x2611; Git
+
+    Radio (пол):                  Можно выбрать ОДИН:
+    &#x25CB; Мужской      &#x2500;&#x25B6;           &#x25CF; Мужской
+    &#x25CB; Женский                    &#x25CB; Женский</div>
+    <div class="diagram" data-lang="en">
+    Checkbox (skills):            Can select MULTIPLE:
+    &#x2610; HTML                       &#x2611; HTML
+    &#x2610; CSS          &#x2500;&#x25B6;           &#x2611; CSS
+    &#x2610; JavaScript                 &#x2610; JavaScript
+    &#x2610; Git                        &#x2611; Git
+
+    Radio (gender):               Can select ONE:
+    &#x25CB; Male         &#x2500;&#x25B6;           &#x25CF; Male
+    &#x25CB; Female                     &#x25CB; Female</div>
+
+    <hr>
+
+    <!-- ==================== 10. BUTTON ==================== -->
+    <h2 id="button" data-lang="ru">10. button и input type="submit"</h2>
+    <h2 id="button-en" data-lang="en">10. button and input type="submit"</h2>
+
+    <p data-lang="ru">Два способа создать кнопку отправки:</p>
+    <p data-lang="en">Two ways to create a submit button:</p>
+
+<pre><code>&lt;!-- Способ 1: тег button (рекомендуемый) --&gt;
+&lt;button type="submit"&gt;Зарегистрироваться&lt;/button&gt;
+
+&lt;!-- Способ 2: input --&gt;
+&lt;input type="submit" value="Зарегистрироваться"&gt;
+
+&lt;!-- Кнопка сброса формы --&gt;
+&lt;button type="reset"&gt;Очистить&lt;/button&gt;</code></pre>
+
+    <div class="result-box">
+        <div style="max-width:400px;font-family:'Segoe UI',sans-serif;display:flex;gap:12px;flex-wrap:wrap;">
+            <button type="button" style="padding:12px 24px;background:#3b82f6;color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;" data-lang="ru">Зарегистрироваться</button>
+            <button type="button" style="padding:12px 24px;background:#3b82f6;color:#fff;border:none;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;" data-lang="en">Register</button>
+            <button type="button" style="padding:12px 24px;background:#e2e8f0;color:#334155;border:none;border-radius:8px;font-size:1rem;cursor:pointer;" data-lang="ru">Очистить</button>
+            <button type="button" style="padding:12px 24px;background:#e2e8f0;color:#334155;border:none;border-radius:8px;font-size:1rem;cursor:pointer;" data-lang="en">Clear</button>
+        </div>
+    </div>
+
+    <div class="compare">
+        <div class="right">
+            <div class="label">&lt;button&gt; (рекомендуется)</div>
+            <p data-lang="ru">Внутрь можно вставить HTML, иконки, эмодзи. Гибче в стилизации. <strong>Используйте этот способ.</strong></p>
+            <p data-lang="en">You can put HTML, icons, emoji inside. More flexible for styling. <strong>Use this method.</strong></p>
+        </div>
+        <div class="wrong">
+            <div class="label">&lt;input type="submit"&gt;</div>
+            <p data-lang="ru">Текст только через <code>value</code>. Нельзя вставить HTML внутрь. Старый способ.</p>
+            <p data-lang="en">Text only via <code>value</code>. Can't put HTML inside. Older method.</p>
+        </div>
+    </div>
+
+    <div class="fun-fact">
+        <p data-lang="ru"><strong>Три типа кнопок:</strong> <code>type="submit"</code> — отправляет форму (по умолчанию). <code>type="reset"</code> — очищает все поля. <code>type="button"</code> — ничего не делает сама по себе (нужна для JavaScript). Если не указать <code>type</code>, кнопка внутри <code>&lt;form&gt;</code> будет работать как <code>submit</code>!</p>
+        <p data-lang="en"><strong>Three button types:</strong> <code>type="submit"</code> — submits the form (default). <code>type="reset"</code> — clears all fields. <code>type="button"</code> — does nothing on its own (used with JavaScript). If you don't specify <code>type</code>, a button inside <code>&lt;form&gt;</code> will act as <code>submit</code>!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 11. ВАЛИДАЦИЯ ==================== -->
+    <h2 id="validation" data-lang="ru">11. HTML-валидация</h2>
+    <h2 id="validation-en" data-lang="en">11. HTML validation</h2>
+
+    <p data-lang="ru">HTML5 позволяет проверять данные <strong>без JavaScript</strong>! Браузер сам покажет ошибку, если пользователь ввёл что-то не то:</p>
+    <p data-lang="en">HTML5 allows validating data <strong>without JavaScript</strong>! The browser will automatically show an error if the user enters something wrong:</p>
+
+    <div class="why">
+        <p data-lang="ru">Почему это важно? Представьте: пользователь заполнил длинную форму регистрации, нажал «Отправить», и только тогда сервер ответил «Неправильный email». Пользователь в бешенстве! С HTML-валидацией ошибка видна <strong>сразу</strong> — ещё до отправки. Это называется <strong>client-side validation</strong> (проверка на стороне клиента).</p>
+        <p data-lang="en">Why is this important? Imagine: a user fills out a long registration form, clicks "Submit," and only then the server responds "Invalid email." The user is frustrated! With HTML validation, the error is visible <strong>immediately</strong> — before sending. This is called <strong>client-side validation</strong>.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут</th><th>Что делает</th><th>Пример</th></tr>
+        <tr><td><code>required</code></td><td>Поле обязательно</td><td><code>&lt;input required&gt;</code></td></tr>
+        <tr><td><code>minlength</code></td><td>Мин. количество символов</td><td><code>minlength="3"</code></td></tr>
+        <tr><td><code>maxlength</code></td><td>Макс. количество символов</td><td><code>maxlength="50"</code></td></tr>
+        <tr><td><code>min / max</code></td><td>Мин./макс. значение числа</td><td><code>min="18" max="99"</code></td></tr>
+        <tr><td><code>pattern</code></td><td>Регулярное выражение</td><td><code>pattern="[A-Za-z]+"</code></td></tr>
+        <tr><td><code>type="email"</code></td><td>Проверяет формат email</td><td>Нужен символ @</td></tr>
+        <tr><td><code>type="url"</code></td><td>Проверяет формат URL</td><td>Нужен https://</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute</th><th>What it does</th><th>Example</th></tr>
+        <tr><td><code>required</code></td><td>Field is mandatory</td><td><code>&lt;input required&gt;</code></td></tr>
+        <tr><td><code>minlength</code></td><td>Min. number of characters</td><td><code>minlength="3"</code></td></tr>
+        <tr><td><code>maxlength</code></td><td>Max. number of characters</td><td><code>maxlength="50"</code></td></tr>
+        <tr><td><code>min / max</code></td><td>Min/max numeric value</td><td><code>min="18" max="99"</code></td></tr>
+        <tr><td><code>pattern</code></td><td>Regular expression</td><td><code>pattern="[A-Za-z]+"</code></td></tr>
+        <tr><td><code>type="email"</code></td><td>Validates email format</td><td>Requires @ symbol</td></tr>
+        <tr><td><code>type="url"</code></td><td>Validates URL format</td><td>Requires https://</td></tr>
+    </table>
+
+<pre><code>&lt;input type="text" name="username"
+       required
+       minlength="3"
+       maxlength="20"
+       placeholder="Имя (3-20 символов)"&gt;
+
+&lt;input type="email" name="email" required
+       placeholder="your@email.com"&gt;
+
+&lt;input type="password" name="password"
+       required minlength="8"
+       placeholder="Минимум 8 символов"&gt;
+
+&lt;input type="number" name="age"
+       min="12" max="100"&gt;</code></pre>
+
+    <div class="analogy">
+        <p data-lang="ru"><strong>Охранник на входе.</strong> HTML-валидация — это как охранник, который проверяет документы перед входом в здание. <code>required</code> — «без паспорта не пущу». <code>minlength="8"</code> — «пароль должен быть длинным». <code>type="email"</code> — «покажите email с @». Всё это происходит <strong>до</strong> отправки данных на сервер — прямо в браузере пользователя.</p>
+        <p data-lang="en"><strong>Security guard at the entrance.</strong> HTML validation is like a guard checking documents before entering a building. <code>required</code> — "no passport, no entry." <code>minlength="8"</code> — "password must be long." <code>type="email"</code> — "show me an email with @." All of this happens <strong>before</strong> sending data to the server — right in the user's browser.</p>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    Без валидации:                    С валидацией:
+
+    [Имя: _______]                    [Имя: _______]  &#x2190; required
+    [Email: _____]                    [Email: _____]  &#x2190; type="email"
+    [Пароль: ____]                    [Пароль: ____]  &#x2190; minlength="8"
+    [ Отправить ]                     [ Отправить ]
+         &#x2502;                                &#x2502;
+    Данные уходят                  &#x274C; "Заполните поле!"
+    на сервер                      &#x274C; "Введите email!"
+    (может быть мусор)             &#x274C; "Минимум 8 символов!"
+                                   Данные НЕ уйдут, пока не исправишь!</div>
+    <div class="diagram" data-lang="en">
+    Without validation:               With validation:
+
+    [Name: ______]                    [Name: ______]  &#x2190; required
+    [Email: _____]                    [Email: _____]  &#x2190; type="email"
+    [Password: __]                    [Password: __]  &#x2190; minlength="8"
+    [  Submit   ]                     [  Submit   ]
+         &#x2502;                                &#x2502;
+    Data goes to                   &#x274C; "Please fill out this field!"
+    the server                     &#x274C; "Enter a valid email!"
+    (could be garbage)             &#x274C; "Minimum 8 characters!"
+                                   Data WON'T send until you fix it!</div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Важно:</strong> HTML-валидация — это <strong>первый уровень</strong> защиты. Она легко обходится (можно удалить <code>required</code> через DevTools). Поэтому серьёзные сайты <strong>всегда</strong> проверяют данные ещё и на сервере. Но HTML-валидация улучшает пользовательский опыт — ошибки видны моментально, без ожидания ответа от сервера.</p>
+        <p data-lang="en"><strong>Important:</strong> HTML validation is the <strong>first level</strong> of defense. It can be easily bypassed (you can remove <code>required</code> via DevTools). That's why serious websites <strong>always</strong> also validate data on the server. But HTML validation improves user experience — errors are visible instantly, without waiting for a server response.</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Создай форму с <code>required</code> и нажми кнопку «Отправить» с пустыми полями — браузер покажет ошибку! Попробуй ввести «abc» в поле <code>type="email"</code> — браузер не позволит отправить.</p>
+        <p data-lang="en">Create a form with <code>required</code> and click "Submit" with empty fields — the browser will show an error! Try entering "abc" in a <code>type="email"</code> field — the browser won't allow submission.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 12. CSS СТИЛИЗАЦИЯ ==================== -->
+    <h2 id="css-forms" data-lang="ru">12. CSS: стилизация форм</h2>
+    <h2 id="css-forms-en" data-lang="en">12. CSS: form styling</h2>
+
+    <p data-lang="ru">По умолчанию формы выглядят «системно» — каждый браузер рисует поля по-своему. Стилизуем их, чтобы формы выглядели одинаково красиво везде:</p>
+    <p data-lang="en">By default, forms look "system-like" — each browser renders fields differently. Let's style them so forms look consistently beautiful everywhere:</p>
+
+    <div class="why">
+        <p data-lang="ru">Зачем стилизовать формы? Потому что стандартные элементы форм — это <strong>самые некрасивые</strong> элементы в HTML. Каждый браузер рисует их по-разному: input в Chrome выглядит не так, как в Firefox. CSS позволяет сделать формы красивыми и единообразными на всех устройствах.</p>
+        <p data-lang="en">Why style forms? Because default form elements are the <strong>ugliest</strong> elements in HTML. Each browser renders them differently: input in Chrome looks different from Firefox. CSS lets you make forms beautiful and consistent across all devices.</p>
+    </div>
+
+<pre><code>/* Общие стили полей */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+/* Фокус — синяя рамка */
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Подписи */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #334155;
+}
+
+/* Кнопка */
+button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background: #2563eb;
+}</code></pre>
+
+    <p data-lang="ru">Ключевые моменты стилизации:</p>
+    <p data-lang="en">Key styling points:</p>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Зачем</th></tr>
+        <tr><td><code>font-family: inherit</code></td><td>Поля наследуют шрифт страницы (по умолчанию — системный, выглядит чужеродно)</td></tr>
+        <tr><td><code>outline: none</code></td><td>Убирает стандартную синюю/оранжевую обводку при фокусе</td></tr>
+        <tr><td><code>:focus</code></td><td>Наши стили при фокусе (синяя рамка + лёгкая тень)</td></tr>
+        <tr><td><code>cursor: pointer</code></td><td>Курсор-рука на кнопке (подсказка «кликни»)</td></tr>
+        <tr><td><code>transition</code></td><td>Плавное изменение цвета рамки (не резкое переключение)</td></tr>
+        <tr><td><code>box-sizing: border-box</code></td><td>Чтобы padding не увеличивал ширину полей</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>Why</th></tr>
+        <tr><td><code>font-family: inherit</code></td><td>Fields inherit page font (default is system font, looks alien)</td></tr>
+        <tr><td><code>outline: none</code></td><td>Removes default blue/orange outline on focus</td></tr>
+        <tr><td><code>:focus</code></td><td>Custom focus styles (blue border + light shadow)</td></tr>
+        <tr><td><code>cursor: pointer</code></td><td>Hand cursor on buttons (hints "click me")</td></tr>
+        <tr><td><code>transition</code></td><td>Smooth border color change (not a jarring switch)</td></tr>
+        <tr><td><code>box-sizing: border-box</code></td><td>So padding doesn't increase field width</td></tr>
+    </table>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">Без стилей</div>
+            <div class="label" data-lang="en">Without styles</div>
+            <p data-lang="ru">Тонкие рамки, разный шрифт в полях, некрасивый фокус, маленький padding. Выглядит как сайт из 2003 года.</p>
+            <p data-lang="en">Thin borders, different font in fields, ugly focus, tiny padding. Looks like a 2003 website.</p>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">Со стилями</div>
+            <div class="label" data-lang="en">With styles</div>
+            <p data-lang="ru">Единый шрифт, скруглённые углы, плавная анимация фокуса, аккуратная кнопка с hover. Выглядит как современный сайт.</p>
+            <p data-lang="en">Consistent font, rounded corners, smooth focus animation, clean button with hover. Looks like a modern website.</p>
+        </div>
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Ситуация:</strong> новичок убирает <code>outline: none</code>, но забывает добавить свои стили для <code>:focus</code>. В результате при фокусе поле никак не выделяется — пользователь не понимает, где курсор.</p>
+        <p data-lang="en"><strong>Situation:</strong> a beginner adds <code>outline: none</code> but forgets to add custom <code>:focus</code> styles. As a result, focused fields aren't highlighted — users can't tell where the cursor is.</p>
+<pre><code>/* НЕПРАВИЛЬНО / WRONG */
+input { outline: none; }
+/* Фокус не видно! Плохо для доступности */
+
+/* ПРАВИЛЬНО / CORRECT */
+input { outline: none; }
+input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+/* Убрали стандартный outline, но добавили свой красивый &#x2714; */</code></pre>
+        <p data-lang="ru"><strong>Правило:</strong> если убираете <code>outline</code> — <strong>обязательно</strong> добавьте свои стили для <code>:focus</code>. Иначе клавиатурные пользователи не смогут навигировать по форме.</p>
+        <p data-lang="en"><strong>Rule:</strong> if you remove <code>outline</code> — you <strong>must</strong> add custom <code>:focus</code> styles. Otherwise keyboard users won't be able to navigate the form.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 13. ПОЛНЫЙ ПРИМЕР ==================== -->
+    <h2 id="full-example" data-lang="ru">13. Полный пример: форма регистрации</h2>
+    <h2 id="full-example-en" data-lang="en">13. Full example: registration form</h2>
+
+    <div class="why">
+        <p data-lang="ru">Соберём всё вместе! Вот полноценная форма регистрации, которая использует все изученные элементы: text, email, password, number, select, radio, checkbox и button. С HTML-валидацией и красивым CSS.</p>
+        <p data-lang="en">Let's put it all together! Here's a complete registration form using all the elements we've learned: text, email, password, number, select, radio, checkbox, and button. With HTML validation and beautiful CSS.</p>
+    </div>
+
+    <h3>HTML:</h3>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Регистрация&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="form-container"&gt;
+    &lt;h1&gt;Регистрация&lt;/h1&gt;
+    &lt;p class="subtitle"&gt;Создайте аккаунт, чтобы начать&lt;/p&gt;
+
+    &lt;form action="#" method="POST"&gt;
+        &lt;div class="form-group"&gt;
+            &lt;label for="fullname"&gt;Полное имя&lt;/label&gt;
+            &lt;input type="text" id="fullname" name="fullname"
+                   required minlength="2" placeholder="Мерген Атаев"&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            &lt;label for="email"&gt;Email&lt;/label&gt;
+            &lt;input type="email" id="email" name="email"
+                   required placeholder="mergen@mail.com"&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            &lt;label for="password"&gt;Пароль&lt;/label&gt;
+            &lt;input type="password" id="password" name="password"
+                   required minlength="8" placeholder="Минимум 8 символов"&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            &lt;label for="age"&gt;Возраст&lt;/label&gt;
+            &lt;input type="number" id="age" name="age"
+                   min="12" max="100" placeholder="16"&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            &lt;label for="city"&gt;Город&lt;/label&gt;
+            &lt;select id="city" name="city"&gt;
+                &lt;option value=""&gt;Выберите город...&lt;/option&gt;
+                &lt;option value="ashgabat"&gt;Ашхабад&lt;/option&gt;
+                &lt;option value="mary"&gt;Мары&lt;/option&gt;
+                &lt;option value="turkmenabat"&gt;Туркменабат&lt;/option&gt;
+                &lt;option value="dashoguz"&gt;Дашогуз&lt;/option&gt;
+                &lt;option value="balkanabat"&gt;Балканабат&lt;/option&gt;
+            &lt;/select&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            &lt;label&gt;Пол&lt;/label&gt;
+            &lt;div class="radio-group"&gt;
+                &lt;label class="radio-label"&gt;
+                    &lt;input type="radio" name="gender" value="male"&gt; Мужской
+                &lt;/label&gt;
+                &lt;label class="radio-label"&gt;
+                    &lt;input type="radio" name="gender" value="female"&gt; Женский
+                &lt;/label&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="form-group"&gt;
+            &lt;label&gt;
+                &lt;input type="checkbox" name="agree" required&gt;
+                Я согласен с условиями
+            &lt;/label&gt;
+        &lt;/div&gt;
+
+        &lt;button type="submit"&gt;Создать аккаунт&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h3>CSS (style.css):</h3>
+
+<pre><code>* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f1f5f9;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.form-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    width: 100%;
+}
+
+h1 { font-size: 1.8rem; color: #1e293b; margin-bottom: 4px; }
+.subtitle { color: #64748b; margin-bottom: 24px; }
+
+.form-group { margin-bottom: 18px; }
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #334155;
+    font-size: 0.9rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+input:focus, select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.radio-group { display: flex; gap: 20px; }
+.radio-label { font-weight: 400; cursor: pointer; }
+
+button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-top: 8px;
+}
+
+button[type="submit"]:hover { background: #2563eb; }</code></pre>
+
+    <div class="diagram" data-lang="ru">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;       Регистрация              &#x2502;
+    &#x2502; Создайте аккаунт               &#x2502;
+    &#x2502;                                &#x2502;
+    &#x2502; Полное имя                     &#x2502;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502; Мерген Атаев              &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2502; Email                          &#x2502;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502; mergen@mail.com           &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2502; Пароль                         &#x2502;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502; &#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;                  &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2502; Город                          &#x2502;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x25BC;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502; Выберите город...         &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2502; Пол                            &#x2502;
+    &#x2502;   &#x25CB; Мужской   &#x25CB; Женский      &#x2502;
+    &#x2502;                                &#x2502;
+    &#x2502; &#x2610; Я согласен с условиями     &#x2502;
+    &#x2502;                                &#x2502;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502;    Создать аккаунт        &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;       Registration              &#x2502;
+    &#x2502; Create an account               &#x2502;
+    &#x2502;                                &#x2502;
+    &#x2502; Full name                      &#x2502;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502; Mergen Ataev              &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2502; Email                          &#x2502;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502; mergen@mail.com           &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2502; Password                       &#x2502;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502; &#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;                  &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2502; City                           &#x2502;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x25BC;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502; Select a city...          &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2502; Gender                         &#x2502;
+    &#x2502;   &#x25CB; Male      &#x25CB; Female       &#x2502;
+    &#x2502;                                &#x2502;
+    &#x2502; &#x2610; I agree to the terms       &#x2502;
+    &#x2502;                                &#x2502;
+    &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+    &#x2502; &#x2502;    Create account         &#x2502; &#x2502;
+    &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Обратите внимание на паттерны:</strong></p>
+        <p data-lang="en"><strong>Notice the patterns:</strong></p>
+        <ul data-lang="ru">
+            <li>Каждое поле обёрнуто в <code>&lt;div class="form-group"&gt;</code> — для удобных отступов</li>
+            <li>Все label связаны с input через <code>for</code> / <code>id</code></li>
+            <li>Обязательные поля имеют <code>required</code></li>
+            <li>Пароль имеет <code>minlength="8"</code></li>
+            <li>Форма в белой карточке с тенью — центрирована на странице через Flexbox</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Each field is wrapped in <code>&lt;div class="form-group"&gt;</code> — for easy spacing</li>
+            <li>All labels are linked to inputs via <code>for</code> / <code>id</code></li>
+            <li>Required fields have <code>required</code></li>
+            <li>Password has <code>minlength="8"</code></li>
+            <li>Form is in a white card with shadow — centered on the page with Flexbox</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== 14. ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">14. Практика</h2>
+    <h2 id="practice-en" data-lang="en">14. Practice</h2>
+
+    <div class="summary" data-lang="ru">
+        <ul>
+            <li><code>&lt;form&gt;</code> — контейнер формы (как конверт для данных)</li>
+            <li><code>&lt;input&gt;</code> — поле ввода (text, email, password, number, radio, checkbox, date, file)</li>
+            <li><code>&lt;label&gt;</code> — подпись к полю (связь через <code>for</code> + <code>id</code> — всегда!)</li>
+            <li><code>&lt;textarea&gt;</code> — многострочное поле (парный тег!)</li>
+            <li><code>&lt;select&gt;</code> + <code>&lt;option&gt;</code> — выпадающий список</li>
+            <li><code>radio</code> — один из группы (одинаковый <code>name</code>!)</li>
+            <li><code>checkbox</code> — несколько из группы</li>
+            <li><code>&lt;button type="submit"&gt;</code> — кнопка отправки</li>
+            <li><code>required</code>, <code>minlength</code>, <code>pattern</code> — HTML-валидация без JavaScript</li>
+            <li><code>placeholder</code> — подсказка (исчезает), <code>value</code> — значение (остаётся)</li>
+            <li><code>:focus</code> — стили при фокусе (обязательно, если убрали outline!)</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <ul>
+            <li><code>&lt;form&gt;</code> — form container (like an envelope for data)</li>
+            <li><code>&lt;input&gt;</code> — input field (text, email, password, number, radio, checkbox, date, file)</li>
+            <li><code>&lt;label&gt;</code> — field label (linked via <code>for</code> + <code>id</code> — always!)</li>
+            <li><code>&lt;textarea&gt;</code> — multi-line field (paired tag!)</li>
+            <li><code>&lt;select&gt;</code> + <code>&lt;option&gt;</code> — dropdown list</li>
+            <li><code>radio</code> — one from a group (same <code>name</code>!)</li>
+            <li><code>checkbox</code> — multiple from a group</li>
+            <li><code>&lt;button type="submit"&gt;</code> — submit button</li>
+            <li><code>required</code>, <code>minlength</code>, <code>pattern</code> — HTML validation without JavaScript</li>
+            <li><code>placeholder</code> — hint (disappears), <code>value</code> — actual value (stays)</li>
+            <li><code>:focus</code> — focus styles (required if you removed outline!)</li>
+        </ul>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Какой тег создаёт подпись к полю ввода?</li>
+            <li>Чем <code>radio</code> отличается от <code>checkbox</code>?</li>
+            <li>Как сделать поле обязательным без JavaScript?</li>
+            <li>Что делает <code>placeholder</code> и чем отличается от <code>value</code>?</li>
+            <li>Какой тип input скрывает символы при вводе?</li>
+            <li>Зачем нужен атрибут <code>for</code> у <code>&lt;label&gt;</code>?</li>
+            <li>Почему важно добавить <code>:focus</code> стили, если убрали <code>outline</code>?</li>
+            <li>Чем <code>&lt;textarea&gt;</code> отличается от <code>&lt;input type="text"&gt;</code>?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>Which tag creates a label for an input field?</li>
+            <li>How is <code>radio</code> different from <code>checkbox</code>?</li>
+            <li>How to make a field required without JavaScript?</li>
+            <li>What does <code>placeholder</code> do and how is it different from <code>value</code>?</li>
+            <li>Which input type hides characters on input?</li>
+            <li>Why do we need the <code>for</code> attribute on <code>&lt;label&gt;</code>?</li>
+            <li>Why is it important to add <code>:focus</code> styles when removing <code>outline</code>?</li>
+            <li>How is <code>&lt;textarea&gt;</code> different from <code>&lt;input type="text"&gt;</code>?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

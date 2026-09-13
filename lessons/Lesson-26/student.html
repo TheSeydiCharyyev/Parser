@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 26 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 26: Bootstrap — компоненты и проект</span>
+    <span class="nav-title" data-lang="en">Lesson 26: Bootstrap — Components and Project</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 26: Bootstrap — компоненты и проект</p>
+    <p class="subtitle" data-lang="en">Lesson 26: Bootstrap — Components and Project</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧТО ТАКОЕ КОМПОНЕНТЫ BOOTSTRAP</h2>
+    <h2 data-lang="en">&#x1F4DA; WHAT ARE BOOTSTRAP COMPONENTS</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Компоненты</strong> — готовые интерактивные блоки (navbar, modal, carousel, accordion). Логика работы написана в Bootstrap JS и «включается» через data-атрибуты. Вы пишете только HTML.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Components</strong> — ready interactive blocks (navbar, modal, carousel, accordion). Logic lives in Bootstrap JS and "activates" via data attributes. You only write HTML.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Все интерактивные компоненты требуют Bootstrap JS</strong> (подключение <code>bootstrap.bundle.min.js</code> перед <code>&lt;/body&gt;</code>). Без JS: бургер не открывается, модалка не появляется, карусель не двигается.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>All interactive components require Bootstrap JS</strong> (include <code>bootstrap.bundle.min.js</code> before <code>&lt;/body&gt;</code>). Without JS: burger doesn't open, modal doesn't appear, carousel doesn't slide.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; КОМПОНЕНТЫ BOOTSTRAP</h2>
+    <h2 data-lang="en">&#x1F4DA; BOOTSTRAP COMPONENTS</h2>
+
+    <table data-lang="ru">
+        <tr><th>Компонент</th><th>Что делает</th><th>Ключевые классы</th></tr>
+        <tr><td><strong>Navbar</strong></td><td>Адаптивная навигация + бургер</td><td><code>navbar navbar-expand-lg</code></td></tr>
+        <tr><td><strong>Card</strong></td><td>Карточка с изображением</td><td><code>card card-body card-title</code></td></tr>
+        <tr><td><strong>Carousel</strong></td><td>Слайдер изображений</td><td><code>carousel slide carousel-item</code></td></tr>
+        <tr><td><strong>Modal</strong></td><td>Всплывающее окно</td><td><code>modal modal-dialog modal-content</code></td></tr>
+        <tr><td><strong>Form</strong></td><td>Стилизованная форма</td><td><code>form-control form-label</code></td></tr>
+        <tr><td><strong>Alert</strong></td><td>Уведомление</td><td><code>alert alert-success/danger</code></td></tr>
+        <tr><td><strong>Badge</strong></td><td>Бейдж / метка</td><td><code>badge bg-primary</code></td></tr>
+        <tr><td><strong>Accordion</strong></td><td>Сворачиваемые блоки (FAQ)</td><td><code>accordion accordion-item</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Component</th><th>What it does</th><th>Key classes</th></tr>
+        <tr><td><strong>Navbar</strong></td><td>Responsive nav + burger</td><td><code>navbar navbar-expand-lg</code></td></tr>
+        <tr><td><strong>Card</strong></td><td>Card with image</td><td><code>card card-body card-title</code></td></tr>
+        <tr><td><strong>Carousel</strong></td><td>Image slider</td><td><code>carousel slide carousel-item</code></td></tr>
+        <tr><td><strong>Modal</strong></td><td>Popup window</td><td><code>modal modal-dialog modal-content</code></td></tr>
+        <tr><td><strong>Form</strong></td><td>Styled form</td><td><code>form-control form-label</code></td></tr>
+        <tr><td><strong>Alert</strong></td><td>Notification</td><td><code>alert alert-success/danger</code></td></tr>
+        <tr><td><strong>Badge</strong></td><td>Badge / label</td><td><code>badge bg-primary</code></td></tr>
+        <tr><td><strong>Accordion</strong></td><td>Collapsible blocks (FAQ)</td><td><code>accordion accordion-item</code></td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; NAVBAR (ШАБЛОН)</h2>
+    <h2 data-lang="en">&#x1F4DA; NAVBAR (TEMPLATE)</h2>
+
+<pre><code>&lt;nav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt;
+  &lt;div class="container"&gt;
+    &lt;a class="navbar-brand" href="#"&gt;Logo&lt;/a&gt;
+    &lt;button class="navbar-toggler" data-bs-toggle="collapse"
+            data-bs-target="#nav"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="nav"&gt;
+      &lt;ul class="navbar-nav ms-auto"&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; CARD (ШАБЛОН)</h2>
+    <h2 data-lang="en">&#x1F4DA; CARD (TEMPLATE)</h2>
+
+<pre><code>&lt;div class="card h-100"&gt;
+  &lt;img src="..." class="card-img-top" alt=""&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Text&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Button&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <code>h-100</code> = все карточки одинаковой высоты в строке.
+    </div>
+    <div class="key-point" data-lang="en">
+        <code>h-100</code> = all cards same height in a row.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; DATA-BS АТРИБУТЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; DATA-BS ATTRIBUTES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут</th><th>Что делает</th><th>Компонент</th></tr>
+        <tr><td><code>data-bs-toggle="collapse"</code></td><td>Свернуть/развернуть</td><td>Navbar, Accordion</td></tr>
+        <tr><td><code>data-bs-target="#id"</code></td><td>Целевой элемент</td><td>Navbar, Modal, Carousel</td></tr>
+        <tr><td><code>data-bs-toggle="modal"</code></td><td>Открыть модалку</td><td>Modal</td></tr>
+        <tr><td><code>data-bs-dismiss="modal"</code></td><td>Закрыть модалку</td><td>Modal</td></tr>
+        <tr><td><code>data-bs-ride="carousel"</code></td><td>Авто-прокрутка</td><td>Carousel</td></tr>
+        <tr><td><code>data-bs-slide="prev/next"</code></td><td>Стрелки</td><td>Carousel</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute</th><th>What it does</th><th>Component</th></tr>
+        <tr><td><code>data-bs-toggle="collapse"</code></td><td>Collapse/expand</td><td>Navbar, Accordion</td></tr>
+        <tr><td><code>data-bs-target="#id"</code></td><td>Target element</td><td>Navbar, Modal, Carousel</td></tr>
+        <tr><td><code>data-bs-toggle="modal"</code></td><td>Open modal</td><td>Modal</td></tr>
+        <tr><td><code>data-bs-dismiss="modal"</code></td><td>Close modal</td><td>Modal</td></tr>
+        <tr><td><code>data-bs-ride="carousel"</code></td><td>Auto-slide</td><td>Carousel</td></tr>
+        <tr><td><code>data-bs-slide="prev/next"</code></td><td>Arrows</td><td>Carousel</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧАСТЫЕ ОШИБКИ</h2>
+    <h2 data-lang="en">&#x1F4DA; COMMON MISTAKES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td>Бургер не открывается</td><td>Подключить Bootstrap JS + проверить совпадение <code>data-bs-target</code> и <code>id</code></td></tr>
+        <tr><td>Модалка не появляется</td><td>То же самое — JS + совпадение id</td></tr>
+        <tr><td>Карусель без первого слайда</td><td>На первом <code>carousel-item</code> должен быть класс <code>active</code></td></tr>
+        <tr><td>Карточки разной высоты</td><td>Добавить <code>h-100</code> на каждой карточке</td></tr>
+        <tr><td>Input выглядит «голым»</td><td>Забыли класс <code>form-control</code></td></tr>
+        <tr><td>navbar-light на тёмном фоне</td><td>Заменить на <code>navbar-dark</code></td></tr>
+        <tr><td>Иконки не видны</td><td>Забыли подключить CDN Bootstrap Icons</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td>Burger doesn't open</td><td>Include Bootstrap JS + match <code>data-bs-target</code> with <code>id</code></td></tr>
+        <tr><td>Modal doesn't appear</td><td>Same — JS + id match</td></tr>
+        <tr><td>Carousel shows no first slide</td><td>First <code>carousel-item</code> needs <code>active</code> class</td></tr>
+        <tr><td>Cards different heights</td><td>Add <code>h-100</code> to each card</td></tr>
+        <tr><td>Input looks "bare"</td><td>Forgot <code>form-control</code> class</td></tr>
+        <tr><td>navbar-light on dark background</td><td>Change to <code>navbar-dark</code></td></tr>
+        <tr><td>Icons invisible</td><td>Forgot to include Bootstrap Icons CDN</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; BOOTSTRAP ICONS</h2>
+    <h2 data-lang="en">&#x1F4DA; BOOTSTRAP ICONS</h2>
+
+<pre><code>&lt;!-- 1. Подключение в head --&gt;
+&lt;link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"&gt;
+
+&lt;!-- 2. Использование --&gt;
+&lt;i class="bi bi-house"&gt;&lt;/i&gt; Home
+&lt;i class="bi bi-envelope"&gt;&lt;/i&gt; Email
+&lt;i class="bi bi-telephone"&gt;&lt;/i&gt; Phone
+&lt;i class="bi bi-facebook"&gt;&lt;/i&gt;
+&lt;i class="bi bi-star-fill fs-3 text-warning"&gt;&lt;/i&gt;</code></pre>
+
+    <div class="definition" data-lang="ru">
+        <strong>Где искать иконки:</strong> <a href="https://icons.getbootstrap.com" target="_blank">icons.getbootstrap.com</a> — 2000+ SVG, все бесплатны. Ищите по английским ключевым словам: «cart», «user», «search».
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Where to find icons:</strong> <a href="https://icons.getbootstrap.com" target="_blank">icons.getbootstrap.com</a> — 2000+ SVGs, all free. Search by English keywords: "cart", "user", "search".
+    </div>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li>Все интерактивные компоненты требуют <strong>Bootstrap JS</strong>!</li>
+            <li>Navbar: <code>navbar-expand-lg</code> + <code>navbar-toggler</code> + <code>collapse</code> = бургер автоматически</li>
+            <li><code>data-bs-target</code> на кнопке = <code>id</code> на целевом блоке</li>
+            <li>Card: <code>card</code> + <code>card-img-top</code> + <code>card-body</code> + <code>h-100</code></li>
+            <li><code>h-100</code> на card = все карточки в row одинаковой высоты</li>
+            <li>Carousel: <code>carousel slide</code> + <code>carousel-item</code> + <code>active</code> на первом</li>
+            <li><code>data-bs-ride="carousel"</code> = авто-прокрутка</li>
+            <li>Modal: <code>data-bs-toggle="modal"</code> на кнопке + <code>data-bs-target="#id"</code></li>
+            <li><code>data-bs-dismiss="modal"</code> закрывает модалку</li>
+            <li>Forms: <code>form-control</code> на input/textarea, <code>form-label</code> на label</li>
+            <li>Alerts: 8 цветов (alert-success, alert-danger...)</li>
+            <li>Badges: <code>badge bg-primary</code> + <code>rounded-pill</code> для круглых</li>
+            <li>Accordion = FAQ. Каждый <code>accordion-item</code> → <code>accordion-header</code> + <code>accordion-collapse</code></li>
+            <li>Bootstrap Icons: отдельный CDN, классы <code>bi bi-name</code>, icons.getbootstrap.com</li>
+            <li>Карусель: используйте медленно (<code>data-bs-interval="5000"</code>) и ставьте важное на 1-й слайд</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li>All interactive components require <strong>Bootstrap JS</strong>!</li>
+            <li>Navbar: <code>navbar-expand-lg</code> + <code>navbar-toggler</code> + <code>collapse</code> = burger automatically</li>
+            <li><code>data-bs-target</code> on button = <code>id</code> on target block</li>
+            <li>Card: <code>card</code> + <code>card-img-top</code> + <code>card-body</code> + <code>h-100</code></li>
+            <li><code>h-100</code> on card = all cards in a row equal height</li>
+            <li>Carousel: <code>carousel slide</code> + <code>carousel-item</code> + <code>active</code> on first</li>
+            <li><code>data-bs-ride="carousel"</code> = auto-slide</li>
+            <li>Modal: <code>data-bs-toggle="modal"</code> on button + <code>data-bs-target="#id"</code></li>
+            <li><code>data-bs-dismiss="modal"</code> closes modal</li>
+            <li>Forms: <code>form-control</code> on input/textarea, <code>form-label</code> on label</li>
+            <li>Alerts: 8 colors (alert-success, alert-danger...)</li>
+            <li>Badges: <code>badge bg-primary</code> + <code>rounded-pill</code> for round</li>
+            <li>Accordion = FAQ. Each <code>accordion-item</code> → <code>accordion-header</code> + <code>accordion-collapse</code></li>
+            <li>Bootstrap Icons: separate CDN, classes <code>bi bi-name</code>, icons.getbootstrap.com</li>
+            <li>Carousel: use slow (<code>data-bs-interval="5000"</code>) and put the most important on slide 1</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Лендинг:</strong> Лендинг на Bootstrap с 7 секциями: Navbar (tёмный) + Hero (карусель из 3 слайдов) + 3 карточки услуг (<code>col-md-4</code>, <code>h-100</code>) + форма контактов (<code>form-control</code>) + FAQ (accordion из 4 вопросов) + Footer.</li>
+            <li><strong>Modal:</strong> Кнопка «Subscribe» в navbar открывает модальное окно с формой (email + кнопка Send).</li>
+            <li><strong>Bootstrap Icons:</strong> Подключить CDN иконок, использовать минимум в 3 местах: в меню (<code>bi bi-house</code>, <code>bi bi-envelope</code>), в features-секции (иконки над заголовками), в footer (соцсети).</li>
+            <li><strong>Адаптивность:</strong> Все секции перестраиваются на мобильном. Navbar превращается в бургер на &lt; 992px.</li>
+            <li><strong>Проверка:</strong> Бургер открывается на мобильном. Модалка закрывается по Escape. Accordion раскрывается по клику.</li>
+            <li><strong>Бонус:</strong> Добавьте alert «Спасибо за подписку!» который появляется после сабмита формы (без реальной отправки — просто HTML).</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Landing:</strong> Bootstrap landing with 7 sections: Navbar (dark) + Hero (carousel of 3 slides) + 3 service cards (<code>col-md-4</code>, <code>h-100</code>) + contact form (<code>form-control</code>) + FAQ (accordion with 4 questions) + Footer.</li>
+            <li><strong>Modal:</strong> "Subscribe" button in navbar opens a modal with form (email + Send button).</li>
+            <li><strong>Bootstrap Icons:</strong> Connect icon CDN, use in at least 3 places: in the menu (<code>bi bi-house</code>, <code>bi bi-envelope</code>), in features (icons above headings), in footer (socials).</li>
+            <li><strong>Responsiveness:</strong> All sections rebuild on mobile. Navbar becomes a burger below 992px.</li>
+            <li><strong>Check:</strong> Burger opens on mobile. Modal closes on Escape. Accordion expands on click.</li>
+            <li><strong>Bonus:</strong> Add an alert "Thanks for subscribing!" that appears after form submit (no real submission — just HTML).</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

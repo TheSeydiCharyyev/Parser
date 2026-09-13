@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 24 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 24: Мини-проект — Анимированная промо-страница</span>
+    <span class="nav-title" data-lang="en">Lesson 24: Mini-project — Animated Promo Page</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 24: Мини-проект #6 — Анимированная промо-страница</p>
+    <p class="subtitle" data-lang="en">Lesson 24: Mini-project #6 — Animated Promo Page</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 24.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 24.1: ЗАГРУЗЧИКИ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 24.1: LOADERS</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 23.1: Коллекция загрузчиков</span>
+            <span class="task-title" data-lang="en">Task 23.1: Loader collection</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать 3 разных CSS-загрузчика с @keyframes</div>
+        <div class="task-goal" data-lang="en">Create 3 different CSS loaders with @keyframes</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>loaders.html</code>. Сделайте 3 загрузчика:</p>
+        <p data-lang="en">Create a file <code>loaders.html</code>. Make 3 loaders:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Вращающийся круг:</strong> border-круг с одной синей стороной, <code>animation: spin 0.8s linear infinite</code></li>
+            <li><strong>3 пульсирующие точки:</strong> 3 круга, <code>animation: dotPulse 1.4s ease infinite</code>, каскадная задержка</li>
+            <li><strong>Растущий бар:</strong> полоска расширяется от 0% до 100% и обратно, <code>animation: barGrow 1.5s ease infinite alternate</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Spinning circle:</strong> border-circle with one blue side, <code>animation: spin 0.8s linear infinite</code></li>
+            <li><strong>3 pulsing dots:</strong> 3 circles, <code>animation: dotPulse 1.4s ease infinite</code>, cascading delay</li>
+            <li><strong>Growing bar:</strong> bar expands from 0% to 100% and back, <code>animation: barGrow 1.5s ease infinite alternate</code></li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Готовый код спиннера:</strong>
+<pre><code>@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.spinner {
+    width: 40px; height: 40px;
+    border: 4px solid #e2e8f0;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}</code></pre>
+            <strong>Важно:</strong> <code>linear</code>, не <code>ease</code>! С <code>ease</code> спиннер будет ускоряться и замедляться на каждом обороте.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Ready spinner code:</strong>
+<pre><code>@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.spinner {
+    width: 40px; height: 40px;
+    border: 4px solid #e2e8f0;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}</code></pre>
+            <strong>Important:</strong> <code>linear</code>, not <code>ease</code>! With <code>ease</code> the spinner speeds up and slows down each rotation.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>3 разных загрузчика</li>
+                <li>Все используют @keyframes</li>
+                <li>Все бесконечные (<code>infinite</code>)</li>
+                <li>Спиннер: <code>linear</code>, точки: <code>ease</code>, бар: <code>ease + alternate</code></li>
+                <li>У точек каскадная задержка (<code>animation-delay: 0.16s</code>, <code>0.32s</code>)</li>
+                <li>Подписи под каждым (какой keyframe, какой timing)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>3 different loaders</li>
+                <li>All use @keyframes</li>
+                <li>All infinite (<code>infinite</code>)</li>
+                <li>Spinner: <code>linear</code>, dots: <code>ease</code>, bar: <code>ease + alternate</code></li>
+                <li>Dots have cascading delays (<code>animation-delay: 0.16s</code>, <code>0.32s</code>)</li>
+                <li>Labels under each (which keyframe, which timing)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 24.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 24.2: АНИМИРОВАННЫЙ HERO</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 24.2: ANIMATED HERO</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 23.2: Hero с каскадным появлением</span>
+            <span class="task-title" data-lang="en">Task 23.2: Hero with cascading appearance</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать hero-секцию с анимированным появлением элементов</div>
+        <div class="task-goal" data-lang="en">Create a hero section with animated element appearance</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Hero:</strong> <code>height: 100vh</code>, градиент или фоновое изображение с overlay, Flexbox-центрирование</li>
+            <li><strong>Заголовок:</strong> <code>animation: fadeInUp 0.8s ease forwards</code></li>
+            <li><strong>Описание:</strong> <code>animation: fadeInUp 0.8s ease 0.2s forwards; opacity: 0</code></li>
+            <li><strong>Кнопка:</strong> <code>animation: fadeInUp 0.8s ease 0.4s forwards; opacity: 0</code></li>
+            <li><strong>Кнопка после появления:</strong> добавьте пульсацию (<code>pulse 2s ease-in-out infinite</code> через второй animation после задержки)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Hero:</strong> <code>height: 100vh</code>, gradient or background image with overlay, Flexbox centering</li>
+            <li><strong>Heading:</strong> <code>animation: fadeInUp 0.8s ease forwards</code></li>
+            <li><strong>Description:</strong> <code>animation: fadeInUp 0.8s ease 0.2s forwards; opacity: 0</code></li>
+            <li><strong>Button:</strong> <code>animation: fadeInUp 0.8s ease 0.4s forwards; opacity: 0</code></li>
+            <li><strong>Button after appearance:</strong> add pulse (<code>pulse 2s ease-in-out infinite</code> via second animation after delay)</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Не забудьте <code>opacity: 0</code> на элементах с delay! Иначе они будут видны до начала анимации, а потом исчезнут и появятся заново.
+        </div>
+        <div class="hint" data-lang="en">
+            Don't forget <code>opacity: 0</code> on elements with delay! Otherwise they'll be visible before animation starts, then disappear and reappear.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Hero на весь экран (<code>height: 100vh</code>)</li>
+                <li>3 элемента появляются каскадом (0s → 0.2s → 0.4s)</li>
+                <li><code>fadeInUp</code> (<code>opacity: 0 → 1</code> + <code>translateY(30px) → 0</code>)</li>
+                <li>Кнопка пульсирует после появления (два animation через запятую или с delay)</li>
+                <li><code>animation-fill-mode: forwards</code></li>
+                <li><code>opacity: 0</code> на элементах с delay</li>
+                <li>Переоткрыть страницу несколько раз — анимация всегда работает</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Full-screen hero (<code>height: 100vh</code>)</li>
+                <li>3 elements appear in cascade (0s → 0.2s → 0.4s)</li>
+                <li><code>fadeInUp</code> (<code>opacity: 0 → 1</code> + <code>translateY(30px) → 0</code>)</li>
+                <li>Button pulses after appearing (two animations comma-separated or via delay)</li>
+                <li><code>animation-fill-mode: forwards</code></li>
+                <li><code>opacity: 0</code> on elements with delay</li>
+                <li>Reload page multiple times — animation always works</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 24.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 24.3: ПОЛНАЯ ПРОМО-СТРАНИЦА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 24.3: COMPLETE PROMO PAGE</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 23.3: Анимированная промо-страница</span>
+            <span class="task-title" data-lang="en">Task 23.3: Animated promo page</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать промо-страницу с анимациями и hover-эффектами</div>
+        <div class="task-goal" data-lang="en">Create a promo page with animations and hover effects</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>promo</code> с <code>index.html</code> и <code>style.css</code>. Сделайте промо-страницу из 4 секций:</p>
+        <p data-lang="en">Create a folder <code>promo</code> with <code>index.html</code> and <code>style.css</code>. Build a promo page with 4 sections:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Hero:</strong> fadeInUp каскадом (h1, p, кнопка). Фон с градиентом. Кнопка с hover (transition) + пульсация (animation).</li>
+            <li><strong>Features (3 фичи):</strong> иконка + заголовок + описание. Анимации: 1-я слева (slideInLeft), 2-я снизу (fadeInUp), 3-я справа (slideInRight). Каскадная задержка.</li>
+            <li><strong>Карточки (3 штуки):</strong> fadeInUp с каскадной задержкой (0.15s × n). Hover: translateY(-8px) + shadow (transition).</li>
+            <li><strong>CTA-секция:</strong> fadeIn. Кнопка с пульсирующей тенью (glowPulse).</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Hero:</strong> cascading fadeInUp (h1, p, button). Gradient background. Button with hover (transition) + pulse (animation).</li>
+            <li><strong>Features (3 items):</strong> icon + title + description. Animations: 1st from left (slideInLeft), 2nd from below (fadeInUp), 3rd from right (slideInRight). Cascading delay.</li>
+            <li><strong>Cards (3 items):</strong> fadeInUp with cascading delay (0.15s × n). Hover: translateY(-8px) + shadow (transition).</li>
+            <li><strong>CTA section:</strong> fadeIn. Button with pulsing shadow (glowPulse).</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Разделяйте <code>animation</code> (при загрузке) и <code>transition</code> (при hover). Они не мешают друг другу на одном элементе!
+        </div>
+        <div class="hint" data-lang="en">
+            Separate <code>animation</code> (on load) and <code>transition</code> (on hover). They don't conflict on the same element!
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>4 секции с анимациями при загрузке</li>
+                <li>Минимум 3 разных @keyframes (<code>fadeInUp</code>, <code>slideInLeft</code>/<code>Right</code>, <code>glowPulse</code>)</li>
+                <li>Каскадное появление (<code>animation-delay</code>)</li>
+                <li>Hover-эффекты на карточках и кнопках (через <code>transition</code>, не <code>animation</code>!)</li>
+                <li><code>animation-fill-mode: forwards</code></li>
+                <li><code>opacity: 0</code> на элементах с delay</li>
+                <li>Блок <code>@media (prefers-reduced-motion: reduce)</code> в конце CSS</li>
+                <li>CSS в отдельном файле <code>style.css</code></li>
+                <li>Адаптивность: работает на мобильном (опционально)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>4 sections with load animations</li>
+                <li>At least 3 different @keyframes (<code>fadeInUp</code>, <code>slideInLeft</code>/<code>Right</code>, <code>glowPulse</code>)</li>
+                <li>Cascading appearance (<code>animation-delay</code>)</li>
+                <li>Hover effects on cards and buttons (via <code>transition</code>, not <code>animation</code>!)</li>
+                <li><code>animation-fill-mode: forwards</code></li>
+                <li><code>opacity: 0</code> on elements with delay</li>
+                <li><code>@media (prefers-reduced-motion: reduce)</code> block at the end of CSS</li>
+                <li>CSS in separate file <code>style.css</code></li>
+                <li>Responsive: works on mobile (optional)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 23.4: Анимированный текст</span>
+            <span class="task-title" data-lang="en">Task 23.4: Animated text</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать эффект печатающегося текста на CSS</div>
+        <div class="task-goal" data-lang="en">Create a typing text effect with CSS</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте заголовок, который «печатается» посимвольно:</p>
+        <p data-lang="en">Create a heading that "types" character by character:</p>
+
+<pre><code>@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+.typing-text {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #1e293b;
+    width: 0;
+    animation:
+        typing 3s steps(30) forwards,
+        blink 0.7s step-end infinite;
+}</code></pre>
+
+        <ol data-lang="ru">
+            <li>Текст «печатается» слева направо</li>
+            <li>Мигающий курсор справа</li>
+            <li><code>steps(30)</code> — количество шагов ≈ количество символов</li>
+            <li>Разместите на hero-секции с тёмным фоном</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Text "types" from left to right</li>
+            <li>Blinking cursor on the right</li>
+            <li><code>steps(30)</code> — number of steps ≈ number of characters</li>
+            <li>Place on a hero section with dark background</li>
+        </ol>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Текст появляется посимвольно</li>
+                <li>Курсор мигает</li>
+                <li>steps() соответствует длине текста</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Text appears character by character</li>
+                <li>Cursor blinks</li>
+                <li>steps() matches text length</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

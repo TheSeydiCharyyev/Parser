@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 13 — Мини-проект: Landing-секция</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 13: Мини-проект — Landing-секция</span>
+    <span class="nav-title" data-lang="en">Lesson 13: Mini-project — Landing Section</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 13: Мини-проект #2 — Landing-секция</h1>
+    <h1 data-lang="en">Lesson 13: Mini-project #2 — Landing Section</h1>
+    <p class="subtitle" data-lang="ru">Создаём landing-страницу: hero-блок, секция преимуществ, CTA-кнопка и footer</p>
+    <p class="subtitle" data-lang="en">Building a landing page: hero block, features section, CTA button, and footer</p>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#intro">Что такое Landing Page</a></li>
+            <li><a href="#anatomy">Анатомия лендинга</a></li>
+            <li><a href="#planning">Планирование нашего лендинга</a></li>
+            <li><a href="#html-structure">HTML-структура</a></li>
+            <li><a href="#css-reset">CSS: сброс и базовые стили</a></li>
+            <li><a href="#css-nav">CSS: навигация</a></li>
+            <li><a href="#css-hero">CSS: Hero-секция</a></li>
+            <li><a href="#css-features">CSS: секция преимуществ</a></li>
+            <li><a href="#css-cta">CSS: CTA-секция</a></li>
+            <li><a href="#css-footer">CSS: Footer</a></li>
+            <li><a href="#full-code">Полный код</a></li>
+            <li><a href="#practice">Создание своего лендинга</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#intro">What is a Landing Page</a></li>
+            <li><a href="#anatomy">Landing page anatomy</a></li>
+            <li><a href="#planning">Planning our landing page</a></li>
+            <li><a href="#html-structure">HTML structure</a></li>
+            <li><a href="#css-reset">CSS: reset and base styles</a></li>
+            <li><a href="#css-nav">CSS: navigation</a></li>
+            <li><a href="#css-hero">CSS: Hero section</a></li>
+            <li><a href="#css-features">CSS: features section</a></li>
+            <li><a href="#css-cta">CSS: CTA section</a></li>
+            <li><a href="#css-footer">CSS: Footer</a></li>
+            <li><a href="#full-code">Full code</a></li>
+            <li><a href="#practice">Creating your own landing</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ВВЕДЕНИЕ ==================== -->
+    <h2 id="intro" data-lang="ru">1. Что такое Landing Page</h2>
+    <h2 id="intro-en" data-lang="en">1. What is a Landing Page</h2>
+
+    <p data-lang="ru"><strong>Landing page</strong> (лендинг) — это одностраничный сайт, цель которого — побудить посетителя совершить <strong>одно конкретное действие</strong>: зарегистрироваться, купить, скачать, подписаться.</p>
+    <p data-lang="en">A <strong>landing page</strong> is a single-page website whose goal is to encourage the visitor to perform <strong>one specific action</strong>: sign up, buy, download, subscribe.</p>
+
+    <div class="analogy" data-lang="ru">
+        <p>Обычный сайт — это <strong>супермаркет</strong>: много страниц, разделов, товаров. Лендинг — это <strong>рекламный стенд</strong>: одна страница, один продукт, одна кнопка «Купить».</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p>A regular website is a <strong>supermarket</strong>: many pages, sections, products. A landing page is a <strong>promotional stand</strong>: one page, one product, one "Buy" button.</p>
+    </div>
+
+    <p data-lang="ru"><strong>Примеры лендингов:</strong></p>
+    <p data-lang="en"><strong>Landing page examples:</strong></p>
+    <ul data-lang="ru">
+        <li>Страница мобильного приложения (скачать)</li>
+        <li>Страница онлайн-курса (записаться)</li>
+        <li>Рекламная страница продукта (купить)</li>
+        <li>Страница мероприятия (зарегистрироваться)</li>
+        <li>Страница стартапа (подписка на бета)</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Mobile app page (download)</li>
+        <li>Online course page (enroll)</li>
+        <li>Product promo page (buy)</li>
+        <li>Event page (register)</li>
+        <li>Startup page (beta signup)</li>
+    </ul>
+
+    <hr>
+
+    <!-- ==================== АНАТОМИЯ ==================== -->
+    <h2 id="anatomy" data-lang="ru">2. Анатомия лендинга</h2>
+    <h2 id="anatomy-en" data-lang="en">2. Landing page anatomy</h2>
+
+    <p data-lang="ru">Типичный лендинг состоит из секций:</p>
+    <p data-lang="en">A typical landing page consists of sections:</p>
+
+    <div class="diagram" data-lang="ru">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  &#x1F310; Логотип          [Меню] [CTA]  &#x2502;  &#x2190; NAV
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;                                        &#x2502;
+    &#x2502;      Большой заголовок                 &#x2502;
+    &#x2502;      Описание продукта                 &#x2502;  &#x2190; HERO
+    &#x2502;      [ Кнопка CTA ]                    &#x2502;
+    &#x2502;                                        &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;  &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;  &#x2502;
+    &#x2502;  &#x2502;&#x2605; Быстро&#x2502; &#x2502;&#x2605; Просто&#x2502; &#x2502;&#x2605; Надёжно&#x2502;  &#x2502;  &#x2190; FEATURES
+    &#x2502;  &#x2502; текст  &#x2502; &#x2502; текст  &#x2502; &#x2502; текст   &#x2502;  &#x2502;
+    &#x2502;  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;  &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;      Готовы начать?                     &#x2502;
+    &#x2502;      [ Зарегистрироваться ]             &#x2502;  &#x2190; CTA
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;  &#x00A9; 2025 Компания  |  Соцсети        &#x2502;  &#x2190; FOOTER
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <div class="diagram" data-lang="en">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  &#x1F310; Logo             [Menu] [CTA]  &#x2502;  &#x2190; NAV
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;                                        &#x2502;
+    &#x2502;      Big Headline                      &#x2502;
+    &#x2502;      Product description                &#x2502;  &#x2190; HERO
+    &#x2502;      [ CTA Button ]                    &#x2502;
+    &#x2502;                                        &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;  &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;  &#x2502;
+    &#x2502;  &#x2502;&#x2605; Fast  &#x2502; &#x2502;&#x2605; Simple&#x2502; &#x2502;&#x2605;Reliable&#x2502;  &#x2502;  &#x2190; FEATURES
+    &#x2502;  &#x2502; text   &#x2502; &#x2502; text   &#x2502; &#x2502; text    &#x2502;  &#x2502;
+    &#x2502;  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;  &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;      Ready to start?                   &#x2502;
+    &#x2502;      [ Sign Up Now ]                   &#x2502;  &#x2190; CTA
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;  &#x00A9; 2025 Company  |  Socials          &#x2502;  &#x2190; FOOTER
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <table data-lang="ru">
+        <tr><th>Секция</th><th>Назначение</th><th>HTML-тег</th></tr>
+        <tr><td><strong>Nav</strong></td><td>Навигация: логотип + ссылки</td><td><code>&lt;nav&gt;</code></td></tr>
+        <tr><td><strong>Hero</strong></td><td>Главный блок: заголовок, описание, CTA-кнопка</td><td><code>&lt;section class="hero"&gt;</code></td></tr>
+        <tr><td><strong>Features</strong></td><td>Преимущества: 3 карточки</td><td><code>&lt;section class="features"&gt;</code></td></tr>
+        <tr><td><strong>CTA</strong></td><td>Призыв к действию: заголовок + кнопка</td><td><code>&lt;section class="cta"&gt;</code></td></tr>
+        <tr><td><strong>Footer</strong></td><td>Подвал: копирайт, ссылки</td><td><code>&lt;footer&gt;</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Section</th><th>Purpose</th><th>HTML tag</th></tr>
+        <tr><td><strong>Nav</strong></td><td>Navigation: logo + links</td><td><code>&lt;nav&gt;</code></td></tr>
+        <tr><td><strong>Hero</strong></td><td>Main block: headline, description, CTA button</td><td><code>&lt;section class="hero"&gt;</code></td></tr>
+        <tr><td><strong>Features</strong></td><td>Benefits: 3 cards</td><td><code>&lt;section class="features"&gt;</code></td></tr>
+        <tr><td><strong>CTA</strong></td><td>Call to action: headline + button</td><td><code>&lt;section class="cta"&gt;</code></td></tr>
+        <tr><td><strong>Footer</strong></td><td>Footer: copyright, links</td><td><code>&lt;footer&gt;</code></td></tr>
+    </table>
+
+    <div class="highlight" data-lang="ru">
+        <strong>CTA</strong> (Call to Action) — «призыв к действию». Это главная кнопка лендинга: «Купить», «Скачать», «Зарегистрироваться». Она должна быть <strong>яркой и заметной</strong>.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>CTA</strong> (Call to Action) — the main button of a landing page: "Buy", "Download", "Sign Up". It should be <strong>bright and noticeable</strong>.
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПЛАНИРОВАНИЕ ==================== -->
+    <h2 id="planning" data-lang="ru">3. Планирование нашего лендинга</h2>
+    <h2 id="planning-en" data-lang="en">3. Planning our landing page</h2>
+
+    <p data-lang="ru">Создадим лендинг для вымышленного приложения <strong>«LearnCode»</strong> — платформы для обучения программированию.</p>
+    <p data-lang="en">We'll create a landing page for a fictional app <strong>"LearnCode"</strong> — a platform for learning programming.</p>
+
+    <table data-lang="ru">
+        <tr><th>Секция</th><th>Содержание</th></tr>
+        <tr><td>Nav</td><td>Логотип «LearnCode», ссылки: Курсы, О нас, Контакты, кнопка «Начать»</td></tr>
+        <tr><td>Hero</td><td>Заголовок «Научись программировать за 12 недель», описание, кнопка «Начать бесплатно»</td></tr>
+        <tr><td>Features</td><td>3 карточки: Видеоуроки, Практика, Сертификат</td></tr>
+        <tr><td>CTA</td><td>«Готовы начать?» + кнопка «Зарегистрироваться»</td></tr>
+        <tr><td>Footer</td><td>&#xA9; 2025, ссылки на соцсети</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Section</th><th>Content</th></tr>
+        <tr><td>Nav</td><td>Logo "LearnCode", links: Courses, About, Contacts, "Start" button</td></tr>
+        <tr><td>Hero</td><td>Headline "Learn to code in 12 weeks", description, "Start for free" button</td></tr>
+        <tr><td>Features</td><td>3 cards: Video lessons, Practice, Certificate</td></tr>
+        <tr><td>CTA</td><td>"Ready to start?" + "Sign Up" button</td></tr>
+        <tr><td>Footer</td><td>&#xA9; 2025, social links</td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ==================== HTML СТРУКТУРА ==================== -->
+    <h2 id="html-structure" data-lang="ru">4. HTML-структура</h2>
+    <h2 id="html-structure-en" data-lang="en">4. HTML structure</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;LearnCode — Научись программировать&lt;/title&gt;
+    &lt;meta name="description" content="Онлайн-платформа для обучения программированию"&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;!-- НАВИГАЦИЯ --&gt;
+    &lt;nav class="navbar"&gt;
+        &lt;div class="container"&gt;
+            &lt;a href="#" class="logo"&gt;&#x1F4BB; LearnCode&lt;/a&gt;
+            &lt;div class="nav-links"&gt;
+                &lt;a href="#features"&gt;Курсы&lt;/a&gt;
+                &lt;a href="#"&gt;О нас&lt;/a&gt;
+                &lt;a href="#"&gt;Контакты&lt;/a&gt;
+                &lt;a href="#cta" class="btn btn-nav"&gt;Начать&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+
+    &lt;!-- HERO --&gt;
+    &lt;section class="hero"&gt;
+        &lt;div class="container"&gt;
+            &lt;h1&gt;Научись программировать&lt;br&gt;за 12 недель&lt;/h1&gt;
+            &lt;p class="hero-text"&gt;
+                Интерактивные видеоуроки, реальные проекты и
+                персональная обратная связь. Начни карьеру в IT уже сегодня.
+            &lt;/p&gt;
+            &lt;a href="#cta" class="btn btn-primary"&gt;Начать бесплатно &#x2192;&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- FEATURES --&gt;
+    &lt;section class="features" id="features"&gt;
+        &lt;div class="container"&gt;
+            &lt;h2&gt;Почему выбирают нас&lt;/h2&gt;
+            &lt;div class="cards"&gt;
+                &lt;div class="card"&gt;
+                    &lt;div class="card-icon"&gt;&#x1F3AC;&lt;/div&gt;
+                    &lt;h3&gt;Видеоуроки&lt;/h3&gt;
+                    &lt;p&gt;200+ часов качественного контента от практиков. Учись в своём темпе.&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="card"&gt;
+                    &lt;div class="card-icon"&gt;&#x1F4BB;&lt;/div&gt;
+                    &lt;h3&gt;Практика&lt;/h3&gt;
+                    &lt;p&gt;Реальные проекты с первого дня. Собери портфолио к концу курса.&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class="card"&gt;
+                    &lt;div class="card-icon"&gt;&#x1F3C6;&lt;/div&gt;
+                    &lt;h3&gt;Сертификат&lt;/h3&gt;
+                    &lt;p&gt;Получи сертификат, признанный IT-компаниями. Начни карьеру.&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- CTA --&gt;
+    &lt;section class="cta" id="cta"&gt;
+        &lt;div class="container"&gt;
+            &lt;h2&gt;Готовы начать?&lt;/h2&gt;
+            &lt;p&gt;Присоединяйтесь к 10 000+ студентов. Первый урок бесплатно.&lt;/p&gt;
+            &lt;a href="#" class="btn btn-cta"&gt;Зарегистрироваться бесплатно&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- FOOTER --&gt;
+    &lt;footer class="footer"&gt;
+        &lt;div class="container"&gt;
+            &lt;p&gt;&#x00A9; 2025 LearnCode. Все права защищены.&lt;/p&gt;
+            &lt;div class="footer-links"&gt;
+                &lt;a href="#"&gt;GitHub&lt;/a&gt;
+                &lt;a href="#"&gt;Telegram&lt;/a&gt;
+                &lt;a href="#"&gt;Instagram&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Обрати внимание:</strong> Используем семантические теги: <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>. Класс <code>.container</code> ограничивает ширину контента.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Note:</strong> We use semantic tags: <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>. The <code>.container</code> class limits content width.
+    </div>
+
+    <hr>
+
+    <!-- ==================== CSS RESET ==================== -->
+    <h2 id="css-reset" data-lang="ru">5. CSS: сброс и базовые стили</h2>
+    <h2 id="css-reset-en" data-lang="en">5. CSS: reset and base styles</h2>
+
+<pre><code>* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a { text-decoration: none; color: inherit; }
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}</code></pre>
+
+    <p data-lang="ru"><code>.container</code> — универсальный класс: ограничивает ширину контента до 1100px и центрирует. Используем его в каждой секции.</p>
+    <p data-lang="en"><code>.container</code> — a universal class: limits content width to 1100px and centers it. We use it in every section.</p>
+
+    <hr>
+
+    <!-- ==================== CSS NAV ==================== -->
+    <h2 id="css-nav" data-lang="ru">6. CSS: навигация</h2>
+    <h2 id="css-nav-en" data-lang="en">6. CSS: navigation</h2>
+
+<pre><code>.navbar {
+    background: #fff;
+    padding: 16px 0;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.nav-links { display: flex; align-items: center; gap: 24px; }
+.nav-links a { font-weight: 500; color: #475569; }
+.nav-links a:hover { color: #3b82f6; }
+
+.btn-nav {
+    background: #3b82f6;
+    color: #fff !important;
+    padding: 10px 20px;
+}
+.btn-nav:hover { background: #2563eb; }</code></pre>
+
+    <p data-lang="ru"><code>position: sticky; top: 0</code> — навигация «прилипает» к верху при скролле. <code>display: flex</code> + <code>justify-content: space-between</code> — логотип слева, ссылки справа.</p>
+    <p data-lang="en"><code>position: sticky; top: 0</code> — navigation "sticks" to the top on scroll. <code>display: flex</code> + <code>justify-content: space-between</code> — logo on the left, links on the right.</p>
+
+    <hr>
+
+    <!-- ==================== CSS HERO ==================== -->
+    <h2 id="css-hero" data-lang="ru">7. CSS: Hero-секция</h2>
+    <h2 id="css-hero-en" data-lang="en">7. CSS: Hero section</h2>
+
+<pre><code>.hero {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-text {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 32px;
+    opacity: 0.9;
+}
+
+.btn-primary {
+    background: #fff;
+    color: #764ba2;
+    font-size: 1.1rem;
+    padding: 16px 40px;
+}
+.btn-primary:hover {
+    background: #f1f5f9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}</code></pre>
+
+    <div class="try-it" data-lang="ru">
+        <p>Попробуй изменить градиент: <code>linear-gradient(135deg, #f97316, #ec4899)</code> — оранжево-розовый. Или <code>linear-gradient(135deg, #059669, #0891b2)</code> — зелёно-бирюзовый.</p>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p>Try changing the gradient: <code>linear-gradient(135deg, #f97316, #ec4899)</code> — orange-pink. Or <code>linear-gradient(135deg, #059669, #0891b2)</code> — green-teal.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CSS FEATURES ==================== -->
+    <h2 id="css-features" data-lang="ru">8. CSS: секция преимуществ</h2>
+    <h2 id="css-features-en" data-lang="en">8. CSS: features section</h2>
+
+<pre><code>.features {
+    padding: 80px 0;
+    background: #f8fafc;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2rem;
+    margin-bottom: 48px;
+}
+
+.cards {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+}
+
+.card {
+    background: #fff;
+    padding: 32px 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    max-width: 320px;
+    flex: 1;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+.card-icon { font-size: 2.5rem; margin-bottom: 16px; }
+.card h3 { margin-bottom: 10px; font-size: 1.2rem; }
+.card p { color: #64748b; font-size: 0.95rem; }</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>display: flex</strong> для <code>.cards</code> — карточки располагаются горизонтально. <code>flex: 1</code> на каждой карточке — все одинаковой ширины. Мы подробнее изучим Flexbox в модуле 5!
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>display: flex</strong> on <code>.cards</code> — cards are laid out horizontally. <code>flex: 1</code> on each card — all equal width. We'll study Flexbox in detail in module 5!
+    </div>
+
+    <hr>
+
+    <!-- ==================== CSS CTA ==================== -->
+    <h2 id="css-cta" data-lang="ru">9. CSS: CTA-секция</h2>
+    <h2 id="css-cta-en" data-lang="en">9. CSS: CTA section</h2>
+
+<pre><code>.cta {
+    background: linear-gradient(135deg, #1e293b, #334155);
+    color: #fff;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.cta h2 { font-size: 2rem; margin-bottom: 12px; }
+.cta p { font-size: 1.1rem; opacity: 0.8; margin-bottom: 32px; }
+
+.btn-cta {
+    background: #f97316;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 16px 40px;
+}
+.btn-cta:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+}</code></pre>
+
+    <hr>
+
+    <!-- ==================== CSS FOOTER ==================== -->
+    <h2 id="css-footer" data-lang="ru">10. CSS: Footer</h2>
+    <h2 id="css-footer-en" data-lang="en">10. CSS: Footer</h2>
+
+<pre><code>.footer {
+    background: #0f172a;
+    color: #94a3b8;
+    padding: 24px 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links { display: flex; gap: 16px; }
+.footer-links a { color: #94a3b8; }
+.footer-links a:hover { color: #fff; }</code></pre>
+
+    <hr>
+
+    <!-- ==================== ПОЛНЫЙ КОД ==================== -->
+    <h2 id="full-code" data-lang="ru">11. Полный код</h2>
+    <h2 id="full-code-en" data-lang="en">11. Full code</h2>
+
+    <div class="summary" data-lang="ru">
+        <strong>Что мы применили из пройденных занятий:</strong>
+        <ul>
+            <li><strong>Занятие 3-5:</strong> Семантические теги (nav, section, footer), ссылки, структура</li>
+            <li><strong>Занятие 6:</strong> Селекторы (классы), цвета, шрифты, фон, градиенты</li>
+            <li><strong>Занятие 7:</strong> Box Model (padding, margin, border-radius, box-shadow)</li>
+            <li><strong>Занятие 8:</strong> Планирование, центрирование, inline-block, hover</li>
+            <li><strong>Занятие 10:</strong> Кнопки</li>
+            <li><strong>Занятие 11:</strong> Мета-теги (description)</li>
+            <li><strong>Новое:</strong> display: flex (предпросмотр), position: sticky, transition: transform</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>What we applied from previous lessons:</strong>
+        <ul>
+            <li><strong>Lessons 3-5:</strong> Semantic tags (nav, section, footer), links, structure</li>
+            <li><strong>Lesson 6:</strong> Selectors (classes), colors, fonts, backgrounds, gradients</li>
+            <li><strong>Lesson 7:</strong> Box Model (padding, margin, border-radius, box-shadow)</li>
+            <li><strong>Lesson 8:</strong> Planning, centering, inline-block, hover</li>
+            <li><strong>Lesson 10:</strong> Buttons</li>
+            <li><strong>Lesson 11:</strong> Meta tags (description)</li>
+            <li><strong>New:</strong> display: flex (preview), position: sticky, transition: transform</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">12. Создание своего лендинга</h2>
+    <h2 id="practice-en" data-lang="en">12. Creating your own landing</h2>
+
+    <p data-lang="ru">Теперь ваша очередь! Создайте свой лендинг на любую тему.</p>
+    <p data-lang="en">Now it's your turn! Create your own landing page on any topic.</p>
+
+    <p data-lang="ru"><strong>Идеи тем:</strong></p>
+    <p data-lang="en"><strong>Topic ideas:</strong></p>
+    <ul data-lang="ru">
+        <li>Мобильное приложение</li>
+        <li>Онлайн-курсы / школа</li>
+        <li>Фитнес-клуб / спортзал</li>
+        <li>Кофейня / ресторан</li>
+        <li>Туристическое агентство</li>
+        <li>Музыкальный фестиваль</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Mobile app</li>
+        <li>Online courses / school</li>
+        <li>Fitness club / gym</li>
+        <li>Cafe / restaurant</li>
+        <li>Travel agency</li>
+        <li>Music festival</li>
+    </ul>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Что такое Landing Page?</li>
+            <li>Что означает CTA?</li>
+            <li>Из каких секций состоит типичный лендинг?</li>
+            <li>Зачем нужен класс <code>.container</code>?</li>
+            <li>Что делает <code>position: sticky</code>?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>What is a Landing Page?</li>
+            <li>What does CTA stand for?</li>
+            <li>What sections make up a typical landing page?</li>
+            <li>What is the <code>.container</code> class for?</li>
+            <li>What does <code>position: sticky</code> do?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

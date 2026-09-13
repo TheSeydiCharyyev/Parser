@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 20 — Media Queries</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 20: Media Queries</span>
+    <span class="nav-title" data-lang="en">Lesson 20: Media Queries</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 20: Media Queries</h1>
+    <h1 data-lang="en">Lesson 20: Media Queries</h1>
+    <p class="subtitle" data-lang="ru">Viewport, meta viewport, адаптивный дизайн, breakpoints, mobile-first vs desktop-first</p>
+    <p class="subtitle" data-lang="en">Viewport, meta viewport, responsive design, breakpoints, mobile-first vs desktop-first</p>
+
+    <div class="why" data-lang="ru">
+        <p>До сих пор наши страницы выглядели хорошо только на десктопе. Но откройте их на телефоне — и всё сломается: текст мелкий, карточки вылезают за экран, sidebar занимает половину крошечного экрана.</p>
+        <p><strong>Media queries</strong> — это инструмент, который позволяет написать <strong>разные стили для разных размеров экрана</strong>. Один сайт — идеально выглядит везде: от телефона (320px) до монитора (2560px).</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Делать любой сайт адаптивным — красиво на телефоне, планшете и десктопе</li>
+            <li>Понимать, что такое viewport и зачем нужен meta viewport</li>
+            <li>Писать media queries с min-width и max-width</li>
+            <li>Выбирать правильные breakpoints</li>
+            <li>Использовать подход mobile-first (как профессионалы)</li>
+            <li>Тестировать адаптивность в Chrome DevTools</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Until now our pages looked good only on desktop. But open them on a phone — and everything breaks: tiny text, cards overflow the screen, sidebar takes half the tiny screen.</p>
+        <p><strong>Media queries</strong> are a tool that lets you write <strong>different styles for different screen sizes</strong>. One site — looks perfect everywhere: from phone (320px) to monitor (2560px).</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Make any site responsive — beautiful on phone, tablet, and desktop</li>
+            <li>Understand what viewport is and why meta viewport is needed</li>
+            <li>Write media queries with min-width and max-width</li>
+            <li>Choose the right breakpoints</li>
+            <li>Use the mobile-first approach (like professionals)</li>
+            <li>Test responsiveness in Chrome DevTools</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#why-responsive">Зачем нужен адаптивный дизайн</a></li>
+            <li><a href="#viewport">Viewport — область просмотра</a></li>
+            <li><a href="#meta">Meta viewport — обязательный тег</a></li>
+            <li><a href="#media-syntax">Media queries — синтаксис</a></li>
+            <li><a href="#min-max">min-width и max-width</a></li>
+            <li><a href="#breakpoints">Breakpoints — контрольные точки</a></li>
+            <li><a href="#mobile-first">Mobile-first vs Desktop-first</a></li>
+            <li><a href="#what-to-change">Что менять в media queries</a></li>
+            <li><a href="#combining">Комбинирование условий</a></li>
+            <li><a href="#devtools">Тестирование в DevTools</a></li>
+            <li><a href="#practice">Практика: адаптивная страница</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#why-responsive">Why responsive design is needed</a></li>
+            <li><a href="#viewport">Viewport — the viewing area</a></li>
+            <li><a href="#meta">Meta viewport — required tag</a></li>
+            <li><a href="#media-syntax">Media queries — syntax</a></li>
+            <li><a href="#min-max">min-width and max-width</a></li>
+            <li><a href="#breakpoints">Breakpoints — control points</a></li>
+            <li><a href="#mobile-first">Mobile-first vs Desktop-first</a></li>
+            <li><a href="#what-to-change">What to change in media queries</a></li>
+            <li><a href="#combining">Combining conditions</a></li>
+            <li><a href="#devtools">Testing in DevTools</a></li>
+            <li><a href="#practice">Practice: responsive page</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ЗАЧЕМ ==================== -->
+    <h2 id="why-responsive" data-lang="ru">1. Зачем нужен адаптивный дизайн</h2>
+    <h2 id="why-responsive-en" data-lang="en">1. Why responsive design is needed</h2>
+
+    <p data-lang="ru">Люди заходят на сайты с <strong>разных устройств</strong>: телефонов, планшетов, ноутбуков, мониторов. Один и тот же сайт должен хорошо выглядеть на экранах от 320px до 2560px.</p>
+    <p data-lang="en">People visit websites from <strong>different devices</strong>: phones, tablets, laptops, monitors. The same site must look good on screens from 320px to 2560px.</p>
+
+    <table data-lang="ru">
+        <tr><th>Устройство</th><th>Ширина экрана</th><th>Примеры</th></tr>
+        <tr><td>Телефон (вертикально)</td><td>320px — 480px</td><td>iPhone SE, Samsung Galaxy</td></tr>
+        <tr><td>Телефон (горизонтально)</td><td>480px — 768px</td><td>Любой телефон на боку</td></tr>
+        <tr><td>Планшет</td><td>768px — 1024px</td><td>iPad, Samsung Tab</td></tr>
+        <tr><td>Ноутбук</td><td>1024px — 1440px</td><td>MacBook, ноутбуки 13-15"</td></tr>
+        <tr><td>Десктоп / монитор</td><td>1440px+</td><td>iMac, внешние мониторы</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Device</th><th>Screen width</th><th>Examples</th></tr>
+        <tr><td>Phone (portrait)</td><td>320px — 480px</td><td>iPhone SE, Samsung Galaxy</td></tr>
+        <tr><td>Phone (landscape)</td><td>480px — 768px</td><td>Any phone sideways</td></tr>
+        <tr><td>Tablet</td><td>768px — 1024px</td><td>iPad, Samsung Tab</td></tr>
+        <tr><td>Laptop</td><td>1024px — 1440px</td><td>MacBook, 13-15" laptops</td></tr>
+        <tr><td>Desktop / monitor</td><td>1440px+</td><td>iMac, external monitors</td></tr>
+    </table>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Жидкость в разных стаканах.</strong> Представьте, что ваш сайт — это вода. Вы наливаете её в разные ёмкости: узкий высокий стакан (телефон), средняя кружка (планшет), широкая миска (монитор). Вода принимает форму ёмкости. Адаптивный дизайн — это когда ваш сайт «принимает форму» любого экрана.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Water in different glasses.</strong> Imagine your site is water. You pour it into different containers: a tall narrow glass (phone), a medium mug (tablet), a wide bowl (monitor). Water takes the shape of the container. Responsive design means your site "takes the shape" of any screen.</p>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p>Более <strong>60% всего веб-трафика</strong> приходится на мобильные устройства. В некоторых странах (Индия, Африка) — до 80%. Если ваш сайт не адаптивный — вы теряете большинство посетителей! А ещё Google с 2019 года использует <strong>mobile-first indexing</strong> — сначала оценивает мобильную версию сайта.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p>Over <strong>60% of all web traffic</strong> comes from mobile devices. In some countries (India, Africa) — up to 80%. If your site isn't responsive — you're losing most visitors! Also, Google has used <strong>mobile-first indexing</strong> since 2019 — it evaluates the mobile version of your site first.</p>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Откройте любой популярный сайт</strong> (youtube.com, amazon.com) и попробуйте сузить окно браузера. Вы увидите, как макет перестраивается: колонки сворачиваются, навигация превращается в бургер-меню, шрифты уменьшаются. Всё это — media queries в действии.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Open any popular website</strong> (youtube.com, amazon.com) and try narrowing the browser window. You'll see the layout rearranging: columns collapsing, navigation turning into a burger menu, fonts shrinking. All of this — media queries in action.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== VIEWPORT ==================== -->
+    <h2 id="viewport" data-lang="ru">2. Viewport — область просмотра</h2>
+    <h2 id="viewport-en" data-lang="en">2. Viewport — the viewing area</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Прежде чем писать media queries, нужно понять <strong>viewport</strong> — именно его ширину мы будем проверять в условиях <code>@media</code>.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Before writing media queries, you need to understand <strong>viewport</strong> — it's the width we'll be checking in <code>@media</code> conditions.</p>
+    </div>
+
+    <p data-lang="ru"><strong>Viewport</strong> — это видимая область браузера. На десктопе — размер окна браузера. На мобильном — ширина экрана устройства.</p>
+    <p data-lang="en"><strong>Viewport</strong> is the visible area of the browser. On desktop — the browser window size. On mobile — the device screen width.</p>
+
+    <div class="diagram" data-lang="ru">
+    Десктоп (1440px):                  Мобильный (375px):
+    ┌────────────────────┐          ┌───────┐
+    │                    │          │       │
+    │   3 колонки        │          │ 1 кол │
+    │   Sidebar видим    │          │ Нет   │
+    │   Шрифт 16px       │          │sidebar│
+    │                    │          │ 14px  │
+    └────────────────────┘          └───────┘
+         viewport                    viewport</div>
+    <div class="diagram" data-lang="en">
+    Desktop (1440px):                  Mobile (375px):
+    ┌────────────────────┐          ┌───────┐
+    │                    │          │       │
+    │   3 columns        │          │ 1 col │
+    │   Sidebar visible  │          │ No    │
+    │   Font 16px        │          │sidebar│
+    │                    │          │ 14px  │
+    └────────────────────┘          └───────┘
+         viewport                    viewport</div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Окно в стене.</strong> Viewport — это окно. Страница — пейзаж за окном. На десктопе у вас большое панорамное окно — видно много. На телефоне — маленькое окошко. Задача адаптивного дизайна — чтобы пейзаж выглядел красиво из любого окна.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Window in a wall.</strong> Viewport is a window. The page is the view behind it. On desktop you have a large panoramic window — you see a lot. On phone — a small window. The job of responsive design — make the view look beautiful from any window.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== META VIEWPORT ==================== -->
+    <h2 id="meta" data-lang="ru">3. Meta viewport — обязательный тег</h2>
+    <h2 id="meta-en" data-lang="en">3. Meta viewport — required tag</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Без этого тега мобильный браузер <strong>притворяется десктопом</strong>. Он говорит: «Мой viewport = 980px» (а не реальные 375px). Результат — ваш сайт отображается как на десктопе, только уменьшенный до нечитаемого размера. Media queries срабатывают на 980px, а не на реальную ширину. Одной строкой HTML это чинится:</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Without this tag, the mobile browser <strong>pretends to be desktop</strong>. It says: "My viewport = 980px" (not the real 375px). Result — your site renders as on desktop, just shrunk to unreadable size. Media queries fire at 980px, not the real width. One HTML line fixes this:</p>
+    </div>
+
+<pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Параметр</th><th>Что делает</th></tr>
+        <tr><td><code>width=device-width</code></td><td>Viewport = реальная ширина устройства (375px для iPhone, а не 980px)</td></tr>
+        <tr><td><code>initial-scale=1.0</code></td><td>Масштаб 100% (без зума). Страница не уменьшается</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Parameter</th><th>What it does</th></tr>
+        <tr><td><code>width=device-width</code></td><td>Viewport = real device width (375px for iPhone, not 980px)</td></tr>
+        <tr><td><code>initial-scale=1.0</code></td><td>Scale 100% (no zoom). Page doesn't shrink</td></tr>
+    </table>
+
+    <div class="important" data-lang="ru">
+        <strong>Без meta viewport ваши media queries не будут работать на мобильных!</strong> Это первая строка, которую нужно проверить, если адаптивность не работает. Тег ставится в <code>&lt;head&gt;</code> и уже есть во всех наших файлах.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Without meta viewport your media queries won't work on mobile!</strong> This is the first line to check if responsiveness isn't working. The tag goes in <code>&lt;head&gt;</code> and is already in all our files.
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>«Мои media queries не работают на телефоне!»</strong> — это жалоба №1 у новичков. В 90% случаев причина — отсутствие meta viewport. Прежде чем отлаживать CSS, проверьте <code>&lt;head&gt;</code>:</p>
+<pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;  &lt;!-- ✅ --&gt;
+    &lt;title&gt;Мой сайт&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>"My media queries don't work on phone!"</strong> — complaint #1 from beginners. In 90% of cases the reason — missing meta viewport. Before debugging CSS, check <code>&lt;head&gt;</code>:</p>
+<pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;  &lt;!-- ✅ --&gt;
+    &lt;title&gt;My site&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+    </div>
+
+    <hr>
+
+    <!-- ==================== СИНТАКСИС ==================== -->
+    <h2 id="media-syntax" data-lang="ru">4. Media queries — синтаксис</h2>
+    <h2 id="media-syntax-en" data-lang="en">4. Media queries — syntax</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Теперь самое главное — <code>@media</code>. Это CSS-правило, которое говорит: «Применяй эти стили <strong>только если</strong> условие выполняется». Условие — обычно ширина экрана.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Now the main thing — <code>@media</code>. It's a CSS rule that says: "Apply these styles <strong>only if</strong> the condition is met." The condition is usually screen width.</p>
+    </div>
+
+<pre><code>/* Базовые стили (для всех экранов) */
+.container {
+    padding: 20px;
+    font-size: 16px;
+}
+
+/* Если ширина экрана ≤ 768px — применяются ЭТИ стили */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;      /* уменьшаем отступы */
+        font-size: 14px;    /* уменьшаем шрифт */
+    }
+}</code></pre>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Термостат.</strong> Media query — это как термостат: «Если температура ниже 20°C — включи отопление». Так же @media: «Если ширина экрана меньше 768px — примени мобильные стили».</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Thermostat.</strong> A media query is like a thermostat: "If temperature is below 20°C — turn on heating." Same with @media: "If screen width is less than 768px — apply mobile styles."</p>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Как это работает:</strong>
+        <ol>
+            <li>Браузер читает <strong>все</strong> стили сверху вниз</li>
+            <li>Если экран ≤ 768px — <strong>дополнительно</strong> применяются стили из <code>@media</code></li>
+            <li>Стили в <code>@media</code> <strong>перезаписывают</strong> базовые (каскадность!)</li>
+            <li>Если экран > 768px — стили в <code>@media</code> полностью игнорируются</li>
+        </ol>
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>How it works:</strong>
+        <ol>
+            <li>Browser reads <strong>all</strong> styles top to bottom</li>
+            <li>If screen ≤ 768px — styles from <code>@media</code> are <strong>additionally</strong> applied</li>
+            <li>Styles in <code>@media</code> <strong>override</strong> base styles (cascade!)</li>
+            <li>If screen > 768px — styles in <code>@media</code> are completely ignored</li>
+        </ol>
+    </div>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:6px;" data-lang="ru">Измените ширину окна браузера — текст ниже изменит цвет и размер:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:6px;" data-lang="en">Resize the browser window — the text below will change color and size:</p>
+        <style>
+            .mq-demo { padding: 16px; border-radius: 8px; text-align: center; font-weight: 700; transition: all 0.3s ease; background: #dbeafe; color: #1e40af; font-size: 1.1rem; }
+            @media (max-width: 900px) { .mq-demo { background: #fef3c7; color: #a16207; font-size: 1rem; } }
+            @media (max-width: 600px) { .mq-demo { background: #fee2e2; color: #dc2626; font-size: 0.9rem; } }
+        </style>
+        <div class="mq-demo" data-lang="ru">
+            Сужайте окно! &gt;900px = синий | 600-900px = жёлтый | &lt;600px = красный
+        </div>
+        <div class="mq-demo" data-lang="en">
+            Resize window! &gt;900px = blue | 600-900px = yellow | &lt;600px = red
+        </div>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Media queries не создают новые стили — они перезаписывают существующие.</strong> Вам не нужно повторять все свойства в @media. Пишите только то, что <strong>меняется</strong>:</p>
+<pre><code>.card {
+    padding: 24px;
+    border-radius: 12px;    /* НЕ меняется на мобильном */
+    background: white;       /* НЕ меняется */
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 12px;       /* Только это меняется! */
+        font-size: 14px;     /* И это */
+        /* border-radius и background наследуются из базовых стилей */
+    }
+}</code></pre>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Media queries don't create new styles — they override existing ones.</strong> You don't need to repeat all properties in @media. Write only what <strong>changes</strong>:</p>
+<pre><code>.card {
+    padding: 24px;
+    border-radius: 12px;    /* Doesn't change on mobile */
+    background: white;       /* Doesn't change */
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 12px;       /* Only this changes! */
+        font-size: 14px;     /* And this */
+        /* border-radius and background inherited from base */
+    }
+}</code></pre>
+    </div>
+
+    <hr>
+
+    <!-- ==================== MIN/MAX WIDTH ==================== -->
+    <h2 id="min-max" data-lang="ru">5. min-width и max-width</h2>
+    <h2 id="min-max-en" data-lang="en">5. min-width and max-width</h2>
+
+    <div class="why" data-lang="ru">
+        <p>В media queries есть два ключевых условия: <code>max-width</code> (экран <strong>не шире</strong> чем...) и <code>min-width</code> (экран <strong>не уже</strong> чем...). Выбор между ними определяет весь ваш подход к адаптивности.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Media queries have two key conditions: <code>max-width</code> (screen <strong>no wider</strong> than...) and <code>min-width</code> (screen <strong>no narrower</strong> than...). The choice between them defines your entire approach to responsiveness.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Условие</th><th>Читается как</th><th>Когда срабатывает</th><th>Подход</th></tr>
+        <tr><td><code>max-width: 768px</code></td><td>«Если экран ≤ 768px»</td><td>Телефоны, маленькие планшеты</td><td><strong>Desktop-first</strong></td></tr>
+        <tr><td><code>min-width: 768px</code></td><td>«Если экран ≥ 768px»</td><td>Планшеты, ноутбуки, десктопы</td><td><strong>Mobile-first</strong></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Condition</th><th>Reads as</th><th>When it triggers</th><th>Approach</th></tr>
+        <tr><td><code>max-width: 768px</code></td><td>"If screen ≤ 768px"</td><td>Phones, small tablets</td><td><strong>Desktop-first</strong></td></tr>
+        <tr><td><code>min-width: 768px</code></td><td>"If screen ≥ 768px"</td><td>Tablets, laptops, desktops</td><td><strong>Mobile-first</strong></td></tr>
+    </table>
+
+    <div class="diagram" data-lang="ru">
+    max-width: 768px — «если экран УЗКИЙ»
+    ◄═════════════════►
+    0        768px      1440px      2560px
+    ████████████████░░░░░░░░░░░░░░░░░░░░░
+    ↑ срабатывает тут    ↑ не срабатывает
+
+    min-width: 768px — «если экран ШИРОКИЙ»
+                    ◄══════════════════════►
+    0        768px      1440px      2560px
+    ░░░░░░░░░░░░░░░░████████████████████████
+    ↑ не срабатывает ↑ срабатывает тут</div>
+    <div class="diagram" data-lang="en">
+    max-width: 768px — "if screen is NARROW"
+    ◄═════════════════►
+    0        768px      1440px      2560px
+    ████████████████░░░░░░░░░░░░░░░░░░░░░
+    ↑ triggers here     ↑ doesn't trigger
+
+    min-width: 768px — "if screen is WIDE"
+                    ◄══════════════════════►
+    0        768px      1440px      2560px
+    ░░░░░░░░░░░░░░░░████████████████████████
+    ↑ doesn't trigger↑ triggers here</div>
+
+<pre><code>/* Desktop-first: базовые = десктоп, @media = мобильные */
+.grid { grid-template-columns: repeat(3, 1fr); }
+
+@media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; }   /* сужаем до 1 колонки */
+}
+
+/* Mobile-first: базовые = мобильные, @media = десктоп */
+.grid { grid-template-columns: 1fr; }
+
+@media (min-width: 768px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }  /* расширяем до 3 колонок */
+}</code></pre>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Путаница min и max.</strong> Новички часто пишут <code>min-width</code> для мобильных стилей — и всё ломается. Запомните:</p>
+        <ul>
+            <li><code>max-width</code> = «максимум такая ширина» = <strong>маленькие экраны</strong> (от 0 до значения)</li>
+            <li><code>min-width</code> = «минимум такая ширина» = <strong>большие экраны</strong> (от значения и выше)</li>
+        </ul>
+        <p><strong>Мнемоника:</strong> <code>max</code>-width = для экранов, которые <strong>макс</strong>имум (≤) такие. <code>min</code>-width = для экранов <strong>мин</strong>имум (≥) таких.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Confusing min and max.</strong> Beginners often write <code>min-width</code> for mobile styles — and everything breaks. Remember:</p>
+        <ul>
+            <li><code>max-width</code> = "maximum this wide" = <strong>small screens</strong> (from 0 to value)</li>
+            <li><code>min-width</code> = "minimum this wide" = <strong>large screens</strong> (from value and up)</li>
+        </ul>
+        <p><strong>Mnemonic:</strong> <code>max</code>-width = for screens that are at <strong>max</strong>imum (≤) this wide. <code>min</code>-width = for screens <strong>min</strong>imum (≥) this wide.</p>
+    </div>
+
+    <div class="try-it" data-lang="ru">
+        <p>Откройте DevTools (F12), измените ширину окна и смотрите, как <code>@media</code> включаются и выключаются. В панели Styles вы увидите, что стили в @media становятся <strong>зачёркнутыми</strong>, когда условие не выполняется.</p>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p>Open DevTools (F12), resize the window and watch how <code>@media</code> rules toggle on and off. In the Styles panel you'll see that styles in @media become <strong>crossed out</strong> when the condition isn't met.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== BREAKPOINTS ==================== -->
+    <h2 id="breakpoints" data-lang="ru">6. Breakpoints — контрольные точки</h2>
+    <h2 id="breakpoints-en" data-lang="en">6. Breakpoints — control points</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Breakpoint — это ширина экрана, при которой макет <strong>ломается</strong> (break = ломать). В этой точке нужно перестроить макет. Вопрос: какие breakpoints выбрать?</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>A breakpoint is a screen width where the layout <strong>breaks</strong>. At this point the layout needs to be rearranged. Question: which breakpoints to choose?</p>
+    </div>
+
+    <p data-lang="ru"><strong>Стандартные breakpoints</strong> (используют Bootstrap, Tailwind и большинство проектов):</p>
+    <p data-lang="en"><strong>Standard breakpoints</strong> (used by Bootstrap, Tailwind, and most projects):</p>
+
+    <table data-lang="ru">
+        <tr><th>Название</th><th>Ширина</th><th>Устройства</th><th>Колонки</th></tr>
+        <tr><td><strong>Mobile S</strong></td><td>до 576px</td><td>Маленькие телефоны</td><td>1</td></tr>
+        <tr><td><strong>Mobile L</strong></td><td>до 768px</td><td>Большие телефоны</td><td>1-2</td></tr>
+        <tr><td><strong>Tablet</strong></td><td>до 992px</td><td>Планшеты</td><td>2</td></tr>
+        <tr><td><strong>Laptop</strong></td><td>до 1200px</td><td>Ноутбуки</td><td>3</td></tr>
+        <tr><td><strong>Desktop</strong></td><td>1200px+</td><td>Мониторы</td><td>3-4</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Name</th><th>Width</th><th>Devices</th><th>Columns</th></tr>
+        <tr><td><strong>Mobile S</strong></td><td>up to 576px</td><td>Small phones</td><td>1</td></tr>
+        <tr><td><strong>Mobile L</strong></td><td>up to 768px</td><td>Large phones</td><td>1-2</td></tr>
+        <tr><td><strong>Tablet</strong></td><td>up to 992px</td><td>Tablets</td><td>2</td></tr>
+        <tr><td><strong>Laptop</strong></td><td>up to 1200px</td><td>Laptops</td><td>3</td></tr>
+        <tr><td><strong>Desktop</strong></td><td>1200px+</td><td>Monitors</td><td>3-4</td></tr>
+    </table>
+
+<pre><code>/* Типичный набор breakpoints (desktop-first) */
+
+/* Планшет и меньше */
+@media (max-width: 992px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .sidebar { display: none; }
+}
+
+/* Мобильный */
+@media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; }
+    h1 { font-size: 1.5rem; }
+}
+
+/* Маленький мобильный */
+@media (max-width: 576px) {
+    .container { padding: 10px; }
+}</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>Не нужно 10 breakpoints!</strong> Для большинства сайтов достаточно <strong>2-3</strong>: мобильный (768px) и планшет (992px). Иногда — маленький мобильный (576px). Больше breakpoints = больше CSS = больше багов.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>You don't need 10 breakpoints!</strong> For most sites, <strong>2-3</strong> are enough: mobile (768px) and tablet (992px). Sometimes — small mobile (576px). More breakpoints = more CSS = more bugs.
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Breakpoints по контенту, а не по устройствам.</strong> Не привязывайтесь к конкретным телефонам («375px для iPhone 14»). Вместо этого сужайте окно, пока макет не сломается — <strong>эта ширина</strong> и есть ваш breakpoint. Устройства меняются каждый год, но если макет перестраивается в точке, где он ломается — он будет работать на <strong>любом</strong> устройстве.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Breakpoints based on content, not devices.</strong> Don't tie to specific phones ("375px for iPhone 14"). Instead, narrow the window until the layout breaks — <strong>that width</strong> is your breakpoint. Devices change every year, but if the layout rearranges where it breaks — it'll work on <strong>any</strong> device.</p>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Что такое breakpoint? <em>(ширина экрана, при которой макет перестраивается)</em></li>
+            <li>Сколько breakpoints нужно для большинства сайтов? <em>(2-3)</em></li>
+            <li>Чем <code>max-width: 768px</code> отличается от <code>min-width: 768px</code>? <em>(max = экран ≤ 768, min = экран ≥ 768)</em></li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>What is a breakpoint? <em>(screen width where the layout rearranges)</em></li>
+            <li>How many breakpoints do most sites need? <em>(2-3)</em></li>
+            <li>How does <code>max-width: 768px</code> differ from <code>min-width: 768px</code>? <em>(max = screen ≤ 768, min = screen ≥ 768)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== MOBILE-FIRST ==================== -->
+    <h2 id="mobile-first" data-lang="ru">7. Mobile-first vs Desktop-first</h2>
+    <h2 id="mobile-first-en" data-lang="en">7. Mobile-first vs Desktop-first</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Есть два подхода к адаптивности. <strong>Desktop-first</strong>: пишете стили для десктопа, потом «ломаете» их для мобильных. <strong>Mobile-first</strong>: пишете стили для мобильных, потом «расширяете» для десктопа. Разница — в какую сторону вы двигаетесь.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>There are two approaches to responsiveness. <strong>Desktop-first</strong>: write styles for desktop, then "break" them for mobile. <strong>Mobile-first</strong>: write styles for mobile, then "expand" for desktop. The difference — which direction you're moving.</p>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">Desktop-first (max-width)</div>
+            <p data-lang="ru">Базовые стили = десктоп<br><code>@media (max-width)</code> — уменьшаем</p>
+            <p data-lang="en">Base styles = desktop<br><code>@media (max-width)</code> — reduce</p>
+<pre><code>/* Десктоп по умолчанию */
+.grid {
+    grid-template-columns:
+        repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}</code></pre>
+        </div>
+        <div class="right">
+            <div class="label">Mobile-first (min-width) &#x2705;</div>
+            <p data-lang="ru">Базовые стили = мобильный<br><code>@media (min-width)</code> — расширяем</p>
+            <p data-lang="en">Base styles = mobile<br><code>@media (min-width)</code> — expand</p>
+<pre><code>/* Мобильный по умолчанию */
+.grid {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+}</code></pre>
+        </div>
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Скульптура.</strong> Desktop-first — вы вырезаете скульптуру из большого куска (убираете лишнее). Mobile-first — вы лепите из глины (добавляете нужное). Лепить из глины проще — вы добавляете только то, что нужно, а не пытаетесь убрать лишнее.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Sculpture.</strong> Desktop-first — you carve a sculpture from a big block (removing excess). Mobile-first — you mold from clay (adding what's needed). Molding from clay is easier — you add only what's needed, not try to remove the excess.</p>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Mobile-first рекомендуется!</strong> Причины:
+        <ul>
+            <li><strong>Мобильные стили проще</strong> — 1 колонка, меньше элементов, меньше CSS</li>
+            <li><strong>Легче добавлять сложность, чем убирать</strong> — расширять проще, чем сжимать</li>
+            <li><strong>Google индексирует mobile-first</strong> — мобильная версия приоритетна для SEO</li>
+            <li><strong>Bootstrap и Tailwind</strong> используют mobile-first — это стандарт индустрии</li>
+            <li><strong>60%+ трафика — мобильные</strong> — начинайте с большинства пользователей</li>
+        </ul>
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Mobile-first is recommended!</strong> Reasons:
+        <ul>
+            <li><strong>Mobile styles are simpler</strong> — 1 column, fewer elements, less CSS</li>
+            <li><strong>Easier to add complexity than remove it</strong> — expanding is easier than shrinking</li>
+            <li><strong>Google indexes mobile-first</strong> — mobile version is SEO priority</li>
+            <li><strong>Bootstrap and Tailwind</strong> use mobile-first — it's the industry standard</li>
+            <li><strong>60%+ traffic is mobile</strong> — start with the majority of users</li>
+        </ul>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p>Термин «mobile-first» придумал Люк Вроблевски в 2009 году. Его идея: если вы начнёте с маленького экрана, вы будете вынуждены <strong>приоритизировать контент</strong> — показать самое важное. А потом на большом экране можно добавить второстепенное. Это улучшает не только код, но и <strong>UX-дизайн</strong>.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p>The term "mobile-first" was coined by Luke Wroblewski in 2009. His idea: if you start with a small screen, you're forced to <strong>prioritize content</strong> — show what's most important. Then on a large screen you can add secondary content. This improves not just code, but also <strong>UX design</strong>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ЧТО МЕНЯТЬ ==================== -->
+    <h2 id="what-to-change" data-lang="ru">8. Что менять в media queries</h2>
+    <h2 id="what-to-change-en" data-lang="en">8. What to change in media queries</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Итак, вы знаете синтаксис @media. Но <strong>что именно</strong> нужно менять для мобильных? Вот главные вещи:</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>So you know @media syntax. But <strong>what exactly</strong> needs to change for mobile? Here are the main things:</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Что</th><th>Десктоп</th><th>Мобильный</th><th>CSS-свойство</th></tr>
+        <tr><td><strong>Колонки</strong></td><td>3-4 колонки</td><td>1 колонка</td><td><code>grid-template-columns</code></td></tr>
+        <tr><td><strong>Sidebar</strong></td><td>Виден</td><td>Скрыт</td><td><code>display: none</code></td></tr>
+        <tr><td><strong>Навигация</strong></td><td>Горизонтальная</td><td>Бургер-меню</td><td><code>display / flex-direction</code></td></tr>
+        <tr><td><strong>Шрифты</strong></td><td>h1: 2.5rem</td><td>h1: 1.5rem</td><td><code>font-size</code></td></tr>
+        <tr><td><strong>Отступы</strong></td><td>padding: 32px</td><td>padding: 16px</td><td><code>padding</code></td></tr>
+        <tr><td><strong>Направление</strong></td><td>row (в ряд)</td><td>column (в столбик)</td><td><code>flex-direction</code></td></tr>
+        <tr><td><strong>Изображения</strong></td><td>Фиксированная ширина</td><td>width: 100%</td><td><code>width / max-width</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>What</th><th>Desktop</th><th>Mobile</th><th>CSS property</th></tr>
+        <tr><td><strong>Columns</strong></td><td>3-4 columns</td><td>1 column</td><td><code>grid-template-columns</code></td></tr>
+        <tr><td><strong>Sidebar</strong></td><td>Visible</td><td>Hidden</td><td><code>display: none</code></td></tr>
+        <tr><td><strong>Navigation</strong></td><td>Horizontal</td><td>Burger menu</td><td><code>display / flex-direction</code></td></tr>
+        <tr><td><strong>Fonts</strong></td><td>h1: 2.5rem</td><td>h1: 1.5rem</td><td><code>font-size</code></td></tr>
+        <tr><td><strong>Padding</strong></td><td>padding: 32px</td><td>padding: 16px</td><td><code>padding</code></td></tr>
+        <tr><td><strong>Direction</strong></td><td>row</td><td>column</td><td><code>flex-direction</code></td></tr>
+        <tr><td><strong>Images</strong></td><td>Fixed width</td><td>width: 100%</td><td><code>width / max-width</code></td></tr>
+    </table>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:6px;" data-lang="ru">Пример: карточки перестраиваются из 3 колонок в 1 (сузьте окно!):</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:6px;" data-lang="en">Example: cards rearrange from 3 columns to 1 (narrow the window!):</p>
+        <style>
+            .responsive-demo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+            @media (max-width: 700px) { .responsive-demo { grid-template-columns: 1fr; } }
+        </style>
+        <div class="responsive-demo">
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 16px; border-radius: 8px; text-align: center; font-weight: 600;">Card 1</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 16px; border-radius: 8px; text-align: center; font-weight: 600;">Card 2</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 16px; border-radius: 8px; text-align: center; font-weight: 600;">Card 3</div>
+        </div>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Что реально меняют на популярных сайтах:</strong></p>
+        <ul>
+            <li><strong>YouTube</strong> — 4 колонки → 2 → 1, навигация уходит в бургер</li>
+            <li><strong>Amazon</strong> — 4 карточки → 2 → 1, sidebar скрывается, фильтры уходят в модалку</li>
+            <li><strong>Gmail</strong> — 3 панели → 2 → 1, список писем становится на весь экран</li>
+            <li><strong>Twitter/X</strong> — sidebar и правая панель скрываются, лента на весь экран</li>
+        </ul>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>What popular sites actually change:</strong></p>
+        <ul>
+            <li><strong>YouTube</strong> — 4 columns → 2 → 1, navigation goes to burger</li>
+            <li><strong>Amazon</strong> — 4 cards → 2 → 1, sidebar hides, filters go to modal</li>
+            <li><strong>Gmail</strong> — 3 panels → 2 → 1, email list becomes full-width</li>
+            <li><strong>Twitter/X</strong> — sidebar and right panel hide, feed goes full-width</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== КОМБИНИРОВАНИЕ ==================== -->
+    <h2 id="combining" data-lang="ru">9. Комбинирование условий</h2>
+    <h2 id="combining-en" data-lang="en">9. Combining conditions</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Иногда нужно применить стили <strong>только для определённого диапазона</strong>: например, только для планшетов (768px — 992px), но не для телефонов и не для десктопов. Для этого комбинируем условия через <code>and</code>.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Sometimes you need to apply styles <strong>only for a specific range</strong>: for example, only for tablets (768px — 992px), but not for phones or desktops. For this we combine conditions with <code>and</code>.</p>
+    </div>
+
+<pre><code>/* Диапазон: от 768px до 992px (только планшеты) */
+@media (min-width: 768px) and (max-width: 992px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Ориентация: только горизонтальная */
+@media (orientation: landscape) {
+    .hero { height: 50vh; }    /* герой на половину высоты экрана */
+}
+
+/* Только для печати: убрать навигацию и цвета */
+@media print {
+    .nav, .footer { display: none; }
+    body { color: black; background: white; }
+}
+
+/* Тёмная тема (если у пользователя тёмный режим ОС) */
+@media (prefers-color-scheme: dark) {
+    body { background: #1a1a1a; color: #e0e0e0; }
+}</code></pre>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><code>prefers-color-scheme: dark</code> — один из самых крутых media queries! Он определяет, включён ли у пользователя <strong>тёмный режим</strong> на устройстве. Если да — можно автоматически показать тёмную тему сайта. Без JavaScript!</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><code>prefers-color-scheme: dark</code> is one of the coolest media queries! It detects if the user has <strong>dark mode</strong> enabled on their device. If yes — you can automatically show a dark theme. No JavaScript!</p>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong><code>@media print</code></strong> часто забывают, но это важно для профессиональных сайтов. Когда пользователь печатает страницу, вы можете скрыть навигацию, рекламу, footer, убрать фоновые цвета и показать только контент. Особенно полезно для статей, рецептов, документации.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong><code>@media print</code></strong> is often forgotten, but it's important for professional sites. When a user prints the page, you can hide navigation, ads, footer, remove background colors and show only content. Especially useful for articles, recipes, documentation.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== DEVTOOLS ==================== -->
+    <h2 id="devtools" data-lang="ru">10. Тестирование в DevTools</h2>
+    <h2 id="devtools-en" data-lang="en">10. Testing in DevTools</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Вы не будете каждый раз открывать сайт на телефоне, чтобы проверить адаптивность. Chrome DevTools позволяет <strong>эмулировать любое устройство</strong> прямо в браузере.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>You won't open the site on a phone every time to check responsiveness. Chrome DevTools lets you <strong>emulate any device</strong> right in the browser.</p>
+    </div>
+
+    <p data-lang="ru">Для тестирования адаптивности используйте <strong>Device Toolbar</strong> в Chrome DevTools:</p>
+    <p data-lang="en">To test responsiveness, use <strong>Device Toolbar</strong> in Chrome DevTools:</p>
+
+    <ol data-lang="ru">
+        <li>Откройте DevTools: <span class="kbd">F12</span> или <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">I</span></li>
+        <li>Нажмите кнопку <strong>Toggle Device Toolbar</strong> (иконка телефона) или <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">M</span></li>
+        <li>Выберите устройство из списка (iPhone 14, iPad Air) или задайте <strong>свою ширину</strong></li>
+        <li>Перетаскивайте край viewport для плавного изменения ширины</li>
+        <li>Обратите внимание на <strong>синие полоски</strong> вверху — они показывают ваши breakpoints!</li>
+    </ol>
+    <ol data-lang="en">
+        <li>Open DevTools: <span class="kbd">F12</span> or <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">I</span></li>
+        <li>Click <strong>Toggle Device Toolbar</strong> button (phone icon) or <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">M</span></li>
+        <li>Choose a device from the list (iPhone 14, iPad Air) or set a <strong>custom width</strong></li>
+        <li>Drag the viewport edge for smooth width adjustment</li>
+        <li>Notice the <strong>blue bars</strong> at the top — they show your breakpoints!</li>
+    </ol>
+
+    <div class="try-it" data-lang="ru">
+        <p><strong>Прямо сейчас:</strong></p>
+        <ol>
+            <li>Нажмите <span class="kbd">F12</span> → <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">M</span></li>
+            <li>Выберите «iPhone 14» из списка устройств</li>
+            <li>Посмотрите, как эта страница выглядит на мобильном</li>
+            <li>Переключитесь на «iPad Air» — посмотрите планшетную версию</li>
+            <li>Выберите «Responsive» и перетаскивайте ширину — смотрите, где ломается макет</li>
+        </ol>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p><strong>Right now:</strong></p>
+        <ol>
+            <li>Press <span class="kbd">F12</span> → <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">M</span></li>
+            <li>Choose "iPhone 14" from the device list</li>
+            <li>See how this page looks on mobile</li>
+            <li>Switch to "iPad Air" — see the tablet version</li>
+            <li>Choose "Responsive" and drag the width — see where the layout breaks</li>
+        </ol>
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>«На DevTools выглядит нормально, а на реальном телефоне — нет!»</strong> Причины:</p>
+        <ul>
+            <li><strong>Забыли meta viewport</strong> — самая частая причина</li>
+            <li><strong>Hover-эффекты</strong> — на телефоне нет hover, кнопки могут не реагировать</li>
+            <li><strong>Ширина 100vw + скроллбар</strong> — 100vw на десктопе включает скроллбар, на телефоне — нет</li>
+            <li><strong>Touch-цели</strong> — кнопки слишком маленькие для пальца (минимум 44x44px)</li>
+        </ul>
+        <p>DevTools — хороший <strong>первый</strong> шаг, но перед запуском всегда проверяйте на реальном устройстве!</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>"Looks fine in DevTools, but broken on real phone!"</strong> Reasons:</p>
+        <ul>
+            <li><strong>Forgot meta viewport</strong> — most common cause</li>
+            <li><strong>Hover effects</strong> — phones don't have hover, buttons may not respond</li>
+            <li><strong>100vw width + scrollbar</strong> — 100vw on desktop includes scrollbar, on phone — doesn't</li>
+            <li><strong>Touch targets</strong> — buttons too small for a finger (minimum 44x44px)</li>
+        </ul>
+        <p>DevTools is a good <strong>first</strong> step, but always test on a real device before launch!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">11. Практика: адаптивная страница</h2>
+    <h2 id="practice-en" data-lang="en">11. Practice: responsive page</h2>
+
+    <p data-lang="ru">Применим <strong>всё изученное</strong>! Создадим адаптивную страницу с подходом <strong>mobile-first</strong> и 3 breakpoints:</p>
+    <p data-lang="en">Let's apply <strong>everything we learned</strong>! We'll create a responsive page with the <strong>mobile-first</strong> approach and 3 breakpoints:</p>
+
+    <div class="highlight" data-lang="ru">
+        <strong>В этом примере мы используем:</strong>
+        <ul>
+            <li><code>mobile-first</code> — базовые стили для телефона, расширяем через <code>min-width</code></li>
+            <li>3 breakpoints: 576px, 768px, 1024px</li>
+            <li>Grid для сетки карточек</li>
+            <li>Скрытие sidebar на мобильных</li>
+            <li>Уменьшение шрифтов и отступов</li>
+        </ul>
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>In this example we use:</strong>
+        <ul>
+            <li><code>mobile-first</code> — base styles for phone, expanding via <code>min-width</code></li>
+            <li>3 breakpoints: 576px, 768px, 1024px</li>
+            <li>Grid for card layout</li>
+            <li>Hiding sidebar on mobile</li>
+            <li>Reducing fonts and padding</li>
+        </ul>
+    </div>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Адаптивная страница&lt;/title&gt;
+    &lt;style&gt;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f1f5f9; }
+
+        /* ===== MOBILE-FIRST: базовые стили (для телефона) ===== */
+        .container { max-width: 1200px; margin: 0 auto; padding: 16px; }
+
+        h1 { font-size: 1.5rem; margin-bottom: 16px; }
+
+        .page { display: block; }  /* на мобильном — всё в столбик */
+
+        .sidebar { display: none; }  /* sidebar скрыт на мобильном */
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;  /* 1 колонка на телефоне */
+            gap: 16px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        /* ===== ПЛАНШЕТ (768px+) ===== */
+        @media (min-width: 768px) {
+            .container { padding: 24px; }
+            h1 { font-size: 2rem; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        }
+
+        /* ===== ДЕСКТОП (1024px+) ===== */
+        @media (min-width: 1024px) {
+            .container { padding: 32px; }
+            h1 { font-size: 2.5rem; }
+
+            .page {
+                display: grid;
+                grid-template-columns: 1fr 280px;
+                gap: 32px;
+            }
+
+            .sidebar {
+                display: block;  /* sidebar виден на десктопе */
+                background: white;
+                padding: 20px;
+                border-radius: 12px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+                align-self: start;
+            }
+
+            .grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Мой адаптивный сайт&lt;/h1&gt;
+        &lt;div class="page"&gt;
+            &lt;main&gt;
+                &lt;div class="grid"&gt;
+                    &lt;div class="card"&gt;Карточка 1&lt;/div&gt;
+                    &lt;div class="card"&gt;Карточка 2&lt;/div&gt;
+                    &lt;div class="card"&gt;Карточка 3&lt;/div&gt;
+                    &lt;div class="card"&gt;Карточка 4&lt;/div&gt;
+                    &lt;div class="card"&gt;Карточка 5&lt;/div&gt;
+                    &lt;div class="card"&gt;Карточка 6&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/main&gt;
+            &lt;aside class="sidebar"&gt;
+                &lt;h3&gt;Sidebar&lt;/h3&gt;
+                &lt;p&gt;Виден только на десктопе&lt;/p&gt;
+            &lt;/aside&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="try-it" data-lang="ru">
+        <p><strong>Создайте этот файл и протестируйте:</strong></p>
+        <ol>
+            <li>Откройте в браузере и плавно сужайте окно — наблюдайте, как перестраивается макет</li>
+            <li>Откройте Device Toolbar (<span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">M</span>) и попробуйте iPhone, iPad, десктоп</li>
+            <li>Добавьте <code>nav</code> с горизонтальным меню, которое становится вертикальным на мобильном</li>
+            <li>Измените breakpoint 1024px на 992px — посмотрите разницу</li>
+            <li>Добавьте <code>@media (min-width: 576px)</code> — переведите карточки на 2 колонки раньше</li>
+        </ol>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p><strong>Create this file and test:</strong></p>
+        <ol>
+            <li>Open in browser and slowly narrow the window — watch the layout rearrange</li>
+            <li>Open Device Toolbar (<span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">M</span>) and try iPhone, iPad, desktop</li>
+            <li>Add a <code>nav</code> with horizontal menu that becomes vertical on mobile</li>
+            <li>Change breakpoint 1024px to 992px — see the difference</li>
+            <li>Add <code>@media (min-width: 576px)</code> — switch cards to 2 columns earlier</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">Итоги занятия 19</h2>
+    <h2 data-lang="en">Lesson 20 Summary</h2>
+
+    <div class="summary" data-lang="ru">
+        <ul>
+            <li><strong>Viewport</strong> — видимая область браузера (ширина окна / экрана)</li>
+            <li><code>&lt;meta name="viewport"&gt;</code> — <strong>обязателен!</strong> Без него media queries не работают на мобильных</li>
+            <li><code>@media (max-width: 768px)</code> — стили для экранов ≤ 768px (desktop-first)</li>
+            <li><code>@media (min-width: 768px)</code> — стили для экранов ≥ 768px (mobile-first)</li>
+            <li><strong>Mobile-first (min-width) рекомендуется</strong> — стандарт индустрии</li>
+            <li><strong>Breakpoints:</strong> 576px, 768px, 992px, 1200px — но 2-3 достаточно</li>
+            <li><strong>Что менять:</strong> колонки, sidebar, навигация, шрифты, отступы, flex-direction</li>
+            <li><code>and</code> — для комбинации условий, <code>print</code> — для печати</li>
+            <li><strong>DevTools Device Toolbar</strong> (<span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">M</span>) — для тестирования</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <ul>
+            <li><strong>Viewport</strong> — visible area of the browser (window / screen width)</li>
+            <li><code>&lt;meta name="viewport"&gt;</code> — <strong>required!</strong> Without it media queries don't work on mobile</li>
+            <li><code>@media (max-width: 768px)</code> — styles for screens ≤ 768px (desktop-first)</li>
+            <li><code>@media (min-width: 768px)</code> — styles for screens ≥ 768px (mobile-first)</li>
+            <li><strong>Mobile-first (min-width) is recommended</strong> — industry standard</li>
+            <li><strong>Breakpoints:</strong> 576px, 768px, 992px, 1200px — but 2-3 are enough</li>
+            <li><strong>What to change:</strong> columns, sidebar, navigation, fonts, padding, flex-direction</li>
+            <li><code>and</code> — to combine conditions, <code>print</code> — for printing</li>
+            <li><strong>DevTools Device Toolbar</strong> (<span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">M</span>) — for testing</li>
+        </ul>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <p><strong>Финальная проверка — ответьте на все вопросы:</strong></p>
+        <ol>
+            <li>Зачем нужен <code>&lt;meta name="viewport"&gt;</code>? <em>(Без него мобильный браузер притворяется десктопом и media queries не работают)</em></li>
+            <li>Чем <code>max-width</code> отличается от <code>min-width</code> в @media? <em>(max = экран ≤ значения, min = экран ≥ значения)</em></li>
+            <li>Что такое mobile-first? Почему он рекомендуется? <em>(Базовые стили для мобильного, расширяем через min-width. Проще, Google-friendly, стандарт индустрии)</em></li>
+            <li>Назовите 3 стандартных breakpoints. <em>(768px, 992px, 1200px)</em></li>
+            <li>Что обычно меняется при адаптации? <em>(Колонки, sidebar, навигация, шрифты, отступы, flex-direction)</em></li>
+            <li>Как протестировать адаптивность в DevTools? <em>(Ctrl+Shift+M — Device Toolbar)</em></li>
+            <li>Что делает <code>@media print</code>? <em>(Стили для печати — скрыть навигацию, убрать цвета)</em></li>
+            <li>Что делает <code>prefers-color-scheme: dark</code>? <em>(Определяет тёмный режим ОС для автоматической тёмной темы)</em></li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <p><strong>Final check — answer all questions:</strong></p>
+        <ol>
+            <li>Why is <code>&lt;meta name="viewport"&gt;</code> needed? <em>(Without it mobile browser pretends to be desktop and media queries don't work)</em></li>
+            <li>How does <code>max-width</code> differ from <code>min-width</code> in @media? <em>(max = screen ≤ value, min = screen ≥ value)</em></li>
+            <li>What is mobile-first? Why is it recommended? <em>(Base styles for mobile, expand via min-width. Simpler, Google-friendly, industry standard)</em></li>
+            <li>Name 3 standard breakpoints. <em>(768px, 992px, 1200px)</em></li>
+            <li>What usually changes during adaptation? <em>(Columns, sidebar, navigation, fonts, padding, flex-direction)</em></li>
+            <li>How to test responsiveness in DevTools? <em>(Ctrl+Shift+M — Device Toolbar)</em></li>
+            <li>What does <code>@media print</code> do? <em>(Print styles — hide navigation, remove colors)</em></li>
+            <li>What does <code>prefers-color-scheme: dark</code> do? <em>(Detects OS dark mode for automatic dark theme)</em></li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

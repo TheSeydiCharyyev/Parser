@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 19 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 19: Мини-проект — Макет журнала</span>
+    <span class="nav-title" data-lang="en">Lesson 19: Mini-project — Magazine Layout</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 19: Мини-проект #4 — Макет журнала / блога</p>
+    <p class="subtitle" data-lang="en">Lesson 19: Mini-project #4 — Magazine / Blog Layout</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; СТРУКТУРА МАКЕТА (GRID AREAS)</h2>
+    <h2 data-lang="en">&#x1F4DA; LAYOUT STRUCTURE (GRID AREAS)</h2>
+
+<pre><code>.magazine {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-template-rows: 64px 1fr auto;
+    grid-template-areas:
+        "header  header"
+        "main    sidebar"
+        "footer  footer";
+    min-height: 100vh;
+}
+
+.mag-header  { grid-area: header; }
+.mag-main    { grid-area: main; }
+.mag-sidebar { grid-area: sidebar; }
+.mag-footer  { grid-area: footer; }</code></pre>
+
+    <div class="diagram" data-lang="ru">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;     HEADER (1fr + 300px)    &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;     MAIN         &#x2502; SIDEBAR&#x2502;
+    &#x2502;  (Grid 3 col)    &#x2502; (Flex) &#x2502;
+    &#x2502;  Featured+Cards  &#x2502; 300px  &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;     FOOTER                  &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;     HEADER (1fr + 300px)    &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;     MAIN         &#x2502; SIDEBAR&#x2502;
+    &#x2502;  (Grid 3 col)    &#x2502; (Flex) &#x2502;
+    &#x2502;  Featured+Cards  &#x2502; 300px  &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;     FOOTER                  &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ГДЕ GRID, А ГДЕ FLEXBOX</h2>
+    <h2 data-lang="en">&#x1F4DA; WHERE GRID, WHERE FLEXBOX</h2>
+
+    <table data-lang="ru">
+        <tr><th>Элемент</th><th>Раскладка</th><th>Почему</th></tr>
+        <tr><td><code>.magazine</code></td><td><strong>Grid</strong> (areas)</td><td>2D-макет: header, main, sidebar, footer</td></tr>
+        <tr><td><code>.mag-header</code></td><td><strong>Flexbox</strong></td><td>Элементы в одну линию</td></tr>
+        <tr><td><code>.mag-main</code></td><td><strong>Grid</strong> (3 col)</td><td>Сетка карточек, featured span</td></tr>
+        <tr><td><code>.card</code></td><td><strong>Flexbox</strong> column</td><td>Изображение + текст + мета сверху вниз</td></tr>
+        <tr><td><code>.mag-sidebar</code></td><td><strong>Flexbox</strong> column</td><td>Блоки друг под другом</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Element</th><th>Layout</th><th>Why</th></tr>
+        <tr><td><code>.magazine</code></td><td><strong>Grid</strong> (areas)</td><td>2D layout: header, main, sidebar, footer</td></tr>
+        <tr><td><code>.mag-header</code></td><td><strong>Flexbox</strong></td><td>Items in one line</td></tr>
+        <tr><td><code>.mag-main</code></td><td><strong>Grid</strong> (3 col)</td><td>Card grid, featured span</td></tr>
+        <tr><td><code>.card</code></td><td><strong>Flexbox</strong> column</td><td>Image + text + meta top to bottom</td></tr>
+        <tr><td><code>.mag-sidebar</code></td><td><strong>Flexbox</strong> column</td><td>Blocks stacked vertically</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; КЛЮЧЕВЫЕ ПРИЁМЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; KEY TECHNIQUES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Приём</th><th>Код</th><th>Зачем</th></tr>
+        <tr><td>Featured на всю ширину</td><td><code>grid-column: 1 / -1</code></td><td>Занять все столбцы сетки</td></tr>
+        <tr><td>Кнопка вправо</td><td><code>margin-left: auto</code></td><td>Прижать к правому краю в Flexbox</td></tr>
+        <tr><td>Мета к низу</td><td><code>margin-top: auto</code></td><td>Прижать к низу карточки</td></tr>
+        <tr><td>Zoom на hover</td><td><code>overflow: hidden</code> + <code>scale(1.05)</code></td><td>Картинка растёт, не выходя за рамки</td></tr>
+        <tr><td>Вложенный Grid</td><td>Grid внутри Grid-области</td><td>Сетка карточек внутри main</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Technique</th><th>Code</th><th>Why</th></tr>
+        <tr><td>Featured full width</td><td><code>grid-column: 1 / -1</code></td><td>Span all grid columns</td></tr>
+        <tr><td>Button to right</td><td><code>margin-left: auto</code></td><td>Push to right edge in Flexbox</td></tr>
+        <tr><td>Meta to bottom</td><td><code>margin-top: auto</code></td><td>Push to bottom of card</td></tr>
+        <tr><td>Zoom on hover</td><td><code>overflow: hidden</code> + <code>scale(1.05)</code></td><td>Image grows without overflow</td></tr>
+        <tr><td>Nested Grid</td><td>Grid inside Grid area</td><td>Card grid inside main</td></tr>
+    </table>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>grid-template-areas</code> — рисуй макет текстом</li>
+            <li><code>grid-column: 1 / -1</code> — элемент на всю ширину сетки</li>
+            <li>Grid = макет страницы, Flexbox = компоненты внутри</li>
+            <li>Вложенный Grid: <code>mag-main</code> сам является Grid для карточек</li>
+            <li><code>overflow: hidden</code> на карточке + <code>scale</code> на картинке = zoom-эффект</li>
+            <li><code>margin-top: auto</code> — прижать последний элемент к низу</li>
+            <li><code>object-fit: cover</code> — заполнить область, обрезать лишнее</li>
+            <li><code>margin-left: auto</code> в Flexbox — прижать элемент вправо</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>grid-template-areas</code> — draw layout with text</li>
+            <li><code>grid-column: 1 / -1</code> — item spans full grid width</li>
+            <li>Grid = page layout, Flexbox = components inside</li>
+            <li>Nested Grid: <code>mag-main</code> is itself a Grid for cards</li>
+            <li><code>overflow: hidden</code> on card + <code>scale</code> on image = zoom effect</li>
+            <li><code>margin-top: auto</code> — push last element to bottom</li>
+            <li><code>object-fit: cover</code> — fill area, crop excess</li>
+            <li><code>margin-left: auto</code> in Flexbox — push element to the right</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Журнал:</strong> Создайте макет журнала / блога с grid-template-areas: header, main (3 колонки карточек + featured), sidebar (300px), footer.</li>
+            <li><strong>Карточки:</strong> 7 статей — 1 Featured (<code>grid-column: 1 / -1</code>) + 6 обычных. Каждая: изображение, тег, заголовок, описание, автор + дата.</li>
+            <li><strong>Hover:</strong> Карточки поднимаются (<code>translateY(-4px)</code>) + тень. Картинки увеличиваются (<code>scale(1.05)</code>).</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Magazine:</strong> Create a magazine / blog layout with grid-template-areas: header, main (3-column cards + featured), sidebar (300px), footer.</li>
+            <li><strong>Cards:</strong> 7 articles — 1 Featured (<code>grid-column: 1 / -1</code>) + 6 regular. Each: image, tag, title, description, author + date.</li>
+            <li><strong>Hover:</strong> Cards lift (<code>translateY(-4px)</code>) + shadow. Images zoom (<code>scale(1.05)</code>).</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

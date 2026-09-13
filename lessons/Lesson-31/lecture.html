@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 31 — Подготовка к финальному проекту</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 31: Подготовка к финальному проекту</span>
+    <span class="nav-title" data-lang="en">Lesson 31: Final Project Preparation</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 31: Подготовка к финальному проекту</h1>
+    <h1 data-lang="en">Lesson 31: Final Project Preparation</h1>
+    <p class="subtitle" data-lang="ru">Выбор темы, критерии, вдохновение, планирование, структура проекта</p>
+    <p class="subtitle" data-lang="en">Choosing a topic, criteria, inspiration, planning, project structure</p>
+
+    <div class="why" data-lang="ru">
+        <p>Поздравляю — вы прошли весь курс. 29 занятий. Теперь <strong>финальный проект</strong>: ваш собственный многостраничный сайт, который вы покажете на собеседовании. Это не упражнение «сверстайте квадратик» — это <strong>ваша визитка</strong> как разработчика на ближайшие 1-2 года. Относитесь серьёзно.</p>
+        <p>Большинство новичков ошибаются на одном и том же: <strong>слишком быстро начинают писать код</strong>. Выбирают первую попавшуюся идею, открывают VS Code и 3 часа спустя понимают, что идея слабая, макет путаный, и надо переделывать. Потерянное время.</p>
+        <p>Сегодня мы заложим <strong>фундамент</strong>: выберем правильную тему, разработаем критерии качества, изучим вдохновение, спланируем страницы, настроим проект. Писать HTML начнём только на следующем занятии (31). Это не «потеря времени» — это <strong>ускорение работы в 3 раза</strong>.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Выбрать тему проекта, которая подходит именно вам</li>
+            <li>Оценить идею по 5 критериям (сложность, вдохновение, портфолио)</li>
+            <li>Найти вдохновение на правильных ресурсах (Awwwards, Dribbble, Landbook)</li>
+            <li>Понять требования к финальному проекту</li>
+            <li>Составить sitemap — карту страниц</li>
+            <li>Спроектировать wireframe каждой страницы</li>
+            <li>Определить design tokens: палитру, типографику, spacing</li>
+            <li>Настроить git-репозиторий и структуру папок проекта</li>
+            <li>Избежать 8 типичных ошибок планирования</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Congratulations — you've completed the entire course. 29 lessons. Now the <strong>final project</strong>: your own multi-page site that you'll show at interviews. Not a "code this square" exercise — it's <strong>your business card</strong> as a developer for the next 1-2 years. Take it seriously.</p>
+        <p>Most beginners make the same mistake: <strong>they start coding too fast</strong>. Pick the first idea that comes to mind, open VS Code, and 3 hours later realize the idea is weak, the layout is confused, and they need to redo it. Time lost.</p>
+        <p>Today we'll lay the <strong>foundation</strong>: pick the right topic, develop quality criteria, research inspiration, plan the pages, set up the project. We'll start writing HTML only in the next lesson (31). Not "time wasted" — it's <strong>a 3× speedup</strong>.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Pick a project topic that suits you</li>
+            <li>Evaluate an idea against 5 criteria (complexity, inspiration, portfolio)</li>
+            <li>Find inspiration on the right resources (Awwwards, Dribbble, Landbook)</li>
+            <li>Understand the final project requirements</li>
+            <li>Build a sitemap — map of pages</li>
+            <li>Design the wireframe of each page</li>
+            <li>Define design tokens: palette, typography, spacing</li>
+            <li>Set up a git repository and project folder structure</li>
+            <li>Avoid 8 typical planning mistakes</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#why-plan">Зачем вообще планировать</a></li>
+            <li><a href="#criteria">5 критериев хорошего проекта для портфолио</a></li>
+            <li><a href="#ideas">6 идей финального проекта (разбор)</a></li>
+            <li><a href="#choose">Матрица выбора: какой проект ваш?</a></li>
+            <li><a href="#inspiration">Где брать вдохновение</a></li>
+            <li><a href="#requirements">Требования к финальному проекту</a></li>
+            <li><a href="#sitemap">Sitemap — карта страниц</a></li>
+            <li><a href="#wireframe">Wireframe — скелет каждой страницы</a></li>
+            <li><a href="#tokens">Design tokens: цвета, шрифты, spacing</a></li>
+            <li><a href="#setup">Настройка проекта: git + структура папок</a></li>
+            <li><a href="#checklist">Чеклист готовности к разработке</a></li>
+            <li><a href="#pitfalls">8 ошибок на этапе планирования</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#why-plan">Why plan at all</a></li>
+            <li><a href="#criteria">5 criteria of a good portfolio project</a></li>
+            <li><a href="#ideas">6 final project ideas (breakdown)</a></li>
+            <li><a href="#choose">Choice matrix: which project is yours?</a></li>
+            <li><a href="#inspiration">Where to find inspiration</a></li>
+            <li><a href="#requirements">Final project requirements</a></li>
+            <li><a href="#sitemap">Sitemap — page map</a></li>
+            <li><a href="#wireframe">Wireframe — skeleton of each page</a></li>
+            <li><a href="#tokens">Design tokens: colors, fonts, spacing</a></li>
+            <li><a href="#setup">Project setup: git + folder structure</a></li>
+            <li><a href="#checklist">Readiness checklist</a></li>
+            <li><a href="#pitfalls">8 mistakes at the planning stage</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== WHY PLAN ==================== -->
+    <h2 id="why-plan" data-lang="ru">1. Зачем вообще планировать</h2>
+    <h2 id="why-plan-en" data-lang="en">1. Why plan at all</h2>
+
+    <div class="why" data-lang="ru">
+        <p>«Не буду тратить время на планирование — сразу начну кодить, разберусь по ходу!» — классическое заблуждение новичка. Правда в том, что <strong>час планирования экономит 3 часа разработки</strong>. Это не моё мнение — это статистика любой команды разработки.</p>
+        <p>Без плана вы сталкиваетесь с одним и тем же сценарием: начали делать header → понял, что нужна отдельная страница About → переделал навигацию → логотип не смотрится с новой палитрой → перекрасил всё → 4 часа прошло, готова только половина одной страницы.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>"I won't waste time planning — I'll just start coding and figure it out!" — classic beginner mistake. Truth: <strong>one hour of planning saves three hours of development</strong>. Not my opinion — it's the statistics of any dev team.</p>
+        <p>Without a plan you hit the same scenario: start building header → realize you need a separate About page → redo navigation → logo doesn't fit the new palette → recolor everything → 4 hours gone, half a page is done.</p>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">&#x274C; Без плана</div>
+            <div class="label" data-lang="en">&#x274C; No plan</div>
+            <p data-lang="ru"><strong>3 недели работы:</strong><br>
+            • Переделывали palette 3 раза<br>
+            • Менять навигацию пришлось 5 раз<br>
+            • Половина страниц не согласованы стилистически<br>
+            • К концу не хватило времени на адаптив<br>
+            • Проект «собран на скотче» — стыдно показывать</p>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">&#x2705; С планом</div>
+            <div class="label" data-lang="en">&#x2705; With plan</div>
+            <p data-lang="ru"><strong>3 недели работы:</strong><br>
+            • 2 дня на планирование<br>
+            • Решения приняты один раз<br>
+            • Все страницы в одном стиле<br>
+            • Хватило времени на полировку<br>
+            • Есть что показать работодателю</p>
+        </div>
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Строительство дома vs постройка скворечника.</strong> Скворечник собирают «на глаз» — ошибка стоит дерева. Дом строят по чертежу — ошибка стоит миллионов. Финальный проект — это не скворечник. Это ваша визитка. План обязателен.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Building a house vs a birdhouse.</strong> Birdhouse gets thrown together "by eye" — mistake costs wood. House is built from blueprints — mistake costs millions. Your final project isn't a birdhouse. It's your business card. Planning is mandatory.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CRITERIA ==================== -->
+    <h2 id="criteria" data-lang="ru">2. 5 критериев хорошего проекта для портфолио</h2>
+    <h2 id="criteria-en" data-lang="en">2. 5 criteria of a good portfolio project</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Не каждый проект одинаково хорош для портфолио. Работодатель смотрит на ваш GitHub — и должен увидеть, что вы <strong>не просто повторили урок</strong>, а способны самостоятельно довести проект до конца. Есть 5 чётких критериев, которые отличают хороший портфолио-проект от слабого.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Not every project is equally good for a portfolio. An employer looks at your GitHub — and should see that you <strong>didn't just repeat a lesson</strong>, but can take a project to completion independently. There are 5 clear criteria that separate a good portfolio project from a weak one.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>#</th><th>Критерий</th><th>Почему важно</th></tr>
+        <tr><td>1</td><td><strong>Многостраничность</strong> (3+ страницы)</td><td>Показывает, что вы умеете навигацию, общие компоненты, роутинг</td></tr>
+        <tr><td>2</td><td><strong>Адаптив</strong> (3 breakpoint'а)</td><td>Mobile, tablet, desktop — без этого 2025 год непростим</td></tr>
+        <tr><td>3</td><td><strong>Интерактивность</strong></td><td>Hover, transition, формы, бургер — сайт не «картонный»</td></tr>
+        <tr><td>4</td><td><strong>Реальная тема</strong></td><td>Не «lorem ipsum» — реальные тексты, реальные фото</td></tr>
+        <tr><td>5</td><td><strong>Задеплоен</strong></td><td>Публичная ссылка — работодатель сможет открыть за 1 клик</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>#</th><th>Criterion</th><th>Why it matters</th></tr>
+        <tr><td>1</td><td><strong>Multi-page</strong> (3+ pages)</td><td>Shows you can do navigation, shared components, routing</td></tr>
+        <tr><td>2</td><td><strong>Responsive</strong> (3 breakpoints)</td><td>Mobile, tablet, desktop — unforgivable in 2025 without it</td></tr>
+        <tr><td>3</td><td><strong>Interactive</strong></td><td>Hover, transition, forms, burger — the site isn't "cardboard"</td></tr>
+        <tr><td>4</td><td><strong>Real content</strong></td><td>Not "lorem ipsum" — real text, real photos</td></tr>
+        <tr><td>5</td><td><strong>Deployed</strong></td><td>Public URL — employer opens it in one click</td></tr>
+    </table>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Бонусы, которые выделяют портфолио:</strong></p>
+        <ul>
+            <li>Dark mode (переключатель темы)</li>
+            <li>Анимации при загрузке и скролле (scroll-based)</li>
+            <li>Бургер-меню на CSS (без JS)</li>
+            <li>Читаемый код с комментариями</li>
+            <li>README.md в репозитории с описанием и скриншотами</li>
+        </ul>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Bonuses that make a portfolio stand out:</strong></p>
+        <ul>
+            <li>Dark mode (theme toggle)</li>
+            <li>Load and scroll animations</li>
+            <li>CSS-only burger menu (no JS)</li>
+            <li>Clean code with comments</li>
+            <li>README.md in the repo with description and screenshots</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== IDEAS ==================== -->
+    <h2 id="ideas" data-lang="ru">3. 6 идей финального проекта (разбор)</h2>
+    <h2 id="ideas-en" data-lang="en">3. 6 final project ideas (breakdown)</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Вот 6 проверенных идей. Они разной сложности, но все подходят для портфолио junior-разработчика. Под каждой я напишу плюсы, минусы и примеры реальных сайтов для вдохновения. Выберете одну — её и будете делать 3 недели.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Here are 6 proven ideas. Different complexity, but all suitable for a junior portfolio. Under each — pros, cons, and examples of real sites for inspiration. Pick one — that's what you'll build for 3 weeks.</p>
+    </div>
+
+    <h3 data-lang="ru">3.1. Сайт-портфолио (ваш личный)</h3>
+    <h3 data-lang="en">3.1. Personal portfolio site</h3>
+    <div class="real-world" data-lang="ru">
+        <p><strong>Страницы:</strong> Главная, About, Projects (список), Project Detail, Contact.</p>
+        <p><strong>Плюсы:</strong> Реальный контент (ваш) — показываете работодателю сразу две вещи: навыки и сам сайт. «Убиваете двух зайцев». Самый практичный выбор.</p>
+        <p><strong>Минусы:</strong> Нужны реальные проекты для раздела Projects. Если их нет — делайте раздел «Learning» с курсовыми заданиями.</p>
+        <p><strong>Вдохновение:</strong> <a href="https://brittanychiang.com" target="_blank">brittanychiang.com</a>, <a href="https://bencubbage.com" target="_blank">bencubbage.com</a>, любой сайт разработчика на Awwwards.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Pages:</strong> Home, About, Projects (list), Project Detail, Contact.</p>
+        <p><strong>Pros:</strong> Real content (yours) — you show the employer two things at once: skills and the site itself. Practical choice.</p>
+        <p><strong>Cons:</strong> Needs real projects for the Projects section. If you don't have any — make a "Learning" section with course exercises.</p>
+        <p><strong>Inspiration:</strong> <a href="https://brittanychiang.com" target="_blank">brittanychiang.com</a>, <a href="https://bencubbage.com" target="_blank">bencubbage.com</a>, any dev site on Awwwards.</p>
+    </div>
+
+    <h3 data-lang="ru">3.2. Лендинг для бизнеса</h3>
+    <h3 data-lang="en">3.2. Business landing page</h3>
+    <div class="real-world" data-lang="ru">
+        <p><strong>Страницы:</strong> Главная (все секции), Services (детали), Pricing, Contact.</p>
+        <p><strong>Плюсы:</strong> Классика вёрстки. Много hero-секций, features, cards, форм. Тренирует все навыки. Легко найти Figma-макет в Community.</p>
+        <p><strong>Минусы:</strong> «Как у всех» — не выделяется. Компенсируйте оригинальной темой: не «компания по разработке», а «студия татуировок» или «мастерская ножей».</p>
+        <p><strong>Вдохновение:</strong> <a href="https://landbook.com" target="_blank">landbook.com</a>, <a href="https://awwwards.com" target="_blank">awwwards.com</a>.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Pages:</strong> Home (all sections), Services (details), Pricing, Contact.</p>
+        <p><strong>Pros:</strong> Coding classic. Lots of hero sections, features, cards, forms. Trains all skills. Easy to find Figma mockups in Community.</p>
+        <p><strong>Cons:</strong> "Like everyone else" — doesn't stand out. Compensate with an original theme: not "dev agency" but "tattoo studio" or "knife workshop".</p>
+        <p><strong>Inspiration:</strong> <a href="https://landbook.com" target="_blank">landbook.com</a>, <a href="https://awwwards.com" target="_blank">awwwards.com</a>.</p>
+    </div>
+
+    <h3 data-lang="ru">3.3. Сайт музыкальной группы / исполнителя</h3>
+    <h3 data-lang="en">3.3. Music band / artist site</h3>
+    <div class="real-world" data-lang="ru">
+        <p><strong>Страницы:</strong> Главная (обложка), Music (альбомы), Tour (даты концертов), About, Contact.</p>
+        <p><strong>Плюсы:</strong> Эмоциональный, красочный. Много работы с изображениями, типографикой, видео. Запоминается на собеседовании.</p>
+        <p><strong>Минусы:</strong> Нужны качественные фото группы/музыки — можно взять любой реальной группы с их пресс-кит.</p>
+        <p><strong>Вдохновение:</strong> официальные сайты крупных артистов (Billie Eilish, Arctic Monkeys, HOZIER), Bandcamp-страницы.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Pages:</strong> Home (cover), Music (albums), Tour (concert dates), About, Contact.</p>
+        <p><strong>Pros:</strong> Emotional, colorful. Lots of work with images, typography, video. Memorable at interviews.</p>
+        <p><strong>Cons:</strong> Needs good band/music photos — can use any real band's press kit.</p>
+        <p><strong>Inspiration:</strong> official sites of major artists (Billie Eilish, Arctic Monkeys, HOZIER), Bandcamp pages.</p>
+    </div>
+
+    <h3 data-lang="ru">3.4. Интернет-магазин (вёрстка)</h3>
+    <h3 data-lang="en">3.4. E-commerce (markup only)</h3>
+    <div class="real-world" data-lang="ru">
+        <p><strong>Страницы:</strong> Главная (витрина), Catalog (категории), Product Detail, Cart, Checkout.</p>
+        <p><strong>Плюсы:</strong> Показывает серьёзную вёрстку: карточки товаров, фильтры, формы, таблицы. Реалистичный проект.</p>
+        <p><strong>Минусы:</strong> Сложнее других. Корзина и checkout требуют времени. Внимание: <strong>только вёрстка</strong>, без реального функционала — это HTML/CSS-курс.</p>
+        <p><strong>Вдохновение:</strong> реальные магазины (ASOS, Amazon, ZARA), Dribbble «e-commerce».</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Pages:</strong> Home (showcase), Catalog (categories), Product Detail, Cart, Checkout.</p>
+        <p><strong>Pros:</strong> Shows serious coding: product cards, filters, forms, tables. Realistic project.</p>
+        <p><strong>Cons:</strong> More complex than others. Cart and checkout take time. Important: <strong>markup only</strong>, no real functionality — this is an HTML/CSS course.</p>
+        <p><strong>Inspiration:</strong> real stores (ASOS, Amazon, ZARA), Dribbble "e-commerce".</p>
+    </div>
+
+    <h3 data-lang="ru">3.5. Сайт мероприятия / фестиваля</h3>
+    <h3 data-lang="en">3.5. Event / festival site</h3>
+    <div class="real-world" data-lang="ru">
+        <p><strong>Страницы:</strong> Главная (дата + кнопка Register), Schedule (программа), Speakers (спикеры), Venue (место), Tickets, Contact.</p>
+        <p><strong>Плюсы:</strong> Яркий дизайн, таблицы с расписанием, карточки спикеров, карта. Интересно верстать.</p>
+        <p><strong>Минусы:</strong> Нужна креативная идея (конференция, фестиваль, выставка). Придумайте что-то местное: «Ашхабад JS Conf», «Ковровый фестиваль в Мары».</p>
+        <p><strong>Вдохновение:</strong> сайты React Summit, JSConf, любой IT-конференции.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Pages:</strong> Home (date + Register button), Schedule, Speakers, Venue, Tickets, Contact.</p>
+        <p><strong>Pros:</strong> Vivid design, schedule tables, speaker cards, maps. Fun to code.</p>
+        <p><strong>Cons:</strong> Needs a creative idea (conference, festival, exhibition). Come up with something local: "Ashgabat JS Conf", "Mary Carpet Festival".</p>
+        <p><strong>Inspiration:</strong> React Summit, JSConf, any IT conference site.</p>
+    </div>
+
+    <h3 data-lang="ru">3.6. Туристический сайт</h3>
+    <h3 data-lang="en">3.6. Travel site</h3>
+    <div class="real-world" data-lang="ru">
+        <p><strong>Страницы:</strong> Главная (направления), Destinations (каталог стран), Destination Detail (страна/город), Blog, Contact.</p>
+        <p><strong>Плюсы:</strong> Красивые фотографии, галереи, много свободы дизайна. Легко сделать «вау-эффект».</p>
+        <p><strong>Минусы:</strong> Фото нужны реальные качественные. Берите с Unsplash (бесплатно, 4K качество).</p>
+        <p><strong>Вдохновение:</strong> <a href="https://airbnb.com" target="_blank">airbnb.com</a>, <a href="https://booking.com" target="_blank">booking.com</a>, национальные тур-сайты.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Pages:</strong> Home (destinations), Destinations (country catalog), Destination Detail, Blog, Contact.</p>
+        <p><strong>Pros:</strong> Beautiful photos, galleries, lots of design freedom. Easy to create a "wow" effect.</p>
+        <p><strong>Cons:</strong> Needs real quality photos. Grab from Unsplash (free, 4K quality).</p>
+        <p><strong>Inspiration:</strong> <a href="https://airbnb.com" target="_blank">airbnb.com</a>, <a href="https://booking.com" target="_blank">booking.com</a>, national tourism sites.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CHOOSE ==================== -->
+    <h2 id="choose" data-lang="ru">4. Матрица выбора: какой проект ваш?</h2>
+    <h2 id="choose-en" data-lang="en">4. Choice matrix: which project is yours?</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Не можете выбрать? Это нормально. Используйте <strong>матрицу</strong>: оцените каждую идею по 5 критериям от 1 до 5. Идея с максимальной суммой — ваш проект. Это не наука, а инструмент чтобы <strong>перестать колебаться и начать</strong>.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Can't decide? Normal. Use the <strong>matrix</strong>: rate each idea on 5 criteria from 1 to 5. The idea with the max total is your project. Not science — a tool to <strong>stop hesitating and start</strong>.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Критерий</th><th>Портфолио</th><th>Лендинг</th><th>Музыка</th><th>Магазин</th><th>Фестиваль</th><th>Туризм</th></tr>
+        <tr><td>Мне <strong>интересна</strong> тема</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+        <tr><td>У меня <strong>есть контент</strong> (фото, тексты)</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+        <tr><td><strong>Посильная</strong> сложность</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+        <tr><td><strong>Полезно</strong> для моей карьеры</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+        <tr><td>Буду работать с удовольствием 3 недели</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Criterion</th><th>Portfolio</th><th>Landing</th><th>Music</th><th>Store</th><th>Event</th><th>Travel</th></tr>
+        <tr><td>I <strong>like</strong> the topic</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+        <tr><td>I <strong>have content</strong> (photos, text)</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+        <tr><td><strong>Manageable</strong> complexity</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+        <tr><td><strong>Useful</strong> for my career</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+        <tr><td>I'll enjoy 3 weeks of work</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td></tr>
+    </table>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Если нет очевидного лидера</strong> — берите сайт-портфолио. Это универсальный выбор. Плюсы для карьеры: покажете сразу на собеседовании. Минусы: нужны реальные проекты — но у вас есть 29 уроков курса, превратите их в секцию «Learning».</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>No clear winner?</strong> Go with the portfolio site. Universal choice. Career benefit: show it immediately at interviews. Downside: needs real projects — but you have 29 course lessons, turn them into a "Learning" section.</p>
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Не выбирайте тему, которая вам не интересна.</strong> «Тренажёрный зал» звучит классно, но если вы 3 недели должны работать над сайтом фитнеса — а спорт не любите — вы возненавидите проект на 4-й день. Выбирайте то, что <strong>реально нравится</strong>. Работа в удовольствие = лучший результат.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Don't pick a theme you don't care about.</strong> "Gym" sounds cool, but if you have to work on a fitness site for 3 weeks — and you don't like sports — you'll hate the project by day 4. Pick what <strong>you actually enjoy</strong>. Work with pleasure = best result.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== INSPIRATION ==================== -->
+    <h2 id="inspiration" data-lang="ru">5. Где брать вдохновение</h2>
+    <h2 id="inspiration-en" data-lang="en">5. Where to find inspiration</h2>
+
+    <div class="why" data-lang="ru">
+        <p>«Придумать всё из головы» — плохая стратегия. Дизайнеры смотрят десятки примеров перед тем как рисовать. Вы — тем более. Собирайте <strong>визуальный референс</strong> в папку или Pinterest-доску до того, как начнёте вёрстку. Чем больше насмотренность — тем лучше дизайн.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>"Make it up from scratch" is a bad strategy. Designers look at dozens of examples before drawing. You — even more so. Collect a <strong>visual reference</strong> in a folder or Pinterest board before coding. The more examples you see — the better the design.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Ресурс</th><th>Что там</th><th>Ссылка</th></tr>
+        <tr><td><strong>Awwwards</strong></td><td>Лучшие сайты года. Высокий уровень</td><td>awwwards.com</td></tr>
+        <tr><td><strong>Landbook</strong></td><td>Галерея лендингов</td><td>landbook.com</td></tr>
+        <tr><td><strong>Dribbble</strong></td><td>UI-дизайны от миллионов дизайнеров</td><td>dribbble.com</td></tr>
+        <tr><td><strong>Behance</strong></td><td>Портфолио дизайнеров (Adobe)</td><td>behance.net</td></tr>
+        <tr><td><strong>SiteInspire</strong></td><td>Подборка классных сайтов</td><td>siteinspire.com</td></tr>
+        <tr><td><strong>Figma Community</strong></td><td>Готовые макеты (можно использовать)</td><td>figma.com/community</td></tr>
+        <tr><td><strong>Pinterest</strong></td><td>«web design [ваша тема]» — находит тысячи примеров</td><td>pinterest.com</td></tr>
+        <tr><td><strong>Godly</strong></td><td>Reddit-подборка красивых сайтов</td><td>godly.website</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Resource</th><th>What's there</th><th>URL</th></tr>
+        <tr><td><strong>Awwwards</strong></td><td>Best sites of the year. High bar</td><td>awwwards.com</td></tr>
+        <tr><td><strong>Landbook</strong></td><td>Landing page gallery</td><td>landbook.com</td></tr>
+        <tr><td><strong>Dribbble</strong></td><td>UI designs from millions of designers</td><td>dribbble.com</td></tr>
+        <tr><td><strong>Behance</strong></td><td>Designer portfolios (Adobe)</td><td>behance.net</td></tr>
+        <tr><td><strong>SiteInspire</strong></td><td>Curated cool sites</td><td>siteinspire.com</td></tr>
+        <tr><td><strong>Figma Community</strong></td><td>Ready layouts (can use)</td><td>figma.com/community</td></tr>
+        <tr><td><strong>Pinterest</strong></td><td>"web design [your topic]" — thousands of examples</td><td>pinterest.com</td></tr>
+        <tr><td><strong>Godly</strong></td><td>Reddit-curated beautiful sites</td><td>godly.website</td></tr>
+    </table>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Процесс сбора референсов:</strong></p>
+        <ol>
+            <li>Создайте папку <code>inspiration/</code> в проекте</li>
+            <li>Соберите <strong>10-15 скриншотов</strong> с разных ресурсов — что вам нравится</li>
+            <li>Определите <strong>общие черты</strong>: «везде крупный hero», «минимализм», «большие фото»</li>
+            <li>Это будет ваш <strong>стиль</strong></li>
+        </ol>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Reference collection process:</strong></p>
+        <ol>
+            <li>Create an <code>inspiration/</code> folder in the project</li>
+            <li>Collect <strong>10-15 screenshots</strong> from different resources — what you like</li>
+            <li>Identify <strong>common traits</strong>: "big hero everywhere", "minimalism", "large photos"</li>
+            <li>That's your <strong>style</strong></li>
+        </ol>
+    </div>
+
+    <div class="important" data-lang="ru">
+        <strong>Вдохновляться ≠ копировать!</strong> Если скопируете дизайн 1 в 1 — это плагиат. Берите из одного сайта цветовую палитру, из другого — типографику, из третьего — структуру hero. Ваш проект = <strong>микс</strong> идей, а не копия.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Inspiration ≠ copying!</strong> If you copy a design 1:1 — that's plagiarism. Take a color palette from one site, typography from another, hero structure from a third. Your project = <strong>a mix</strong> of ideas, not a clone.
+    </div>
+
+    <hr>
+
+    <!-- ==================== REQUIREMENTS ==================== -->
+    <h2 id="requirements" data-lang="ru">6. Требования к финальному проекту</h2>
+    <h2 id="requirements-en" data-lang="en">6. Final project requirements</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Чтобы проект был зачтён — он должен отвечать списку требований. Это не придирки — это минимальный набор навыков, который должен быть в портфолио junior-разработчика.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>For the project to be accepted — it must meet the requirements list. Not nitpicking — the minimum skill set that should be in a junior portfolio.</p>
+    </div>
+
+    <h3 data-lang="ru">Обязательно (без этого не зачёт):</h3>
+    <h3 data-lang="en">Mandatory (without these — no credit):</h3>
+    <ul data-lang="ru">
+        <li>Минимум <strong>3 страницы</strong> (HTML-файла) с навигацией между ними</li>
+        <li>Семантический HTML: <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code></li>
+        <li>CSS в отдельных файлах (минимум <code>style.css</code>)</li>
+        <li>CSS-переменные для цветов и размеров</li>
+        <li>Flexbox <strong>и</strong> Grid — обе техники используются</li>
+        <li>Адаптивность для 3 размеров: 375px, 768px, 1440px</li>
+        <li>Навигация работает на всех страницах</li>
+        <li>Минимум <strong>одна форма</strong> (контакты, подписка, регистрация)</li>
+        <li>Hover-эффекты на всех интерактивных элементах</li>
+        <li>Transitions для плавности</li>
+        <li>Задеплоен на GitHub Pages или Netlify</li>
+        <li>README.md в репозитории</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Minimum <strong>3 pages</strong> (HTML files) with navigation</li>
+        <li>Semantic HTML: <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code></li>
+        <li>CSS in separate files (minimum <code>style.css</code>)</li>
+        <li>CSS variables for colors and sizes</li>
+        <li>Flexbox <strong>and</strong> Grid — both used</li>
+        <li>Responsive at 3 sizes: 375px, 768px, 1440px</li>
+        <li>Navigation works on all pages</li>
+        <li>Minimum <strong>one form</strong> (contact, subscribe, signup)</li>
+        <li>Hover effects on all interactive elements</li>
+        <li>Transitions for smoothness</li>
+        <li>Deployed on GitHub Pages or Netlify</li>
+        <li>README.md in the repo</li>
+    </ul>
+
+    <h3 data-lang="ru">Рекомендуется (для хорошей оценки):</h3>
+    <h3 data-lang="en">Recommended (for a good grade):</h3>
+    <ul data-lang="ru">
+        <li>Dark mode (переключатель)</li>
+        <li>Анимации при загрузке (fadeIn каскадом)</li>
+        <li>Bootstrap или Tailwind (на выбор)</li>
+        <li>Bootstrap Icons или иконки из Figma</li>
+        <li>Google Fonts (не системные шрифты)</li>
+        <li>Валидный HTML (проверить на <code>validator.w3.org</code>)</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Dark mode (toggle)</li>
+        <li>Load animations (cascading fadeIn)</li>
+        <li>Bootstrap or Tailwind (your pick)</li>
+        <li>Bootstrap Icons or Figma icons</li>
+        <li>Google Fonts (not system fonts)</li>
+        <li>Valid HTML (check on <code>validator.w3.org</code>)</li>
+    </ul>
+
+    <hr>
+
+    <!-- ==================== SITEMAP ==================== -->
+    <h2 id="sitemap" data-lang="ru">7. Sitemap — карта страниц</h2>
+    <h2 id="sitemap-en" data-lang="en">7. Sitemap — page map</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Sitemap — это <strong>список всех страниц</strong> вашего сайта и связи между ними. Рисуется за 10 минут на бумаге. Даёт чёткое понимание: сколько HTML-файлов нужно создать, какая навигация, что содержит каждая страница.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Sitemap — a <strong>list of all pages</strong> on your site and the links between them. Drawn in 10 min on paper. Gives a clear picture: how many HTML files to create, what navigation, what each page contains.</p>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    Пример sitemap для сайта-портфолио:
+
+    ┌─────────────┐
+    │  Главная    │  (index.html)
+    │  (Home)     │
+    └──┬───┬───┬──┘
+       │   │   │
+    ┌──▼─┐ │ ┌─▼────┐
+    │About│ │ │Contact│
+    └─────┘ │ └──────┘
+            │
+       ┌────▼────┐
+       │Projects │  (projects.html)
+       └────┬────┘
+            │
+       ┌────▼──────┐
+       │Project    │  (project.html, детальная)
+       │Detail     │
+       └───────────┘</div>
+    <div class="diagram" data-lang="en">
+    Sitemap example for a portfolio site:
+
+    ┌─────────────┐
+    │  Home       │  (index.html)
+    └──┬───┬───┬──┘
+       │   │   │
+    ┌──▼─┐ │ ┌─▼────┐
+    │About│ │ │Contact│
+    └─────┘ │ └──────┘
+            │
+       ┌────▼────┐
+       │Projects │  (projects.html)
+       └────┬────┘
+            │
+       ┌────▼──────┐
+       │Project    │  (project.html, detail)
+       │Detail     │
+       └───────────┘</div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Простой формат sitemap в markdown:</strong></p>
+<pre><code># Sitemap: Кондитерская "Sladko"
+
+- [ ] index.html      — Главная (hero, меню, галерея, отзывы)
+- [ ] menu.html       — Полное меню (3 категории)
+- [ ] about.html      — О нас (история, команда)
+- [ ] contact.html    — Контакты (форма, карта, телефоны)
+
+Навигация (общая на всех страницах):
+Главная | Меню | О нас | Контакты</code></pre>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Simple sitemap format in markdown:</strong></p>
+<pre><code># Sitemap: Bakery "Sladko"
+
+- [ ] index.html      — Home (hero, menu, gallery, testimonials)
+- [ ] menu.html       — Full menu (3 categories)
+- [ ] about.html      — About (history, team)
+- [ ] contact.html    — Contact (form, map, phones)
+
+Navigation (same on all pages):
+Home | Menu | About | Contact</code></pre>
+    </div>
+
+    <hr>
+
+    <!-- ==================== WIREFRAME ==================== -->
+    <h2 id="wireframe" data-lang="ru">8. Wireframe — скелет каждой страницы</h2>
+    <h2 id="wireframe-en" data-lang="en">8. Wireframe — skeleton of each page</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Wireframe — это <strong>схематичный набросок</strong> страницы: прямоугольники вместо реальных блоков, без цветов, без красоты. Цель — <strong>увидеть структуру</strong>. Делается на бумаге или в Figma/tldraw за 15-30 минут на страницу.</p>
+        <p>Зачем? Когда структура ясна — вёрстка идёт в 3 раза быстрее. Не нужно думать «а где разместить features» — решение принято заранее.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Wireframe — a <strong>schematic sketch</strong> of a page: rectangles instead of real blocks, no colors, no beauty. Goal — <strong>see the structure</strong>. Done on paper or in Figma/tldraw in 15-30 min per page.</p>
+        <p>Why? When structure is clear — coding is 3× faster. No need to think "where to place features" — decided in advance.</p>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    Пример wireframe главной страницы (desktop):
+
+    ┌──────────────────────────────────────────┐
+    │ [Logo]      Nav Nav Nav Nav      [CTA]   │ Header
+    ├──────────────────────────────────────────┤
+    │                                          │
+    │            H1 Big Headline               │
+    │            Subheading text               │
+    │              [CTA Button]                │ Hero
+    │                                          │
+    ├──────────────────────────────────────────┤
+    │         [Icon] [Icon] [Icon]             │
+    │         Title  Title  Title              │ Features
+    │         Text   Text   Text               │
+    ├──────────────────────────────────────────┤
+    │   ┌─────┐  ┌─────┐  ┌─────┐              │
+    │   │Card │  │Card │  │Card │              │ Products
+    │   └─────┘  └─────┘  └─────┘              │
+    ├──────────────────────────────────────────┤
+    │  Col 1    Col 2    Col 3                 │ Footer
+    └──────────────────────────────────────────┘</div>
+    <div class="diagram" data-lang="en">
+    Home page wireframe example (desktop):
+
+    ┌──────────────────────────────────────────┐
+    │ [Logo]      Nav Nav Nav Nav      [CTA]   │ Header
+    ├──────────────────────────────────────────┤
+    │                                          │
+    │            H1 Big Headline               │
+    │            Subheading text               │
+    │              [CTA Button]                │ Hero
+    │                                          │
+    ├──────────────────────────────────────────┤
+    │         [Icon] [Icon] [Icon]             │
+    │         Title  Title  Title              │ Features
+    │         Text   Text   Text               │
+    ├──────────────────────────────────────────┤
+    │   ┌─────┐  ┌─────┐  ┌─────┐              │
+    │   │Card │  │Card │  │Card │              │ Products
+    │   └─────┘  └─────┘  └─────┘              │
+    ├──────────────────────────────────────────┤
+    │  Col 1    Col 2    Col 3                 │ Footer
+    └──────────────────────────────────────────┘</div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Инструменты для wireframe (на выбор):</strong></p>
+        <ul>
+            <li><strong>Бумага + ручка</strong> — самый быстрый способ (5 минут на страницу)</li>
+            <li><strong>tldraw.com</strong> — онлайн, простой как бумага, бесплатно</li>
+            <li><strong>Excalidraw.com</strong> — онлайн-sketches, бесплатно</li>
+            <li><strong>Figma</strong> — если уже в Figma, рисуйте прямоугольниками</li>
+        </ul>
+        <p>Не тратьте время на красивые wireframe. Ваша задача — <strong>быстро</strong> накидать структуру, не делать произведение искусства.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Wireframe tools (pick one):</strong></p>
+        <ul>
+            <li><strong>Paper + pen</strong> — fastest (5 min per page)</li>
+            <li><strong>tldraw.com</strong> — online, simple as paper, free</li>
+            <li><strong>Excalidraw.com</strong> — online sketching, free</li>
+            <li><strong>Figma</strong> — if already in Figma, use rectangles</li>
+        </ul>
+        <p>Don't waste time on pretty wireframes. Your goal — <strong>quickly</strong> sketch the structure, not make art.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== TOKENS ==================== -->
+    <h2 id="tokens" data-lang="ru">9. Design tokens: цвета, шрифты, spacing</h2>
+    <h2 id="tokens-en" data-lang="en">9. Design tokens: colors, fonts, spacing</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Помните урок 29? Design tokens — это <strong>визуальный словарь</strong> вашего проекта: цвета, шрифты, отступы. Определите их <strong>до</strong> написания HTML/CSS, сохраните в <code>tokens.css</code>, используйте <strong>только через переменные</strong>.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Remember lesson 29? Design tokens — the <strong>visual vocabulary</strong> of your project: colors, fonts, spacing. Define them <strong>before</strong> writing HTML/CSS, save in <code>tokens.css</code>, use <strong>only via variables</strong>.</p>
+    </div>
+
+    <h3 data-lang="ru">Цветовая палитра — шаблон:</h3>
+    <h3 data-lang="en">Color palette — template:</h3>
+<pre><code>:root {
+    /* Основные */
+    --color-primary: #3B82F6;       /* Основной цвет бренда */
+    --color-primary-dark: #1D4ED8;  /* Hover-состояние */
+    --color-accent: #F59E0B;        /* Акцент (редко, для выделений) */
+
+    /* Текст */
+    --color-text: #1E293B;          /* Основной текст */
+    --color-text-muted: #64748B;    /* Вторичный текст */
+
+    /* Фон */
+    --color-bg: #FFFFFF;            /* Основной фон */
+    --color-bg-alt: #F8FAFC;        /* Альтернативный фон (секции) */
+
+    /* Системные */
+    --color-border: #E2E8F0;
+    --color-success: #10B981;
+    --color-error: #EF4444;
+}</code></pre>
+
+    <h3 data-lang="ru">Типографика — шаблон:</h3>
+    <h3 data-lang="en">Typography — template:</h3>
+<pre><code>:root {
+    --font-primary: 'Inter', sans-serif;
+    --font-heading: 'Poppins', sans-serif;  /* Опционально */
+
+    --fs-h1: 48px;
+    --fs-h2: 36px;
+    --fs-h3: 24px;
+    --fs-h4: 20px;
+    --fs-body: 16px;
+    --fs-small: 14px;
+}</code></pre>
+
+    <h3 data-lang="ru">Spacing — шаблон:</h3>
+    <h3 data-lang="en">Spacing — template:</h3>
+<pre><code>:root {
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 48px;
+    --space-2xl: 96px;
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+}</code></pre>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Сервисы для выбора палитры:</strong></p>
+        <ul>
+            <li><strong>coolors.co</strong> — генератор палитр, нажимаете Space для новой</li>
+            <li><strong>realtimecolors.com</strong> — тестируете палитру сразу на макете</li>
+            <li><strong>uicolors.app</strong> — создаёт 11-оттеночную шкалу в стиле Tailwind</li>
+            <li><strong>tailwindcss.com/docs/customizing-colors</strong> — готовая палитра Tailwind (копируйте HEX)</li>
+        </ul>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Palette-picking services:</strong></p>
+        <ul>
+            <li><strong>coolors.co</strong> — palette generator, hit Space for a new one</li>
+            <li><strong>realtimecolors.com</strong> — test the palette directly on a mockup</li>
+            <li><strong>uicolors.app</strong> — generates an 11-shade scale Tailwind-style</li>
+            <li><strong>tailwindcss.com/docs/customizing-colors</strong> — ready Tailwind palette (copy HEX)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SETUP ==================== -->
+    <h2 id="setup" data-lang="ru">10. Настройка проекта: git + структура папок</h2>
+    <h2 id="setup-en" data-lang="en">10. Project setup: git + folder structure</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Финальный проект должен быть в <strong>git-репозитории</strong> с первого дня. Почему? Чтобы показать на собеседовании GitHub-ссылку. Чтобы видеть историю изменений. Чтобы деплоить через GitHub Pages.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>The final project must be in a <strong>git repo</strong> from day one. Why? To show a GitHub link at an interview. To see change history. To deploy via GitHub Pages.</p>
+    </div>
+
+    <h3 data-lang="ru">Шаги создания:</h3>
+    <h3 data-lang="en">Creation steps:</h3>
+    <ol data-lang="ru">
+        <li>Создайте папку <code>my-project-name</code> на компьютере</li>
+        <li>Создайте внутри структуру папок:
+<pre><code>my-project-name/
+├── index.html
+├── about.html
+├── contact.html
+├── css/
+│   ├── tokens.css
+│   ├── base.css
+│   ├── components.css
+│   └── style.css
+├── images/
+├── icons/
+├── inspiration/       (скриншоты-референсы)
+├── README.md
+├── plan.md            (ваш план: sitemap + wireframe)
+└── .gitignore</code></pre>
+        </li>
+        <li>Инициализируйте git: <code>git init</code></li>
+        <li>Добавьте <code>.gitignore</code> (исключите <code>.DS_Store</code>, <code>node_modules</code>)</li>
+        <li>Создайте репозиторий на GitHub (<strong>public</strong>, чтобы задеплоить)</li>
+        <li>Свяжите: <code>git remote add origin &lt;url&gt;</code></li>
+        <li>Первый коммит: <code>git add . && git commit -m "Initial setup"</code></li>
+        <li>Push: <code>git push -u origin main</code></li>
+    </ol>
+    <ol data-lang="en">
+        <li>Create folder <code>my-project-name</code> on your computer</li>
+        <li>Create the folder structure inside:
+<pre><code>my-project-name/
+├── index.html
+├── about.html
+├── contact.html
+├── css/
+│   ├── tokens.css
+│   ├── base.css
+│   ├── components.css
+│   └── style.css
+├── images/
+├── icons/
+├── inspiration/       (reference screenshots)
+├── README.md
+├── plan.md            (your plan: sitemap + wireframe)
+└── .gitignore</code></pre>
+        </li>
+        <li>Initialize git: <code>git init</code></li>
+        <li>Add <code>.gitignore</code> (exclude <code>.DS_Store</code>, <code>node_modules</code>)</li>
+        <li>Create a GitHub repo (<strong>public</strong>, to enable deploy)</li>
+        <li>Connect: <code>git remote add origin &lt;url&gt;</code></li>
+        <li>First commit: <code>git add . && git commit -m "Initial setup"</code></li>
+        <li>Push: <code>git push -u origin main</code></li>
+    </ol>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>README.md — шаблон (заполните сейчас, обновите в конце):</strong></p>
+<pre><code># Project Name
+
+Короткое описание проекта (1-2 предложения).
+
+## 🔗 Demo
+[Live site →](https://your-username.github.io/project-name/)
+
+## 📄 Страницы
+- Главная — hero, услуги, галерея
+- О нас — история, команда
+- Контакты — форма, карта
+
+## 🛠 Tech Stack
+- HTML5 (семантический)
+- CSS3 (Flexbox, Grid, CSS Variables, Animations)
+- Адаптивный дизайн (mobile-first)
+
+## 📸 Screenshots
+![Desktop](screenshots/desktop.png)
+![Mobile](screenshots/mobile.png)
+
+## 👤 Автор
+[Your Name](https://github.com/username)</code></pre>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>README.md — template (fill in now, update at the end):</strong></p>
+<pre><code># Project Name
+
+Short description (1-2 sentences).
+
+## 🔗 Demo
+[Live site →](https://your-username.github.io/project-name/)
+
+## 📄 Pages
+- Home — hero, services, gallery
+- About — story, team
+- Contact — form, map
+
+## 🛠 Tech Stack
+- HTML5 (semantic)
+- CSS3 (Flexbox, Grid, CSS Variables, Animations)
+- Responsive design (mobile-first)
+
+## 📸 Screenshots
+![Desktop](screenshots/desktop.png)
+![Mobile](screenshots/mobile.png)
+
+## 👤 Author
+[Your Name](https://github.com/username)</code></pre>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CHECKLIST ==================== -->
+    <h2 id="checklist" data-lang="ru">11. Чеклист готовности к разработке</h2>
+    <h2 id="checklist-en" data-lang="en">11. Readiness checklist</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Перед переходом к 31-му занятию (начало вёрстки) — пройдитесь по чеклисту. Если все галочки — готовы. Если нет — <strong>не начинайте писать код</strong>, доделайте планирование.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Before moving to lesson 31 (coding starts) — go through the checklist. All checkmarks — you're ready. Not all — <strong>don't start coding</strong>, finish planning.</p>
+    </div>
+
+    <div class="try-it" data-lang="ru">
+        <ul>
+            <li>✅ Выбрана тема проекта (не колеблюсь больше)</li>
+            <li>✅ Собраны 10+ скриншотов-референсов в <code>inspiration/</code></li>
+            <li>✅ Есть <code>plan.md</code> с sitemap и списком страниц</li>
+            <li>✅ Нарисованы wireframes для всех страниц (хотя бы карандашом)</li>
+            <li>✅ Выбран шрифт (или два) из Google Fonts</li>
+            <li>✅ Определена цветовая палитра (5-8 цветов с HEX)</li>
+            <li>✅ <code>tokens.css</code> заполнен переменными</li>
+            <li>✅ Создан git-репозиторий (локально + на GitHub)</li>
+            <li>✅ Структура папок создана</li>
+            <li>✅ README.md заполнен (черновая версия)</li>
+            <li>✅ Знаю, где буду брать реальный контент (тексты, фото)</li>
+        </ul>
+    </div>
+    <div class="try-it" data-lang="en">
+        <ul>
+            <li>✅ Project topic picked (no more hesitation)</li>
+            <li>✅ 10+ reference screenshots collected in <code>inspiration/</code></li>
+            <li>✅ <code>plan.md</code> with sitemap and page list exists</li>
+            <li>✅ Wireframes drawn for all pages (even in pencil)</li>
+            <li>✅ Font (or two) picked from Google Fonts</li>
+            <li>✅ Color palette defined (5-8 colors with HEX)</li>
+            <li>✅ <code>tokens.css</code> filled with variables</li>
+            <li>✅ Git repo created (local + GitHub)</li>
+            <li>✅ Folder structure created</li>
+            <li>✅ README.md filled in (draft version)</li>
+            <li>✅ Know where to get real content (text, photos)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== PITFALLS ==================== -->
+    <h2 id="pitfalls" data-lang="ru">12. 8 ошибок на этапе планирования</h2>
+    <h2 id="pitfalls-en" data-lang="en">12. 8 mistakes at the planning stage</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td>«Сделаю <strong>5 раз больше</strong>, чем успеваю»</td><td>3 страницы максимум. Лучше 3 идеальные, чем 10 кривых</td></tr>
+        <tr><td>Выбрали тему ради сложности</td><td>Выбирайте ту, которая <strong>нравится</strong>, а не «впечатляет»</td></tr>
+        <tr><td>Нет wireframe — «разберусь по ходу»</td><td>15 минут wireframe = 3 часа экономии на вёрстке</td></tr>
+        <tr><td>Цвета выбраны <strong>в процессе</strong>, не заранее</td><td>Палитра определяется ДО написания кода</td></tr>
+        <tr><td>Копирование чужого дизайна 1:1</td><td>Микс из 5-10 референсов, не клон</td></tr>
+        <tr><td>Забыл про реальный контент</td><td>Фото — Unsplash. Тексты — о реальной теме</td></tr>
+        <tr><td>Git создан «потом, когда будет готово»</td><td>Git с первого дня — всегда</td></tr>
+        <tr><td>Нет <code>README.md</code></td><td>README — лицо проекта, обязателен</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td>"I'll build <strong>5× more</strong> than I have time for"</td><td>3 pages max. Better 3 perfect than 10 crooked</td></tr>
+        <tr><td>Picked theme for complexity</td><td>Pick one you <strong>enjoy</strong>, not "impressive"</td></tr>
+        <tr><td>No wireframe — "I'll figure it out"</td><td>15 min of wireframe = 3 hours saved on coding</td></tr>
+        <tr><td>Colors chosen <strong>while coding</strong>, not upfront</td><td>Palette defined BEFORE code</td></tr>
+        <tr><td>Copying someone's design 1:1</td><td>Mix of 5-10 references, not a clone</td></tr>
+        <tr><td>Forgot about real content</td><td>Photos — Unsplash. Text — about the real topic</td></tr>
+        <tr><td>Git created "later, when ready"</td><td>Git from day one — always</td></tr>
+        <tr><td>No <code>README.md</code></td><td>README is the project's face, mandatory</td></tr>
+    </table>
+
+    <hr>
+
+    <div class="summary" data-lang="ru">
+        <strong>Итог занятия 30 — всё готово к разработке:</strong>
+        <ol>
+            <li>Тема выбрана осознанно (по 5 критериям)</li>
+            <li>10+ референсов собраны</li>
+            <li>Sitemap и wireframes готовы</li>
+            <li>Цветовая палитра и шрифты определены</li>
+            <li>Tokens в CSS-переменных</li>
+            <li>Git + GitHub настроены</li>
+            <li>Структура папок создана</li>
+            <li>README.md написан (черновик)</li>
+            <li>На 31-м занятии — начинаем писать HTML</li>
+        </ol>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>Lesson 31 outcome — everything ready for development:</strong>
+        <ol>
+            <li>Topic picked intentionally (by 5 criteria)</li>
+            <li>10+ references collected</li>
+            <li>Sitemap and wireframes ready</li>
+            <li>Color palette and fonts defined</li>
+            <li>Tokens in CSS variables</li>
+            <li>Git + GitHub set up</li>
+            <li>Folder structure created</li>
+            <li>README.md written (draft)</li>
+            <li>In lesson 31 — we start writing HTML</li>
+        </ol>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Зачем вообще планирование до кода?</li>
+            <li>5 критериев хорошего проекта для портфолио?</li>
+            <li>Где искать вдохновение (минимум 3 ресурса)?</li>
+            <li>Что такое sitemap и sitemap ≠ wireframe — в чём разница?</li>
+            <li>Какие design tokens должны быть определены до кода?</li>
+            <li>Почему git должен быть создан с первого дня?</li>
+            <li>Минимальный набор требований к финальному проекту?</li>
+            <li>3 ошибки на этапе планирования?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>Why plan before coding at all?</li>
+            <li>5 criteria of a good portfolio project?</li>
+            <li>Where to look for inspiration (3+ resources)?</li>
+            <li>What's a sitemap and how is it different from a wireframe?</li>
+            <li>Which design tokens must be defined before code?</li>
+            <li>Why must git be created from day one?</li>
+            <li>Minimum requirements for the final project?</li>
+            <li>3 planning mistakes?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 9 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 9: Мини-проект — Личная визитка</span>
+    <span class="nav-title" data-lang="en">Lesson 9: Mini-project — Personal Business Card</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+
+    <p class="subtitle" data-lang="ru">Занятие 9: Мини-проект #1 — Личная визитка</p>
+    <p class="subtitle" data-lang="en">Lesson 9: Mini-project #1 — Personal Business Card</p>
+
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <!-- УРОК 9.1 -->
+    <h2 data-lang="ru">&#x1F4DA; УРОК 9.1: ПЛАНИРОВАНИЕ СТРАНИЦЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; Lesson 9.1: PAGE PLANNING</h2>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Главное правило:</strong> Всегда планируй перед кодированием! Сначала — содержание, потом — структура, потом — стили.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Main rule:</strong> Always plan before coding! First — content, then — structure, then — styles.
+    </div>
+
+    <h3 data-lang="ru">Этапы планирования</h3>
+    <h3 data-lang="en">Planning steps</h3>
+
+    <ol data-lang="ru">
+        <li><strong>Определить содержание</strong> — какой текст, изображения, ссылки будут на странице</li>
+        <li><strong>Нарисовать wireframe</strong> — простой набросок расположения элементов</li>
+        <li><strong>Определить HTML-теги</strong> — какие теги использовать для каждого блока</li>
+        <li><strong>Определить CSS-свойства</strong> — какие стили понадобятся</li>
+    </ol>
+    <ol data-lang="en">
+        <li><strong>Define content</strong> — what text, images, links will be on the page</li>
+        <li><strong>Draw a wireframe</strong> — simple sketch of element placement</li>
+        <li><strong>Choose HTML tags</strong> — which tags to use for each section</li>
+        <li><strong>Plan CSS properties</strong> — which styles you'll need</li>
+    </ol>
+
+    <div class="definition" data-lang="ru">
+        <strong>Wireframe</strong> — это простой набросок (схема) страницы. Показывает расположение блоков без деталей оформления.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Wireframe</strong> — a simple sketch (diagram) of a page. Shows block placement without design details.
+    </div>
+
+    <hr>
+
+    <!-- УРОК 9.2 -->
+    <h2 data-lang="ru">&#x1F4DA; УРОК 9.2: РАЗБОР ПРИМЕРА ВИЗИТКИ</h2>
+    <h2 data-lang="en">&#x1F4DA; Lesson 9.2: BUSINESS CARD EXAMPLE ANALYSIS</h2>
+
+    <h3 data-lang="ru">Структура визитки</h3>
+    <h3 data-lang="en">Card structure</h3>
+
+    <div class="diagram" data-lang="ru">
+    &lt;div class="card"&gt;
+      &#x251C;&#x2500; &lt;img class="avatar"&gt;   &#x2500; фото (круглое)
+      &#x251C;&#x2500; &lt;h1&gt;                  &#x2500; имя
+      &#x251C;&#x2500; &lt;p class="role"&gt;      &#x2500; профессия
+      &#x251C;&#x2500; &lt;p class="bio"&gt;       &#x2500; описание
+      &#x251C;&#x2500; &lt;div class="contacts"&gt;&#x2500; контакты
+      &#x251C;&#x2500; &lt;div class="skills"&gt;  &#x2500; навыки (бейджи)
+      &#x2514;&#x2500; &lt;div class="socials"&gt; &#x2500; соцсети (кнопки)
+    &lt;/div&gt;</div>
+
+    <div class="diagram" data-lang="en">
+    &lt;div class="card"&gt;
+      &#x251C;&#x2500; &lt;img class="avatar"&gt;   &#x2500; photo (round)
+      &#x251C;&#x2500; &lt;h1&gt;                  &#x2500; name
+      &#x251C;&#x2500; &lt;p class="role"&gt;      &#x2500; profession
+      &#x251C;&#x2500; &lt;p class="bio"&gt;       &#x2500; description
+      &#x251C;&#x2500; &lt;div class="contacts"&gt;&#x2500; contacts
+      &#x251C;&#x2500; &lt;div class="skills"&gt;  &#x2500; skills (badges)
+      &#x2514;&#x2500; &lt;div class="socials"&gt; &#x2500; social links (buttons)
+    &lt;/div&gt;</div>
+
+    <h3 data-lang="ru">Файлы проекта</h3>
+    <h3 data-lang="en">Project files</h3>
+
+    <div class="diagram">
+    my-card/
+    &#x251C;&#x2500; index.html    (HTML-&#x0440;&#x0430;&#x0437;&#x043C;&#x0435;&#x0442;&#x043A;&#x0430; / HTML markup)
+    &#x2514;&#x2500; style.css     (CSS-&#x0441;&#x0442;&#x0438;&#x043B;&#x0438; / CSS styles)</div>
+
+    <h3 data-lang="ru">Ключевые CSS-свойства</h3>
+    <h3 data-lang="en">Key CSS properties</h3>
+
+    <table data-lang="ru">
+        <tr><th>Что</th><th>CSS</th><th>Зачем</th></tr>
+        <tr><td>Круглый аватар</td><td><code>border-radius: 50%</code></td><td>Квадрат &#x2192; круг</td></tr>
+        <tr><td>Тень карточки</td><td><code>box-shadow: 0 20px 60px rgba(0,0,0,0.3)</code></td><td>Карточка «парит»</td></tr>
+        <tr><td>Скругление углов</td><td><code>border-radius: 20px</code></td><td>Мягкие углы карточки</td></tr>
+        <tr><td>Центрирование</td><td><code>display: flex</code> + <code>justify-content</code> + <code>align-items</code></td><td>Карточка по центру экрана</td></tr>
+        <tr><td>Высота экрана</td><td><code>min-height: 100vh</code></td><td>Фон на всю высоту</td></tr>
+        <tr><td>Градиент</td><td><code>background: linear-gradient(...)</code></td><td>Красивый фон</td></tr>
+        <tr><td>Бейджи навыков</td><td><code>display: inline-block</code></td><td>Строчные с padding</td></tr>
+        <tr><td>Hover-эффект</td><td><code>:hover</code></td><td>Реакция при наведении</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>What</th><th>CSS</th><th>Why</th></tr>
+        <tr><td>Round avatar</td><td><code>border-radius: 50%</code></td><td>Square &#x2192; circle</td></tr>
+        <tr><td>Card shadow</td><td><code>box-shadow: 0 20px 60px rgba(0,0,0,0.3)</code></td><td>Card "floats"</td></tr>
+        <tr><td>Rounded corners</td><td><code>border-radius: 20px</code></td><td>Soft card corners</td></tr>
+        <tr><td>Centering</td><td><code>display: flex</code> + <code>justify-content</code> + <code>align-items</code></td><td>Card in screen center</td></tr>
+        <tr><td>Screen height</td><td><code>min-height: 100vh</code></td><td>Full-height background</td></tr>
+        <tr><td>Gradient</td><td><code>background: linear-gradient(...)</code></td><td>Beautiful background</td></tr>
+        <tr><td>Skill badges</td><td><code>display: inline-block</code></td><td>Inline with padding</td></tr>
+        <tr><td>Hover effect</td><td><code>:hover</code></td><td>Response on hover</td></tr>
+    </table>
+
+    <hr>
+
+    <!-- УРОК 9.3 -->
+    <h2 data-lang="ru">&#x1F4DA; УРОК 9.3: СОЗДАНИЕ СВОЕЙ ВИЗИТКИ</h2>
+    <h2 data-lang="en">&#x1F4DA; Lesson 9.3: CREATING YOUR OWN CARD</h2>
+
+    <h3 data-lang="ru">Пошаговый план</h3>
+    <h3 data-lang="en">Step-by-step plan</h3>
+
+    <ol data-lang="ru">
+        <li>Создать папку <code>my-card</code></li>
+        <li>Создать <code>index.html</code> — базовая структура</li>
+        <li>Создать <code>style.css</code> — подключить через <code>&lt;link&gt;</code></li>
+        <li>Написать HTML: карточка с аватаром, именем, описанием</li>
+        <li>Добавить CSS: фон, карточка, аватар</li>
+        <li>Добавить навыки (бейджи) и соцсети (кнопки)</li>
+        <li>Выбрать цветовую тему</li>
+        <li>Проверить в браузере</li>
+    </ol>
+    <ol data-lang="en">
+        <li>Create a folder <code>my-card</code></li>
+        <li>Create <code>index.html</code> — basic structure</li>
+        <li>Create <code>style.css</code> — link it via <code>&lt;link&gt;</code></li>
+        <li>Write HTML: card with avatar, name, description</li>
+        <li>Add CSS: background, card, avatar</li>
+        <li>Add skills (badges) and social links (buttons)</li>
+        <li>Choose a color theme</li>
+        <li>Test in browser</li>
+    </ol>
+
+    <h3 data-lang="ru">Шаблон HTML</h3>
+    <h3 data-lang="en">HTML template</h3>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Моя визитка&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="card"&gt;
+        &lt;img src="photo.jpg" alt="Моё фото" class="avatar"&gt;
+        &lt;h1&gt;Ваше Имя&lt;/h1&gt;
+        &lt;p class="role"&gt;Ваша профессия&lt;/p&gt;
+        &lt;p class="bio"&gt;Краткое описание...&lt;/p&gt;
+        &lt;div class="contacts"&gt;
+            &lt;a href="mailto:you@mail.com"&gt;&#x1F4E7; you@mail.com&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class="skills"&gt;
+            &lt;span class="skill"&gt;HTML&lt;/span&gt;
+            &lt;span class="skill"&gt;CSS&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="socials"&gt;
+            &lt;a href="#" class="social-link"&gt;GitHub&lt;/a&gt;
+            &lt;a href="#" class="social-link"&gt;Telegram&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <h3 data-lang="ru">Цветовые темы</h3>
+    <h3 data-lang="en">Color themes</h3>
+
+    <table data-lang="ru">
+        <tr><th>Тема</th><th>Фон страницы</th><th>Акцент</th></tr>
+        <tr><td>Синяя (по умолчанию)</td><td><code>#667eea</code></td><td><code>#667eea</code></td></tr>
+        <tr><td>Тёмная</td><td><code>#1a1a2e</code></td><td><code>#e94560</code></td></tr>
+        <tr><td>Зелёная</td><td><code>#11998e</code></td><td><code>#38ef7d</code></td></tr>
+        <tr><td>Оранжевая</td><td><code>#fc4a1a</code></td><td><code>#f7b733</code></td></tr>
+        <tr><td>Розовая</td><td><code>#ee9ca7</code></td><td><code>#ffdde1</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Theme</th><th>Page background</th><th>Accent</th></tr>
+        <tr><td>Blue (default)</td><td><code>#667eea</code></td><td><code>#667eea</code></td></tr>
+        <tr><td>Dark</td><td><code>#1a1a2e</code></td><td><code>#e94560</code></td></tr>
+        <tr><td>Green</td><td><code>#11998e</code></td><td><code>#38ef7d</code></td></tr>
+        <tr><td>Orange</td><td><code>#fc4a1a</code></td><td><code>#f7b733</code></td></tr>
+        <tr><td>Pink</td><td><code>#ee9ca7</code></td><td><code>#ffdde1</code></td></tr>
+    </table>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>border-radius: 50%</code> — круглое фото (width и height должны быть одинаковые!)</li>
+            <li><code>box-shadow</code> — тень элемента</li>
+            <li><code>display: inline-block</code> — строчный элемент с padding и margin</li>
+            <li><code>:hover</code> — стили при наведении мыши</li>
+            <li><code>text-decoration: none</code> — убрать подчёркивание у ссылок</li>
+            <li>CSS-файл подключается через <code>&lt;link rel="stylesheet" href="style.css"&gt;</code></li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>border-radius: 50%</code> — round photo (width and height must be equal!)</li>
+            <li><code>box-shadow</code> — element shadow</li>
+            <li><code>display: inline-block</code> — inline element with padding and margin</li>
+            <li><code>:hover</code> — styles on mouse hover</li>
+            <li><code>text-decoration: none</code> — remove link underline</li>
+            <li>CSS file is linked via <code>&lt;link rel="stylesheet" href="style.css"&gt;</code></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Создать свою визитку</strong> — используя свои данные (или вымышленные). Обязательно: аватар, имя, профессия, описание, навыки, соцсети.</li>
+            <li><strong>Выбрать цветовую тему</strong> — из предложенных или свою.</li>
+            <li><strong>Добавить минимум 1 свой элемент</strong> — например: цитату, хобби, образование, достижения.</li>
+            <li><strong>Проверить</strong> — открыть в браузере, убедиться что всё выглядит аккуратно.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Create your own business card</strong> — using your data (or fictional). Required: avatar, name, profession, description, skills, social links.</li>
+            <li><strong>Choose a color theme</strong> — from the suggested ones or your own.</li>
+            <li><strong>Add at least 1 custom element</strong> — for example: a quote, hobbies, education, achievements.</li>
+            <li><strong>Test it</strong> — open in the browser, make sure everything looks neat.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

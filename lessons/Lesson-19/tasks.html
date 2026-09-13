@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 19 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 19: Мини-проект — Макет журнала</span>
+    <span class="nav-title" data-lang="en">Lesson 19: Mini-project — Magazine Layout</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 19: Мини-проект #4 — Макет журнала / блога</p>
+    <p class="subtitle" data-lang="en">Lesson 19: Mini-project #4 — Magazine / Blog Layout</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 19.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 19.1: ПЛАНИРОВАНИЕ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 19.1: PLANNING</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 18.1: Спланируй макет журнала</span>
+            <span class="task-title" data-lang="en">Task 18.1: Plan the magazine layout</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Выбрать тему и спланировать структуру макета</div>
+        <div class="task-goal" data-lang="en">Choose a theme and plan the layout structure</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Выбери тему:</strong> технологии, кулинария, путешествия, спорт, мода, наука</li>
+            <li><strong>Название журнала:</strong> придумай короткое запоминающееся название</li>
+            <li><strong>Запиши 7 статей:</strong>
+                <ul>
+                    <li>1 Featured (главная) — длинный заголовок + описание</li>
+                    <li>6 обычных — заголовок, короткое описание, тег (категория), автор, дата</li>
+                </ul>
+            </li>
+            <li><strong>Sidebar:</strong> запиши 4-5 категорий и 3 популярные статьи</li>
+            <li><strong>Нарисуй wireframe</strong> на бумаге: header, main (featured + 6 карточек), sidebar, footer</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Choose a theme:</strong> technology, cooking, travel, sports, fashion, science</li>
+            <li><strong>Magazine name:</strong> come up with a short memorable name</li>
+            <li><strong>Write 7 articles:</strong>
+                <ul>
+                    <li>1 Featured (main) — long title + description</li>
+                    <li>6 regular — title, short description, tag (category), author, date</li>
+                </ul>
+            </li>
+            <li><strong>Sidebar:</strong> write 4-5 categories and 3 popular articles</li>
+            <li><strong>Draw a wireframe</strong> on paper: header, main (featured + 6 cards), sidebar, footer</li>
+        </ol>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Тема и название выбраны</li>
+                <li>7 статей записаны (1 featured + 6 обычных)</li>
+                <li>Sidebar спланирован</li>
+                <li>Wireframe нарисован</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Theme and name chosen</li>
+                <li>7 articles written (1 featured + 6 regular)</li>
+                <li>Sidebar planned</li>
+                <li>Wireframe drawn</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 19.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 19.2: HTML-СТРУКТУРА И GRID</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 19.2: HTML STRUCTURE AND GRID</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 18.2: Собери структуру и раскладку</span>
+            <span class="task-title" data-lang="en">Task 18.2: Build structure and layout</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать HTML-структуру и Grid-раскладку макета</div>
+        <div class="task-goal" data-lang="en">Create HTML structure and Grid layout</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>magazine</code> с файлами <code>index.html</code> и <code>style.css</code>.</p>
+        <p data-lang="en">Create a folder <code>magazine</code> with files <code>index.html</code> and <code>style.css</code>.</p>
+
+        <h3 data-lang="ru">Шаг 1: HTML</h3>
+        <h3 data-lang="en">Step 1: HTML</h3>
+
+<pre><code>&lt;div class="magazine"&gt;
+    &lt;header class="mag-header"&gt;...&lt;/header&gt;
+    &lt;main class="mag-main"&gt;
+        &lt;article class="card featured"&gt;...&lt;/article&gt;
+        &lt;article class="card"&gt;...&lt;/article&gt;
+        &lt;!-- ещё 5 карточек --&gt;
+    &lt;/main&gt;
+    &lt;aside class="mag-sidebar"&gt;...&lt;/aside&gt;
+    &lt;footer class="mag-footer"&gt;...&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+
+        <h3 data-lang="ru">Шаг 2: Grid-раскладка</h3>
+        <h3 data-lang="en">Step 2: Grid layout</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Внешний Grid</strong> (<code>.magazine</code>):
+                <ul>
+                    <li><code>grid-template-columns: 1fr 300px</code></li>
+                    <li><code>grid-template-rows: 64px 1fr auto</code></li>
+                    <li><code>grid-template-areas: "header header" "main sidebar" "footer footer"</code></li>
+                </ul>
+            </li>
+            <li><strong>Вложенный Grid</strong> (<code>.mag-main</code>):
+                <ul>
+                    <li><code>grid-template-columns: repeat(3, 1fr)</code></li>
+                    <li><code>gap: 20px</code></li>
+                </ul>
+            </li>
+            <li><strong>Featured:</strong> <code>grid-column: 1 / -1</code></li>
+            <li><strong>Header:</strong> <code>display: flex; align-items: center; gap: 24px</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Outer Grid</strong> (<code>.magazine</code>):
+                <ul>
+                    <li><code>grid-template-columns: 1fr 300px</code></li>
+                    <li><code>grid-template-rows: 64px 1fr auto</code></li>
+                    <li><code>grid-template-areas: "header header" "main sidebar" "footer footer"</code></li>
+                </ul>
+            </li>
+            <li><strong>Nested Grid</strong> (<code>.mag-main</code>):
+                <ul>
+                    <li><code>grid-template-columns: repeat(3, 1fr)</code></li>
+                    <li><code>gap: 20px</code></li>
+                </ul>
+            </li>
+            <li><strong>Featured:</strong> <code>grid-column: 1 / -1</code></li>
+            <li><strong>Header:</strong> <code>display: flex; align-items: center; gap: 24px</code></li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            На этом этапе не нужны красивые стили! Добавьте временные фоны (<code>background: lightblue</code>) к каждой области, чтобы проверить раскладку.
+        </div>
+        <div class="hint" data-lang="en">
+            No need for pretty styles at this stage! Add temporary backgrounds (<code>background: lightblue</code>) to each area to check the layout.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>HTML-структура: header, main (7 карточек), sidebar, footer</li>
+                <li>Внешний Grid с grid-template-areas</li>
+                <li>Вложенный Grid для карточек (3 столбца)</li>
+                <li>Featured = grid-column: 1 / -1</li>
+                <li>Header на Flexbox</li>
+                <li>CSS в отдельном файле</li>
+            </ul>
+            <ul data-lang="en">
+                <li>HTML structure: header, main (7 cards), sidebar, footer</li>
+                <li>Outer Grid with grid-template-areas</li>
+                <li>Nested Grid for cards (3 columns)</li>
+                <li>Featured = grid-column: 1 / -1</li>
+                <li>Header with Flexbox</li>
+                <li>CSS in separate file</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 19.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 19.3: ПОЛНЫЙ МАКЕТ ЖУРНАЛА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 19.3: COMPLETE MAGAZINE LAYOUT</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 18.3: Заверши макет журнала</span>
+            <span class="task-title" data-lang="en">Task 18.3: Complete the magazine layout</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Добавить стили, изображения, hover-эффекты и завершить проект</div>
+        <div class="task-goal" data-lang="en">Add styles, images, hover effects and finish the project</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Продолжите работу над макетом из задания 18.2. Добавьте:</p>
+        <p data-lang="en">Continue working on the layout from task 18.2. Add:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Карточки:</strong>
+                <ul>
+                    <li>Белый фон, <code>border-radius: 12px</code>, <code>overflow: hidden</code></li>
+                    <li>Изображение: <code>width: 100%; height: 180px; object-fit: cover</code></li>
+                    <li>Featured изображение: <code>height: 300px</code></li>
+                    <li>Тег (бейдж категории), заголовок, описание, автор + дата</li>
+                    <li>Мета-данные: <code>margin-top: auto</code> (прижать к низу)</li>
+                </ul>
+            </li>
+            <li><strong>Sidebar:</strong>
+                <ul>
+                    <li><code>display: flex; flex-direction: column; gap: 24px</code></li>
+                    <li>Блок «Категории» — 4-5 ссылок</li>
+                    <li>Блок «Популярное» — 3 мини-карточки (заголовок + дата)</li>
+                </ul>
+            </li>
+            <li><strong>Hover-эффекты:</strong>
+                <ul>
+                    <li>Карточки: <code>transform: translateY(-4px)</code> + <code>box-shadow</code></li>
+                    <li>Изображения: <code>transform: scale(1.05)</code> (с transition)</li>
+                </ul>
+            </li>
+            <li><strong>Header:</strong> лого + навигация + кнопка «Subscribe» (<code>margin-left: auto</code>)</li>
+            <li><strong>Footer:</strong> тёмный фон, копирайт по центру</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Cards:</strong>
+                <ul>
+                    <li>White background, <code>border-radius: 12px</code>, <code>overflow: hidden</code></li>
+                    <li>Image: <code>width: 100%; height: 180px; object-fit: cover</code></li>
+                    <li>Featured image: <code>height: 300px</code></li>
+                    <li>Tag (category badge), title, description, author + date</li>
+                    <li>Meta data: <code>margin-top: auto</code> (push to bottom)</li>
+                </ul>
+            </li>
+            <li><strong>Sidebar:</strong>
+                <ul>
+                    <li><code>display: flex; flex-direction: column; gap: 24px</code></li>
+                    <li>"Categories" block — 4-5 links</li>
+                    <li>"Popular" block — 3 mini-cards (title + date)</li>
+                </ul>
+            </li>
+            <li><strong>Hover effects:</strong>
+                <ul>
+                    <li>Cards: <code>transform: translateY(-4px)</code> + <code>box-shadow</code></li>
+                    <li>Images: <code>transform: scale(1.05)</code> (with transition)</li>
+                </ul>
+            </li>
+            <li><strong>Header:</strong> logo + navigation + "Subscribe" button (<code>margin-left: auto</code>)</li>
+            <li><strong>Footer:</strong> dark background, centered copyright</li>
+        </ol>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>7 карточек с изображениями (picsum.photos)</li>
+                <li>Featured-карточка шире остальных</li>
+                <li>Sidebar с категориями и популярными статьями</li>
+                <li>Hover-эффекты на карточках и изображениях</li>
+                <li>Header с навигацией (Flexbox)</li>
+                <li>Footer с тёмным фоном</li>
+                <li>object-fit: cover на всех изображениях</li>
+                <li>border-radius и box-shadow</li>
+            </ul>
+            <ul data-lang="en">
+                <li>7 cards with images (picsum.photos)</li>
+                <li>Featured card wider than others</li>
+                <li>Sidebar with categories and popular articles</li>
+                <li>Hover effects on cards and images</li>
+                <li>Header with navigation (Flexbox)</li>
+                <li>Footer with dark background</li>
+                <li>object-fit: cover on all images</li>
+                <li>border-radius and box-shadow</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 18.4: Тёмная тема</span>
+            <span class="task-title" data-lang="en">Task 18.4: Dark theme</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать альтернативную тёмную версию макета</div>
+        <div class="task-goal" data-lang="en">Create an alternative dark version of the layout</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Добавьте класс <code>.dark</code> на <code>&lt;div class="magazine dark"&gt;</code> и напишите стили для тёмной темы:</p>
+        <p data-lang="en">Add class <code>.dark</code> to <code>&lt;div class="magazine dark"&gt;</code> and write styles for dark theme:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Фон страницы:</strong> <code>#0f172a</code></li>
+            <li><strong>Фон карточек:</strong> <code>#1e293b</code></li>
+            <li><strong>Текст:</strong> <code>#e2e8f0</code></li>
+            <li><strong>Sidebar:</strong> <code>#1e293b</code>, бордер <code>#334155</code></li>
+            <li><strong>Header:</strong> <code>#1e293b</code></li>
+            <li><strong>Бордеры карточек:</strong> <code>#334155</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Page background:</strong> <code>#0f172a</code></li>
+            <li><strong>Card background:</strong> <code>#1e293b</code></li>
+            <li><strong>Text:</strong> <code>#e2e8f0</code></li>
+            <li><strong>Sidebar:</strong> <code>#1e293b</code>, border <code>#334155</code></li>
+            <li><strong>Header:</strong> <code>#1e293b</code></li>
+            <li><strong>Card borders:</strong> <code>#334155</code></li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Используйте селектор <code>.dark .card</code>, <code>.dark .mag-header</code> и т.д. Не меняйте оригинальные стили — только добавляйте новые правила!
+        </div>
+        <div class="hint" data-lang="en">
+            Use selectors like <code>.dark .card</code>, <code>.dark .mag-header</code> etc. Don't change original styles — only add new rules!
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Тёмная тема работает через класс <code>.dark</code></li>
+                <li>Все тексты читаемы на тёмном фоне</li>
+                <li>Бордеры и тени адаптированы</li>
+                <li>Можно переключить убрав/добавив класс <code>.dark</code></li>
+            </ul>
+            <ul data-lang="en">
+                <li>Dark theme works via <code>.dark</code> class</li>
+                <li>All text readable on dark background</li>
+                <li>Borders and shadows adapted</li>
+                <li>Can toggle by removing/adding <code>.dark</code> class</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 15 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 15: Flexbox — элементы</span>
+    <span class="nav-title" data-lang="en">Lesson 15: Flexbox — Items</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 15: Flexbox — элементы</p>
+    <p class="subtitle" data-lang="en">Lesson 15: Flexbox — Items</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 15.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 15.1: FLEX-GROW, SHRINK, BASIS</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 15.1: FLEX-GROW, SHRINK, BASIS</h2>
+
+    <!-- ЗАДАНИЕ 14.1 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 14.1: Эксперименты с flex-grow</span>
+            <span class="task-title" data-lang="en">Task 14.1: flex-grow experiments</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Понять как работает flex-grow на практике</div>
+        <div class="task-goal" data-lang="en">Understand how flex-grow works in practice</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>flex-grow.html</code>. Сделайте flex-контейнер с 3 блоками. Покажите <strong>4 варианта</strong> на одной странице:</p>
+        <p data-lang="en">Create a file <code>flex-grow.html</code>. Make a flex container with 3 blocks. Show <strong>4 variations</strong> on one page:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Все grow: 0</strong> — блоки занимают только свой размер</li>
+            <li><strong>Все grow: 1</strong> — равные колонки, заполняют всю ширину</li>
+            <li><strong>grow: 1, 2, 1</strong> — средний в 2 раза шире</li>
+            <li><strong>grow: 0, 1, 0</strong> — первый и третий фиксированные (width: 150px), средний заполняет остальное</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>All grow: 0</strong> — blocks take only their size</li>
+            <li><strong>All grow: 1</strong> — equal columns, fill full width</li>
+            <li><strong>grow: 1, 2, 1</strong> — middle is 2x wider</li>
+            <li><strong>grow: 0, 1, 0</strong> — first and third fixed (width: 150px), middle fills the rest</li>
+        </ol>
+
+        <h3 data-lang="ru">Требования:</h3>
+        <h3 data-lang="en">Requirements:</h3>
+        <ul data-lang="ru">
+            <li>CSS можно писать в <code>&lt;style&gt;</code> или в отдельном файле</li>
+            <li>Каждый вариант подписан заголовком <code>&lt;h3&gt;</code> (например: «Вариант 1: все grow: 0»)</li>
+            <li>Внутри каждого блока — текст, показывающий его значение grow (например: «grow: 1»)</li>
+            <li>Контейнеры имеют <code>min-height: 60px</code> для наглядности</li>
+            <li>Блоки имеют разные цвета фона для визуального различия</li>
+        </ul>
+        <ul data-lang="en">
+            <li>CSS can be in <code>&lt;style&gt;</code> or in a separate file</li>
+            <li>Each variation labeled with an <code>&lt;h3&gt;</code> heading (e.g., "Variation 1: all grow: 0")</li>
+            <li>Inside each box — text showing its grow value (e.g., "grow: 1")</li>
+            <li>Containers have <code>min-height: 60px</code> for clarity</li>
+            <li>Boxes have different background colors for visual distinction</li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Базовые стили для контейнера и блоков:
+<pre><code>.container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    min-height: 60px;
+}
+.box {
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+.box-1 { background: #e74c3c; }
+.box-2 { background: #3498db; }
+.box-3 { background: #2ecc71; }</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            Base styles for the container and boxes:
+<pre><code>.container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    min-height: 60px;
+}
+.box {
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+.box-1 { background: #e74c3c; }
+.box-2 { background: #3498db; }
+.box-3 { background: #2ecc71; }</code></pre>
+        </div>
+
+        <div class="hint" data-lang="ru">
+            Добавьте подписи перед каждым контейнером и разные цвета блокам для наглядности.
+        </div>
+        <div class="hint" data-lang="en">
+            Add labels before each container and different colors to blocks for clarity.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>4 варианта на одной странице</li>
+                <li>Разница в ширине блоков видна</li>
+                <li>Подписи с пояснением есть (h3 для каждого варианта)</li>
+                <li>Внутри блоков написано значение grow</li>
+                <li>Блоки имеют min-height и разные цвета</li>
+            </ul>
+            <ul data-lang="en">
+                <li>4 variations on one page</li>
+                <li>Width difference between blocks is visible</li>
+                <li>Labels with explanations are present (h3 for each variation)</li>
+                <li>Grow values are written inside the boxes</li>
+                <li>Boxes have min-height and different colors</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 15.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 15.2: РЕАЛЬНЫЕ ПАТТЕРНЫ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 15.2: REAL PATTERNS</h2>
+
+    <!-- ЗАДАНИЕ 14.2 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 14.2: Holy Grail Layout</span>
+            <span class="task-title" data-lang="en">Task 14.2: Holy Grail Layout</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать классический макет страницы с sidebar</div>
+        <div class="task-goal" data-lang="en">Create a classic page layout with sidebar</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>holy-grail</code> с файлами <code>index.html</code> и <code>style.css</code>. Сделайте макет:</p>
+        <p data-lang="en">Create a folder <code>holy-grail</code> with files <code>index.html</code> and <code>style.css</code>. Make the layout:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Header:</strong> Тёмный фон, логотип + навигация (flex, space-between)</li>
+            <li><strong>Sidebar (250px):</strong> Светло-серый фон, список ссылок (5 пунктов)</li>
+            <li><strong>Content (flex: 1):</strong> Белый фон, заголовок + 2-3 параграфа текста</li>
+            <li><strong>Footer:</strong> Тёмный фон, копирайт</li>
+            <li>Страница занимает <strong>минимум 100vh</strong> (footer всегда внизу)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Header:</strong> Dark background, logo + navigation (flex, space-between)</li>
+            <li><strong>Sidebar (250px):</strong> Light gray background, list of links (5 items)</li>
+            <li><strong>Content (flex: 1):</strong> White background, heading + 2-3 paragraphs</li>
+            <li><strong>Footer:</strong> Dark background, copyright</li>
+            <li>Page takes <strong>at least 100vh</strong> (footer always at the bottom)</li>
+        </ol>
+
+        <h3 data-lang="ru">CSS-требования:</h3>
+        <h3 data-lang="en">CSS requirements:</h3>
+        <ul data-lang="ru">
+            <li>Страница занимает <code>min-height: 100vh</code> (footer прижат к низу даже при малом контенте)</li>
+            <li>Sidebar не сжимается: используйте <code>flex: 0 0 250px</code> (flex-shrink: 0)</li>
+            <li>Content заполняет всё оставшееся место: <code>flex: 1</code></li>
+            <li>Footer — тёмный фон (<code>#333</code> или подобный), светлый текст</li>
+            <li>Header — flex-навигация с <code>justify-content: space-between</code></li>
+            <li>CSS подключён через <code>&lt;link&gt;</code> (отдельный файл <code>style.css</code>)</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Page takes <code>min-height: 100vh</code> (footer sticks to bottom even with little content)</li>
+            <li>Sidebar doesn't shrink: use <code>flex: 0 0 250px</code> (flex-shrink: 0)</li>
+            <li>Content fills all remaining space: <code>flex: 1</code></li>
+            <li>Footer — dark background (<code>#333</code> or similar), light text</li>
+            <li>Header — flex navigation with <code>justify-content: space-between</code></li>
+            <li>CSS linked via <code>&lt;link&gt;</code> (separate file <code>style.css</code>)</li>
+        </ul>
+
+        <div class="example" data-lang="ru">
+<pre><code>&#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+&#x2502; Logo         [Nav links]  [Btn] &#x2502; header
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502; Sidebar&#x2502;                        &#x2502;
+&#x2502; 250px  &#x2502;  Content               &#x2502; .body (flex)
+&#x2502;        &#x2502;  flex: 1               &#x2502;
+&#x2502;        &#x2502;                        &#x2502;
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502; Footer                           &#x2502; footer
+&#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</code></pre>
+        </div>
+        <div class="example" data-lang="en">
+<pre><code>&#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+&#x2502; Logo         [Nav links]  [Btn] &#x2502; header
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502; Sidebar&#x2502;                        &#x2502;
+&#x2502; 250px  &#x2502;  Content               &#x2502; .body (flex)
+&#x2502;        &#x2502;  flex: 1               &#x2502;
+&#x2502;        &#x2502;                        &#x2502;
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502; Footer                           &#x2502; footer
+&#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</code></pre>
+        </div>
+
+        <div class="hint" data-lang="ru">
+            Ключевой CSS:
+<pre><code>.page    { display: flex; flex-direction: column; min-height: 100vh; }
+.body    { display: flex; flex: 1; }
+.sidebar { flex: 0 0 250px; }
+.content { flex: 1; }</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            Key CSS:
+<pre><code>.page    { display: flex; flex-direction: column; min-height: 100vh; }
+.body    { display: flex; flex: 1; }
+.sidebar { flex: 0 0 250px; }
+.content { flex: 1; }</code></pre>
+        </div>
+
+        <div class="hint" data-lang="ru">
+            HTML-структура — вложенные div-ы. Внешний <code>.page</code> — колонка (header, body, footer). Внутренний <code>.body</code> — строка (sidebar + content):
+<pre><code>&lt;div class="page"&gt;
+    &lt;header&gt;...&lt;/header&gt;
+    &lt;div class="body"&gt;
+        &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+        &lt;main class="content"&gt;...&lt;/main&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            HTML structure — nested divs. Outer <code>.page</code> is a column (header, body, footer). Inner <code>.body</code> is a row (sidebar + content):
+<pre><code>&lt;div class="page"&gt;
+    &lt;header&gt;...&lt;/header&gt;
+    &lt;div class="body"&gt;
+        &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+        &lt;main class="content"&gt;...&lt;/main&gt;
+    &lt;/div&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Header на всю ширину (с навигацией)</li>
+                <li>Sidebar фиксированный (250px, не сжимается)</li>
+                <li>Content заполняет остальное (flex: 1)</li>
+                <li>Footer всегда внизу (даже с малым контентом)</li>
+                <li>Вложенные flex используются</li>
+                <li>CSS в отдельном файле</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Header full width (with navigation)</li>
+                <li>Sidebar is fixed (250px, doesn't shrink)</li>
+                <li>Content fills the rest (flex: 1)</li>
+                <li>Footer always at bottom (even with little content)</li>
+                <li>Nested flex is used</li>
+                <li>CSS in separate file</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 15.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 15.3: МАКЕТ БЛОГА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 15.3: BLOG LAYOUT</h2>
+
+    <!-- ЗАДАНИЕ 14.3 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 14.3: Макет блога на Flexbox</span>
+            <span class="task-title" data-lang="en">Task 14.3: Blog layout with Flexbox</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать полноценный макет блога с Flexbox</div>
+        <div class="task-goal" data-lang="en">Create a complete blog layout with Flexbox</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>blog-layout</code> с файлами <code>index.html</code> и <code>style.css</code>. Сделайте макет блога:</p>
+        <p data-lang="en">Create a folder <code>blog-layout</code> with files <code>index.html</code> and <code>style.css</code>. Make a blog layout:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Header:</strong> Логотип + навигация (space-between) + кнопка «Написать» (margin-left: auto)</li>
+            <li><strong>Main content:</strong> 3 карточки статей в ряд (<code>flex: 1</code>, равная высота):
+                <ul>
+                    <li>Заголовок статьи</li>
+                    <li>Дата</li>
+                    <li>Текст-превью (2-3 строки)</li>
+                    <li>Кнопка «Читать далее» — прижата к низу (<code>margin-top: auto</code>)</li>
+                </ul>
+            </li>
+            <li><strong>Sidebar (300px):</strong> «Популярные посты» — 3-4 ссылки, «Категории» — 5 тегов</li>
+            <li><strong>Footer:</strong> Копирайт + соцсети (space-between)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Header:</strong> Logo + navigation (space-between) + "Write" button (margin-left: auto)</li>
+            <li><strong>Main content:</strong> 3 article cards in a row (<code>flex: 1</code>, equal height):
+                <ul>
+                    <li>Article title</li>
+                    <li>Date</li>
+                    <li>Preview text (2-3 lines)</li>
+                    <li>"Read more" button — pushed to bottom (<code>margin-top: auto</code>)</li>
+                </ul>
+            </li>
+            <li><strong>Sidebar (300px):</strong> "Popular posts" — 3-4 links, "Categories" — 5 tags</li>
+            <li><strong>Footer:</strong> Copyright + social links (space-between)</li>
+        </ol>
+
+        <h3 data-lang="ru">CSS-требования:</h3>
+        <h3 data-lang="en">CSS requirements:</h3>
+        <ul data-lang="ru">
+            <li>Каждая карточка — flex-контейнер с <code>flex-direction: column</code></li>
+            <li>Карточки одинаковой высоты: родитель с <code>display: flex</code> + карточки с <code>flex: 1</code></li>
+            <li>Кнопка «Читать далее» прижата к низу через <code>margin-top: auto</code></li>
+            <li>Sidebar не сжимается: <code>flex: 0 0 300px</code></li>
+            <li>Карточки стилизованы: тени (<code>box-shadow</code>), скругления (<code>border-radius</code>), <code>:hover</code> эффект</li>
+            <li>CSS подключён через <code>&lt;link&gt;</code> (отдельный файл <code>style.css</code>)</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Each card is a flex container with <code>flex-direction: column</code></li>
+            <li>Cards have equal height: parent with <code>display: flex</code> + cards with <code>flex: 1</code></li>
+            <li>"Read more" button pushed to bottom via <code>margin-top: auto</code></li>
+            <li>Sidebar doesn't shrink: <code>flex: 0 0 300px</code></li>
+            <li>Cards styled: shadows (<code>box-shadow</code>), rounded corners (<code>border-radius</code>), <code>:hover</code> effect</li>
+            <li>CSS linked via <code>&lt;link&gt;</code> (separate file <code>style.css</code>)</li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Ключевой CSS для карточек — flex-direction: column + margin-top: auto для кнопки:
+<pre><code>.cards {
+    display: flex;
+    gap: 20px;
+}
+.card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.card .btn {
+    margin-top: auto;
+    /* кнопка всегда прижата к низу карточки */
+}</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            Key CSS for cards — flex-direction: column + margin-top: auto for the button:
+<pre><code>.cards {
+    display: flex;
+    gap: 20px;
+}
+.card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.card .btn {
+    margin-top: auto;
+    /* button always pushed to bottom of card */
+}</code></pre>
+        </div>
+
+        <div class="hint" data-lang="ru">
+            Структура файлов:
+<pre><code>blog-layout/
+  ├── index.html
+  └── style.css</code></pre>
+            В <code>index.html</code> подключите CSS: <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>
+        </div>
+        <div class="hint" data-lang="en">
+            File structure:
+<pre><code>blog-layout/
+  ├── index.html
+  └── style.css</code></pre>
+            In <code>index.html</code> link CSS: <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Header с навигацией (flex)</li>
+                <li>3 карточки равной высоты</li>
+                <li>Кнопки прижаты к низу карточек (margin-top: auto)</li>
+                <li>Sidebar фиксированный (300px)</li>
+                <li>Footer всегда внизу</li>
+                <li>Вложенные flex-контейнеры</li>
+                <li>Стилизация: тени, скругления, hover</li>
+                <li>CSS в отдельном файле style.css</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Header with navigation (flex)</li>
+                <li>3 equal-height cards</li>
+                <li>Buttons pushed to bottom of cards (margin-top: auto)</li>
+                <li>Sidebar fixed (300px)</li>
+                <li>Footer always at bottom</li>
+                <li>Nested flex containers</li>
+                <li>Styling: shadows, rounded corners, hover</li>
+                <li>CSS in separate file style.css</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <!-- ЗАДАНИЕ 14.4 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 14.4: Flexbox Defense</span>
+            <span class="task-title" data-lang="en">Task 14.4: Flexbox Defense</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Закрепить все свойства Flexbox через игру</div>
+        <div class="task-goal" data-lang="en">Reinforce all Flexbox properties through a game</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li>Откройте сайт <strong>www.flexboxdefense.com</strong></li>
+            <li>Пройдите все уровни — это tower defense игра, где нужно расставить башни с помощью Flexbox</li>
+            <li>Используются: justify-content, align-items, flex-direction, order, align-self</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Open the website <strong>www.flexboxdefense.com</strong></li>
+            <li>Complete all levels — it's a tower defense game where you position towers using Flexbox</li>
+            <li>Uses: justify-content, align-items, flex-direction, order, align-self</li>
+        </ol>
+
+        <h3 data-lang="ru">Требования:</h3>
+        <h3 data-lang="en">Requirements:</h3>
+        <ul data-lang="ru">
+            <li>Пройдите все 12 уровней до конца</li>
+            <li>Обратите внимание, какие свойства используются на каждом уровне:
+                <ul>
+                    <li>Уровни 1-3: <code>justify-content</code></li>
+                    <li>Уровни 4-6: <code>align-items</code> + <code>justify-content</code></li>
+                    <li>Уровни 7-9: <code>flex-direction</code> + комбинации</li>
+                    <li>Уровни 10-12: <code>order</code> + <code>align-self</code></li>
+                </ul>
+            </li>
+            <li>Сделайте скриншот последнего пройденного уровня</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Complete all 12 levels to the end</li>
+            <li>Pay attention to which properties are used on each level:
+                <ul>
+                    <li>Levels 1-3: <code>justify-content</code></li>
+                    <li>Levels 4-6: <code>align-items</code> + <code>justify-content</code></li>
+                    <li>Levels 7-9: <code>flex-direction</code> + combinations</li>
+                    <li>Levels 10-12: <code>order</code> + <code>align-self</code></li>
+                </ul>
+            </li>
+            <li>Take a screenshot of the last completed level</li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Эта игра использует свойства из <strong>обоих занятий</strong> — Занятие 13 (контейнер: justify-content, align-items, flex-direction) и Занятие 15 (элементы: order, align-self). Если что-то забыли — загляните в конспект!
+        </div>
+        <div class="hint" data-lang="en">
+            This game uses properties from <strong>both lessons</strong> — Lesson 13 (container: justify-content, align-items, flex-direction) and Lesson 15 (items: order, align-self). If you forgot something — check your notes!
+        </div>
+
+        <div class="hint" data-lang="ru">
+            На сложных уровнях может понадобиться комбинация нескольких свойств одновременно. Например: <code>justify-content: center</code> + <code>align-items: flex-end</code> + отдельный <code>align-self</code> для одной башни.
+        </div>
+        <div class="hint" data-lang="en">
+            On harder levels you may need to combine several properties at once. For example: <code>justify-content: center</code> + <code>align-items: flex-end</code> + a separate <code>align-self</code> for one tower.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все уровни пройдены</li>
+                <li>Скриншот финального уровня сделан</li>
+                <li>Студент может объяснить разницу между align-items (контейнер) и align-self (элемент)</li>
+                <li>Студент может объяснить, как order меняет порядок элементов</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All levels completed</li>
+                <li>Screenshot of the final level taken</li>
+                <li>Student can explain the difference between align-items (container) and align-self (item)</li>
+                <li>Student can explain how order changes element ordering</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

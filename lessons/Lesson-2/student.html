@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 2 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 2: Инструменты разработчика</span>
+    <span class="nav-title" data-lang="en">Lesson 2: Developer Tools</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+
+    <p class="subtitle" data-lang="ru">Занятие 2: Инструменты разработчика</p>
+    <p class="subtitle" data-lang="en">Lesson 2: Developer Tools</p>
+
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <!-- VS CODE: ГОРЯЧИЕ КЛАВИШИ / VS CODE: KEYBOARD SHORTCUTS -->
+    <h2 data-lang="ru">&#x1F4DA; VS CODE: ГОРЯЧИЕ КЛАВИШИ</h2>
+    <h2 data-lang="en">&#x1F4DA; VS CODE: KEYBOARD SHORTCUTS</h2>
+
+    <h3 data-lang="ru">Базовые</h3>
+    <h3 data-lang="en">Basic</h3>
+
+    <table data-lang="ru">
+        <tr><th>Клавиши</th><th>Действие</th></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td><td>Сохранить</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td><td>Отменить</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">C</span> / <span class="kbd">V</span></td><td>Копировать / Вставить (строку)</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">X</span></td><td>Вырезать строку</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Keys</th><th>Action</th></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td><td>Save</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td><td>Undo</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">C</span> / <span class="kbd">V</span></td><td>Copy / Paste (line)</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">X</span></td><td>Cut line</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Продвинутые</h3>
+    <h3 data-lang="en">Advanced</h3>
+
+    <table data-lang="ru">
+        <tr><th>Клавиши</th><th>Действие</th></tr>
+        <tr><td><span class="kbd">Alt</span> + <span class="kbd">Shift</span> + <span class="kbd">&#8595;</span></td><td>Дублировать строку</td></tr>
+        <tr><td><span class="kbd">Alt</span> + <span class="kbd">&#8593;</span>/<span class="kbd">&#8595;</span></td><td>Переместить строку</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">/</span></td><td>Закомментировать</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">D</span></td><td>Выделить следующее совпадение</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">K</span></td><td>Удалить строку</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">P</span></td><td>Открыть файл по имени</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">`</span></td><td>Открыть терминал</td></tr>
+        <tr><td><span class="kbd">Shift</span> + <span class="kbd">Alt</span> + <span class="kbd">F</span></td><td>Отформатировать код (Prettier)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Keys</th><th>Action</th></tr>
+        <tr><td><span class="kbd">Alt</span> + <span class="kbd">Shift</span> + <span class="kbd">&#8595;</span></td><td>Duplicate line</td></tr>
+        <tr><td><span class="kbd">Alt</span> + <span class="kbd">&#8593;</span>/<span class="kbd">&#8595;</span></td><td>Move line up/down</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">/</span></td><td>Toggle comment</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">D</span></td><td>Select next occurrence</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">K</span></td><td>Delete line</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">P</span></td><td>Open file by name</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">`</span></td><td>Open terminal</td></tr>
+        <tr><td><span class="kbd">Shift</span> + <span class="kbd">Alt</span> + <span class="kbd">F</span></td><td>Format code (Prettier)</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Множественные курсоры</h3>
+    <h3 data-lang="en">Multiple Cursors</h3>
+
+    <table data-lang="ru">
+        <tr><th>Клавиши</th><th>Действие</th></tr>
+        <tr><td><span class="kbd">Alt</span> + клик</td><td>Добавить курсор</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">Alt</span> + <span class="kbd">&#8593;</span>/<span class="kbd">&#8595;</span></td><td>Курсор сверху/снизу</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">D</span></td><td>Выделить следующее такое же слово</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Keys</th><th>Action</th></tr>
+        <tr><td><span class="kbd">Alt</span> + click</td><td>Add cursor</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">Alt</span> + <span class="kbd">&#8593;</span>/<span class="kbd">&#8595;</span></td><td>Cursor above/below</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">D</span></td><td>Select next matching word</td></tr>
+    </table>
+
+    <hr>
+
+    <!-- EMMET — БЫСТРЫЙ НАБОР HTML / EMMET — FAST HTML INPUT -->
+    <h2 data-lang="ru">&#x1F4DA; EMMET — БЫСТРЫЙ НАБОР HTML</h2>
+    <h2 data-lang="en">&#x1F4DA; EMMET — FAST HTML INPUT</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Emmet</strong> — встроенный инструмент VS Code. Пишешь короткую команду + <span class="kbd">Tab</span> = получаешь HTML-код.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Emmet</strong> — a built-in VS Code tool. You type a short command + <span class="kbd">Tab</span> = you get HTML code.
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Пишешь</th><th>Получаешь</th></tr>
+        <tr><td><code>!</code></td><td>Шаблон HTML-страницы</td></tr>
+        <tr><td><code>h1{Текст}</code></td><td><code>&lt;h1&gt;Текст&lt;/h1&gt;</code></td></tr>
+        <tr><td><code>ul&gt;li*3</code></td><td>Список из 3 пунктов</td></tr>
+        <tr><td><code>div.card</code></td><td><code>&lt;div class="card"&gt;&lt;/div&gt;</code></td></tr>
+        <tr><td><code>div#main</code></td><td><code>&lt;div id="main"&gt;&lt;/div&gt;</code></td></tr>
+        <tr><td><code>p*3&gt;lorem</code></td><td>3 параграфа с текстом-заглушкой</td></tr>
+        <tr><td><code>nav&gt;ul&gt;li*4&gt;a{Пункт $}</code></td><td>Навигация с 4 ссылками (нумерованными)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>You type</th><th>You get</th></tr>
+        <tr><td><code>!</code></td><td>HTML page template</td></tr>
+        <tr><td><code>h1{Text}</code></td><td><code>&lt;h1&gt;Text&lt;/h1&gt;</code></td></tr>
+        <tr><td><code>ul&gt;li*3</code></td><td>List with 3 items</td></tr>
+        <tr><td><code>div.card</code></td><td><code>&lt;div class="card"&gt;&lt;/div&gt;</code></td></tr>
+        <tr><td><code>div#main</code></td><td><code>&lt;div id="main"&gt;&lt;/div&gt;</code></td></tr>
+        <tr><td><code>p*3&gt;lorem</code></td><td>3 paragraphs with placeholder text</td></tr>
+        <tr><td><code>nav&gt;ul&gt;li*4&gt;a{Item $}</code></td><td>Navigation with 4 numbered links</td></tr>
+    </table>
+
+    <div class="remember" data-lang="ru">
+        <strong>Операторы Emmet — запомни 7 символов:</strong>
+        <ul>
+            <li><code>&gt;</code> — вложенность (ребёнок): <code>ul>li</code> = li внутри ul</li>
+            <li><code>*3</code> — повторить: <code>li*3</code> = три li</li>
+            <li><code>.</code> — добавить class: <code>div.card</code></li>
+            <li><code>#</code> — добавить id: <code>div#main</code></li>
+            <li><code>{текст}</code> — текст внутри: <code>a{Ссылка}</code></li>
+            <li><code>$</code> — автонумерация: <code>li{Пункт $}*3</code> → 1, 2, 3</li>
+            <li><code>+</code> — соседний элемент: <code>h1+p</code> = h1, потом p</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>&gt;</code> — nesting (child element)</li>
+            <li><code>*3</code> — repeat 3 times</li>
+            <li><code>.name</code> — add a class</li>
+            <li><code>#name</code> — add an id</li>
+            <li><code>{text}</code> — text inside the tag</li>
+            <li><code>$</code> — auto-numbering (1, 2, 3...)</li>
+            <li><code>lorem</code> — placeholder text</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- РАСШИРЕНИЯ VS CODE / VS CODE EXTENSIONS -->
+    <h2 data-lang="ru">&#x1F4DA; РАСШИРЕНИЯ VS CODE</h2>
+    <h2 data-lang="en">&#x1F4DA; VS CODE EXTENSIONS</h2>
+
+    <table data-lang="ru">
+        <tr><th>Расширение</th><th>Зачем</th></tr>
+        <tr><td><strong>Live Server</strong></td><td>Автообновление страницы при сохранении</td></tr>
+        <tr><td><strong>Prettier</strong></td><td>Автоформатирование кода</td></tr>
+        <tr><td><strong>Auto Rename Tag</strong></td><td>Автопереименование парного тега</td></tr>
+        <tr><td><strong>Color Highlight</strong></td><td>Подсвечивает цвета в CSS</td></tr>
+        <tr><td><strong>Image Preview</strong></td><td>Превью картинок в коде</td></tr>
+        <tr><td><strong>indent-rainbow</strong></td><td>Цветные отступы</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Extension</th><th>Purpose</th></tr>
+        <tr><td><strong>Live Server</strong></td><td>Auto-refreshes the page when you save</td></tr>
+        <tr><td><strong>Prettier</strong></td><td>Auto-formats your code</td></tr>
+        <tr><td><strong>Auto Rename Tag</strong></td><td>Auto-renames the matching tag</td></tr>
+        <tr><td><strong>Color Highlight</strong></td><td>Highlights colors in CSS</td></tr>
+        <tr><td><strong>Image Preview</strong></td><td>Image preview in code</td></tr>
+        <tr><td><strong>indent-rainbow</strong></td><td>Colorful indentation</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Рекомендуемые настройки</h3>
+    <h3 data-lang="en">Recommended Settings</h3>
+
+    <p data-lang="ru">Открыть настройки: <span class="kbd">Ctrl</span> + <span class="kbd">,</span></p>
+    <p data-lang="en">Open settings: <span class="kbd">Ctrl</span> + <span class="kbd">,</span></p>
+
+    <ul data-lang="ru">
+        <li><strong>Auto Save</strong> → <code>afterDelay</code></li>
+        <li><strong>Format On Save</strong> → включить</li>
+        <li><strong>Font Size</strong> → 16-18</li>
+        <li><strong>Word Wrap</strong> → on</li>
+    </ul>
+    <ul data-lang="en">
+        <li><strong>Auto Save</strong> → <code>afterDelay</code></li>
+        <li><strong>Format On Save</strong> → enable</li>
+        <li><strong>Font Size</strong> → 16-18</li>
+        <li><strong>Word Wrap</strong> → on</li>
+    </ul>
+
+    <hr>
+
+    <!-- DEVTOOLS — ИНСТРУМЕНТЫ РАЗРАБОТЧИКА / DEVTOOLS — DEVELOPER TOOLS -->
+    <h2 data-lang="ru">&#x1F4DA; DEVTOOLS — ИНСТРУМЕНТЫ РАЗРАБОТЧИКА</h2>
+    <h2 data-lang="en">&#x1F4DA; DEVTOOLS — DEVELOPER TOOLS</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>DevTools</strong> — встроенные инструменты браузера для просмотра и редактирования HTML/CSS любого сайта.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>DevTools</strong> — built-in browser tools for viewing and editing HTML/CSS of any website.
+    </div>
+
+    <p data-lang="ru"><strong>Как открыть:</strong> <span class="kbd">F12</span> или правый клик → «Просмотреть код»</p>
+    <p data-lang="en"><strong>How to open:</strong> <span class="kbd">F12</span> or right-click → "Inspect"</p>
+
+    <h3 data-lang="ru">Вкладка Elements</h3>
+    <h3 data-lang="en">Elements Tab</h3>
+
+    <ul data-lang="ru">
+        <li>Показывает HTML-структуру страницы (дерево тегов)</li>
+        <li>&#x1F50D; — выбрать элемент на странице (инспектирование)</li>
+        <li>Двойной клик по тексту → редактирование</li>
+        <li><span class="kbd">Delete</span> — удалить элемент</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Shows the HTML structure of the page (tag tree)</li>
+        <li>&#x1F50D; — select an element on the page (inspect)</li>
+        <li>Double-click on text → edit it</li>
+        <li><span class="kbd">Delete</span> — remove an element</li>
+    </ul>
+
+    <h3 data-lang="ru">Вкладка Styles</h3>
+    <h3 data-lang="en">Styles Tab</h3>
+
+    <ul data-lang="ru">
+        <li>Показывает CSS-стили выбранного элемента</li>
+        <li>Клик на значение → изменить</li>
+        <li>Галочка → включить/отключить свойство</li>
+        <li>Клик на пустое место → добавить новое свойство</li>
+        <li>Цветной квадратик → палитра цветов (color picker)</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Shows CSS styles of the selected element</li>
+        <li>Click on a value → change it</li>
+        <li>Checkbox → enable/disable a property</li>
+        <li>Click on empty space → add a new property</li>
+        <li>Colored square → color picker</li>
+    </ul>
+
+    <h3 data-lang="ru">Полезные CSS-свойства для экспериментов</h3>
+    <h3 data-lang="en">Useful CSS Properties to Experiment With</h3>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что меняет</th><th>Пример</th></tr>
+        <tr><td><code>color</code></td><td>Цвет текста</td><td><code>red</code></td></tr>
+        <tr><td><code>background-color</code></td><td>Цвет фона</td><td><code>#ffd700</code></td></tr>
+        <tr><td><code>font-size</code></td><td>Размер шрифта</td><td><code>24px</code></td></tr>
+        <tr><td><code>padding</code></td><td>Внутренние отступы</td><td><code>20px</code></td></tr>
+        <tr><td><code>margin</code></td><td>Внешние отступы</td><td><code>10px</code></td></tr>
+        <tr><td><code>border</code></td><td>Рамка</td><td><code>2px solid red</code></td></tr>
+        <tr><td><code>border-radius</code></td><td>Скругление углов</td><td><code>10px</code></td></tr>
+        <tr><td><code>display: none</code></td><td>Скрыть элемент</td><td>—</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it changes</th><th>Example</th></tr>
+        <tr><td><code>color</code></td><td>Text color</td><td><code>red</code></td></tr>
+        <tr><td><code>background-color</code></td><td>Background color</td><td><code>#ffd700</code></td></tr>
+        <tr><td><code>font-size</code></td><td>Font size</td><td><code>24px</code></td></tr>
+        <tr><td><code>padding</code></td><td>Inner spacing</td><td><code>20px</code></td></tr>
+        <tr><td><code>margin</code></td><td>Outer spacing</td><td><code>10px</code></td></tr>
+        <tr><td><code>border</code></td><td>Border</td><td><code>2px solid red</code></td></tr>
+        <tr><td><code>border-radius</code></td><td>Rounded corners</td><td><code>10px</code></td></tr>
+        <tr><td><code>display: none</code></td><td>Hide element</td><td>—</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Дополнительные возможности</h3>
+    <h3 data-lang="en">Additional Features</h3>
+
+    <ul data-lang="ru">
+        <li><span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">M</span> — адаптивный режим (просмотр на мобильных)</li>
+        <li><strong>Console</strong> → <code>document.designMode = 'on'</code> — редактирование текста прямо на странице</li>
+        <li><strong>Computed</strong> — итоговые стили + Box Model</li>
+    </ul>
+    <ul data-lang="en">
+        <li><span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">M</span> — responsive mode (mobile preview)</li>
+        <li><strong>Console</strong> → <code>document.designMode = 'on'</code> — edit text directly on the page</li>
+        <li><strong>Computed</strong> — final computed styles + Box Model</li>
+    </ul>
+
+    <div class="remember" data-lang="ru">
+        Изменения в DevTools <strong>временные</strong>! Они пропадут при обновлении (F5). Понравившиеся стили нужно перенести в CSS-файл в VS Code.
+    </div>
+    <div class="remember" data-lang="en">
+        Changes in DevTools are <strong>temporary</strong>! They will disappear when you refresh (F5). You need to copy the styles you like into a CSS file in VS Code.
+    </div>
+
+    <hr>
+
+    <!-- РАБОЧИЙ ПРОЦЕСС / WORKFLOW -->
+    <h2 data-lang="ru">&#x1F4DA; РАБОЧИЙ ПРОЦЕСС</h2>
+    <h2 data-lang="en">&#x1F4DA; WORKFLOW</h2>
+
+    <div class="diagram" data-lang="ru">
+  VS Code          Браузер          DevTools
+  ┌──────┐         ┌──────┐         ┌──────┐
+  │ Пишем│ ──────► │Смотрим│ ──────►│Меняем │
+  │ код  │ Ctrl+S  │резуль-│  F12   │стили  │
+  │      │◄─────── │тат    │◄───────│       │
+  └──────┘ копируем└──────┘ видим   └──────┘
+           стили    Live     сразу
+                    Server</div>
+    <div class="diagram" data-lang="en">
+  VS Code          Browser          DevTools
+  ┌──────┐         ┌──────┐         ┌──────┐
+  │Write │ ──────► │ View  │ ──────►│Change │
+  │ code │ Ctrl+S  │result │  F12   │styles │
+  │      │◄─────── │       │◄───────│       │
+  └──────┘ copy    └──────┘ see     └──────┘
+           styles   Live    instantly
+                    Server</div>
+
+    <div class="key-point" data-lang="ru">
+        <ol>
+            <li>Пишем код в <strong>VS Code</strong></li>
+            <li>Сохраняем (<span class="kbd">Ctrl</span>+<span class="kbd">S</span>) → <strong>Live Server</strong> обновляет браузер</li>
+            <li>Экспериментируем со стилями в <strong>DevTools</strong> (<span class="kbd">F12</span>)</li>
+            <li>Переносим понравившиеся стили обратно в <strong>VS Code</strong></li>
+            <li>Повторяем</li>
+        </ol>
+    </div>
+    <div class="key-point" data-lang="en">
+        <ol>
+            <li>Write code in <strong>VS Code</strong></li>
+            <li>Save (<span class="kbd">Ctrl</span>+<span class="kbd">S</span>) → <strong>Live Server</strong> refreshes the browser</li>
+            <li>Experiment with styles in <strong>DevTools</strong> (<span class="kbd">F12</span>)</li>
+            <li>Copy the styles you like back to <strong>VS Code</strong></li>
+            <li>Repeat</li>
+        </ol>
+    </div>
+
+    <div class="remember" data-lang="ru">
+        <strong>Запоминалка:</strong> VS Code = ваш шкаф (постоянное хранение). DevTools = примерочная (временные эксперименты). Нашли в примерочной что нравится → перенесите в шкаф!
+    </div>
+    <div class="remember" data-lang="en">
+        <strong>Remember:</strong> VS Code = your closet (permanent storage). DevTools = fitting room (temporary experiments). Found something you like → copy it to your closet!
+    </div>
+
+    <hr>
+
+    <!-- ИТОГИ ЗАНЯТИЯ 2 / LESSON 2 SUMMARY -->
+    <h2 data-lang="ru">&#x1F4DD; ИТОГИ ЗАНЯТИЯ 2</h2>
+    <h2 data-lang="en">&#x1F4DD; LESSON 2 SUMMARY</h2>
+
+    <div class="key-point" data-lang="ru">
+        <ul>
+            <li>Горячие клавиши VS Code ускоряют работу в разы</li>
+            <li>Emmet генерирует HTML по коротким командам (<code>!</code>, <code>ul>li*3</code>)</li>
+            <li>Prettier форматирует код автоматически</li>
+            <li>DevTools (F12) — рентген для любого сайта</li>
+            <li>Elements → HTML, Styles → CSS</li>
+            <li>Изменения в DevTools временные</li>
+            <li>Процесс: VS Code → браузер → DevTools → VS Code</li>
+        </ul>
+    </div>
+    <div class="key-point" data-lang="en">
+        <ul>
+            <li>VS Code keyboard shortcuts speed up your work significantly</li>
+            <li>Emmet generates HTML from short commands (<code>!</code>, <code>ul>li*3</code>)</li>
+            <li>Prettier formats code automatically</li>
+            <li>DevTools (F12) — an X-ray for any website</li>
+            <li>Elements → HTML, Styles → CSS</li>
+            <li>Changes in DevTools are temporary</li>
+            <li>Workflow: VS Code → browser → DevTools → VS Code</li>
+        </ul>
+    </div>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li>Выучите 5 горячих клавиш и используйте их при работе</li>
+            <li>Создайте страницу «Мои любимые [тема]», используя Emmet для набора HTML</li>
+            <li>Добавьте внутренние стили (<code>&lt;style&gt;</code>) с цветами и шрифтами</li>
+            <li>Откройте DevTools на 3 сайтах и измените стили элементов (цвет, размер, скругление)</li>
+            <li>Попробуйте <code>document.designMode = 'on'</code> в консоли на любом сайте</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li>Learn 5 keyboard shortcuts and use them while working</li>
+            <li>Create a page "My Favorite [topic]" using Emmet to write the HTML</li>
+            <li>Add internal styles (<code>&lt;style&gt;</code>) with colors and fonts</li>
+            <li>Open DevTools on 3 websites and change element styles (color, size, border-radius)</li>
+            <li>Try <code>document.designMode = 'on'</code> in the console on any website</li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

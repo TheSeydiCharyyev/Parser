@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для тетради — HTML и CSS определения</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #f8fafc;
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            z-index: 100;
+        }
+        .header a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #1e293b;
+        }
+        .header a span {
+            background: linear-gradient(135deg, #f97316, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header .back {
+            margin-right: 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #64748b;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            transition: all 0.15s ease;
+        }
+        .header .back:hover { background: #e2e8f0; color: #1e293b; }
+
+        /* ========== MAIN ========== */
+        .main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 84px 24px 64px;
+        }
+
+        /* ========== HERO ========== */
+        .hero { margin-bottom: 28px; }
+        .hero h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f97316, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+        .hero p { color: #64748b; font-size: 0.95rem; }
+
+        /* ========== TABS ========== */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 28px;
+            background: #fff;
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .tab {
+            flex: 1;
+            padding: 10px 16px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: none;
+            background: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #64748b;
+            transition: all 0.2s ease;
+        }
+        .tab:hover { color: #1e293b; background: #f1f5f9; }
+        .tab.active { background: #1e293b; color: #fff; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ========== SECTION TITLE ========== */
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 28px 0 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #1e293b;
+        }
+        .section-title:first-child { margin-top: 0; }
+
+        /* ========== NOTEBOOK TABLE ========== */
+        .nb-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+            font-size: 0.92rem;
+        }
+        .nb-table th,
+        .nb-table td {
+            border: 2px solid #1e293b;
+            padding: 10px 14px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .nb-table th {
+            background: #1e293b;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .nb-table td:first-child {
+            font-weight: 700;
+            white-space: nowrap;
+            width: 30%;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+        .nb-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* ========== PRINT STYLES ========== */
+        @media print {
+            .header, .tabs { display: none; }
+            .main { padding: 0; }
+            .nb-table { font-size: 0.85rem; }
+            .nb-table th, .nb-table td { padding: 6px 10px; }
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 1.4rem; }
+            .main { padding: 76px 12px 48px; }
+            .tabs { flex-direction: column; }
+            .nb-table td:first-child { white-space: normal; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <a href="reference.html" class="back">&larr; Справочник</a>
+        <a href="index.html">
+            &#127760; <span>HTML/CSS Essentials</span>
+        </a>
+    </header>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- HERO -->
+        <div class="hero">
+            <h1>&#128221; Для тетради</h1>
+            <p>Краткие определения для записи в тетрадь. Занятия 1-10.</p>
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab active" id="tab-html" onclick="switchTab('html')">&#128196; HTML-элементы</button>
+            <button class="tab" id="tab-css" onclick="switchTab('css')">&#127912; CSS-правила</button>
+        </div>
+
+        <!-- ======================= HTML TAB ======================= -->
+        <div class="tab-content active" id="content-html">
+
+            <!-- Основные понятия -->
+            <div class="section-title">Основные понятия</div>
+            <table class="nb-table">
+                <tr><th>Понятие</th><th>Определение</th></tr>
+                <tr><td>Интернет</td><td>Всемирная система объединённых компьютерных сетей для обмена данными и общения.</td></tr>
+                <tr><td>Всемирная паутина (WWW)</td><td>Система веб-страниц, связанных гиперссылками, которые можно просматривать через браузер.</td></tr>
+                <tr><td>Браузер</td><td>Программа для просмотра веб-страниц — Chrome, Firefox, Safari, Edge.</td></tr>
+                <tr><td>Веб-разработка</td><td>Процесс создания веб-сайтов и веб-приложений, включающий вёрстку, программирование и дизайн.</td></tr>
+                <tr><td>Frontend</td><td>Клиентская часть сайта — то, что пользователь видит и с чем взаимодействует (HTML, CSS, JavaScript).</td></tr>
+                <tr><td>Backend</td><td>Серверная часть сайта — обработка данных, база данных, логика приложения (не видна пользователю).</td></tr>
+                <tr><td>HTML</td><td>Язык гипертекстовой разметки — определяет структуру и содержание веб-страницы с помощью тегов.</td></tr>
+                <tr><td>CSS</td><td>Каскадные таблицы стилей — отвечает за внешний вид страницы: цвета, шрифты, отступы, расположение.</td></tr>
+                <tr><td>JavaScript</td><td>Язык программирования, который добавляет интерактивность на веб-страницы — анимации, обработку кликов, динамику.</td></tr>
+                <tr><td>Тег</td><td>Команда в HTML, записанная в угловых скобках (&lt;p&gt;, &lt;h1&gt;), которая сообщает браузеру, что отобразить.</td></tr>
+                <tr><td>Атрибут</td><td>Дополнительная информация в открывающем теге — например, href, src, class, id.</td></tr>
+                <tr><td>Элемент</td><td>Открывающий тег + содержимое + закрывающий тег — например, &lt;p&gt;Текст&lt;/p&gt;.</td></tr>
+            </table>
+
+            <!-- Структура документа -->
+            <div class="section-title">Структура документа</div>
+            <table class="nb-table">
+                <tr><th>Элемент</th><th>Определение</th></tr>
+                <tr><td>&lt;!DOCTYPE html&gt;</td><td>Объявление, которое говорит браузеру, что страница написана на HTML5.</td></tr>
+                <tr><td>&lt;html&gt;</td><td>Корневой элемент, который оборачивает всё содержимое HTML-страницы.</td></tr>
+                <tr><td>&lt;head&gt;</td><td>Раздел для служебной информации (заголовок, кодировка, стили) — не отображается на странице.</td></tr>
+                <tr><td>&lt;meta charset="UTF-8"&gt;</td><td>Устанавливает кодировку символов, чтобы браузер правильно показывал кириллицу и другие символы.</td></tr>
+                <tr><td>&lt;meta name="viewport"&gt;</td><td>Настраивает правильное отображение страницы на мобильных устройствах.</td></tr>
+                <tr><td>&lt;meta name="description"&gt;</td><td>Описание страницы, которое отображается в результатах поиска Google.</td></tr>
+                <tr><td>&lt;title&gt;</td><td>Заголовок страницы, который отображается во вкладке браузера.</td></tr>
+                <tr><td>&lt;body&gt;</td><td>Тело документа — всё видимое содержимое страницы находится внутри этого тега.</td></tr>
+                <tr><td>&lt;!-- ... --&gt;</td><td>Комментарий в коде, который виден только разработчику и не отображается на странице.</td></tr>
+            </table>
+
+            <!-- Подключение ресурсов -->
+            <div class="section-title">Подключение ресурсов</div>
+            <table class="nb-table">
+                <tr><th>Элемент</th><th>Определение</th></tr>
+                <tr><td>&lt;link rel="stylesheet"&gt;</td><td>Подключает внешний CSS-файл со стилями к HTML-странице.</td></tr>
+                <tr><td>&lt;link rel="icon"&gt;</td><td>Подключает фавиконку — маленькую иконку во вкладке браузера.</td></tr>
+                <tr><td>&lt;style&gt;</td><td>Позволяет писать CSS-стили прямо внутри HTML-документа в разделе &lt;head&gt;.</td></tr>
+            </table>
+
+            <!-- Заголовки и текст -->
+            <div class="section-title">Заголовки и текст</div>
+            <table class="nb-table">
+                <tr><th>Элемент</th><th>Определение</th></tr>
+                <tr><td>&lt;h1&gt; ... &lt;h6&gt;</td><td>Заголовки шести уровней: &lt;h1&gt; — главный и самый крупный, &lt;h6&gt; — самый мелкий.</td></tr>
+                <tr><td>&lt;p&gt;</td><td>Абзац текста — основной элемент для обычного текста на странице.</td></tr>
+                <tr><td>&lt;br&gt;</td><td>Перенос строки внутри текста без создания нового абзаца.</td></tr>
+                <tr><td>&lt;hr&gt;</td><td>Горизонтальная линия-разделитель для визуального разделения контента.</td></tr>
+                <tr><td>&lt;strong&gt;</td><td>Важный текст — отображается жирным и имеет смысловое значение для браузера и поисковиков.</td></tr>
+                <tr><td>&lt;b&gt;</td><td>Жирный текст визуально, но без смыслового значения.</td></tr>
+                <tr><td>&lt;em&gt;</td><td>Выделенный текст с акцентом — отображается курсивом и имеет смысловое значение.</td></tr>
+                <tr><td>&lt;i&gt;</td><td>Курсивный текст визуально, но без смыслового значения.</td></tr>
+                <tr><td>&lt;u&gt;</td><td>Подчёркнутый текст.</td></tr>
+                <tr><td>&lt;s&gt;</td><td>Зачёркнутый текст — используется для устаревшей или неактуальной информации.</td></tr>
+                <tr><td>&lt;mark&gt;</td><td>Выделенный (подсвеченный) текст — по умолчанию с жёлтым фоном.</td></tr>
+                <tr><td>&lt;small&gt;</td><td>Мелкий текст — для примечаний, копирайтов и пояснений.</td></tr>
+                <tr><td>&lt;sub&gt;</td><td>Подстрочный текст — для химических формул (H&#8322;O) и сносок.</td></tr>
+                <tr><td>&lt;sup&gt;</td><td>Надстрочный текст — для степеней (x&#178;) и сносок.</td></tr>
+                <tr><td>&lt;span&gt;</td><td>Строчный контейнер без собственного значения — используется для стилизации части текста через CSS.</td></tr>
+                <tr><td>&lt;div&gt;</td><td>Универсальный блочный контейнер — используется для группировки элементов и стилизации через CSS.</td></tr>
+            </table>
+
+            <!-- Ссылки и навигация -->
+            <div class="section-title">Ссылки и навигация</div>
+            <table class="nb-table">
+                <tr><th>Элемент</th><th>Определение</th></tr>
+                <tr><td>&lt;a href="..."&gt;</td><td>Гиперссылка — переход на другую страницу, файл, email (mailto:) или телефон (tel:).</td></tr>
+                <tr><td>&lt;nav&gt;</td><td>Семантический блок навигации — оборачивает группу ссылок-меню сайта.</td></tr>
+            </table>
+
+            <!-- Изображения -->
+            <div class="section-title">Изображения</div>
+            <table class="nb-table">
+                <tr><th>Элемент</th><th>Определение</th></tr>
+                <tr><td>&lt;img src="..." alt="..."&gt;</td><td>Изображение на странице: src — путь к файлу, alt — описание для незрячих и поисковиков.</td></tr>
+                <tr><td>&lt;figure&gt; + &lt;figcaption&gt;</td><td>Контейнер для изображения с подписью — &lt;figcaption&gt; содержит текст подписи.</td></tr>
+            </table>
+
+            <!-- Списки -->
+            <div class="section-title">Списки</div>
+            <table class="nb-table">
+                <tr><th>Элемент</th><th>Определение</th></tr>
+                <tr><td>&lt;ul&gt;</td><td>Маркированный (ненумерованный) список — каждый пункт обозначается маркером.</td></tr>
+                <tr><td>&lt;ol&gt;</td><td>Нумерованный список — каждый пункт имеет порядковый номер.</td></tr>
+                <tr><td>&lt;li&gt;</td><td>Элемент списка — один пункт внутри &lt;ul&gt; или &lt;ol&gt;.</td></tr>
+                <tr><td>&lt;dl&gt; + &lt;dt&gt; + &lt;dd&gt;</td><td>Список определений: &lt;dt&gt; — термин, &lt;dd&gt; — его описание.</td></tr>
+            </table>
+
+            <!-- Таблицы -->
+            <div class="section-title">Таблицы</div>
+            <table class="nb-table">
+                <tr><th>Элемент</th><th>Определение</th></tr>
+                <tr><td>&lt;table&gt;</td><td>Контейнер таблицы — содержит строки и ячейки для отображения табличных данных.</td></tr>
+                <tr><td>&lt;tr&gt;</td><td>Строка таблицы (table row) — содержит ячейки &lt;td&gt; или &lt;th&gt;.</td></tr>
+                <tr><td>&lt;td&gt;</td><td>Ячейка с данными (table data) — обычная ячейка таблицы.</td></tr>
+                <tr><td>&lt;th&gt;</td><td>Ячейка-заголовок (table header) — автоматически жирный и центрированный текст.</td></tr>
+                <tr><td>&lt;thead&gt;</td><td>Шапка таблицы — оборачивает строку с заголовками столбцов.</td></tr>
+                <tr><td>&lt;tbody&gt;</td><td>Тело таблицы — оборачивает основные строки с данными.</td></tr>
+                <tr><td>&lt;tfoot&gt;</td><td>Подвал таблицы — для итогов, сумм и общей информации.</td></tr>
+                <tr><td>&lt;caption&gt;</td><td>Подпись таблицы — заголовок, который ставится сразу после &lt;table&gt;.</td></tr>
+                <tr><td>colspan="N"</td><td>Атрибут, который заставляет ячейку занять N столбцов по горизонтали.</td></tr>
+                <tr><td>rowspan="N"</td><td>Атрибут, который заставляет ячейку занять N строк по вертикали.</td></tr>
+            </table>
+
+            <!-- Семантические теги -->
+            <div class="section-title">Семантические теги</div>
+            <table class="nb-table">
+                <tr><th>Элемент</th><th>Определение</th></tr>
+                <tr><td>&lt;header&gt;</td><td>Шапка страницы или секции — обычно содержит логотип, навигацию и заголовок.</td></tr>
+                <tr><td>&lt;main&gt;</td><td>Основное содержимое страницы — только один &lt;main&gt; на страницу.</td></tr>
+                <tr><td>&lt;section&gt;</td><td>Тематическая секция — группирует связанный по смыслу контент.</td></tr>
+                <tr><td>&lt;article&gt;</td><td>Самостоятельный контент — статья, пост или новость, которая имеет смысл отдельно от страницы.</td></tr>
+                <tr><td>&lt;aside&gt;</td><td>Боковой контент — сайдбар, дополнительная информация или реклама.</td></tr>
+                <tr><td>&lt;footer&gt;</td><td>Подвал страницы — контакты, копирайт, ссылки на документы.</td></tr>
+                <tr><td>&lt;details&gt; + &lt;summary&gt;</td><td>Раскрывающийся блок без JavaScript — &lt;summary&gt; это видимый заголовок, по клику раскрывается содержимое.</td></tr>
+                <tr><td>&lt;time datetime="..."&gt;</td><td>Дата или время в машиночитаемом формате — помогает поисковикам понять дату.</td></tr>
+            </table>
+
+            <!-- Формы -->
+            <div class="section-title">Формы</div>
+            <table class="nb-table">
+                <tr><th>Элемент</th><th>Определение</th></tr>
+                <tr><td>&lt;form&gt;</td><td>Контейнер формы — группирует поля ввода и знает, куда отправлять данные (action, method).</td></tr>
+                <tr><td>&lt;input&gt;</td><td>Поле ввода — универсальный элемент, который меняет поведение в зависимости от атрибута type.</td></tr>
+                <tr><td>&lt;label&gt;</td><td>Подпись к полю ввода — атрибут for связывает её с input через id.</td></tr>
+                <tr><td>&lt;textarea&gt;</td><td>Многострочное поле ввода для длинных текстов — сообщений, комментариев, отзывов.</td></tr>
+                <tr><td>&lt;select&gt; + &lt;option&gt;</td><td>Выпадающий список — пользователь выбирает один вариант из нескольких предложенных.</td></tr>
+                <tr><td>&lt;button&gt;</td><td>Кнопка — тип submit отправляет форму, reset очищает, button для JavaScript.</td></tr>
+                <tr><td>type="text"</td><td>Обычное текстовое поле для ввода имени, адреса и других коротких текстов.</td></tr>
+                <tr><td>type="email"</td><td>Поле для email — браузер проверяет наличие символа @ и показывает специальную клавиатуру.</td></tr>
+                <tr><td>type="password"</td><td>Поле для пароля — скрывает вводимые символы точками.</td></tr>
+                <tr><td>type="number"</td><td>Поле для чисел — появляются стрелки и нельзя ввести буквы.</td></tr>
+                <tr><td>type="radio"</td><td>Переключатель — можно выбрать только один вариант из группы с одинаковым name.</td></tr>
+                <tr><td>type="checkbox"</td><td>Флажок — можно выбрать несколько вариантов одновременно.</td></tr>
+                <tr><td>type="date"</td><td>Поле выбора даты — браузер показывает встроенный календарь.</td></tr>
+                <tr><td>type="file"</td><td>Кнопка загрузки файла — открывает диалог выбора файла на компьютере.</td></tr>
+                <tr><td>required</td><td>Атрибут, который делает поле обязательным — форма не отправится без заполнения.</td></tr>
+                <tr><td>placeholder</td><td>Подсказка внутри поля — серый текст, который исчезает при вводе и не отправляется на сервер.</td></tr>
+                <tr><td>minlength / maxlength</td><td>Минимальное и максимальное количество символов, которое можно ввести в поле.</td></tr>
+            </table>
+
+            <!-- Универсальные атрибуты -->
+            <div class="section-title">Универсальные атрибуты</div>
+            <table class="nb-table">
+                <tr><th>Атрибут</th><th>Определение</th></tr>
+                <tr><td>class</td><td>CSS-класс элемента — можно указать несколько через пробел и применять к многим элементам.</td></tr>
+                <tr><td>id</td><td>Уникальный идентификатор элемента — только один элемент с таким id на странице.</td></tr>
+                <tr><td>style</td><td>Инлайн-стили — CSS прямо в атрибуте тега (не рекомендуется использовать часто).</td></tr>
+                <tr><td>href</td><td>Адрес ссылки — URL страницы, путь к файлу, mailto: или tel:.</td></tr>
+                <tr><td>src</td><td>Источник (путь) для изображений, видео и других медиа-файлов.</td></tr>
+                <tr><td>alt</td><td>Альтернативный текст для изображения — описание для незрячих пользователей и поисковиков.</td></tr>
+                <tr><td>target="_blank"</td><td>Открывает ссылку в новой вкладке браузера.</td></tr>
+            </table>
+
+        </div>
+
+        <!-- ======================= CSS TAB ======================= -->
+        <div class="tab-content" id="content-css">
+
+            <!-- Синтаксис и подключение -->
+            <div class="section-title">Синтаксис и подключение CSS</div>
+            <table class="nb-table">
+                <tr><th>Правило / Понятие</th><th>Определение</th></tr>
+                <tr><td>селектор { свойство: значение; }</td><td>Базовая структура CSS-правила — селектор выбирает элемент, в фигурных скобках задаются стили.</td></tr>
+                <tr><td>/* комментарий */</td><td>Комментарий в CSS-коде — не влияет на стили, виден только в коде.</td></tr>
+                <tr><td>Внешний CSS (&lt;link&gt;)</td><td>Стили в отдельном .css файле — лучший способ, кэшируется браузером.</td></tr>
+                <tr><td>Внутренний CSS (&lt;style&gt;)</td><td>Стили прямо в &lt;head&gt; HTML-документа — подходит для маленьких страниц.</td></tr>
+                <tr><td>Инлайн CSS (style="...")</td><td>Стили прямо в атрибуте тега — самый высокий приоритет, но сложно поддерживать.</td></tr>
+            </table>
+
+            <!-- Селекторы -->
+            <div class="section-title">Селекторы</div>
+            <table class="nb-table">
+                <tr><th>Селектор</th><th>Определение</th></tr>
+                <tr><td>* { }</td><td>Универсальный селектор — выбирает все элементы на странице; часто используется для сброса стилей.</td></tr>
+                <tr><td>тег { }</td><td>Селектор по тегу — выбирает все элементы данного типа на странице (вес: 0-0-1).</td></tr>
+                <tr><td>.класс { }</td><td>Селектор по классу — выбирает все элементы с указанным классом (вес: 0-1-0).</td></tr>
+                <tr><td>#id { }</td><td>Селектор по ID — выбирает один уникальный элемент (вес: 1-0-0).</td></tr>
+                <tr><td>селектор селектор { }</td><td>Вложенный селектор — выбирает элемент, который находится внутри другого элемента.</td></tr>
+                <tr><td>:hover</td><td>Псевдокласс — стили при наведении курсора мыши на элемент.</td></tr>
+                <tr><td>:focus</td><td>Псевдокласс — стили когда элемент получает фокус (курсор в поле ввода, Tab-навигация).</td></tr>
+                <tr><td>:nth-child(even/odd)</td><td>Псевдокласс — выбирает чётные (even) или нечётные (odd) элементы по порядку.</td></tr>
+                <tr><td>Специфичность</td><td>Приоритет стилей при конфликте: тег (0-0-1) &lt; класс (0-1-0) &lt; ID (1-0-0) &lt; инлайн.</td></tr>
+            </table>
+
+            <!-- Цвета -->
+            <div class="section-title">Цвета и фон</div>
+            <table class="nb-table">
+                <tr><th>Свойство</th><th>Определение</th></tr>
+                <tr><td>color</td><td>Цвет текста элемента — принимает имя цвета, HEX, RGB или HSL.</td></tr>
+                <tr><td>background-color</td><td>Цвет фона элемента.</td></tr>
+                <tr><td>background</td><td>Сокращённое свойство фона — принимает цвет, изображение или градиент.</td></tr>
+                <tr><td>linear-gradient()</td><td>Градиентный фон — плавный переход от одного цвета к другому.</td></tr>
+                <tr><td>HEX-цвета (#ff0000)</td><td>Шестнадцатеричный код цвета — 6 или 3 символа после знака #.</td></tr>
+                <tr><td>rgb() / rgba()</td><td>Цвет через три числа (красный, зелёный, синий); rgba добавляет прозрачность от 0 до 1.</td></tr>
+                <tr><td>hsl()</td><td>Цвет через тон, насыщенность и светлоту — удобно подбирать оттенки.</td></tr>
+            </table>
+
+            <!-- Шрифты и текст -->
+            <div class="section-title">Шрифты и текст</div>
+            <table class="nb-table">
+                <tr><th>Свойство</th><th>Определение</th></tr>
+                <tr><td>font-family</td><td>Шрифт текста — указывается стек с запасными шрифтами через запятую.</td></tr>
+                <tr><td>font-size</td><td>Размер шрифта — задаётся в пикселях (px) или относительных единицах (rem).</td></tr>
+                <tr><td>font-weight</td><td>Толщина (жирность) шрифта — normal (400), bold (700) или число от 100 до 900.</td></tr>
+                <tr><td>font-style</td><td>Стиль шрифта — normal (обычный) или italic (курсив).</td></tr>
+                <tr><td>text-align</td><td>Горизонтальное выравнивание текста — left, center, right или justify.</td></tr>
+                <tr><td>text-decoration</td><td>Оформление текста — none (убрать подчёркивание), underline, line-through (зачёркнутый).</td></tr>
+                <tr><td>text-transform</td><td>Регистр текста — uppercase (ВСЕ БОЛЬШИЕ), lowercase (все маленькие), capitalize (Каждое Слово).</td></tr>
+                <tr><td>line-height</td><td>Высота строки (межстрочный интервал) — рекомендуется 1.5-1.8 для удобного чтения.</td></tr>
+                <tr><td>letter-spacing</td><td>Расстояние между буквами — задаётся в пикселях.</td></tr>
+                <tr><td>text-shadow</td><td>Тень текста — задаётся сдвиг по X, Y, размытие и цвет.</td></tr>
+            </table>
+
+            <!-- Box Model -->
+            <div class="section-title">Box Model — модель коробки</div>
+            <table class="nb-table">
+                <tr><th>Свойство</th><th>Определение</th></tr>
+                <tr><td>width / height</td><td>Ширина и высота элемента — работают только для блочных и inline-block элементов.</td></tr>
+                <tr><td>padding</td><td>Внутренний отступ — расстояние от границы элемента до его содержимого.</td></tr>
+                <tr><td>margin</td><td>Внешний отступ — расстояние от элемента до соседних элементов; margin: 0 auto центрирует блок.</td></tr>
+                <tr><td>border</td><td>Рамка элемента — задаётся толщина, стиль (solid, dashed, dotted) и цвет.</td></tr>
+                <tr><td>border-radius</td><td>Скругление углов — 8px для кнопок, 50% для круга, 9999px для «таблетки».</td></tr>
+                <tr><td>box-shadow</td><td>Тень блока — задаётся сдвиг по X, Y, размытие, растяжение и цвет.</td></tr>
+                <tr><td>box-sizing: border-box</td><td>Режим расчёта размеров, при котором width включает padding и border.</td></tr>
+                <tr><td>max-width</td><td>Максимальная ширина элемента — часто используется для контейнеров по центру.</td></tr>
+                <tr><td>min-height</td><td>Минимальная высота — min-height: 100vh делает элемент не меньше высоты экрана.</td></tr>
+                <tr><td>overflow</td><td>Что делать с содержимым, которое не помещается — visible, hidden, scroll или auto.</td></tr>
+            </table>
+
+            <!-- Отображение -->
+            <div class="section-title">Отображение и единицы</div>
+            <table class="nb-table">
+                <tr><th>Свойство</th><th>Определение</th></tr>
+                <tr><td>display: block</td><td>Элемент занимает всю ширину и начинается с новой строки.</td></tr>
+                <tr><td>display: inline</td><td>Элемент занимает только ширину своего содержимого и не переносится на новую строку.</td></tr>
+                <tr><td>display: inline-block</td><td>Как inline (в строке), но можно задавать width, height, padding и margin.</td></tr>
+                <tr><td>display: none</td><td>Полностью скрывает элемент — он не занимает места на странице.</td></tr>
+                <tr><td>px (пиксели)</td><td>Фиксированная единица измерения — 16px означает ровно 16 пикселей.</td></tr>
+                <tr><td>rem</td><td>Относительная единица — зависит от корневого font-size (обычно 16px), 1.5rem = 24px.</td></tr>
+                <tr><td>vh / vw</td><td>Единицы окна браузера — 1vh = 1% высоты экрана, 1vw = 1% ширины экрана.</td></tr>
+            </table>
+
+            <!-- Flexbox -->
+            <div class="section-title">Flexbox (превью)</div>
+            <table class="nb-table">
+                <tr><th>Свойство</th><th>Определение</th></tr>
+                <tr><td>display: flex</td><td>Включает Flexbox-раскладку — дочерние элементы становятся гибкими flex-элементами.</td></tr>
+                <tr><td>justify-content</td><td>Выравнивание flex-элементов по горизонтали — center, flex-start, flex-end, space-between.</td></tr>
+                <tr><td>align-items</td><td>Выравнивание flex-элементов по вертикали — center, flex-start, flex-end, stretch.</td></tr>
+                <tr><td>gap</td><td>Отступ между flex-элементами — заменяет margin между элементами.</td></tr>
+            </table>
+
+            <!-- Переходы и интерактивность -->
+            <div class="section-title">Переходы и интерактивность</div>
+            <table class="nb-table">
+                <tr><th>Свойство</th><th>Определение</th></tr>
+                <tr><td>transition</td><td>Плавный переход при изменении свойства — задаётся свойство, длительность и функция (ease).</td></tr>
+                <tr><td>cursor</td><td>Вид курсора мыши — pointer (рука для кнопок), default (стрелка), not-allowed (запрещено).</td></tr>
+            </table>
+
+            <!-- CSS для таблиц -->
+            <div class="section-title">CSS для таблиц</div>
+            <table class="nb-table">
+                <tr><th>Свойство</th><th>Определение</th></tr>
+                <tr><td>border-collapse: collapse</td><td>Рамки соседних ячеек сливаются в одну — убирает двойные линии между ячейками.</td></tr>
+                <tr><td>vertical-align</td><td>Вертикальное выравнивание содержимого в ячейке — top, middle или bottom.</td></tr>
+                <tr><td>tr:nth-child(even)</td><td>Выбирает каждую чётную строку — используется для полосатого эффекта (зебра).</td></tr>
+                <tr><td>tr:hover</td><td>Подсветка строки таблицы при наведении курсора мыши.</td></tr>
+            </table>
+
+            <!-- CSS для форм -->
+            <div class="section-title">CSS для форм</div>
+            <table class="nb-table">
+                <tr><th>Свойство</th><th>Определение</th></tr>
+                <tr><td>outline: none</td><td>Убирает стандартный контур браузера при фокусе — обязательно замените на свой :focus стиль.</td></tr>
+                <tr><td>input:focus { ... }</td><td>Стили поля ввода при фокусе — обычно меняют цвет рамки и добавляют лёгкую тень.</td></tr>
+                <tr><td>font-family: inherit</td><td>Заставляет поля формы наследовать шрифт страницы вместо системного шрифта.</td></tr>
+                <tr><td>resize</td><td>Контролирует изменение размера textarea пользователем — vertical, none или both.</td></tr>
+            </table>
+
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            document.getElementById('content-html').classList.remove('active');
+            document.getElementById('content-css').classList.remove('active');
+            document.getElementById('tab-html').classList.remove('active');
+            document.getElementById('tab-css').classList.remove('active');
+
+            document.getElementById('content-' + tab).classList.add('active');
+            document.getElementById('tab-' + tab).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

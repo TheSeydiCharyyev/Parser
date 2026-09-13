@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Справочник — Пройденные элементы HTML и CSS (занятия 1-23)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #1e293b;
+            background: #f8fafc;
+            padding: 0;
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            z-index: 100;
+        }
+        .header a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #1e293b;
+        }
+        .header a span {
+            background: linear-gradient(135deg, #f97316, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header .back {
+            margin-right: 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #64748b;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            transition: all 0.15s ease;
+        }
+        .header .back:hover { background: #e2e8f0; color: #1e293b; }
+
+        /* ========== MAIN ========== */
+        .main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 84px 24px 64px;
+        }
+
+        /* ========== HERO ========== */
+        .hero { margin-bottom: 32px; }
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f97316, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .hero p { color: #64748b; font-size: 1rem; }
+        .hero .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .hero .badge {
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .badge-html { background: #dbeafe; color: #1d4ed8; }
+        .badge-css { background: #f3e8ff; color: #7c3aed; }
+        .badge-lessons { background: #dcfce7; color: #15803d; }
+
+        /* ========== TABS ========== */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 28px;
+            background: #fff;
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .tab {
+            flex: 1;
+            padding: 10px 16px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: none;
+            background: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #64748b;
+            transition: all 0.2s ease;
+        }
+        .tab:hover { color: #1e293b; background: #f1f5f9; }
+        .tab.active-html { background: #dbeafe; color: #1d4ed8; }
+        .tab.active-css { background: #f3e8ff; color: #7c3aed; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ========== SECTION ========== */
+        .section {
+            margin-bottom: 32px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .section-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .section-title { font-size: 1.15rem; font-weight: 700; }
+        .section-count { font-size: 0.8rem; color: #94a3b8; font-weight: 400; }
+
+        /* ========== CARDS ========== */
+        .ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 12px;
+        }
+        .ref-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px 18px;
+            transition: all 0.2s ease;
+        }
+        .ref-card:hover {
+            border-color: transparent;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        .ref-card .tag {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .ref-card .tag-html { color: #1d4ed8; }
+        .ref-card .tag-css { color: #7c3aed; }
+        .ref-card .desc {
+            font-size: 0.82rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+        .ref-card .lesson-tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: #f1f5f9;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        /* ========== FULL-WIDTH TABLE SECTION ========== */
+        .table-section {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 28px;
+            overflow-x: auto;
+        }
+        .table-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .table-section table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .table-section th {
+            text-align: left;
+            padding: 8px 12px;
+            background: #f8fafc;
+            font-weight: 600;
+            color: #475569;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .table-section td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: top;
+        }
+        .table-section tr:hover td { background: #f8fafc; }
+        .table-section code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.85rem;
+            background: #eff6ff;
+            padding: 1px 6px;
+            border-radius: 4px;
+            color: #1d4ed8;
+        }
+        .table-section code.css-code {
+            background: #faf5ff;
+            color: #7c3aed;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 1.5rem; }
+            .ref-grid { grid-template-columns: 1fr; }
+            .main { padding: 76px 16px 48px; }
+            .tabs { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <a href="index.html" class="back">&larr; Курс</a>
+        <a href="index.html">
+            &#127760; <span>HTML/CSS Essentials</span>
+        </a>
+    </header>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- HERO -->
+        <div class="hero">
+            <h1>&#128218; Справочник пройденного</h1>
+            <p>Все HTML-элементы и CSS-правила, которые мы изучили на занятиях 1-23</p>
+            <div class="badge-row">
+                <span class="badge badge-html">HTML: 75+ элементов</span>
+                <span class="badge badge-css">CSS: 110+ свойств</span>
+                <span class="badge badge-lessons">Занятия 1-23</span>
+                <span class="badge" style="background:#fef3c7;color:#b45309;">+ Grid, Адаптивность, Transitions</span>
+            </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab active-html" id="tab-html" onclick="switchTab('html')">&#128196; HTML-элементы</button>
+            <button class="tab" id="tab-css" onclick="switchTab('css')">&#127912; CSS-правила</button>
+            <a href="notebook.html" class="tab" style="text-decoration:none;">&#128221; Для тетради</a>
+        </div>
+
+        <!-- ======================= HTML TAB ======================= -->
+        <div class="tab-content active" id="content-html">
+
+            <!-- Структура документа -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">&#128203;</div>
+                    <div>
+                        <div class="section-title">Структура документа</div>
+                        <div class="section-count">Каркас любой HTML-страницы</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;!DOCTYPE html&gt;</div>
+                        <div class="desc">Объявление типа документа. Говорит браузеру, что это HTML5. Всегда первая строка.</div>
+                        <span class="lesson-tag">Занятие 1</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;html lang="ru"&gt;</div>
+                        <div class="desc">Корневой элемент страницы. Атрибут <code>lang</code> указывает язык содержимого.</div>
+                        <span class="lesson-tag">Занятие 1</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;head&gt;</div>
+                        <div class="desc">Голова документа. Содержит мета-информацию, заголовок, подключение стилей. Не отображается на странице.</div>
+                        <span class="lesson-tag">Занятие 1</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;meta charset="UTF-8"&gt;</div>
+                        <div class="desc">Кодировка символов. UTF-8 поддерживает кириллицу, эмодзи и все языки мира.</div>
+                        <span class="lesson-tag">Занятие 1</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;meta name="viewport"&gt;</div>
+                        <div class="desc">Настройка отображения на мобильных устройствах. Обязательный тег для адаптивности.</div>
+                        <span class="lesson-tag">Занятие 1</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;meta name="description"&gt;</div>
+                        <div class="desc">Описание страницы для поисковиков. Отображается в результатах Google.</div>
+                        <span class="lesson-tag">Занятие 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;title&gt;</div>
+                        <div class="desc">Заголовок страницы. Отображается во вкладке браузера и в результатах поиска.</div>
+                        <span class="lesson-tag">Занятие 1</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;body&gt;</div>
+                        <div class="desc">Тело документа. Всё видимое содержимое страницы находится здесь.</div>
+                        <span class="lesson-tag">Занятие 1</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;!-- комментарий --&gt;</div>
+                        <div class="desc">HTML-комментарий. Не отображается на странице, виден только в коде.</div>
+                        <span class="lesson-tag">Занятие 3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Подключение ресурсов -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #8b5cf6, #a855f7);">&#128279;</div>
+                    <div>
+                        <div class="section-title">Подключение ресурсов</div>
+                        <div class="section-count">CSS, шрифты, иконки</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;link rel="stylesheet" href="style.css"&gt;</div>
+                        <div class="desc">Подключение внешнего CSS-файла. Лучший способ добавить стили на страницу.</div>
+                        <span class="lesson-tag">Занятие 3, 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;link rel="icon" href="favicon.ico"&gt;</div>
+                        <div class="desc">Фавиконка — маленькая иконка во вкладке браузера рядом с заголовком.</div>
+                        <span class="lesson-tag">Занятие 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;style&gt;</div>
+                        <div class="desc">Внутренние стили. CSS-код пишется прямо в <code>&lt;head&gt;</code>. Подходит для маленьких страниц.</div>
+                        <span class="lesson-tag">Занятие 3, 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;link rel="icon" sizes="..."&gt;</div>
+                        <div class="desc">Фавиконка с указанием размера. Обычно <code>16x16</code>, <code>32x32</code>, <code>180x180</code> (для iOS — <code>rel="apple-touch-icon"</code>).</div>
+                        <span class="lesson-tag">Занятие 12</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#128269; Мета-теги для SEO и соцсетей</h3>
+                    <table>
+                        <tr><th>Мета-тег</th><th>Назначение</th></tr>
+                        <tr><td><code>&lt;meta name="description"&gt;</code></td><td>Описание страницы для поисковиков (показывается в Google)</td></tr>
+                        <tr><td><code>&lt;meta name="keywords"&gt;</code></td><td>Ключевые слова (сейчас почти не учитываются Google)</td></tr>
+                        <tr><td><code>&lt;meta name="author"&gt;</code></td><td>Автор страницы</td></tr>
+                        <tr><td><code>&lt;meta name="theme-color"&gt;</code></td><td>Цвет адресной строки на мобильных браузерах</td></tr>
+                        <tr><td><code>&lt;meta property="og:title"&gt;</code></td><td><strong>Open Graph</strong> — заголовок при отправке в Telegram, WhatsApp, ВК</td></tr>
+                        <tr><td><code>&lt;meta property="og:description"&gt;</code></td><td>Open Graph — описание в превью ссылки</td></tr>
+                        <tr><td><code>&lt;meta property="og:image"&gt;</code></td><td>Open Graph — картинка в превью (рекомендуется 1200x630)</td></tr>
+                        <tr><td><code>&lt;meta property="og:url"&gt;</code></td><td>Open Graph — канонический URL страницы</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 12. Open Graph-теги делают красивое превью при отправке ссылки в мессенджеры и соцсети.</p>
+                </div>
+            </div>
+
+            <!-- Заголовки и текст -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #f97316, #f59e0b);">&#128221;</div>
+                    <div>
+                        <div class="section-title">Заголовки и текст</div>
+                        <div class="section-count">Текстовое содержимое страницы</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;h1&gt; ... &lt;h6&gt;</div>
+                        <div class="desc">Заголовки 6 уровней. <code>&lt;h1&gt;</code> — главный (один на страницу), <code>&lt;h6&gt;</code> — самый мелкий. Нельзя пропускать уровни.</div>
+                        <span class="lesson-tag">Занятие 1, 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;p&gt;</div>
+                        <div class="desc">Параграф (абзац) текста. Основной элемент для обычного текста.</div>
+                        <span class="lesson-tag">Занятие 1</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;br&gt;</div>
+                        <div class="desc">Перенос строки. Самозакрывающийся тег, не создаёт новый абзац.</div>
+                        <span class="lesson-tag">Занятие 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;hr&gt;</div>
+                        <div class="desc">Горизонтальная линия-разделитель. Используется для визуального разделения контента.</div>
+                        <span class="lesson-tag">Занятие 1, 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;strong&gt;</div>
+                        <div class="desc">Важный текст (жирный). Имеет <em>семантическое</em> значение — браузер и поисковики понимают, что это важно.</div>
+                        <span class="lesson-tag">Занятие 1, 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;b&gt;</div>
+                        <div class="desc">Жирный текст (визуально). Без семантического значения — просто выделение.</div>
+                        <span class="lesson-tag">Занятие 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;em&gt;</div>
+                        <div class="desc">Выделенный текст (курсив). Имеет семантику — означает акцент, ударение.</div>
+                        <span class="lesson-tag">Занятие 1, 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;i&gt;</div>
+                        <div class="desc">Курсивный текст (визуально). Без семантического значения.</div>
+                        <span class="lesson-tag">Занятие 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;u&gt;</div>
+                        <div class="desc">Подчёркнутый текст.</div>
+                        <span class="lesson-tag">Занятие 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;s&gt;</div>
+                        <div class="desc">Зачёркнутый текст. Используется для устаревшей или неактуальной информации.</div>
+                        <span class="lesson-tag">Занятие 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;mark&gt;</div>
+                        <div class="desc">Выделенный (подсвеченный) текст. По умолчанию — жёлтый фон.</div>
+                        <span class="lesson-tag">Занятие 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;small&gt;</div>
+                        <div class="desc">Мелкий текст. Для примечаний, копирайтов, пояснений.</div>
+                        <span class="lesson-tag">Занятие 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;sub&gt; / &lt;sup&gt;</div>
+                        <div class="desc">Подстрочный (H&#8322;O) и надстрочный (x&#178;) текст. Для формул и сносок.</div>
+                        <span class="lesson-tag">Занятие 3</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;span&gt;</div>
+                        <div class="desc">Строчный контейнер. Не имеет своего значения — используется для стилизации части текста.</div>
+                        <span class="lesson-tag">Занятие 3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ссылки и навигация -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #22c55e, #10b981);">&#128279;</div>
+                    <div>
+                        <div class="section-title">Ссылки и навигация</div>
+                        <div class="section-count">Переходы между страницами и разделами</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;a href="..."&gt;</div>
+                        <div class="desc">Гиперссылка. <code>href</code> — адрес (URL, путь, <code>mailto:</code>, <code>tel:</code>, <code>#якорь</code>). <code>target="_blank"</code> — новая вкладка.</div>
+                        <span class="lesson-tag">Занятие 1, 4</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;nav&gt;</div>
+                        <div class="desc">Блок навигации. Оборачивает группу ссылок-меню. Семантический тег.</div>
+                        <span class="lesson-tag">Занятие 4, 5</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#128269; Атрибуты ссылки &lt;a&gt;</h3>
+                    <table>
+                        <tr><th>Атрибут</th><th>Пример</th><th>Описание</th></tr>
+                        <tr><td><code>href</code></td><td><code>href="page.html"</code></td><td>Адрес перехода (URL, путь к файлу)</td></tr>
+                        <tr><td><code>href="#id"</code></td><td><code>href="#contacts"</code></td><td>Якорная ссылка — прокрутка к элементу с таким <code>id</code></td></tr>
+                        <tr><td><code>href="mailto:"</code></td><td><code>href="mailto:test@mail.com"</code></td><td>Открывает почтовый клиент</td></tr>
+                        <tr><td><code>href="tel:"</code></td><td><code>href="tel:+993..."</code></td><td>Звонок по номеру (на мобильных)</td></tr>
+                        <tr><td><code>target</code></td><td><code>target="_blank"</code></td><td>Открыть в новой вкладке (<code>_self</code> — в текущей)</td></tr>
+                        <tr><td><code>title</code></td><td><code>title="Подсказка"</code></td><td>Всплывающая подсказка при наведении</td></tr>
+                        <tr><td><code>download</code></td><td><code>download</code></td><td>Скачать файл вместо открытия</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Изображения -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">&#128247;</div>
+                    <div>
+                        <div class="section-title">Изображения</div>
+                        <div class="section-count">Картинки и подписи</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;img src="..." alt="..."&gt;</div>
+                        <div class="desc">Изображение. <code>src</code> — путь к файлу, <code>alt</code> — описание (обязательно!). Можно задать <code>width</code> и <code>height</code>.</div>
+                        <span class="lesson-tag">Занятие 1, 4</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;figure&gt; + &lt;figcaption&gt;</div>
+                        <div class="desc">Контейнер для изображения с подписью. <code>&lt;figcaption&gt;</code> — текст подписи.</div>
+                        <span class="lesson-tag">Занятие 4, 5</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#128444;&#65039; Форматы изображений</h3>
+                    <table>
+                        <tr><th>Формат</th><th>Когда использовать</th></tr>
+                        <tr><td><code>JPEG</code></td><td>Фотографии, изображения с плавными переходами цветов</td></tr>
+                        <tr><td><code>PNG</code></td><td>Логотипы, иконки, изображения с прозрачностью</td></tr>
+                        <tr><td><code>GIF</code></td><td>Простые анимации, мемы</td></tr>
+                        <tr><td><code>SVG</code></td><td>Векторная графика: иконки, логотипы (масштабируется без потери качества)</td></tr>
+                        <tr><td><code>WebP</code></td><td>Современный формат, сочетает качество и малый размер файла</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Мультимедиа и iframe -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #f43f5e, #ef4444);">&#127916;</div>
+                    <div>
+                        <div class="section-title">Мультимедиа и iframe</div>
+                        <div class="section-count">Аудио, видео, встраивание YouTube, карт</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;audio controls&gt;</div>
+                        <div class="desc">Встраиваемый аудиоплеер. Атрибут <code>controls</code> <strong>обязателен</strong> — без него плеер невидим. Источник через <code>src</code> или вложенный <code>&lt;source&gt;</code>.</div>
+                        <span class="lesson-tag">Занятие 12</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;video controls&gt;</div>
+                        <div class="desc">Встраиваемый видеоплеер. Атрибуты: <code>width</code>, <code>height</code>, <code>poster</code> (обложка). <code>autoplay</code> работает только с <code>muted</code>!</div>
+                        <span class="lesson-tag">Занятие 12</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;source src="..." type="..."&gt;</div>
+                        <div class="desc">Источник для <code>&lt;audio&gt;</code> или <code>&lt;video&gt;</code>. Несколько <code>&lt;source&gt;</code> = fallback (браузер выберет поддерживаемый формат).</div>
+                        <span class="lesson-tag">Занятие 12</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;iframe src="..."&gt;</div>
+                        <div class="desc">Встраивает внешнюю страницу: YouTube-видео, Google Maps, Yandex Maps, виджеты. Парный тег.</div>
+                        <span class="lesson-tag">Занятие 12</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127911; Атрибуты &lt;audio&gt; и &lt;video&gt;</h3>
+                    <table>
+                        <tr><th>Атрибут</th><th>Описание</th></tr>
+                        <tr><td><code>controls</code></td><td>Показывает плеер (Play, пауза, громкость, перемотка). <strong>Обязательный!</strong></td></tr>
+                        <tr><td><code>autoplay</code></td><td>Автоматическое воспроизведение. Браузеры блокируют со звуком — нужен <code>muted</code></td></tr>
+                        <tr><td><code>loop</code></td><td>Повтор после окончания</td></tr>
+                        <tr><td><code>muted</code></td><td>Без звука по умолчанию</td></tr>
+                        <tr><td><code>preload</code></td><td><code>auto</code> — загрузить сразу, <code>metadata</code> — только данные, <code>none</code> — не загружать</td></tr>
+                        <tr><td><code>poster</code></td><td>(только video) Изображение-обложка до начала воспроизведения</td></tr>
+                        <tr><td><code>width</code> / <code>height</code></td><td>Размеры плеера в пикселях</td></tr>
+                    </table>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#128250; Форматы аудио и видео</h3>
+                    <table>
+                        <tr><th>Формат</th><th>MIME-тип</th><th>Поддержка</th></tr>
+                        <tr><td><strong>MP3</strong> (аудио)</td><td><code>audio/mpeg</code></td><td>Все браузеры. Используйте его!</td></tr>
+                        <tr><td><strong>OGG</strong> (аудио)</td><td><code>audio/ogg</code></td><td>Chrome, Firefox. Открытый формат</td></tr>
+                        <tr><td><strong>WAV</strong> (аудио)</td><td><code>audio/wav</code></td><td>Все браузеры. Без сжатия (большой размер)</td></tr>
+                        <tr><td><strong>MP4</strong> (видео)</td><td><code>video/mp4</code></td><td>Все браузеры. Стандарт де-факто</td></tr>
+                        <tr><td><strong>WebM</strong> (видео)</td><td><code>video/webm</code></td><td>Современный формат, меньший размер</td></tr>
+                    </table>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#128279; Атрибуты &lt;iframe&gt;</h3>
+                    <table>
+                        <tr><th>Атрибут</th><th>Описание</th></tr>
+                        <tr><td><code>src</code></td><td>URL встраиваемой страницы (YouTube embed, Google Maps embed)</td></tr>
+                        <tr><td><code>width</code> / <code>height</code></td><td>Размеры окна iframe в пикселях</td></tr>
+                        <tr><td><code>title</code></td><td>Описание содержимого (обязательно для доступности)</td></tr>
+                        <tr><td><code>allowfullscreen</code></td><td>Разрешает полноэкранный режим (для видео)</td></tr>
+                        <tr><td><code>loading="lazy"</code></td><td>Ленивая загрузка — iframe загрузится только при прокрутке к нему. Экономит трафик</td></tr>
+                        <tr><td><code>frameborder="0"</code></td><td>Убирает рамку (устаревший — лучше через CSS <code>border: none</code>)</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 12. Для адаптивного iframe используйте CSS <code class="css-code">aspect-ratio: 16 / 9</code> или обёртку с <code class="css-code">padding-bottom: 56.25%</code>.</p>
+                </div>
+            </div>
+
+            <!-- Списки -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">&#128203;</div>
+                    <div>
+                        <div class="section-title">Списки</div>
+                        <div class="section-count">Маркированные, нумерованные, описательные</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;ul&gt; + &lt;li&gt;</div>
+                        <div class="desc">Маркированный (ненумерованный) список. Каждый пункт — <code>&lt;li&gt;</code>.</div>
+                        <span class="lesson-tag">Занятие 1, 5</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;ol&gt; + &lt;li&gt;</div>
+                        <div class="desc">Нумерованный список. Атрибуты: <code>type</code> (1, A, a, I, i), <code>start</code>, <code>reversed</code>.</div>
+                        <span class="lesson-tag">Занятие 1, 5</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;dl&gt; + &lt;dt&gt; + &lt;dd&gt;</div>
+                        <div class="desc">Список определений. <code>&lt;dt&gt;</code> — термин, <code>&lt;dd&gt;</code> — описание. Для словарей, FAQ.</div>
+                        <span class="lesson-tag">Занятие 5</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Таблицы -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #0ea5e9, #0284c7);">&#128202;</div>
+                    <div>
+                        <div class="section-title">Таблицы</div>
+                        <div class="section-count">Строки, ячейки, объединение, структура</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;table&gt;</div>
+                        <div class="desc">Контейнер таблицы. Содержит строки (<code>&lt;tr&gt;</code>), которые содержат ячейки (<code>&lt;td&gt;</code> или <code>&lt;th&gt;</code>).</div>
+                        <span class="lesson-tag">Занятие 10</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;tr&gt;</div>
+                        <div class="desc">Строка таблицы (table row). Содержит ячейки. Количество <code>&lt;td&gt;</code> в каждой строке должно быть одинаковым.</div>
+                        <span class="lesson-tag">Занятие 10</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;td&gt;</div>
+                        <div class="desc">Ячейка с данными (table data). Обычный текст, по умолчанию выровнен влево.</div>
+                        <span class="lesson-tag">Занятие 10</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;th&gt;</div>
+                        <div class="desc">Ячейка-заголовок (table header). Автоматически жирный и центрированный. Помогает скринридерам.</div>
+                        <span class="lesson-tag">Занятие 10</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;thead&gt;</div>
+                        <div class="desc">Шапка таблицы. Оборачивает строку(и) с заголовками столбцов.</div>
+                        <span class="lesson-tag">Занятие 10</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;tbody&gt;</div>
+                        <div class="desc">Тело таблицы. Оборачивает основные данные (строки с <code>&lt;td&gt;</code>).</div>
+                        <span class="lesson-tag">Занятие 10</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;tfoot&gt;</div>
+                        <div class="desc">Подвал таблицы. Для итогов, сумм, общей информации.</div>
+                        <span class="lesson-tag">Занятие 10</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;caption&gt;</div>
+                        <div class="desc">Подпись/заголовок таблицы. Ставится сразу после <code>&lt;table&gt;</code>.</div>
+                        <span class="lesson-tag">Занятие 10</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#128269; Атрибуты таблицы</h3>
+                    <table>
+                        <tr><th>Атрибут</th><th>Тег</th><th>Описание</th></tr>
+                        <tr><td><code>colspan="N"</code></td><td><code>&lt;td&gt;</code> / <code>&lt;th&gt;</code></td><td>Ячейка занимает N столбцов. Уберите N-1 ячеек из этой строки.</td></tr>
+                        <tr><td><code>rowspan="N"</code></td><td><code>&lt;td&gt;</code> / <code>&lt;th&gt;</code></td><td>Ячейка занимает N строк. Уберите соответствующую ячейку из следующих N-1 строк.</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Семантические теги -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #14b8a6, #06b6d4);">&#127959;&#65039;</div>
+                    <div>
+                        <div class="section-title">Семантические теги</div>
+                        <div class="section-count">Структура и смысл страницы</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;header&gt;</div>
+                        <div class="desc">Шапка страницы или секции. Обычно содержит логотип, навигацию, заголовок.</div>
+                        <span class="lesson-tag">Занятие 5</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;main&gt;</div>
+                        <div class="desc">Основное содержимое страницы. Только один <code>&lt;main&gt;</code> на страницу!</div>
+                        <span class="lesson-tag">Занятие 5</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;section&gt;</div>
+                        <div class="desc">Тематическая секция (раздел). Группирует связанный контент.</div>
+                        <span class="lesson-tag">Занятие 5</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;article&gt;</div>
+                        <div class="desc">Самостоятельный контент — статья, пост блога, новость. Имеет смысл отдельно от страницы.</div>
+                        <span class="lesson-tag">Занятие 5</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;aside&gt;</div>
+                        <div class="desc">Боковой контент — сайдбар, дополнительная информация, реклама.</div>
+                        <span class="lesson-tag">Занятие 5</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;footer&gt;</div>
+                        <div class="desc">Подвал страницы или секции. Контакты, копирайт, ссылки.</div>
+                        <span class="lesson-tag">Занятие 5</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;details&gt; + &lt;summary&gt;</div>
+                        <div class="desc">Раскрывающийся блок (аккордеон) без JavaScript. <code>&lt;summary&gt;</code> — видимый заголовок.</div>
+                        <span class="lesson-tag">Занятие 5</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;time datetime="..."&gt;</div>
+                        <div class="desc">Дата/время в машиночитаемом формате. Помогает поисковикам.</div>
+                        <span class="lesson-tag">Занятие 5</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;div&gt;</div>
+                        <div class="desc">Универсальный блочный контейнер. Не несёт семантического смысла — используйте семантические теги, когда возможно.</div>
+                        <span class="lesson-tag">Занятие 2, 3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Формы -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #eab308, #f97316);">&#128221;</div>
+                    <div>
+                        <div class="section-title">Формы</div>
+                        <div class="section-count">Поля ввода, списки, кнопки, валидация</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;form&gt;</div>
+                        <div class="desc">Контейнер формы. Атрибуты: <code>action</code> (куда отправить), <code>method</code> (GET или POST).</div>
+                        <span class="lesson-tag">Занятие 11</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;input&gt;</div>
+                        <div class="desc">Поле ввода. Тип задаётся через <code>type</code>: text, email, password, number, tel, url, date, color, range, file, radio, checkbox.</div>
+                        <span class="lesson-tag">Занятие 1, 11</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;label&gt;</div>
+                        <div class="desc">Подпись к полю. Атрибут <code>for</code> должен совпадать с <code>id</code> у input. Клик на label ставит фокус в поле.</div>
+                        <span class="lesson-tag">Занятие 11</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;textarea&gt;</div>
+                        <div class="desc">Многострочное поле ввода. Парный тег! Атрибуты: <code>rows</code>, <code>cols</code>, <code>placeholder</code>.</div>
+                        <span class="lesson-tag">Занятие 11</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;select&gt; + &lt;option&gt;</div>
+                        <div class="desc">Выпадающий список. <code>&lt;option value="..."&gt;</code> — вариант. Первый с пустым <code>value</code> — подсказка «Выберите...».</div>
+                        <span class="lesson-tag">Занятие 11</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;button&gt;</div>
+                        <div class="desc">Кнопка. Типы: <code>submit</code> (отправка формы), <code>reset</code> (очистка), <code>button</code> (для JS). Рекомендуется вместо <code>&lt;input type="submit"&gt;</code>.</div>
+                        <span class="lesson-tag">Занятие 1, 11</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#128269; Типы input</h3>
+                    <table>
+                        <tr><th>Тип</th><th>Для чего</th><th>Особенность</th></tr>
+                        <tr><td><code>text</code></td><td>Обычный текст (имя, адрес)</td><td>Однострочное поле</td></tr>
+                        <tr><td><code>email</code></td><td>Email-адрес</td><td>Проверяет наличие @, цифровая клавиатура на мобильном</td></tr>
+                        <tr><td><code>password</code></td><td>Пароль</td><td>Скрывает ввод точками &#x2022;&#x2022;&#x2022;</td></tr>
+                        <tr><td><code>number</code></td><td>Число (возраст, количество)</td><td>Стрелки &#x25B2;&#x25BC;, атрибуты <code>min</code> / <code>max</code></td></tr>
+                        <tr><td><code>tel</code></td><td>Телефон</td><td>Цифровая клавиатура на мобильном</td></tr>
+                        <tr><td><code>url</code></td><td>URL-адрес</td><td>Проверяет формат URL</td></tr>
+                        <tr><td><code>date</code></td><td>Дата</td><td>Календарь в браузере</td></tr>
+                        <tr><td><code>color</code></td><td>Цвет</td><td>Палитра выбора цвета</td></tr>
+                        <tr><td><code>range</code></td><td>Диапазон (ползунок)</td><td>Слайдер от <code>min</code> до <code>max</code></td></tr>
+                        <tr><td><code>file</code></td><td>Загрузка файла</td><td>Кнопка «Выберите файл»</td></tr>
+                        <tr><td><code>radio</code></td><td>Один из группы</td><td>Круглый &#x25CB;. Одинаковый <code>name</code> = одна группа!</td></tr>
+                        <tr><td><code>checkbox</code></td><td>Несколько из группы</td><td>Квадратный &#x2610;. Можно выбрать несколько</td></tr>
+                    </table>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#128737;&#65039; Атрибуты валидации (без JavaScript!)</h3>
+                    <table>
+                        <tr><th>Атрибут</th><th>Что делает</th><th>Пример</th></tr>
+                        <tr><td><code>required</code></td><td>Поле обязательно для заполнения</td><td><code>&lt;input required&gt;</code></td></tr>
+                        <tr><td><code>minlength</code></td><td>Минимум символов</td><td><code>minlength="3"</code></td></tr>
+                        <tr><td><code>maxlength</code></td><td>Максимум символов</td><td><code>maxlength="50"</code></td></tr>
+                        <tr><td><code>min</code> / <code>max</code></td><td>Мин./макс. значение числа</td><td><code>min="12" max="100"</code></td></tr>
+                        <tr><td><code>pattern</code></td><td>Регулярное выражение</td><td><code>pattern="[A-Za-z]+"</code></td></tr>
+                        <tr><td><code>placeholder</code></td><td>Подсказка (исчезает при вводе, НЕ отправляется)</td><td><code>placeholder="Ваше имя"</code></td></tr>
+                        <tr><td><code>value</code></td><td>Значение по умолчанию (остаётся, отправляется)</td><td><code>value="Ашхабад"</code></td></tr>
+                        <tr><td><code>name</code></td><td>Имя поля (отправляется на сервер)</td><td><code>name="email"</code></td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Спецсимволы -->
+            <div class="table-section">
+                <h3>&#128290; HTML-спецсимволы (entities)</h3>
+                <table>
+                    <tr><th>Код</th><th>Символ</th><th>Описание</th></tr>
+                    <tr><td><code>&amp;copy;</code></td><td>&copy;</td><td>Знак копирайта</td></tr>
+                    <tr><td><code>&amp;amp;</code></td><td>&amp;</td><td>Амперсанд</td></tr>
+                    <tr><td><code>&amp;lt;</code></td><td>&lt;</td><td>Знак «меньше» (чтобы не путать с тегом)</td></tr>
+                    <tr><td><code>&amp;gt;</code></td><td>&gt;</td><td>Знак «больше»</td></tr>
+                    <tr><td><code>&amp;nbsp;</code></td><td>&nbsp;(пробел)</td><td>Неразрывный пробел</td></tr>
+                </table>
+            </div>
+
+            <!-- Блочные и строчные элементы -->
+            <div class="table-section">
+                <h3>&#128230; Блочные и строчные элементы</h3>
+                <table>
+                    <tr><th>Тип</th><th>Элементы</th><th>Поведение</th></tr>
+                    <tr><td><strong>Блочные (block)</strong></td><td><code>div</code>, <code>p</code>, <code>h1-h6</code>, <code>ul</code>, <code>ol</code>, <code>li</code>, <code>header</code>, <code>footer</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>aside</code>, <code>form</code>, <code>table</code>, <code>hr</code>, <code>fieldset</code></td><td>Новая строка, вся ширина, width/height работают</td></tr>
+                    <tr><td><strong>Строчные (inline)</strong></td><td><code>span</code>, <code>a</code>, <code>strong</code>, <code>em</code>, <code>b</code>, <code>i</code>, <code>mark</code>, <code>code</code>, <code>img</code>, <code>br</code>, <code>sub</code>, <code>sup</code>, <code>small</code>, <code>s</code>, <code>u</code>, <code>label</code>, <code>input</code>, <code>select</code>, <code>textarea</code>, <code>button</code></td><td>В одной строке, по содержимому, width/height не работают</td></tr>
+                </table>
+                <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 7. Тип элемента можно изменить через CSS <code>display</code>.</p>
+            </div>
+
+            <!-- Универсальные атрибуты -->
+            <div class="table-section">
+                <h3>&#127991;&#65039; Универсальные атрибуты (для любого тега)</h3>
+                <table>
+                    <tr><th>Атрибут</th><th>Пример</th><th>Описание</th></tr>
+                    <tr><td><code>class</code></td><td><code>class="card featured"</code></td><td>CSS-класс (можно несколько через пробел)</td></tr>
+                    <tr><td><code>id</code></td><td><code>id="header"</code></td><td>Уникальный идентификатор (один на страницу)</td></tr>
+                    <tr><td><code>style</code></td><td><code>style="color: red;"</code></td><td>Инлайн-стили (не рекомендуется часто)</td></tr>
+                    <tr><td><code>title</code></td><td><code>title="Подсказка"</code></td><td>Всплывающая подсказка при наведении мыши</td></tr>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- ======================= CSS TAB ======================= -->
+        <div class="tab-content" id="content-css">
+
+            <!-- Синтаксис и подключение -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">&#128268;</div>
+                    <div>
+                        <div class="section-title">Синтаксис и подключение CSS</div>
+                        <div class="section-count">Как писать и подключать стили</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">селектор { свойство: значение; }</div>
+                        <div class="desc">Базовая структура CSS-правила. Селектор выбирает элемент, в фигурных скобках — стили.</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">/* комментарий */</div>
+                        <div class="desc">CSS-комментарий. Не влияет на стили, виден только в коде. Для пояснений и заметок.</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">&lt;link rel="stylesheet" href="style.css"&gt;</div>
+                        <div class="desc"><strong>Внешний CSS</strong> (лучший способ). Отдельный файл, кэшируется браузером, удобно поддерживать.</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">&lt;style&gt; ... &lt;/style&gt;</div>
+                        <div class="desc"><strong>Внутренний CSS</strong>. Пишется в <code>&lt;head&gt;</code>. Для одностраничных проектов или быстрых тестов.</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">style="color: red;"</div>
+                        <div class="desc"><strong>Инлайн CSS</strong> (избегать). Прямо в атрибуте тега. Сложно поддерживать, перебивает все остальные стили.</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Селекторы -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #8b5cf6, #a855f7);">&#127919;</div>
+                    <div>
+                        <div class="section-title">Селекторы</div>
+                        <div class="section-count">Как выбрать элемент для стилизации</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">* { }</div>
+                        <div class="desc">Универсальный селектор — выбирает <em>все</em> элементы на странице. Используется для сброса стилей: <code class="css-code">* { margin: 0; padding: 0; box-sizing: border-box; }</code></div>
+                        <span class="lesson-tag">Занятие 7</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">тег { }</div>
+                        <div class="desc">Селектор по тегу. Выбирает <em>все</em> элементы данного типа. Пример: <code class="css-code">p { color: red; }</code>. Вес: <code>0-0-1</code></div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">.класс { }</div>
+                        <div class="desc">Селектор по классу (с точкой). Можно применять к нескольким элементам. Пример: <code class="css-code">.card { }</code>. Вес: <code>0-1-0</code></div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">#id { }</div>
+                        <div class="desc">Селектор по ID (с решёткой). Только для одного уникального элемента. Пример: <code class="css-code">#header { }</code>. Вес: <code>1-0-0</code></div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">Специфичность (приоритет)</div>
+                        <div class="desc">Кто победит при конфликте: тег (<code>0-0-1</code>) &lt; класс (<code>0-1-0</code>) &lt; ID (<code>1-0-0</code>) &lt; инлайн (перебивает всё).</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">:hover</div>
+                        <div class="desc">Псевдокласс — стили при наведении мыши. Пример: <code class="css-code">a:hover { color: #3b82f6; }</code> или <code class="css-code">.btn:hover { background: #5a6fd6; }</code>. Работает с любым элементом.</div>
+                        <span class="lesson-tag">Занятие 7, 9</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">селектор селектор { }</div>
+                        <div class="desc">Вложенный (потомок) селектор. Выбирает элемент внутри другого. Пример: <code class="css-code">.contacts a { color: #333; }</code> — все ссылки внутри <code>.contacts</code>.</div>
+                        <span class="lesson-tag">Занятие 6, 9</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">:focus</div>
+                        <div class="desc">Псевдокласс — стили при фокусе (курсор в поле ввода, Tab-навигация). Пример: <code class="css-code">input:focus { border-color: #3b82f6; }</code>. Обязательно, если убрали <code class="css-code">outline</code>!</div>
+                        <span class="lesson-tag">Занятие 11</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">:nth-child()</div>
+                        <div class="desc">Псевдокласс — выбор элемента по номеру. <code class="css-code">:nth-child(even)</code> — чётные, <code class="css-code">:nth-child(odd)</code> — нечётные, <code class="css-code">:nth-child(3)</code> — третий. Полосатые таблицы!</div>
+                        <span class="lesson-tag">Занятие 10</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Цвета и фон -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #f43f5e, #ec4899);">&#127912;</div>
+                    <div>
+                        <div class="section-title">Цвета и фон</div>
+                        <div class="section-count">Форматы цветов, фоны, градиенты</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">color</div>
+                        <div class="desc">Цвет текста. Принимает любой формат: имя, HEX, RGB, HSL. Пример: <code class="css-code">color: #1e293b;</code></div>
+                        <span class="lesson-tag">Занятие 2, 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">background-color</div>
+                        <div class="desc">Цвет фона элемента. Пример: <code class="css-code">background-color: #f8fafc;</code></div>
+                        <span class="lesson-tag">Занятие 2, 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">background</div>
+                        <div class="desc">Сокращённое свойство фона. Принимает цвет, изображение или градиент.</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">linear-gradient()</div>
+                        <div class="desc">Градиентный фон. Пример: <code class="css-code">background: linear-gradient(135deg, #3b82f6, #1d4ed8);</code></div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">Имена цветов</div>
+                        <div class="desc">147 именованных цветов: <code class="css-code">red</code>, <code class="css-code">tomato</code>, <code class="css-code">darkblue</code>, <code class="css-code">orange</code>, <code class="css-code">white</code>, <code class="css-code">black</code> и др.</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">HEX-цвета</div>
+                        <div class="desc">Шестнадцатеричный код: <code class="css-code">#ff0000</code> (красный), <code class="css-code">#333</code> (сокращённый). 6 или 3 символа после <code>#</code>.</div>
+                        <span class="lesson-tag">Занятие 2, 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">rgb() / rgba()</div>
+                        <div class="desc">RGB: <code class="css-code">rgb(255, 0, 0)</code>. RGBA добавляет прозрачность: <code class="css-code">rgba(0, 0, 0, 0.5)</code> (0 = прозрачный, 1 = непрозрачный).</div>
+                        <span class="lesson-tag">Занятие 2, 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">hsl()</div>
+                        <div class="desc">Тон, насыщенность, светлота. Пример: <code class="css-code">hsl(0, 100%, 50%)</code> — красный. Удобно подбирать оттенки.</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Шрифты и текст -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #f97316, #f59e0b);">&#128396;&#65039;</div>
+                    <div>
+                        <div class="section-title">Шрифты и текст</div>
+                        <div class="section-count">Стилизация текстового содержимого</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">font-family</div>
+                        <div class="desc">Шрифт текста. Указывается стек с запасными: <code class="css-code">'Inter', 'Arial', sans-serif</code>. Если первый не загрузился — следующий.</div>
+                        <span class="lesson-tag">Занятие 2, 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">font-size</div>
+                        <div class="desc">Размер шрифта. Единицы: <code class="css-code">16px</code> (пиксели), <code class="css-code">1.2rem</code> (относительно корня, обычно 16px).</div>
+                        <span class="lesson-tag">Занятие 2, 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">font-weight</div>
+                        <div class="desc">Толщина шрифта: <code class="css-code">normal</code> (400), <code class="css-code">bold</code> (700), или число 100-900.</div>
+                        <span class="lesson-tag">Занятие 2, 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">font-style</div>
+                        <div class="desc">Стиль шрифта: <code class="css-code">normal</code> (обычный) или <code class="css-code">italic</code> (курсив).</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">text-align</div>
+                        <div class="desc">Выравнивание текста: <code class="css-code">left</code>, <code class="css-code">center</code>, <code class="css-code">right</code>, <code class="css-code">justify</code> (по ширине).</div>
+                        <span class="lesson-tag">Занятие 2, 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">text-decoration</div>
+                        <div class="desc">Оформление текста: <code class="css-code">none</code> (убрать подчёркивание у ссылок), <code class="css-code">underline</code>, <code class="css-code">line-through</code> (зачёркнутый).</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">text-transform</div>
+                        <div class="desc">Регистр: <code class="css-code">uppercase</code> (ВСЕ БОЛЬШИЕ), <code class="css-code">lowercase</code> (все маленькие), <code class="css-code">capitalize</code> (Каждое Слово).</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">line-height</div>
+                        <div class="desc">Высота строки (межстрочный интервал). Рекомендуется: <code class="css-code">1.5</code> - <code class="css-code">1.8</code> для удобного чтения.</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">letter-spacing</div>
+                        <div class="desc">Расстояние между буквами. Пример: <code class="css-code">letter-spacing: 2px;</code></div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">text-shadow</div>
+                        <div class="desc">Тень текста. Пример: <code class="css-code">text-shadow: 2px 2px 4px rgba(0,0,0,0.2);</code> (сдвиг-X, сдвиг-Y, размытие, цвет).</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">Google Fonts</div>
+                        <div class="desc">Бесплатные веб-шрифты. Подключаются через <code>&lt;link&gt;</code> в <code>&lt;head&gt;</code>. Популярные: Inter, Roboto, Open Sans, Montserrat, Playfair Display.</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Box Model -->
+            <div class="table-section">
+                <h3>&#128230; Box Model — модель коробки</h3>
+                <table>
+                    <tr><th>Слой</th><th>Свойство</th><th>Описание</th></tr>
+                    <tr><td><strong>Content</strong></td><td><code class="css-code">width</code>, <code class="css-code">height</code></td><td>Содержимое элемента (текст, картинка)</td></tr>
+                    <tr><td><strong>Padding</strong></td><td><code class="css-code">padding</code></td><td>Внутренний отступ (фон распространяется). 4 значения: top right bottom left</td></tr>
+                    <tr><td><strong>Border</strong></td><td><code class="css-code">border</code></td><td>Рамка (толщина стиль цвет)</td></tr>
+                    <tr><td><strong>Margin</strong></td><td><code class="css-code">margin</code></td><td>Внешний отступ (прозрачный, схлопывается вертикально)</td></tr>
+                </table>
+                <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 7. Всегда используйте <code class="css-code">* { box-sizing: border-box; }</code> — чтобы width включал padding и border.</p>
+            </div>
+
+            <!-- Отступы, рамки, размеры -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">&#128207;</div>
+                    <div>
+                        <div class="section-title">Отступы, рамки, тени</div>
+                        <div class="section-count">Пространство вокруг и внутри элементов</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">padding</div>
+                        <div class="desc">Внутренний отступ — от границы до содержимого. Пример: <code class="css-code">padding: 16px 20px;</code> (верх-низ, лево-право). 4 значения: top right bottom left (по часовой).</div>
+                        <span class="lesson-tag">Занятие 2, 6, 7</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">margin</div>
+                        <div class="desc">Внешний отступ — от элемента до соседних. <code class="css-code">margin: 0 auto;</code> — центрирование блока. Вертикальные margin схлопываются (побеждает больший).</div>
+                        <span class="lesson-tag">Занятие 2, 6, 7</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">border</div>
+                        <div class="desc">Рамка элемента (толщина, стиль, цвет). Стили: <code class="css-code">solid</code>, <code class="css-code">dashed</code>, <code class="css-code">dotted</code>, <code class="css-code">double</code>, <code class="css-code">none</code>.</div>
+                        <span class="lesson-tag">Занятие 2, 6, 7</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">border-left / border-top / border-bottom</div>
+                        <div class="desc">Рамка только с одной стороны. Пример: <code class="css-code">border-left: 4px solid #3b82f6;</code></div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">border-radius</div>
+                        <div class="desc">Скругление углов. <code class="css-code">8px</code> — кнопки, <code class="css-code">12-16px</code> — карточки, <code class="css-code">50%</code> — круг, <code class="css-code">9999px</code> — таблетка.</div>
+                        <span class="lesson-tag">Занятие 2, 6, 7</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">box-shadow</div>
+                        <div class="desc">Тень блока: X Y размытие растяжение цвет. Лёгкая: <code class="css-code">0 2px 4px rgba(0,0,0,0.1)</code>. Глубокая: <code class="css-code">0 10px 30px rgba(0,0,0,0.2)</code>. <code class="css-code">inset</code> — внутренняя.</div>
+                        <span class="lesson-tag">Занятие 2, 7</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">transition</div>
+                        <div class="desc">Плавный переход при изменении свойства. Пример: <code class="css-code">transition: background 0.2s ease;</code> или <code class="css-code">transition: all 0.3s ease;</code>. Ставится на элемент, а не на :hover!</div>
+                        <span class="lesson-tag">Занятие 9, 10, 11</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">cursor</div>
+                        <div class="desc">Вид курсора мыши. <code class="css-code">pointer</code> — рука (для кнопок и ссылок), <code class="css-code">default</code> — стрелка, <code class="css-code">not-allowed</code> — запрещено.</div>
+                        <span class="lesson-tag">Занятие 9, 11</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Размеры и отображение -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #22c55e, #10b981);">&#128065;&#65039;</div>
+                    <div>
+                        <div class="section-title">Размеры и отображение</div>
+                        <div class="section-count">Ширина, единицы, тип элемента</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">max-width</div>
+                        <div class="desc">Максимальная ширина. Часто: <code class="css-code">max-width: 800px; margin: 0 auto;</code> — контейнер по центру.</div>
+                        <span class="lesson-tag">Занятие 2, 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">display</div>
+                        <div class="desc">Тип отображения: <code class="css-code">block</code> (новая строка, вся ширина), <code class="css-code">inline</code> (в строке), <code class="css-code">inline-block</code> (в строке + width/height), <code class="css-code">none</code> (скрыть).</div>
+                        <span class="lesson-tag">Занятие 2, 7</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">box-sizing</div>
+                        <div class="desc">Как считать размеры. <code class="css-code">content-box</code> — width = только content. <code class="css-code">border-box</code> — width включает padding и border. Всегда используйте <code class="css-code">* { box-sizing: border-box; }</code></div>
+                        <span class="lesson-tag">Занятие 7</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">width / height</div>
+                        <div class="desc">Ширина и высота элемента. Работают только для block и inline-block. Для inline не работают. Пример: <code class="css-code">width: 300px;</code></div>
+                        <span class="lesson-tag">Занятие 7</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">overflow</div>
+                        <div class="desc">Что делать с переполнением: <code class="css-code">visible</code> (вылезает), <code class="css-code">hidden</code> (обрезать), <code class="css-code">scroll</code> (прокрутка), <code class="css-code">auto</code> (прокрутка если нужна).</div>
+                        <span class="lesson-tag">Занятие 7</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">px (пиксели)</div>
+                        <div class="desc">Фиксированная единица измерения. Пример: <code class="css-code">font-size: 16px;</code>, <code class="css-code">padding: 20px;</code></div>
+                        <span class="lesson-tag">Занятие 2, 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">rem</div>
+                        <div class="desc">Относительная единица — зависит от корневого <code class="css-code">font-size</code> (обычно 16px). <code class="css-code">1.5rem</code> = 24px.</div>
+                        <span class="lesson-tag">Занятие 6</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">vh / vw</div>
+                        <div class="desc">Единицы видимой области: <code class="css-code">1vh</code> = 1% высоты экрана, <code class="css-code">1vw</code> = 1% ширины. <code class="css-code">100vh</code> — вся высота окна браузера.</div>
+                        <span class="lesson-tag">Занятие 9</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">min-height</div>
+                        <div class="desc">Минимальная высота элемента. Пример: <code class="css-code">min-height: 100vh;</code> — страница займёт минимум весь экран по высоте.</div>
+                        <span class="lesson-tag">Занятие 9</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Позиционирование (position) -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">&#128205;</div>
+                    <div>
+                        <div class="section-title">Позиционирование (position)</div>
+                        <div class="section-count">5 значений position, координаты top/left, z-index, containing block</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">position: static</div>
+                        <div class="desc">Значение по умолчанию. Элемент в обычном потоке. Свойства <code class="css-code">top/right/bottom/left</code> и <code class="css-code">z-index</code> <strong>не работают</strong>. Используется чтобы «сбросить» унаследованное позиционирование.</div>
+                        <span class="lesson-tag">Занятие 8</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">position: relative</div>
+                        <div class="desc">Элемент остаётся в потоке (место сохраняется), но можно сдвинуть через <code class="css-code">top/left</code>. <strong>Главное применение</strong> — без координат, как «привязка» для absolute-потомков.</div>
+                        <span class="lesson-tag">Занятие 8</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">position: absolute</div>
+                        <div class="desc">Вырывает элемент из потока. Позиционируется от ближайшего <strong>relative/absolute/fixed/sticky-предка</strong>. Если такого нет — от <code>&lt;html&gt;</code>. Бейджи, иконки, оверлеи на фото.</div>
+                        <span class="lesson-tag">Занятие 8</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">position: fixed</div>
+                        <div class="desc">Привязан к окну браузера (viewport), не двигается при скролле. Кнопка «Наверх», fixed-шапка, чат-кнопка, модалка-фон. Игнорирует relative-родителей.</div>
+                        <span class="lesson-tag">Занятие 8</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">position: sticky</div>
+                        <div class="desc">Гибрид relative + fixed. Ведёт себя как relative, пока не достигнет порога — потом «прилипает» как fixed. Пример: <code class="css-code">position: sticky; top: 0;</code>. Не забудь <code class="css-code">background</code>!</div>
+                        <span class="lesson-tag">Занятие 8</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">top / right / bottom / left</div>
+                        <div class="desc">Координаты сдвига от соответствующего края. Работают только при <code class="css-code">position</code> ≠ static. Можно отрицательные (<code class="css-code">top: -10px</code> — выше). <code class="css-code">top: 0; bottom: 0;</code> + без height — растянуть на всю высоту контейнера.</div>
+                        <span class="lesson-tag">Занятие 8</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">z-index</div>
+                        <div class="desc">«Этаж» элемента (стек по оси Z). Больше — выше. Работает <strong>только с position</strong> (не <code>static</code>). Шкала: -1 (под контентом), 1-10 (бейджи), 50-100 (sticky/fixed шапка), 1000+ (модалки).</div>
+                        <span class="lesson-tag">Занятие 8</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">containing block</div>
+                        <div class="desc">«Контейнер», от которого absolute считает координаты. Это ближайший предок с <code class="css-code">position</code> ≠ static. Если такого нет — это <code>&lt;html&gt;</code>. <strong>Главная причина «улетающего» absolute</strong> — у родителя забыли <code class="css-code">position: relative</code>.</div>
+                        <span class="lesson-tag">Занятие 8</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 1: бейдж в углу карточки</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">.card</code></td><td><code class="css-code">position</code></td><td><code class="css-code">relative</code> (привязка для бейджа, без координат)</td></tr>
+                        <tr><td><code class="css-code">.badge</code></td><td><code class="css-code">position</code></td><td><code class="css-code">absolute</code></td></tr>
+                        <tr><td><code class="css-code">.badge</code></td><td><code class="css-code">top</code></td><td><code class="css-code">10px</code> (или <code class="css-code">-10px</code> чтобы торчал)</td></tr>
+                        <tr><td><code class="css-code">.badge</code></td><td><code class="css-code">right</code></td><td><code class="css-code">10px</code></td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 8. Самый частый паттерн на сайтах: «-30%», «NEW», «HIT» в углах карточек товаров. Главное — НЕ забыть <code class="css-code">position: relative</code> на родителе, иначе бейдж улетит в угол страницы.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 2: липкая (sticky) шапка</h3>
+                    <table>
+                        <tr><th>Свойство</th><th>Значение</th><th>Зачем</th></tr>
+                        <tr><td><code class="css-code">position</code></td><td><code class="css-code">sticky</code></td><td>тип позиционирования</td></tr>
+                        <tr><td><code class="css-code">top</code></td><td><code class="css-code">0</code></td><td><strong>обязательно</strong> — без top sticky не работает</td></tr>
+                        <tr><td><code class="css-code">background</code></td><td><code class="css-code">#fff</code> (или другой непрозрачный)</td><td><strong>обязательно</strong> — иначе текст под шапкой просвечивает</td></tr>
+                        <tr><td><code class="css-code">z-index</code></td><td><code class="css-code">100</code></td><td>чтобы шапка была поверх контента</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 8. Не работает sticky? Проверь: 1) указан <code class="css-code">top</code>, 2) ни на одном родителе нет <code class="css-code">overflow: hidden/scroll/auto</code>, 3) родитель выше самой шапки.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 3: кнопка «Наверх» через fixed</h3>
+                    <table>
+                        <tr><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">position</code></td><td><code class="css-code">fixed</code></td></tr>
+                        <tr><td><code class="css-code">bottom</code> + <code class="css-code">right</code></td><td><code class="css-code">24px</code></td></tr>
+                        <tr><td><code class="css-code">width</code> + <code class="css-code">height</code></td><td><code class="css-code">50px</code></td></tr>
+                        <tr><td><code class="css-code">border-radius</code></td><td><code class="css-code">50%</code> (круглая)</td></tr>
+                        <tr><td><code class="css-code">z-index</code></td><td><code class="css-code">50</code></td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 8. Если на странице несколько fixed-кнопок (чат + «Наверх») — задай разные <code class="css-code">bottom</code>: чат на 24px, «Наверх» на 90px. Иначе перекроют друг друга.</p>
+                </div>
+            </div>
+
+            <!-- Flexbox — контейнер -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #f59e0b, #f97316);">&#129518;</div>
+                    <div>
+                        <div class="section-title">Flexbox — контейнер</div>
+                        <div class="section-count">Свойства родителя: задают раскладку для всех дочерних элементов</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">display: flex</div>
+                        <div class="desc">Включает Flexbox-раскладку для контейнера. Дочерние элементы становятся flex-элементами и выстраиваются в ряд по главной оси.</div>
+                        <span class="lesson-tag">Занятие 9 (превью), 14</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">flex-direction</div>
+                        <div class="desc">Направление главной оси: <code class="css-code">row</code> (по умолчанию, слева направо), <code class="css-code">row-reverse</code>, <code class="css-code">column</code> (сверху вниз), <code class="css-code">column-reverse</code>.</div>
+                        <span class="lesson-tag">Занятие 14</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">flex-wrap</div>
+                        <div class="desc">Перенос элементов на новую строку: <code class="css-code">nowrap</code> (по умолчанию — всё в одну строку), <code class="css-code">wrap</code> (переносить), <code class="css-code">wrap-reverse</code>.</div>
+                        <span class="lesson-tag">Занятие 14</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">flex-flow</div>
+                        <div class="desc">Сокращение для <code class="css-code">flex-direction</code> + <code class="css-code">flex-wrap</code>. Пример: <code class="css-code">flex-flow: row wrap;</code></div>
+                        <span class="lesson-tag">Занятие 14</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">justify-content</div>
+                        <div class="desc">Выравнивание по <strong>главной</strong> оси (по умолчанию — горизонтально). Значения: <code class="css-code">flex-start</code>, <code class="css-code">center</code>, <code class="css-code">flex-end</code>, <code class="css-code">space-between</code>, <code class="css-code">space-around</code>, <code class="css-code">space-evenly</code>.</div>
+                        <span class="lesson-tag">Занятие 9, 14</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">align-items</div>
+                        <div class="desc">Выравнивание по <strong>поперечной</strong> оси (по умолчанию — вертикально). Значения: <code class="css-code">stretch</code> (по умолчанию), <code class="css-code">flex-start</code>, <code class="css-code">center</code>, <code class="css-code">flex-end</code>, <code class="css-code">baseline</code>.</div>
+                        <span class="lesson-tag">Занятие 9, 14</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">align-content</div>
+                        <div class="desc">Выравнивание <strong>строк</strong> (только при <code class="css-code">flex-wrap: wrap</code> и нескольких строках). Значения как у <code>justify-content</code> + <code class="css-code">stretch</code>.</div>
+                        <span class="lesson-tag">Занятие 14</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">gap / row-gap / column-gap</div>
+                        <div class="desc">Отступы между flex-элементами. Пример: <code class="css-code">gap: 20px;</code> или <code class="css-code">gap: 12px 20px;</code> (между строками, между столбцами). Лучше, чем margin.</div>
+                        <span class="lesson-tag">Занятие 9, 14</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Идеальное центрирование (главный рецепт)</h3>
+                    <table>
+                        <tr><th>Свойство</th><th>Значение</th><th>Что делает</th></tr>
+                        <tr><td><code class="css-code">display</code></td><td><code class="css-code">flex</code></td><td>Включает Flexbox</td></tr>
+                        <tr><td><code class="css-code">justify-content</code></td><td><code class="css-code">center</code></td><td>По центру горизонтально</td></tr>
+                        <tr><td><code class="css-code">align-items</code></td><td><code class="css-code">center</code></td><td>По центру вертикально</td></tr>
+                        <tr><td><code class="css-code">min-height</code></td><td><code class="css-code">100vh</code></td><td>Контейнер на всю высоту экрана</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 8, 13. Эти 4 свойства на <code class="css-code">body</code> — и любой блок будет точно по центру экрана.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#129517; Главная и поперечная оси</h3>
+                    <table>
+                        <tr><th><code>flex-direction</code></th><th>Главная ось</th><th>Поперечная ось</th></tr>
+                        <tr><td><code class="css-code">row</code> (по умолчанию)</td><td>горизонтальная →</td><td>вертикальная ↓</td></tr>
+                        <tr><td><code class="css-code">column</code></td><td>вертикальная ↓</td><td>горизонтальная →</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 14. <code class="css-code">justify-content</code> = главная ось. <code class="css-code">align-items</code> = поперечная ось. При смене <code>flex-direction</code> оси меняются местами!</p>
+                </div>
+            </div>
+
+            <!-- Flexbox — элементы -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #ec4899, #f43f5e);">&#129704;</div>
+                    <div>
+                        <div class="section-title">Flexbox — элементы</div>
+                        <div class="section-count">Свойства дочерних элементов: индивидуальное поведение</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">flex-grow</div>
+                        <div class="desc">«Жадность» элемента — насколько он растягивается, заполняя свободное место. <code class="css-code">0</code> (по умолчанию) — не растягивается, <code class="css-code">1</code> — берёт всё свободное, <code class="css-code">2</code> — вдвое больше соседа с <code>1</code>.</div>
+                        <span class="lesson-tag">Занятие 15</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">flex-shrink</div>
+                        <div class="desc">Насколько элемент <strong>сжимается</strong>, если не хватает места. <code class="css-code">1</code> (по умолчанию) — сжимается, <code class="css-code">0</code> — не сжимается (фиксированная ширина).</div>
+                        <span class="lesson-tag">Занятие 15</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">flex-basis</div>
+                        <div class="desc">Начальный размер элемента до распределения свободного места. Значения: <code class="css-code">auto</code> (по содержимому), <code class="css-code">0</code>, <code class="css-code">200px</code>, <code class="css-code">30%</code>.</div>
+                        <span class="lesson-tag">Занятие 15</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">flex (сокращение)</div>
+                        <div class="desc">Шорткат: <code class="css-code">flex: grow shrink basis</code>. Часто: <code class="css-code">flex: 1</code> (= 1 1 0%), <code class="css-code">flex: 1 1 280px</code> (карточки с минимумом 280px), <code class="css-code">flex: 0 0 auto</code> (фикс).</div>
+                        <span class="lesson-tag">Занятие 15</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">order</div>
+                        <div class="desc">Порядок элемента в контейнере. По умолчанию <code class="css-code">0</code>. Меньше — раньше, больше — позже. Можно отрицательное (<code class="css-code">-1</code>) — встанет первым. Не меняет HTML!</div>
+                        <span class="lesson-tag">Занятие 15</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">align-self</div>
+                        <div class="desc">Индивидуальное выравнивание элемента по поперечной оси (перебивает <code>align-items</code> родителя). Значения те же: <code class="css-code">auto</code>, <code class="css-code">flex-start</code>, <code class="css-code">center</code>, <code class="css-code">flex-end</code>, <code class="css-code">stretch</code>.</div>
+                        <span class="lesson-tag">Занятие 15</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">margin: auto (трюк)</div>
+                        <div class="desc">В flex-контейнере <code class="css-code">margin-left: auto</code> отталкивает элемент вправо (всё свободное место — слева). Идеально для «logo слева, кнопки справа» в навигации.</div>
+                        <span class="lesson-tag">Занятие 15</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#128203; Контейнер vs элементы — что куда</h3>
+                    <table>
+                        <tr><th>На контейнер (родитель)</th><th>На элемент (ребёнок)</th></tr>
+                        <tr><td><code class="css-code">display: flex</code></td><td><code class="css-code">flex-grow</code></td></tr>
+                        <tr><td><code class="css-code">flex-direction</code></td><td><code class="css-code">flex-shrink</code></td></tr>
+                        <tr><td><code class="css-code">flex-wrap</code> / <code class="css-code">flex-flow</code></td><td><code class="css-code">flex-basis</code> / <code class="css-code">flex</code></td></tr>
+                        <tr><td><code class="css-code">justify-content</code></td><td><code class="css-code">order</code></td></tr>
+                        <tr><td><code class="css-code">align-items</code> / <code class="css-code">align-content</code></td><td><code class="css-code">align-self</code></td></tr>
+                        <tr><td><code class="css-code">gap</code></td><td><code class="css-code">margin: auto</code> (трюк)</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 13, 14. Главное правило: смотрите, на каком элементе пишете правило — на родителе или на ребёнке.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Готовый паттерн: галерея карточек (занятие 15)</h3>
+                    <table>
+                        <tr><th>На контейнер</th><th>На карточку</th></tr>
+                        <tr><td><code class="css-code">display: flex</code></td><td><code class="css-code">flex: 1 1 280px</code> (мин. ширина, растягиваются равномерно)</td></tr>
+                        <tr><td><code class="css-code">flex-wrap: wrap</code></td><td><code class="css-code">max-width: 400px</code> (не шире 400px)</td></tr>
+                        <tr><td><code class="css-code">gap: 24px</code></td><td><code class="css-code">display: flex; flex-direction: column</code> (вертикальная раскладка внутри)</td></tr>
+                        <tr><td>—</td><td><code class="css-code">overflow: hidden</code> (обрезает картинку по border-radius)</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 16. Внутри карточки — <code class="css-code">margin-top: auto</code> на бейджах прижимает их к низу: все карточки выровнены, даже если названия разной длины.</p>
+                </div>
+            </div>
+
+            <!-- CSS Grid -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #ec4899, #db2777);">&#129521;</div>
+                    <div>
+                        <div class="section-title">CSS Grid</div>
+                        <div class="section-count">Двумерная сетка: колонки + строки, span, areas, auto-fit</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">display: grid</div>
+                        <div class="desc">Превращает контейнер в Grid. Дочерние элементы становятся ячейками сетки. Главная альтернатива Flex для двумерных макетов.</div>
+                        <span class="lesson-tag">Занятие 17</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">grid-template-columns</div>
+                        <div class="desc">Колонки сетки. <code class="css-code">200px 1fr 1fr</code> — фикс + 2 гибких. <code class="css-code">repeat(3, 1fr)</code> — 3 равные. <code class="css-code">1fr 300px</code> — main + sidebar.</div>
+                        <span class="lesson-tag">Занятие 17</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">grid-template-rows</div>
+                        <div class="desc">Строки сетки. Аналогично columns. <code class="css-code">auto 1fr auto</code> — шапка по контенту, main растягивается, футер по контенту. Классический макет.</div>
+                        <span class="lesson-tag">Занятие 17</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">gap</div>
+                        <div class="desc">Отступы между ячейками. <code class="css-code">gap: 20px</code> — одинаковый по строкам и колонкам. <code class="css-code">gap: 20px 10px</code> — между строками 20, между колонками 10. Заменяет margin.</div>
+                        <span class="lesson-tag">Занятие 17</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">fr (фракция)</div>
+                        <div class="desc">Единица «гибкая часть» свободного места. <code class="css-code">1fr 2fr</code> — вторая колонка вдвое шире первой. Не пиксели — пропорции. Альтернатива процентам без проблем с gap.</div>
+                        <span class="lesson-tag">Занятие 17</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">repeat()</div>
+                        <div class="desc">Краткая запись. <code class="css-code">repeat(4, 1fr)</code> = <code class="css-code">1fr 1fr 1fr 1fr</code>. Можно <code class="css-code">repeat(3, 200px 1fr)</code> — повтор паттерна.</div>
+                        <span class="lesson-tag">Занятие 17</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">minmax(MIN, MAX)</div>
+                        <div class="desc">Размер от MIN до MAX. <code class="css-code">minmax(200px, 1fr)</code> — не меньше 200px, дальше растягивается. Идёт в паре с auto-fit для «магической» галереи.</div>
+                        <span class="lesson-tag">Занятие 18</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">auto-fit / auto-fill</div>
+                        <div class="desc"><code class="css-code">repeat(auto-fit, minmax(280px, 1fr))</code> — сколько колонок поместится — столько и сделай. <strong>Магия без media queries</strong>: сетка сама перестраивается под ширину.</div>
+                        <span class="lesson-tag">Занятие 18</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">grid-auto-rows</div>
+                        <div class="desc">Высота автоматически созданных строк. <code class="css-code">grid-auto-rows: 200px</code> — каждая строка ровно 200px. Нужно когда grid создаёт строки сам (для span).</div>
+                        <span class="lesson-tag">Занятие 18</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">grid-column: span N</div>
+                        <div class="desc">Ячейка занимает N колонок вместо одной. <code class="css-code">span 2</code> — на две колонки. Самый простой способ сделать «большую» карточку среди обычных.</div>
+                        <span class="lesson-tag">Занятие 18</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">grid-row: span N</div>
+                        <div class="desc">Аналогично — на N строк. Комбо <code class="css-code">grid-column: span 2; grid-row: span 2</code> = featured-карточка 2×2.</div>
+                        <span class="lesson-tag">Занятие 18</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">grid-column: 1 / -1</div>
+                        <div class="desc">«От первой линии до последней» = во всю ширину сетки. <code class="css-code">-1</code> — это «последняя линия». Не нужно считать колонки — Grid сам разберётся. Баннеры, заголовки секций.</div>
+                        <span class="lesson-tag">Занятие 18</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">grid-template-areas</div>
+                        <div class="desc">Именованные области. На контейнере — «карта» макета строками: <code class="css-code">"header header" "sidebar main" "footer footer"</code>. На детях — <code class="css-code">grid-area: имя</code>.</div>
+                        <span class="lesson-tag">Занятие 18</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">grid-area</div>
+                        <div class="desc">Привязка элемента к именованной области из template-areas. <code class="css-code">grid-area: sidebar</code>. Самый понятный способ собрать макет — буквально рисуешь его словами.</div>
+                        <span class="lesson-tag">Занятие 18</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">justify-items</div>
+                        <div class="desc">Выравнивание содержимого ячеек по <strong>горизонтали</strong>: <code class="css-code">start / center / end / stretch</code>. На контейнере — для всех, на ребёнке — <code class="css-code">justify-self</code>.</div>
+                        <span class="lesson-tag">Занятие 17</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">align-items</div>
+                        <div class="desc">Выравнивание по <strong>вертикали</strong> в ячейках: <code class="css-code">start / center / end / stretch</code>. На ребёнке — <code class="css-code">align-self</code>. Ключевое для sticky-sidebar: <code class="css-code">align-self: start</code>.</div>
+                        <span class="lesson-tag">Занятие 17</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 1: сетка карточек 3 колонки</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">.grid</code></td><td><code class="css-code">display</code></td><td><code class="css-code">grid</code></td></tr>
+                        <tr><td><code class="css-code">.grid</code></td><td><code class="css-code">grid-template-columns</code></td><td><code class="css-code">repeat(3, 1fr)</code> (3 равные колонки)</td></tr>
+                        <tr><td><code class="css-code">.grid</code></td><td><code class="css-code">gap</code></td><td><code class="css-code">24px</code></td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 17. Базовая раскладка. Карточкам ничего не нужно — Grid сам распределит их по ячейкам.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 2: «магическая» галерея без media queries</h3>
+                    <table>
+                        <tr><th>Свойство</th><th>Значение</th><th>Эффект</th></tr>
+                        <tr><td><code class="css-code">display</code></td><td><code class="css-code">grid</code></td><td>Сетка</td></tr>
+                        <tr><td><code class="css-code">grid-template-columns</code></td><td><code class="css-code">repeat(auto-fit, minmax(280px, 1fr))</code></td><td>Колонки появляются сами по мере места</td></tr>
+                        <tr><td><code class="css-code">gap</code></td><td><code class="css-code">20px</code></td><td>Отступы</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 18. На 320px = 1 кол, на 700px = 2 кол, на 1200px = 4 кол. <strong>Ни одного @media!</strong> Самый частый паттерн адаптивной сетки.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 3: featured-карточка через span</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">.grid</code></td><td><code class="css-code">grid-template-columns</code></td><td><code class="css-code">repeat(4, 1fr)</code></td></tr>
+                        <tr><td><code class="css-code">.grid</code></td><td><code class="css-code">grid-auto-rows</code></td><td><code class="css-code">200px</code></td></tr>
+                        <tr><td><code class="css-code">.card.featured</code></td><td><code class="css-code">grid-column</code></td><td><code class="css-code">span 2</code></td></tr>
+                        <tr><td><code class="css-code">.card.featured</code></td><td><code class="css-code">grid-row</code></td><td><code class="css-code">span 2</code></td></tr>
+                        <tr><td><code class="css-code">.card.banner</code></td><td><code class="css-code">grid-column</code></td><td><code class="css-code">1 / -1</code> (во всю ширину)</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 18. <code class="css-code">grid-auto-rows</code> обязательно — иначе строки получатся разной высоты и span будет выглядеть криво.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 4: макет страницы через grid-template-areas</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">.page</code></td><td><code class="css-code">display</code></td><td><code class="css-code">grid</code></td></tr>
+                        <tr><td><code class="css-code">.page</code></td><td><code class="css-code">grid-template-columns</code></td><td><code class="css-code">200px 1fr</code></td></tr>
+                        <tr><td><code class="css-code">.page</code></td><td><code class="css-code">grid-template-rows</code></td><td><code class="css-code">auto 1fr auto</code></td></tr>
+                        <tr><td><code class="css-code">.page</code></td><td><code class="css-code">grid-template-areas</code></td><td><code class="css-code">"header header" "sidebar main" "footer footer"</code></td></tr>
+                        <tr><td><code class="css-code">.page header</code></td><td><code class="css-code">grid-area</code></td><td><code class="css-code">header</code></td></tr>
+                        <tr><td><code class="css-code">.page aside</code></td><td><code class="css-code">grid-area</code></td><td><code class="css-code">sidebar</code></td></tr>
+                        <tr><td><code class="css-code">.page main</code></td><td><code class="css-code">grid-area</code></td><td><code class="css-code">main</code></td></tr>
+                        <tr><td><code class="css-code">.page footer</code></td><td><code class="css-code">grid-area</code></td><td><code class="css-code">footer</code></td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 18. Самый читаемый способ собрать макет — буквально «рисуешь» его строками в template-areas. В @media можно переписать areas — макет перестроится автоматически.</p>
+                </div>
+            </div>
+
+            <!-- Адаптивный дизайн -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #14b8a6, #06b6d4);">&#128241;</div>
+                    <div>
+                        <div class="section-title">Адаптивный дизайн</div>
+                        <div class="section-count">Media queries, viewport-единицы, clamp(), бургер-меню, sticky footer</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-html">&lt;meta viewport&gt;</div>
+                        <div class="desc"><code class="css-code">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>. <strong>Обязательно</strong> в head — иначе media queries не работают на мобильных. Жалоба №1 у новичков.</div>
+                        <span class="lesson-tag">Занятие 20</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">@media (min-width)</div>
+                        <div class="desc">«Если экран ≥ значения». <code class="css-code">@media (min-width: 768px) { ... }</code> — стили для планшета и десктопа. Mobile-first подход (рекомендуется).</div>
+                        <span class="lesson-tag">Занятие 20</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">@media (max-width)</div>
+                        <div class="desc">«Если экран ≤ значения». <code class="css-code">@media (max-width: 768px) { ... }</code> — стили для мобильных. Desktop-first подход (старый, иногда удобный).</div>
+                        <span class="lesson-tag">Занятие 20</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">Breakpoints</div>
+                        <div class="desc">Стандартные точки: <code class="css-code">576px</code> (мобильный L), <code class="css-code">768px</code> (планшет), <code class="css-code">992px</code> (ноутбук), <code class="css-code">1200px</code> (десктоп). Используют Bootstrap/Tailwind. Для большинства сайтов хватает 2-3.</div>
+                        <span class="lesson-tag">Занятие 20</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">@media (and)</div>
+                        <div class="desc">Комбинация условий. <code class="css-code">@media (min-width: 768px) and (max-width: 992px)</code> — только планшеты. <code class="css-code">and (orientation: landscape)</code> — только горизонтальная.</div>
+                        <span class="lesson-tag">Занятие 20</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">@media print</div>
+                        <div class="desc">Стили для печати. Скрыть навигацию/тени/фон, оставить только контент. <code class="css-code">@media print { .nav { display: none } body { background: #fff } }</code>.</div>
+                        <span class="lesson-tag">Занятие 20</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">prefers-color-scheme</div>
+                        <div class="desc">Определить тёмный режим ОС. <code class="css-code">@media (prefers-color-scheme: dark) { ... }</code>. Тёмная тема автоматически — без JavaScript.</div>
+                        <span class="lesson-tag">Занятие 20</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">% проценты</div>
+                        <div class="desc">Относительно <strong>размера родителя</strong>. <code class="css-code">width: 50%</code> — половина родителя. Удобно для жидких колонок и адаптивных контейнеров.</div>
+                        <span class="lesson-tag">Занятие 21</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">vw / vh</div>
+                        <div class="desc">1% от <strong>ширины/высоты окна</strong>. <code class="css-code">100vh</code> = вся высота. <code class="css-code">5vw</code> = 5% ширины. Идеально для hero на весь экран и плавных шрифтов.</div>
+                        <span class="lesson-tag">Занятие 21</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">rem</div>
+                        <div class="desc">Относительно <code class="css-code">font-size</code> элемента <code>&lt;html&gt;</code> (по умолчанию 16px). <code class="css-code">1.5rem</code> = 24px. Меняется единым центром — удобно для масштабирования всего сайта.</div>
+                        <span class="lesson-tag">Занятие 21</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">em</div>
+                        <div class="desc">Относительно font-size <strong>родителя</strong> (не html). Каскадирует. <code class="css-code">1.2em</code> в <code>h1</code> = 1.2 × font-size h1. Опаснее rem (наследуется).</div>
+                        <span class="lesson-tag">Занятие 21</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">ch</div>
+                        <div class="desc">Ширина символа «0» в текущем шрифте. <code class="css-code">max-width: 65ch</code> — не шире ~65 символов. Стандартный приём типографики: текст не растягивается на полстраницы.</div>
+                        <span class="lesson-tag">Занятие 21</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">clamp(MIN, VAL, MAX)</div>
+                        <div class="desc">«Не меньше MIN, не больше MAX, иначе VAL». <code class="css-code">font-size: clamp(2rem, 6vw, 4rem)</code> — плавный шрифт от 2 до 4rem. <strong>Главная функция адаптивного дизайна.</strong></div>
+                        <span class="lesson-tag">Занятие 21</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">min() / max()</div>
+                        <div class="desc">Возвращает меньшее/большее из двух. <code class="css-code">max-width: min(1200px, 95%)</code> — на широком экране 1200px, на узком 95%. Без media queries.</div>
+                        <span class="lesson-tag">Занятие 21</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">max-width: 100% (img)</div>
+                        <div class="desc">Адаптивные картинки. <code class="css-code">img { max-width: 100%; height: auto; display: block; }</code>. Картинка не вылезет за родителя, пропорции сохранятся.</div>
+                        <span class="lesson-tag">Занятие 21</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">input:checked ~</div>
+                        <div class="desc">Соседний селектор + псевдокласс. Основа <strong>бургер-меню на чистом CSS</strong>: <code class="css-code">#toggle:checked ~ .menu { transform: translateX(0) }</code>. Без JavaScript.</div>
+                        <span class="lesson-tag">Занятие 21</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 1: Mobile-first структура (рекомендуется)</h3>
+                    <table>
+                        <tr><th>Где</th><th>Что писать</th><th>Зачем</th></tr>
+                        <tr><td>Базовые стили (вне @media)</td><td>Мобильная версия: 1 кол, шрифт мельче, nav в столбик</td><td>Применяется ко всем экранам по умолчанию</td></tr>
+                        <tr><td><code class="css-code">@media (min-width: 768px)</code></td><td>Планшет: 2 кол, шрифт крупнее, nav в строку</td><td>Перекрывает базу при ≥ 768px</td></tr>
+                        <tr><td><code class="css-code">@media (min-width: 1024px)</code></td><td>Десктоп: 3 кол, sidebar появляется</td><td>Перекрывает при ≥ 1024px</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 20-21. В @media пиши <strong>только то, что меняется</strong> — остальное наследуется из базовых стилей (каскад).</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 2: бургер-меню на чистом CSS</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">&lt;input type="checkbox" id="t"&gt;</code></td><td><code class="css-code">position</code></td><td><code class="css-code">absolute; opacity: 0; pointer-events: none</code> (прячем)</td></tr>
+                        <tr><td><code class="css-code">&lt;label for="t"&gt;</code></td><td>—</td><td>Иконка из 3 spans, <code class="css-code">cursor: pointer</code></td></tr>
+                        <tr><td><code class="css-code">.menu</code></td><td><code class="css-code">position</code></td><td><code class="css-code">fixed; right: 0; transform: translateX(100%)</code> (за экраном)</td></tr>
+                        <tr><td><code class="css-code">.menu</code></td><td><code class="css-code">transition</code></td><td><code class="css-code">transform 0.3s ease</code></td></tr>
+                        <tr><td><code class="css-code">#t:checked ~ .menu</code></td><td><code class="css-code">transform</code></td><td><code class="css-code">translateX(0)</code> (выезжает)</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 21. Порядок в HTML: <code>input</code> → <code>label</code> → <code>nav</code> — все siblings (соседи). Селектор <code>~</code> работает только между соседями.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 3: Sticky footer через flex</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">body</code></td><td><code class="css-code">min-height</code></td><td><code class="css-code">100vh</code></td></tr>
+                        <tr><td><code class="css-code">body</code></td><td><code class="css-code">display</code></td><td><code class="css-code">flex</code></td></tr>
+                        <tr><td><code class="css-code">body</code></td><td><code class="css-code">flex-direction</code></td><td><code class="css-code">column</code></td></tr>
+                        <tr><td><code class="css-code">main</code></td><td><code class="css-code">flex</code></td><td><code class="css-code">1</code> (растягивается, прижимает footer)</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 21. Footer всегда внизу экрана, даже если контента мало. Не нужен JavaScript, не нужен position: absolute.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#128205; Когда какую единицу использовать</h3>
+                    <table>
+                        <tr><th>Единица</th><th>Идеально для</th><th>Пример</th></tr>
+                        <tr><td><code class="css-code">px</code></td><td>Точные размеры рамок, теней, малых отступов</td><td><code class="css-code">border: 1px solid; gap: 16px</code></td></tr>
+                        <tr><td><code class="css-code">rem</code></td><td>Шрифты, крупные отступы, контейнеры</td><td><code class="css-code">font-size: 1.5rem; padding: 2rem</code></td></tr>
+                        <tr><td><code class="css-code">%</code></td><td>Гибкие колонки, ширина внутри контейнера</td><td><code class="css-code">width: 50%</code></td></tr>
+                        <tr><td><code class="css-code">vw / vh</code></td><td>Hero на весь экран, плавные шрифты</td><td><code class="css-code">min-height: 100vh; font-size: 5vw</code></td></tr>
+                        <tr><td><code class="css-code">clamp()</code></td><td>Плавные шрифты с MIN/MAX без media queries</td><td><code class="css-code">clamp(1rem, 2vw, 1.5rem)</code></td></tr>
+                        <tr><td><code class="css-code">ch</code></td><td>Ширина текстовых блоков (типографика)</td><td><code class="css-code">max-width: 65ch</code></td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 21. Правило: для пропорций — % или fr, для шрифтов — rem или clamp, для viewport — vw/vh. Никогда не px для шрифтов в адаптивном дизайне.</p>
+                </div>
+            </div>
+
+            <!-- Эффекты и трансформации -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #06b6d4, #3b82f6);">&#10024;</div>
+                    <div>
+                        <div class="section-title">Эффекты и трансформации</div>
+                        <div class="section-count">transition, transform, hover-паттерны, 3D-флип, фильтры</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">aspect-ratio</div>
+                        <div class="desc">Соотношение сторон элемента. Пример: <code class="css-code">aspect-ratio: 16 / 9;</code> — для адаптивного видео, iframe, превью. Современный способ (поддержка 96%+).</div>
+                        <span class="lesson-tag">Занятие 12</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">object-fit</div>
+                        <div class="desc">Как изображение заполняет контейнер. <code class="css-code">cover</code> — заполнить всё, лишнее обрезать (как фон). <code class="css-code">contain</code> — вписать целиком. <code class="css-code">fill</code> — растянуть.</div>
+                        <span class="lesson-tag">Занятие 16</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">transition</div>
+                        <div class="desc">Плавный переход между состояниями. Формат: <code class="css-code">transition: свойство длительность функция задержка</code>. Пример: <code class="css-code">transition: background 0.3s ease 0s</code>. Ставится на БАЗОВЫЙ селектор, новое значение — на <code>:hover</code>.</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">timing-function</div>
+                        <div class="desc">«Характер» анимации. <code class="css-code">ease</code> (по умолч., мягко) · <code class="css-code">linear</code> (равномерно) · <code class="css-code">ease-in</code> (медленный старт) · <code class="css-code">ease-out</code> (медленный финиш) · <code class="css-code">ease-in-out</code>.</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">cubic-bezier()</div>
+                        <div class="desc">Своя кривая ускорения. <code class="css-code">cubic-bezier(0.34, 1.56, 0.64, 1)</code> — второе число &gt; 1 даёт <strong>перелёт</strong> = эффект пружины (bounce). Готовые ease — её частные случаи.</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">transition-delay</div>
+                        <div class="desc">Пауза перед стартом. 4-й параметр transition: <code class="css-code">transition: transform 0.35s ease 0.13s</code>. Разные задержки на соседних элементах = <strong>каскад</strong> (появляются по очереди).</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">transform: translate</div>
+                        <div class="desc">Сдвиг без смещения соседей. <code class="css-code">translateY(-8px)</code> — вверх. <code class="css-code">translateX(20px)</code> — вправо. Соседи стоят на месте, страница не дёргается. Главный приём hover-подъёма.</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">transform: scale</div>
+                        <div class="desc">Масштаб. <code class="css-code">scale(1.1)</code> — на 10% больше. <code class="css-code">scale(0.9)</code> — меньше. Центр на месте. Внутри <code>overflow: hidden</code> родителя — даёт зум-эффект.</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">transform: rotate</div>
+                        <div class="desc">Поворот в плоскости. <code class="css-code">rotate(45deg)</code> — по часовой. <code class="css-code">rotate(-15deg)</code> — против. <code class="css-code">rotate(360deg)</code> — полный оборот.</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">transform: skew</div>
+                        <div class="desc">Наклон. <code class="css-code">skewX(-20deg)</code> — наклон по X. Часто используется для диагональных полос-разделителей и косых блоков.</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">комбо transform</div>
+                        <div class="desc">Несколько функций через пробел. <code class="css-code">transform: translateY(-8px) scale(1.05) rotate(2deg)</code>. Применяются <strong>справа налево</strong>. Порядок важен: rotate потом translate даёт другой результат.</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">perspective</div>
+                        <div class="desc">«Глубина сцены» для 3D. <strong>Свойство</strong> на родителе: <code class="css-code">perspective: 1000px</code>. <strong>Функция</strong> внутри transform: <code class="css-code">transform: perspective(800px) rotateY(15deg)</code>. Меньше значение — сильнее искажение.</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">transform-style: preserve-3d</div>
+                        <div class="desc">«Сохранять 3D» для потомков. Без неё дочерние элементы сплющиваются в 2D. Нужно для 3D-флипа: ставится на крутящийся <code>.flip-card-inner</code>.</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">backface-visibility: hidden</div>
+                        <div class="desc">Скрывает «изнанку» при 3D-повороте. Без неё через переднюю сторону просвечивает задняя. Ставится на обе грани flip-карты (<code>.flip-card-front</code>, <code>.flip-card-back</code>).</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">transform-origin</div>
+                        <div class="desc">«Якорь» трансформации. По умолчанию центр. <code class="css-code">transform-origin: top left</code> — поворот/масштаб от верхнего левого угла. Меняет ощущение от <code>rotate</code> и <code>scale</code>.</div>
+                        <span class="lesson-tag">Занятие 23</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">filter</div>
+                        <div class="desc">Графические фильтры. <code class="css-code">brightness(1.1)</code> — ярче, <code class="css-code">blur(4px)</code> — размытие, <code class="css-code">grayscale(100%)</code> — ч/б, <code class="css-code">contrast(1.2)</code>.</div>
+                        <span class="lesson-tag">Занятие 16</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 1: hover-эффект карточки (база)</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">.card</code></td><td><code class="css-code">transition</code></td><td><code class="css-code">transform 0.3s ease, box-shadow 0.3s ease</code></td></tr>
+                        <tr><td><code class="css-code">.card:hover</code></td><td><code class="css-code">transform</code></td><td><code class="css-code">translateY(-8px)</code> (карточка поднимается)</td></tr>
+                        <tr><td><code class="css-code">.card:hover</code></td><td><code class="css-code">box-shadow</code></td><td><code class="css-code">0 12px 24px rgba(0,0,0,0.15)</code> (глубокая тень)</td></tr>
+                        <tr><td><code class="css-code">.card img</code></td><td><code class="css-code">transition</code></td><td><code class="css-code">transform 0.3s ease</code></td></tr>
+                        <tr><td><code class="css-code">.card:hover img</code></td><td><code class="css-code">transform</code></td><td><code class="css-code">scale(1.05)</code> (зум картинки, нужен overflow: hidden на .card)</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 23. Главное: <code class="css-code">transition</code> ставится на сам элемент (<code>.card</code>), а не на <code>:hover</code>. Тогда переход работает в обе стороны.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 2: hover-glow (цветное свечение)</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">.card</code></td><td><code class="css-code">transition</code></td><td><code class="css-code">transform 0.3s ease, box-shadow 0.3s ease</code></td></tr>
+                        <tr><td><code class="css-code">.card:hover</code></td><td><code class="css-code">transform</code></td><td><code class="css-code">translateY(-10px) scale(1.02)</code></td></tr>
+                        <tr><td><code class="css-code">.card:hover</code></td><td><code class="css-code">box-shadow</code></td><td><code class="css-code">0 20px 50px rgba(6, 182, 212, 0.35)</code> (большой blur + цветной rgba = свечение)</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 23. Glow = box-shadow с цветным rgba и большим blur (40-60px). Меняй цвет в rgba — будет подсветка любого оттенка.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 3: shimmer-кнопка (блик через ::before)</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">.btn</code></td><td><code class="css-code">position</code></td><td><code class="css-code">relative</code></td></tr>
+                        <tr><td><code class="css-code">.btn</code></td><td><code class="css-code">overflow</code></td><td><code class="css-code">hidden</code> (обрезает блик за краями)</td></tr>
+                        <tr><td><code class="css-code">.btn::before</code></td><td><code class="css-code">content</code></td><td><code class="css-code">''</code></td></tr>
+                        <tr><td><code class="css-code">.btn::before</code></td><td><code class="css-code">position</code></td><td><code class="css-code">absolute; top: 0; left: 0; width: 100%; height: 100%</code></td></tr>
+                        <tr><td><code class="css-code">.btn::before</code></td><td><code class="css-code">background</code></td><td><code class="css-code">linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%)</code></td></tr>
+                        <tr><td><code class="css-code">.btn::before</code></td><td><code class="css-code">transform</code></td><td><code class="css-code">translateX(-100%)</code> (спрятан слева)</td></tr>
+                        <tr><td><code class="css-code">.btn::before</code></td><td><code class="css-code">transition</code></td><td><code class="css-code">transform 0.6s ease</code></td></tr>
+                        <tr><td><code class="css-code">.btn:hover::before</code></td><td><code class="css-code">transform</code></td><td><code class="css-code">translateX(100%)</code> (пробегает направо)</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 23. Блик — псевдоэлемент с диагональным градиентом, переезжает от -100% до 100%. Глаз читает как «вспышка света».</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 4: 3D-флип карты (perspective + preserve-3d + backface)</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">.flip-card</code></td><td><code class="css-code">perspective</code></td><td><code class="css-code">1000px</code> (глубина 3D-сцены)</td></tr>
+                        <tr><td><code class="css-code">.flip-card</code></td><td><code class="css-code">height</code></td><td><code class="css-code">220px</code></td></tr>
+                        <tr><td><code class="css-code">.flip-card-inner</code></td><td><code class="css-code">position</code></td><td><code class="css-code">relative; width: 100%; height: 100%</code></td></tr>
+                        <tr><td><code class="css-code">.flip-card-inner</code></td><td><code class="css-code">transform-style</code></td><td><code class="css-code">preserve-3d</code></td></tr>
+                        <tr><td><code class="css-code">.flip-card-inner</code></td><td><code class="css-code">transition</code></td><td><code class="css-code">transform 0.7s ease</code></td></tr>
+                        <tr><td><code class="css-code">.flip-card:hover .flip-card-inner</code></td><td><code class="css-code">transform</code></td><td><code class="css-code">rotateY(180deg)</code></td></tr>
+                        <tr><td><code class="css-code">.flip-card-front, .flip-card-back</code></td><td><code class="css-code">position</code></td><td><code class="css-code">absolute; inset: 0</code></td></tr>
+                        <tr><td><code class="css-code">.flip-card-front, .flip-card-back</code></td><td><code class="css-code">backface-visibility</code></td><td><code class="css-code">hidden</code></td></tr>
+                        <tr><td><code class="css-code">.flip-card-back</code></td><td><code class="css-code">transform</code></td><td><code class="css-code">rotateY(180deg)</code> (базово, чтобы быть «спиной»)</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 23. Три уровня вложенности обязательны. Триггер — hover на внешнем <code>.flip-card</code>, анимация — на внутреннем <code>.flip-card-inner</code> (он крутится). Соседи не сдвигаются.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 5: tilt-карточка (наклон в 3D)</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">.tilt-card</code></td><td><code class="css-code">transition</code></td><td><code class="css-code">transform 0.4s ease, box-shadow 0.4s ease</code></td></tr>
+                        <tr><td><code class="css-code">.tilt-card:hover</code></td><td><code class="css-code">transform</code></td><td><code class="css-code">perspective(800px) rotateX(5deg) rotateY(-5deg) translateY(-6px)</code></td></tr>
+                        <tr><td><code class="css-code">.tilt-card:hover</code></td><td><code class="css-code">box-shadow</code></td><td><code class="css-code">-12px 12px 30px rgba(0,0,0,0.15)</code> (тень в сторону наклона)</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 23. <code class="css-code">perspective()</code> как функция transform — «локальная» перспектива только для этой трансформации, без необходимости ставить свойство на родителе.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 6: каскад появления через transition-delay</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">.overlay h3</code></td><td><code class="css-code">transition</code></td><td><code class="css-code">transform 0.35s ease 0.05s, opacity 0.35s ease 0.05s</code></td></tr>
+                        <tr><td><code class="css-code">.overlay p</code></td><td><code class="css-code">transition</code></td><td><code class="css-code">transform 0.35s ease 0.13s, opacity 0.35s ease 0.13s</code></td></tr>
+                        <tr><td><code class="css-code">.overlay .btn</code></td><td><code class="css-code">transition</code></td><td><code class="css-code">transform 0.35s ease 0.21s, opacity 0.35s ease 0.21s</code></td></tr>
+                        <tr><td>Все три в покое</td><td><code class="css-code">opacity</code> + <code class="css-code">transform</code></td><td><code class="css-code">0</code> + <code class="css-code">translateY(16px)</code></td></tr>
+                        <tr><td><code class="css-code">.card:hover .overlay h3/p/.btn</code></td><td><code class="css-code">opacity</code> + <code class="css-code">transform</code></td><td><code class="css-code">1</code> + <code class="css-code">translateY(0)</code></td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 23. Разные задержки на соседях — самый частый приём для «лесенки» появления. Шаг 0.08s между элементами выглядит естественно.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт 7: magnetic-кнопка (пружина через cubic-bezier)</h3>
+                    <table>
+                        <tr><th>Селектор</th><th>Свойство</th><th>Значение</th></tr>
+                        <tr><td><code class="css-code">.btn</code></td><td><code class="css-code">transition</code></td><td><code class="css-code">transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease</code></td></tr>
+                        <tr><td><code class="css-code">.btn:hover</code></td><td><code class="css-code">transform</code></td><td><code class="css-code">translateY(-10px) scale(1.08)</code></td></tr>
+                        <tr><td><code class="css-code">.btn:hover</code></td><td><code class="css-code">box-shadow</code></td><td><code class="css-code">0 25px 50px rgba(190, 24, 93, 0.5)</code></td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 23. Второе число cubic-bezier (1.56 &gt; 1) даёт <strong>перелёт</strong>: кнопка проскакивает цель и возвращается. Глаз читает как магнетизм/пружину.</p>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#128205; Адаптивный iframe — два способа</h3>
+                    <table>
+                        <tr><th>Способ</th><th>Код</th><th>Когда</th></tr>
+                        <tr><td>Современный</td><td><code class="css-code">iframe { width: 100%; aspect-ratio: 16 / 9; }</code></td><td>Если не нужна поддержка очень старых браузеров (96%+ поддержки)</td></tr>
+                        <tr><td>Старый (надёжный)</td><td>Обёртка с <code class="css-code">padding-bottom: 56.25%</code> и iframe внутри с <code class="css-code">position: absolute; width: 100%; height: 100%;</code></td><td>Для 100% поддержки</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 12. <code>56.25% = 9 ÷ 16 × 100%</code> — соотношение сторон 16:9.</p>
+                </div>
+            </div>
+
+            <!-- CSS для таблиц -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #0ea5e9, #0284c7);">&#128202;</div>
+                    <div>
+                        <div class="section-title">CSS для таблиц</div>
+                        <div class="section-count">Рамки, полоски, подсветка строк</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">border-collapse</div>
+                        <div class="desc">Режим рамок таблицы. <code class="css-code">collapse</code> — рамки сливаются (убирает двойные). <code class="css-code">separate</code> — каждая ячейка отдельно. <strong>Обязательно для всех таблиц!</strong></div>
+                        <span class="lesson-tag">Занятие 10</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">vertical-align</div>
+                        <div class="desc">Вертикальное выравнивание в ячейке: <code class="css-code">top</code>, <code class="css-code">middle</code>, <code class="css-code">bottom</code>. Полезно для ячеек с <code>rowspan</code>.</div>
+                        <span class="lesson-tag">Занятие 10</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт: красивая таблица</h3>
+                    <table>
+                        <tr><th>Свойство</th><th>Значение</th><th>Что делает</th></tr>
+                        <tr><td><code class="css-code">border-collapse</code></td><td><code class="css-code">collapse</code></td><td>Рамки сливаются</td></tr>
+                        <tr><td><code class="css-code">width</code></td><td><code class="css-code">100%</code></td><td>Таблица на всю ширину</td></tr>
+                        <tr><td><code class="css-code">padding</code> (th, td)</td><td><code class="css-code">12px 16px</code></td><td>Отступы внутри ячеек</td></tr>
+                        <tr><td><code class="css-code">border</code> (th, td)</td><td><code class="css-code">1px solid #e2e8f0</code></td><td>Рамки ячеек</td></tr>
+                        <tr><td><code class="css-code">background</code> (th)</td><td><code class="css-code">#f1f5f9</code></td><td>Фон заголовков</td></tr>
+                        <tr><td><code class="css-code">tbody tr:nth-child(even)</code></td><td><code class="css-code">background: #f8fafc</code></td><td>Полосатый эффект (зебра)</td></tr>
+                        <tr><td><code class="css-code">tbody tr:hover</code></td><td><code class="css-code">background: #dbeafe</code></td><td>Подсветка строки при наведении</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 10. Эти свойства превращают голую таблицу в профессиональную.</p>
+                </div>
+            </div>
+
+            <!-- CSS для форм -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #eab308, #f97316);">&#128221;</div>
+                    <div>
+                        <div class="section-title">CSS для форм</div>
+                        <div class="section-count">Стилизация полей ввода, фокус, кнопки</div>
+                    </div>
+                </div>
+                <div class="ref-grid">
+                    <div class="ref-card">
+                        <div class="tag tag-css">outline</div>
+                        <div class="desc">Контур элемента при фокусе. <code class="css-code">outline: none</code> — убирает стандартный. <strong>Обязательно</strong> замените на свой <code class="css-code">:focus</code> стиль!</div>
+                        <span class="lesson-tag">Занятие 11</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">font-family: inherit</div>
+                        <div class="desc">Поля формы по умолчанию используют системный шрифт. <code class="css-code">inherit</code> заставляет их наследовать шрифт страницы.</div>
+                        <span class="lesson-tag">Занятие 11</span>
+                    </div>
+                    <div class="ref-card">
+                        <div class="tag tag-css">resize</div>
+                        <div class="desc">Изменение размера textarea пользователем. <code class="css-code">vertical</code> — только вверх/вниз, <code class="css-code">none</code> — запретить, <code class="css-code">both</code> — в обе стороны.</div>
+                        <span class="lesson-tag">Занятие 11</span>
+                    </div>
+                </div>
+
+                <div class="table-section" style="margin-top: 12px;">
+                    <h3>&#127919; Рецепт: стилизация полей формы</h3>
+                    <table>
+                        <tr><th>Свойство</th><th>Значение</th><th>Что делает</th></tr>
+                        <tr><td><code class="css-code">width</code></td><td><code class="css-code">100%</code></td><td>Поле на всю ширину</td></tr>
+                        <tr><td><code class="css-code">padding</code></td><td><code class="css-code">12px 16px</code></td><td>Удобные внутренние отступы</td></tr>
+                        <tr><td><code class="css-code">border</code></td><td><code class="css-code">2px solid #e2e8f0</code></td><td>Рамка поля</td></tr>
+                        <tr><td><code class="css-code">border-radius</code></td><td><code class="css-code">8px</code></td><td>Скруглённые углы</td></tr>
+                        <tr><td><code class="css-code">font-family</code></td><td><code class="css-code">inherit</code></td><td>Шрифт страницы</td></tr>
+                        <tr><td><code class="css-code">outline</code></td><td><code class="css-code">none</code></td><td>Убрать стандартный контур</td></tr>
+                        <tr><td><code class="css-code">input:focus border-color</code></td><td><code class="css-code">#3b82f6</code></td><td>Синяя рамка при фокусе</td></tr>
+                        <tr><td><code class="css-code">input:focus box-shadow</code></td><td><code class="css-code">0 0 0 3px rgba(59,130,246,0.1)</code></td><td>Лёгкое свечение при фокусе</td></tr>
+                    </table>
+                    <p style="margin-top: 8px; font-size: 0.82rem; color: #64748b;">Занятие 11. Эти свойства делают стандартные формы красивыми и одинаковыми во всех браузерах.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            document.getElementById('content-html').classList.remove('active');
+            document.getElementById('content-css').classList.remove('active');
+            document.getElementById('tab-html').className = 'tab';
+            document.getElementById('tab-css').className = 'tab';
+
+            document.getElementById('content-' + tab).classList.add('active');
+            document.getElementById('tab-' + tab).classList.add(tab === 'html' ? 'active-html' : 'active-css');
+        }
+    </script>
+
+</body>
+</html>

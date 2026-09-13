@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 19 — Мини-проект: Макет журнала</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 19: Мини-проект — Макет журнала</span>
+    <span class="nav-title" data-lang="en">Lesson 19: Mini-project — Magazine Layout</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 19: Мини-проект #4 — Макет журнала / блога</h1>
+    <h1 data-lang="en">Lesson 19: Mini-project #4 — Magazine / Blog Layout</h1>
+    <p class="subtitle" data-lang="ru">Собираем всё вместе: grid-template-areas, span, вложенные Grid и Flexbox</p>
+    <p class="subtitle" data-lang="en">Putting it all together: grid-template-areas, span, nested Grid and Flexbox</p>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#intro">Что мы будем строить</a></li>
+            <li><a href="#planning">Планирование макета</a></li>
+            <li><a href="#html">HTML-структура</a></li>
+            <li><a href="#css-layout">CSS: общая раскладка (Grid areas)</a></li>
+            <li><a href="#css-header">CSS: шапка</a></li>
+            <li><a href="#css-featured">CSS: Featured-статья</a></li>
+            <li><a href="#css-articles">CSS: сетка статей</a></li>
+            <li><a href="#css-sidebar">CSS: боковая панель</a></li>
+            <li><a href="#css-footer">CSS: подвал</a></li>
+            <li><a href="#css-hover">CSS: hover-эффекты</a></li>
+            <li><a href="#full-code">Полный код</a></li>
+            <li><a href="#practice">Создание своего макета</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#intro">What we will build</a></li>
+            <li><a href="#planning">Layout planning</a></li>
+            <li><a href="#html">HTML structure</a></li>
+            <li><a href="#css-layout">CSS: overall layout (Grid areas)</a></li>
+            <li><a href="#css-header">CSS: header</a></li>
+            <li><a href="#css-featured">CSS: Featured article</a></li>
+            <li><a href="#css-articles">CSS: article grid</a></li>
+            <li><a href="#css-sidebar">CSS: sidebar</a></li>
+            <li><a href="#css-footer">CSS: footer</a></li>
+            <li><a href="#css-hover">CSS: hover effects</a></li>
+            <li><a href="#full-code">Full code</a></li>
+            <li><a href="#practice">Creating your own layout</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ВВЕДЕНИЕ ==================== -->
+    <h2 id="intro" data-lang="ru">1. Что мы будем строить</h2>
+    <h2 id="intro-en" data-lang="en">1. What we will build</h2>
+
+    <p data-lang="ru">Сегодня мы создаём <strong>макет журнала / блога</strong> — реальную страницу с шапкой, Featured-статьёй, сеткой статей, sidebar и подвалом. Этот проект объединяет всё, что мы изучили о Grid:</p>
+    <p data-lang="en">Today we're building a <strong>magazine / blog layout</strong> — a real page with header, Featured article, article grid, sidebar, and footer. This project combines everything we've learned about Grid:</p>
+
+    <ul data-lang="ru">
+        <li><code>grid-template-areas</code> — общая структура страницы</li>
+        <li><code>grid-column: span</code> — Featured-статья на 2 колонки</li>
+        <li>Вложенный Grid — сетка карточек внутри main</li>
+        <li>Flexbox — навигация, содержимое карточек, sidebar</li>
+    </ul>
+    <ul data-lang="en">
+        <li><code>grid-template-areas</code> — overall page structure</li>
+        <li><code>grid-column: span</code> — Featured article spanning 2 columns</li>
+        <li>Nested Grid — card grid inside main</li>
+        <li>Flexbox — navigation, card content, sidebar</li>
+    </ul>
+
+    <div class="diagram" data-lang="ru">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;        HEADER (навигация)             &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;                           &#x2502;           &#x2502;
+    &#x2502;    FEATURED (span 2)      &#x2502;           &#x2502;
+    &#x2502;    Главная статья         &#x2502;  SIDEBAR   &#x2502;
+    &#x2502;                           &#x2502;           &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;           &#x2502;
+    &#x2502; Статья &#x2502; Статья &#x2502;Статья&#x2502;           &#x2502;
+    &#x2502;  #1    &#x2502;  #2    &#x2502;  #3  &#x2502;           &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;           &#x2502;
+    &#x2502; Статья &#x2502; Статья &#x2502;Статья&#x2502;           &#x2502;
+    &#x2502;  #4    &#x2502;  #5    &#x2502;  #6  &#x2502;           &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;        FOOTER                          &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;        HEADER (navigation)             &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;                           &#x2502;           &#x2502;
+    &#x2502;    FEATURED (span 2)      &#x2502;           &#x2502;
+    &#x2502;    Main article           &#x2502;  SIDEBAR   &#x2502;
+    &#x2502;                           &#x2502;           &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;           &#x2502;
+    &#x2502; Article&#x2502; Article&#x2502;Article&#x2502;           &#x2502;
+    &#x2502;  #1    &#x2502;  #2    &#x2502;  #3  &#x2502;           &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;           &#x2502;
+    &#x2502; Article&#x2502; Article&#x2502;Article&#x2502;           &#x2502;
+    &#x2502;  #4    &#x2502;  #5    &#x2502;  #6  &#x2502;           &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;        FOOTER                          &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <hr>
+
+    <!-- ==================== ПЛАНИРОВАНИЕ ==================== -->
+    <h2 id="planning" data-lang="ru">2. Планирование макета</h2>
+    <h2 id="planning-en" data-lang="en">2. Layout planning</h2>
+
+    <p data-lang="ru">Разберём структуру по зонам:</p>
+    <p data-lang="en">Let's break down the structure by zones:</p>
+
+    <table data-lang="ru">
+        <tr><th>Зона</th><th>Grid-область</th><th>Содержание</th><th>Раскладка внутри</th></tr>
+        <tr><td><strong>Header</strong></td><td>header</td><td>Лого + навигация + кнопка</td><td>Flexbox</td></tr>
+        <tr><td><strong>Main</strong></td><td>main</td><td>Featured + сетка статей</td><td>Вложенный Grid</td></tr>
+        <tr><td><strong>Sidebar</strong></td><td>sidebar</td><td>Поиск, категории, популярное</td><td>Flexbox column</td></tr>
+        <tr><td><strong>Footer</strong></td><td>footer</td><td>Копирайт + ссылки</td><td>Flexbox</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Zone</th><th>Grid area</th><th>Content</th><th>Inner layout</th></tr>
+        <tr><td><strong>Header</strong></td><td>header</td><td>Logo + navigation + button</td><td>Flexbox</td></tr>
+        <tr><td><strong>Main</strong></td><td>main</td><td>Featured + article grid</td><td>Nested Grid</td></tr>
+        <tr><td><strong>Sidebar</strong></td><td>sidebar</td><td>Search, categories, popular</td><td>Flexbox column</td></tr>
+        <tr><td><strong>Footer</strong></td><td>footer</td><td>Copyright + links</td><td>Flexbox</td></tr>
+    </table>
+
+<pre><code>/* Общая раскладка */
+grid-template-areas:
+    "header  header"
+    "main    sidebar"
+    "footer  footer";
+grid-template-columns: 1fr 300px;</code></pre>
+
+    <hr>
+
+    <!-- ==================== HTML ==================== -->
+    <h2 id="html" data-lang="ru">3. HTML-структура</h2>
+    <h2 id="html-en" data-lang="en">3. HTML structure</h2>
+
+<pre><code>&lt;div class="magazine"&gt;
+
+    &lt;!-- HEADER --&gt;
+    &lt;header class="mag-header"&gt;
+        &lt;a href="#" class="logo"&gt;TechBlog&lt;/a&gt;
+        &lt;nav class="nav"&gt;
+            &lt;a href="#"&gt;Home&lt;/a&gt;
+            &lt;a href="#"&gt;Technology&lt;/a&gt;
+            &lt;a href="#"&gt;Science&lt;/a&gt;
+            &lt;a href="#"&gt;Design&lt;/a&gt;
+        &lt;/nav&gt;
+        &lt;button class="subscribe-btn"&gt;Subscribe&lt;/button&gt;
+    &lt;/header&gt;
+
+    &lt;!-- MAIN --&gt;
+    &lt;main class="mag-main"&gt;
+        &lt;!-- Featured --&gt;
+        &lt;article class="card featured"&gt;
+            &lt;img src="https://picsum.photos/800/400?random=1" alt=""&gt;
+            &lt;div class="card-body"&gt;
+                &lt;span class="card-tag"&gt;Featured&lt;/span&gt;
+                &lt;h2&gt;The Future of Artificial Intelligence in 2025&lt;/h2&gt;
+                &lt;p&gt;An in-depth look at how AI is transforming...&lt;/p&gt;
+                &lt;div class="card-meta"&gt;
+                    &lt;span&gt;John Doe&lt;/span&gt;
+                    &lt;span&gt;March 15, 2025&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/article&gt;
+
+        &lt;!-- Regular articles --&gt;
+        &lt;article class="card"&gt;
+            &lt;img src="https://picsum.photos/400/250?random=2" alt=""&gt;
+            &lt;div class="card-body"&gt;
+                &lt;span class="card-tag"&gt;Technology&lt;/span&gt;
+                &lt;h3&gt;Article Title&lt;/h3&gt;
+                &lt;p&gt;Short description...&lt;/p&gt;
+                &lt;div class="card-meta"&gt;
+                    &lt;span&gt;Author&lt;/span&gt;
+                    &lt;span&gt;Date&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/article&gt;
+        &lt;!-- ...ещё 5 таких же карточек --&gt;
+    &lt;/main&gt;
+
+    &lt;!-- SIDEBAR --&gt;
+    &lt;aside class="mag-sidebar"&gt;
+        &lt;div class="sidebar-block"&gt;
+            &lt;h3&gt;Categories&lt;/h3&gt;
+            &lt;a href="#"&gt;Technology (12)&lt;/a&gt;
+            &lt;a href="#"&gt;Science (8)&lt;/a&gt;
+            &lt;a href="#"&gt;Design (6)&lt;/a&gt;
+            &lt;a href="#"&gt;Business (4)&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class="sidebar-block"&gt;
+            &lt;h3&gt;Popular&lt;/h3&gt;
+            &lt;!-- Мини-карточки популярных статей --&gt;
+        &lt;/div&gt;
+    &lt;/aside&gt;
+
+    &lt;!-- FOOTER --&gt;
+    &lt;footer class="mag-footer"&gt;
+        &lt;p&gt;&amp;copy; 2025 TechBlog. All rights reserved.&lt;/p&gt;
+    &lt;/footer&gt;
+
+&lt;/div&gt;</code></pre>
+
+    <hr>
+
+    <!-- ==================== CSS LAYOUT ==================== -->
+    <h2 id="css-layout" data-lang="ru">4. CSS: общая раскладка (Grid areas)</h2>
+    <h2 id="css-layout-en" data-lang="en">4. CSS: overall layout (Grid areas)</h2>
+
+<pre><code>* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+.magazine {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-template-rows: 64px 1fr auto;
+    grid-template-areas:
+        "header  header"
+        "main    sidebar"
+        "footer  footer";
+    min-height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.mag-header  { grid-area: header; }
+.mag-main    { grid-area: main; }
+.mag-sidebar { grid-area: sidebar; }
+.mag-footer  { grid-area: footer; }</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Ключевой момент:</strong> <code>grid-template-areas</code> делает код <strong>читаемым</strong>. Любой разработчик сразу видит структуру страницы, просто прочитав 3 строки.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Key point:</strong> <code>grid-template-areas</code> makes the code <strong>readable</strong>. Any developer can immediately see the page structure just by reading 3 lines.
+    </div>
+
+    <hr>
+
+    <!-- ==================== CSS HEADER ==================== -->
+    <h2 id="css-header" data-lang="ru">5. CSS: шапка</h2>
+    <h2 id="css-header-en" data-lang="en">5. CSS: header</h2>
+
+<pre><code>.mag-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 24px;
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1e293b;
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+.nav a:hover { color: #1e293b; }
+
+.subscribe-btn {
+    margin-left: auto;
+    padding: 8px 20px;
+    background: #1e293b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.subscribe-btn:hover { background: #334155; }</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>Flexbox для шапки!</strong> Header — одна линия элементов. <code>margin-left: auto</code> на кнопке прижимает её вправо. Это классический паттерн.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Flexbox for header!</strong> Header is a single line of items. <code>margin-left: auto</code> on the button pushes it to the right. This is a classic pattern.
+    </div>
+
+    <hr>
+
+    <!-- ==================== CSS FEATURED ==================== -->
+    <h2 id="css-featured" data-lang="ru">6. CSS: Featured-статья</h2>
+    <h2 id="css-featured-en" data-lang="en">6. CSS: Featured article</h2>
+
+<pre><code>.featured {
+    grid-column: 1 / -1;  /* вся ширина сетки статей */
+}
+
+.featured img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.featured h2 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+}</code></pre>
+
+    <p data-lang="ru"><code>grid-column: 1 / -1</code> — Featured занимает <strong>все столбцы</strong> внутри сетки статей. Это делает её шире обычных карточек.</p>
+    <p data-lang="en"><code>grid-column: 1 / -1</code> — Featured spans <strong>all columns</strong> within the article grid. This makes it wider than regular cards.</p>
+
+    <hr>
+
+    <!-- ==================== CSS ARTICLES ==================== -->
+    <h2 id="css-articles" data-lang="ru">7. CSS: сетка статей</h2>
+    <h2 id="css-articles-en" data-lang="en">7. CSS: article grid</h2>
+
+<pre><code>.mag-main {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-content: start;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.card-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #dbeafe;
+    color: #1d4ed8;
+    width: fit-content;
+}
+
+.card h3 {
+    font-size: 1.05rem;
+    line-height: 1.3;
+}
+
+.card p {
+    font-size: 0.85rem;
+    color: #64748b;
+    flex: 1;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin-top: auto;
+}</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Два уровня Grid:</strong>
+        <ol>
+            <li><strong>Внешний Grid</strong> (<code>.magazine</code>) — header, main, sidebar, footer</li>
+            <li><strong>Вложенный Grid</strong> (<code>.mag-main</code>) — сетка карточек 3 колонки</li>
+        </ol>
+        Grid можно вкладывать друг в друга без ограничений!
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Two Grid levels:</strong>
+        <ol>
+            <li><strong>Outer Grid</strong> (<code>.magazine</code>) — header, main, sidebar, footer</li>
+            <li><strong>Nested Grid</strong> (<code>.mag-main</code>) — 3-column card grid</li>
+        </ol>
+        Grids can be nested inside each other without limits!
+    </div>
+
+    <hr>
+
+    <!-- ==================== CSS SIDEBAR ==================== -->
+    <h2 id="css-sidebar" data-lang="ru">8. CSS: боковая панель</h2>
+    <h2 id="css-sidebar-en" data-lang="en">8. CSS: sidebar</h2>
+
+<pre><code>.mag-sidebar {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-left: 1px solid #e2e8f0;
+    background: #fff;
+}
+
+.sidebar-block h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.sidebar-block a {
+    display: block;
+    padding: 8px 0;
+    color: #475569;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f1f5f9;
+    transition: color 0.2s;
+}
+.sidebar-block a:hover { color: #1d4ed8; }</code></pre>
+
+    <p data-lang="ru">Sidebar использует <strong>Flexbox column</strong> — блоки идут сверху вниз. Внутри каждого блока — простые ссылки.</p>
+    <p data-lang="en">Sidebar uses <strong>Flexbox column</strong> — blocks go top to bottom. Inside each block — simple links.</p>
+
+    <hr>
+
+    <!-- ==================== CSS FOOTER ==================== -->
+    <h2 id="css-footer" data-lang="ru">9. CSS: подвал</h2>
+    <h2 id="css-footer-en" data-lang="en">9. CSS: footer</h2>
+
+<pre><code>.mag-footer {
+    padding: 20px 24px;
+    background: #1e293b;
+    color: #94a3b8;
+    text-align: center;
+    font-size: 0.85rem;
+}</code></pre>
+
+    <hr>
+
+    <!-- ==================== CSS HOVER ==================== -->
+    <h2 id="css-hover" data-lang="ru">10. CSS: hover-эффекты</h2>
+    <h2 id="css-hover-en" data-lang="en">10. CSS: hover effects</h2>
+
+<pre><code>.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    transition: transform 0.3s;
+}
+.card:hover img {
+    transform: scale(1.05);
+}
+
+.nav a {
+    position: relative;
+}
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #1e293b;
+    transition: width 0.3s;
+}
+.nav a:hover::after { width: 100%; }</code></pre>
+
+    <div class="fun-fact" data-lang="ru">
+        <p>Hover на изображении <code>scale(1.05)</code> + <code>overflow: hidden</code> на карточке = картинка увеличивается, но не выходит за рамки. Красивый эффект!</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p>Hover on image <code>scale(1.05)</code> + <code>overflow: hidden</code> on card = image zooms in but stays within bounds. Beautiful effect!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== FULL CODE ==================== -->
+    <h2 id="full-code" data-lang="ru">11. Полный код</h2>
+    <h2 id="full-code-en" data-lang="en">11. Full code</h2>
+
+    <p data-lang="ru">Суммируем все CSS-свойства, которые мы использовали:</p>
+    <p data-lang="en">Let's summarize all CSS properties we used:</p>
+
+    <table data-lang="ru">
+        <tr><th>Элемент</th><th>Раскладка</th><th>Ключевые свойства</th></tr>
+        <tr><td><code>.magazine</code></td><td>Grid (areas)</td><td>grid-template-areas, grid-template-columns: 1fr 300px</td></tr>
+        <tr><td><code>.mag-header</code></td><td>Flexbox</td><td>align-items: center, gap</td></tr>
+        <tr><td><code>.mag-main</code></td><td>Grid</td><td>repeat(3, 1fr), gap</td></tr>
+        <tr><td><code>.featured</code></td><td>Grid item</td><td>grid-column: 1 / -1</td></tr>
+        <tr><td><code>.card</code></td><td>Flexbox column</td><td>flex-direction: column, overflow: hidden</td></tr>
+        <tr><td><code>.mag-sidebar</code></td><td>Flexbox column</td><td>flex-direction: column, gap, border-left</td></tr>
+        <tr><td><code>.mag-footer</code></td><td>Block</td><td>text-align: center</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Element</th><th>Layout</th><th>Key properties</th></tr>
+        <tr><td><code>.magazine</code></td><td>Grid (areas)</td><td>grid-template-areas, grid-template-columns: 1fr 300px</td></tr>
+        <tr><td><code>.mag-header</code></td><td>Flexbox</td><td>align-items: center, gap</td></tr>
+        <tr><td><code>.mag-main</code></td><td>Grid</td><td>repeat(3, 1fr), gap</td></tr>
+        <tr><td><code>.featured</code></td><td>Grid item</td><td>grid-column: 1 / -1</td></tr>
+        <tr><td><code>.card</code></td><td>Flexbox column</td><td>flex-direction: column, overflow: hidden</td></tr>
+        <tr><td><code>.mag-sidebar</code></td><td>Flexbox column</td><td>flex-direction: column, gap, border-left</td></tr>
+        <tr><td><code>.mag-footer</code></td><td>Block</td><td>text-align: center</td></tr>
+    </table>
+
+    <div class="summary" data-lang="ru">
+        <strong>Чему мы научились в этом проекте:</strong>
+        <ul>
+            <li><code>grid-template-areas</code> — визуальная раскладка всей страницы</li>
+            <li>Вложенный Grid — сетка карточек внутри main</li>
+            <li><code>grid-column: 1 / -1</code> — Featured на всю ширину</li>
+            <li>Flexbox для навигации, карточек, sidebar</li>
+            <li><code>overflow: hidden</code> + hover scale — эффект зума на картинках</li>
+            <li><code>margin-top: auto</code> — прижать мета-данные к низу карточки</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>What we learned in this project:</strong>
+        <ul>
+            <li><code>grid-template-areas</code> — visual layout for the whole page</li>
+            <li>Nested Grid — card grid inside main</li>
+            <li><code>grid-column: 1 / -1</code> — Featured spanning full width</li>
+            <li>Flexbox for navigation, cards, sidebar</li>
+            <li><code>overflow: hidden</code> + hover scale — zoom effect on images</li>
+            <li><code>margin-top: auto</code> — push meta to the bottom of card</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">12. Создание своего макета</h2>
+    <h2 id="practice-en" data-lang="en">12. Creating your own layout</h2>
+
+    <p data-lang="ru">Теперь ваша очередь! Создайте свой макет журнала / блога на выбранную тему. Используйте разобранный пример как основу, но добавьте свои цвета, тему и содержание.</p>
+    <p data-lang="en">Now it's your turn! Create your own magazine / blog layout on a topic of your choice. Use the example above as a base, but add your own colors, theme, and content.</p>
+
+    <p data-lang="ru"><strong>Идеи тем:</strong></p>
+    <p data-lang="en"><strong>Topic ideas:</strong></p>
+
+    <ul data-lang="ru">
+        <li>Технологический блог</li>
+        <li>Кулинарный журнал</li>
+        <li>Блог о путешествиях</li>
+        <li>Новости спорта</li>
+        <li>Модный журнал</li>
+        <li>Научный портал</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Tech blog</li>
+        <li>Cooking magazine</li>
+        <li>Travel blog</li>
+        <li>Sports news</li>
+        <li>Fashion magazine</li>
+        <li>Science portal</li>
+    </ul>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Какие 4 области использованы в grid-template-areas?</li>
+            <li>Как Featured-карточка занимает всю ширину?</li>
+            <li>Где используется Grid, а где Flexbox?</li>
+            <li>Зачем overflow: hidden на карточке?</li>
+            <li>Как прижать мета-данные к низу карточки?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>What 4 areas are used in grid-template-areas?</li>
+            <li>How does the Featured card span full width?</li>
+            <li>Where is Grid used, and where is Flexbox?</li>
+            <li>Why overflow: hidden on the card?</li>
+            <li>How to push meta to the bottom of the card?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

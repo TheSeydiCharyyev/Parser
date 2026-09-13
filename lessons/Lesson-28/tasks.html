@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 28 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 28: Tailwind CSS — адаптивность и проект</span>
+    <span class="nav-title" data-lang="en">Lesson 28: Tailwind CSS — Responsiveness and Project</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 28: Tailwind CSS — адаптивность и проект</p>
+    <p class="subtitle" data-lang="en">Lesson 28: Tailwind CSS — Responsiveness and Project</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 28.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 28.1: АДАПТИВНОСТЬ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 28.1: RESPONSIVENESS</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 27.1: Адаптивная сетка и hover</span>
+            <span class="task-title" data-lang="en">Task 27.1: Responsive grid and hover</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Освоить responsive-префиксы и hover в Tailwind</div>
+        <div class="task-goal" data-lang="en">Master responsive prefixes and hover in Tailwind</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>responsive-tw.html</code>:</p>
+        <p data-lang="en">Create a file <code>responsive-tw.html</code>:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Адаптивная сетка:</strong> 6 цветных блоков. <code>grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4</code></li>
+            <li><strong>Адаптивный текст:</strong> <code>text-xl md:text-3xl lg:text-5xl font-bold text-center py-8</code></li>
+            <li><strong>Скрыть/показать:</strong> блок «Desktop Only» (<code>hidden md:block</code>) + блок «Mobile Only» (<code>block md:hidden</code>)</li>
+            <li><strong>Hover-кнопки:</strong> 3 кнопки с <code>hover:bg-{color}-700</code> + <code>hover:-translate-y-1</code> + <code>transition-all duration-200</code></li>
+            <li><strong>Hover-карточка:</strong> <code>hover:shadow-xl hover:-translate-y-2 transition-all duration-300</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Responsive grid:</strong> 6 colored blocks. <code>grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4</code></li>
+            <li><strong>Responsive text:</strong> <code>text-xl md:text-3xl lg:text-5xl font-bold text-center py-8</code></li>
+            <li><strong>Show/hide:</strong> "Desktop Only" block (<code>hidden md:block</code>) + "Mobile Only" block (<code>block md:hidden</code>)</li>
+            <li><strong>Hover buttons:</strong> 3 buttons with <code>hover:bg-{color}-700</code> + <code>hover:-translate-y-1</code> + <code>transition-all duration-200</code></li>
+            <li><strong>Hover card:</strong> <code>hover:shadow-xl hover:-translate-y-2 transition-all duration-300</code></li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Breakpoints Tailwind:</strong> sm=640, md=768, lg=1024, xl=1280. При тесте в DevTools переключайте iPhone SE (375), iPad (768), Desktop (1280+) — проверьте, что сетка реально меняется на каждом breakpoint.
+<pre><code>&lt;!-- Полная адаптивная сетка --&gt;
+&lt;div class="grid
+    grid-cols-1
+    sm:grid-cols-2
+    md:grid-cols-3
+    lg:grid-cols-4
+    gap-4"&gt;
+    &lt;!-- 6 цветных блоков --&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Tailwind breakpoints:</strong> sm=640, md=768, lg=1024, xl=1280. Test in DevTools: toggle iPhone SE (375), iPad (768), Desktop (1280+) — verify grid actually changes at each breakpoint.
+<pre><code>&lt;!-- Full responsive grid --&gt;
+&lt;div class="grid
+    grid-cols-1
+    sm:grid-cols-2
+    md:grid-cols-3
+    lg:grid-cols-4
+    gap-4"&gt;
+    &lt;!-- 6 colored blocks --&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Responsive-сетка: 1 → 2 → 3 → 4 колонки</li>
+                <li>Адаптивный размер текста (<code>text-xl md:text-3xl lg:text-5xl</code>)</li>
+                <li><code>hidden md:block</code> и <code>block md:hidden</code> работают в DevTools</li>
+                <li>3 hover-кнопки с <code>transition</code> (разные цвета)</li>
+                <li>Hover-карточка с <code>hover:shadow-xl hover:-translate-y-2 transition-all duration-300</code></li>
+                <li>Протестировано: iPhone (375px), iPad (768px), Desktop (1280+)</li>
+                <li>На каждом breakpoint сетка и скрытие реально меняются</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Responsive grid: 1 → 2 → 3 → 4 columns</li>
+                <li>Responsive text size (<code>text-xl md:text-3xl lg:text-5xl</code>)</li>
+                <li><code>hidden md:block</code> and <code>block md:hidden</code> work in DevTools</li>
+                <li>3 hover buttons with <code>transition</code> (different colors)</li>
+                <li>Hover card with <code>hover:shadow-xl hover:-translate-y-2 transition-all duration-300</code></li>
+                <li>Tested: iPhone (375px), iPad (768px), Desktop (1280+)</li>
+                <li>At each breakpoint grid and hiding actually change</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 28.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 28.2: РАЗБОР TAILWIND-САЙТА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 28.2: TAILWIND SITE ANALYSIS</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 27.2: Сравнение Bootstrap и Tailwind</span>
+            <span class="task-title" data-lang="en">Task 27.2: Bootstrap vs Tailwind comparison</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Сравнить подходы Bootstrap и Tailwind на практике</div>
+        <div class="task-goal" data-lang="en">Compare Bootstrap and Tailwind approaches in practice</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте одинаковую секцию «3 карточки с заголовком» в двух файлах:</p>
+        <p data-lang="en">Create identical "3 cards with heading" section in two files:</p>
+
+        <ol data-lang="ru">
+            <li><code>section-bootstrap.html</code> — на Bootstrap (<code>row col-md-4 card</code>)</li>
+            <li><code>section-tailwind.html</code> — на Tailwind (<code>grid md:grid-cols-3 gap-6</code>)</li>
+            <li>Запишите: что было легче, что гибче, где меньше кода</li>
+        </ol>
+        <ol data-lang="en">
+            <li><code>section-bootstrap.html</code> — with Bootstrap (<code>row col-md-4 card</code>)</li>
+            <li><code>section-tailwind.html</code> — with Tailwind (<code>grid md:grid-cols-3 gap-6</code>)</li>
+            <li>Write down: what was easier, more flexible, less code</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Вопросы для сравнения (ответы запишите комментариями в каждом файле):</strong>
+            <ul>
+                <li>Сколько классов на одну карточку в Bootstrap vs Tailwind?</li>
+                <li>Где проще поменять отступ между карточками?</li>
+                <li>Где проще добавить hover-эффект?</li>
+                <li>Что получилось быстрее собрать?</li>
+                <li>Какой подход кажется «чище» для чтения?</li>
+            </ul>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Comparison questions (write answers in comments in each file):</strong>
+            <ul>
+                <li>How many classes per card in Bootstrap vs Tailwind?</li>
+                <li>Where is it easier to change gap between cards?</li>
+                <li>Where is it easier to add hover?</li>
+                <li>Which was faster to assemble?</li>
+                <li>Which approach reads "cleaner"?</li>
+            </ul>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Два файла: <code>section-bootstrap.html</code> и <code>section-tailwind.html</code></li>
+                <li>Одинаковая структура: заголовок + 3 карточки</li>
+                <li>Оба адаптивные: 1 колонка → 3 с md breakpoint</li>
+                <li>Визуально максимально похожи (размер, цвет, отступы)</li>
+                <li>В каждом файле — комментарий с ответами на вопросы выше</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Two files: <code>section-bootstrap.html</code> and <code>section-tailwind.html</code></li>
+                <li>Same structure: heading + 3 cards</li>
+                <li>Both responsive: 1 col → 3 with md breakpoint</li>
+                <li>Visually as similar as possible (size, color, spacing)</li>
+                <li>In each file — comment with answers to questions above</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 28.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 28.3: АДАПТИВНЫЙ ЛЕНДИНГ НА TAILWIND</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 28.3: RESPONSIVE TAILWIND LANDING</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 27.3: Лендинг на Tailwind</span>
+            <span class="task-title" data-lang="en">Task 27.3: Tailwind landing page</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Собрать полный адаптивный лендинг на Tailwind</div>
+        <div class="task-goal" data-lang="en">Build a full responsive landing on Tailwind</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>tailwind-landing.html</code>. Соберите лендинг из 6 секций <strong>без единой строки CSS</strong>:</p>
+        <p data-lang="en">Create a file <code>tailwind-landing.html</code>. Build a landing with 6 sections <strong>without a single line of CSS</strong>:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Header:</strong> <code>flex items-center justify-between p-4 bg-white shadow-sm</code>, лого + 3 ссылки (<code>hidden md:flex gap-6</code>) + кнопка</li>
+            <li><strong>Hero:</strong> <code>min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center px-4</code>. Заголовок <code>text-3xl md:text-5xl lg:text-6xl font-bold</code>, описание <code>text-lg md:text-xl mt-4 opacity-90</code>, кнопка с hover</li>
+            <li><strong>Features:</strong> <code>max-w-6xl mx-auto px-4 py-16</code>. Grid <code>grid-cols-1 md:grid-cols-3 gap-8</code>. Каждая фича: иконка (большой эмодзи <code>text-4xl</code>), заголовок, текст</li>
+            <li><strong>Cards:</strong> <code>grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6</code>. Карточки с <code>group</code>: изображение (<code>group-hover:scale-105 transition-transform</code>), текст, кнопка, <code>hover:shadow-xl hover:-translate-y-2 transition-all</code></li>
+            <li><strong>CTA:</strong> <code>bg-gray-900 text-white text-center py-16 px-4</code>. Заголовок + кнопка с <code>hover:bg-blue-700</code></li>
+            <li><strong>Footer:</strong> <code>bg-gray-800 text-gray-400</code>. Grid <code>grid-cols-1 md:grid-cols-3 gap-8 p-8 md:p-12</code> + копирайт</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Header:</strong> <code>flex items-center justify-between p-4 bg-white shadow-sm</code>, logo + 3 links (<code>hidden md:flex gap-6</code>) + button</li>
+            <li><strong>Hero:</strong> <code>min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center px-4</code>. Heading <code>text-3xl md:text-5xl lg:text-6xl font-bold</code>, description <code>text-lg md:text-xl mt-4 opacity-90</code>, button with hover</li>
+            <li><strong>Features:</strong> <code>max-w-6xl mx-auto px-4 py-16</code>. Grid <code>grid-cols-1 md:grid-cols-3 gap-8</code>. Each feature: icon (large emoji <code>text-4xl</code>), title, text</li>
+            <li><strong>Cards:</strong> <code>grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6</code>. Cards with <code>group</code>: image (<code>group-hover:scale-105 transition-transform</code>), text, button, <code>hover:shadow-xl hover:-translate-y-2 transition-all</code></li>
+            <li><strong>CTA:</strong> <code>bg-gray-900 text-white text-center py-16 px-4</code>. Heading + button with <code>hover:bg-blue-700</code></li>
+            <li><strong>Footer:</strong> <code>bg-gray-800 text-gray-400</code>. Grid <code>grid-cols-1 md:grid-cols-3 gap-8 p-8 md:p-12</code> + copyright</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Готовый шаблон group-hover карточки:</strong>
+<pre><code>&lt;div class="group bg-white rounded-xl shadow-md overflow-hidden
+            hover:shadow-xl hover:-translate-y-2
+            transition-all duration-300"&gt;
+    &lt;img src="https://picsum.photos/400/240?random=1"
+         class="w-full h-48 object-cover
+                group-hover:scale-105 transition-transform duration-500"&gt;
+    &lt;div class="p-5"&gt;
+        &lt;h3 class="text-lg font-bold text-gray-900
+                   group-hover:text-blue-600 transition-colors"&gt;
+            Card Title
+        &lt;/h3&gt;
+        &lt;p class="text-gray-500 mt-2"&gt;Description...&lt;/p&gt;
+        &lt;button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded
+                       hover:bg-blue-700 transition-colors"&gt;
+            Read More
+        &lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Ready group-hover card template:</strong>
+<pre><code>&lt;div class="group bg-white rounded-xl shadow-md overflow-hidden
+            hover:shadow-xl hover:-translate-y-2
+            transition-all duration-300"&gt;
+    &lt;img src="https://picsum.photos/400/240?random=1"
+         class="w-full h-48 object-cover
+                group-hover:scale-105 transition-transform duration-500"&gt;
+    &lt;div class="p-5"&gt;
+        &lt;h3 class="text-lg font-bold text-gray-900
+                   group-hover:text-blue-600 transition-colors"&gt;
+            Card Title
+        &lt;/h3&gt;
+        &lt;p class="text-gray-500 mt-2"&gt;Description...&lt;/p&gt;
+        &lt;button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded
+                       hover:bg-blue-700 transition-colors"&gt;
+            Read More
+        &lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>6 секций: Header, Hero, Features, Cards, CTA, Footer</li>
+                <li><strong>Ноль строк CSS</strong> (только Tailwind)</li>
+                <li>Адаптивный: проверено на 375px, 768px, 1280px</li>
+                <li>Hero: <code>min-h-screen</code> + градиент + адаптивный заголовок (<code>text-3xl md:text-5xl lg:text-6xl</code>)</li>
+                <li>Hover-эффекты с <code>transition</code> на всех интерактивных элементах</li>
+                <li><code>group</code> + <code>group-hover:</code> на минимум одной карточке</li>
+                <li><code>hidden md:flex</code> на навигации header</li>
+                <li>Контейнер через <code>max-w-6xl mx-auto</code></li>
+                <li>Footer с сеткой (<code>grid-cols-1 md:grid-cols-3</code>)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>6 sections: Header, Hero, Features, Cards, CTA, Footer</li>
+                <li><strong>Zero lines of CSS</strong> (only Tailwind)</li>
+                <li>Responsive: tested at 375px, 768px, 1280px</li>
+                <li>Hero: <code>min-h-screen</code> + gradient + responsive heading (<code>text-3xl md:text-5xl lg:text-6xl</code>)</li>
+                <li>Hover effects with <code>transition</code> on all interactive elements</li>
+                <li><code>group</code> + <code>group-hover:</code> on at least one card</li>
+                <li><code>hidden md:flex</code> on header navigation</li>
+                <li>Container via <code>max-w-6xl mx-auto</code></li>
+                <li>Footer with grid (<code>grid-cols-1 md:grid-cols-3</code>)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 27.4: Dark mode</span>
+            <span class="task-title" data-lang="en">Task 27.4: Dark mode</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Добавить тёмную тему к лендингу через dark: классы</div>
+        <div class="task-goal" data-lang="en">Add dark theme to the landing via dark: classes</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Возьмите лендинг из задания 27.3 и добавьте dark mode:</p>
+        <p data-lang="en">Take the landing from task 27.3 and add dark mode:</p>
+
+        <ol data-lang="ru">
+            <li>Добавьте на <code>&lt;html class="dark"&gt;</code></li>
+            <li>К каждому элементу добавьте <code>dark:</code> варианты:
+                <ul>
+                    <li>Фон: <code>bg-white dark:bg-gray-900</code></li>
+                    <li>Текст: <code>text-gray-800 dark:text-gray-100</code></li>
+                    <li>Карточки: <code>bg-white dark:bg-gray-800</code></li>
+                    <li>Бордеры: <code>border-gray-200 dark:border-gray-700</code></li>
+                </ul>
+            </li>
+            <li>Проверьте: убирая/добавляя <code>class="dark"</code> на html — тема переключается</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Add <code>&lt;html class="dark"&gt;</code></li>
+            <li>Add <code>dark:</code> variants to each element:
+                <ul>
+                    <li>Background: <code>bg-white dark:bg-gray-900</code></li>
+                    <li>Text: <code>text-gray-800 dark:text-gray-100</code></li>
+                    <li>Cards: <code>bg-white dark:bg-gray-800</code></li>
+                    <li>Borders: <code>border-gray-200 dark:border-gray-700</code></li>
+                </ul>
+            </li>
+            <li>Verify: removing/adding <code>class="dark"</code> on html toggles the theme</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Палитра dark mode:</strong>
+<pre><code>Фон страницы:    bg-white dark:bg-gray-900
+Карточки:        bg-white dark:bg-gray-800   (чуть светлее фона)
+Основной текст:  text-gray-800 dark:text-gray-100
+Приглушённый:    text-gray-500 dark:text-gray-400
+Бордеры:         border-gray-200 dark:border-gray-700
+Кнопка:          bg-blue-600 dark:bg-blue-500</code></pre>
+            Не используйте <code>bg-black</code> и <code>text-white</code> — слишком контрастно, «выжигает» глаза.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Dark mode palette:</strong>
+<pre><code>Page bg:         bg-white dark:bg-gray-900
+Cards:           bg-white dark:bg-gray-800   (slightly lighter than bg)
+Main text:       text-gray-800 dark:text-gray-100
+Muted:           text-gray-500 dark:text-gray-400
+Borders:         border-gray-200 dark:border-gray-700
+Button:          bg-blue-600 dark:bg-blue-500</code></pre>
+            Don't use <code>bg-black</code> and <code>text-white</code> — too much contrast, "burns" the eyes.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Тёмная тема работает через <code>class="dark"</code> на <code>&lt;html&gt;</code></li>
+                <li>Все тексты читаемы (контраст оттенков ≥ 400)</li>
+                <li>Карточки (<code>dark:bg-gray-800</code>) светлее фона (<code>dark:bg-gray-900</code>)</li>
+                <li>Бордеры адаптированы (<code>dark:border-gray-700</code>)</li>
+                <li>Не используется <code>bg-black</code> и <code>text-white</code></li>
+                <li>Hero-градиент остаётся (или меняется на более тёмный)</li>
+                <li>Переключение туда-обратно работает: удаляя/добавляя <code>class="dark"</code> в DevTools</li>
+                <li>Бонус: кнопка-переключатель через <code>onclick="document.documentElement.classList.toggle('dark')"</code></li>
+            </ul>
+            <ul data-lang="en">
+                <li>Dark theme works via <code>class="dark"</code> on <code>&lt;html&gt;</code></li>
+                <li>All text readable (shade contrast ≥ 400)</li>
+                <li>Cards (<code>dark:bg-gray-800</code>) lighter than bg (<code>dark:bg-gray-900</code>)</li>
+                <li>Borders adapted (<code>dark:border-gray-700</code>)</li>
+                <li>Don't use <code>bg-black</code> and <code>text-white</code></li>
+                <li>Hero gradient stays (or changes to darker)</li>
+                <li>Toggle back and forth works: removing/adding <code>class="dark"</code> in DevTools</li>
+                <li>Bonus: toggle button via <code>onclick="document.documentElement.classList.toggle('dark')"</code></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

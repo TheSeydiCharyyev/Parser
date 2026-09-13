@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 5 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 5: Списки и семантика</span>
+    <span class="nav-title" data-lang="en">Lesson 5: Lists and Semantics</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 5: Списки и семантика</p>
+    <p class="subtitle" data-lang="en">Lesson 5: Lists and Semantics</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 5.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 5.1: СПИСКИ</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 5.1: LISTS</h2>
+
+    <!-- ЗАДАНИЕ 5.1 / TASK 5.1 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 5.1: Три типа списков</span>
+            <span class="task-title" data-lang="en">Task 5.1: Three Types of Lists</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Отработать создание всех типов списков</div>
+        <div class="task-goal" data-lang="en">Practice creating all types of lists</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Создайте файл <code>lists.html</code> с тремя секциями:</p>
+        <p data-lang="en">Create a file <code>lists.html</code> with three sections:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Маркированный список</strong> <code>&lt;ul&gt;</code> — «Мои навыки» (5+ пунктов)</li>
+            <li><strong>Нумерованный список</strong> <code>&lt;ol&gt;</code> — «Мой ТОП-5 [фильмов/игр/песен]» с <code>reversed</code> (обратный отсчёт: 5, 4, 3, 2, 1)</li>
+            <li><strong>Описательный список</strong> <code>&lt;dl&gt;</code> — «Словарь веб-разработчика» (5 терминов с определениями: HTML, CSS, тег, атрибут, браузер)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Unordered list</strong> <code>&lt;ul&gt;</code> — "My Skills" (5+ items)</li>
+            <li><strong>Ordered list</strong> <code>&lt;ol&gt;</code> — "My TOP 5 [movies/games/songs]" with <code>reversed</code> (countdown: 5, 4, 3, 2, 1)</li>
+            <li><strong>Description list</strong> <code>&lt;dl&gt;</code> — "Web Developer Dictionary" (5 terms with definitions: HTML, CSS, tag, attribute, browser)</li>
+        </ol>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все 3 типа списков использованы</li>
+                <li>ul — минимум 5 пунктов</li>
+                <li>ol — с атрибутом reversed</li>
+                <li>dl — 5 пар dt + dd</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 3 list types are used</li>
+                <li>ul — at least 5 items</li>
+                <li>ol — with the reversed attribute</li>
+                <li>dl — 5 pairs of dt + dd</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 5.2 / TASK 5.2 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 5.2: Вложенные списки — меню ресторана</span>
+            <span class="task-title" data-lang="en">Task 5.2: Nested Lists — Restaurant Menu</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться создавать многоуровневые списки</div>
+        <div class="task-goal" data-lang="en">Learn to create multi-level lists</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Создайте меню ресторана с вложенными списками:</p>
+        <p data-lang="en">Create a restaurant menu with nested lists:</p>
+
+        <ul data-lang="ru">
+            <li><strong>Категории</strong> (маркированный список): Завтраки, Супы, Главные блюда, Десерты, Напитки</li>
+            <li>Внутри каждой категории — <strong>вложенный список</strong> с 2-3 блюдами</li>
+            <li>У одного блюда добавьте <strong>ещё один уровень</strong> вложенности (например, варианты: маленькая/большая порция)</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>Categories</strong> (unordered list): Breakfasts, Soups, Main Courses, Desserts, Drinks</li>
+            <li>Inside each category — a <strong>nested list</strong> with 2-3 dishes</li>
+            <li>For one dish add <strong>one more level</strong> of nesting (e.g., options: small/large portion)</li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;Супы
+        &lt;ul&gt;
+            &lt;li&gt;Борщ — 350 руб.&lt;/li&gt;
+            &lt;li&gt;Солянка — 400 руб.
+                &lt;ul&gt;
+                    &lt;li&gt;Маленькая порция — 250 руб.&lt;/li&gt;
+                    &lt;li&gt;Большая порция — 400 руб.&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;Soups
+        &lt;ul&gt;
+            &lt;li&gt;Borscht — $5&lt;/li&gt;
+            &lt;li&gt;Solyanka — $6
+                &lt;ul&gt;
+                    &lt;li&gt;Small portion — $4&lt;/li&gt;
+                    &lt;li&gt;Large portion — $6&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>5 категорий</li>
+                <li>По 2-3 блюда в каждой</li>
+                <li>3 уровня вложенности (хотя бы в одном месте)</li>
+                <li>Цены указаны</li>
+            </ul>
+            <ul data-lang="en">
+                <li>5 categories</li>
+                <li>2-3 dishes in each</li>
+                <li>3 levels of nesting (at least in one place)</li>
+                <li>Prices are included</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 5.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 5.2: СЕМАНТИКА</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 5.2: SEMANTICS</h2>
+
+    <!-- ЗАДАНИЕ 5.3 / TASK 5.3 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 5.3: Найди семантические теги на реальном сайте</span>
+            <span class="task-title" data-lang="en">Task 5.3: Find Semantic Tags on a Real Website</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Увидеть семантику в реальной жизни</div>
+        <div class="task-goal" data-lang="en">See semantics in real life</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Откройте <strong>3 разных сайта</strong> и через DevTools (Ctrl+F в Elements) найдите семантические теги:</p>
+        <p data-lang="en">Open <strong>3 different websites</strong> and use DevTools (Ctrl+F in Elements) to find semantic tags:</p>
+
+        <div class="write-box" data-lang="ru">
+            <strong>Сайт 1:</strong> ________________________________<br>
+            &lt;header&gt; есть? ___  &lt;nav&gt; есть? ___  &lt;main&gt; есть? ___<br>
+            &lt;footer&gt; есть? ___  &lt;article&gt; есть? ___  &lt;aside&gt; есть? ___<br>
+            Навигация через &lt;ul&gt;? ___<br><br>
+
+            <strong>Сайт 2:</strong> ________________________________<br>
+            &lt;header&gt; есть? ___  &lt;nav&gt; есть? ___  &lt;main&gt; есть? ___<br>
+            &lt;footer&gt; есть? ___  &lt;article&gt; есть? ___  &lt;aside&gt; есть? ___<br>
+            Навигация через &lt;ul&gt;? ___<br><br>
+
+            <strong>Сайт 3:</strong> ________________________________<br>
+            &lt;header&gt; есть? ___  &lt;nav&gt; есть? ___  &lt;main&gt; есть? ___<br>
+            &lt;footer&gt; есть? ___  &lt;article&gt; есть? ___  &lt;aside&gt; есть? ___<br>
+            Навигация через &lt;ul&gt;? ___<br><br>
+
+            <strong>Вывод:</strong> какие семантические теги используются чаще всего? ________________________________
+        </div>
+        <div class="write-box" data-lang="en">
+            <strong>Website 1:</strong> ________________________________<br>
+            &lt;header&gt; present? ___  &lt;nav&gt; present? ___  &lt;main&gt; present? ___<br>
+            &lt;footer&gt; present? ___  &lt;article&gt; present? ___  &lt;aside&gt; present? ___<br>
+            Navigation via &lt;ul&gt;? ___<br><br>
+
+            <strong>Website 2:</strong> ________________________________<br>
+            &lt;header&gt; present? ___  &lt;nav&gt; present? ___  &lt;main&gt; present? ___<br>
+            &lt;footer&gt; present? ___  &lt;article&gt; present? ___  &lt;aside&gt; present? ___<br>
+            Navigation via &lt;ul&gt;? ___<br><br>
+
+            <strong>Website 3:</strong> ________________________________<br>
+            &lt;header&gt; present? ___  &lt;nav&gt; present? ___  &lt;main&gt; present? ___<br>
+            &lt;footer&gt; present? ___  &lt;article&gt; present? ___  &lt;aside&gt; present? ___<br>
+            Navigation via &lt;ul&gt;? ___<br><br>
+
+            <strong>Conclusion:</strong> which semantic tags are used most often? ________________________________
+        </div>
+
+        <div class="hint" data-lang="ru">
+            В DevTools нажмите <code>Ctrl+F</code>, введите <code>&lt;header</code> и посмотрите, сколько совпадений. Повторите для каждого тега.
+        </div>
+        <div class="hint" data-lang="en">
+            In DevTools press <code>Ctrl+F</code>, type <code>&lt;header</code> and see how many matches there are. Repeat for each tag.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Исследованы 3 сайта</li>
+                <li>Проверены все 6 семантических тегов</li>
+                <li>Написан вывод</li>
+            </ul>
+            <ul data-lang="en">
+                <li>3 websites researched</li>
+                <li>All 6 semantic tags checked</li>
+                <li>Conclusion written</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 5.4 / TASK 5.4 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 5.4: Перепиши div в семантику</span>
+            <span class="task-title" data-lang="en">Task 5.4: Rewrite div to Semantic Tags</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">5 минут</span>
+                <span class="badge badge-time" data-lang="en">5 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться заменять div на семантические теги</div>
+        <div class="task-goal" data-lang="en">Learn to replace div with semantic tags</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Замените все <code>&lt;div&gt;</code> на подходящие семантические теги:</p>
+        <p data-lang="en">Replace all <code>&lt;div&gt;</code> tags with appropriate semantic tags:</p>
+
+<pre><code>&lt;div class="header"&gt;
+    &lt;h1&gt;Мой сайт&lt;/h1&gt;
+    &lt;div class="navigation"&gt;
+        &lt;a href="#"&gt;Главная&lt;/a&gt;
+        &lt;a href="#"&gt;О нас&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="content"&gt;
+    &lt;div class="post"&gt;
+        &lt;h2&gt;Моя первая статья&lt;/h2&gt;
+        &lt;p&gt;Текст статьи...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="sidebar"&gt;
+    &lt;h3&gt;Ссылки&lt;/h3&gt;
+    &lt;a href="#"&gt;Google&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="footer"&gt;
+    &lt;p&gt;&amp;copy; 2026&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+        <div class="write-box" data-lang="ru">
+            <code>div class="header"</code> → ________________________________<br>
+            <code>div class="navigation"</code> → ________________________________<br>
+            Ссылки навигации обернуть в → ________________________________<br>
+            <code>div class="content"</code> → ________________________________<br>
+            <code>div class="post"</code> → ________________________________<br>
+            <code>div class="sidebar"</code> → ________________________________<br>
+            <code>div class="footer"</code> → ________________________________<br>
+        </div>
+        <div class="write-box" data-lang="en">
+            <code>div class="header"</code> → ________________________________<br>
+            <code>div class="navigation"</code> → ________________________________<br>
+            Wrap navigation links in → ________________________________<br>
+            <code>div class="content"</code> → ________________________________<br>
+            <code>div class="post"</code> → ________________________________<br>
+            <code>div class="sidebar"</code> → ________________________________<br>
+            <code>div class="footer"</code> → ________________________________<br>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все 7 замен выполнены правильно</li>
+                <li>Навигация переделана в <code>nav &gt; ul &gt; li &gt; a</code></li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 7 replacements done correctly</li>
+                <li>Navigation restructured as <code>nav &gt; ul &gt; li &gt; a</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 5.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 5.3: ПРАКТИЧЕСКИЙ ПРОЕКТ</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 5.3: PRACTICAL PROJECT</h2>
+
+    <!-- ЗАДАНИЕ 5.5 / TASK 5.5 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 5.5: Семантическая страница блога</span>
+            <span class="task-title" data-lang="en">Task 5.5: Semantic Blog Page</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Продвинутое</span>
+                <span class="badge badge-hard" data-lang="en">Advanced</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать полноценную семантическую страницу с использованием всех изученных тегов</div>
+        <div class="task-goal" data-lang="en">Create a full semantic page using all the tags you have learned</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Создайте страницу блога на свою тему. Обязательные элементы:</p>
+        <p data-lang="en">Create a blog page on your own topic. Required elements:</p>
+
+        <table data-lang="ru">
+            <tr><th>Элемент</th><th>Тег</th><th>Содержимое</th></tr>
+            <tr><td>Шапка</td><td><code>&lt;header&gt;</code></td><td>Название блога + описание</td></tr>
+            <tr><td>Навигация</td><td><code>&lt;nav&gt; &gt; &lt;ul&gt;</code></td><td>4+ ссылки</td></tr>
+            <tr><td>Основной контент</td><td><code>&lt;main&gt;</code></td><td>Всё ниже</td></tr>
+            <tr><td>Статья 1</td><td><code>&lt;article&gt;</code></td><td>Заголовок, автор, дата (<code>&lt;time&gt;</code>), текст, <code>&lt;ol&gt;</code> список</td></tr>
+            <tr><td>Статья 2</td><td><code>&lt;article&gt;</code></td><td>Заголовок, текст, <code>&lt;ul&gt;</code> список, <code>&lt;details&gt;</code> блок</td></tr>
+            <tr><td>FAQ</td><td><code>&lt;section&gt;</code></td><td><code>&lt;dl&gt;</code> с 3+ вопросами-ответами</td></tr>
+            <tr><td>Боковая панель</td><td><code>&lt;aside&gt;</code></td><td>Категории (<code>&lt;ul&gt;</code>), рекомендации</td></tr>
+            <tr><td>Подвал</td><td><code>&lt;footer&gt;</code></td><td>Копирайт (<code>&amp;copy;</code>), email, ссылки</td></tr>
+        </table>
+        <table data-lang="en">
+            <tr><th>Element</th><th>Tag</th><th>Content</th></tr>
+            <tr><td>Header</td><td><code>&lt;header&gt;</code></td><td>Blog name + description</td></tr>
+            <tr><td>Navigation</td><td><code>&lt;nav&gt; &gt; &lt;ul&gt;</code></td><td>4+ links</td></tr>
+            <tr><td>Main content</td><td><code>&lt;main&gt;</code></td><td>Everything below</td></tr>
+            <tr><td>Article 1</td><td><code>&lt;article&gt;</code></td><td>Heading, author, date (<code>&lt;time&gt;</code>), text, <code>&lt;ol&gt;</code> list</td></tr>
+            <tr><td>Article 2</td><td><code>&lt;article&gt;</code></td><td>Heading, text, <code>&lt;ul&gt;</code> list, <code>&lt;details&gt;</code> block</td></tr>
+            <tr><td>FAQ</td><td><code>&lt;section&gt;</code></td><td><code>&lt;dl&gt;</code> with 3+ questions and answers</td></tr>
+            <tr><td>Sidebar</td><td><code>&lt;aside&gt;</code></td><td>Categories (<code>&lt;ul&gt;</code>), recommendations</td></tr>
+            <tr><td>Footer</td><td><code>&lt;footer&gt;</code></td><td>Copyright (<code>&amp;copy;</code>), email, links</td></tr>
+        </table>
+
+        <h3 data-lang="ru">Бонус:</h3>
+        <h3 data-lang="en">Bonus:</h3>
+        <ul data-lang="ru">
+            <li>Используйте <code>&lt;details&gt; + &lt;summary&gt;</code> для FAQ или спойлеров</li>
+            <li>Добавьте вложенный список (категории с подкатегориями)</li>
+            <li>Используйте <code>&lt;time datetime="..."&gt;</code> для дат</li>
+            <li>Добавьте <code>&lt;figure&gt; + &lt;figcaption&gt;</code> хотя бы к одному изображению</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Use <code>&lt;details&gt; + &lt;summary&gt;</code> for FAQ or spoilers</li>
+            <li>Add a nested list (categories with subcategories)</li>
+            <li>Use <code>&lt;time datetime="..."&gt;</code> for dates</li>
+            <li>Add <code>&lt;figure&gt; + &lt;figcaption&gt;</code> to at least one image</li>
+        </ul>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все семантические теги из таблицы использованы</li>
+                <li>Все 3 типа списков (ul, ol, dl) присутствуют</li>
+                <li>Навигация: <code>nav &gt; ul &gt; li &gt; a</code></li>
+                <li><code>&lt;main&gt;</code> — один на странице</li>
+                <li>2 статьи <code>&lt;article&gt;</code></li>
+                <li>Есть <code>&lt;details&gt;</code></li>
+                <li>Правильная иерархия заголовков</li>
+                <li>Тема — уникальная</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All semantic tags from the table are used</li>
+                <li>All 3 list types (ul, ol, dl) are present</li>
+                <li>Navigation: <code>nav &gt; ul &gt; li &gt; a</code></li>
+                <li><code>&lt;main&gt;</code> — only one per page</li>
+                <li>2 <code>&lt;article&gt;</code> elements</li>
+                <li><code>&lt;details&gt;</code> is present</li>
+                <li>Correct heading hierarchy</li>
+                <li>Topic is unique</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+    <h2 data-lang="ru">&#x1F4DA; ДОМАШНЕЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x1F4DA; HOMEWORK</h2>
+
+    <!-- ДЗ 5 / HW 5 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">ДЗ 5: Расширь блог + семантический аудит</span>
+            <span class="task-title" data-lang="en">HW 5: Expand Blog + Semantic Audit</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">30 минут</span>
+                <span class="badge badge-time" data-lang="en">30 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Закрепить списки и семантику</div>
+        <div class="task-goal" data-lang="en">Reinforce lists and semantics</div>
+
+        <h3 data-lang="ru">Часть 1: Расширь блог</h3>
+        <h3 data-lang="en">Part 1: Expand the Blog</h3>
+        <ul data-lang="ru">
+            <li>Добавьте <strong>третью статью</strong> (<code>&lt;article&gt;</code>) с <code>&lt;section&gt;</code> внутри</li>
+            <li>Добавьте <strong>рецепт</strong> (нумерованный список с ингредиентами и шагами)</li>
+            <li>Создайте страницу <strong>«Глоссарий»</strong> — описательный список (<code>&lt;dl&gt;</code>) с 10+ терминами веб-разработки</li>
+            <li>В <code>&lt;aside&gt;</code> добавьте вложенный список категорий с подкатегориями</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Add a <strong>third article</strong> (<code>&lt;article&gt;</code>) with a <code>&lt;section&gt;</code> inside</li>
+            <li>Add a <strong>recipe</strong> (ordered list with ingredients and steps)</li>
+            <li>Create a <strong>"Glossary"</strong> page — a description list (<code>&lt;dl&gt;</code>) with 10+ web development terms</li>
+            <li>In <code>&lt;aside&gt;</code> add a nested list of categories with subcategories</li>
+        </ul>
+
+        <h3 data-lang="ru">Часть 2: Семантический аудит своего сайта</h3>
+        <h3 data-lang="en">Part 2: Semantic Audit of Your Website</h3>
+        <p data-lang="ru">Откройте свой многостраничный сайт из занятия 4 и проверьте:</p>
+        <p data-lang="en">Open your multi-page website from Lesson 4 and check:</p>
+
+        <div class="write-box" data-lang="ru">
+            1. Использован ли &lt;header&gt;? Да / Нет → если нет, добавить<br>
+            2. Навигация через &lt;nav&gt; &gt; &lt;ul&gt;? Да / Нет → если нет, переделать<br>
+            3. Есть ли &lt;main&gt;? Да / Нет → если нет, обернуть контент<br>
+            4. Есть ли &lt;footer&gt;? Да / Нет → если нет, добавить<br>
+            5. Используются ли &lt;div&gt; там, где подошёл бы семантический тег?<br>
+            ________________________________<br><br>
+            Что я исправил: ________________________________
+        </div>
+        <div class="write-box" data-lang="en">
+            1. Is &lt;header&gt; used? Yes / No → if no, add it<br>
+            2. Navigation via &lt;nav&gt; &gt; &lt;ul&gt;? Yes / No → if no, refactor it<br>
+            3. Is &lt;main&gt; present? Yes / No → if no, wrap the content<br>
+            4. Is &lt;footer&gt; present? Yes / No → if no, add it<br>
+            5. Are &lt;div&gt; tags used where a semantic tag would be better?<br>
+            ________________________________<br><br>
+            What I fixed: ________________________________
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Блог расширен: 3 статьи, рецепт, глоссарий</li>
+                <li>Семантический аудит проведён</li>
+                <li>Старые страницы обновлены семантическими тегами</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Blog expanded: 3 articles, recipe, glossary</li>
+                <li>Semantic audit completed</li>
+                <li>Old pages updated with semantic tags</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

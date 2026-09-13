@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 22 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 22: Мини-проект — Сайт ресторана</span>
+    <span class="nav-title" data-lang="en">Lesson 22: Mini-project — Restaurant Website</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 22: Мини-проект #5 — Адаптивный сайт ресторана</p>
+    <p class="subtitle" data-lang="en">Lesson 22: Mini-project #5 — Responsive Restaurant Website</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ПРИНЦИП РАБОТЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; APPROACH</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>1. Сначала план, потом код.</strong> До написания HTML нарисуйте макет для 3 разрешений (desktop, tablet, mobile). Определите: где колонки превращаются в стопку, где появляется бургер, какие шрифты растут через <code>clamp()</code>.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>1. Plan first, code later.</strong> Before writing HTML, sketch the layout for 3 resolutions (desktop, tablet, mobile). Decide: where columns turn into a stack, where the burger appears, which fonts scale via <code>clamp()</code>.
+    </div>
+
+    <div class="definition" data-lang="ru">
+        <strong>2. HTML → Десктоп-CSS → Media queries.</strong> Не пишите адаптив сразу. Сначала красивая десктоп-версия, потом добавляем media queries, которые <strong>перекрывают</strong> конкретные свойства.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>2. HTML → Desktop CSS → Media queries.</strong> Don't write responsive code upfront. First build a nice desktop version, then add media queries that <strong>override</strong> specific properties.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Desktop-first в этом проекте:</strong> базовые стили под 1024px+, затем <code>@media (max-width: 992px)</code> и <code>@media (max-width: 768px)</code>. В продакшене чаще mobile-first (<code>min-width</code>), но для учебного проекта desktop-first проще.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Desktop-first in this project:</strong> base styles for 1024px+, then <code>@media (max-width: 992px)</code> and <code>@media (max-width: 768px)</code>. Production often uses mobile-first (<code>min-width</code>), but desktop-first is simpler for learning.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; СТРУКТУРА САЙТА (6 СЕКЦИЙ)</h2>
+    <h2 data-lang="en">&#x1F4DA; SITE STRUCTURE (6 SECTIONS)</h2>
+
+    <table data-lang="ru">
+        <tr><th>Секция</th><th>Раскладка</th><th>Ключевой CSS</th></tr>
+        <tr><td>Header</td><td>Flexbox + бургер</td><td><code>position: fixed; backdrop-filter: blur</code></td></tr>
+        <tr><td>Hero</td><td>Flexbox center</td><td><code>height: 100vh; clamp(); background: url() center/cover</code></td></tr>
+        <tr><td>About</td><td>Flexbox row</td><td><code>flex-direction: column</code> на мобильном</td></tr>
+        <tr><td>Menu</td><td>Grid 3 col</td><td><code>repeat(3,1fr) → 2 → 1</code></td></tr>
+        <tr><td>Gallery</td><td>Grid 4 col</td><td><code>repeat(4,1fr) → 3 → 2</code></td></tr>
+        <tr><td>Footer</td><td>Grid 3 col</td><td><code>repeat(3,1fr) → 1</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Section</th><th>Layout</th><th>Key CSS</th></tr>
+        <tr><td>Header</td><td>Flexbox + burger</td><td><code>position: fixed; backdrop-filter: blur</code></td></tr>
+        <tr><td>Hero</td><td>Flexbox center</td><td><code>height: 100vh; clamp(); background: url() center/cover</code></td></tr>
+        <tr><td>About</td><td>Flexbox row</td><td><code>flex-direction: column</code> on mobile</td></tr>
+        <tr><td>Menu</td><td>Grid 3 col</td><td><code>repeat(3,1fr) → 2 → 1</code></td></tr>
+        <tr><td>Gallery</td><td>Grid 4 col</td><td><code>repeat(4,1fr) → 3 → 2</code></td></tr>
+        <tr><td>Footer</td><td>Grid 3 col</td><td><code>repeat(3,1fr) → 1</code></td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; CSS-ПЕРЕМЕННЫЕ</h2>
+    <h2 data-lang="en">&#x1F4DA; CSS VARIABLES</h2>
+
+<pre><code>:root {
+    --color-primary: #b45309;
+    --color-dark: #1c1917;
+    --color-light: #faf7f2;
+}
+
+/* Использование: */
+background: var(--color-primary);
+color: var(--color-dark);</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        Меняешь цвет в <code>:root</code> = меняется <strong>везде</strong> на сайте!
+    </div>
+    <div class="key-point" data-lang="en">
+        Change color in <code>:root</code> = it changes <strong>everywhere</strong> on the site!
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; БАЗОВЫЙ СБРОС CSS</h2>
+    <h2 data-lang="en">&#x1F4DA; CSS BASE RESET</h2>
+
+<pre><code>* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { font-family: ...; line-height: 1.7; }
+
+img { max-width: 100%; height: auto; }
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}</code></pre>
+
+    <div class="definition" data-lang="ru">
+        <strong>box-sizing: border-box</strong> — padding и border <strong>включены</strong> в <code>width</code>. Без этого ширина блока «уплывает» за счёт padding. Индустриальный стандарт, ставят в 99% проектов.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>box-sizing: border-box</strong> — padding and border are <strong>included</strong> in <code>width</code>. Without it, block widths "drift" due to padding. Industry standard, used in 99% of projects.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; СЕМАНТИЧЕСКИЙ HTML</h2>
+    <h2 data-lang="en">&#x1F4DA; SEMANTIC HTML</h2>
+
+    <table data-lang="ru">
+        <tr><th>Тег</th><th>Для чего</th></tr>
+        <tr><td><code>&lt;header&gt;</code></td><td>Шапка сайта (логотип + навигация)</td></tr>
+        <tr><td><code>&lt;nav&gt;</code></td><td>Блок навигации</td></tr>
+        <tr><td><code>&lt;main&gt;</code></td><td>Основной контент страницы</td></tr>
+        <tr><td><code>&lt;section&gt;</code></td><td>Тематический раздел (Hero, Menu, Gallery, Contacts)</td></tr>
+        <tr><td><code>&lt;article&gt;</code></td><td>Самодостаточный блок (пост, карточка товара)</td></tr>
+        <tr><td><code>&lt;aside&gt;</code></td><td>Боковой блок (sidebar, реклама)</td></tr>
+        <tr><td><code>&lt;footer&gt;</code></td><td>Подвал сайта</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Tag</th><th>Purpose</th></tr>
+        <tr><td><code>&lt;header&gt;</code></td><td>Site header (logo + nav)</td></tr>
+        <tr><td><code>&lt;nav&gt;</code></td><td>Navigation block</td></tr>
+        <tr><td><code>&lt;main&gt;</code></td><td>Main page content</td></tr>
+        <tr><td><code>&lt;section&gt;</code></td><td>Thematic section (Hero, Menu, Gallery, Contacts)</td></tr>
+        <tr><td><code>&lt;article&gt;</code></td><td>Self-contained block (post, product card)</td></tr>
+        <tr><td><code>&lt;aside&gt;</code></td><td>Side block (sidebar, ads)</td></tr>
+        <tr><td><code>&lt;footer&gt;</code></td><td>Site footer</td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Не пишите всё через <code>&lt;div&gt;</code>.</strong> Семантические теги важны для SEO (Google ранжирует выше) и скринридеров (пользователи с нарушением зрения навигируют по странице).
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Don't write everything with <code>&lt;div&gt;</code>.</strong> Semantic tags are important for SEO (Google ranks higher) and screen readers (users with visual impairments navigate via landmarks).
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; FIXED HEADER + BACKDROP-FILTER</h2>
+    <h2 data-lang="en">&#x1F4DA; FIXED HEADER + BACKDROP-FILTER</h2>
+
+<pre><code>.header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}</code></pre>
+
+    <div class="definition" data-lang="ru">
+        <strong>backdrop-filter: blur(10px)</strong> — «матовое стекло»: контент под хедером размывается. Даёт современный премиум-вид. Так делают Apple, Stripe, GitHub.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>backdrop-filter: blur(10px)</strong> — "frosted glass": content behind the header is blurred. Gives a modern premium look. Used by Apple, Stripe, GitHub.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>z-index: 100</strong> — гарантирует, что header <strong>над</strong> остальными элементами. Без большого z-index секции ниже могут перекрыть header.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>z-index: 100</strong> — ensures the header is <strong>above</strong> other elements. Without a high z-index, sections below could cover the header.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; HERO С ФОНОВЫМ ИЗОБРАЖЕНИЕМ</h2>
+    <h2 data-lang="en">&#x1F4DA; HERO WITH BACKGROUND IMAGE</h2>
+
+<pre><code>.hero {
+    height: 100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('image.jpg') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+}</code></pre>
+
+    <div class="definition" data-lang="ru">
+        <strong>Overlay:</strong> <code>linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))</code> — полупрозрачный чёрный слой поверх картинки, чтобы текст был читаемым.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Overlay:</strong> <code>linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))</code> — semi-transparent black layer over the image so text is readable.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>center/cover:</strong> <code>center</code> — картинка по центру. <code>cover</code> — заполняет блок, сохраняя пропорции (может обрезаться).
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>center/cover:</strong> <code>center</code> — image centered. <code>cover</code> — fills block, preserves proportions (may crop).
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ГРИДЫ ДЛЯ МЕНЮ, ГАЛЕРЕИ, FOOTER</h2>
+    <h2 data-lang="en">&#x1F4DA; GRIDS FOR MENU, GALLERY, FOOTER</h2>
+
+<pre><code>/* Меню блюд: 3 колонки */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* Карточка с фото */
+.menu-card {
+    overflow: hidden;       /* для скруглённых фото */
+    border-radius: 16px;
+}
+.menu-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;      /* заполнить + обрезать */
+}</code></pre>
+
+    <div class="definition" data-lang="ru">
+        <strong>1fr</strong> — «одна доля свободного места». <code>repeat(3, 1fr)</code> = 3 равные колонки. В отличие от <code>%</code>, <code>fr</code> учитывает <code>gap</code>.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>1fr</strong> — "one fraction of available space". <code>repeat(3, 1fr)</code> = 3 equal columns. Unlike <code>%</code>, <code>fr</code> accounts for <code>gap</code>.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>overflow: hidden + border-radius</strong> — обязательная пара. Без <code>overflow: hidden</code> прямоугольные фото вылезают за скруглённые углы карточки.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>overflow: hidden + border-radius</strong> — an essential pair. Without <code>overflow: hidden</code>, rectangular photos stick out past rounded card corners.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; КОНТАКТНАЯ ФОРМА</h2>
+    <h2 data-lang="en">&#x1F4DA; CONTACT FORM</h2>
+
+<pre><code>.contact-row {
+    display: flex;
+    gap: 40px;
+}
+.contact-info { flex: 1; }
+.contact-form { flex: 1; }
+
+.contact-form input,
+.contact-form textarea {
+    font-family: inherit;   /* единый шрифт */
+    padding: 12px 16px;
+}
+.contact-form textarea {
+    resize: vertical;        /* только по высоте */
+}</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Ловушка</th><th>Решение</th></tr>
+        <tr><td>Инпуты системным шрифтом</td><td><code>font-family: inherit</code></td></tr>
+        <tr><td><code>textarea</code> тянется в ширину</td><td><code>resize: vertical</code></td></tr>
+        <tr><td>Разные высоты info и form</td><td><code>align-items: flex-start</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Pitfall</th><th>Solution</th></tr>
+        <tr><td>Inputs in system font</td><td><code>font-family: inherit</code></td></tr>
+        <tr><td><code>textarea</code> stretches horizontally</td><td><code>resize: vertical</code></td></tr>
+        <tr><td>Info and form heights differ</td><td><code>align-items: flex-start</code></td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; BREAKPOINTS ПРОЕКТА</h2>
+    <h2 data-lang="en">&#x1F4DA; PROJECT BREAKPOINTS</h2>
+
+<pre><code>/* Планшет */
+@media (max-width: 992px) {
+    .menu-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Мобильный */
+@media (max-width: 768px) {
+    /* бургер, 1 колонка, стопки, меньше отступы */
+}</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Каскад media queries:</strong> мобильный (≤768px) наследует правила планшета (≤992px), плюс добавляет свои. Пишите <strong>сверху вниз</strong> — от больших экранов к меньшим.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Media query cascade:</strong> mobile (≤768px) inherits tablet rules (≤992px), plus adds its own. Write <strong>top-down</strong> — from larger screens to smaller.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧЕКЛИСТ ПЕРЕД СДАЧЕЙ</h2>
+    <h2 data-lang="en">&#x1F4DA; CHECKLIST BEFORE SUBMITTING</h2>
+
+    <table data-lang="ru">
+        <tr><th>Проверка</th><th>Как</th></tr>
+        <tr><td>Работает на мобильном (375px)</td><td>DevTools → iPhone SE</td></tr>
+        <tr><td>Работает на планшете (768px)</td><td>DevTools → iPad</td></tr>
+        <tr><td>Работает на десктопе (1440px+)</td><td>Своё окно</td></tr>
+        <tr><td>Бургер открывает/закрывает меню</td><td>Клик на мобильном</td></tr>
+        <tr><td>Картинки не выходят за экран</td><td>Сжать окно до 320px</td></tr>
+        <tr><td>Текст читаем на всех размерах</td><td>Сжать окно, читать</td></tr>
+        <tr><td>Якорные ссылки скроллят</td><td>Клик по About/Menu</td></tr>
+        <tr><td>Тел. в footer кликабелен</td><td><code>&lt;a href="tel:..."&gt;</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Check</th><th>How</th></tr>
+        <tr><td>Works on mobile (375px)</td><td>DevTools → iPhone SE</td></tr>
+        <tr><td>Works on tablet (768px)</td><td>DevTools → iPad</td></tr>
+        <tr><td>Works on desktop (1440px+)</td><td>Own window</td></tr>
+        <tr><td>Burger opens/closes menu</td><td>Click on mobile</td></tr>
+        <tr><td>Images don't overflow</td><td>Shrink to 320px</td></tr>
+        <tr><td>Text readable at all sizes</td><td>Shrink and read</td></tr>
+        <tr><td>Anchor links scroll</td><td>Click About/Menu</td></tr>
+        <tr><td>Phone in footer clickable</td><td><code>&lt;a href="tel:..."&gt;</code></td></tr>
+    </table>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li>План для 3 разрешений <strong>до</strong> кода</li>
+            <li>Семантические теги: <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code> — не <code>&lt;div&gt;</code>!</li>
+            <li>CSS-переменные: <code>:root { --color: value; }</code>, используй <code>var(--color)</code></li>
+            <li><code>* { box-sizing: border-box }</code> — обязательный сброс</li>
+            <li>Hero overlay: <code>linear-gradient(rgba(0,0,0,0.5)...)</code> поверх <code>url()</code></li>
+            <li><code>background: url() center/cover</code> — фото на весь блок</li>
+            <li><code>clamp(min, ideal, max)</code> — плавный адаптивный шрифт</li>
+            <li><code>position: fixed</code> + <code>backdrop-filter: blur</code> + <code>z-index: 100</code> — фиксированный прозрачный header</li>
+            <li><code>overflow: hidden</code> + <code>border-radius</code> — скруглённые фото в карточках</li>
+            <li><code>object-fit: cover</code> + фиксированная <code>height</code> — ровная сетка фото</li>
+            <li><code>font-family: inherit</code> и <code>resize: vertical</code> — для инпутов и textarea</li>
+            <li>2 breakpoints: 992px (планшет), 768px (мобильный)</li>
+            <li>Grid → меньше колонок. Flex → column. Бургер появляется</li>
+            <li>Кликабельный телефон: <code>&lt;a href="tel:+993..."&gt;</code></li>
+            <li>Тест в DevTools на iPhone SE, iPad, Desktop</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li>Plan for 3 resolutions <strong>before</strong> code</li>
+            <li>Semantic tags: <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code> — not <code>&lt;div&gt;</code>!</li>
+            <li>CSS variables: <code>:root { --color: value; }</code>, use <code>var(--color)</code></li>
+            <li><code>* { box-sizing: border-box }</code> — mandatory reset</li>
+            <li>Hero overlay: <code>linear-gradient(rgba(0,0,0,0.5)...)</code> over <code>url()</code></li>
+            <li><code>background: url() center/cover</code> — photo fills block</li>
+            <li><code>clamp(min, ideal, max)</code> — smooth responsive font</li>
+            <li><code>position: fixed</code> + <code>backdrop-filter: blur</code> + <code>z-index: 100</code> — fixed transparent header</li>
+            <li><code>overflow: hidden</code> + <code>border-radius</code> — rounded photos in cards</li>
+            <li><code>object-fit: cover</code> + fixed <code>height</code> — even photo grid</li>
+            <li><code>font-family: inherit</code> and <code>resize: vertical</code> — for inputs and textarea</li>
+            <li>2 breakpoints: 992px (tablet), 768px (mobile)</li>
+            <li>Grid → fewer columns. Flex → column. Burger appears</li>
+            <li>Clickable phone: <code>&lt;a href="tel:+993..."&gt;</code></li>
+            <li>Test in DevTools on iPhone SE, iPad, Desktop</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Сайт ресторана:</strong> Создайте полностью адаптивный сайт на свою тему (итальянский, суши, кофейня, национальная кухня): header (бургер), hero с фоном и overlay, «О нас», меню (6 блюд), галерея (8 фото), контакты (инфо + форма), footer (3 колонки).</li>
+            <li><strong>CSS-переменные:</strong> Все цвета через <code>:root { --color-primary; --color-dark; --color-light; --color-text; --color-muted }</code>.</li>
+            <li><strong>Семантический HTML:</strong> <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code> вместо <code>&lt;div&gt;</code>.</li>
+            <li><strong>Адаптивность:</strong> media queries на 992px (планшет) и 768px (мобильный). Меню: 3→2→1 колонки. Галерея: 4→3→2. Футер: 3→1.</li>
+            <li><strong>Бургер-меню на CSS</strong> (checkbox hack) — появляется на мобильном, анимация бургер→крестик.</li>
+            <li><strong>3 размера:</strong> Проверьте на iPhone SE (375px), iPad (768px), Desktop (1440px) в DevTools.</li>
+            <li><strong>Бонус:</strong> <code>scroll-behavior: smooth</code> + якорные ссылки к <code>#about</code>, <code>#menu</code>, <code>#gallery</code>, <code>#contact</code>.</li>
+            <li><strong>Бонус:</strong> Кликабельный телефон в footer через <code>&lt;a href="tel:..."&gt;</code>.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Restaurant site:</strong> Create a fully responsive site on your theme (Italian, sushi, coffee, national cuisine): header (burger), hero with background and overlay, "About", menu (6 dishes), gallery (8 photos), contacts (info + form), footer (3 columns).</li>
+            <li><strong>CSS variables:</strong> All colors via <code>:root { --color-primary; --color-dark; --color-light; --color-text; --color-muted }</code>.</li>
+            <li><strong>Semantic HTML:</strong> <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code> instead of <code>&lt;div&gt;</code>.</li>
+            <li><strong>Responsiveness:</strong> media queries at 992px (tablet) and 768px (mobile). Menu: 3→2→1 columns. Gallery: 4→3→2. Footer: 3→1.</li>
+            <li><strong>CSS burger menu</strong> (checkbox hack) — appears on mobile, burger→cross animation.</li>
+            <li><strong>3 sizes:</strong> Test on iPhone SE (375px), iPad (768px), Desktop (1440px) in DevTools.</li>
+            <li><strong>Bonus:</strong> <code>scroll-behavior: smooth</code> + anchor links to <code>#about</code>, <code>#menu</code>, <code>#gallery</code>, <code>#contact</code>.</li>
+            <li><strong>Bonus:</strong> Clickable phone in footer via <code>&lt;a href="tel:..."&gt;</code>.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

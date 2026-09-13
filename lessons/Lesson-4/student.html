@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 4 — Конспект ученика</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: #1e293b; background: #fff; padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { font-size: 1.8rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 10px; margin-bottom: 6px; }
+        h2 { font-size: 1.4rem; color: #7e22ce; margin: 36px 0 14px; padding: 8px 14px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 6px 6px 0; }
+        h3 { font-size: 1.15rem; color: #1e3a5f; margin: 20px 0 10px; }
+        .subtitle { color: #64748b; margin-bottom: 6px; }
+        .date-line { color: #94a3b8; font-style: italic; margin-bottom: 24px; }
+        .key-point { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 14px 18px; margin: 12px 0; border-radius: 0 6px 6px 0; }
+        .definition { background: #faf5ff; border: 1px solid #d8b4fe; padding: 14px 18px; border-radius: 8px; margin: 12px 0; }
+        .definition strong { color: #7e22ce; }
+        .diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 16px; border-radius: 8px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.4; margin: 14px 0; overflow-x: auto; font-size: 0.82rem; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 14px 18px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 0.9rem; line-height: 1.6; margin: 12px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+        th, td { padding: 8px 12px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 8px 0 8px 24px; }
+        li { margin: 4px 0; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 30px 0; }
+        .remember { background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+        .remember::before { content: '❗ Запомни:'; display: block; font-weight: 700; color: #dc2626; margin-bottom: 4px; }
+        .homework { background: #fdf4ff; border: 2px solid #d8b4fe; border-radius: 10px; padding: 18px; margin: 20px 0; }
+        .homework::before { content: '📚 ДОМАШНЕЕ ЗАДАНИЕ'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 4: Ссылки, изображения, пути</span><span style="color:#cbd5e1;">|</span><a href="lecture.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127979; Лекция</a><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128104;&#8205;&#127891; Конспект</span><a href="tasks.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128203; Задания</a></div>
+<div class="container">
+
+    <h1>📓 КОНСПЕКТ УЧЕНИКА</h1>
+    <p class="subtitle">Занятие 4: Ссылки, изображения, пути</p>
+    <p class="date-line">Дата: _______________</p>
+
+    <hr>
+
+    <h2>📚 ССЫЛКИ &lt;a&gt;</h2>
+
+    <div class="definition">
+        <strong>Ссылка</strong> — тег <code>&lt;a href="адрес"&gt;текст&lt;/a&gt;</code>. Атрибут <code>href</code> (Hypertext REFerence) — обязателен.
+    </div>
+
+<pre><code>&lt;a href="https://google.com"&gt;Google&lt;/a&gt;
+&lt;a href="about.html"&gt;О нас&lt;/a&gt;
+&lt;a href="https://youtube.com" target="_blank"&gt;YouTube (новая вкладка)&lt;/a&gt;</code></pre>
+
+    <h3>Виды ссылок</h3>
+
+    <table>
+        <tr><th>Тип</th><th>Код</th></tr>
+        <tr><td>На другой сайт</td><td><code>href="https://google.com"</code></td></tr>
+        <tr><td>На свою страницу</td><td><code>href="about.html"</code></td></tr>
+        <tr><td>Email</td><td><code>href="mailto:info@mail.com"</code></td></tr>
+        <tr><td>Телефон</td><td><code>href="tel:+79001234567"</code></td></tr>
+        <tr><td>Скачивание</td><td><code>href="file.pdf" download</code></td></tr>
+        <tr><td>Якорь (на этой странице)</td><td><code>href="#section-id"</code></td></tr>
+    </table>
+
+    <h3>target</h3>
+
+    <ul>
+        <li><code>_self</code> — текущая вкладка (по умолчанию) → для своего сайта</li>
+        <li><code>_blank</code> — новая вкладка → для чужих сайтов</li>
+    </ul>
+
+    <h3>Якорные ссылки</h3>
+
+<pre><code>&lt;!-- 1. Добавь id на элемент --&gt;
+&lt;h2 id="contacts"&gt;Контакты&lt;/h2&gt;
+
+&lt;!-- 2. Создай ссылку с # --&gt;
+&lt;a href="#contacts"&gt;К контактам&lt;/a&gt;</code></pre>
+
+    <hr>
+
+    <h2>📚 ПУТИ К ФАЙЛАМ</h2>
+
+    <table>
+        <tr><th>Тип</th><th>Пример</th><th>Когда</th></tr>
+        <tr><td><strong>Абсолютный</strong></td><td><code>https://example.com/img.jpg</code></td><td>Чужие сайты</td></tr>
+        <tr><td><strong>Относительный</strong></td><td><code>images/photo.jpg</code></td><td>Свой проект</td></tr>
+    </table>
+
+    <div class="diagram">
+my-site/
+├── index.html           ← мы здесь
+├── about.html           ← href="about.html"
+├── images/
+│   └── photo.jpg        ← src="images/photo.jpg"
+└── pages/
+    └── contacts.html    ← href="pages/contacts.html"</div>
+
+    <div class="remember">
+        <ul>
+            <li><code>file.html</code> — файл в той же папке</li>
+            <li><code>folder/file.html</code> — файл в подпапке</li>
+            <li><code>../file.html</code> — файл на уровень выше</li>
+            <li><code>../../file.html</code> — файл на 2 уровня выше</li>
+        </ul>
+    </div>
+
+    <div class="key-point">
+        <strong>Запоминалка:</strong><br>
+        Абсолютный путь = полный адрес дома (работает из любой точки мира).<br>
+        Относительный путь = «соседний дом справа» (работает только если знаешь, где ты).<br>
+        <code>../</code> = «выйти из подъезда» (подняться на уровень выше).
+    </div>
+
+    <hr>
+
+    <h2>📚 ИЗОБРАЖЕНИЯ &lt;img&gt;</h2>
+
+    <div class="definition">
+        <strong>Изображение</strong> — одиночный тег <code>&lt;img src="путь" alt="описание"&gt;</code>
+    </div>
+
+<pre><code>&lt;img src="images/photo.jpg" alt="Описание фото" width="400"&gt;</code></pre>
+
+    <table>
+        <tr><th>Атрибут</th><th>Назначение</th><th>Обязателен?</th></tr>
+        <tr><td><code>src</code></td><td>Путь к файлу</td><td>Да</td></tr>
+        <tr><td><code>alt</code></td><td>Описание (если не загрузилась)</td><td>Да</td></tr>
+        <tr><td><code>width</code></td><td>Ширина (px)</td><td>Рекомендуется</td></tr>
+        <tr><td><code>height</code></td><td>Высота (px)</td><td>Рекомендуется</td></tr>
+    </table>
+
+    <h3>Форматы</h3>
+
+    <table>
+        <tr><th>Формат</th><th>Для чего</th></tr>
+        <tr><td><strong>JPEG</strong> (.jpg)</td><td>Фотографии (нет прозрачности)</td></tr>
+        <tr><td><strong>PNG</strong> (.png)</td><td>Логотипы, иконки (есть прозрачность)</td></tr>
+        <tr><td><strong>SVG</strong> (.svg)</td><td>Иконки, графики (вектор, не теряет качество)</td></tr>
+        <tr><td><strong>GIF</strong> (.gif)</td><td>Анимации</td></tr>
+        <tr><td><strong>WebP</strong> (.webp)</td><td>Универсальный (лучшее сжатие)</td></tr>
+    </table>
+
+    <h3>Подпись к изображению</h3>
+
+<pre><code>&lt;figure&gt;
+    &lt;img src="sunset.jpg" alt="Закат" width="600"&gt;
+    &lt;figcaption&gt;Закат на море, 2025&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+
+    <h3>Изображение-ссылка</h3>
+
+<pre><code>&lt;a href="https://youtube.com"&gt;
+    &lt;img src="youtube-logo.png" alt="YouTube" width="200"&gt;
+&lt;/a&gt;</code></pre>
+
+    <hr>
+
+    <h2>📝 ИТОГИ ЗАНЯТИЯ 4</h2>
+
+    <div class="key-point">
+        <ul>
+            <li><code>&lt;a href="..."&gt;</code> — ссылка. <code>target="_blank"</code> — новая вкладка</li>
+            <li>Виды: сайт, страница, email, телефон, скачивание, якорь</li>
+            <li>Якорь: <code>id="name"</code> + <code>href="#name"</code></li>
+            <li>Абсолютный путь = полный URL (для чужих сайтов)</li>
+            <li>Относительный путь = от текущего файла (для своих файлов)</li>
+            <li><code>../</code> = на уровень выше</li>
+            <li><code>&lt;img src="..." alt="..."&gt;</code> — картинка. <code>alt</code> обязателен!</li>
+            <li>JPEG — фото, PNG — прозрачность, SVG — вектор, WebP — современный</li>
+            <li><code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code> — картинка с подписью</li>
+            <li><code>&lt;a&gt;&lt;img&gt;&lt;/a&gt;</code> — кликабельная картинка</li>
+        </ul>
+    </div>
+
+    <table>
+        <tr><th>Что нужно</th><th>Тег / атрибут</th><th>Запоминалка</th></tr>
+        <tr><td>Ссылка</td><td><code>&lt;a href="..."&gt;</code></td><td>Anchor (якорь) + Hypertext Reference</td></tr>
+        <tr><td>Новая вкладка</td><td><code>target="_blank"</code></td><td>Для чужих сайтов — чтоб не ушли</td></tr>
+        <tr><td>Написать на почту</td><td><code>mailto:</code></td><td>mail + to = «письмо кому»</td></tr>
+        <tr><td>Позвонить</td><td><code>tel:</code></td><td>telephone = телефон</td></tr>
+        <tr><td>Картинка</td><td><code>&lt;img src="..." alt="..."&gt;</code></td><td>Source (откуда) + Alternative (описание)</td></tr>
+        <tr><td>Уровень выше</td><td><code>../</code></td><td>«Выйти из подъезда»</td></tr>
+        <tr><td>Подпись к фото</td><td><code>&lt;figure&gt; + &lt;figcaption&gt;</code></td><td>Figure = фигура, Caption = подпись</td></tr>
+    </table>
+
+    <div class="homework">
+        <ol>
+            <li>Создайте проект из 3 страниц (index, about, gallery) с навигацией между ними</li>
+            <li>Добавьте минимум 5 изображений с правильными <code>alt</code></li>
+            <li>Используйте якорную ссылку (навигация к разделу)</li>
+            <li>Добавьте ссылки: на email, телефон и внешний сайт (target="_blank")</li>
+            <li>Сделайте одну картинку кликабельной (изображение-ссылка)</li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

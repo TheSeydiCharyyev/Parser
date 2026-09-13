@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 13 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 13: Мини-проект — Landing-секция</span>
+    <span class="nav-title" data-lang="en">Lesson 13: Mini-project — Landing Section</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 13: Мини-проект #2 — Landing-секция</p>
+    <p class="subtitle" data-lang="en">Lesson 13: Mini-project #2 — Landing Section</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧТО ТАКОЕ LANDING PAGE</h2>
+    <h2 data-lang="en">&#x1F4DA; WHAT IS A LANDING PAGE</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Landing page</strong> — одностраничный сайт с одной целью: побудить посетителя совершить действие (купить, зарегистрироваться, скачать).
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Landing page</strong> — a single-page website with one goal: get the visitor to perform an action (buy, sign up, download).
+    </div>
+
+    <div class="definition" data-lang="ru">
+        <strong>CTA</strong> (Call to Action) — призыв к действию. Главная кнопка лендинга. Должна быть яркой и заметной.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>CTA</strong> (Call to Action) — the main button of a landing page. Should be bright and noticeable.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; СТРУКТУРА ЛЕНДИНГА</h2>
+    <h2 data-lang="en">&#x1F4DA; LANDING PAGE STRUCTURE</h2>
+
+    <table data-lang="ru">
+        <tr><th>Секция</th><th>HTML</th><th>Содержание</th></tr>
+        <tr><td>Nav</td><td><code>&lt;nav&gt;</code></td><td>Логотип + ссылки + CTA-кнопка</td></tr>
+        <tr><td>Hero</td><td><code>&lt;section class="hero"&gt;</code></td><td>Заголовок + описание + кнопка</td></tr>
+        <tr><td>Features</td><td><code>&lt;section class="features"&gt;</code></td><td>3 карточки с преимуществами</td></tr>
+        <tr><td>CTA</td><td><code>&lt;section class="cta"&gt;</code></td><td>Призыв + кнопка регистрации</td></tr>
+        <tr><td>Footer</td><td><code>&lt;footer&gt;</code></td><td>Копирайт + соцсети</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Section</th><th>HTML</th><th>Content</th></tr>
+        <tr><td>Nav</td><td><code>&lt;nav&gt;</code></td><td>Logo + links + CTA button</td></tr>
+        <tr><td>Hero</td><td><code>&lt;section class="hero"&gt;</code></td><td>Headline + description + button</td></tr>
+        <tr><td>Features</td><td><code>&lt;section class="features"&gt;</code></td><td>3 feature cards</td></tr>
+        <tr><td>CTA</td><td><code>&lt;section class="cta"&gt;</code></td><td>Call to action + signup button</td></tr>
+        <tr><td>Footer</td><td><code>&lt;footer&gt;</code></td><td>Copyright + social links</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; КЛЮЧЕВЫЕ CSS-ПРИЁМЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; KEY CSS TECHNIQUES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Приём</th><th>CSS</th><th>Зачем</th></tr>
+        <tr><td>Контейнер</td><td><code>.container { max-width: 1100px; margin: 0 auto; }</code></td><td>Ограничивает ширину, центрирует</td></tr>
+        <tr><td>Липкая навигация</td><td><code>position: sticky; top: 0</code></td><td>Nav прилипает при скролле</td></tr>
+        <tr><td>Градиент</td><td><code>background: linear-gradient(135deg, ...)</code></td><td>Красивый фон hero/cta</td></tr>
+        <tr><td>Карточки в ряд</td><td><code>display: flex; gap: 24px</code></td><td>Карточки горизонтально</td></tr>
+        <tr><td>Hover-подъём</td><td><code>transform: translateY(-6px)</code></td><td>Карточка «поднимается»</td></tr>
+        <tr><td>CTA-кнопка</td><td><code>padding, background, border-radius, :hover</code></td><td>Яркая заметная кнопка</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Technique</th><th>CSS</th><th>Purpose</th></tr>
+        <tr><td>Container</td><td><code>.container { max-width: 1100px; margin: 0 auto; }</code></td><td>Limits width, centers content</td></tr>
+        <tr><td>Sticky nav</td><td><code>position: sticky; top: 0</code></td><td>Nav sticks on scroll</td></tr>
+        <tr><td>Gradient</td><td><code>background: linear-gradient(135deg, ...)</code></td><td>Beautiful hero/cta background</td></tr>
+        <tr><td>Cards in row</td><td><code>display: flex; gap: 24px</code></td><td>Cards side by side</td></tr>
+        <tr><td>Hover lift</td><td><code>transform: translateY(-6px)</code></td><td>Card "lifts up"</td></tr>
+        <tr><td>CTA button</td><td><code>padding, background, border-radius, :hover</code></td><td>Bright visible button</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Шаблон .container</h3>
+    <h3 data-lang="en">.container template</h3>
+
+<pre><code>.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}</code></pre>
+
+    <h3 data-lang="ru">Шаблон кнопки</h3>
+    <h3 data-lang="en">Button template</h3>
+
+<pre><code>.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.btn:hover {
+    transform: translateY(-2px);
+}</code></pre>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><strong>Landing = 1 страница, 1 цель, 1 CTA</strong></li>
+            <li>5 секций: nav, hero, features, cta, footer</li>
+            <li><code>.container</code> — ограничивает ширину контента</li>
+            <li><code>position: sticky</code> — прилипающая навигация</li>
+            <li><code>display: flex</code> — карточки в ряд</li>
+            <li><code>linear-gradient</code> — фон hero и cta</li>
+            <li>CTA-кнопка — самый яркий элемент!</li>
+            <li>Используй семантические теги: nav, section, footer</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><strong>Landing = 1 page, 1 goal, 1 CTA</strong></li>
+            <li>5 sections: nav, hero, features, cta, footer</li>
+            <li><code>.container</code> — limits content width</li>
+            <li><code>position: sticky</code> — sticky navigation</li>
+            <li><code>display: flex</code> — cards in a row</li>
+            <li><code>linear-gradient</code> — hero and cta background</li>
+            <li>CTA button — the brightest element!</li>
+            <li>Use semantic tags: nav, section, footer</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Создай свой лендинг</strong> на любую тему (приложение, курсы, кафе, мероприятие). Обязательно: nav + hero + features (3 карточки) + CTA + footer.</li>
+            <li><strong>Свою цветовую тему</strong> — отличающуюся от примера.</li>
+            <li><strong>Бонус:</strong> Добавь секцию «Отзывы» или «Цены» между features и CTA.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Create your own landing</strong> on any topic (app, courses, cafe, event). Required: nav + hero + features (3 cards) + CTA + footer.</li>
+            <li><strong>Your own color theme</strong> — different from the example.</li>
+            <li><strong>Bonus:</strong> Add a "Testimonials" or "Pricing" section between features and CTA.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

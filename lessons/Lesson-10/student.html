@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 10 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 10: Таблицы</span>
+    <span class="nav-title" data-lang="en">Lesson 10: Tables</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+
+    <p class="subtitle" data-lang="ru">Занятие 10: Таблицы</p>
+    <p class="subtitle" data-lang="en">Lesson 10: Tables</p>
+
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <!-- УРОК 10.1 -->
+    <h2 data-lang="ru">&#x1F4DA; УРОК 10.1: ОСНОВНЫЕ ТЕГИ ТАБЛИЦ</h2>
+    <h2 data-lang="en">&#x1F4DA; Lesson 10.1: BASIC TABLE TAGS</h2>
+
+    <h3 data-lang="ru">Базовые теги</h3>
+    <h3 data-lang="en">Basic tags</h3>
+
+    <table data-lang="ru">
+        <tr><th>Тег</th><th>Значение</th><th>Описание</th></tr>
+        <tr><td><code>&lt;table&gt;</code></td><td>table</td><td>Контейнер таблицы</td></tr>
+        <tr><td><code>&lt;tr&gt;</code></td><td>table row</td><td>Строка</td></tr>
+        <tr><td><code>&lt;td&gt;</code></td><td>table data</td><td>Ячейка с данными</td></tr>
+        <tr><td><code>&lt;th&gt;</code></td><td>table header</td><td>Ячейка-заголовок (жирный, центр)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Tag</th><th>Stands for</th><th>Description</th></tr>
+        <tr><td><code>&lt;table&gt;</code></td><td>table</td><td>Table container</td></tr>
+        <tr><td><code>&lt;tr&gt;</code></td><td>table row</td><td>Row</td></tr>
+        <tr><td><code>&lt;td&gt;</code></td><td>table data</td><td>Data cell</td></tr>
+        <tr><td><code>&lt;th&gt;</code></td><td>table header</td><td>Header cell (bold, centered)</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Шаблон простой таблицы</h3>
+    <h3 data-lang="en">Simple table template</h3>
+
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Заголовок 1&lt;/th&gt;
+        &lt;th&gt;Заголовок 2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Данные 1&lt;/td&gt;
+        &lt;td&gt;Данные 2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+
+    <h3 data-lang="ru">Объединение ячеек</h3>
+    <h3 data-lang="en">Merging cells</h3>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут</th><th>Что делает</th><th>Пример</th></tr>
+        <tr><td><code>colspan="3"</code></td><td>Ячейка занимает 3 столбца</td><td><code>&lt;td colspan="3"&gt;</code></td></tr>
+        <tr><td><code>rowspan="2"</code></td><td>Ячейка занимает 2 строки</td><td><code>&lt;td rowspan="2"&gt;</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute</th><th>What it does</th><th>Example</th></tr>
+        <tr><td><code>colspan="3"</code></td><td>Cell spans 3 columns</td><td><code>&lt;td colspan="3"&gt;</code></td></tr>
+        <tr><td><code>rowspan="2"</code></td><td>Cell spans 2 rows</td><td><code>&lt;td rowspan="2"&gt;</code></td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Важно:</strong> Если ячейка с <code>colspan="3"</code>, в этой строке нужно на 2 ячейки <code>&lt;td&gt;</code> меньше. Если <code>rowspan="2"</code>, в следующей строке нужно на 1 ячейку меньше.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Important:</strong> If a cell has <code>colspan="3"</code>, that row needs 2 fewer <code>&lt;td&gt;</code> cells. If <code>rowspan="2"</code>, the next row needs 1 fewer cell.
+    </div>
+
+    <hr>
+
+    <!-- УРОК 10.2 -->
+    <h2 data-lang="ru">&#x1F4DA; УРОК 10.2: СТРУКТУРА И СТИЛИЗАЦИЯ</h2>
+    <h2 data-lang="en">&#x1F4DA; Lesson 10.2: STRUCTURE AND STYLING</h2>
+
+    <h3 data-lang="ru">Семантическая структура</h3>
+    <h3 data-lang="en">Semantic structure</h3>
+
+    <table data-lang="ru">
+        <tr><th>Тег</th><th>Содержит</th></tr>
+        <tr><td><code>&lt;thead&gt;</code></td><td>Шапка — заголовки столбцов</td></tr>
+        <tr><td><code>&lt;tbody&gt;</code></td><td>Тело — основные данные</td></tr>
+        <tr><td><code>&lt;tfoot&gt;</code></td><td>Подвал — итоги, суммы</td></tr>
+        <tr><td><code>&lt;caption&gt;</code></td><td>Подпись/заголовок таблицы</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Tag</th><th>Contains</th></tr>
+        <tr><td><code>&lt;thead&gt;</code></td><td>Header — column titles</td></tr>
+        <tr><td><code>&lt;tbody&gt;</code></td><td>Body — main data</td></tr>
+        <tr><td><code>&lt;tfoot&gt;</code></td><td>Footer — totals, summaries</td></tr>
+        <tr><td><code>&lt;caption&gt;</code></td><td>Table caption/title</td></tr>
+    </table>
+
+<pre><code>&lt;table&gt;
+    &lt;caption&gt;Заголовок таблицы&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;...&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;...&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;&lt;td&gt;Итого: ...&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+
+    <h3 data-lang="ru">Ключевые CSS-свойства для таблиц</h3>
+    <h3 data-lang="en">Key CSS properties for tables</h3>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что делает</th></tr>
+        <tr><td><code>border-collapse: collapse</code></td><td>Рамки сливаются (убирает двойные)</td></tr>
+        <tr><td><code>width: 100%</code></td><td>Таблица на всю ширину</td></tr>
+        <tr><td><code>padding: 12px</code></td><td>Отступы внутри ячеек</td></tr>
+        <tr><td><code>text-align: left / center</code></td><td>Выравнивание текста</td></tr>
+        <tr><td><code>tr:nth-child(even)</code></td><td>Каждая чётная строка (зебра)</td></tr>
+        <tr><td><code>tr:hover</code></td><td>Подсветка при наведении</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it does</th></tr>
+        <tr><td><code>border-collapse: collapse</code></td><td>Borders merge (removes doubles)</td></tr>
+        <tr><td><code>width: 100%</code></td><td>Full-width table</td></tr>
+        <tr><td><code>padding: 12px</code></td><td>Cell inner spacing</td></tr>
+        <tr><td><code>text-align: left / center</code></td><td>Text alignment</td></tr>
+        <tr><td><code>tr:nth-child(even)</code></td><td>Every even row (zebra)</td></tr>
+        <tr><td><code>tr:hover</code></td><td>Highlight on hover</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Базовый CSS для таблицы</h3>
+    <h3 data-lang="en">Basic table CSS</h3>
+
+<pre><code>table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+}
+th {
+    background: #f1f5f9;
+    font-weight: 600;
+}
+tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+tbody tr:hover {
+    background: #dbeafe;
+}</code></pre>
+
+    <hr>
+
+    <!-- УРОК 10.3 -->
+    <h2 data-lang="ru">&#x1F4DA; УРОК 10.3: ПРАКТИКА</h2>
+    <h2 data-lang="en">&#x1F4DA; Lesson 10.3: PRACTICE</h2>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Сегодня создаём:</strong>
+        <ol>
+            <li>Расписание занятий (с <code>rowspan</code> и стилизацией)</li>
+            <li>Pricing Table — таблица тарифов (Базовый / Про / Бизнес)</li>
+        </ol>
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Today we create:</strong>
+        <ol>
+            <li>Class schedule (with <code>rowspan</code> and styling)</li>
+            <li>Pricing Table — tariff table (Basic / Pro / Business)</li>
+        </ol>
+    </div>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>&lt;table&gt;</code> — только для табличных данных (НЕ для вёрстки страниц!)</li>
+            <li><code>&lt;th&gt;</code> — заголовок (жирный), <code>&lt;td&gt;</code> — обычные данные</li>
+            <li><code>colspan</code> — объединить столбцы, <code>rowspan</code> — объединить строки</li>
+            <li><code>border-collapse: collapse</code> — обязательно для всех таблиц!</li>
+            <li><code>:nth-child(even)</code> — для полосатых таблиц</li>
+            <li><code>thead</code>, <code>tbody</code>, <code>tfoot</code> — семантика</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>&lt;table&gt;</code> — only for tabular data (NOT for page layout!)</li>
+            <li><code>&lt;th&gt;</code> — header (bold), <code>&lt;td&gt;</code> — regular data</li>
+            <li><code>colspan</code> — merge columns, <code>rowspan</code> — merge rows</li>
+            <li><code>border-collapse: collapse</code> — required for all tables!</li>
+            <li><code>:nth-child(even)</code> — for striped tables</li>
+            <li><code>thead</code>, <code>tbody</code>, <code>tfoot</code> — semantics</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Расписание:</strong> Создайте таблицу своего расписания на неделю с <code>rowspan</code> для дней и стилизацией (зебра + hover).</li>
+            <li><strong>Pricing Table:</strong> Создайте стилизованную таблицу тарифов с 3 планами и выделенным рекомендуемым столбцом.</li>
+            <li><strong>Бонус:</strong> Добавьте <code>&lt;tfoot&gt;</code> с итогами в любую таблицу.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Schedule:</strong> Create a table of your weekly schedule with <code>rowspan</code> for days and styling (zebra + hover).</li>
+            <li><strong>Pricing Table:</strong> Create a styled pricing table with 3 plans and a highlighted recommended column.</li>
+            <li><strong>Bonus:</strong> Add a <code>&lt;tfoot&gt;</code> with totals to any table.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

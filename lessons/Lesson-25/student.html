@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 25 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 25: Bootstrap — основы</span>
+    <span class="nav-title" data-lang="en">Lesson 25: Bootstrap — Basics</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 25: Bootstrap — основы</p>
+    <p class="subtitle" data-lang="en">Lesson 25: Bootstrap — Basics</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧТО ТАКОЕ BOOTSTRAP</h2>
+    <h2 data-lang="en">&#x1F4DA; WHAT IS BOOTSTRAP</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Bootstrap</strong> — самый популярный CSS-фреймворк (используется на 20%+ всех сайтов). Набор готовых классов для сетки, кнопок, форм, утилит. Ускоряет вёрстку в 3-5 раз.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Bootstrap</strong> — the most popular CSS framework (used on 20%+ of all sites). A set of ready classes for grid, buttons, forms, utilities. Speeds up markup 3-5×.
+    </div>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Когда использовать:</strong> админки, MVP, клиентские landing без дизайнера, внутренние инструменты. <strong>Когда НЕ использовать:</strong> продуктовые сайты известных брендов, уникальные портфолио.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>When to use:</strong> admin panels, MVPs, client landings without a designer, internal tools. <strong>When NOT to use:</strong> product sites for established brands, unique portfolios.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ПОДКЛЮЧЕНИЕ BOOTSTRAP</h2>
+    <h2 data-lang="en">&#x1F4DA; BOOTSTRAP SETUP</h2>
+
+<pre><code>&lt;!-- В &lt;head&gt;: CSS --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+
+&lt;!-- Свой CSS — ПОСЛЕ Bootstrap! --&gt;
+&lt;link href="style.css" rel="stylesheet"&gt;
+
+&lt;!-- Перед &lt;/body&gt;: JS --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Свой CSS — всегда ПОСЛЕ Bootstrap!</strong> Иначе Bootstrap перекроет ваши стили (каскад: кто позже, тот побеждает).
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Your CSS — ALWAYS AFTER Bootstrap!</strong> Otherwise Bootstrap overrides your styles (cascade: later wins).
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; СЕТКА (12 КОЛОНОК)</h2>
+    <h2 data-lang="en">&#x1F4DA; GRID (12 COLUMNS)</h2>
+
+<pre><code>&lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-12 col-md-6 col-lg-4"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Класс</th><th>Breakpoint</th><th>Экран</th></tr>
+        <tr><td><code>col-</code></td><td>Все</td><td>0px+</td></tr>
+        <tr><td><code>col-sm-</code></td><td>Small</td><td>≥ 576px</td></tr>
+        <tr><td><code>col-md-</code></td><td>Medium</td><td>≥ 768px</td></tr>
+        <tr><td><code>col-lg-</code></td><td>Large</td><td>≥ 992px</td></tr>
+        <tr><td><code>col-xl-</code></td><td>XL</td><td>≥ 1200px</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Class</th><th>Breakpoint</th><th>Screen</th></tr>
+        <tr><td><code>col-</code></td><td>All</td><td>0px+</td></tr>
+        <tr><td><code>col-sm-</code></td><td>Small</td><td>≥ 576px</td></tr>
+        <tr><td><code>col-md-</code></td><td>Medium</td><td>≥ 768px</td></tr>
+        <tr><td><code>col-lg-</code></td><td>Large</td><td>≥ 992px</td></tr>
+        <tr><td><code>col-xl-</code></td><td>XL</td><td>≥ 1200px</td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        <code>col-12 col-md-6 col-lg-4</code> = мобильный: 100%, планшет: 50%, десктоп: 33%.
+    </div>
+    <div class="key-point" data-lang="en">
+        <code>col-12 col-md-6 col-lg-4</code> = mobile: 100%, tablet: 50%, desktop: 33%.
+    </div>
+
+    <div class="definition" data-lang="ru">
+        <strong>Типичные раскладки:</strong>
+        <ul>
+            <li>Карточки (1/2/3): <code>col-12 col-md-6 col-lg-4</code></li>
+            <li>Галерея (2/3/4): <code>col-6 col-md-4 col-lg-3</code></li>
+            <li>Sidebar + контент (25%/75%): <code>col-12 col-md-3</code> + <code>col-12 col-md-9</code></li>
+            <li>Текст + картинка (стопка/ряд): два <code>col-12 col-md-6</code></li>
+        </ul>
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Typical layouts:</strong>
+        <ul>
+            <li>Cards (1/2/3): <code>col-12 col-md-6 col-lg-4</code></li>
+            <li>Gallery (2/3/4): <code>col-6 col-md-4 col-lg-3</code></li>
+            <li>Sidebar + content (25%/75%): <code>col-12 col-md-3</code> + <code>col-12 col-md-9</code></li>
+            <li>Text + image (stack/row): two <code>col-12 col-md-6</code></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; КНОПКИ И ЦВЕТА</h2>
+    <h2 data-lang="en">&#x1F4DA; BUTTONS AND COLORS</h2>
+
+<pre><code>&lt;button class="btn btn-primary"&gt;Синяя&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Красная&lt;/button&gt;
+&lt;button class="btn btn-outline-success"&gt;Зелёная обводка&lt;/button&gt;
+&lt;button class="btn btn-dark btn-lg"&gt;Большая тёмная&lt;/button&gt;</code></pre>
+
+    <p data-lang="ru"><strong>Цвета:</strong> primary (синий), secondary (серый), success (зелёный), danger (красный), warning (жёлтый), info (голубой), light, dark.</p>
+    <p data-lang="en"><strong>Colors:</strong> primary (blue), secondary (gray), success (green), danger (red), warning (yellow), info (cyan), light, dark.</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; УТИЛИТЫ ОТСТУПОВ</h2>
+    <h2 data-lang="en">&#x1F4DA; SPACING UTILITIES</h2>
+
+<pre><code>m = margin, p = padding
+t = top, b = bottom, s = left, e = right
+x = left+right, y = top+bottom
+Размеры: 0, 1(4px), 2(8px), 3(16px), 4(24px), 5(48px)
+
+p-3   = padding: 16px (все)
+mt-4  = margin-top: 24px
+px-2  = padding-left + right: 8px
+mb-5  = margin-bottom: 48px
+mx-auto = margin: 0 auto (центр)</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ДРУГИЕ УТИЛИТЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; OTHER UTILITIES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Класс</th><th>Что делает</th></tr>
+        <tr><td><code>text-center</code></td><td>Текст по центру</td></tr>
+        <tr><td><code>text-primary</code></td><td>Синий текст</td></tr>
+        <tr><td><code>bg-dark text-white</code></td><td>Тёмный фон + белый текст</td></tr>
+        <tr><td><code>d-flex</code></td><td>display: flex</td></tr>
+        <tr><td><code>d-none d-md-block</code></td><td>Скрыть на мобильном</td></tr>
+        <tr><td><code>shadow</code></td><td>Тень</td></tr>
+        <tr><td><code>rounded</code></td><td>Скругление</td></tr>
+        <tr><td><code>w-100</code></td><td>Ширина 100%</td></tr>
+        <tr><td><code>g-4</code></td><td>Gap на row</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Class</th><th>What it does</th></tr>
+        <tr><td><code>text-center</code></td><td>Center text</td></tr>
+        <tr><td><code>text-primary</code></td><td>Blue text</td></tr>
+        <tr><td><code>bg-dark text-white</code></td><td>Dark bg + white text</td></tr>
+        <tr><td><code>d-flex</code></td><td>display: flex</td></tr>
+        <tr><td><code>d-none d-md-block</code></td><td>Hide on mobile</td></tr>
+        <tr><td><code>shadow</code></td><td>Shadow</td></tr>
+        <tr><td><code>rounded</code></td><td>Border radius</td></tr>
+        <tr><td><code>w-100</code></td><td>Width 100%</td></tr>
+        <tr><td><code>g-4</code></td><td>Gap on row</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧАСТЫЕ ОШИБКИ</h2>
+    <h2 data-lang="en">&#x1F4DA; COMMON MISTAKES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td>Свой CSS идёт до Bootstrap</td><td>Перенести <code>&lt;link&gt;</code> ПОСЛЕ Bootstrap</td></tr>
+        <tr><td><code>col</code> без <code>row</code></td><td>Обернуть в <code>&lt;div class="row"&gt;</code></td></tr>
+        <tr><td><code>row</code> без <code>container</code></td><td>Обернуть в <code>&lt;div class="container"&gt;</code></td></tr>
+        <tr><td>col-6 + col-7 (сумма 13)</td><td>Сложение должно быть ≤ 12</td></tr>
+        <tr><td>Bootstrap 4 классы (ml-/mr-)</td><td>В Bootstrap 5: <code>ms-/me-</code> (start/end)</td></tr>
+        <tr><td>Utility-спам (10+ классов)</td><td>Выносить повторяющиеся блоки в свой CSS</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td>Your CSS loaded before Bootstrap</td><td>Move <code>&lt;link&gt;</code> AFTER Bootstrap</td></tr>
+        <tr><td><code>col</code> without <code>row</code></td><td>Wrap in <code>&lt;div class="row"&gt;</code></td></tr>
+        <tr><td><code>row</code> without <code>container</code></td><td>Wrap in <code>&lt;div class="container"&gt;</code></td></tr>
+        <tr><td>col-6 + col-7 (sum 13)</td><td>Sum must be ≤ 12</td></tr>
+        <tr><td>Bootstrap 4 classes (ml-/mr-)</td><td>In Bootstrap 5: <code>ms-/me-</code> (start/end)</td></tr>
+        <tr><td>Utility spam (10+ classes)</td><td>Extract repeating blocks into your CSS</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ДОКУМЕНТАЦИЯ — ВАШ ДРУГ</h2>
+    <h2 data-lang="en">&#x1F4DA; DOCS — YOUR FRIEND</h2>
+
+    <div class="definition" data-lang="ru">
+        Не надо зубрить все классы. Откройте <a href="https://getbootstrap.com/docs/5.3/" target="_blank">getbootstrap.com/docs/5.3/</a> и ищите по разделам:
+        <ul>
+            <li><strong>Layout</strong> → контейнеры, сетка, breakpoints</li>
+            <li><strong>Content</strong> → типография, таблицы, картинки</li>
+            <li><strong>Components</strong> → кнопки, карточки, модалки, навбар</li>
+            <li><strong>Forms</strong> → инпуты, чекбоксы, валидация</li>
+            <li><strong>Utilities</strong> → отступы, flex, текст, границы (используется чаще всего!)</li>
+        </ul>
+    </div>
+    <div class="definition" data-lang="en">
+        Don't memorize all classes. Open <a href="https://getbootstrap.com/docs/5.3/" target="_blank">getbootstrap.com/docs/5.3/</a> and browse by sections:
+        <ul>
+            <li><strong>Layout</strong> → containers, grid, breakpoints</li>
+            <li><strong>Content</strong> → typography, tables, images</li>
+            <li><strong>Components</strong> → buttons, cards, modals, navbar</li>
+            <li><strong>Forms</strong> → inputs, checkboxes, validation</li>
+            <li><strong>Utilities</strong> → spacing, flex, text, borders (most used!)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li>Bootstrap = готовые CSS-классы (не пишешь CSS сам)</li>
+            <li>Используется в 20%+ всех сайтов — must-know для junior</li>
+            <li>CDN: CSS в head (свой CSS ПОСЛЕ), JS перед /body</li>
+            <li>Сетка: <code>container → row → col</code> (строго в этом порядке!)</li>
+            <li>12 колонок — делится на 2, 3, 4, 6</li>
+            <li><code>col-md-6</code> = 6/12 начиная с 768px (mobile-first)</li>
+            <li>Breakpoints: sm (576), md (768), lg (992), xl (1200), xxl (1400)</li>
+            <li><code>btn btn-primary</code> = база + модификатор цвета</li>
+            <li>8 цветов: primary, secondary, success, danger, warning, info, light, dark</li>
+            <li><code>p-3</code> = padding 16px, <code>mt-4</code> = margin-top 24px</li>
+            <li>Размеры отступов: 0, 1(4px), 2(8px), 3(16px), 4(24px), 5(48px)</li>
+            <li><code>g-4</code> на row = gap между колонками</li>
+            <li><code>mx-auto</code> = центрирование блока</li>
+            <li><code>d-none d-md-block</code> = скрыть на мобильном</li>
+            <li>При повторении блоков 3+ раз — выносить в свой CSS</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li>Bootstrap = ready CSS classes (no custom CSS needed)</li>
+            <li>Used on 20%+ of all sites — must-know for junior</li>
+            <li>CDN: CSS in head (your CSS AFTER), JS before /body</li>
+            <li>Grid: <code>container → row → col</code> (strictly in this order!)</li>
+            <li>12 columns — divides by 2, 3, 4, 6</li>
+            <li><code>col-md-6</code> = 6/12 starting from 768px (mobile-first)</li>
+            <li>Breakpoints: sm (576), md (768), lg (992), xl (1200), xxl (1400)</li>
+            <li><code>btn btn-primary</code> = base + color modifier</li>
+            <li>8 colors: primary, secondary, success, danger, warning, info, light, dark</li>
+            <li><code>p-3</code> = padding 16px, <code>mt-4</code> = margin-top 24px</li>
+            <li>Spacing sizes: 0, 1(4px), 2(8px), 3(16px), 4(24px), 5(48px)</li>
+            <li><code>g-4</code> on row = gap between columns</li>
+            <li><code>mx-auto</code> = center a block</li>
+            <li><code>d-none d-md-block</code> = hide on mobile</li>
+            <li>When blocks repeat 3+ times — extract to your own CSS</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Setup:</strong> Подключите Bootstrap 5 через CDN (CSS в head, JS перед /body). Ваш <code>style.css</code> — ПОСЛЕ Bootstrap.</li>
+            <li><strong>Сетка:</strong> Страница с Bootstrap: header (row: logo col-6 + nav col-6) + секция «Услуги» (3 карточки col-12 col-md-6 col-lg-4) + галерея (6 элементов col-6 col-md-4 col-lg-3) + footer.</li>
+            <li><strong>Кнопки:</strong> Все 8 цветов Bootstrap (primary—dark) + 8 outline + 3 размера (btn-sm, обычный, btn-lg) + одна кнопка <code>w-100</code>.</li>
+            <li><strong>Утилиты:</strong> Hero-секция с <code>py-5</code>, <code>text-center</code>, <code>bg-dark text-white</code>, <code>shadow</code>. Заголовок через <code>display-4</code>.</li>
+            <li><strong>Sidebar-макет:</strong> Страница с <code>col-md-3</code> (sidebar с навигацией) + <code>col-md-9</code> (основной контент). На мобильном — стопка.</li>
+            <li><strong>Адаптивность:</strong> Проверьте все страницы в DevTools на 375px, 768px, 1440px. Сетка должна перестраиваться.</li>
+            <li><strong>Бонус:</strong> Скрыть sidebar на мобильном через <code>d-none d-md-block</code>.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Setup:</strong> Connect Bootstrap 5 via CDN (CSS in head, JS before /body). Your <code>style.css</code> — AFTER Bootstrap.</li>
+            <li><strong>Grid:</strong> A Bootstrap page: header (row: logo col-6 + nav col-6) + "Services" section (3 cards col-12 col-md-6 col-lg-4) + gallery (6 items col-6 col-md-4 col-lg-3) + footer.</li>
+            <li><strong>Buttons:</strong> All 8 Bootstrap colors (primary—dark) + 8 outline + 3 sizes (btn-sm, regular, btn-lg) + one <code>w-100</code> button.</li>
+            <li><strong>Utilities:</strong> Hero section with <code>py-5</code>, <code>text-center</code>, <code>bg-dark text-white</code>, <code>shadow</code>. Heading via <code>display-4</code>.</li>
+            <li><strong>Sidebar layout:</strong> Page with <code>col-md-3</code> (sidebar nav) + <code>col-md-9</code> (main content). Mobile — stack.</li>
+            <li><strong>Responsiveness:</strong> Check all pages in DevTools at 375px, 768px, 1440px. Grid should rearrange.</li>
+            <li><strong>Bonus:</strong> Hide sidebar on mobile via <code>d-none d-md-block</code>.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

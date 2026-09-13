@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 9 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 9: Мини-проект — Личная визитка</span>
+    <span class="nav-title" data-lang="en">Lesson 9: Mini-project — Personal Business Card</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 9: Мини-проект #1 — Личная визитка</p>
+    <p class="subtitle" data-lang="en">Lesson 9: Mini-project #1 — Personal Business Card</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 9.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 9.1: ПЛАНИРОВАНИЕ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 9.1: PLANNING</h2>
+
+    <!-- ЗАДАНИЕ 8.1 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 8.1: Спланируй свою визитку</span>
+            <span class="task-title" data-lang="en">Task 8.1: Plan your business card</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться планировать веб-страницу перед кодированием</div>
+        <div class="task-goal" data-lang="en">Learn to plan a web page before coding</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">На бумаге (или в тетради) выполните следующее:</p>
+        <p data-lang="en">On paper (or in a notebook) do the following:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Нарисуй wireframe</strong> — простой набросок своей визитки. Покажи, где будет фото, имя, описание, навыки, ссылки</li>
+            <li><strong>Запиши содержание</strong> — своё имя (или вымышленное), профессию, 3-5 навыков, 2-3 ссылки на соцсети</li>
+            <li><strong>Выбери цветовую схему</strong> — основной цвет фона, цвет акцента, цвет текста</li>
+            <li><strong>Запиши HTML-теги</strong> — рядом с каждым блоком wireframe напиши, какой тег будешь использовать</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Draw a wireframe</strong> — a simple sketch of your card. Show where the photo, name, description, skills, links will be</li>
+            <li><strong>Write down content</strong> — your name (or fictional), profession, 3-5 skills, 2-3 social media links</li>
+            <li><strong>Choose a color scheme</strong> — main background color, accent color, text color</li>
+            <li><strong>Write HTML tags</strong> — next to each wireframe block, write which tag you'll use</li>
+        </ol>
+
+        <div class="example" data-lang="ru">
+            <p>Пример записи:</p>
+<pre><code>Имя: Айгуль Мередова
+Профессия: Начинающий веб-разработчик
+Описание: Учусь создавать сайты. Люблю дизайн и программирование.
+Навыки: HTML, CSS, Photoshop, Figma
+Соцсети: GitHub, Instagram, Telegram
+Цвета: фон #667eea, карточка #fff, акцент #667eea</code></pre>
+        </div>
+        <div class="example" data-lang="en">
+            <p>Example entry:</p>
+<pre><code>Name: Aygul Meredova
+Profession: Beginner web developer
+Description: Learning to create websites. Love design and programming.
+Skills: HTML, CSS, Photoshop, Figma
+Social: GitHub, Instagram, Telegram
+Colors: background #667eea, card #fff, accent #667eea</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Wireframe нарисован (хотя бы простой набросок)</li>
+                <li>Содержание записано (имя, профессия, навыки, соцсети)</li>
+                <li>Цвета выбраны (минимум 3: фон, карточка, акцент)</li>
+                <li>HTML-теги определены для каждого блока</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Wireframe is drawn (at least a simple sketch)</li>
+                <li>Content is written down (name, profession, skills, social)</li>
+                <li>Colors are chosen (at least 3: background, card, accent)</li>
+                <li>HTML tags are defined for each block</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 9.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 9.2: ПОВТОРЕНИЕ ПРИМЕРА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 9.2: REPRODUCING THE EXAMPLE</h2>
+
+    <!-- ЗАДАНИЕ 8.2 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 8.2: Повтори визитку по образцу</span>
+            <span class="task-title" data-lang="en">Task 8.2: Reproduce the example card</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Самостоятельно воспроизвести готовую визитку из лекции</div>
+        <div class="task-goal" data-lang="en">Independently reproduce the business card from the lecture</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li>Создайте папку <code>card-example</code></li>
+            <li>Создайте файлы <code>index.html</code> и <code>style.css</code></li>
+            <li>Самостоятельно (не копируя!) напишите HTML-разметку визитки:
+                <ul>
+                    <li>Аватар (используйте <code>https://i.pravatar.cc/150?img=11</code>)</li>
+                    <li>Имя: Алексей Петров</li>
+                    <li>Профессия: Frontend-разработчик</li>
+                    <li>Описание (2-3 предложения)</li>
+                    <li>Контакты: email и телефон</li>
+                    <li>Навыки: HTML, CSS, JavaScript, Git, VS Code</li>
+                    <li>Соцсети: GitHub, Telegram, LinkedIn</li>
+                </ul>
+            </li>
+            <li>Напишите CSS:
+                <ul>
+                    <li>Фон страницы — градиент</li>
+                    <li>Карточка — белая, скруглённая, с тенью</li>
+                    <li>Аватар — круглый, с рамкой</li>
+                    <li>Навыки — бейджи (inline-block)</li>
+                    <li>Соцсети — кнопки с hover-эффектом</li>
+                </ul>
+            </li>
+            <li>Откройте в браузере и сравните с примером из лекции</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Create a folder <code>card-example</code></li>
+            <li>Create files <code>index.html</code> and <code>style.css</code></li>
+            <li>Independently (without copying!) write the HTML markup:
+                <ul>
+                    <li>Avatar (use <code>https://i.pravatar.cc/150?img=11</code>)</li>
+                    <li>Name: Alexey Petrov</li>
+                    <li>Profession: Frontend Developer</li>
+                    <li>Description (2-3 sentences)</li>
+                    <li>Contacts: email and phone</li>
+                    <li>Skills: HTML, CSS, JavaScript, Git, VS Code</li>
+                    <li>Social: GitHub, Telegram, LinkedIn</li>
+                </ul>
+            </li>
+            <li>Write CSS:
+                <ul>
+                    <li>Page background — gradient</li>
+                    <li>Card — white, rounded, with shadow</li>
+                    <li>Avatar — round, with border</li>
+                    <li>Skills — badges (inline-block)</li>
+                    <li>Social links — buttons with hover effect</li>
+                </ul>
+            </li>
+            <li>Open in browser and compare with the lecture example</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Если застрял — подсматривай в лекцию, но старайся писать сам! Мышечная память при кодировании — очень важна.
+        </div>
+        <div class="hint" data-lang="en">
+            If you get stuck — peek at the lecture, but try to write it yourself! Muscle memory in coding is very important.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Файлы <code>index.html</code> и <code>style.css</code> созданы</li>
+                <li>CSS подключён через <code>&lt;link&gt;</code> (external)</li>
+                <li>Аватар круглый (<code>border-radius: 50%</code>)</li>
+                <li>Карточка с тенью (<code>box-shadow</code>)</li>
+                <li>Навыки отображаются как бейджи</li>
+                <li>Кнопки соцсетей меняют цвет при наведении</li>
+                <li>Карточка отцентрирована на странице</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Files <code>index.html</code> and <code>style.css</code> are created</li>
+                <li>CSS is linked via <code>&lt;link&gt;</code> (external)</li>
+                <li>Avatar is round (<code>border-radius: 50%</code>)</li>
+                <li>Card has shadow (<code>box-shadow</code>)</li>
+                <li>Skills are displayed as badges</li>
+                <li>Social buttons change color on hover</li>
+                <li>Card is centered on the page</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 9.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 9.3: СВОЯ ВИЗИТКА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 9.3: YOUR OWN CARD</h2>
+
+    <!-- ЗАДАНИЕ 8.3 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 8.3: Создай свою уникальную визитку</span>
+            <span class="task-title" data-lang="en">Task 8.3: Create your own unique business card</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать персональную визитку с уникальным дизайном</div>
+        <div class="task-goal" data-lang="en">Create a personal business card with unique design</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Используя план из задания 8.1, создай свою визитку. Она должна быть <strong>уникальной</strong> — не копия примера!</p>
+        <p data-lang="en">Using your plan from task 8.1, create your own business card. It must be <strong>unique</strong> — not a copy of the example!</p>
+
+        <h3 data-lang="ru">Обязательные элементы:</h3>
+        <h3 data-lang="en">Required elements:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>HTML-файл</strong> (<code>index.html</code>):
+                <ul>
+                    <li>Круглый аватар (своё фото или <code>pravatar.cc</code>)</li>
+                    <li>Имя и фамилия</li>
+                    <li>Профессия / специальность / статус</li>
+                    <li>Краткое описание (о себе, 2-3 предложения)</li>
+                    <li>Минимум 1 контакт (email или телефон)</li>
+                    <li>Минимум 3 навыка (бейджи)</li>
+                    <li>Минимум 2 ссылки на соцсети (кнопки)</li>
+                </ul>
+            </li>
+            <li><strong>CSS-файл</strong> (<code>style.css</code>):
+                <ul>
+                    <li>Цветной или градиентный фон страницы</li>
+                    <li>Белая или цветная карточка с тенью</li>
+                    <li>Круглый аватар с рамкой</li>
+                    <li>Стилизованные бейджи навыков</li>
+                    <li>Кнопки соцсетей с <code>:hover</code></li>
+                    <li>Центрирование карточки</li>
+                </ul>
+            </li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>HTML file</strong> (<code>index.html</code>):
+                <ul>
+                    <li>Round avatar (your photo or <code>pravatar.cc</code>)</li>
+                    <li>First and last name</li>
+                    <li>Profession / specialty / status</li>
+                    <li>Short description (about me, 2-3 sentences)</li>
+                    <li>At least 1 contact (email or phone)</li>
+                    <li>At least 3 skills (badges)</li>
+                    <li>At least 2 social media links (buttons)</li>
+                </ul>
+            </li>
+            <li><strong>CSS file</strong> (<code>style.css</code>):
+                <ul>
+                    <li>Colored or gradient page background</li>
+                    <li>White or colored card with shadow</li>
+                    <li>Round avatar with border</li>
+                    <li>Styled skill badges</li>
+                    <li>Social buttons with <code>:hover</code></li>
+                    <li>Card centering</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3 data-lang="ru">Бонусные элементы (для продвинутых):</h3>
+        <h3 data-lang="en">Bonus elements (for advanced students):</h3>
+
+        <ul data-lang="ru">
+            <li>Добавь раздел «Образование» или «Хобби»</li>
+            <li>Сделай кнопки соцсетей разных цветов (отдельный класс для каждой)</li>
+            <li>Добавь разделительную линию (<code>&lt;hr&gt;</code>) между секциями</li>
+            <li>Используй Google Fonts для красивого шрифта</li>
+            <li>Добавь градиент на аватар (<code>border</code> через <code>outline</code> или обёртку)</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Add an "Education" or "Hobbies" section</li>
+            <li>Make social buttons different colors (separate class for each)</li>
+            <li>Add a divider line (<code>&lt;hr&gt;</code>) between sections</li>
+            <li>Use Google Fonts for a beautiful typeface</li>
+            <li>Add a gradient to the avatar (border via <code>outline</code> or wrapper)</li>
+        </ul>
+
+        <div class="hint" data-lang="ru">
+            Выбери цветовую тему из конспекта или придумай свою! Сайт <strong>coolors.co</strong> помогает подобрать сочетающиеся цвета.
+        </div>
+        <div class="hint" data-lang="en">
+            Choose a color theme from the notes or create your own! The site <strong>coolors.co</strong> helps you find matching colors.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Файлы <code>index.html</code> и <code>style.css</code> созданы</li>
+                <li>CSS подключён через <code>&lt;link&gt;</code></li>
+                <li>Данные — свои (не из примера)</li>
+                <li>Цветовая тема — отличается от примера</li>
+                <li>Аватар круглый</li>
+                <li>Карточка с тенью и скруглёнными углами</li>
+                <li>Навыки — бейджи, соцсети — кнопки</li>
+                <li>Hover-эффект на кнопках</li>
+                <li>Карточка отцентрирована</li>
+                <li>Страница выглядит аккуратно</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Files <code>index.html</code> and <code>style.css</code> are created</li>
+                <li>CSS is linked via <code>&lt;link&gt;</code></li>
+                <li>Data is your own (not from the example)</li>
+                <li>Color theme is different from the example</li>
+                <li>Avatar is round</li>
+                <li>Card has shadow and rounded corners</li>
+                <li>Skills are badges, social links are buttons</li>
+                <li>Hover effect on buttons</li>
+                <li>Card is centered</li>
+                <li>Page looks neat</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ЗАДАНИЕ 8.4 (БОНУС) ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 8.4: Визитка для друга</span>
+            <span class="task-title" data-lang="en">Task 8.4: Card for a friend</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Закрепить навыки, создав вторую визитку с другим дизайном</div>
+        <div class="task-goal" data-lang="en">Reinforce skills by creating a second card with a different design</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li>Создайте <strong>ещё одну визитку</strong> — для друга, одноклассника или вымышленного персонажа</li>
+            <li>Используйте <strong>другую цветовую тему</strong> (например, тёмную, если первая была светлой)</li>
+            <li>Используйте <strong>тот же HTML-шаблон</strong>, но замените CSS</li>
+            <li>Покажите, как одна и та же HTML-разметка может выглядеть совершенно по-разному с другим CSS!</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Create <strong>one more business card</strong> — for a friend, classmate, or fictional character</li>
+            <li>Use a <strong>different color theme</strong> (e.g., dark if the first one was light)</li>
+            <li>Use the <strong>same HTML template</strong>, but replace the CSS</li>
+            <li>Show how the same HTML markup can look completely different with different CSS!</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Скопируй папку <code>my-card</code> в <code>friend-card</code>. Измени данные в HTML и полностью перепиши <code>style.css</code> с другими цветами, шрифтами, тенями.
+        </div>
+        <div class="hint" data-lang="en">
+            Copy the folder <code>my-card</code> to <code>friend-card</code>. Change the data in HTML and completely rewrite <code>style.css</code> with different colors, fonts, shadows.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Создана вторая визитка с другими данными</li>
+                <li>Цветовая тема отличается от первой визитки</li>
+                <li>HTML-структура такая же (или похожая)</li>
+                <li>CSS полностью отличается</li>
+            </ul>
+            <ul data-lang="en">
+                <li>A second card is created with different data</li>
+                <li>Color theme differs from the first card</li>
+                <li>HTML structure is the same (or similar)</li>
+                <li>CSS is completely different</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

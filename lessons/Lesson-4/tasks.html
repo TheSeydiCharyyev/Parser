@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 4 — Практические задания</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: #1e293b; background: #fff; padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { font-size: 1.8rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 10px; margin-bottom: 6px; }
+        h2 { font-size: 1.4rem; color: #7e22ce; margin: 36px 0 14px; padding: 8px 14px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 6px 6px 0; }
+        h3 { font-size: 1.15rem; color: #1e3a5f; margin: 20px 0 10px; }
+        .subtitle { color: #64748b; margin-bottom: 24px; }
+        .task { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 24px; margin: 20px 0; }
+        .task-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+        .task-title { font-size: 1.15rem; font-weight: 700; color: #0f172a; }
+        .task-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+        .badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-easy { background: #dcfce7; color: #15803d; }
+        .badge-medium { background: #fef9c3; color: #a16207; }
+        .badge-hard { background: #fce7f3; color: #9d174d; }
+        .badge-time { background: #e0e7ff; color: #3730a3; }
+        .task-goal { background: #faf5ff; border-left: 3px solid #a855f7; padding: 10px 14px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 0.95rem; }
+        .task-goal::before { content: '🎯 Цель: '; font-weight: 700; color: #7e22ce; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 14px 18px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 0.9rem; line-height: 1.6; margin: 12px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+        th, td { padding: 8px 12px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 8px 0 8px 24px; }
+        li { margin: 4px 0; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 30px 0; }
+        .criteria { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+        .criteria::before { content: '✅ Критерии оценки:'; display: block; font-weight: 700; color: #15803d; margin-bottom: 6px; }
+        .hint { background: #fdf4ff; border: 1px solid #e9d5ff; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+        .hint::before { content: '💡 Подсказка:'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 4px; }
+        .write-box { background: #fff; border: 2px dashed #94a3b8; border-radius: 8px; padding: 16px; margin: 14px 0; min-height: 80px; }
+        .write-box::before { content: '✏️ Запиши:'; display: block; font-weight: 700; color: #475569; margin-bottom: 8px; }
+        .example { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+        .example::before { content: '📋 Пример:'; display: block; font-weight: 700; color: #a16207; margin-bottom: 4px; }
+        .diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 16px; border-radius: 8px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.4; margin: 14px 0; overflow-x: auto; font-size: 0.82rem; }
+    </style>
+</head>
+<body>
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 4: Ссылки, изображения, пути</span><span style="color:#cbd5e1;">|</span><a href="lecture.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127979; Лекция</a><a href="student.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127891; Конспект</a><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128203; Задания</span></div>
+<div class="container">
+
+    <h1>📝 ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <p class="subtitle">Занятие 4: Ссылки, изображения, пути</p>
+
+    <hr>
+
+    <h2>🎯 УРОК 4.1: ССЫЛКИ</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 4.1: Все виды ссылок</span>
+            <div class="task-meta">
+                <span class="badge badge-easy">Лёгкое</span>
+                <span class="badge badge-time">10 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Отработать создание разных типов ссылок</div>
+
+        <h3>Условие:</h3>
+        <p>Создайте файл <code>links.html</code> со всеми видами ссылок:</p>
+
+        <ol>
+            <li>Ссылка на <strong>внешний сайт</strong> (Google, YouTube и т.д.) — в новой вкладке</li>
+            <li>Ссылка на <strong>email</strong> с адресом <code>student@example.com</code></li>
+            <li>Ссылка на <strong>телефон</strong></li>
+            <li>Ссылка с <strong>атрибутом title</strong> (подсказка при наведении)</li>
+            <li>Ссылка-<strong>якорь</strong>: наверху страницы ссылка «К контактам», внизу — раздел с <code>id="contacts"</code></li>
+            <li>Ссылка «<strong>Наверх</strong>» в конце страницы (якорь <code>#top</code>)</li>
+        </ol>
+
+        <div class="hint">
+            Для ссылки «наверх» добавьте <code>id="top"</code> к тегу <code>&lt;body&gt;</code> или первому элементу страницы.
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Все 6 типов ссылок созданы и работают</li>
+                <li>Внешние ссылки открываются в новой вкладке</li>
+                <li>Якорные ссылки прокручивают к нужному месту</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 4.2: Относительные пути — тренировка</span>
+            <div class="task-meta">
+                <span class="badge badge-medium">Среднее</span>
+                <span class="badge badge-time">5 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Научиться определять правильные пути к файлам</div>
+
+        <h3>Условие:</h3>
+        <p>Дана структура проекта:</p>
+
+        <div class="diagram">
+website/
+├── index.html
+├── pages/
+│   ├── about.html
+│   └── blog.html
+├── images/
+│   ├── logo.svg
+│   └── photos/
+│       ├── cat.jpg
+│       └── dog.jpg
+└── css/
+    └── style.css</div>
+
+        <p>Заполните пути:</p>
+
+        <div class="write-box">
+            <strong>Из index.html:</strong><br>
+            Ссылка на about.html: <code>href="_______________"</code><br>
+            Картинка logo.svg: <code>src="_______________"</code><br>
+            Картинка cat.jpg: <code>src="_______________"</code><br>
+            CSS-файл: <code>href="_______________"</code><br><br>
+
+            <strong>Из pages/about.html:</strong><br>
+            Ссылка на index.html: <code>href="_______________"</code><br>
+            Ссылка на blog.html: <code>href="_______________"</code><br>
+            Картинка logo.svg: <code>src="_______________"</code><br>
+            Картинка dog.jpg: <code>src="_______________"</code><br>
+        </div>
+
+        <div class="example">
+            <p><strong>Из index.html:</strong></p>
+            <ul>
+                <li>about.html → <code>pages/about.html</code></li>
+                <li>logo.svg → <code>images/logo.svg</code></li>
+                <li>cat.jpg → <code>images/photos/cat.jpg</code></li>
+                <li>style.css → <code>css/style.css</code></li>
+            </ul>
+            <p><strong>Из pages/about.html:</strong></p>
+            <ul>
+                <li>index.html → <code>../index.html</code></li>
+                <li>blog.html → <code>blog.html</code></li>
+                <li>logo.svg → <code>../images/logo.svg</code></li>
+                <li>dog.jpg → <code>../images/photos/dog.jpg</code></li>
+            </ul>
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Все 8 путей определены правильно</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>🎯 УРОК 4.2: ИЗОБРАЖЕНИЯ</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 4.3: Галерея изображений</span>
+            <div class="task-meta">
+                <span class="badge badge-medium">Среднее</span>
+                <span class="badge badge-time">15 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Научиться работать с изображениями и подписями</div>
+
+        <h3>Условие:</h3>
+        <ol>
+            <li>Создайте папку <code>my-gallery</code> с подпапкой <code>images</code></li>
+            <li>Скачайте <strong>5 бесплатных изображений</strong> с сайта <strong>unsplash.com</strong> или <strong>pexels.com</strong> и сохраните в <code>images/</code></li>
+            <li>Создайте <code>index.html</code> с галереей:</li>
+        </ol>
+
+        <h3>Требования к каждому изображению:</h3>
+        <ul>
+            <li>Тег <code>&lt;img&gt;</code> с <code>src</code>, <code>alt</code> и <code>width</code></li>
+            <li>Осмысленный <code>alt</code> (не «фото1», а описание!)</li>
+            <li>Обёрнуто в <code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code></li>
+            <li>Минимум 1 изображение — ссылка (клик → полная версия или внешний сайт)</li>
+        </ul>
+
+        <div class="example">
+<pre><code>&lt;h1&gt;Моя фотогалерея&lt;/h1&gt;
+
+&lt;figure&gt;
+    &lt;a href="images/mountain-full.jpg" target="_blank"&gt;
+        &lt;img src="images/mountain.jpg"
+             alt="Заснеженная горная вершина на рассвете"
+             width="400"&gt;
+    &lt;/a&gt;
+    &lt;figcaption&gt;Горы Кавказа, январь 2025&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>5 изображений в папке <code>images/</code></li>
+                <li>У каждого — осмысленный <code>alt</code></li>
+                <li>Все обёрнуты в <code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code></li>
+                <li>Минимум 1 изображение-ссылка</li>
+                <li>Все картинки загружаются (пути правильные)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>🎯 УРОК 4.3: ПРАКТИЧЕСКИЙ ПРОЕКТ</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 4.4: Многостраничный сайт</span>
+            <div class="task-meta">
+                <span class="badge badge-hard">Продвинутое</span>
+                <span class="badge badge-time">20 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Создать сайт из 3 страниц с навигацией и изображениями</div>
+
+        <h3>Условие:</h3>
+        <p>Создайте сайт на тему (выберите одну):</p>
+        <ul>
+            <li>Сайт о вашем городе / стране</li>
+            <li>Сайт о любимом виде спорта</li>
+            <li>Сайт о любимой музыкальной группе</li>
+            <li>Сайт о домашнем питомце</li>
+            <li>Своя тема</li>
+        </ul>
+
+        <h3>Структура проекта:</h3>
+        <div class="diagram">
+my-website/
+├── index.html       ← Главная
+├── about.html       ← О [теме]
+├── gallery.html     ← Галерея
+└── images/
+    ├── logo.png     ← Логотип (можно нарисовать)
+    ├── hero.jpg     ← Главное фото
+    ├── photo1.jpg
+    ├── photo2.jpg
+    └── photo3.jpg</div>
+
+        <h3>Требования:</h3>
+        <table>
+            <tr><th>Что</th><th>Описание</th></tr>
+            <tr><td><strong>3 страницы</strong></td><td>index.html, about.html, gallery.html</td></tr>
+            <tr><td><strong>Навигация</strong></td><td>Одинаковое меню на всех 3 страницах (ссылки друг на друга)</td></tr>
+            <tr><td><strong>Логотип-ссылка</strong></td><td>Клик по логотипу → на главную</td></tr>
+            <tr><td><strong>Изображения</strong></td><td>Минимум 5 с правильными <code>alt</code></td></tr>
+            <tr><td><strong>Якорная ссылка</strong></td><td>Минимум 1 (навигация к разделу)</td></tr>
+            <tr><td><strong>Внешние ссылки</strong></td><td>Минимум 2 (target="_blank")</td></tr>
+            <tr><td><strong>Email / телефон</strong></td><td>Минимум 1 ссылка на email или телефон</td></tr>
+            <tr><td><strong>figure + figcaption</strong></td><td>Минимум 2 картинки с подписями</td></tr>
+        </table>
+
+        <h3>Чек-лист для каждой страницы:</h3>
+        <ul>
+            <li>&#9744; Правильная структура (DOCTYPE, html, head, body)</li>
+            <li>&#9744; Осмысленный <code>&lt;title&gt;</code></li>
+            <li>&#9744; Навигация с рабочими ссылками</li>
+            <li>&#9744; Заголовки h1 → h2 (правильная иерархия)</li>
+            <li>&#9744; Текстовое содержимое (параграфы)</li>
+            <li>&#9744; Изображения с alt</li>
+        </ul>
+
+        <div class="hint">
+            <strong>Где взять картинки бесплатно:</strong>
+            <ul>
+                <li><strong>unsplash.com</strong> — качественные фото</li>
+                <li><strong>pexels.com</strong> — бесплатные фото и видео</li>
+                <li><strong>pixabay.com</strong> — фото, иллюстрации, вектор</li>
+            </ul>
+            Скачивайте в маленьком размере (Small или Medium — 640-1280px).
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>3 страницы созданы с правильной HTML-структурой</li>
+                <li>Навигация работает на всех 3 страницах</li>
+                <li>Логотип ведёт на главную</li>
+                <li>5+ изображений с осмысленными alt</li>
+                <li>Есть якорная ссылка, внешние ссылки, email/телефон</li>
+                <li>Есть figure + figcaption</li>
+                <li>Все пути правильные — ничего не «сломано»</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>📚 ДОМАШНЕЕ ЗАДАНИЕ</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">ДЗ 4: Расширь сайт + исследование</span>
+            <div class="task-meta">
+                <span class="badge badge-medium">Среднее</span>
+                <span class="badge badge-time">30 минут</span>
+            </div>
+        </div>
+
+        <div class="task-goal">Закрепить ссылки, изображения и пути к файлам</div>
+
+        <h3>Часть 1: Расширь свой сайт</h3>
+        <ul>
+            <li>Добавьте <strong>4-ю страницу</strong> (<code>contacts.html</code>) с формой контактов (пока просто текст и ссылки)</li>
+            <li>Обновите навигацию на <strong>всех 4 страницах</strong></li>
+            <li>Добавьте на галерею ещё <strong>3 изображения</strong> (итого 8+)</li>
+            <li>Сделайте <strong>3 картинки кликабельными</strong> (изображения-ссылки)</li>
+        </ul>
+
+        <h3>Часть 2: Исследование</h3>
+        <p>Откройте любой сайт через DevTools и найдите:</p>
+
+        <div class="write-box">
+            Сайт: ________________________________<br><br>
+            1. Сколько изображений (&lt;img&gt;) на странице? ________<br>
+            2. Есть ли у всех alt? Да / Нет<br>
+            3. Какой формат используется чаще (jpg, png, svg, webp)? ________<br>
+            4. Есть ли &lt;figure&gt; + &lt;figcaption&gt;? Да / Нет<br>
+            5. Есть ли ссылки с target="_blank"? Сколько? ________<br>
+            6. Есть ли якорные ссылки (#)? Где? ________________________________<br>
+            7. Есть ли ссылки mailto: или tel:? ________________________________
+        </div>
+
+        <div class="hint">
+            В DevTools нажмите <code>Ctrl + F</code> в панели Elements. Введите <code>&lt;img</code> чтобы найти все картинки, или <code>target="_blank"</code> чтобы найти все внешние ссылки.
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Сайт расширен до 4 страниц с рабочей навигацией</li>
+                <li>8+ изображений, 3+ кликабельных</li>
+                <li>Исследование заполнено</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

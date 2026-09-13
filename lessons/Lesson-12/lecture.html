@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 12 — Мультимедиа и iframe</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 12: Мультимедиа и iframe</span>
+    <span class="nav-title" data-lang="en">Lesson 12: Multimedia and iframe</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 12: Мультимедиа и iframe</h1>
+    <h1 data-lang="en">Lesson 12: Multimedia and iframe</h1>
+    <p class="subtitle" data-lang="ru">Аудио, видео, iframe (YouTube, карты), фавиконка и мета-теги</p>
+    <p class="subtitle" data-lang="en">Audio, video, iframe (YouTube, maps), favicon, and meta tags</p>
+
+    <div class="why">
+        <p data-lang="ru">Сегодня мы изучим <strong>мультимедиа в HTML</strong> — как встраивать аудио, видео, YouTube-ролики и карты прямо на свои страницы. До этого наши страницы были текстово-графическими — теперь они оживут со звуком и движением. Мы также узнаем про фавиконки и мета-теги, которые делают сайт <strong>профессиональным</strong>.</p>
+        <p data-lang="en">Today we will learn <strong>multimedia in HTML</strong> — how to embed audio, video, YouTube clips, and maps right into your pages. Until now our pages were text and images — now they will come alive with sound and motion. We'll also learn about favicons and meta tags that make a website look <strong>professional</strong>.</p>
+        <p data-lang="ru"><strong>После этого занятия вы сможете:</strong></p>
+        <p data-lang="en"><strong>After this lesson you will be able to:</strong></p>
+        <ul data-lang="ru">
+            <li>Встраивать аудиоплеер с помощью тега <code>&lt;audio&gt;</code></li>
+            <li>Встраивать видеоплеер с обложкой и несколькими форматами</li>
+            <li>Использовать <code>&lt;iframe&gt;</code> для YouTube-видео и Google Maps</li>
+            <li>Делать iframe адаптивным на всех устройствах</li>
+            <li>Добавлять фавиконку (иконку вкладки) к сайту</li>
+            <li>Настраивать мета-теги для SEO и соцсетей</li>
+        </ul>
+        <ul data-lang="en">
+            <li>Embed an audio player using the <code>&lt;audio&gt;</code> tag</li>
+            <li>Embed a video player with a poster and multiple formats</li>
+            <li>Use <code>&lt;iframe&gt;</code> for YouTube videos and Google Maps</li>
+            <li>Make iframes responsive on all devices</li>
+            <li>Add a favicon (tab icon) to a website</li>
+            <li>Configure meta tags for SEO and social media</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#intro">Мультимедиа в вебе</a></li>
+            <li><a href="#audio">Тег audio — аудио</a></li>
+            <li><a href="#audio-attrs">Атрибуты audio</a></li>
+            <li><a href="#audio-formats">Форматы аудио</a></li>
+            <li><a href="#video">Тег video — видео</a></li>
+            <li><a href="#video-attrs">Атрибуты video</a></li>
+            <li><a href="#video-formats">Форматы видео</a></li>
+            <li><a href="#iframe">iframe — встраивание внешнего контента</a></li>
+            <li><a href="#youtube">Встраивание YouTube-видео</a></li>
+            <li><a href="#maps">Встраивание Google Maps / Yandex Maps</a></li>
+            <li><a href="#responsive-iframe">Адаптивный iframe</a></li>
+            <li><a href="#favicon">Фавиконка (favicon)</a></li>
+            <li><a href="#meta">Мета-теги</a></li>
+            <li><a href="#practice">Практика</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#intro">Multimedia on the web</a></li>
+            <li><a href="#audio">The audio tag</a></li>
+            <li><a href="#audio-attrs">Audio attributes</a></li>
+            <li><a href="#audio-formats">Audio formats</a></li>
+            <li><a href="#video">The video tag</a></li>
+            <li><a href="#video-attrs">Video attributes</a></li>
+            <li><a href="#video-formats">Video formats</a></li>
+            <li><a href="#iframe">iframe — embedding external content</a></li>
+            <li><a href="#youtube">Embedding YouTube videos</a></li>
+            <li><a href="#maps">Embedding Google Maps / Yandex Maps</a></li>
+            <li><a href="#responsive-iframe">Responsive iframe</a></li>
+            <li><a href="#favicon">Favicon</a></li>
+            <li><a href="#meta">Meta tags</a></li>
+            <li><a href="#practice">Practice</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ВВЕДЕНИЕ ==================== -->
+    <h2 id="intro" data-lang="ru">1. Мультимедиа в вебе</h2>
+    <h2 id="intro-en" data-lang="en">1. Multimedia on the web</h2>
+
+    <p data-lang="ru">До HTML5 для воспроизведения аудио и видео нужны были плагины (Flash Player). Теперь HTML5 имеет <strong>встроенную поддержку</strong> мультимедиа — теги <code>&lt;audio&gt;</code> и <code>&lt;video&gt;</code>.</p>
+    <p data-lang="en">Before HTML5, audio and video required plugins (Flash Player). Now HTML5 has <strong>built-in support</strong> for multimedia — the <code>&lt;audio&gt;</code> and <code>&lt;video&gt;</code> tags.</p>
+
+    <div class="analogy">
+        <p data-lang="ru">Раньше, чтобы послушать музыку на сайте, нужно было установить Flash Player. Это как покупать отдельный плеер для каждого формата. Теперь браузер — это <strong>универсальный плеер</strong>.</p>
+        <p data-lang="en">Previously, to listen to music on a website, you had to install Flash Player. It was like buying a separate player for each format. Now the browser is a <strong>universal player</strong>.</p>
+    </div>
+
+    <div class="fun-fact">
+        <p data-lang="ru">Flash Player был отключён во всех браузерах в декабре 2020 года. Всё мультимедиа теперь работает на HTML5. Adobe сама просила пользователей удалить Flash, потому что он был небезопасен и потреблял слишком много ресурсов.</p>
+        <p data-lang="en">Flash Player was disabled in all browsers in December 2020. All multimedia now runs on HTML5. Adobe itself asked users to uninstall Flash because it was insecure and consumed too many resources.</p>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Где вы видите мультимедиа каждый день:</strong></p>
+        <p data-lang="en"><strong>Where you see multimedia every day:</strong></p>
+        <ul data-lang="ru">
+            <li><strong>YouTube</strong> — миллиарды видео, встроенных через <code>&lt;iframe&gt;</code> на миллионы сайтов</li>
+            <li><strong>Spotify / Яндекс.Музыка</strong> — веб-плееры используют <code>&lt;audio&gt;</code> под капотом</li>
+            <li><strong>Netflix / Кинопоиск</strong> — потоковое видео через <code>&lt;video&gt;</code></li>
+            <li><strong>TikTok / Instagram Reels</strong> — короткие видеоролики прямо в браузере</li>
+            <li><strong>Google Maps на бизнес-сайтах</strong> — карта проезда к офису / ресторану / отелю в Ашхабаде</li>
+            <li><strong>Новостные сайты</strong> — подкасты, видеорепортажи, стримы</li>
+            <li><strong>Интернет-магазины</strong> — видеообзоры товаров</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>YouTube</strong> — billions of videos embedded via <code>&lt;iframe&gt;</code> on millions of sites</li>
+            <li><strong>Spotify</strong> — web players use <code>&lt;audio&gt;</code> under the hood</li>
+            <li><strong>Netflix</strong> — streaming video via <code>&lt;video&gt;</code></li>
+            <li><strong>TikTok / Instagram Reels</strong> — short video clips right in the browser</li>
+            <li><strong>Google Maps on business sites</strong> — directions to an office / restaurant / hotel in Ashgabat</li>
+            <li><strong>News sites</strong> — podcasts, video reports, live streams</li>
+            <li><strong>Online stores</strong> — product video reviews</li>
+        </ul>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    HTML5 &#x43C;&#x443;&#x43B;&#x44C;&#x442;&#x438;&#x43C;&#x435;&#x434;&#x438;&#x430;:
+
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  &lt;audio&gt;       &#x2502;  &#x2192; &#x41C;&#x443;&#x437;&#x44B;&#x43A;&#x430;, &#x43F;&#x43E;&#x434;&#x43A;&#x430;&#x441;&#x442;&#x44B;, &#x437;&#x432;&#x443;&#x43A;&#x43E;&#x432;&#x44B;&#x435; &#x44D;&#x444;&#x444;&#x435;&#x43A;&#x442;&#x44B;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  &lt;video&gt;       &#x2502;  &#x2192; &#x421;&#x432;&#x43E;&#x438; &#x444;&#x430;&#x439;&#x43B;&#x44B; (.mp4, .webm)
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  &lt;iframe&gt;      &#x2502;  &#x2192; YouTube, Google Maps, &#x432;&#x43D;&#x435;&#x448;&#x43D;&#x438;&#x439; &#x43A;&#x43E;&#x43D;&#x442;&#x435;&#x43D;&#x442;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    HTML5 multimedia:
+
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  &lt;audio&gt;       &#x2502;  &#x2192; Music, podcasts, sound effects
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  &lt;video&gt;       &#x2502;  &#x2192; Your own files (.mp4, .webm)
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  &lt;iframe&gt;      &#x2502;  &#x2192; YouTube, Google Maps, external content
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <hr>
+
+    <!-- ==================== AUDIO ==================== -->
+    <h2 id="audio" data-lang="ru">2. Тег audio — аудио</h2>
+    <h2 id="audio-en" data-lang="en">2. The audio tag</h2>
+
+    <p data-lang="ru">Тег <code>&lt;audio&gt;</code> встраивает аудиоплеер на страницу:</p>
+    <p data-lang="en">The <code>&lt;audio&gt;</code> tag embeds an audio player on the page:</p>
+
+    <div class="analogy">
+        <p data-lang="ru">Тег <code>&lt;audio&gt;</code> — это как <strong>встроенный музыкальный плеер</strong> в вашей странице. Представьте, что вы вешаете маленькую колонку прямо на стену (веб-страницу) — и посетитель может нажать Play и слушать музыку, не уходя со страницы. Никаких внешних программ не нужно!</p>
+        <p data-lang="en">The <code>&lt;audio&gt;</code> tag is like a <strong>built-in music player</strong> on your page. Imagine hanging a small speaker right on the wall (web page) — and the visitor can press Play and listen to music without leaving the page. No external programs needed!</p>
+    </div>
+
+<pre><code>&lt;audio controls&gt;
+    &lt;source src="music.mp3" type="audio/mpeg"&gt;
+    Ваш браузер не поддерживает аудио.
+&lt;/audio&gt;</code></pre>
+
+    <div class="result-box">
+        <div style="max-width:500px;font-family:'Segoe UI',sans-serif;">
+            <p style="margin:0 0 8px;font-size:0.85rem;color:#64748b;" data-lang="ru">Так выглядит аудиоплеер в браузере:</p>
+            <p style="margin:0 0 8px;font-size:0.85rem;color:#64748b;" data-lang="en">This is what an audio player looks like in the browser:</p>
+            <audio controls style="width:100%;">
+                <source src="" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+
+    <p data-lang="ru">Текст внутри <code>&lt;audio&gt;</code> показывается только если браузер НЕ поддерживает тег (старые браузеры).</p>
+    <p data-lang="en">Text inside <code>&lt;audio&gt;</code> is only shown if the browser does NOT support the tag (old browsers).</p>
+
+    <div class="why">
+        <p data-lang="ru"><strong>Почему атрибут <code>controls</code> обязателен?</strong> Без него тег <code>&lt;audio&gt;</code> существует на странице, но <strong>абсолютно невидим</strong> — никакого плеера, кнопки Play, полосы прокрутки. Аудио есть, а управлять им нельзя. Это как колонка без кнопок — звук может играть, но вы не можете его остановить или перемотать.</p>
+        <p data-lang="en"><strong>Why is the <code>controls</code> attribute required?</strong> Without it, the <code>&lt;audio&gt;</code> tag exists on the page but is <strong>completely invisible</strong> — no player, no Play button, no seekbar. The audio exists, but the user can't control it. It's like a speaker with no buttons — sound might play, but you can't stop or rewind it.</p>
+    </div>
+
+    <h3 data-lang="ru">Несколько форматов (fallback)</h3>
+    <h3 data-lang="en">Multiple formats (fallback)</h3>
+
+<pre><code>&lt;audio controls&gt;
+    &lt;source src="music.ogg" type="audio/ogg"&gt;
+    &lt;source src="music.mp3" type="audio/mpeg"&gt;
+    Ваш браузер не поддерживает аудио.
+&lt;/audio&gt;</code></pre>
+
+    <p data-lang="ru">Браузер выберет первый поддерживаемый формат. Это называется <strong>fallback</strong> (запасной вариант).</p>
+    <p data-lang="en">The browser will choose the first supported format. This is called a <strong>fallback</strong>.</p>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Ситуация:</strong> новичок пишет <code>&lt;audio src="music.mp3"&gt;</code> без атрибута <code>controls</code>. Открывает страницу — и ничего не видит. Плеер невидимый! Аудио может играть (если добавить <code>autoplay</code>), но пользователь не может его остановить, перемотать или изменить громкость.</p>
+        <p data-lang="en"><strong>Situation:</strong> a beginner writes <code>&lt;audio src="music.mp3"&gt;</code> without the <code>controls</code> attribute. Opens the page — and sees nothing. The player is invisible! Audio might play (if <code>autoplay</code> is added), but the user cannot stop it, rewind, or change the volume.</p>
+<pre><code>&lt;!-- НЕПРАВИЛЬНО / WRONG --&gt;
+&lt;audio&gt;
+    &lt;source src="music.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;
+&lt;!-- Плеер невидимый! Пользователь не видит ничего --&gt;
+
+&lt;!-- ПРАВИЛЬНО / CORRECT --&gt;
+&lt;audio controls&gt;
+    &lt;source src="music.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;
+&lt;!-- Плеер виден: Play, пауза, громкость &#x2714; --&gt;</code></pre>
+        <p data-lang="ru"><strong>Правило:</strong> <strong>всегда</strong> добавляйте <code>controls</code> к тегу <code>&lt;audio&gt;</code>. Без него плеер невидим.</p>
+        <p data-lang="en"><strong>Rule:</strong> <strong>always</strong> add <code>controls</code> to the <code>&lt;audio&gt;</code> tag. Without it, the player is invisible.</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Создай HTML-файл и добавь тег <code>&lt;audio controls&gt;</code>. Найди любой бесплатный MP3-файл (например, на freesound.org) и встрой его на страницу. Попробуй сначала без <code>controls</code> — убедись, что плеер исчез!</p>
+        <p data-lang="en">Create an HTML file and add an <code>&lt;audio controls&gt;</code> tag. Find any free MP3 file (for example, on freesound.org) and embed it on the page. Try it first without <code>controls</code> — confirm that the player disappears!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== AUDIO ATTRS ==================== -->
+    <h2 id="audio-attrs" data-lang="ru">3. Атрибуты audio</h2>
+    <h2 id="audio-attrs-en" data-lang="en">3. Audio attributes</h2>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут</th><th>Что делает</th></tr>
+        <tr><td><code>controls</code></td><td>Показывает плеер (Play, пауза, громкость). <strong>Обязательный!</strong></td></tr>
+        <tr><td><code>autoplay</code></td><td>Автоматическое воспроизведение (браузеры часто блокируют!)</td></tr>
+        <tr><td><code>loop</code></td><td>Повтор после окончания</td></tr>
+        <tr><td><code>muted</code></td><td>Без звука по умолчанию</td></tr>
+        <tr><td><code>preload</code></td><td><code>auto</code> — загрузить сразу, <code>metadata</code> — только данные, <code>none</code> — не загружать</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute</th><th>What it does</th></tr>
+        <tr><td><code>controls</code></td><td>Shows the player (play, pause, volume). <strong>Required!</strong></td></tr>
+        <tr><td><code>autoplay</code></td><td>Auto-play (browsers often block this!)</td></tr>
+        <tr><td><code>loop</code></td><td>Repeat after ending</td></tr>
+        <tr><td><code>muted</code></td><td>Muted by default</td></tr>
+        <tr><td><code>preload</code></td><td><code>auto</code> — load immediately, <code>metadata</code> — metadata only, <code>none</code> — don't load</td></tr>
+    </table>
+
+<pre><code>&lt;!-- Фоновая музыка (без звука, повтор) --&gt;
+&lt;audio controls loop muted&gt;
+    &lt;source src="background.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>Внимание:</strong> Большинство браузеров блокируют <code>autoplay</code> со звуком! Чтобы autoplay работал, нужно добавить <code>muted</code>. Это защита от навязчивых сайтов, которые включали музыку без спроса. Политика автоплея была введена в Chrome 66 (2018) после массовых жалоб пользователей.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Warning:</strong> Most browsers block <code>autoplay</code> with sound! For autoplay to work, add <code>muted</code>. This protects against intrusive websites that played music without asking. The autoplay policy was introduced in Chrome 66 (2018) after mass user complaints.
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>preload="metadata"</strong> — золотая середина. Браузер загрузит только длительность и размер файла, но не сам звук. Это экономит трафик пользователя (особенно важно для мобильного интернета в Туркменистане), но при этом показывает длительность трека в плеере.</p>
+        <p data-lang="en"><strong>preload="metadata"</strong> — the golden middle. The browser loads only the duration and file size, not the sound itself. This saves user bandwidth (especially important for mobile internet in Turkmenistan), while still showing the track duration in the player.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== AUDIO FORMATS ==================== -->
+    <h2 id="audio-formats" data-lang="ru">4. Форматы аудио</h2>
+    <h2 id="audio-formats-en" data-lang="en">4. Audio formats</h2>
+
+    <table data-lang="ru">
+        <tr><th>Формат</th><th>MIME-тип</th><th>Поддержка</th><th>Особенности</th></tr>
+        <tr><td><strong>MP3</strong></td><td><code>audio/mpeg</code></td><td>Все браузеры</td><td>Самый популярный. Используйте его!</td></tr>
+        <tr><td><strong>OGG</strong></td><td><code>audio/ogg</code></td><td>Chrome, Firefox</td><td>Открытый формат</td></tr>
+        <tr><td><strong>WAV</strong></td><td><code>audio/wav</code></td><td>Все браузеры</td><td>Без сжатия (большой размер)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Format</th><th>MIME type</th><th>Support</th><th>Notes</th></tr>
+        <tr><td><strong>MP3</strong></td><td><code>audio/mpeg</code></td><td>All browsers</td><td>Most popular. Use this!</td></tr>
+        <tr><td><strong>OGG</strong></td><td><code>audio/ogg</code></td><td>Chrome, Firefox</td><td>Open format</td></tr>
+        <tr><td><strong>WAV</strong></td><td><code>audio/wav</code></td><td>All browsers</td><td>No compression (large size)</td></tr>
+    </table>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Совет:</strong> В 99% случаев достаточно одного формата — <strong>MP3</strong>. Его поддерживают все современные браузеры. Добавляйте OGG как fallback только если хотите максимальную совместимость.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Tip:</strong> In 99% of cases, a single format is enough — <strong>MP3</strong>. All modern browsers support it. Add OGG as a fallback only if you want maximum compatibility.
+    </div>
+
+    <hr>
+
+    <!-- ==================== VIDEO ==================== -->
+    <h2 id="video" data-lang="ru">5. Тег video — видео</h2>
+    <h2 id="video-en" data-lang="en">5. The video tag</h2>
+
+    <p data-lang="ru">Тег <code>&lt;video&gt;</code> встраивает видеоплеер:</p>
+    <p data-lang="en">The <code>&lt;video&gt;</code> tag embeds a video player:</p>
+
+<pre><code>&lt;video controls width="640"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    Ваш браузер не поддерживает видео.
+&lt;/video&gt;</code></pre>
+
+    <div class="result-box">
+        <div style="max-width:500px;font-family:'Segoe UI',sans-serif;">
+            <p style="margin:0 0 8px;font-size:0.85rem;color:#64748b;" data-lang="ru">Так выглядит видеоплеер в браузере (без видеофайла):</p>
+            <p style="margin:0 0 8px;font-size:0.85rem;color:#64748b;" data-lang="en">This is what a video player looks like in the browser (without a video file):</p>
+            <video controls width="100%" style="background:#000;border-radius:8px;">
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">&lt;audio&gt; — Аудио</div>
+            <div class="label" data-lang="en">&lt;audio&gt; — Audio</div>
+            <ul>
+                <li data-lang="ru">Только звук, без картинки</li>
+                <li data-lang="en">Sound only, no picture</li>
+                <li data-lang="ru">Маленький плеер-полоска</li>
+                <li data-lang="en">Small strip player</li>
+                <li data-lang="ru">Нет <code>width</code>, <code>height</code>, <code>poster</code></li>
+                <li data-lang="en">No <code>width</code>, <code>height</code>, <code>poster</code></li>
+                <li data-lang="ru">MP3 файлы обычно 3-10 МБ</li>
+                <li data-lang="en">MP3 files usually 3-10 MB</li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">&lt;video&gt; — Видео</div>
+            <div class="label" data-lang="en">&lt;video&gt; — Video</div>
+            <ul>
+                <li data-lang="ru">Звук + картинка</li>
+                <li data-lang="en">Sound + picture</li>
+                <li data-lang="ru">Полноразмерный плеер</li>
+                <li data-lang="en">Full-size player</li>
+                <li data-lang="ru">Есть <code>width</code>, <code>height</code>, <code>poster</code></li>
+                <li data-lang="en">Has <code>width</code>, <code>height</code>, <code>poster</code></li>
+                <li data-lang="ru">MP4 файлы обычно 50-500 МБ</li>
+                <li data-lang="en">MP4 files usually 50-500 MB</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== VIDEO ATTRS ==================== -->
+    <h2 id="video-attrs" data-lang="ru">6. Атрибуты video</h2>
+    <h2 id="video-attrs-en" data-lang="en">6. Video attributes</h2>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут</th><th>Что делает</th></tr>
+        <tr><td><code>controls</code></td><td>Показывает плеер (play, пауза, полоса, громкость, полноэкранный)</td></tr>
+        <tr><td><code>width</code></td><td>Ширина видео в пикселях</td></tr>
+        <tr><td><code>height</code></td><td>Высота видео</td></tr>
+        <tr><td><code>poster</code></td><td>Изображение-обложка до начала воспроизведения</td></tr>
+        <tr><td><code>autoplay</code></td><td>Автозапуск (нужен <code>muted</code>)</td></tr>
+        <tr><td><code>loop</code></td><td>Повтор</td></tr>
+        <tr><td><code>muted</code></td><td>Без звука</td></tr>
+        <tr><td><code>preload</code></td><td><code>auto</code> / <code>metadata</code> / <code>none</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute</th><th>What it does</th></tr>
+        <tr><td><code>controls</code></td><td>Shows player (play, pause, seekbar, volume, fullscreen)</td></tr>
+        <tr><td><code>width</code></td><td>Video width in pixels</td></tr>
+        <tr><td><code>height</code></td><td>Video height</td></tr>
+        <tr><td><code>poster</code></td><td>Cover image before playback starts</td></tr>
+        <tr><td><code>autoplay</code></td><td>Auto-play (needs <code>muted</code>)</td></tr>
+        <tr><td><code>loop</code></td><td>Repeat</td></tr>
+        <tr><td><code>muted</code></td><td>Muted</td></tr>
+        <tr><td><code>preload</code></td><td><code>auto</code> / <code>metadata</code> / <code>none</code></td></tr>
+    </table>
+
+<pre><code>&lt;!-- Видео с обложкой --&gt;
+&lt;video controls width="640" poster="cover.jpg"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    &lt;source src="video.webm" type="video/webm"&gt;
+&lt;/video&gt;
+
+&lt;!-- Фоновое видео (без звука, повтор, автозапуск) --&gt;
+&lt;video autoplay muted loop width="100%"&gt;
+    &lt;source src="background.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>poster</strong> — очень полезный атрибут! Пока пользователь не нажал Play, он видит красивую картинку-обложку вместо чёрного прямоугольника.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>poster</strong> — a very useful attribute! Before the user clicks Play, they see a nice cover image instead of a black rectangle.
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Ситуация:</strong> новичок хочет, чтобы видео запускалось автоматически, и пишет <code>&lt;video autoplay&gt;</code>. Но видео не воспроизводится! Браузер молча блокирует автоплей со звуком.</p>
+        <p data-lang="en"><strong>Situation:</strong> a beginner wants the video to play automatically and writes <code>&lt;video autoplay&gt;</code>. But the video doesn't play! The browser silently blocks autoplay with sound.</p>
+<pre><code>&lt;!-- НЕПРАВИЛЬНО / WRONG --&gt;
+&lt;video autoplay&gt;
+    &lt;source src="intro.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+&lt;!-- Браузер блокирует! Видео не играет --&gt;
+
+&lt;!-- ПРАВИЛЬНО / CORRECT --&gt;
+&lt;video autoplay muted&gt;
+    &lt;source src="intro.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+&lt;!-- autoplay + muted работает &#x2714; --&gt;</code></pre>
+        <p data-lang="ru"><strong>Правило:</strong> <code>autoplay</code> работает только вместе с <code>muted</code>. Это правило всех современных браузеров — Chrome, Firefox, Safari, Edge.</p>
+        <p data-lang="en"><strong>Rule:</strong> <code>autoplay</code> only works together with <code>muted</code>. This is a rule in all modern browsers — Chrome, Firefox, Safari, Edge.</p>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Оптимизация видео для веба:</strong></p>
+        <p data-lang="en"><strong>Optimizing video for the web:</strong></p>
+        <ul data-lang="ru">
+            <li><strong>Сжимайте видео</strong> перед загрузкой. Используйте HandBrake (бесплатный) — видео 100 МБ можно сжать до 10-20 МБ без заметной потери качества</li>
+            <li><strong>Используйте <code>poster</code></strong> — пользователь увидит красивую обложку до загрузки видео</li>
+            <li><strong>Добавляйте <code>preload="metadata"</code></strong> — браузер не будет загружать всё видео сразу, а только метаданные (длительность, размер)</li>
+            <li><strong>Для длинных видео</strong> лучше загрузить на YouTube и встроить через <code>&lt;iframe&gt;</code> — YouTube сам оптимизирует качество под скорость интернета</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>Compress videos</strong> before uploading. Use HandBrake (free) — a 100 MB video can be compressed to 10-20 MB without noticeable quality loss</li>
+            <li><strong>Use <code>poster</code></strong> — the user will see a nice cover before the video loads</li>
+            <li><strong>Add <code>preload="metadata"</code></strong> — the browser won't load the entire video upfront, only metadata (duration, size)</li>
+            <li><strong>For long videos</strong> it's better to upload to YouTube and embed via <code>&lt;iframe&gt;</code> — YouTube automatically optimizes quality for internet speed</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== VIDEO FORMATS ==================== -->
+    <h2 id="video-formats" data-lang="ru">7. Форматы видео</h2>
+    <h2 id="video-formats-en" data-lang="en">7. Video formats</h2>
+
+    <table data-lang="ru">
+        <tr><th>Формат</th><th>MIME-тип</th><th>Поддержка</th><th>Особенности</th></tr>
+        <tr><td><strong>MP4</strong></td><td><code>video/mp4</code></td><td>Все браузеры</td><td>Самый популярный. Используйте!</td></tr>
+        <tr><td><strong>WebM</strong></td><td><code>video/webm</code></td><td>Chrome, Firefox, Edge</td><td>Открытый, хорошее сжатие</td></tr>
+        <tr><td><strong>OGG</strong></td><td><code>video/ogg</code></td><td>Chrome, Firefox</td><td>Открытый формат</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Format</th><th>MIME type</th><th>Support</th><th>Notes</th></tr>
+        <tr><td><strong>MP4</strong></td><td><code>video/mp4</code></td><td>All browsers</td><td>Most popular. Use this!</td></tr>
+        <tr><td><strong>WebM</strong></td><td><code>video/webm</code></td><td>Chrome, Firefox, Edge</td><td>Open, good compression</td></tr>
+        <tr><td><strong>OGG</strong></td><td><code>video/ogg</code></td><td>Chrome, Firefox</td><td>Open format</td></tr>
+    </table>
+
+    <div class="fun-fact">
+        <p data-lang="ru">Формат <strong>WebM</strong> разработан компанией Google. Он даёт лучшее сжатие, чем MP4, при том же качестве. YouTube внутренне использует WebM для экономии трафика. Но MP4 остаётся стандартом из-за универсальной поддержки.</p>
+        <p data-lang="en">The <strong>WebM</strong> format was developed by Google. It offers better compression than MP4 at the same quality. YouTube internally uses WebM to save bandwidth. But MP4 remains the standard due to universal support.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== IFRAME ==================== -->
+    <h2 id="iframe" data-lang="ru">8. iframe — встраивание внешнего контента</h2>
+    <h2 id="iframe-en" data-lang="en">8. iframe — embedding external content</h2>
+
+    <p data-lang="ru"><code>&lt;iframe&gt;</code> (inline frame) — встраивает одну веб-страницу внутрь другой. Это как «окно» в другой сайт.</p>
+    <p data-lang="en"><code>&lt;iframe&gt;</code> (inline frame) embeds one web page inside another. It's like a "window" into another site.</p>
+
+    <div class="analogy">
+        <p data-lang="ru">iframe — это как <strong>телевизор на стене</strong>. Ваша страница — стена, а iframe — экран, который показывает другой сайт. Стена (ваша страница) и телевизор (iframe) — это два отдельных мира. Вы можете повесить телевизор любого размера, но не можете изменить то, что он показывает.</p>
+        <p data-lang="en">An iframe is like a <strong>TV on a wall</strong>. Your page is the wall, and the iframe is a screen showing another website. The wall (your page) and the TV (iframe) are two separate worlds. You can hang a TV of any size, but you can't change what it shows.</p>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    &#x41A;&#x430;&#x43A; &#x440;&#x430;&#x431;&#x43E;&#x442;&#x430;&#x435;&#x442; iframe (&#x441;&#x442;&#x440;&#x430;&#x43D;&#x438;&#x446;&#x430; &#x432;&#x43D;&#x443;&#x442;&#x440;&#x438; &#x441;&#x442;&#x440;&#x430;&#x43D;&#x438;&#x446;&#x44B;):
+
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  &#x412;&#x410;&#x428;&#x410; &#x421;&#x422;&#x420;&#x410;&#x41D;&#x418;&#x426;&#x410; (mysite.html)     &#x2502;
+    &#x2502;                                     &#x2502;
+    &#x2502;  &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;  &#x2502;
+    &#x2502;  &#x2502;  &lt;iframe&gt;                     &#x2502;  &#x2502;
+    &#x2502;  &#x2502;  &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;  &#x2502;  &#x2502;
+    &#x2502;  &#x2502;  &#x0412;&#x041D;&#x0415;&#x0428;&#x041D;&#x042F;&#x042F; &#x0421;&#x0422;&#x0420;&#x0410;&#x041D;&#x0418;&#x0426;&#x0410;          &#x2502;  &#x2502;
+    &#x2502;  &#x2502;  (youtube.com/embed/...)     &#x2502;  &#x2502;
+    &#x2502;  &#x2502;  (maps.google.com/...)       &#x2502;  &#x2502;
+    &#x2502;  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;  &#x2502;
+    &#x2502;                                     &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    How iframe works (page within a page):
+
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  YOUR PAGE (mysite.html)           &#x2502;
+    &#x2502;                                     &#x2502;
+    &#x2502;  &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;  &#x2502;
+    &#x2502;  &#x2502;  &lt;iframe&gt;                     &#x2502;  &#x2502;
+    &#x2502;  &#x2502;  &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;  &#x2502;  &#x2502;
+    &#x2502;  &#x2502;  EXTERNAL PAGE               &#x2502;  &#x2502;
+    &#x2502;  &#x2502;  (youtube.com/embed/...)     &#x2502;  &#x2502;
+    &#x2502;  &#x2502;  (maps.google.com/...)       &#x2502;  &#x2502;
+    &#x2502;  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;  &#x2502;
+    &#x2502;                                     &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+<pre><code>&lt;iframe src="https://example.com"
+        width="600" height="400"
+        title="Описание содержимого"&gt;
+&lt;/iframe&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут</th><th>Что делает</th></tr>
+        <tr><td><code>src</code></td><td>URL встраиваемой страницы</td></tr>
+        <tr><td><code>width / height</code></td><td>Размеры iframe</td></tr>
+        <tr><td><code>title</code></td><td>Описание для доступности</td></tr>
+        <tr><td><code>frameborder="0"</code></td><td>Убирает рамку (устаревший, лучше через CSS)</td></tr>
+        <tr><td><code>allowfullscreen</code></td><td>Разрешает полноэкранный режим</td></tr>
+        <tr><td><code>loading="lazy"</code></td><td>Ленивая загрузка — загружает iframe только при прокрутке к нему</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute</th><th>What it does</th></tr>
+        <tr><td><code>src</code></td><td>URL of embedded page</td></tr>
+        <tr><td><code>width / height</code></td><td>iframe dimensions</td></tr>
+        <tr><td><code>title</code></td><td>Description for accessibility</td></tr>
+        <tr><td><code>frameborder="0"</code></td><td>Removes border (deprecated, use CSS instead)</td></tr>
+        <tr><td><code>allowfullscreen</code></td><td>Allows fullscreen mode</td></tr>
+        <tr><td><code>loading="lazy"</code></td><td>Lazy loading — loads the iframe only when scrolled into view</td></tr>
+    </table>
+
+    <div class="why">
+        <p data-lang="ru"><strong>Когда использовать <code>&lt;iframe&gt;</code> вместо <code>&lt;video&gt;</code>?</strong></p>
+        <p data-lang="en"><strong>When to use <code>&lt;iframe&gt;</code> instead of <code>&lt;video&gt;</code>?</strong></p>
+        <ul data-lang="ru">
+            <li><strong><code>&lt;video&gt;</code></strong> — когда видеофайл лежит на вашем сервере (или хостинге). Вы полностью контролируете плеер</li>
+            <li><strong><code>&lt;iframe&gt;</code></strong> — когда видео на чужом сервисе (YouTube, Vimeo). Вы не скачиваете видео, а просто показываете его через «окно». YouTube сам подбирает качество, буферизует, показывает субтитры</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong><code>&lt;video&gt;</code></strong> — when the video file is on your server (or hosting). You fully control the player</li>
+            <li><strong><code>&lt;iframe&gt;</code></strong> — when the video is on someone else's service (YouTube, Vimeo). You don't download the video, you just show it through a "window". YouTube handles quality, buffering, and subtitles</li>
+        </ul>
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Где используется iframe в реальных проектах:</strong></p>
+        <p data-lang="en"><strong>Where iframe is used in real projects:</strong></p>
+        <ul data-lang="ru">
+            <li><strong>YouTube-видео</strong> — самый частый случай. 90% встроенных видео на сайтах — это YouTube через iframe</li>
+            <li><strong>Google Maps / Yandex Maps</strong> — карта проезда на сайте компании, ресторана, отеля</li>
+            <li><strong>Платёжные формы</strong> — Stripe, PayPal встраивают безопасную форму оплаты через iframe</li>
+            <li><strong>Соцсети</strong> — виджеты Twitter/X, Instagram-пост, Facebook-комментарии</li>
+            <li><strong>Онлайн-редакторы</strong> — CodePen, JSFiddle показывают результат кода в iframe</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>YouTube videos</strong> — the most common case. 90% of embedded videos on sites are YouTube via iframe</li>
+            <li><strong>Google Maps / Yandex Maps</strong> — directions on a company, restaurant, or hotel website</li>
+            <li><strong>Payment forms</strong> — Stripe, PayPal embed secure payment forms via iframe</li>
+            <li><strong>Social media</strong> — Twitter/X widgets, Instagram posts, Facebook comments</li>
+            <li><strong>Online editors</strong> — CodePen, JSFiddle show code results in an iframe</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== YOUTUBE ==================== -->
+    <h2 id="youtube" data-lang="ru">9. Встраивание YouTube-видео</h2>
+    <h2 id="youtube-en" data-lang="en">9. Embedding YouTube videos</h2>
+
+    <p data-lang="ru">Самый частый случай использования iframe — <strong>YouTube-видео</strong>:</p>
+    <p data-lang="en">The most common use of iframe is <strong>YouTube videos</strong>:</p>
+
+    <h3 data-lang="ru">Как получить код для встраивания:</h3>
+    <h3 data-lang="en">How to get the embed code:</h3>
+
+    <ol data-lang="ru">
+        <li>Откройте видео на YouTube</li>
+        <li>Нажмите <strong>«Поделиться»</strong> (Share)</li>
+        <li>Выберите <strong>«Встроить»</strong> (Embed)</li>
+        <li>Скопируйте код <code>&lt;iframe&gt;</code></li>
+    </ol>
+    <ol data-lang="en">
+        <li>Open the video on YouTube</li>
+        <li>Click <strong>"Share"</strong></li>
+        <li>Select <strong>"Embed"</strong></li>
+        <li>Copy the <code>&lt;iframe&gt;</code> code</li>
+    </ol>
+
+<pre><code>&lt;iframe width="560" height="315"
+    src="https://www.youtube.com/embed/VIDEO_ID"
+    title="YouTube video"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write;
+           encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>Обрати внимание на URL:</strong> Обычная ссылка YouTube: <code>youtube.com/watch?v=VIDEO_ID</code>. Для iframe нужна: <code>youtube.com/<strong>embed</strong>/VIDEO_ID</code>. Формат отличается!
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Note the URL:</strong> Regular YouTube link: <code>youtube.com/watch?v=VIDEO_ID</code>. For iframe you need: <code>youtube.com/<strong>embed</strong>/VIDEO_ID</code>. The format is different!
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Ситуация:</strong> новичок копирует обычную ссылку из адресной строки YouTube и вставляет в <code>src</code> iframe. Видео не работает — показывается ошибка или пустой фрейм.</p>
+        <p data-lang="en"><strong>Situation:</strong> a beginner copies a regular link from the YouTube address bar and pastes it into the iframe <code>src</code>. The video doesn't work — an error or empty frame is shown.</p>
+<pre><code>&lt;!-- НЕПРАВИЛЬНО / WRONG --&gt;
+&lt;iframe src="https://www.youtube.com/watch?v=dQw4w9WgXcQ"&gt;
+&lt;/iframe&gt;
+&lt;!-- YouTube блокирует встраивание обычных ссылок! --&gt;
+
+&lt;!-- ПРАВИЛЬНО / CORRECT --&gt;
+&lt;iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"&gt;
+&lt;/iframe&gt;
+&lt;!-- /embed/ вместо /watch?v= &#x2714; --&gt;</code></pre>
+        <p data-lang="ru"><strong>Правило:</strong> для встраивания YouTube всегда используйте формат <code>youtube.com/<strong>embed</strong>/VIDEO_ID</code>. Или просто нажмите «Поделиться» &#x2192; «Встроить» на YouTube — там уже правильная ссылка.</p>
+        <p data-lang="en"><strong>Rule:</strong> for embedding YouTube always use the format <code>youtube.com/<strong>embed</strong>/VIDEO_ID</code>. Or just click "Share" &#x2192; "Embed" on YouTube — the correct link is already there.</p>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Параметры YouTube embed:</strong> К ссылке можно добавить параметры для настройки плеера:</p>
+        <p data-lang="en"><strong>YouTube embed parameters:</strong> You can add parameters to the link to customize the player:</p>
+<pre><code>&lt;!-- Начать с 30 секунды, без рекомендаций после --&gt;
+src="https://www.youtube.com/embed/VIDEO_ID?start=30&amp;rel=0"
+
+&lt;!-- Автоплей (без звука) + повтор --&gt;
+src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&amp;mute=1&amp;loop=1"</code></pre>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Найди любимое видео на YouTube, получи код встраивания (Поделиться &#x2192; Встроить) и вставь его на свою HTML-страницу. Попробуй добавить параметр <code>?start=60</code> — видео начнёт играть с 1 минуты!</p>
+        <p data-lang="en">Find a favorite video on YouTube, get the embed code (Share &#x2192; Embed) and insert it into your HTML page. Try adding the parameter <code>?start=60</code> — the video will start playing from 1 minute!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== MAPS ==================== -->
+    <h2 id="maps" data-lang="ru">10. Встраивание Google Maps / Yandex Maps</h2>
+    <h2 id="maps-en" data-lang="en">10. Embedding Google Maps / Yandex Maps</h2>
+
+    <p data-lang="ru">Карты тоже встраиваются через iframe:</p>
+    <p data-lang="en">Maps are also embedded via iframe:</p>
+
+    <h3 data-lang="ru">Google Maps:</h3>
+    <h3 data-lang="en">Google Maps:</h3>
+
+    <ol data-lang="ru">
+        <li>Откройте <strong>Google Maps</strong></li>
+        <li>Найдите нужное место (например, «Ашхабад, Туркменистан»)</li>
+        <li>Нажмите <strong>«Поделиться»</strong> &#x2192; <strong>«Встроить карту»</strong></li>
+        <li>Скопируйте код <code>&lt;iframe&gt;</code></li>
+    </ol>
+    <ol data-lang="en">
+        <li>Open <strong>Google Maps</strong></li>
+        <li>Find the location (e.g., "Ashgabat, Turkmenistan")</li>
+        <li>Click <strong>"Share"</strong> &#x2192; <strong>"Embed a map"</strong></li>
+        <li>Copy the <code>&lt;iframe&gt;</code> code</li>
+    </ol>
+
+<pre><code>&lt;iframe
+    src="https://www.google.com/maps/embed?pb=..."
+    width="600" height="450"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    title="Карта"&gt;
+&lt;/iframe&gt;</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>loading="lazy"</strong> — карта загрузится только когда пользователь до неё долистает. Это ускоряет загрузку страницы. Особенно полезно, если карта находится в футере — зачем загружать её сразу, если пользователь может и не долистать?
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>loading="lazy"</strong> — the map loads only when the user scrolls to it. This speeds up page loading. Especially useful if the map is in the footer — why load it immediately if the user might not scroll down?
+    </div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Типичные случаи использования карт:</strong></p>
+        <p data-lang="en"><strong>Typical use cases for maps:</strong></p>
+        <ul data-lang="ru">
+            <li><strong>Страница «Контакты»</strong> — карта с офисом компании (адрес в Ашхабаде, маршрут)</li>
+            <li><strong>Сайт ресторана / кафе</strong> — как нас найти</li>
+            <li><strong>Сайт отеля</strong> — расположение и ближайшие достопримечательности</li>
+            <li><strong>Портфолио</strong> — «Мы работаем с клиентами из этих городов»</li>
+        </ul>
+        <ul data-lang="en">
+            <li><strong>"Contact Us" page</strong> — map with the company office (address in Ashgabat, directions)</li>
+            <li><strong>Restaurant / cafe site</strong> — how to find us</li>
+            <li><strong>Hotel site</strong> — location and nearby attractions</li>
+            <li><strong>Portfolio</strong> — "We work with clients from these cities"</li>
+        </ul>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Открой Google Maps, найди своё любимое место (школу, кафе, парк) и встрой карту на HTML-страницу. Попробуй изменить <code>width</code> и <code>height</code> — как меняется размер карты?</p>
+        <p data-lang="en">Open Google Maps, find your favorite place (school, cafe, park) and embed the map on an HTML page. Try changing <code>width</code> and <code>height</code> — how does the map size change?</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== RESPONSIVE IFRAME ==================== -->
+    <h2 id="responsive-iframe" data-lang="ru">11. Адаптивный iframe</h2>
+    <h2 id="responsive-iframe-en" data-lang="en">11. Responsive iframe</h2>
+
+    <p data-lang="ru">iframe с фиксированной шириной (<code>width="560"</code>) может вылезать за экран на мобильных устройствах. Есть два решения:</p>
+    <p data-lang="en">An iframe with a fixed width (<code>width="560"</code>) can overflow on mobile devices. There are two solutions:</p>
+
+    <h3 data-lang="ru">Способ 1: Обёртка с padding-bottom (старый, но надёжный)</h3>
+    <h3 data-lang="en">Method 1: Wrapper with padding-bottom (old but reliable)</h3>
+
+<pre><code>/* CSS: адаптивный iframe */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}</code></pre>
+
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="video-wrapper"&gt;
+    &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID"
+            title="Video" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;</code></pre>
+
+    <h3 data-lang="ru">Способ 2: aspect-ratio (современный, простой)</h3>
+    <h3 data-lang="en">Method 2: aspect-ratio (modern, simple)</h3>
+
+<pre><code>iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+}</code></pre>
+
+    <div class="diagram" data-lang="ru">
+    &#x41C;&#x430;&#x442;&#x435;&#x43C;&#x430;&#x442;&#x438;&#x43A;&#x430; &#x43F;&#x440;&#x43E;&#x43F;&#x43E;&#x440;&#x446;&#x438;&#x438; 16:9:
+
+    &#x428;&#x438;&#x440;&#x438;&#x43D;&#x430; : &#x412;&#x44B;&#x441;&#x43E;&#x442;&#x430; = 16 : 9
+
+    padding-bottom = (9 / 16) &#xD7; 100% = 56.25%
+
+    &#x41F;&#x440;&#x438;&#x43C;&#x435;&#x440;:
+    &#x2500; &#x0428;&#x0438;&#x0440;&#x0438;&#x043D;&#x0430; &#x044D;&#x043A;&#x0440;&#x0430;&#x043D;&#x0430; 1000px &#x2192; &#x0432;&#x044B;&#x0441;&#x043E;&#x0442;&#x0430; = 562.5px
+    &#x2500; &#x0428;&#x0438;&#x0440;&#x0438;&#x043D;&#x0430; &#x044D;&#x043A;&#x0440;&#x0430;&#x043D;&#x0430; 375px  &#x2192; &#x0432;&#x044B;&#x0441;&#x043E;&#x0442;&#x0430; = 210.9px
+
+    &#x041F;&#x0440;&#x043E;&#x043F;&#x043E;&#x0440;&#x0446;&#x0438;&#x0438; &#x0441;&#x043E;&#x0445;&#x0440;&#x0430;&#x043D;&#x044F;&#x044E;&#x0442;&#x0441;&#x044F; &#x043D;&#x0430; &#x043B;&#x044E;&#x0431;&#x043E;&#x043C; &#x0443;&#x0441;&#x0442;&#x0440;&#x043E;&#x0439;&#x0441;&#x0442;&#x0432;&#x0435;!</div>
+    <div class="diagram" data-lang="en">
+    The math behind 16:9 ratio:
+
+    Width : Height = 16 : 9
+
+    padding-bottom = (9 / 16) &#xD7; 100% = 56.25%
+
+    Example:
+    &#x2500; Screen width 1000px &#x2192; height = 562.5px
+    &#x2500; Screen width 375px  &#x2192; height = 210.9px
+
+    Proportions are preserved on any device!</div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">padding-bottom (&#x0441;&#x0442;&#x0430;&#x0440;&#x044B;&#x0439;)</div>
+            <div class="label" data-lang="en">padding-bottom (old)</div>
+            <ul>
+                <li data-lang="ru">Работает во ВСЕХ браузерах</li>
+                <li data-lang="en">Works in ALL browsers</li>
+                <li data-lang="ru">Нужна обёртка <code>div</code></li>
+                <li data-lang="en">Needs a wrapper <code>div</code></li>
+                <li data-lang="ru">Больше CSS-кода (5 свойств)</li>
+                <li data-lang="en">More CSS code (5 properties)</li>
+                <li data-lang="ru">Трюк с <code>padding-bottom</code> — неочевидный</li>
+                <li data-lang="en">The <code>padding-bottom</code> trick is not obvious</li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">aspect-ratio (&#x0441;&#x043E;&#x0432;&#x0440;&#x0435;&#x043C;&#x0435;&#x043D;&#x043D;&#x044B;&#x0439;)</div>
+            <div class="label" data-lang="en">aspect-ratio (modern)</div>
+            <ul>
+                <li data-lang="ru">Chrome 88+, Firefox 89+, Safari 15+</li>
+                <li data-lang="en">Chrome 88+, Firefox 89+, Safari 15+</li>
+                <li data-lang="ru">Не нужна обёртка!</li>
+                <li data-lang="en">No wrapper needed!</li>
+                <li data-lang="ru">Всего 3 строки CSS</li>
+                <li data-lang="en">Just 3 lines of CSS</li>
+                <li data-lang="ru">Понятный и чистый код</li>
+                <li data-lang="en">Clear and clean code</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Что выбрать?</strong> Если вам не нужна поддержка очень старых браузеров — используйте <code>aspect-ratio</code>. Это проще, чище и понятнее. В 2026 году его поддерживают 96%+ браузеров.</p>
+        <p data-lang="en"><strong>Which to choose?</strong> If you don't need to support very old browsers — use <code>aspect-ratio</code>. It's simpler, cleaner, and more readable. In 2026, it's supported by 96%+ of browsers.</p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Встрой YouTube-видео на страницу и сделай его адаптивным обоими способами. Открой страницу и попробуй менять ширину окна браузера — видео должно сжиматься и растягиваться, сохраняя пропорции 16:9.</p>
+        <p data-lang="en">Embed a YouTube video on a page and make it responsive using both methods. Open the page and try resizing the browser window — the video should shrink and stretch while maintaining the 16:9 ratio.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== FAVICON ==================== -->
+    <h2 id="favicon" data-lang="ru">12. Фавиконка (favicon)</h2>
+    <h2 id="favicon-en" data-lang="en">12. Favicon</h2>
+
+    <p data-lang="ru"><strong>Фавиконка</strong> — маленькая иконка, которая отображается во вкладке браузера рядом с названием страницы.</p>
+    <p data-lang="en">A <strong>favicon</strong> is a small icon displayed in the browser tab next to the page title.</p>
+
+    <div class="analogy">
+        <p data-lang="ru">Фавиконка — это как <strong>иконка приложения</strong> на рабочем столе телефона. Когда у вас открыто 20 вкладок, фавиконка помогает быстро найти нужную — так же, как иконка WhatsApp, YouTube или Instagram среди десятков приложений. Без фавиконки ваш сайт показывает скучный серый значок — выглядит непрофессионально.</p>
+        <p data-lang="en">A favicon is like an <strong>app icon</strong> on your phone's home screen. When you have 20 tabs open, a favicon helps you quickly find the right one — just like the WhatsApp, YouTube, or Instagram icon among dozens of apps. Without a favicon, your site shows a boring gray icon — it looks unprofessional.</p>
+    </div>
+
+<pre><code>&lt;head&gt;
+    &lt;!-- Файл favicon.ico в корне сайта --&gt;
+    &lt;link rel="icon" href="favicon.ico" type="image/x-icon"&gt;
+
+    &lt;!-- Или PNG формат --&gt;
+    &lt;link rel="icon" href="favicon.png" type="image/png"&gt;
+
+    &lt;!-- Для Apple устройств --&gt;
+    &lt;link rel="apple-touch-icon" href="apple-icon.png"&gt;
+&lt;/head&gt;</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Где взять фавиконку:</strong> Создайте иконку 32&#xD7;32 или 16&#xD7;16 пикселей в любом графическом редакторе, или используйте онлайн-генераторы (favicon.io, realfavicongenerator.net).
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Where to get a favicon:</strong> Create an icon 32&#xD7;32 or 16&#xD7;16 pixels in any image editor, or use online generators (favicon.io, realfavicongenerator.net).
+    </div>
+
+    <div class="mistake">
+        <p data-lang="ru"><strong>Ситуация:</strong> новичок добавляет фавиконку, но она не появляется. Причина — неправильный путь к файлу или файл лежит не в той папке.</p>
+        <p data-lang="en"><strong>Situation:</strong> a beginner adds a favicon, but it doesn't show up. The reason — wrong file path or the file is in the wrong folder.</p>
+<pre><code>&lt;!-- НЕПРАВИЛЬНО / WRONG --&gt;
+&lt;link rel="icon" href="images/icons/favicon.ico"&gt;
+&lt;!-- Файл лежит в корне, а путь указывает в папку images/icons/ --&gt;
+
+&lt;!-- ПРАВИЛЬНО / CORRECT --&gt;
+&lt;link rel="icon" href="favicon.ico"&gt;
+&lt;!-- Путь совпадает с реальным расположением файла &#x2714; --&gt;</code></pre>
+        <p data-lang="ru"><strong>Совет по отладке:</strong> откройте DevTools (F12) &#x2192; вкладка Network &#x2192; обновите страницу. Если favicon показывает ошибку 404 — путь неправильный.</p>
+        <p data-lang="en"><strong>Debugging tip:</strong> open DevTools (F12) &#x2192; Network tab &#x2192; refresh the page. If the favicon shows a 404 error — the path is wrong.</p>
+    </div>
+
+    <div class="pro-tip">
+        <p data-lang="ru"><strong>Профессиональный набор фавиконок:</strong> В реальных проектах нужны несколько размеров для разных устройств:</p>
+        <p data-lang="en"><strong>Professional favicon set:</strong> In real projects, you need multiple sizes for different devices:</p>
+<pre><code>&lt;!-- Стандартная фавиконка --&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+
+&lt;!-- Для iPhone/iPad (при добавлении на домашний экран) --&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+
+&lt;!-- Для Android --&gt;
+&lt;link rel="manifest" href="/site.webmanifest"&gt;</code></pre>
+        <p data-lang="ru">Используйте <strong>realfavicongenerator.net</strong> — загрузите одну картинку, и сайт сгенерирует все нужные размеры + готовый HTML-код.</p>
+        <p data-lang="en">Use <strong>realfavicongenerator.net</strong> — upload one image, and the site will generate all needed sizes + ready-to-use HTML code.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== META ==================== -->
+    <h2 id="meta" data-lang="ru">13. Мета-теги</h2>
+    <h2 id="meta-en" data-lang="en">13. Meta tags</h2>
+
+    <p data-lang="ru">Мета-теги содержат информацию <strong>о странице</strong> (не видны пользователю, но важны для браузеров и поисковиков):</p>
+    <p data-lang="en">Meta tags contain information <strong>about the page</strong> (not visible to users, but important for browsers and search engines):</p>
+
+    <div class="why">
+        <p data-lang="ru"><strong>Зачем мета-теги нужны для SEO?</strong> Когда Google индексирует вашу страницу, он читает мета-теги, чтобы понять, о чём эта страница. Тег <code>description</code> часто показывается в результатах поиска Google под заголовком страницы. Хорошее описание = больше кликов = больше посетителей.</p>
+        <p data-lang="en"><strong>Why are meta tags important for SEO?</strong> When Google indexes your page, it reads meta tags to understand what the page is about. The <code>description</code> tag is often shown in Google search results under the page title. A good description = more clicks = more visitors.</p>
+    </div>
+
+<pre><code>&lt;head&gt;
+    &lt;!-- Кодировка (уже используем!) --&gt;
+    &lt;meta charset="UTF-8"&gt;
+
+    &lt;!-- Адаптивность (уже используем!) --&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;!-- Описание страницы (для Google) --&gt;
+    &lt;meta name="description" content="Персональный сайт Мергена — веб-разработчика из Ашхабада"&gt;
+
+    &lt;!-- Ключевые слова (менее важно сейчас) --&gt;
+    &lt;meta name="keywords" content="веб-разработчик, HTML, CSS, Ашхабад"&gt;
+
+    &lt;!-- Автор --&gt;
+    &lt;meta name="author" content="Мерген Атаев"&gt;
+
+    &lt;!-- Для соцсетей (Open Graph) --&gt;
+    &lt;meta property="og:title" content="Мерген Атаев — Веб-разработчик"&gt;
+    &lt;meta property="og:description" content="Персональный сайт"&gt;
+    &lt;meta property="og:image" content="preview.jpg"&gt;
+&lt;/head&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Мета-тег</th><th>Зачем</th></tr>
+        <tr><td><code>charset</code></td><td>Кодировка (UTF-8 поддерживает все языки, включая туркменский)</td></tr>
+        <tr><td><code>viewport</code></td><td>Адаптивность на мобильных</td></tr>
+        <tr><td><code>description</code></td><td>Описание в результатах Google (до 160 символов)</td></tr>
+        <tr><td><code>author</code></td><td>Автор страницы</td></tr>
+        <tr><td><code>og:title, og:image</code></td><td>Превью при отправке ссылки в соцсетях / мессенджерах</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Meta tag</th><th>Purpose</th></tr>
+        <tr><td><code>charset</code></td><td>Encoding (UTF-8 supports all languages, including Turkmen)</td></tr>
+        <tr><td><code>viewport</code></td><td>Mobile responsiveness</td></tr>
+        <tr><td><code>description</code></td><td>Description in Google results (up to 160 characters)</td></tr>
+        <tr><td><code>author</code></td><td>Page author</td></tr>
+        <tr><td><code>og:title, og:image</code></td><td>Preview when sharing link on social media / messengers</td></tr>
+    </table>
+
+    <div class="diagram" data-lang="ru">
+    &#x041A;&#x0430;&#x043A; Google &#x0438;&#x0441;&#x043F;&#x043E;&#x043B;&#x044C;&#x0437;&#x0443;&#x0435;&#x0442; &#x043C;&#x0435;&#x0442;&#x0430;-&#x0442;&#x0435;&#x0433;&#x0438;:
+
+    &#x0420;&#x0435;&#x0437;&#x0443;&#x043B;&#x044C;&#x0442;&#x0430;&#x0442;&#x044B; &#x043F;&#x043E;&#x0438;&#x0441;&#x043A;&#x0430; Google:
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  mysite.com                                 &#x2502;
+    &#x2502;  &#x041C;&#x0435;&#x0440;&#x0433;&#x0435;&#x043D; &#x0410;&#x0442;&#x0430;&#x0435;&#x0432; &#x2014; &#x0412;&#x0435;&#x0431;-&#x0440;&#x0430;&#x0437;&#x0440;&#x0430;&#x0431;&#x043E;&#x0442;&#x0447;&#x0438;&#x043A;    &#x2190; &lt;title&gt;    &#x2502;
+    &#x2502;  &#x041F;&#x0435;&#x0440;&#x0441;&#x043E;&#x043D;&#x0430;&#x043B;&#x044C;&#x043D;&#x044B;&#x0439; &#x0441;&#x0430;&#x0439;&#x0442; &#x041C;&#x0435;&#x0440;&#x0433;&#x0435;&#x043D;&#x0430; &#x2014;       &#x2190; description &#x2502;
+    &#x2502;  &#x0432;&#x0435;&#x0431;-&#x0440;&#x0430;&#x0437;&#x0440;&#x0430;&#x0431;&#x043E;&#x0442;&#x0447;&#x0438;&#x043A;&#x0430; &#x0438;&#x0437; &#x0410;&#x0448;&#x0445;&#x0430;&#x0431;&#x0430;&#x0434;&#x0430;                  &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+    <div class="diagram" data-lang="en">
+    How Google uses meta tags:
+
+    Google search results:
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;  mysite.com                                 &#x2502;
+    &#x2502;  Mergen Ataev &#x2014; Web Developer       &#x2190; &lt;title&gt;    &#x2502;
+    &#x2502;  Personal website of Mergen &#x2014;        &#x2190; description &#x2502;
+    &#x2502;  a web developer from Ashgabat                &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+
+    <div class="real-world">
+        <p data-lang="ru"><strong>Open Graph — превью ссылок в мессенджерах:</strong> Когда вы отправляете ссылку в Telegram, WhatsApp или IMO — мессенджер читает теги <code>og:title</code>, <code>og:description</code> и <code>og:image</code> и показывает красивое превью с картинкой, заголовком и описанием. Без этих тегов ссылка выглядит как обычный текст — скучно и некликабельно.</p>
+        <p data-lang="en"><strong>Open Graph — link previews in messengers:</strong> When you send a link in Telegram, WhatsApp, or IMO — the messenger reads the <code>og:title</code>, <code>og:description</code>, and <code>og:image</code> tags and shows a beautiful preview with an image, title, and description. Without these tags, the link looks like plain text — boring and unlikely to get clicks.</p>
+    </div>
+
+    <div class="fun-fact">
+        <p data-lang="ru">Протокол <strong>Open Graph</strong> был создан компанией Facebook* в 2010 году. Изначально он предназначался только для превью ссылок в Facebook, но теперь его поддерживают Telegram, WhatsApp, Twitter/X, LinkedIn, Slack и практически все мессенджеры и соцсети. <em>(*Meta Platforms)</em></p>
+        <p data-lang="en">The <strong>Open Graph</strong> protocol was created by Facebook* in 2010. Originally it was only for link previews on Facebook, but now it's supported by Telegram, WhatsApp, Twitter/X, LinkedIn, Slack, and virtually all messengers and social networks. <em>(*Meta Platforms)</em></p>
+    </div>
+
+    <div class="try-it">
+        <p data-lang="ru">Добавь в <code>&lt;head&gt;</code> своей HTML-страницы мета-теги: <code>description</code>, <code>author</code>, и три тега Open Graph (<code>og:title</code>, <code>og:description</code>, <code>og:image</code>). Если у тебя есть сайт на хостинге — отправь ссылку себе в Telegram и проверь, показывается ли превью!</p>
+        <p data-lang="en">Add meta tags to the <code>&lt;head&gt;</code> of your HTML page: <code>description</code>, <code>author</code>, and three Open Graph tags (<code>og:title</code>, <code>og:description</code>, <code>og:image</code>). If you have a site on hosting — send the link to yourself in Telegram and check if the preview appears!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">14. Практика</h2>
+    <h2 id="practice-en" data-lang="en">14. Practice</h2>
+
+    <div class="summary" data-lang="ru">
+        <ul>
+            <li><code>&lt;audio controls&gt;</code> + <code>&lt;source&gt;</code> — аудиоплеер. Без <code>controls</code> плеер невидим!</li>
+            <li><code>&lt;video controls&gt;</code> + <code>&lt;source&gt;</code> — видеоплеер</li>
+            <li><code>poster</code> — обложка видео (вместо чёрного прямоугольника)</li>
+            <li><code>autoplay muted loop</code> — фоновое видео (autoplay без muted не работает!)</li>
+            <li><code>&lt;iframe&gt;</code> — встраивание YouTube, Google Maps, внешнего контента</li>
+            <li>YouTube: используйте <code>/embed/VIDEO_ID</code>, а не <code>/watch?v=</code></li>
+            <li><code>allowfullscreen</code> — полноэкранный режим</li>
+            <li><code>loading="lazy"</code> — ленивая загрузка (экономит трафик)</li>
+            <li>Адаптивный iframe: обёртка с <code>padding-bottom: 56.25%</code> или <code>aspect-ratio: 16/9</code></li>
+            <li><code>&lt;link rel="icon"&gt;</code> — фавиконка (иконка вкладки)</li>
+            <li><code>&lt;meta description&gt;</code> — описание для Google</li>
+            <li><code>og:title, og:image, og:description</code> — превью ссылок в соцсетях и мессенджерах</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <ul>
+            <li><code>&lt;audio controls&gt;</code> + <code>&lt;source&gt;</code> — audio player. Without <code>controls</code> the player is invisible!</li>
+            <li><code>&lt;video controls&gt;</code> + <code>&lt;source&gt;</code> — video player</li>
+            <li><code>poster</code> — video cover image (instead of a black rectangle)</li>
+            <li><code>autoplay muted loop</code> — background video (autoplay without muted doesn't work!)</li>
+            <li><code>&lt;iframe&gt;</code> — embedding YouTube, Google Maps, external content</li>
+            <li>YouTube: use <code>/embed/VIDEO_ID</code>, not <code>/watch?v=</code></li>
+            <li><code>allowfullscreen</code> — fullscreen mode</li>
+            <li><code>loading="lazy"</code> — lazy loading (saves bandwidth)</li>
+            <li>Responsive iframe: wrapper with <code>padding-bottom: 56.25%</code> or <code>aspect-ratio: 16/9</code></li>
+            <li><code>&lt;link rel="icon"&gt;</code> — favicon (tab icon)</li>
+            <li><code>&lt;meta description&gt;</code> — description for Google</li>
+            <li><code>og:title, og:image, og:description</code> — link previews in social media and messengers</li>
+        </ul>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Какой тег встраивает аудиоплеер? Какой атрибут делает его видимым?</li>
+            <li>Какой атрибут показывает обложку видео до начала воспроизведения?</li>
+            <li>Почему <code>autoplay</code> не работает без <code>muted</code>?</li>
+            <li>Чем отличается обычная YouTube-ссылка (<code>/watch?v=</code>) от embed-ссылки (<code>/embed/</code>)?</li>
+            <li>Когда лучше использовать <code>&lt;video&gt;</code>, а когда <code>&lt;iframe&gt;</code> с YouTube?</li>
+            <li>Как сделать iframe адаптивным? Назовите два способа.</li>
+            <li>Что такое favicon и зачем он нужен?</li>
+            <li>Какой мета-тег отвечает за описание страницы в Google?</li>
+            <li>Что такое Open Graph и какие теги в него входят?</li>
+            <li>Что означает <code>loading="lazy"</code> для iframe?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>Which tag embeds an audio player? Which attribute makes it visible?</li>
+            <li>Which attribute shows a video cover image before playback?</li>
+            <li>Why doesn't <code>autoplay</code> work without <code>muted</code>?</li>
+            <li>What's the difference between a regular YouTube link (<code>/watch?v=</code>) and an embed link (<code>/embed/</code>)?</li>
+            <li>When is it better to use <code>&lt;video&gt;</code> vs <code>&lt;iframe&gt;</code> with YouTube?</li>
+            <li>How do you make an iframe responsive? Name two methods.</li>
+            <li>What is a favicon and why is it needed?</li>
+            <li>Which meta tag is responsible for the page description in Google?</li>
+            <li>What is Open Graph and which tags does it include?</li>
+            <li>What does <code>loading="lazy"</code> mean for an iframe?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

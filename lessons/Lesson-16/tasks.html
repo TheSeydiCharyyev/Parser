@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 16 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 16: Мини-проект — Галерея карточек</span>
+    <span class="nav-title" data-lang="en">Lesson 16: Mini-project — Card Gallery</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 16: Мини-проект #3 — Галерея карточек</p>
+    <p class="subtitle" data-lang="en">Lesson 16: Mini-project #3 — Card Gallery</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 16.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 16.1: ПЛАНИРОВАНИЕ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 16.1: PLANNING</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 15.1: Спланируй галерею</span>
+            <span class="task-title" data-lang="en">Task 15.1: Plan your gallery</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Выбрать тему и спланировать содержание галереи</div>
+        <div class="task-goal" data-lang="en">Choose a theme and plan gallery content</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Выбери тему:</strong> фильмы, игры, музыка, рецепты, места, портфолио</li>
+            <li><strong>Запиши 6 карточек:</strong> для каждой — название, описание, 1-2 бейджа (жанр/категория), рейтинг</li>
+            <li><strong>Цветовая схема:</strong> светлая или тёмная? Основной цвет? Цвет бейджей?</li>
+            <li><strong>Нарисуй wireframe</strong> одной карточки: где изображение, название, бейджи</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Choose a theme:</strong> movies, games, music, recipes, places, portfolio</li>
+            <li><strong>Write 6 cards:</strong> for each — title, description, 1-2 badges (genre/category), rating</li>
+            <li><strong>Color scheme:</strong> light or dark? Main color? Badge color?</li>
+            <li><strong>Draw a wireframe</strong> of one card: where the image, title, badges go</li>
+        </ol>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Тема выбрана</li>
+                <li>6 карточек записаны</li>
+                <li>Цвета определены</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Theme is chosen</li>
+                <li>6 cards are written</li>
+                <li>Colors are defined</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 16.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 16.2: ПОВТОРЕНИЕ ПРИМЕРА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 16.2: REPRODUCING THE EXAMPLE</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 15.2: Повтори галерею фильмов</span>
+            <span class="task-title" data-lang="en">Task 15.2: Reproduce the movie gallery</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Воспроизвести галерею фильмов из лекции</div>
+        <div class="task-goal" data-lang="en">Reproduce the movie gallery from the lecture</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li>Создайте папку <code>movie-gallery</code> с файлами <code>index.html</code> и <code>style.css</code></li>
+            <li>Самостоятельно напишите HTML: 6 карточек фильмов (изображение, название, год, рейтинг, бейджи жанров)</li>
+            <li>Напишите CSS: тёмная тема, flex-сетка с wrap, hover-эффекты</li>
+            <li>Проверьте: карточки переносятся при уменьшении окна? Hover работает?</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Create a folder <code>movie-gallery</code> with files <code>index.html</code> and <code>style.css</code></li>
+            <li>Write HTML yourself: 6 movie cards (image, title, year, rating, genre badges)</li>
+            <li>Write CSS: dark theme, flex grid with wrap, hover effects</li>
+            <li>Check: do cards wrap when resizing the window? Does hover work?</li>
+        </ol>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>6 карточек</li>
+                <li><code>flex-wrap: wrap</code> работает</li>
+                <li><code>flex: 1 1 280px</code> на карточках</li>
+                <li>Изображения с <code>object-fit: cover</code></li>
+                <li>Бейджи прижаты к низу (margin-top: auto)</li>
+                <li>Hover: подъём + тень + zoom изображения</li>
+                <li>CSS в отдельном файле</li>
+            </ul>
+            <ul data-lang="en">
+                <li>6 cards</li>
+                <li><code>flex-wrap: wrap</code> works</li>
+                <li><code>flex: 1 1 280px</code> on cards</li>
+                <li>Images with <code>object-fit: cover</code></li>
+                <li>Badges pushed to bottom (margin-top: auto)</li>
+                <li>Hover: lift + shadow + image zoom</li>
+                <li>CSS in separate file</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 16.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 16.3: СВОЯ ГАЛЕРЕЯ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 16.3: YOUR OWN GALLERY</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 15.3: Создай свою уникальную галерею</span>
+            <span class="task-title" data-lang="en">Task 15.3: Create your own unique gallery</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать уникальную галерею на свою тему</div>
+        <div class="task-goal" data-lang="en">Create a unique gallery on your own topic</div>
+
+        <h3 data-lang="ru">Обязательные элементы:</h3>
+        <h3 data-lang="en">Required elements:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Шапка:</strong> Заголовок галереи + описание</li>
+            <li><strong>Минимум 6 карточек</strong> с:
+                <ul>
+                    <li>Изображением (picsum.photos или свои)</li>
+                    <li>Названием</li>
+                    <li>Дополнительной информацией (год, автор, цена...)</li>
+                    <li>Рейтингом или оценкой</li>
+                    <li>Бейджами категории</li>
+                </ul>
+            </li>
+            <li><strong>Flexbox-сетка:</strong> flex-wrap: wrap + gap</li>
+            <li><strong>Hover-эффекты:</strong> подъём карточки + zoom изображения</li>
+            <li><strong>Своя тема оформления</strong> (не копия примера!)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Header:</strong> Gallery title + description</li>
+            <li><strong>At least 6 cards</strong> with:
+                <ul>
+                    <li>Image (picsum.photos or your own)</li>
+                    <li>Title</li>
+                    <li>Extra info (year, author, price...)</li>
+                    <li>Rating or score</li>
+                    <li>Category badges</li>
+                </ul>
+            </li>
+            <li><strong>Flexbox grid:</strong> flex-wrap: wrap + gap</li>
+            <li><strong>Hover effects:</strong> card lift + image zoom</li>
+            <li><strong>Your own design theme</strong> (not a copy of the example!)</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Бесплатные изображения:
+            <ul>
+                <li><strong>picsum.photos</strong> — случайные фото (<code>https://picsum.photos/400/250?random=1</code>)</li>
+                <li><strong>unsplash.com</strong> — качественные фото</li>
+                <li><strong>pexels.com</strong> — бесплатный фотосток</li>
+            </ul>
+        </div>
+        <div class="hint" data-lang="en">
+            Free images:
+            <ul>
+                <li><strong>picsum.photos</strong> — random photos (<code>https://picsum.photos/400/250?random=1</code>)</li>
+                <li><strong>unsplash.com</strong> — quality photos</li>
+                <li><strong>pexels.com</strong> — free stock photos</li>
+            </ul>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Своя тема (не фильмы!)</li>
+                <li>6+ карточек</li>
+                <li>Flexbox-сетка с переносом</li>
+                <li>object-fit: cover на изображениях</li>
+                <li>Hover-эффекты</li>
+                <li>Бейджи прижаты к низу</li>
+                <li>Своя цветовая тема</li>
+                <li>CSS в отдельном файле</li>
+                <li>Выглядит профессионально</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Your own topic (not movies!)</li>
+                <li>6+ cards</li>
+                <li>Flexbox grid with wrapping</li>
+                <li>object-fit: cover on images</li>
+                <li>Hover effects</li>
+                <li>Badges pushed to bottom</li>
+                <li>Your own color theme</li>
+                <li>CSS in separate file</li>
+                <li>Looks professional</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 15.4: Фильтры и кнопка «Показать ещё»</span>
+            <span class="task-title" data-lang="en">Task 15.4: Filters and "Show more" button</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Добавить панель фильтров и дополнительные элементы</div>
+        <div class="task-goal" data-lang="en">Add a filter panel and additional elements</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Панель фильтров</strong> между шапкой и карточками: кнопки «Все», «Экшн», «Драма», «Комедия» (стилизованные, без функционала — это только CSS)</li>
+            <li><strong>Кнопка «Показать ещё»</strong> — внизу, по центру, под всеми карточками</li>
+            <li>Стилизуйте кнопки фильтров: одна активная (яркий фон), остальные — серые</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Filter panel</strong> between header and cards: buttons "All", "Action", "Drama", "Comedy" (styled, no functionality — CSS only)</li>
+            <li><strong>"Show more" button</strong> — at the bottom, centered, below all cards</li>
+            <li>Style filter buttons: one active (bright background), others — gray</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Кнопки фильтров — это flex-контейнер с gap:
+<pre><code>.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    justify-content: center;
+}
+.filter-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background: #334155;
+    color: #94a3b8;
+}
+.filter-btn.active {
+    background: #3b82f6;
+    color: #fff;
+}</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            Filter buttons are a flex container with gap:
+<pre><code>.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    justify-content: center;
+}
+.filter-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background: #334155;
+    color: #94a3b8;
+}
+.filter-btn.active {
+    background: #3b82f6;
+    color: #fff;
+}</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Панель фильтров с 4+ кнопками</li>
+                <li>Одна кнопка «активная» (яркая)</li>
+                <li>Кнопка «Показать ещё» внизу</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Filter panel with 4+ buttons</li>
+                <li>One button is "active" (bright)</li>
+                <li>"Show more" button at bottom</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

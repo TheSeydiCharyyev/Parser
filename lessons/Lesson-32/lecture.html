@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 32 — Разработка: HTML-структура</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 32: Разработка — HTML-структура</span>
+    <span class="nav-title" data-lang="en">Lesson 32: Development — HTML Structure</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 32: Разработка — HTML-структура</h1>
+    <h1 data-lang="en">Lesson 32: Development — HTML Structure</h1>
+    <p class="subtitle" data-lang="ru">Семантическая разметка всех страниц, навигация, общие компоненты, SEO-теги</p>
+    <p class="subtitle" data-lang="en">Semantic markup of all pages, navigation, shared components, SEO tags</p>
+
+    <div class="why" data-lang="ru">
+        <p>Подготовка позади. Тема выбрана, wireframes готовы, палитра есть, git настроен. Сегодня — <strong>первый день кода</strong>. Но внимание: мы пишем <strong>только HTML</strong>. Никаких стилей. Никаких цветов. Никаких flex/grid. Только разметка.</p>
+        <p>Почему так? Потому что HTML — это <strong>смысл</strong> вашего сайта. Структура, иерархия, связи между страницами. Если смысл правильный — потом красивые стили накладываются за часы. Если смысл кривой — переписывать приходится всё.</p>
+        <p>За это занятие вы напишете <strong>полный HTML-скелет всех страниц проекта</strong>. В браузере это будет выглядеть «уродливо» — просто поток текста сверху вниз. <strong>Это нормально.</strong> Красота — на занятии 32.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Понимать глубже семантические теги и когда какой использовать</li>
+            <li>Выстраивать правильную иерархию заголовков (h1→h6)</li>
+            <li>Настраивать навигацию между страницами многостраничного сайта</li>
+            <li>Делать «общие компоненты» (header/footer), одинаковые на всех страницах</li>
+            <li>Писать SEO-meta-теги для каждой страницы</li>
+            <li>Делать доступный HTML (alt-тексты, aria-атрибуты)</li>
+            <li>Использовать типовые HTML-паттерны секций</li>
+            <li>Завершить день с рабочим HTML всех страниц проекта</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Preparation is done. Topic picked, wireframes ready, palette set, git initialized. Today — <strong>day one of code</strong>. But careful: we write <strong>only HTML</strong>. No styles. No colors. No flex/grid. Just markup.</p>
+        <p>Why? Because HTML is the <strong>meaning</strong> of your site. Structure, hierarchy, links between pages. Right meaning — styles drop in within hours. Crooked meaning — you have to rewrite everything.</p>
+        <p>By the end you'll have a <strong>full HTML skeleton of all project pages</strong>. In the browser it'll look "ugly" — a stream of text top-down. <strong>That's normal.</strong> Beauty comes in lesson 32.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Understand semantic tags more deeply and know which to use when</li>
+            <li>Build a correct heading hierarchy (h1→h6)</li>
+            <li>Set up navigation between multi-page sites</li>
+            <li>Create "shared components" (header/footer) identical on all pages</li>
+            <li>Write SEO meta tags for each page</li>
+            <li>Make accessible HTML (alt texts, aria attributes)</li>
+            <li>Use typical HTML section patterns</li>
+            <li>End the day with working HTML for all project pages</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#meta">Meta-теги для каждой страницы</a></li>
+            <li><a href="#semantic">Семантические теги — глубже</a></li>
+            <li><a href="#hierarchy">Иерархия заголовков (h1-h6)</a></li>
+            <li><a href="#shared">Общие компоненты: header и footer</a></li>
+            <li><a href="#nav">Навигация между страницами</a></li>
+            <li><a href="#images">Изображения: alt, loading, srcset</a></li>
+            <li><a href="#patterns">Типовые HTML-паттерны секций</a></li>
+            <li><a href="#forms">Формы: labels, input-types, required</a></li>
+            <li><a href="#accessibility">Accessibility: aria-атрибуты, keyboard-nav</a></li>
+            <li><a href="#order">Порядок работы: сверху вниз, страница за страницей</a></li>
+            <li><a href="#pitfalls">Частые ошибки HTML-разметки</a></li>
+            <li><a href="#consult">Индивидуальная консультация</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#meta">Meta tags for each page</a></li>
+            <li><a href="#semantic">Semantic tags — deeper</a></li>
+            <li><a href="#hierarchy">Heading hierarchy (h1-h6)</a></li>
+            <li><a href="#shared">Shared components: header and footer</a></li>
+            <li><a href="#nav">Navigation between pages</a></li>
+            <li><a href="#images">Images: alt, loading, srcset</a></li>
+            <li><a href="#patterns">Typical HTML section patterns</a></li>
+            <li><a href="#forms">Forms: labels, input types, required</a></li>
+            <li><a href="#accessibility">Accessibility: aria attributes, keyboard nav</a></li>
+            <li><a href="#order">Work order: top-down, page by page</a></li>
+            <li><a href="#pitfalls">Common HTML markup mistakes</a></li>
+            <li><a href="#consult">Individual consultation</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== META ==================== -->
+    <h2 id="meta" data-lang="ru">1. Meta-теги для каждой страницы</h2>
+    <h2 id="meta-en" data-lang="en">1. Meta tags for each page</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Meta-теги в <code>&lt;head&gt;</code> — это <strong>невидимая</strong> часть страницы, но критически важная. Они говорят браузеру, Google, соцсетям: «что это за страница, о чём она, кому показывать». Без правильных meta — ваш сайт хуже ранжируется в поиске и плохо выглядит, когда кто-то делится ссылкой.</p>
+        <p>На <strong>каждой</strong> странице проекта должны быть свои, уникальные meta-теги. <code>title</code> «Главная | MyBrand» и <code>title</code> «О нас | MyBrand» — разные.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Meta tags in <code>&lt;head&gt;</code> are the <strong>invisible</strong> part of the page, but critical. They tell the browser, Google, social networks: "what is this page, what's it about, who to show it to". Without proper meta — your site ranks worse in search and looks bad when someone shares the link.</p>
+        <p>On <strong>every</strong> page of the project should have its own unique meta tags. <code>title</code> "Home | MyBrand" and <code>title</code> "About | MyBrand" are different.</p>
+    </div>
+
+<pre><code>&lt;head&gt;
+    &lt;!-- Обязательные --&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Главная | Sladko — Кондитерская в Ашхабаде&lt;/title&gt;
+    &lt;meta name="description" content="Кондитерская Sladko: домашние торты, печенье, эклеры. Доставка по Ашхабаду за 60 минут."&gt;
+
+    &lt;!-- SEO --&gt;
+    &lt;meta name="keywords" content="торты Ашхабад, кондитерская, доставка"&gt;
+    &lt;meta name="author" content="Seydi"&gt;
+
+    &lt;!-- Open Graph (для соцсетей) --&gt;
+    &lt;meta property="og:title" content="Sladko — Кондитерская в Ашхабаде"&gt;
+    &lt;meta property="og:description" content="Домашние торты и десерты"&gt;
+    &lt;meta property="og:image" content="https://site.com/images/og-image.jpg"&gt;
+    &lt;meta property="og:url" content="https://site.com"&gt;
+    &lt;meta property="og:type" content="website"&gt;
+
+    &lt;!-- Favicon --&gt;
+    &lt;link rel="icon" href="favicon.ico"&gt;
+    &lt;link rel="apple-touch-icon" href="apple-touch-icon.png"&gt;
+
+    &lt;!-- Fonts + CSS --&gt;
+    &lt;link href="https://fonts.googleapis.com/..." rel="stylesheet"&gt;
+    &lt;link rel="stylesheet" href="css/tokens.css"&gt;
+    &lt;link rel="stylesheet" href="css/base.css"&gt;
+    &lt;link rel="stylesheet" href="css/components.css"&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Тег</th><th>Для чего</th><th>Длина</th></tr>
+        <tr><td><code>&lt;title&gt;</code></td><td>Вкладка браузера + поисковая выдача</td><td>до 60 символов</td></tr>
+        <tr><td><code>description</code></td><td>Под ссылкой в Google</td><td>до 160 символов</td></tr>
+        <tr><td><code>og:title/description/image</code></td><td>Превью в Facebook, Telegram, WhatsApp</td><td>Любая</td></tr>
+        <tr><td><code>favicon</code></td><td>Иконка во вкладке браузера</td><td>—</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Tag</th><th>Purpose</th><th>Length</th></tr>
+        <tr><td><code>&lt;title&gt;</code></td><td>Browser tab + search results</td><td>up to 60 chars</td></tr>
+        <tr><td><code>description</code></td><td>Under the link in Google</td><td>up to 160 chars</td></tr>
+        <tr><td><code>og:title/description/image</code></td><td>Preview in Facebook, Telegram, WhatsApp</td><td>Any</td></tr>
+        <tr><td><code>favicon</code></td><td>Icon in browser tab</td><td>—</td></tr>
+    </table>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Формат title:</strong> <code>[Название страницы] | [Название бренда]</code>. Это стандарт: Google любит, пользователь понимает. Примеры: «О нас | Sladko», «Меню | Sladko», «Контакты | Sladko».</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Title format:</strong> <code>[Page name] | [Brand name]</code>. The standard: Google likes it, users understand it. Examples: "About | Sladko", "Menu | Sladko", "Contact | Sladko".</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SEMANTIC ==================== -->
+    <h2 id="semantic" data-lang="ru">2. Семантические теги — глубже</h2>
+    <h2 id="semantic-en" data-lang="en">2. Semantic tags — deeper</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Вы уже знаете <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>. Но какой тег когда использовать? Новички путаются: «это <code>section</code> или <code>article</code>?» Разберём правила, чтобы не ошибаться.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>You already know <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>. But which tag when? Beginners get confused: "is it a <code>section</code> or <code>article</code>?" Let's cover the rules so you don't mess up.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Тег</th><th>Когда использовать</th><th>Пример</th></tr>
+        <tr><td><code>&lt;header&gt;</code></td><td>Шапка страницы ИЛИ секции (не только сайта!)</td><td>Верх страницы с лого+nav, верх карточки с заголовком</td></tr>
+        <tr><td><code>&lt;nav&gt;</code></td><td>Блок навигации (основное меню, футер-меню, breadcrumbs)</td><td>Главное меню, оглавление статьи</td></tr>
+        <tr><td><code>&lt;main&gt;</code></td><td>Основной контент страницы. <strong>Один на страницу.</strong></td><td>Обёртка всех секций между header и footer</td></tr>
+        <tr><td><code>&lt;section&gt;</code></td><td>Тематический раздел с заголовком</td><td>Hero, Features, Gallery, Contact</td></tr>
+        <tr><td><code>&lt;article&gt;</code></td><td>Самодостаточный блок (можно «вынести» отдельно)</td><td>Пост блога, карточка товара, комментарий</td></tr>
+        <tr><td><code>&lt;aside&gt;</code></td><td>Сайдбар, сопутствующий контент</td><td>Боковое меню, «читайте также», реклама</td></tr>
+        <tr><td><code>&lt;footer&gt;</code></td><td>Подвал страницы ИЛИ секции</td><td>Низ сайта с копирайтом, низ статьи с автором</td></tr>
+        <tr><td><code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code></td><td>Изображение с подписью</td><td>Фото в статье с подписью снизу</td></tr>
+        <tr><td><code>&lt;time&gt;</code></td><td>Дата/время</td><td>Дата публикации поста</td></tr>
+        <tr><td><code>&lt;address&gt;</code></td><td>Контактная информация</td><td>Адрес в footer, форма обратной связи</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Tag</th><th>When to use</th><th>Example</th></tr>
+        <tr><td><code>&lt;header&gt;</code></td><td>Page OR section header (not just site!)</td><td>Top of page with logo+nav, top of card with title</td></tr>
+        <tr><td><code>&lt;nav&gt;</code></td><td>Navigation block (main menu, footer menu, breadcrumbs)</td><td>Main menu, article TOC</td></tr>
+        <tr><td><code>&lt;main&gt;</code></td><td>Main page content. <strong>One per page.</strong></td><td>Wrapper for all sections between header and footer</td></tr>
+        <tr><td><code>&lt;section&gt;</code></td><td>Thematic block with a heading</td><td>Hero, Features, Gallery, Contact</td></tr>
+        <tr><td><code>&lt;article&gt;</code></td><td>Self-contained block (can be "taken out")</td><td>Blog post, product card, comment</td></tr>
+        <tr><td><code>&lt;aside&gt;</code></td><td>Sidebar, related content</td><td>Side menu, "read also", ads</td></tr>
+        <tr><td><code>&lt;footer&gt;</code></td><td>Page OR section footer</td><td>Site bottom with copyright, article bottom with author</td></tr>
+        <tr><td><code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code></td><td>Image with caption</td><td>Article photo with caption</td></tr>
+        <tr><td><code>&lt;time&gt;</code></td><td>Date/time</td><td>Post publication date</td></tr>
+        <tr><td><code>&lt;address&gt;</code></td><td>Contact info</td><td>Address in footer, contact form</td></tr>
+    </table>
+
+    <div class="important" data-lang="ru">
+        <strong>Разница <code>section</code> vs <code>article</code>:</strong>
+        <ul>
+            <li><strong><code>section</code></strong> — раздел страницы, только в контексте. «Hero-секция» без остальной страницы не имеет смысла.</li>
+            <li><strong><code>article</code></strong> — самодостаточный. Карточку товара или пост блога можно <strong>скопировать на другой сайт</strong> и он будет работать.</li>
+        </ul>
+        <p>Если сомневаетесь — используйте <code>section</code>. В 80% случаев это правильно.</p>
+    </div>
+    <div class="important" data-lang="en">
+        <strong><code>section</code> vs <code>article</code> distinction:</strong>
+        <ul>
+            <li><strong><code>section</code></strong> — a page section, only in context. "Hero section" makes no sense outside the page.</li>
+            <li><strong><code>article</code></strong> — self-contained. A product card or blog post can be <strong>copied to another site</strong> and it'll work.</li>
+        </ul>
+        <p>When in doubt — use <code>section</code>. Right 80% of the time.</p>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    Правильная структура страницы:
+
+    &lt;body&gt;
+      &lt;header&gt;              (шапка сайта)
+        &lt;nav&gt;               (главное меню)
+      &lt;/header&gt;
+
+      &lt;main&gt;                (весь основной контент)
+        &lt;section&gt;           (Hero)
+          &lt;h1&gt;
+        &lt;/section&gt;
+        &lt;section&gt;           (Features)
+          &lt;h2&gt;
+          &lt;article&gt;         (одна фича = article, если самодостаточна)
+          &lt;/article&gt;
+        &lt;/section&gt;
+        &lt;section&gt;           (Cards)
+          &lt;article&gt;         (карточка = article)
+          &lt;/article&gt;
+        &lt;/section&gt;
+      &lt;/main&gt;
+
+      &lt;footer&gt;              (подвал сайта)
+        &lt;nav&gt;               (футер-меню)
+      &lt;/footer&gt;
+    &lt;/body&gt;</div>
+    <div class="diagram" data-lang="en">
+    Correct page structure:
+
+    &lt;body&gt;
+      &lt;header&gt;              (site header)
+        &lt;nav&gt;               (main menu)
+      &lt;/header&gt;
+
+      &lt;main&gt;                (all main content)
+        &lt;section&gt;           (Hero)
+          &lt;h1&gt;
+        &lt;/section&gt;
+        &lt;section&gt;           (Features)
+          &lt;h2&gt;
+          &lt;article&gt;         (one feature = article, if standalone)
+          &lt;/article&gt;
+        &lt;/section&gt;
+        &lt;section&gt;           (Cards)
+          &lt;article&gt;         (card = article)
+          &lt;/article&gt;
+        &lt;/section&gt;
+      &lt;/main&gt;
+
+      &lt;footer&gt;              (site footer)
+        &lt;nav&gt;               (footer menu)
+      &lt;/footer&gt;
+    &lt;/body&gt;</div>
+
+    <hr>
+
+    <!-- ==================== HIERARCHY ==================== -->
+    <h2 id="hierarchy" data-lang="ru">3. Иерархия заголовков (h1-h6)</h2>
+    <h2 id="hierarchy-en" data-lang="en">3. Heading hierarchy (h1-h6)</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Заголовки — не просто «крупный текст». Это <strong>оглавление</strong> страницы. По ним работают screen-reader'ы, Google определяет структуру. Пропускать уровни — плохо.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Headings aren't just "big text". They're the <strong>page's table of contents</strong>. Screen readers use them, Google determines structure. Skipping levels is bad.</p>
+    </div>
+
+    <h3 data-lang="ru">Правила:</h3>
+    <h3 data-lang="en">Rules:</h3>
+    <ul data-lang="ru">
+        <li><strong>Ровно один <code>&lt;h1&gt;</code> на страницу</strong> — это главный заголовок, обычно в Hero</li>
+        <li><strong>Не пропускайте уровни</strong>: h1 → h2 → h3 (нельзя h1 → h3)</li>
+        <li><strong>h2</strong> — заголовки секций (Features, Gallery, Contact)</li>
+        <li><strong>h3</strong> — заголовки внутри секций (Feature-карточка, Service)</li>
+        <li><strong>h4-h6</strong> — редко используются, в больших блоках или таблицах</li>
+    </ul>
+    <ul data-lang="en">
+        <li><strong>Exactly one <code>&lt;h1&gt;</code> per page</strong> — the main heading, usually in Hero</li>
+        <li><strong>Don't skip levels</strong>: h1 → h2 → h3 (not h1 → h3)</li>
+        <li><strong>h2</strong> — section headings (Features, Gallery, Contact)</li>
+        <li><strong>h3</strong> — headings inside sections (Feature card, Service)</li>
+        <li><strong>h4-h6</strong> — rarely used, in large blocks or tables</li>
+    </ul>
+
+<pre><code>&lt;main&gt;
+    &lt;section class="hero"&gt;
+        &lt;h1&gt;Sladko — кондитерская в Ашхабаде&lt;/h1&gt;  &lt;!-- главный h1 --&gt;
+        &lt;p&gt;Домашние торты и десерты&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section class="menu"&gt;
+        &lt;h2&gt;Меню&lt;/h2&gt;                              &lt;!-- h2 секции --&gt;
+        &lt;article&gt;
+            &lt;h3&gt;Торт Наполеон&lt;/h3&gt;                  &lt;!-- h3 товара --&gt;
+            &lt;p&gt;Классический...&lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/section&gt;
+
+    &lt;section class="contact"&gt;
+        &lt;h2&gt;Контакты&lt;/h2&gt;                          &lt;!-- h2 секции --&gt;
+    &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Не используйте <code>h1</code> для «покрасить красиво».</strong> Если просто нужен крупный жирный текст — используйте <code>h2</code>/<code>h3</code> или <code>&lt;p class="big"&gt;</code>. Множественные <code>h1</code> путают SEO и screen-reader'ы.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Don't use <code>h1</code> just "to make it pretty".</strong> If you need large bold text — use <code>h2</code>/<code>h3</code> or <code>&lt;p class="big"&gt;</code>. Multiple <code>h1</code>s confuse SEO and screen readers.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SHARED ==================== -->
+    <h2 id="shared" data-lang="ru">4. Общие компоненты: header и footer</h2>
+    <h2 id="shared-en" data-lang="en">4. Shared components: header and footer</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Многостраничный сайт имеет <strong>одинаковый header и footer</strong> на всех страницах. Логотип, навигация, контакты в футере — везде одно и то же.</p>
+        <p>Проблема: в чистом HTML нет механизма «скопировать header с одной страницы на другую». Приходится <strong>вручную копировать</strong>. На занятиях 30-36 это нормально — у нас всего 3-5 страниц.</p>
+        <p>В реальных проектах используют шаблонизаторы (Jinja, EJS, Handlebars) или фреймворки (React, Vue). Но это уже следующие курсы.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Multi-page sites have the <strong>same header and footer</strong> on every page. Logo, navigation, footer contacts — all identical.</p>
+        <p>Problem: plain HTML has no mechanism to "copy header from one page to another". You have to <strong>copy manually</strong>. For lessons 30-36 that's fine — we only have 3-5 pages.</p>
+        <p>In real projects, templating engines (Jinja, EJS, Handlebars) or frameworks (React, Vue) are used. That's the next course.</p>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Процесс:</strong></p>
+        <ol>
+            <li>Напишите header и footer на <strong>главной странице</strong> (<code>index.html</code>)</li>
+            <li>Доведите их до ума (правильные ссылки, классы, структура)</li>
+            <li>Откройте <code>about.html</code> → скопируйте <strong>весь</strong> header и footer из index.html</li>
+            <li>Повторите для всех остальных страниц</li>
+            <li>Если на текущей странице одна из ссылок active — добавьте класс <code>.active</code> к ней</li>
+        </ol>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Process:</strong></p>
+        <ol>
+            <li>Write header and footer on the <strong>home page</strong> (<code>index.html</code>)</li>
+            <li>Polish them (correct links, classes, structure)</li>
+            <li>Open <code>about.html</code> → copy the <strong>entire</strong> header and footer from index.html</li>
+            <li>Repeat for all other pages</li>
+            <li>On the current page, if one of the links is active — add <code>.active</code> class to it</li>
+        </ol>
+    </div>
+
+    <h3 data-lang="ru">Шаблон header:</h3>
+    <h3 data-lang="en">Header template:</h3>
+<pre><code>&lt;header class="header"&gt;
+    &lt;div class="container"&gt;
+        &lt;a href="index.html" class="logo"&gt;Sladko&lt;/a&gt;
+
+        &lt;nav class="nav"&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="index.html" class="active"&gt;Главная&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="menu.html"&gt;Меню&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="about.html"&gt;О нас&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="contact.html"&gt;Контакты&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+
+        &lt;!-- Бургер-меню (появится на мобильном) --&gt;
+        &lt;input type="checkbox" id="menu-toggle" class="menu-toggle"&gt;
+        &lt;label for="menu-toggle" class="burger"&gt;
+            &lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;
+        &lt;/label&gt;
+
+        &lt;a href="contact.html" class="btn btn-primary"&gt;Заказать&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/header&gt;</code></pre>
+
+    <h3 data-lang="ru">Шаблон footer:</h3>
+    <h3 data-lang="en">Footer template:</h3>
+<pre><code>&lt;footer class="footer"&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="footer-grid"&gt;
+            &lt;div class="footer-col"&gt;
+                &lt;h3&gt;Sladko&lt;/h3&gt;
+                &lt;p&gt;Кондитерская с 2023 года&lt;/p&gt;
+            &lt;/div&gt;
+
+            &lt;div class="footer-col"&gt;
+                &lt;h4&gt;Навигация&lt;/h4&gt;
+                &lt;nav&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;&lt;a href="index.html"&gt;Главная&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="menu.html"&gt;Меню&lt;/a&gt;&lt;/li&gt;
+                        &lt;li&gt;&lt;a href="about.html"&gt;О нас&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/nav&gt;
+            &lt;/div&gt;
+
+            &lt;address class="footer-col"&gt;
+                &lt;h4&gt;Контакты&lt;/h4&gt;
+                &lt;p&gt;ул. Битарап Туркменистан, 12&lt;/p&gt;
+                &lt;p&gt;&lt;a href="tel:+99312000000"&gt;+993 12 00-00-00&lt;/a&gt;&lt;/p&gt;
+                &lt;p&gt;&lt;a href="mailto:hello@sladko.tm"&gt;hello@sladko.tm&lt;/a&gt;&lt;/p&gt;
+            &lt;/address&gt;
+        &lt;/div&gt;
+
+        &lt;p class="footer-copy"&gt;© 2026 Sladko. Все права защищены.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;</code></pre>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Ловушка относительных путей.</strong> Если <code>index.html</code> и <code>about.html</code> в одной папке — пути <code>href="about.html"</code> работают. Но если у вас подпапки (<code>pages/about.html</code>) — нужны пути вида <code>../index.html</code>. Держите все HTML в <strong>одной папке</strong>, чтобы не путаться.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Relative path trap.</strong> If <code>index.html</code> and <code>about.html</code> are in the same folder — <code>href="about.html"</code> works. But if you have subfolders (<code>pages/about.html</code>) — you need paths like <code>../index.html</code>. Keep all HTML in <strong>one folder</strong> to avoid confusion.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== NAV ==================== -->
+    <h2 id="nav" data-lang="ru">5. Навигация между страницами</h2>
+    <h2 id="nav-en" data-lang="en">5. Navigation between pages</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Навигация — это <strong>ссылки между страницами</strong>. В HTML это делается через обычный тег <code>&lt;a href="..."&gt;</code>. Но есть правила, чтобы всё работало корректно.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Navigation = <strong>links between pages</strong>. In HTML it's done via plain <code>&lt;a href="..."&gt;</code>. But there are rules to make it work right.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Тип ссылки</th><th>Синтаксис</th><th>Когда</th></tr>
+        <tr><td>На другую страницу сайта</td><td><code>href="about.html"</code></td><td>Переход между страницами</td></tr>
+        <tr><td>На якорь текущей страницы</td><td><code>href="#services"</code></td><td>Прокрутка к секции</td></tr>
+        <tr><td>На якорь другой страницы</td><td><code>href="index.html#menu"</code></td><td>Переход + прокрутка</td></tr>
+        <tr><td>На внешний сайт</td><td><code>href="https://..." target="_blank" rel="noopener"</code></td><td>Открыть в новой вкладке</td></tr>
+        <tr><td>Email</td><td><code>href="mailto:hello@site.com"</code></td><td>Открыть почтовый клиент</td></tr>
+        <tr><td>Телефон</td><td><code>href="tel:+99312000000"</code></td><td>Позвонить с мобильного</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Link type</th><th>Syntax</th><th>When</th></tr>
+        <tr><td>To another site page</td><td><code>href="about.html"</code></td><td>Page-to-page</td></tr>
+        <tr><td>To anchor on current page</td><td><code>href="#services"</code></td><td>Scroll to section</td></tr>
+        <tr><td>To anchor on another page</td><td><code>href="index.html#menu"</code></td><td>Navigate + scroll</td></tr>
+        <tr><td>To external site</td><td><code>href="https://..." target="_blank" rel="noopener"</code></td><td>Open in new tab</td></tr>
+        <tr><td>Email</td><td><code>href="mailto:hello@site.com"</code></td><td>Open mail client</td></tr>
+        <tr><td>Phone</td><td><code>href="tel:+99312000000"</code></td><td>Dial from mobile</td></tr>
+    </table>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Якорные ссылки:</strong> чтобы <code>href="#services"</code> работал, на странице должен быть элемент с <code>id="services"</code>.</p>
+<pre><code>&lt;a href="#services"&gt;Наши услуги&lt;/a&gt;
+...
+&lt;section id="services"&gt; ... &lt;/section&gt;</code></pre>
+        <p>Для плавной прокрутки добавьте <code>html { scroll-behavior: smooth; }</code> в CSS.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Anchor links:</strong> for <code>href="#services"</code> to work, the page needs an element with <code>id="services"</code>.</p>
+<pre><code>&lt;a href="#services"&gt;Our services&lt;/a&gt;
+...
+&lt;section id="services"&gt; ... &lt;/section&gt;</code></pre>
+        <p>For smooth scrolling add <code>html { scroll-behavior: smooth; }</code> in CSS.</p>
+    </div>
+
+    <div class="important" data-lang="ru">
+        <strong>Класс <code>active</code> для текущей страницы.</strong> Удобное правило: ссылка текущей страницы в меню имеет класс <code>.active</code>. Потом в CSS стилизуете её по-другому (жирный или цветной). Поменяйте класс вручную в каждом HTML — один раз.
+    </div>
+    <div class="important" data-lang="en">
+        <strong><code>active</code> class for the current page.</strong> Handy rule: the current page's link in the menu has class <code>.active</code>. Then in CSS you style it differently (bold or colored). Manually change the class in each HTML — once.
+    </div>
+
+    <hr>
+
+    <!-- ==================== IMAGES ==================== -->
+    <h2 id="images" data-lang="ru">6. Изображения: alt, loading, srcset</h2>
+    <h2 id="images-en" data-lang="en">6. Images: alt, loading, srcset</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Тег <code>&lt;img&gt;</code> кажется простым, но у него куча атрибутов для качества и производительности. Разберём важные.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>The <code>&lt;img&gt;</code> tag seems simple, but it has many attributes for quality and performance. Let's cover the important ones.</p>
+    </div>
+
+<pre><code>&lt;!-- Минимум, что всегда нужно --&gt;
+&lt;img src="images/hero.jpg" alt="Торт Наполеон на столе"&gt;
+
+&lt;!-- С ленивой загрузкой (для изображений ниже first-screen) --&gt;
+&lt;img src="images/gallery-1.jpg" alt="Эклеры" loading="lazy"&gt;
+
+&lt;!-- С фиксированными размерами (против layout shift) --&gt;
+&lt;img src="images/card.jpg" alt="..." width="400" height="300"&gt;
+
+&lt;!-- SVG-иконка (вставляется как img) --&gt;
+&lt;img src="icons/check.svg" alt="" width="24" height="24"&gt;</code></pre>
+
+    <h3 data-lang="ru">Правила alt-текста:</h3>
+    <h3 data-lang="en">Alt text rules:</h3>
+    <ul data-lang="ru">
+        <li>Если изображение <strong>несёт смысл</strong> — опишите что на нём: «Торт Наполеон на деревянном столе»</li>
+        <li>Если изображение <strong>декоративное</strong> (фоновый узор) — <code>alt=""</code> (пустая строка)</li>
+        <li>Не пишите «картинка» или «фото» — это очевидно, не добавляет смысла</li>
+        <li>Не повторяйте текст, который рядом (если рядом <code>&lt;h3&gt;Наполеон&lt;/h3&gt;</code> — alt не должен быть тоже «Наполеон»)</li>
+    </ul>
+    <ul data-lang="en">
+        <li>If image <strong>has meaning</strong> — describe what's on it: "Napoleon cake on a wooden table"</li>
+        <li>If image is <strong>decorative</strong> (background pattern) — <code>alt=""</code> (empty string)</li>
+        <li>Don't write "picture" or "photo" — obvious, adds no meaning</li>
+        <li>Don't repeat nearby text (if there's <code>&lt;h3&gt;Napoleon&lt;/h3&gt;</code> next to it — alt shouldn't also be "Napoleon")</li>
+    </ul>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong><code>loading="lazy"</code></strong> — отложенная загрузка картинки до того момента, как пользователь доскроллит. <strong>Ставьте на все картинки кроме hero</strong> (верхних). Ускоряет загрузку страницы в 2-3 раза.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong><code>loading="lazy"</code></strong> — delays image loading until the user scrolls to it. <strong>Add to all images except hero</strong> (top ones). Speeds up page load 2-3×.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== PATTERNS ==================== -->
+    <h2 id="patterns" data-lang="ru">7. Типовые HTML-паттерны секций</h2>
+    <h2 id="patterns-en" data-lang="en">7. Typical HTML section patterns</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Большинство секций на лендинге — типовые: hero, features, cards, testimonials, CTA, footer. Их HTML-структура повторяется от сайта к сайту. Запомните шаблоны — сможете писать вслепую.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Most landing page sections are standard: hero, features, cards, testimonials, CTA, footer. Their HTML structure repeats site to site. Memorize templates — you'll type them blindfolded.</p>
+    </div>
+
+    <h3 data-lang="ru">Hero-секция:</h3>
+    <h3 data-lang="en">Hero section:</h3>
+<pre><code>&lt;section class="hero"&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;Громкий заголовок&lt;/h1&gt;
+        &lt;p&gt;Подзаголовок с описанием&lt;/p&gt;
+        &lt;div class="hero-cta"&gt;
+            &lt;a href="#" class="btn btn-primary"&gt;Основное действие&lt;/a&gt;
+            &lt;a href="#" class="btn btn-outline"&gt;Второе действие&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+    <h3 data-lang="ru">Features (3 блока):</h3>
+    <h3 data-lang="en">Features (3 blocks):</h3>
+<pre><code>&lt;section class="features"&gt;
+    &lt;div class="container"&gt;
+        &lt;h2&gt;Почему мы&lt;/h2&gt;
+        &lt;div class="features-grid"&gt;
+            &lt;article class="feature"&gt;
+                &lt;img src="icons/speed.svg" alt="" class="feature-icon"&gt;
+                &lt;h3&gt;Быстро&lt;/h3&gt;
+                &lt;p&gt;Описание преимущества&lt;/p&gt;
+            &lt;/article&gt;
+            &lt;article class="feature"&gt;...&lt;/article&gt;
+            &lt;article class="feature"&gt;...&lt;/article&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+    <h3 data-lang="ru">Cards (галерея товаров):</h3>
+    <h3 data-lang="en">Cards (product gallery):</h3>
+<pre><code>&lt;section class="menu"&gt;
+    &lt;div class="container"&gt;
+        &lt;h2&gt;Меню&lt;/h2&gt;
+        &lt;div class="cards-grid"&gt;
+            &lt;article class="card"&gt;
+                &lt;img src="images/cake-1.jpg" alt="Торт Наполеон" loading="lazy"&gt;
+                &lt;div class="card-body"&gt;
+                    &lt;h3&gt;Наполеон&lt;/h3&gt;
+                    &lt;p&gt;Классический многослойный торт&lt;/p&gt;
+                    &lt;span class="price"&gt;450 TMT&lt;/span&gt;
+                    &lt;a href="#" class="btn btn-primary"&gt;Заказать&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/article&gt;
+            &lt;!-- ещё карточки --&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+    <h3 data-lang="ru">Testimonial (отзыв):</h3>
+    <h3 data-lang="en">Testimonial:</h3>
+<pre><code>&lt;section class="testimonials"&gt;
+    &lt;div class="container"&gt;
+        &lt;h2&gt;Отзывы&lt;/h2&gt;
+        &lt;div class="testimonials-grid"&gt;
+            &lt;article class="testimonial"&gt;
+                &lt;blockquote&gt;«Лучшие торты в городе!»&lt;/blockquote&gt;
+                &lt;div class="author"&gt;
+                    &lt;img src="images/avatar-1.jpg" alt="" loading="lazy"&gt;
+                    &lt;div&gt;
+                        &lt;strong&gt;Айгуль&lt;/strong&gt;
+                        &lt;span&gt;Постоянная клиентка&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/article&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+    <h3 data-lang="ru">CTA (call-to-action):</h3>
+    <h3 data-lang="en">CTA (call-to-action):</h3>
+<pre><code>&lt;section class="cta"&gt;
+    &lt;div class="container"&gt;
+        &lt;h2&gt;Готовы заказать?&lt;/h2&gt;
+        &lt;p&gt;Доставим за 60 минут&lt;/p&gt;
+        &lt;a href="contact.html" class="btn btn-primary btn-lg"&gt;Заказать сейчас&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+    <hr>
+
+    <!-- ==================== FORMS ==================== -->
+    <h2 id="forms" data-lang="ru">8. Формы: labels, input-types, required</h2>
+    <h2 id="forms-en" data-lang="en">8. Forms: labels, input types, required</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Почти любой сайт имеет хотя бы одну форму: контакты, подписка, регистрация. Правильная HTML-форма работает даже без JavaScript: браузер сам валидирует обязательные поля, email, телефон.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Almost every site has at least one form: contact, subscribe, signup. A proper HTML form works even without JavaScript: the browser validates required fields, email, phone.</p>
+    </div>
+
+<pre><code>&lt;form class="contact-form" action="#" method="POST"&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="name"&gt;Имя *&lt;/label&gt;
+        &lt;input type="text" id="name" name="name" required placeholder="Ваше имя"&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+        &lt;label for="email"&gt;Email *&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" required placeholder="you@example.com"&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+        &lt;label for="phone"&gt;Телефон&lt;/label&gt;
+        &lt;input type="tel" id="phone" name="phone" placeholder="+993..."&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+        &lt;label for="message"&gt;Сообщение&lt;/label&gt;
+        &lt;textarea id="message" name="message" rows="4"&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+
+    &lt;div class="form-group"&gt;
+        &lt;label class="checkbox"&gt;
+            &lt;input type="checkbox" required&gt;
+            Согласен с обработкой данных
+        &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;button type="submit" class="btn btn-primary"&gt;Отправить&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут / тип</th><th>Что делает</th></tr>
+        <tr><td><code>&lt;label for="id"&gt;</code></td><td>Привязка к <code>&lt;input id="id"&gt;</code> — клик по label фокусирует input</td></tr>
+        <tr><td><code>type="email"</code></td><td>Мобильная клавиатура с <code>@</code>, валидация формата</td></tr>
+        <tr><td><code>type="tel"</code></td><td>Цифровая клавиатура на мобильном</td></tr>
+        <tr><td><code>type="url"</code></td><td>Валидация URL</td></tr>
+        <tr><td><code>required</code></td><td>Браузер не даст отправить без заполнения</td></tr>
+        <tr><td><code>placeholder="..."</code></td><td>Подсказка внутри поля</td></tr>
+        <tr><td><code>name="..."</code></td><td>Имя для отправки данных на сервер</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute / type</th><th>What it does</th></tr>
+        <tr><td><code>&lt;label for="id"&gt;</code></td><td>Linked to <code>&lt;input id="id"&gt;</code> — clicking label focuses input</td></tr>
+        <tr><td><code>type="email"</code></td><td>Mobile keyboard with <code>@</code>, format validation</td></tr>
+        <tr><td><code>type="tel"</code></td><td>Number keyboard on mobile</td></tr>
+        <tr><td><code>type="url"</code></td><td>URL validation</td></tr>
+        <tr><td><code>required</code></td><td>Browser blocks submit without fill</td></tr>
+        <tr><td><code>placeholder="..."</code></td><td>Hint inside the field</td></tr>
+        <tr><td><code>name="..."</code></td><td>Name for server-side data submission</td></tr>
+    </table>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Не забывайте <code>&lt;label&gt;</code>!</strong> Без неё screen-reader не поймёт, что это за поле. Для мобильных — клик по тексту не фокусирует input. Для стилей — нет связи. Всегда: label + input в паре.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Don't forget <code>&lt;label&gt;</code>!</strong> Without it, a screen reader won't know what the field is for. On mobile — tapping the text won't focus the input. For styles — no connection. Always: label + input pair.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ACCESSIBILITY ==================== -->
+    <h2 id="accessibility" data-lang="ru">9. Accessibility: aria, keyboard-nav</h2>
+    <h2 id="accessibility-en" data-lang="en">9. Accessibility: aria, keyboard nav</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Accessibility (a11y) — это доступность сайта для <strong>всех</strong>: слепых (screen-reader), людей с нарушением моторики (клавиатура вместо мыши), людей с дислексией. По закону во многих странах a11y <strong>обязателен</strong> для коммерческих сайтов. И это <strong>плюс на собеседовании</strong>.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Accessibility (a11y) — making a site available to <strong>everyone</strong>: blind users (screen reader), users with motor impairments (keyboard instead of mouse), users with dyslexia. In many countries a11y is <strong>legally mandatory</strong> for commercial sites. And a <strong>plus at interviews</strong>.</p>
+    </div>
+
+    <h3 data-lang="ru">Минимум, который должен быть:</h3>
+    <h3 data-lang="en">Minimum required:</h3>
+    <ul data-lang="ru">
+        <li><strong><code>lang="ru"</code></strong> на <code>&lt;html&gt;</code> — язык страницы для screen-reader</li>
+        <li><strong><code>alt</code></strong> на всех <code>&lt;img&gt;</code></li>
+        <li><strong><code>&lt;label&gt;</code></strong> для каждого <code>&lt;input&gt;</code></li>
+        <li><strong>Семантические теги</strong> (header, nav, main, footer)</li>
+        <li><strong>Иерархия заголовков</strong> (h1 → h2 → h3)</li>
+        <li><strong>Ссылки понятны вне контекста</strong>: не <code>&lt;a&gt;тут&lt;/a&gt;</code>, а <code>&lt;a&gt;читать статью о X&lt;/a&gt;</code></li>
+        <li><strong>Контраст цветов</strong> — текст чётко виден на фоне (проверка: webaim.org/resources/contrastchecker)</li>
+    </ul>
+    <ul data-lang="en">
+        <li><strong><code>lang="en"</code></strong> on <code>&lt;html&gt;</code> — page language for screen reader</li>
+        <li><strong><code>alt</code></strong> on all <code>&lt;img&gt;</code></li>
+        <li><strong><code>&lt;label&gt;</code></strong> for every <code>&lt;input&gt;</code></li>
+        <li><strong>Semantic tags</strong> (header, nav, main, footer)</li>
+        <li><strong>Heading hierarchy</strong> (h1 → h2 → h3)</li>
+        <li><strong>Links clear out of context</strong>: not <code>&lt;a&gt;here&lt;/a&gt;</code>, but <code>&lt;a&gt;read the article about X&lt;/a&gt;</code></li>
+        <li><strong>Color contrast</strong> — text clearly visible on background (check: webaim.org/resources/contrastchecker)</li>
+    </ul>
+
+    <h3 data-lang="ru">Aria-атрибуты (когда семантики недостаточно):</h3>
+    <h3 data-lang="en">Aria attributes (when semantics aren't enough):</h3>
+<pre><code>&lt;!-- Скрытый для screen-reader'а декоративный элемент --&gt;
+&lt;div aria-hidden="true"&gt;★★★★★&lt;/div&gt;
+
+&lt;!-- Описание для бургер-кнопки --&gt;
+&lt;button aria-label="Открыть меню"&gt;☰&lt;/button&gt;
+
+&lt;!-- Группа связанных элементов --&gt;
+&lt;nav aria-label="Основная навигация"&gt;...&lt;/nav&gt;
+&lt;nav aria-label="Навигация в футере"&gt;...&lt;/nav&gt;
+
+&lt;!-- Текущая страница --&gt;
+&lt;a href="index.html" aria-current="page"&gt;Главная&lt;/a&gt;</code></pre>
+
+    <hr>
+
+    <!-- ==================== ORDER ==================== -->
+    <h2 id="order" data-lang="ru">10. Порядок работы: сверху вниз, страница за страницей</h2>
+    <h2 id="order-en" data-lang="en">10. Work order: top-down, page by page</h2>
+
+    <div class="why" data-lang="ru">
+        <p>У вас 3-5 страниц и 2-3 часа на занятии. Как не утонуть? Чёткий порядок:</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>You have 3-5 pages and 2-3 hours in class. How not to drown? Clear order:</p>
+    </div>
+
+    <ol data-lang="ru">
+        <li><strong>Главная страница</strong> — сначала, потому что она самая сложная. Пишите <strong>сверху вниз</strong>: head → header → hero → все секции → footer.</li>
+        <li><strong>Вторая страница</strong> (например, About) — скопируйте структуру главной (head, header, footer), замените содержимое <code>&lt;main&gt;</code> на секции About.</li>
+        <li><strong>Остальные страницы</strong> — по тому же принципу: копия структуры + свой main.</li>
+        <li><strong>Проверка навигации</strong>: на каждой странице пройдитесь по ссылкам в header. Все должны открывать правильные страницы.</li>
+        <li><strong>Проверка active-класса</strong>: на каждой странице правильная ссылка в меню помечена <code>.active</code>.</li>
+    </ol>
+    <ol data-lang="en">
+        <li><strong>Home page</strong> — first, because it's the most complex. Write <strong>top-down</strong>: head → header → hero → all sections → footer.</li>
+        <li><strong>Second page</strong> (e.g., About) — copy the home structure (head, header, footer), replace <code>&lt;main&gt;</code> content with About sections.</li>
+        <li><strong>Remaining pages</strong> — same principle: copy structure + your main.</li>
+        <li><strong>Check navigation</strong>: on every page click through header links. All should open correct pages.</li>
+        <li><strong>Check active class</strong>: on every page the correct menu link is marked <code>.active</code>.</li>
+    </ol>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Content placeholder.</strong> Если реального текста ещё нет — не пишите «Lorem ipsum». Пишите <strong>реалистичную заглушку</strong>: «Мы — семейная кондитерская в Ашхабаде, работаем с 2023 года. Печём только на натуральных ингредиентах». Такой текст ближе к финальному, и стили сразу будут выглядеть реалистично.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Content placeholder.</strong> If real text isn't ready — don't write "Lorem ipsum". Write a <strong>realistic placeholder</strong>: "We're a family bakery in Ashgabat, working since 2023. Baking only with natural ingredients." Such text is closer to final, and styles look realistic right away.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== PITFALLS ==================== -->
+    <h2 id="pitfalls" data-lang="ru">11. Частые ошибки HTML-разметки</h2>
+    <h2 id="pitfalls-en" data-lang="en">11. Common HTML markup mistakes</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td>Всё через <code>&lt;div&gt;</code></td><td>Семантические теги: header, section, article, footer</td></tr>
+        <tr><td>Несколько <code>&lt;h1&gt;</code> на странице</td><td>Ровно один h1 (обычно в hero)</td></tr>
+        <tr><td>Пропуск уровней: h1 → h3</td><td>Только подряд: h1 → h2 → h3</td></tr>
+        <tr><td><code>&lt;img&gt;</code> без <code>alt</code></td><td>Всегда alt (пустой для декоративных)</td></tr>
+        <tr><td><code>&lt;input&gt;</code> без <code>&lt;label&gt;</code></td><td>Всегда пара label + input с for/id</td></tr>
+        <tr><td>Inline-стили в HTML</td><td>Всё в CSS-файлах</td></tr>
+        <tr><td>Классы ничего не значат: <code>.block1</code>, <code>.red-text</code></td><td>Классы по смыслу: <code>.hero-title</code>, <code>.price</code></td></tr>
+        <tr><td>Header/footer разный на разных страницах</td><td>Строго копия (вплоть до запятой)</td></tr>
+        <tr><td>«Lorem ipsum» вместо реального контента</td><td>Реалистичный текст темы проекта</td></tr>
+        <tr><td>Нет <code>lang="..."</code> на <code>&lt;html&gt;</code></td><td>Всегда указывайте язык</td></tr>
+        <tr><td>Один <code>title</code> на все страницы</td><td>Свой title для каждой: «О нас | Бренд»</td></tr>
+        <tr><td>Ссылки в новую вкладку без <code>rel="noopener"</code></td><td>Всегда <code>target="_blank" rel="noopener"</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td>Everything via <code>&lt;div&gt;</code></td><td>Semantic tags: header, section, article, footer</td></tr>
+        <tr><td>Multiple <code>&lt;h1&gt;</code> on a page</td><td>Exactly one h1 (usually in hero)</td></tr>
+        <tr><td>Skipping levels: h1 → h3</td><td>Only consecutive: h1 → h2 → h3</td></tr>
+        <tr><td><code>&lt;img&gt;</code> without <code>alt</code></td><td>Always alt (empty for decorative)</td></tr>
+        <tr><td><code>&lt;input&gt;</code> without <code>&lt;label&gt;</code></td><td>Always label + input pair with for/id</td></tr>
+        <tr><td>Inline styles in HTML</td><td>Everything in CSS files</td></tr>
+        <tr><td>Meaningless classes: <code>.block1</code>, <code>.red-text</code></td><td>Classes by meaning: <code>.hero-title</code>, <code>.price</code></td></tr>
+        <tr><td>Header/footer differ on different pages</td><td>Strict copy (down to the comma)</td></tr>
+        <tr><td>"Lorem ipsum" instead of real content</td><td>Realistic text of project theme</td></tr>
+        <tr><td>No <code>lang="..."</code> on <code>&lt;html&gt;</code></td><td>Always set language</td></tr>
+        <tr><td>One <code>title</code> for all pages</td><td>Unique title per page: "About | Brand"</td></tr>
+        <tr><td>New-tab links without <code>rel="noopener"</code></td><td>Always <code>target="_blank" rel="noopener"</code></td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ==================== CONSULT ==================== -->
+    <h2 id="consult" data-lang="ru">12. Индивидуальная консультация</h2>
+    <h2 id="consult-en" data-lang="en">12. Individual consultation</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Третий урок занятия — это <strong>ваше время с преподавателем</strong> наедине. Подготовьтесь: покажите работающие HTML-страницы в браузере (уродливо — нормально), принесите список вопросов и сомнений.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>The third lesson slot is <strong>your time with the instructor</strong> one-on-one. Prepare: show working HTML pages in the browser (ugly is fine), bring a list of questions and doubts.</p>
+    </div>
+
+    <h3 data-lang="ru">Что подготовить к консультации:</h3>
+    <h3 data-lang="en">What to prepare for consultation:</h3>
+    <ul data-lang="ru">
+        <li>Все HTML-файлы открыты в браузере (показать структуру)</li>
+        <li>Код в VS Code (преподаватель посмотрит на качество разметки)</li>
+        <li>Figma/wireframes рядом (чтобы сверяться)</li>
+        <li>Список вопросов, на которые не нашли ответ</li>
+        <li>Список <strong>сложных мест</strong>, где не знаете, как правильно</li>
+    </ul>
+    <ul data-lang="en">
+        <li>All HTML files open in the browser (show structure)</li>
+        <li>Code in VS Code (instructor will look at markup quality)</li>
+        <li>Figma/wireframes nearby (for reference)</li>
+        <li>List of questions you couldn't answer yourself</li>
+        <li>List of <strong>tricky spots</strong> where you don't know the right approach</li>
+    </ul>
+
+    <h3 data-lang="ru">Частые вопросы на консультации:</h3>
+    <h3 data-lang="en">Common consultation questions:</h3>
+    <ul data-lang="ru">
+        <li>Этот блок — <code>section</code> или <code>article</code>?</li>
+        <li>Нужен ли <code>&lt;aside&gt;</code> для моей боковой секции?</li>
+        <li>Как лучше назвать класс: <code>.hero-title</code> или <code>.main-heading</code>?</li>
+        <li>На какую страницу должен вести CTA-кнопка?</li>
+        <li>Как правильно сверстать форму с 2 колонками на десктопе?</li>
+        <li>Есть ли мобильный макет, или дизайню сам?</li>
+    </ul>
+    <ul data-lang="en">
+        <li>This block — <code>section</code> or <code>article</code>?</li>
+        <li>Do I need <code>&lt;aside&gt;</code> for my side section?</li>
+        <li>What's a better class name: <code>.hero-title</code> or <code>.main-heading</code>?</li>
+        <li>Which page should the CTA button lead to?</li>
+        <li>How to mark up a form with 2 columns on desktop?</li>
+        <li>Is there a mobile mockup, or do I design it myself?</li>
+    </ul>
+
+    <hr>
+
+    <div class="summary" data-lang="ru">
+        <strong>К концу занятия 31 должно быть готово:</strong>
+        <ul>
+            <li>Все HTML-файлы проекта (3-5 штук)</li>
+            <li>На каждой странице — уникальные meta-теги</li>
+            <li>Одинаковые header и footer скопированы на все страницы</li>
+            <li>Навигация между страницами работает</li>
+            <li>Класс <code>.active</code> на текущей странице в меню</li>
+            <li>Семантическая разметка: header / main / section / article / footer</li>
+            <li>Правильная иерархия заголовков (1 h1 на страницу)</li>
+            <li>Все картинки имеют alt</li>
+            <li>Все input имеют label</li>
+            <li>Реалистичный текст (не Lorem ipsum)</li>
+            <li>Коммит в git: «Add HTML structure for all pages»</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>By the end of Lesson 32 ready:</strong>
+        <ul>
+            <li>All project HTML files (3-5)</li>
+            <li>Each page has unique meta tags</li>
+            <li>Identical header and footer copied across all pages</li>
+            <li>Navigation between pages works</li>
+            <li><code>.active</code> class on current page in menu</li>
+            <li>Semantic markup: header / main / section / article / footer</li>
+            <li>Proper heading hierarchy (1 h1 per page)</li>
+            <li>All images have alt</li>
+            <li>All inputs have label</li>
+            <li>Realistic text (no Lorem ipsum)</li>
+            <li>Git commit: "Add HTML structure for all pages"</li>
+        </ul>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Что должно быть в <code>&lt;head&gt;</code> каждой страницы?</li>
+            <li>Разница между <code>&lt;section&gt;</code> и <code>&lt;article&gt;</code>?</li>
+            <li>Сколько <code>&lt;h1&gt;</code> допустимо на странице?</li>
+            <li>Можно ли пропустить уровни заголовков (h1 → h3)?</li>
+            <li>Как сделать так, чтобы header был одинаков на всех страницах?</li>
+            <li>Зачем нужен <code>loading="lazy"</code> на <code>&lt;img&gt;</code>?</li>
+            <li>Что должно быть у каждого <code>&lt;input&gt;</code> для доступности?</li>
+            <li>Зачем <code>rel="noopener"</code> на ссылках с <code>target="_blank"</code>?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>What should be in <code>&lt;head&gt;</code> of every page?</li>
+            <li>Difference between <code>&lt;section&gt;</code> and <code>&lt;article&gt;</code>?</li>
+            <li>How many <code>&lt;h1&gt;</code> are allowed per page?</li>
+            <li>Can you skip heading levels (h1 → h3)?</li>
+            <li>How do you make the header identical on all pages?</li>
+            <li>Why <code>loading="lazy"</code> on <code>&lt;img&gt;</code>?</li>
+            <li>What should every <code>&lt;input&gt;</code> have for accessibility?</li>
+            <li>Why <code>rel="noopener"</code> on links with <code>target="_blank"</code>?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

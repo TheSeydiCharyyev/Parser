@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 4 — Ссылки, изображения, пути</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #1e293b; background: #f8fafc; padding: 40px 20px; }
+        .container { max-width: 860px; margin: 0 auto; }
+        h1 { font-size: 2.2rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 12px; margin-bottom: 8px; }
+        h2 { font-size: 1.5rem; color: #7e22ce; margin: 48px 0 16px; padding: 10px 16px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 8px 8px 0; }
+        h3 { font-size: 1.25rem; color: #1e3a5f; margin: 28px 0 12px; }
+        .subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 24px; }
+        p { margin: 10px 0; }
+        .highlight { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .important { background: #fef2f2; border-left: 4px solid #ef4444; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy { background: #fff7ed; border-left: 4px solid #f97316; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy::before { content: '🎨 Аналогия'; display: block; font-weight: 700; color: #c2410c; margin-bottom: 6px; }
+        .fun-fact { background: #fdf4ff; border-left: 4px solid #a855f7; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .fun-fact::before { content: '💡 Интересный факт'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 6px; }
+        .try-it { background: #ecfdf5; border: 2px solid #6ee7b7; padding: 16px 20px; margin: 16px 0; border-radius: 10px; }
+        .try-it::before { content: '🔧 Попробуй сам'; display: block; font-weight: 700; color: #059669; margin-bottom: 6px; }
+        .result-box { background: #fff; border: 2px solid #e2e8f0; border-radius: 10px; padding: 20px; margin: 16px 0; }
+        .result-box::before { content: '👁️ Результат в браузере:'; display: block; font-weight: 700; color: #475569; margin-bottom: 10px; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; margin: 14px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        .diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 20px; border-radius: 10px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.5; margin: 16px 0; overflow-x: auto; font-size: 0.88rem; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { padding: 10px 14px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 10px 0 10px 24px; }
+        li { margin: 5px 0; }
+        strong { color: #0f172a; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 40px 0; }
+        .summary { background: #faf5ff; border: 2px solid #d8b4fe; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .summary::before { content: '📋 Итоги раздела'; display: block; font-weight: 700; color: #7e22ce; font-size: 1.1rem; margin-bottom: 10px; }
+        .quiz { background: #fef2f2; border: 2px solid #fca5a5; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .quiz::before { content: '✅ Проверь себя'; display: block; font-weight: 700; color: #dc2626; font-size: 1.1rem; margin-bottom: 10px; }
+        .toc { background: #f1f5f9; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+        .toc-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: #0f172a; }
+        .toc ol { margin: 0 0 0 20px; }
+        .toc li { margin: 6px 0; }
+        .toc a { color: #7e22ce; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+        .compare > div { padding: 16px; border-radius: 8px; }
+        .compare .wrong { background: #fef2f2; border: 2px solid #fca5a5; }
+        .compare .right { background: #f0fdf4; border: 2px solid #86efac; }
+        .compare .label { font-weight: 700; margin-bottom: 8px; }
+        .mistake { background: #fff8f1; border: 2px solid #fdba74; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .mistake::before { content: '🚫 Частая ошибка новичков'; display: block; font-weight: 700; color: #ea580c; font-size: 1.05rem; margin-bottom: 10px; }
+        .pro-tip { background: #f0f9ff; border: 2px solid #7dd3fc; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .pro-tip::before { content: '🏆 Совет профессионала'; display: block; font-weight: 700; color: #0284c7; font-size: 1.05rem; margin-bottom: 10px; }
+        .why { background: #fefce8; border-left: 4px solid #eab308; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .why::before { content: '🤔 Зачем это нужно?'; display: block; font-weight: 700; color: #a16207; margin-bottom: 6px; }
+        .real-world { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .real-world::before { content: '🌍 В реальных проектах'; display: block; font-weight: 700; color: #0f766e; margin-bottom: 6px; }
+        @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 4: Ссылки, изображения, пути</span><span style="color:#cbd5e1;">|</span><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128104;&#8205;&#127979; Лекция</span><a href="student.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127891; Конспект</a><a href="tasks.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128203; Задания</a></div>
+<div class="container">
+
+    <h1>Занятие 4: Ссылки, изображения, пути</h1>
+    <p class="subtitle">Навигация между страницами, работа с изображениями и файловые пути</p>
+
+    <div class="why">
+        <p>Сегодня мы изучим <strong>три кита веб-разработки</strong>: ссылки, изображения и пути к файлам. Без ссылок интернет был бы просто набором изолированных документов. Без изображений сайты были бы скучным текстом. А без понимания путей ваши картинки просто не загрузятся.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Создавать любые виды ссылок: на сайты, email, телефон, якоря</li>
+            <li>Добавлять изображения и правильно описывать их</li>
+            <li>Понимать разницу между абсолютными и относительными путями</li>
+            <li>Создать свой первый многостраничный сайт</li>
+        </ul>
+    </div>
+
+    <div class="toc">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#links-basics">Ссылки — основы</a></li>
+            <li><a href="#links-target">Атрибут target и другие</a></li>
+            <li><a href="#links-types">Виды ссылок</a></li>
+            <li><a href="#anchors">Якорные ссылки</a></li>
+            <li><a href="#paths">Абсолютные и относительные пути</a></li>
+            <li><a href="#images-basics">Изображения — основы</a></li>
+            <li><a href="#images-formats">Форматы изображений</a></li>
+            <li><a href="#images-size">Размеры и оптимизация</a></li>
+            <li><a href="#figure">Подписи к изображениям: figure и figcaption</a></li>
+            <li><a href="#links-images">Изображение-ссылка</a></li>
+            <li><a href="#practice">Практика: многостраничный сайт</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== ССЫЛКИ ОСНОВЫ ===== -->
+    <h2 id="links-basics">1. Ссылки — основы</h2>
+
+    <p>Ссылки — это <strong>фундамент веба</strong>. Само слово «веб» (паутина) происходит от сети ссылок, связывающих страницы между собой. Без ссылок интернет был бы просто набором изолированных документов.</p>
+
+    <p>Ссылка создаётся тегом <code>&lt;a&gt;</code> (от слова <strong>anchor</strong> — якорь):</p>
+
+<pre><code>&lt;a href="https://google.com"&gt;Перейти в Google&lt;/a&gt;</code></pre>
+
+    <p>Разберём по частям:</p>
+    <ul>
+        <li><code>&lt;a&gt;</code> — тег ссылки</li>
+        <li><code>href</code> — атрибут с адресом, куда ведёт ссылка (от <strong>Hypertext REFerence</strong>)</li>
+        <li><code>"https://google.com"</code> — значение: адрес страницы</li>
+        <li><code>Перейти в Google</code> — текст, который видит пользователь (кликабельный)</li>
+    </ul>
+
+    <div class="important">
+        Если забыть атрибут <code>href</code>, тег <code>&lt;a&gt;</code> будет просто текстом — не кликабельным и не синим. <code>href</code> обязателен для ссылки!
+    </div>
+
+    <div class="mistake">
+        <p>Новички часто забывают <code>href</code> или пишут его неправильно:</p>
+<pre><code>&lt;!-- ❌ Без href — не кликабельно --&gt;
+&lt;a&gt;Нажми меня&lt;/a&gt;
+
+&lt;!-- ❌ Опечатка: hrf вместо href --&gt;
+&lt;a hrf="about.html"&gt;О нас&lt;/a&gt;
+
+&lt;!-- ✅ Правильно --&gt;
+&lt;a href="about.html"&gt;О нас&lt;/a&gt;</code></pre>
+    </div>
+
+    <div class="fun-fact">
+        Слово <strong>«гиперссылка»</strong> (hyperlink) придумал Тед Нельсон в 1965 году — за 24 года до того, как Тим Бернерс-Ли создал веб. Концепция ссылок между документами существовала задолго до интернета!
+    </div>
+
+    <hr>
+
+    <!-- ===== TARGET ===== -->
+    <h2 id="links-target">2. Атрибут target и другие</h2>
+
+    <h3>target — где открыть ссылку</h3>
+
+    <table>
+        <tr><th>Значение</th><th>Что делает</th><th>Когда использовать</th></tr>
+        <tr><td><code>_self</code></td><td>Открыть в текущей вкладке (по умолчанию)</td><td>Навигация внутри сайта</td></tr>
+        <tr><td><code>_blank</code></td><td>Открыть в <strong>новой вкладке</strong></td><td>Ссылки на внешние сайты</td></tr>
+    </table>
+
+<pre><code>&lt;!-- Откроется в текущей вкладке (по умолчанию) --&gt;
+&lt;a href="about.html"&gt;О нас&lt;/a&gt;
+
+&lt;!-- Откроется в новой вкладке --&gt;
+&lt;a href="https://youtube.com" target="_blank"&gt;YouTube&lt;/a&gt;</code></pre>
+
+    <div class="highlight">
+        <strong>Правило:</strong> Ссылки на <strong>свой сайт</strong> — в текущей вкладке (<code>_self</code> или без target). Ссылки на <strong>чужие сайты</strong> — в новой вкладке (<code>_blank</code>), чтобы пользователь не ушёл с вашего сайта.
+    </div>
+
+    <div class="real-world">
+        <p>На реальных сайтах все внешние ссылки (на другие сайты, соцсети, документы) всегда открываются в новой вкладке. Попробуйте зайти на любой крупный сайт и кликнуть на ссылку соцсетей в футере — она откроется в новой вкладке.</p>
+    </div>
+
+    <h3>title — подсказка при наведении</h3>
+
+<pre><code>&lt;a href="https://github.com" title="Платформа для разработчиков"&gt;GitHub&lt;/a&gt;</code></pre>
+
+    <p>Если навести мышку и подождать секунду — появится всплывающая подсказка с текстом из <code>title</code>.</p>
+
+    <hr>
+
+    <!-- ===== ВИДЫ ССЫЛОК ===== -->
+    <h2 id="links-types">3. Виды ссылок</h2>
+
+    <table>
+        <tr><th>Тип</th><th>Пример кода</th><th>Что делает</th></tr>
+        <tr>
+            <td><strong>На другой сайт</strong></td>
+            <td><code>&lt;a href="https://google.com"&gt;Google&lt;/a&gt;</code></td>
+            <td>Переход на внешний сайт</td>
+        </tr>
+        <tr>
+            <td><strong>На другую страницу своего сайта</strong></td>
+            <td><code>&lt;a href="about.html"&gt;О нас&lt;/a&gt;</code></td>
+            <td>Переход между своими страницами</td>
+        </tr>
+        <tr>
+            <td><strong>Email (почта)</strong></td>
+            <td><code>&lt;a href="mailto:mail@example.com"&gt;Написать&lt;/a&gt;</code></td>
+            <td>Открывает почтовый клиент</td>
+        </tr>
+        <tr>
+            <td><strong>Телефон</strong></td>
+            <td><code>&lt;a href="tel:+71234567890"&gt;Позвонить&lt;/a&gt;</code></td>
+            <td>На мобильном — звонок</td>
+        </tr>
+        <tr>
+            <td><strong>Скачивание файла</strong></td>
+            <td><code>&lt;a href="file.pdf" download&gt;Скачать PDF&lt;/a&gt;</code></td>
+            <td>Скачивает файл вместо открытия</td>
+        </tr>
+        <tr>
+            <td><strong>Якорная ссылка</strong></td>
+            <td><code>&lt;a href="#section2"&gt;К разделу 2&lt;/a&gt;</code></td>
+            <td>Прокрутка к элементу на той же странице</td>
+        </tr>
+    </table>
+
+<pre><code>&lt;!-- Контактная информация --&gt;
+&lt;p&gt;Телефон: &lt;a href="tel:+79001234567"&gt;+7 (900) 123-45-67&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Почта: &lt;a href="mailto:info@mysite.com"&gt;info@mysite.com&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Документ: &lt;a href="price.pdf" download&gt;Скачать прайс-лист&lt;/a&gt;&lt;/p&gt;</code></pre>
+
+    <div class="pro-tip">
+        <p>В реальных проектах ссылки <code>mailto:</code> и <code>tel:</code> особенно важны для мобильных пользователей. Человек может позвонить одним тапом, не переписывая номер вручную. Это улучшает UX (user experience — пользовательский опыт).</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ЯКОРЯ ===== -->
+    <h2 id="anchors">4. Якорные ссылки</h2>
+
+    <p><strong>Якорные ссылки</strong> позволяют прокручивать страницу к определённому элементу. Это работает в два шага:</p>
+
+    <p><strong>Шаг 1:</strong> Добавьте <code>id</code> к элементу, к которому хотите прокрутить:</p>
+<pre><code>&lt;h2 id="contacts"&gt;Контакты&lt;/h2&gt;</code></pre>
+
+    <p><strong>Шаг 2:</strong> Создайте ссылку с <code>#</code> и именем id:</p>
+<pre><code>&lt;a href="#contacts"&gt;Перейти к контактам&lt;/a&gt;</code></pre>
+
+    <p>При клике страница плавно прокрутится к элементу с <code>id="contacts"</code>.</p>
+
+    <h3>Полный пример: навигация по странице</h3>
+
+<pre><code>&lt;!-- Навигация наверху --&gt;
+&lt;nav&gt;
+    &lt;a href="#about"&gt;О нас&lt;/a&gt; |
+    &lt;a href="#services"&gt;Услуги&lt;/a&gt; |
+    &lt;a href="#contacts"&gt;Контакты&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- Разделы страницы --&gt;
+&lt;h2 id="about"&gt;О нас&lt;/h2&gt;
+&lt;p&gt;Мы команда веб-разработчиков...&lt;/p&gt;
+
+&lt;h2 id="services"&gt;Услуги&lt;/h2&gt;
+&lt;p&gt;Мы создаём сайты...&lt;/p&gt;
+
+&lt;h2 id="contacts"&gt;Контакты&lt;/h2&gt;
+&lt;p&gt;Напишите нам...&lt;/p&gt;</code></pre>
+
+    <div class="analogy">
+        <p><strong>Книга с закладками:</strong> Якорь — это как закладка в книге. Вы ставите закладку (id) на нужной странице, а потом создаёте «оглавление» (ссылки с #), которое сразу перебрасывает вас к нужной закладке.</p>
+    </div>
+
+    <div class="fun-fact">
+        Ссылка <code>&lt;a href="#"&gt;</code> (без имени) прокрутит страницу в самый верх. А <code>&lt;a href="#top"&gt;Наверх&lt;/a&gt;</code> — классический способ добавить кнопку «Наверх» на длинных страницах.
+    </div>
+
+    <div class="try-it">
+        <p>Оглавление в начале этой лекции — это якорные ссылки! Кликните на любой пункт содержания вверху и убедитесь, что страница прокручивается к нужному разделу.</p>
+    </div>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:10px;">Вот как разные виды ссылок выглядят на странице:</p>
+        <div style="background:#f8fafc;padding:16px;border-radius:8px;font-family:Segoe UI,sans-serif;">
+            <p style="margin:0 0 8px;"><a href="#" style="color:#2563eb;text-decoration:underline;">Перейти в Google</a> — обычная ссылка</p>
+            <p style="margin:0 0 8px;"><a href="#" style="color:#2563eb;text-decoration:underline;">📧 info@mysite.com</a> — mailto-ссылка (откроет почту)</p>
+            <p style="margin:0 0 8px;"><a href="#" style="color:#2563eb;text-decoration:underline;">📞 +7 (900) 123-45-67</a> — tel-ссылка (на мобильном — звонок)</p>
+            <p style="margin:0 0 8px;"><a href="#" style="color:#2563eb;text-decoration:underline;">📄 Скачать прайс-лист</a> — ссылка на скачивание</p>
+            <p style="margin:0;"><a href="#" style="color:#2563eb;text-decoration:underline;">⬇️ К контактам</a> — якорная ссылка (прокрутка по странице)</p>
+        </div>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;">Все ссылки выглядят одинаково (синий подчёркнутый текст), но <strong>ведут себя по-разному</strong> благодаря разным значениям <code>href</code>.</p>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li><code>&lt;a href="..."&gt;</code> — ссылка. <code>href</code> обязателен!</li>
+            <li><code>target="_blank"</code> — новая вкладка (для внешних сайтов)</li>
+            <li>Виды: на сайт, на страницу, <code>mailto:</code>, <code>tel:</code>, <code>download</code>, якорь (<code>#id</code>)</li>
+            <li>Якорные ссылки: <code>id="name"</code> на элементе + <code>href="#name"</code> на ссылке</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p>Мысленно ответьте:</p>
+        <ol>
+            <li>Какой атрибут обязателен для ссылки? <em>(<code>href</code>)</em></li>
+            <li>Как создать ссылку на email? <em>(<code>href="mailto:info@mail.com"</code>)</em></li>
+            <li>Как открыть ссылку в новой вкладке? <em>(<code>target="_blank"</code>)</em></li>
+            <li>Как создать якорную ссылку к элементу с <code>id="about"</code>? <em>(<code>href="#about"</code>)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== ПУТИ ===== -->
+    <h2 id="paths">5. Абсолютные и относительные пути</h2>
+
+    <p>Когда вы указываете адрес в <code>href</code> или <code>src</code>, вы указываете <strong>путь</strong> к файлу. Есть два типа путей:</p>
+
+    <h3>Абсолютный путь</h3>
+
+    <p>Полный адрес, начинающийся с <code>https://</code>. Используется для ссылок на <strong>другие сайты</strong>:</p>
+
+<pre><code>&lt;a href="https://www.youtube.com/watch?v=abc123"&gt;Видео&lt;/a&gt;
+&lt;img src="https://example.com/images/photo.jpg" alt="Фото"&gt;</code></pre>
+
+    <h3>Относительный путь</h3>
+
+    <p>Путь относительно <strong>текущего файла</strong>. Используется для файлов <strong>внутри вашего проекта</strong>:</p>
+
+<pre><code>&lt;!-- Файл в той же папке --&gt;
+&lt;a href="about.html"&gt;О нас&lt;/a&gt;
+&lt;img src="logo.png" alt="Логотип"&gt;
+
+&lt;!-- Файл в подпапке --&gt;
+&lt;img src="images/photo.jpg" alt="Фото"&gt;
+&lt;a href="pages/contacts.html"&gt;Контакты&lt;/a&gt;
+
+&lt;!-- Файл на уровень выше --&gt;
+&lt;a href="../index.html"&gt;На главную&lt;/a&gt;
+&lt;img src="../images/logo.png" alt="Логотип"&gt;</code></pre>
+
+    <h3>Структура проекта и пути</h3>
+
+    <p>Представим, что ваш проект выглядит так:</p>
+
+    <div class="diagram">
+my-site/
+├── index.html
+├── about.html
+├── images/
+│   ├── logo.png
+│   ├── hero.jpg
+│   └── team/
+│       └── ivan.jpg
+├── pages/
+│   ├── contacts.html
+│   └── services.html
+└── css/
+    └── style.css</div>
+
+    <p>Если вы находитесь в <code>index.html</code>:</p>
+    <table>
+        <tr><th>Куда ссылаемся</th><th>Путь</th></tr>
+        <tr><td>about.html (та же папка)</td><td><code>about.html</code></td></tr>
+        <tr><td>logo.png (подпапка images)</td><td><code>images/logo.png</code></td></tr>
+        <tr><td>ivan.jpg (вложенная подпапка)</td><td><code>images/team/ivan.jpg</code></td></tr>
+        <tr><td>contacts.html (подпапка pages)</td><td><code>pages/contacts.html</code></td></tr>
+        <tr><td>style.css (подпапка css)</td><td><code>css/style.css</code></td></tr>
+    </table>
+
+    <p>Если вы находитесь в <code>pages/contacts.html</code>:</p>
+    <table>
+        <tr><th>Куда ссылаемся</th><th>Путь</th></tr>
+        <tr><td>index.html (папка выше)</td><td><code>../index.html</code></td></tr>
+        <tr><td>about.html (папка выше)</td><td><code>../about.html</code></td></tr>
+        <tr><td>logo.png (папка выше, потом images)</td><td><code>../images/logo.png</code></td></tr>
+        <tr><td>services.html (та же папка)</td><td><code>services.html</code></td></tr>
+    </table>
+
+    <div class="analogy">
+        <p><strong>Адрес дома:</strong></p>
+        <ul>
+            <li><strong>Абсолютный путь</strong> = полный адрес: «Россия, Москва, ул. Тверская, д. 1». Работает из любой точки мира.</li>
+            <li><strong>Относительный путь</strong> = «соседний дом справа». Работает только если вы знаете, где находитесь.</li>
+            <li><code>../</code> = «выйти из подъезда» (подняться на уровень выше)</li>
+        </ul>
+    </div>
+
+    <div class="important">
+        <strong>Правило:</strong> Для файлов <strong>своего проекта</strong> всегда используйте относительные пути. Для ссылок на <strong>чужие сайты</strong> — абсолютные (с https://).
+    </div>
+
+    <div class="mistake">
+        <p>Новички часто путают пути, когда файл находится в подпапке:</p>
+<pre><code>&lt;!-- ❌ Из pages/contacts.html — неправильно --&gt;
+&lt;img src="images/logo.png" alt="Логотип"&gt;
+&lt;!-- Браузер ищет pages/images/logo.png — такого нет! --&gt;
+
+&lt;!-- ✅ Из pages/contacts.html — правильно --&gt;
+&lt;img src="../images/logo.png" alt="Логотип"&gt;
+&lt;!-- Сначала выходим из pages/ через ../, потом заходим в images/ --&gt;</code></pre>
+    </div>
+
+    <div class="quiz">
+        <p>Файловая структура:</p>
+        <div class="diagram">my-site/
+├── index.html
+├── images/
+│   └── logo.png
+└── pages/
+    └── about.html</div>
+        <ol>
+            <li>Из <code>index.html</code> — путь к <code>logo.png</code>? <em>(<code>images/logo.png</code>)</em></li>
+            <li>Из <code>pages/about.html</code> — путь к <code>logo.png</code>? <em>(<code>../images/logo.png</code>)</em></li>
+            <li>Из <code>pages/about.html</code> — путь к <code>index.html</code>? <em>(<code>../index.html</code>)</em></li>
+            <li>Ссылка на YouTube — абсолютный или относительный путь? <em>(Абсолютный — <code>https://youtube.com</code>)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== ИЗОБРАЖЕНИЯ ОСНОВЫ ===== -->
+    <h2 id="images-basics">6. Изображения — основы</h2>
+
+    <p>Изображения добавляются тегом <code>&lt;img&gt;</code>. Это одиночный тег (без закрывающего):</p>
+
+<pre><code>&lt;img src="images/photo.jpg" alt="Описание фото"&gt;</code></pre>
+
+    <h3>Обязательные атрибуты</h3>
+
+    <table>
+        <tr><th>Атрибут</th><th>Что делает</th><th>Обязателен?</th></tr>
+        <tr><td><code>src</code></td><td>Путь к файлу изображения (source)</td><td><strong>Да</strong></td></tr>
+        <tr><td><code>alt</code></td><td>Альтернативный текст — описание картинки</td><td><strong>Да</strong></td></tr>
+        <tr><td><code>width</code></td><td>Ширина в пикселях</td><td>Рекомендуется</td></tr>
+        <tr><td><code>height</code></td><td>Высота в пикселях</td><td>Рекомендуется</td></tr>
+    </table>
+
+    <h3>Зачем нужен атрибут alt</h3>
+
+    <p>Атрибут <code>alt</code> описывает, что изображено на картинке. Он нужен в трёх ситуациях:</p>
+    <ol>
+        <li><strong>Картинка не загрузилась</strong> — пользователь увидит текст из alt вместо пустого места</li>
+        <li><strong>Скринридеры</strong> — программы для слабовидящих людей озвучивают alt</li>
+        <li><strong>SEO</strong> — поисковые системы «читают» alt, чтобы понять, что на картинке</li>
+    </ol>
+
+    <div class="why">
+        <p>Атрибут <code>alt</code> — это не просто формальность. Представьте: слабовидящий человек использует скринридер (программу, которая озвучивает содержимое страницы). Без alt он услышит «картинка» — и не поймёт, что на ней. С хорошим alt он узнает, что изображено.</p>
+    </div>
+
+    <div class="compare">
+        <div class="right">
+            <div class="label">&#10003; Хороший alt:</div>
+<pre><code>&lt;img src="cat.jpg"
+     alt="Рыжий кот спит на подоконнике"&gt;
+
+&lt;img src="logo.png"
+     alt="Логотип компании TechStart"&gt;</code></pre>
+        </div>
+        <div class="wrong">
+            <div class="label">&#10007; Плохой alt:</div>
+<pre><code>&lt;img src="cat.jpg" alt="фото"&gt;
+&lt;img src="cat.jpg" alt="картинка"&gt;
+&lt;img src="cat.jpg" alt=""&gt;
+&lt;img src="cat.jpg"&gt;</code></pre>
+        </div>
+    </div>
+
+    <div class="important">
+        <strong>Всегда</strong> указывайте атрибут <code>alt</code>! Даже если не хочется — это не опция, а стандарт веб-разработки. Исключение: декоративные изображения (фоновые узоры) — для них можно <code>alt=""</code>.
+    </div>
+
+    <hr>
+
+    <!-- ===== ФОРМАТЫ ===== -->
+    <h2 id="images-formats">7. Форматы изображений</h2>
+
+    <table>
+        <tr><th>Формат</th><th>Расширение</th><th>Для чего</th><th>Особенности</th></tr>
+        <tr>
+            <td><strong>JPEG</strong></td>
+            <td><code>.jpg</code>, <code>.jpeg</code></td>
+            <td>Фотографии</td>
+            <td>Сжатие с потерей качества. Маленький размер. Нет прозрачности.</td>
+        </tr>
+        <tr>
+            <td><strong>PNG</strong></td>
+            <td><code>.png</code></td>
+            <td>Логотипы, иконки, скриншоты</td>
+            <td>Без потери качества. Поддерживает <strong>прозрачность</strong>. Больше размер.</td>
+        </tr>
+        <tr>
+            <td><strong>GIF</strong></td>
+            <td><code>.gif</code></td>
+            <td>Простые анимации</td>
+            <td>Анимированные картинки. Максимум 256 цветов.</td>
+        </tr>
+        <tr>
+            <td><strong>SVG</strong></td>
+            <td><code>.svg</code></td>
+            <td>Иконки, логотипы, графики</td>
+            <td><strong>Векторный</strong> формат — не теряет качество при масштабировании.</td>
+        </tr>
+        <tr>
+            <td><strong>WebP</strong></td>
+            <td><code>.webp</code></td>
+            <td>Универсальный</td>
+            <td>Современный формат от Google. Лучшее сжатие. Есть прозрачность и анимация.</td>
+        </tr>
+    </table>
+
+    <div class="highlight">
+        <strong>Совет:</strong>
+        <ul>
+            <li><strong>Фото</strong> → JPEG или WebP</li>
+            <li><strong>Логотипы, иконки</strong> (нужна прозрачность) → PNG или SVG</li>
+            <li><strong>Анимации</strong> → GIF или WebP</li>
+            <li><strong>Иконки, графики</strong> (масштабируемые) → SVG</li>
+        </ul>
+    </div>
+
+    <div class="fun-fact">
+        Формат <strong>SVG</strong> — это на самом деле XML-код (похож на HTML). Вы можете открыть SVG-файл в текстовом редакторе и увидеть код, описывающий фигуры, линии и цвета. А ещё SVG можно стилизовать через CSS!
+    </div>
+
+    <div class="real-world">
+        <p>В 2024-2025 годах WebP стал стандартом для фотографий в вебе. Крупные сайты (Google, YouTube, Facebook) давно перешли на WebP, потому что он на 25-35% легче JPEG при том же качестве. Если ваш проект коммерческий — используйте WebP.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== РАЗМЕРЫ ===== -->
+    <h2 id="images-size">8. Размеры и оптимизация</h2>
+
+    <h3>Указание размеров</h3>
+
+<pre><code>&lt;!-- Фиксированные размеры --&gt;
+&lt;img src="photo.jpg" alt="Фото" width="400" height="300"&gt;
+
+&lt;!-- Только ширина (высота автоматически) --&gt;
+&lt;img src="photo.jpg" alt="Фото" width="400"&gt;
+
+&lt;!-- Через CSS (рекомендуется) --&gt;
+&lt;img src="photo.jpg" alt="Фото" style="width: 100%; max-width: 600px;"&gt;</code></pre>
+
+    <div class="highlight">
+        <strong>Зачем указывать width и height?</strong> Когда браузер загружает страницу, он сначала показывает текст, а потом загружает картинки. Если размеры не указаны, текст «прыгает» при загрузке каждой картинки. С указанными размерами браузер заранее резервирует место.
+    </div>
+
+    <h3>Оптимизация изображений</h3>
+
+    <p>Тяжёлые изображения замедляют загрузку сайта. Правила оптимизации:</p>
+
+    <ul>
+        <li><strong>Не загружайте фото с камеры напрямую</strong> — оригинал может весить 5-10 МБ. Для веба достаточно 100-500 КБ.</li>
+        <li><strong>Уменьшите разрешение</strong> — для веба обычно хватает 1200-1920px по ширине.</li>
+        <li><strong>Сжимайте</strong> — используйте онлайн-сервисы (TinyPNG, Squoosh).</li>
+        <li><strong>Выбирайте правильный формат</strong> — JPEG для фото, PNG для логотипов.</li>
+    </ul>
+
+    <div class="analogy">
+        <p><strong>Чемодан:</strong> Если вы летите с ручной кладью — не берёте 50 кг вещей. Вы берёте самое нужное и компактное. То же с картинками: не грузите на сайт фото в 4000x3000 пикселей, если оно отображается размером 400x300.</p>
+    </div>
+
+    <div class="pro-tip">
+        <p>Используйте сервис <strong>Squoosh.app</strong> (от Google) — он бесплатный и работает прямо в браузере. Перетащите туда изображение, выберите формат WebP, настройте качество (обычно 75-80% достаточно) и скачайте сжатую версию. Размер файла уменьшится в 3-5 раз!</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== FIGURE ===== -->
+    <h2 id="figure">9. Подписи к изображениям: figure и figcaption</h2>
+
+    <p>Для изображений с подписью есть специальные семантические теги:</p>
+
+<pre><code>&lt;figure&gt;
+    &lt;img src="images/sunset.jpg" alt="Закат над морем" width="600"&gt;
+    &lt;figcaption&gt;Закат на Чёрном море, лето 2025&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+
+    <ul>
+        <li><code>&lt;figure&gt;</code> — контейнер для изображения и его подписи</li>
+        <li><code>&lt;figcaption&gt;</code> — подпись к изображению</li>
+    </ul>
+
+    <p>Это семантически правильный способ связать картинку с подписью. Браузер и поисковики понимают, что подпись относится именно к этому изображению.</p>
+
+    <div class="real-world">
+        <p>Теги <code>&lt;figure&gt;</code> и <code>&lt;figcaption&gt;</code> используются не только для фотографий. Ими можно оборачивать графики, диаграммы, примеры кода и даже цитаты — всё, что нуждается в подписи.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ИЗОБРАЖЕНИЕ-ССЫЛКА ===== -->
+    <h2 id="links-images">10. Изображение-ссылка</h2>
+
+    <p>Можно сделать изображение кликабельным, обернув <code>&lt;img&gt;</code> в <code>&lt;a&gt;</code>:</p>
+
+<pre><code>&lt;!-- Клик по картинке → переход на страницу --&gt;
+&lt;a href="https://youtube.com" target="_blank"&gt;
+    &lt;img src="images/youtube-logo.png" alt="YouTube" width="200"&gt;
+&lt;/a&gt;
+
+&lt;!-- Клик по фото → открытие полноразмерной версии --&gt;
+&lt;a href="images/photo-full.jpg" target="_blank"&gt;
+    &lt;img src="images/photo-thumb.jpg" alt="Нажмите для увеличения" width="300"&gt;
+&lt;/a&gt;</code></pre>
+
+    <p>Это часто используется для логотипов (клик по логотипу → на главную), галерей (клик по превью → полная картинка) и баннеров.</p>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:10px;">Вот как figure + figcaption и изображение-ссылка выглядят на практике:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div style="text-align:center;">
+                <div style="font-size:0.8rem;font-weight:600;color:#64748b;margin-bottom:6px;">figure + figcaption:</div>
+                <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
+                    <div style="background:#dbeafe;height:80px;display:flex;align-items:center;justify-content:center;color:#1d4ed8;font-weight:600;">🖼️ Картинка</div>
+                    <div style="padding:8px;font-size:0.8rem;color:#64748b;font-style:italic;">Закат на Чёрном море, 2025</div>
+                </div>
+            </div>
+            <div style="text-align:center;">
+                <div style="font-size:0.8rem;font-weight:600;color:#64748b;margin-bottom:6px;">Кликабельная картинка-ссылка:</div>
+                <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;cursor:pointer;">
+                    <div style="background:#fee2e2;height:80px;display:flex;align-items:center;justify-content:center;font-weight:600;gap:6px;"><span style="font-size:1.5rem;">▶️</span> <span style="color:#dc2626;">YouTube</span></div>
+                    <div style="padding:8px;font-size:0.8rem;color:#2563eb;">← Клик откроет YouTube</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li><code>&lt;img src="..." alt="..."&gt;</code> — изображение. <code>alt</code> обязателен (SEO + доступность)</li>
+            <li>Форматы: JPEG (фото), PNG (прозрачность), SVG (вектор), WebP (современный), GIF (анимация)</li>
+            <li>Указывайте <code>width</code>/<code>height</code> — чтобы страница не «прыгала»</li>
+            <li><code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code> — семантическая подпись к картинке</li>
+            <li><code>&lt;a&gt;&lt;img&gt;&lt;/a&gt;</code> — кликабельная картинка (логотипы, баннеры, галереи)</li>
+        </ul>
+    </div>
+
+    <div class="pro-tip">
+        <p>На профессиональных сайтах логотип в шапке <strong>всегда</strong> является ссылкой на главную страницу. Это негласный стандарт веба — пользователи привыкли, что клик по логотипу возвращает на главную.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ПРАКТИКА ===== -->
+    <h2 id="practice">11. Практика: страница с навигацией и изображениями</h2>
+
+    <p>Соберём всё вместе. Создайте проект с такой структурой:</p>
+
+    <div class="diagram">
+my-site/
+├── index.html
+├── about.html
+├── gallery.html
+└── images/
+    ├── logo.png
+    ├── hero.jpg
+    ├── photo1.jpg
+    ├── photo2.jpg
+    └── photo3.jpg</div>
+
+    <p><strong>index.html:</strong></p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Мой сайт — Главная&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;!-- Навигация --&gt;
+    &lt;nav&gt;
+        &lt;a href="index.html"&gt;Главная&lt;/a&gt; |
+        &lt;a href="about.html"&gt;О нас&lt;/a&gt; |
+        &lt;a href="gallery.html"&gt;Галерея&lt;/a&gt; |
+        &lt;a href="#contacts"&gt;Контакты&lt;/a&gt;
+    &lt;/nav&gt;
+
+    &lt;hr&gt;
+
+    &lt;!-- Логотип-ссылка --&gt;
+    &lt;a href="index.html"&gt;
+        &lt;img src="images/logo.png" alt="Логотип" width="150"&gt;
+    &lt;/a&gt;
+
+    &lt;h1&gt;Добро пожаловать!&lt;/h1&gt;
+
+    &lt;!-- Главное изображение --&gt;
+    &lt;figure&gt;
+        &lt;img src="images/hero.jpg" alt="Красивый пейзаж" width="700"&gt;
+        &lt;figcaption&gt;Природа нашего края&lt;/figcaption&gt;
+    &lt;/figure&gt;
+
+    &lt;p&gt;Это мой сайт, созданный на курсе &lt;strong&gt;HTML/CSS&lt;/strong&gt;.&lt;/p&gt;
+
+    &lt;hr&gt;
+
+    &lt;!-- Контакты --&gt;
+    &lt;h2 id="contacts"&gt;Контакты&lt;/h2&gt;
+    &lt;p&gt;Телефон: &lt;a href="tel:+79001234567"&gt;+7 (900) 123-45-67&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;Почта: &lt;a href="mailto:info@mysite.com"&gt;info@mysite.com&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href="https://youtube.com" target="_blank"&gt;Наш YouTube&lt;/a&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="try-it">
+        <ol>
+            <li>Создайте этот проект</li>
+            <li>Найдите 3-5 бесплатных изображений (на сайтах unsplash.com или pexels.com) и сохраните в папку <code>images/</code></li>
+            <li>Создайте <code>about.html</code> и <code>gallery.html</code> с навигацией</li>
+            <li>Убедитесь, что все ссылки между страницами работают</li>
+            <li>Проверьте, что все картинки загружаются</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <h2>Итоги занятия</h2>
+
+    <div class="summary">
+        <ul>
+            <li><code>&lt;a href="..."&gt;</code> — ссылка. <code>href</code> — адрес. <code>target="_blank"</code> — новая вкладка</li>
+            <li>Виды ссылок: на сайт, на страницу, email (<code>mailto:</code>), телефон (<code>tel:</code>), скачивание (<code>download</code>)</li>
+            <li>Якорные ссылки: <code>id="name"</code> на элементе + <code>href="#name"</code> на ссылке</li>
+            <li><strong>Абсолютный путь</strong>: <code>https://example.com/image.jpg</code> — для чужих сайтов</li>
+            <li><strong>Относительный путь</strong>: <code>images/photo.jpg</code>, <code>../index.html</code> — для своего проекта</li>
+            <li><code>&lt;img src="..." alt="..."&gt;</code> — изображение. <code>alt</code> обязателен!</li>
+            <li>Форматы: JPEG (фото), PNG (прозрачность), SVG (вектор), WebP (современный), GIF (анимация)</li>
+            <li><code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code> — картинка с подписью</li>
+            <li>Изображение-ссылка: <code>&lt;a&gt;&lt;img&gt;&lt;/a&gt;</code></li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <ol>
+            <li>Какой атрибут тега <code>&lt;a&gt;</code> указывает адрес ссылки?</li>
+            <li>Как открыть ссылку в новой вкладке?</li>
+            <li>Как создать ссылку на email? На телефон?</li>
+            <li>Что такое якорная ссылка и как она работает?</li>
+            <li>Чем отличается абсолютный путь от относительного?</li>
+            <li>Что означает <code>../</code> в пути к файлу?</li>
+            <li>Зачем нужен атрибут <code>alt</code> у изображений?</li>
+            <li>Какой формат использовать для фотографий? Для логотипов с прозрачностью?</li>
+            <li>Как сделать картинку кликабельной (ссылкой)?</li>
+            <li>Для чего нужны теги <code>&lt;figure&gt;</code> и <code>&lt;figcaption&gt;</code>?</li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

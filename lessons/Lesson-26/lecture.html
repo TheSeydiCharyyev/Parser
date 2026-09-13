@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 26 — Bootstrap: компоненты и проект</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 26: Bootstrap — компоненты и проект</span>
+    <span class="nav-title" data-lang="en">Lesson 26: Bootstrap — Components and Project</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 26: Bootstrap — компоненты и проект</h1>
+    <h1 data-lang="en">Lesson 26: Bootstrap — Components and Project</h1>
+    <p class="subtitle" data-lang="ru">Navbar, Cards, Carousel, Modal, Forms — и собираем лендинг</p>
+    <p class="subtitle" data-lang="en">Navbar, Cards, Carousel, Modal, Forms — and building a landing page</p>
+
+    <div class="why" data-lang="ru">
+        <p>В 24-м уроке мы освоили <strong>основу</strong> Bootstrap: сетка, кнопки, утилиты, цвета. Но самое мощное в Bootstrap — это его <strong>компоненты</strong>: готовые интерактивные блоки. Navbar с автоматическим бургер-меню. Карусель со стрелками и автопрокруткой. Модальные окна. Accordion для FAQ. Всё это — без единой строчки JavaScript с вашей стороны.</p>
+        <p>Компоненты используют <strong>data-атрибуты</strong> (<code>data-bs-toggle</code>, <code>data-bs-target</code>) — Bootstrap JS читает их и делает всю логику сам. Для вас — просто HTML с правильными классами.</p>
+        <p>Этот урок — последний перед большим финальным проектом. В 26-м уроке вы соберёте полноценный лендинг из всего, что изучили. Сегодня — арсенал.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Собрать адаптивную навигацию с бургером за 30 секунд (navbar)</li>
+            <li>Использовать карточки (card) как основной строительный блок</li>
+            <li>Добавлять карусели (carousel) и модалки (modal) без JavaScript</li>
+            <li>Стилизовать формы одним классом (<code>form-control</code>)</li>
+            <li>Делать уведомления (alerts), бейджи, аккордеон (FAQ)</li>
+            <li>Подключать 2000+ иконок Bootstrap Icons</li>
+            <li>Собирать лендинг из готовых компонентов как из конструктора</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>In lesson 24 we learned Bootstrap <strong>fundamentals</strong>: grid, buttons, utilities, colors. But the most powerful feature of Bootstrap is its <strong>components</strong>: ready interactive blocks. Navbar with automatic burger menu. Carousel with arrows and auto-play. Modals. Accordion for FAQ. All without a single line of JavaScript from you.</p>
+        <p>Components use <strong>data attributes</strong> (<code>data-bs-toggle</code>, <code>data-bs-target</code>) — Bootstrap JS reads them and handles the logic. For you — just HTML with the right classes.</p>
+        <p>This is the last lesson before the big final project. In lesson 26 you'll build a full landing page from everything you've learned. Today — the arsenal.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Build a responsive burger nav in 30 seconds (navbar)</li>
+            <li>Use cards as the main building block</li>
+            <li>Add carousels and modals without JavaScript</li>
+            <li>Style forms with one class (<code>form-control</code>)</li>
+            <li>Create alerts, badges, accordion (FAQ)</li>
+            <li>Use 2000+ Bootstrap Icons</li>
+            <li>Assemble a landing page from ready components like building blocks</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#navbar">Navbar — навигационная панель</a></li>
+            <li><a href="#cards">Cards — карточки</a></li>
+            <li><a href="#carousel">Carousel — карусель</a></li>
+            <li><a href="#modal">Modal — модальное окно</a></li>
+            <li><a href="#forms">Forms — формы</a></li>
+            <li><a href="#alerts">Alerts и Badges</a></li>
+            <li><a href="#accordion">Accordion</a></li>
+            <li><a href="#icons">Bootstrap Icons</a></li>
+            <li><a href="#landing">Собираем лендинг на Bootstrap</a></li>
+            <li><a href="#practice">Создание своего лендинга</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#navbar">Navbar — navigation bar</a></li>
+            <li><a href="#cards">Cards</a></li>
+            <li><a href="#carousel">Carousel</a></li>
+            <li><a href="#modal">Modal</a></li>
+            <li><a href="#forms">Forms</a></li>
+            <li><a href="#alerts">Alerts and Badges</a></li>
+            <li><a href="#accordion">Accordion</a></li>
+            <li><a href="#icons">Bootstrap Icons</a></li>
+            <li><a href="#landing">Building a Bootstrap landing page</a></li>
+            <li><a href="#practice">Creating your own landing page</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <h2 id="navbar" data-lang="ru">1. Navbar — навигационная панель</h2>
+    <h2 id="navbar-en" data-lang="en">1. Navbar — navigation bar</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Помните, сколько CSS мы писали для бургер-меню в 20-м уроке? Checkbox hack, <code>:checked ~ .nav</code>, 3 span с rotate на крестик... В Bootstrap <strong>всё это уже готово</strong>. Вы пишете HTML с правильными классами (<code>navbar</code>, <code>navbar-expand-lg</code>) — и получаете полнофункциональную адаптивную навигацию с бургер-меню, анимацией сворачивания и автоматическим скрытием на мобильном.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Remember how much CSS we wrote for the burger menu in lesson 20? Checkbox hack, <code>:checked ~ .nav</code>, 3 spans with rotate to cross... In Bootstrap <strong>it's all ready</strong>. You write HTML with the right classes (<code>navbar</code>, <code>navbar-expand-lg</code>) — and get fully functional responsive nav with burger menu, collapse animation, and automatic mobile hiding.</p>
+    </div>
+
+    <p data-lang="ru">Bootstrap Navbar — <strong>готовая адаптивная навигация</strong> с бургер-меню. Не нужен checkbox hack!</p>
+    <p data-lang="en">Bootstrap Navbar — <strong>ready-made responsive navigation</strong> with burger menu. No checkbox hack needed!</p>
+
+<pre><code>&lt;nav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt;
+    &lt;div class="container"&gt;
+        &lt;a class="navbar-brand" href="#"&gt;MySite&lt;/a&gt;
+
+        &lt;!-- Бургер-кнопка (автоматически на мобильном) --&gt;
+        &lt;button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navMenu"&gt;
+            &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;!-- Меню (сворачивается на мобильном) --&gt;
+        &lt;div class="collapse navbar-collapse" id="navMenu"&gt;
+            &lt;ul class="navbar-nav ms-auto"&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a class="nav-link active" href="#"&gt;Home&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a class="nav-link" href="#"&gt;About&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a class="nav-link" href="#"&gt;Contact&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Класс</th><th>Что делает</th></tr>
+        <tr><td><code>navbar-expand-lg</code></td><td>Горизонтально с lg (992px), бургер ниже</td></tr>
+        <tr><td><code>navbar-dark</code></td><td>Светлый текст (для тёмного фона)</td></tr>
+        <tr><td><code>bg-dark</code></td><td>Тёмный фон</td></tr>
+        <tr><td><code>navbar-brand</code></td><td>Лого/название</td></tr>
+        <tr><td><code>navbar-toggler</code></td><td>Бургер-кнопка</td></tr>
+        <tr><td><code>collapse navbar-collapse</code></td><td>Сворачиваемое меню</td></tr>
+        <tr><td><code>ms-auto</code></td><td>Меню прижимается вправо</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Class</th><th>What it does</th></tr>
+        <tr><td><code>navbar-expand-lg</code></td><td>Horizontal from lg (992px), burger below</td></tr>
+        <tr><td><code>navbar-dark</code></td><td>Light text (for dark background)</td></tr>
+        <tr><td><code>bg-dark</code></td><td>Dark background</td></tr>
+        <tr><td><code>navbar-brand</code></td><td>Logo/name</td></tr>
+        <tr><td><code>navbar-toggler</code></td><td>Burger button</td></tr>
+        <tr><td><code>collapse navbar-collapse</code></td><td>Collapsible menu</td></tr>
+        <tr><td><code>ms-auto</code></td><td>Menu pushed to right</td></tr>
+    </table>
+
+    <div class="important" data-lang="ru">
+        <strong>data-bs-toggle="collapse"</strong> и <strong>data-bs-target="#navMenu"</strong> — это Bootstrap JS. Бургер работает автоматически, без вашего JavaScript!
+    </div>
+    <div class="important" data-lang="en">
+        <strong>data-bs-toggle="collapse"</strong> and <strong>data-bs-target="#navMenu"</strong> — this is Bootstrap JS. The burger works automatically, no custom JavaScript needed!
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Три частые ошибки при работе с navbar:</strong></p>
+        <ol>
+            <li><code>data-bs-target="#navMenu"</code> и <code>id="navMenu"</code> <strong>должны совпадать</strong>. Если опечатка — бургер не сработает.</li>
+            <li>Забыли подключить Bootstrap <strong>JS</strong> перед <code>&lt;/body&gt;</code>. CSS без JS = мёртвый бургер.</li>
+            <li>Используете <code>navbar-light</code> на тёмном фоне (или наоборот) — текст нечитаем. Правило: <code>navbar-dark bg-dark</code> или <code>navbar-light bg-light</code>.</li>
+        </ol>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Three common navbar mistakes:</strong></p>
+        <ol>
+            <li><code>data-bs-target="#navMenu"</code> and <code>id="navMenu"</code> <strong>must match</strong>. Typo = burger doesn't work.</li>
+            <li>Forgot to include Bootstrap <strong>JS</strong> before <code>&lt;/body&gt;</code>. CSS without JS = dead burger.</li>
+            <li>Using <code>navbar-light</code> on dark background (or vice versa) — text unreadable. Rule: <code>navbar-dark bg-dark</code> or <code>navbar-light bg-light</code>.</li>
+        </ol>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Breakpoint у <code>navbar-expand-*</code>.</strong> <code>navbar-expand-lg</code> значит: «становится горизонтальной с 992px, до — бургер». Варианты: <code>sm</code> (576px), <code>md</code> (768px), <code>lg</code> (992px), <code>xl</code> (1200px). Если ссылок много — используйте <code>xl</code>, чтобы бургер появлялся позже.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Breakpoint on <code>navbar-expand-*</code>.</strong> <code>navbar-expand-lg</code> means: "becomes horizontal from 992px, below — burger". Options: <code>sm</code> (576px), <code>md</code> (768px), <code>lg</code> (992px), <code>xl</code> (1200px). Many links — use <code>xl</code> so the burger shows up later.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CARDS ==================== -->
+    <h2 id="cards" data-lang="ru">2. Cards — карточки</h2>
+    <h2 id="cards-en" data-lang="en">2. Cards</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Карточка — <strong>строительный блок №1</strong> современного веба. Товары в магазине, посты в блоге, участники команды, тарифы, отзывы — всё делается карточками. Bootstrap предоставляет структуру <code>card</code> → <code>card-body</code> → <code>card-title</code>/<code>card-text</code>/<code>card-footer</code>. Готовые отступы, границы, скругления.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>A card is the <strong>#1 building block</strong> of the modern web. Products in stores, blog posts, team members, pricing plans, testimonials — all done with cards. Bootstrap provides the <code>card</code> → <code>card-body</code> → <code>card-title</code>/<code>card-text</code>/<code>card-footer</code> structure. Ready spacing, borders, rounding.</p>
+    </div>
+
+<pre><code>&lt;div class="card"&gt;
+    &lt;img src="https://picsum.photos/400/200" class="card-img-top" alt="..."&gt;
+    &lt;div class="card-body"&gt;
+        &lt;h5 class="card-title"&gt;Card Title&lt;/h5&gt;
+        &lt;p class="card-text"&gt;Some quick example text.&lt;/p&gt;
+        &lt;a href="#" class="btn btn-primary"&gt;Go somewhere&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Карточка с header и footer --&gt;
+&lt;div class="card"&gt;
+    &lt;div class="card-header"&gt;Featured&lt;/div&gt;
+    &lt;div class="card-body"&gt;
+        &lt;h5 class="card-title"&gt;Title&lt;/h5&gt;
+        &lt;p class="card-text"&gt;Text content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="card-footer text-muted"&gt;2 days ago&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <p data-lang="ru">Карточки — самый используемый компонент Bootstrap. Сетка карточек:</p>
+    <p data-lang="en">Cards — the most used Bootstrap component. Card grid:</p>
+
+<pre><code>&lt;div class="row g-4"&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;
+        &lt;div class="card h-100"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- ещё карточки --&gt;
+&lt;/div&gt;</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong><code>h-100</code></strong> на карточке делает все карточки в строке <strong>одинаковой высоты</strong>. Без этого карточки с разным количеством текста будут разной высоты.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong><code>h-100</code></strong> on the card makes all cards in a row <strong>equal height</strong>. Without it, cards with different text amounts will have different heights.
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Карточки — каркас, а не стены.</strong> Bootstrap даёт «скелет» карточки: рамку, скругление, отступы. Чтобы карточка выглядела «вашей» — добавьте: <code>shadow-sm</code> (лёгкая тень), <code>border-0</code> (убрать рамку), свой цвет фона. Карточка без теней выглядит дёшево, с теней — премиум.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Cards are the frame, not the walls.</strong> Bootstrap gives the card "skeleton": border, rounding, padding. To make it feel "yours" — add: <code>shadow-sm</code> (light shadow), <code>border-0</code> (remove border), your own bg color. Cards without shadows look cheap, with shadows — premium.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CAROUSEL ==================== -->
+    <h2 id="carousel" data-lang="ru">3. Carousel — карусель</h2>
+    <h2 id="carousel-en" data-lang="en">3. Carousel</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Карусель = автоматически переключающиеся слайды. Часто используется для hero-секции ресторана (фото блюд), отзывов клиентов, баннеров. На чистом JS это 100+ строк кода — в Bootstrap несколько <code>&lt;div&gt;</code> с правильными классами.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>A carousel = auto-switching slides. Often used for restaurant hero (dish photos), client testimonials, banners. In pure JS that's 100+ lines of code — in Bootstrap just a few <code>&lt;div&gt;</code>s with the right classes.</p>
+    </div>
+
+<pre><code>&lt;div id="myCarousel" class="carousel slide" data-bs-ride="carousel"&gt;
+    &lt;!-- Индикаторы --&gt;
+    &lt;div class="carousel-indicators"&gt;
+        &lt;button data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"&gt;&lt;/button&gt;
+        &lt;button data-bs-target="#myCarousel" data-bs-slide-to="1"&gt;&lt;/button&gt;
+        &lt;button data-bs-target="#myCarousel" data-bs-slide-to="2"&gt;&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Слайды --&gt;
+    &lt;div class="carousel-inner"&gt;
+        &lt;div class="carousel-item active"&gt;
+            &lt;img src="https://picsum.photos/1200/400?random=1" class="d-block w-100" alt=""&gt;
+            &lt;div class="carousel-caption"&gt;
+                &lt;h5&gt;Slide 1&lt;/h5&gt;
+                &lt;p&gt;Description&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="carousel-item"&gt;
+            &lt;img src="https://picsum.photos/1200/400?random=2" class="d-block w-100" alt=""&gt;
+        &lt;/div&gt;
+        &lt;div class="carousel-item"&gt;
+            &lt;img src="https://picsum.photos/1200/400?random=3" class="d-block w-100" alt=""&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Стрелки --&gt;
+    &lt;button class="carousel-control-prev" data-bs-target="#myCarousel" data-bs-slide="prev"&gt;
+        &lt;span class="carousel-control-prev-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;button class="carousel-control-next" data-bs-target="#myCarousel" data-bs-slide="next"&gt;
+        &lt;span class="carousel-control-next-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+    <div class="fun-fact" data-lang="ru">
+        <p>Карусель автоматически переключает слайды (<code>data-bs-ride="carousel"</code>). Стрелки и индикаторы работают через Bootstrap JS.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p>Carousel auto-switches slides (<code>data-bs-ride="carousel"</code>). Arrows and indicators work via Bootstrap JS.</p>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Карусели — спорный паттерн.</strong> UX-исследования (Nielsen Norman Group) показывают: пользователи <strong>редко</strong> смотрят дальше первого слайда. Если делаете hero-карусель — делайте её <strong>медленной</strong> (<code>data-bs-interval="5000"</code> = 5 секунд) и ставьте самое важное на первый слайд. А лучше — hero-секция со статичным фоном + разделитель + карусель только для отзывов или галереи.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Carousels are a controversial pattern.</strong> UX research (Nielsen Norman Group) shows: users <strong>rarely</strong> look past the first slide. If you do a hero carousel — make it <strong>slow</strong> (<code>data-bs-interval="5000"</code> = 5s) and put the most important thing on slide 1. Better yet — static hero background + carousel only for testimonials or gallery.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== MODAL ==================== -->
+    <h2 id="modal" data-lang="ru">4. Modal — модальное окно</h2>
+    <h2 id="modal-en" data-lang="en">4. Modal</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Модальное окно — это «всплывашка» поверх страницы с затемнённым фоном. Используется для: формы регистрации, подтверждения удаления («Вы уверены?»), диалога «Заказать звонок». Преимущество перед отдельной страницей: пользователь не теряет контекст.</p>
+        <p>Bootstrap даёт полноценный модал с затемнением, анимацией появления, закрытием по клавише Escape и клику вне окна — бесплатно.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>A modal is a "popup" over the page with a dimmed background. Used for: signup form, delete confirmation ("Are you sure?"), "Request a call" dialog. Advantage over a separate page: user doesn't lose context.</p>
+        <p>Bootstrap gives a full modal with dimming, fade-in animation, Escape-key closing, and click-outside dismiss — for free.</p>
+    </div>
+
+<pre><code>&lt;!-- Кнопка открытия --&gt;
+&lt;button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"&gt;
+    Open Modal
+&lt;/button&gt;
+
+&lt;!-- Модальное окно --&gt;
+&lt;div class="modal fade" id="myModal"&gt;
+    &lt;div class="modal-dialog"&gt;
+        &lt;div class="modal-content"&gt;
+            &lt;div class="modal-header"&gt;
+                &lt;h5 class="modal-title"&gt;Modal Title&lt;/h5&gt;
+                &lt;button class="btn-close" data-bs-dismiss="modal"&gt;&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-body"&gt;
+                &lt;p&gt;Modal content goes here...&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-footer"&gt;
+                &lt;button class="btn btn-secondary" data-bs-dismiss="modal"&gt;Close&lt;/button&gt;
+                &lt;button class="btn btn-primary"&gt;Save&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>Связка кнопка ↔ модал</strong> идёт через <code>data-bs-target="#myModal"</code> на кнопке и <code>id="myModal"</code> на модале. <code>data-bs-dismiss="modal"</code> — закрывает (например, на кнопке «Отмена» или крестик).
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Button-modal link</strong> is via <code>data-bs-target="#myModal"</code> on the button and <code>id="myModal"</code> on the modal. <code>data-bs-dismiss="modal"</code> — closes (e.g., on "Cancel" button or close icon).
+    </div>
+
+    <hr>
+
+    <!-- ==================== FORMS ==================== -->
+    <h2 id="forms" data-lang="ru">5. Forms — формы</h2>
+    <h2 id="forms-en" data-lang="en">5. Forms</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Стилизовать формы вручную — мучительно: input, textarea, select, radio, checkbox — у каждого свои странности кросс-браузерности. Bootstrap решает это одним классом: <code>form-control</code>. Все инпуты получают единообразный вид, focus-состояние с синей обводкой, правильные размеры.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Styling forms by hand is painful: input, textarea, select, radio, checkbox — each has cross-browser quirks. Bootstrap solves it with one class: <code>form-control</code>. All inputs get uniform look, focus state with blue outline, proper sizing.</p>
+    </div>
+
+<pre><code>&lt;form&gt;
+    &lt;div class="mb-3"&gt;
+        &lt;label for="name" class="form-label"&gt;Name&lt;/label&gt;
+        &lt;input type="text" class="form-control" id="name" placeholder="Your name"&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3"&gt;
+        &lt;label for="email" class="form-label"&gt;Email&lt;/label&gt;
+        &lt;input type="email" class="form-control" id="email" placeholder="name@example.com"&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3"&gt;
+        &lt;label for="message" class="form-label"&gt;Message&lt;/label&gt;
+        &lt;textarea class="form-control" id="message" rows="3"&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div class="mb-3 form-check"&gt;
+        &lt;input type="checkbox" class="form-check-input" id="agree"&gt;
+        &lt;label class="form-check-label" for="agree"&gt;I agree&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+    <p data-lang="ru"><code>form-control</code> — стилизованный input. <code>form-label</code> — label. <code>mb-3</code> — отступ между полями.</p>
+    <p data-lang="en"><code>form-control</code> — styled input. <code>form-label</code> — label. <code>mb-3</code> — spacing between fields.</p>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Форма в две колонки</strong> (name + email в один ряд): используйте сетку внутри формы.</p>
+<pre><code>&lt;form&gt;
+    &lt;div class="row g-3 mb-3"&gt;
+        &lt;div class="col-md-6"&gt;
+            &lt;label class="form-label"&gt;Name&lt;/label&gt;
+            &lt;input type="text" class="form-control"&gt;
+        &lt;/div&gt;
+        &lt;div class="col-md-6"&gt;
+            &lt;label class="form-label"&gt;Email&lt;/label&gt;
+            &lt;input type="email" class="form-control"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+        <p>На мобильном — стопка, на десктопе — два поля в ряд.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Two-column form</strong> (name + email in one row): use grid inside the form.</p>
+<pre><code>&lt;form&gt;
+    &lt;div class="row g-3 mb-3"&gt;
+        &lt;div class="col-md-6"&gt;
+            &lt;label class="form-label"&gt;Name&lt;/label&gt;
+            &lt;input type="text" class="form-control"&gt;
+        &lt;/div&gt;
+        &lt;div class="col-md-6"&gt;
+            &lt;label class="form-label"&gt;Email&lt;/label&gt;
+            &lt;input type="email" class="form-control"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+        <p>On mobile — stack, on desktop — two fields in a row.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ALERTS ==================== -->
+    <h2 id="alerts" data-lang="ru">6. Alerts и Badges</h2>
+    <h2 id="alerts-en" data-lang="en">6. Alerts and Badges</h2>
+
+    <div class="why" data-lang="ru">
+        <p><strong>Alert</strong> — уведомление-плашка: «Данные сохранены», «Ошибка отправки», «Внимание: обновите пароль». Цвет = смысл (success/danger/warning/info). <strong>Badge</strong> — маленькая метка: «New», «Hot», «99+». Ставится рядом с заголовками, в счётчиках уведомлений.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p><strong>Alert</strong> — a notification bar: "Data saved", "Send failed", "Notice: update password". Color = meaning (success/danger/warning/info). <strong>Badge</strong> — a small label: "New", "Hot", "99+". Placed next to headings, in notification counters.</p>
+    </div>
+
+<pre><code>&lt;!-- Alerts --&gt;
+&lt;div class="alert alert-success"&gt;Success message!&lt;/div&gt;
+&lt;div class="alert alert-danger"&gt;Error message!&lt;/div&gt;
+&lt;div class="alert alert-warning alert-dismissible fade show"&gt;
+    Warning!
+    &lt;button class="btn-close" data-bs-dismiss="alert"&gt;&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Badges --&gt;
+&lt;span class="badge bg-primary"&gt;New&lt;/span&gt;
+&lt;span class="badge bg-danger"&gt;Hot&lt;/span&gt;
+&lt;span class="badge rounded-pill bg-success"&gt;99+&lt;/span&gt;</code></pre>
+
+    <hr>
+
+    <!-- ==================== ACCORDION ==================== -->
+    <h2 id="accordion" data-lang="ru">7. Accordion</h2>
+    <h2 id="accordion-en" data-lang="en">7. Accordion</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Accordion = раскрывающиеся блоки. Идеальный компонент для <strong>FAQ</strong> (частых вопросов): вопрос-заголовок, клик — открывается ответ. Экономит место: 20 вопросов в свёрнутом виде помещаются на пол-экрана.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Accordion = expandable blocks. Perfect component for <strong>FAQ</strong>: question-heading, click — answer opens. Saves space: 20 questions collapsed fit on half a screen.</p>
+    </div>
+
+<pre><code>&lt;div class="accordion" id="faqAccordion"&gt;
+    &lt;div class="accordion-item"&gt;
+        &lt;h2 class="accordion-header"&gt;
+            &lt;button class="accordion-button" data-bs-toggle="collapse"
+                    data-bs-target="#faq1"&gt;Question 1?&lt;/button&gt;
+        &lt;/h2&gt;
+        &lt;div id="faq1" class="accordion-collapse collapse show"
+             data-bs-parent="#faqAccordion"&gt;
+            &lt;div class="accordion-body"&gt;Answer 1...&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="accordion-item"&gt;
+        &lt;h2 class="accordion-header"&gt;
+            &lt;button class="accordion-button collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#faq2"&gt;Question 2?&lt;/button&gt;
+        &lt;/h2&gt;
+        &lt;div id="faq2" class="accordion-collapse collapse"
+             data-bs-parent="#faqAccordion"&gt;
+            &lt;div class="accordion-body"&gt;Answer 2...&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <hr>
+
+    <!-- ==================== ICONS ==================== -->
+    <h2 id="icons" data-lang="ru">8. Bootstrap Icons</h2>
+    <h2 id="icons-en" data-lang="en">8. Bootstrap Icons</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Иконки нужны везде: в меню, кнопках, списках, футере. Раньше разработчики использовали Font Awesome, но сейчас для Bootstrap-проектов лучше Bootstrap Icons — они <strong>бесплатны</strong> (Font Awesome — платный с 2018 года для коммерческого использования), имеют 2000+ SVG и идеально интегрируются с Bootstrap-классами.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Icons are needed everywhere: in menus, buttons, lists, footers. Earlier, devs used Font Awesome, but now for Bootstrap projects Bootstrap Icons is better — they're <strong>free</strong> (Font Awesome has been paid since 2018 for commercial use), have 2000+ SVGs, and integrate perfectly with Bootstrap classes.</p>
+    </div>
+
+<pre><code>&lt;!-- Подключение (в head) --&gt;
+&lt;link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"&gt;
+
+&lt;!-- Использование --&gt;
+&lt;i class="bi bi-house"&gt;&lt;/i&gt; Home
+&lt;i class="bi bi-envelope"&gt;&lt;/i&gt; Email
+&lt;i class="bi bi-telephone"&gt;&lt;/i&gt; Phone
+&lt;i class="bi bi-facebook"&gt;&lt;/i&gt;
+&lt;i class="bi bi-instagram"&gt;&lt;/i&gt;
+
+&lt;!-- С размером --&gt;
+&lt;i class="bi bi-star-fill fs-3 text-warning"&gt;&lt;/i&gt;</code></pre>
+
+    <p data-lang="ru">Более 2000 иконок на <strong>icons.getbootstrap.com</strong>.</p>
+    <p data-lang="en">Over 2000 icons at <strong>icons.getbootstrap.com</strong>.</p>
+
+    <hr>
+
+    <!-- ==================== ЛЕНДИНГ ==================== -->
+    <h2 id="landing" data-lang="ru">9. Собираем лендинг на Bootstrap</h2>
+    <h2 id="landing-en" data-lang="en">9. Building a Bootstrap landing page</h2>
+
+    <p data-lang="ru">Структура лендинга из готовых компонентов:</p>
+    <p data-lang="en">Landing page structure from ready components:</p>
+
+    <table data-lang="ru">
+        <tr><th>Секция</th><th>Компонент Bootstrap</th></tr>
+        <tr><td>Header</td><td><code>navbar navbar-expand-lg</code></td></tr>
+        <tr><td>Hero</td><td><code>carousel</code> или <code>bg-primary text-white py-5 text-center</code></td></tr>
+        <tr><td>Features</td><td><code>row</code> + <code>col-md-4</code> + Bootstrap Icons</td></tr>
+        <tr><td>Cards</td><td><code>card h-100</code> в <code>row g-4</code></td></tr>
+        <tr><td>Testimonials</td><td><code>carousel</code> с текстовыми отзывами</td></tr>
+        <tr><td>FAQ</td><td><code>accordion</code></td></tr>
+        <tr><td>Contact</td><td><code>form-control</code> + <code>row</code></td></tr>
+        <tr><td>CTA</td><td><code>modal</code> с формой подписки</td></tr>
+        <tr><td>Footer</td><td><code>bg-dark text-white</code> + <code>row</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Section</th><th>Bootstrap Component</th></tr>
+        <tr><td>Header</td><td><code>navbar navbar-expand-lg</code></td></tr>
+        <tr><td>Hero</td><td><code>carousel</code> or <code>bg-primary text-white py-5 text-center</code></td></tr>
+        <tr><td>Features</td><td><code>row</code> + <code>col-md-4</code> + Bootstrap Icons</td></tr>
+        <tr><td>Cards</td><td><code>card h-100</code> in <code>row g-4</code></td></tr>
+        <tr><td>Testimonials</td><td><code>carousel</code> with text reviews</td></tr>
+        <tr><td>FAQ</td><td><code>accordion</code></td></tr>
+        <tr><td>Contact</td><td><code>form-control</code> + <code>row</code></td></tr>
+        <tr><td>CTA</td><td><code>modal</code> with signup form</td></tr>
+        <tr><td>Footer</td><td><code>bg-dark text-white</code> + <code>row</code></td></tr>
+    </table>
+
+    <div class="summary" data-lang="ru">
+        <strong>Компоненты Bootstrap:</strong>
+        <ul>
+            <li><code>navbar</code> — адаптивная навигация с бургером (автоматически!)</li>
+            <li><code>card</code> — карточка (img-top, body, title, text, footer)</li>
+            <li><code>carousel</code> — слайдер с автопереключением</li>
+            <li><code>modal</code> — всплывающее окно</li>
+            <li><code>form-control</code> — стилизованные input/textarea</li>
+            <li><code>alert</code> — уведомления (success, danger, warning)</li>
+            <li><code>badge</code> — бейджи</li>
+            <li><code>accordion</code> — сворачиваемые блоки (FAQ)</li>
+            <li>Bootstrap Icons — 2000+ иконок</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>Bootstrap Components:</strong>
+        <ul>
+            <li><code>navbar</code> — responsive navigation with burger (automatic!)</li>
+            <li><code>card</code> — card (img-top, body, title, text, footer)</li>
+            <li><code>carousel</code> — slider with auto-switch</li>
+            <li><code>modal</code> — popup window</li>
+            <li><code>form-control</code> — styled input/textarea</li>
+            <li><code>alert</code> — notifications (success, danger, warning)</li>
+            <li><code>badge</code> — badges</li>
+            <li><code>accordion</code> — collapsible blocks (FAQ)</li>
+            <li>Bootstrap Icons — 2000+ icons</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">10. Создание своего лендинга</h2>
+    <h2 id="practice-en" data-lang="en">10. Creating your own landing page</h2>
+
+    <p data-lang="ru">Создайте лендинг, собирая его из готовых Bootstrap-компонентов как из конструктора.</p>
+    <p data-lang="en">Build a landing page by assembling it from ready Bootstrap components like building blocks.</p>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Как создать адаптивную навигацию на Bootstrap?</li>
+            <li>Что делает <code>data-bs-toggle="collapse"</code>?</li>
+            <li>Как сделать карточки одинаковой высоты?</li>
+            <li>Какой компонент нужен для слайдера изображений?</li>
+            <li>Как открыть модальное окно по клику на кнопку?</li>
+            <li>Как стилизовать input через Bootstrap?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>How to create responsive navigation with Bootstrap?</li>
+            <li>What does <code>data-bs-toggle="collapse"</code> do?</li>
+            <li>How to make cards equal height?</li>
+            <li>Which component is needed for an image slider?</li>
+            <li>How to open a modal on button click?</li>
+            <li>How to style input with Bootstrap?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

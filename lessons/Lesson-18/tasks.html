@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 18 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 18: CSS Grid — продвинутый</span>
+    <span class="nav-title" data-lang="en">Lesson 18: CSS Grid — Advanced</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 18: CSS Grid — продвинутый</p>
+    <p class="subtitle" data-lang="en">Lesson 18: CSS Grid — Advanced</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 18.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 18.1: GRID-COLUMN И GRID-ROW</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 18.1: GRID-COLUMN AND GRID-ROW</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 17.1: Объединение ячеек</span>
+            <span class="task-title" data-lang="en">Task 17.1: Merging cells</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться размещать элементы по линиям и объединять ячейки</div>
+        <div class="task-goal" data-lang="en">Learn to place items by lines and merge cells</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>grid-span.html</code>. Сделайте Grid 4 столбца x 3 строки с 8 цветными блоками. Настройте:</p>
+        <p data-lang="en">Create a file <code>grid-span.html</code>. Make a Grid of 4 columns x 3 rows with 8 colored blocks. Configure:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Блок 1:</strong> <code>grid-column: span 2</code> — занимает 2 столбца</li>
+            <li><strong>Блок 2:</strong> <code>grid-row: span 2</code> — занимает 2 строки</li>
+            <li><strong>Блок 5:</strong> <code>grid-column: span 3</code> — занимает 3 столбца</li>
+            <li><strong>Блок 7:</strong> <code>grid-column: 1 / -1</code> — от первой до последней линии (вся строка)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Block 1:</strong> <code>grid-column: span 2</code> — spans 2 columns</li>
+            <li><strong>Block 2:</strong> <code>grid-row: span 2</code> — spans 2 rows</li>
+            <li><strong>Block 5:</strong> <code>grid-column: span 3</code> — spans 3 columns</li>
+            <li><strong>Block 7:</strong> <code>grid-column: 1 / -1</code> — from first to last line (full row)</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <code>grid-column: 1 / -1</code> — отрицательная линия <code>-1</code> означает «последняя линия». Полезно, когда не хочется считать количество столбцов!
+        </div>
+        <div class="hint" data-lang="en">
+            <code>grid-column: 1 / -1</code> — negative line <code>-1</code> means "last line". Useful when you don't want to count columns!
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Grid 4x3 с gap</li>
+                <li>Блоки разных размеров (span 2, span 3, полная строка)</li>
+                <li>Каждый блок — свой цвет фона</li>
+                <li>Номера блоков отображаются в каждом</li>
+            </ul>
+            <ul data-lang="en">
+                <li>4x3 Grid with gap</li>
+                <li>Blocks of different sizes (span 2, span 3, full row)</li>
+                <li>Each block has its own background color</li>
+                <li>Block numbers displayed in each one</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 18.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 18.2: ИМЕНОВАННЫЕ ОБЛАСТИ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 18.2: NAMED AREAS</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 17.2: Макет страницы с grid-template-areas</span>
+            <span class="task-title" data-lang="en">Task 17.2: Page layout with grid-template-areas</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать макет страницы с помощью именованных областей</div>
+        <div class="task-goal" data-lang="en">Create a page layout using named areas</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>grid-layout</code> с файлами <code>index.html</code> и <code>style.css</code>. Сделайте классический макет:</p>
+        <p data-lang="en">Create a folder <code>grid-layout</code> with files <code>index.html</code> and <code>style.css</code>. Build a classic layout:</p>
+
+<pre><code>grid-template-areas:
+    "header  header"
+    "sidebar content"
+    "footer  footer";</code></pre>
+
+        <ol data-lang="ru">
+            <li><strong>Grid-контейнер:</strong> <code>grid-template-columns: 250px 1fr</code>, <code>min-height: 100vh</code></li>
+            <li><strong>Header:</strong> высота 60px, фон <code>#1e293b</code>, белый текст, Flexbox внутри (<code>justify-content: space-between</code>)</li>
+            <li><strong>Sidebar:</strong> фон <code>#f1f5f9</code>, padding 20px, 5 ссылок в столбец (Flexbox)</li>
+            <li><strong>Content:</strong> padding 24px, заголовок + 2 параграфа текста</li>
+            <li><strong>Footer:</strong> высота 50px, фон <code>#1e293b</code>, белый текст, текст по центру</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Grid container:</strong> <code>grid-template-columns: 250px 1fr</code>, <code>min-height: 100vh</code></li>
+            <li><strong>Header:</strong> height 60px, background <code>#1e293b</code>, white text, Flexbox inside (<code>justify-content: space-between</code>)</li>
+            <li><strong>Sidebar:</strong> background <code>#f1f5f9</code>, padding 20px, 5 links in column (Flexbox)</li>
+            <li><strong>Content:</strong> padding 24px, heading + 2 paragraphs of text</li>
+            <li><strong>Footer:</strong> height 50px, background <code>#1e293b</code>, white text, centered text</li>
+        </ol>
+
+        <div class="example" data-lang="ru">
+<pre><code>&lt;div class="page"&gt;
+    &lt;header class="header"&gt;...&lt;/header&gt;
+    &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+    &lt;main class="content"&gt;...&lt;/main&gt;
+    &lt;footer class="footer"&gt;...&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+        <div class="example" data-lang="en">
+<pre><code>&lt;div class="page"&gt;
+    &lt;header class="header"&gt;...&lt;/header&gt;
+    &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+    &lt;main class="content"&gt;...&lt;/main&gt;
+    &lt;footer class="footer"&gt;...&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Используется <code>grid-template-areas</code></li>
+                <li>Каждый элемент привязан через <code>grid-area</code></li>
+                <li>Макет занимает 100vh</li>
+                <li>Header и Footer — Flexbox для центрирования</li>
+                <li>Sidebar — Flexbox column для ссылок</li>
+                <li>CSS в отдельном файле</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Uses <code>grid-template-areas</code></li>
+                <li>Each element assigned via <code>grid-area</code></li>
+                <li>Layout fills 100vh</li>
+                <li>Header and Footer — Flexbox for centering</li>
+                <li>Sidebar — Flexbox column for links</li>
+                <li>CSS in separate file</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 18.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 18.3: DASHBOARD</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 18.3: DASHBOARD</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 17.3: Dashboard-макет</span>
+            <span class="task-title" data-lang="en">Task 17.3: Dashboard layout</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать Dashboard с Grid-областями и виджетами</div>
+        <div class="task-goal" data-lang="en">Create a Dashboard with Grid areas and widgets</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте папку <code>dashboard</code> с файлами <code>index.html</code> и <code>style.css</code>. Сделайте Dashboard:</p>
+        <p data-lang="en">Create a folder <code>dashboard</code> with files <code>index.html</code> and <code>style.css</code>. Build a Dashboard:</p>
+
+        <h3 data-lang="ru">Структура (grid-template-areas):</h3>
+        <h3 data-lang="en">Structure (grid-template-areas):</h3>
+
+<pre><code>"sidebar header  header"
+"sidebar main    aside"
+"sidebar main    aside"</code></pre>
+
+        <ol data-lang="ru">
+            <li><strong>Общий Grid:</strong> <code>grid-template-columns: 220px 1fr 280px</code>, <code>grid-template-rows: 60px 1fr 1fr</code>, <code>min-height: 100vh</code></li>
+            <li><strong>Sidebar (220px):</strong> фон <code>#1e293b</code>, белый текст, лого сверху + 4 ссылки навигации (Flexbox column)</li>
+            <li><strong>Header (60px):</strong> фон белый, тень снизу, текст «Dashboard» + кнопка справа (Flexbox)</li>
+            <li><strong>Main:</strong> фон <code>#f1f5f9</code>, padding 20px, внутри Grid-сетка из <strong>4 виджетов</strong>:
+                <ul>
+                    <li>Виджеты: белые карточки с <code>border-radius: 12px</code>, <code>padding: 20px</code>, <code>box-shadow</code></li>
+                    <li>Сетка виджетов: <code>repeat(auto-fit, minmax(200px, 1fr))</code></li>
+                    <li>Первый виджет: <code>grid-column: span 2</code> (широкий)</li>
+                </ul>
+            </li>
+            <li><strong>Aside (280px):</strong> фон белый, border-left, padding 20px, заголовок «Notifications» + 3 уведомления</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Overall Grid:</strong> <code>grid-template-columns: 220px 1fr 280px</code>, <code>grid-template-rows: 60px 1fr 1fr</code>, <code>min-height: 100vh</code></li>
+            <li><strong>Sidebar (220px):</strong> background <code>#1e293b</code>, white text, logo on top + 4 nav links (Flexbox column)</li>
+            <li><strong>Header (60px):</strong> white background, bottom shadow, "Dashboard" text + button on right (Flexbox)</li>
+            <li><strong>Main:</strong> background <code>#f1f5f9</code>, padding 20px, inside a Grid of <strong>4 widgets</strong>:
+                <ul>
+                    <li>Widgets: white cards with <code>border-radius: 12px</code>, <code>padding: 20px</code>, <code>box-shadow</code></li>
+                    <li>Widget grid: <code>repeat(auto-fit, minmax(200px, 1fr))</code></li>
+                    <li>First widget: <code>grid-column: span 2</code> (wide)</li>
+                </ul>
+            </li>
+            <li><strong>Aside (280px):</strong> white background, border-left, padding 20px, "Notifications" title + 3 notifications</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Совет: используйте Grid для общего макета (sidebar, header, main, aside) и вложенный Grid для виджетов внутри main. Навигацию в sidebar делайте через Flexbox.
+        </div>
+        <div class="hint" data-lang="en">
+            Tip: use Grid for the overall layout (sidebar, header, main, aside) and a nested Grid for widgets inside main. Make sidebar navigation with Flexbox.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li><code>grid-template-areas</code> для общего макета</li>
+                <li>Sidebar занимает все строки (3 ряда)</li>
+                <li>Вложенный Grid для виджетов в main</li>
+                <li>Первый виджет = <code>span 2</code></li>
+                <li>Flexbox для sidebar-навигации и header</li>
+                <li>Карточки виджетов с тенями</li>
+                <li>CSS в отдельном файле</li>
+            </ul>
+            <ul data-lang="en">
+                <li><code>grid-template-areas</code> for overall layout</li>
+                <li>Sidebar spans all rows (3 rows)</li>
+                <li>Nested Grid for widgets in main</li>
+                <li>First widget = <code>span 2</code></li>
+                <li>Flexbox for sidebar navigation and header</li>
+                <li>Widget cards with shadows</li>
+                <li>CSS in separate file</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 17.4: Журнальная сетка</span>
+            <span class="task-title" data-lang="en">Task 17.4: Magazine grid</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать сетку статей в стиле журнала с помощью span</div>
+        <div class="task-goal" data-lang="en">Create a magazine-style article grid using span</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте сетку из <strong>7 карточек статей</strong> в стиле журнала/новостного сайта:</p>
+        <p data-lang="en">Create a grid of <strong>7 article cards</strong> in magazine/news site style:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Grid:</strong> <code>grid-template-columns: repeat(4, 1fr)</code>, <code>gap: 16px</code></li>
+            <li><strong>Карточка «Featured»:</strong> <code>grid-column: span 2; grid-row: span 2</code> — большая карточка в левом верхнем углу</li>
+            <li><strong>2 маленькие карточки</strong> справа от Featured (обычный размер 1x1)</li>
+            <li><strong>4 карточки</strong> в нижнем ряду (каждая 1x1)</li>
+            <li>Каждая карточка: изображение (picsum.photos), заголовок, короткое описание, дата</li>
+            <li><strong>Hover:</strong> <code>transform: translateY(-4px)</code> + <code>box-shadow</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Grid:</strong> <code>grid-template-columns: repeat(4, 1fr)</code>, <code>gap: 16px</code></li>
+            <li><strong>"Featured" card:</strong> <code>grid-column: span 2; grid-row: span 2</code> — large card in top-left</li>
+            <li><strong>2 small cards</strong> to the right of Featured (regular 1x1 size)</li>
+            <li><strong>4 cards</strong> in the bottom row (each 1x1)</li>
+            <li>Each card: image (picsum.photos), title, short description, date</li>
+            <li><strong>Hover:</strong> <code>transform: translateY(-4px)</code> + <code>box-shadow</code></li>
+        </ol>
+
+        <div class="example">
+            <div class="diagram" data-lang="ru">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;             &#x2502;  #2  &#x2502;  #3  &#x2502;
+    &#x2502;  #1 FEATURED &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;  (span 2x2)  &#x2502;             &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;  #4  &#x2502;  #5  &#x2502;  #6  &#x2502;  #7  &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+            <div class="diagram" data-lang="en">
+    &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+    &#x2502;             &#x2502;  #2  &#x2502;  #3  &#x2502;
+    &#x2502;  #1 FEATURED &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;  (span 2x2)  &#x2502;             &#x2502;
+    &#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x253C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+    &#x2502;  #4  &#x2502;  #5  &#x2502;  #6  &#x2502;  #7  &#x2502;
+    &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</div>
+        </div>
+
+        <div class="hint" data-lang="ru">
+            Для Featured-карточки используйте большое изображение (<code>height: 100%; object-fit: cover</code>). Для маленьких — <code>height: 180px</code>.
+        </div>
+        <div class="hint" data-lang="en">
+            For the Featured card use a large image (<code>height: 100%; object-fit: cover</code>). For small ones — <code>height: 180px</code>.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Grid 4 столбца</li>
+                <li>Featured-карточка = span 2x2</li>
+                <li>7 карточек с изображениями и текстом</li>
+                <li>Hover-эффект на карточках</li>
+                <li>object-fit: cover для изображений</li>
+                <li>border-radius, box-shadow, gap</li>
+            </ul>
+            <ul data-lang="en">
+                <li>4-column Grid</li>
+                <li>Featured card = span 2x2</li>
+                <li>7 cards with images and text</li>
+                <li>Hover effect on cards</li>
+                <li>object-fit: cover for images</li>
+                <li>border-radius, box-shadow, gap</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

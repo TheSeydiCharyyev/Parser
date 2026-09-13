@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 28 — Tailwind CSS: адаптивность и проект</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 28: Tailwind CSS — адаптивность и проект</span>
+    <span class="nav-title" data-lang="en">Lesson 28: Tailwind CSS — Responsiveness and Project</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 28: Tailwind CSS — адаптивность и проект</h1>
+    <h1 data-lang="en">Lesson 28: Tailwind CSS — Responsiveness and Project</h1>
+    <p class="subtitle" data-lang="ru">Responsive-классы, hover/focus/dark mode, градиенты, transitions, лендинг на Tailwind</p>
+    <p class="subtitle" data-lang="en">Responsive classes, hover/focus/dark mode, gradients, transitions, Tailwind landing page</p>
+
+    <div class="why" data-lang="ru">
+        <p>В 26-м уроке мы освоили <strong>базу</strong> Tailwind: spacing, цвета, flexbox, grid. Но это только половина силы фреймворка. Сегодня изучим <strong>префиксы состояний</strong>: <code>md:</code>, <code>hover:</code>, <code>focus:</code>, <code>dark:</code> — то, что делает Tailwind действительно мощным.</p>
+        <p>Главная фишка: префиксы работают с <strong>любым</strong> классом. В Bootstrap для responsive у вас специальный <code>col-md-6</code>, для hover — <code>btn:hover</code> в CSS. В Tailwind всё единообразно: <code>md:text-xl</code>, <code>hover:bg-blue-700</code>, <code>dark:bg-gray-900</code>, <code>md:hover:text-blue-500</code> (можно даже комбинировать!). Выучите синтаксис один раз — применяйте ко всему.</p>
+        <p>Это финальный урок перед итоговым проектом. После него вы сможете собрать современный лендинг с адаптивом, hover-эффектами, градиентами и dark mode — за час, без единой строки CSS.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Делать адаптивные макеты через <code>sm:</code>, <code>md:</code>, <code>lg:</code>, <code>xl:</code> (mobile-first)</li>
+            <li>Скрывать/показывать элементы на разных экранах (<code>hidden md:block</code>)</li>
+            <li>Применять <code>hover:</code>, <code>focus:</code>, <code>active:</code> к любым утилитам</li>
+            <li>Настраивать transitions через <code>transition-all duration-300</code></li>
+            <li>Делать красивые градиенты (<code>bg-gradient-to-r from-blue-600 to-purple-600</code>)</li>
+            <li>Реализовать dark mode через <code>dark:</code> префикс</li>
+            <li>Использовать <code>group</code>/<code>group-hover</code> для анимаций родитель-ребёнок</li>
+            <li>Собрать полноценный адаптивный лендинг на Tailwind с нуля</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>In lesson 26 we learned Tailwind <strong>basics</strong>: spacing, colors, flexbox, grid. But that's only half the framework's power. Today — <strong>state prefixes</strong>: <code>md:</code>, <code>hover:</code>, <code>focus:</code>, <code>dark:</code> — what makes Tailwind truly powerful.</p>
+        <p>Key trick: prefixes work with <strong>any</strong> class. In Bootstrap, responsive uses a special <code>col-md-6</code>, hover lives in CSS with <code>btn:hover</code>. In Tailwind it's all uniform: <code>md:text-xl</code>, <code>hover:bg-blue-700</code>, <code>dark:bg-gray-900</code>, <code>md:hover:text-blue-500</code> (combinable!). Learn syntax once — apply everywhere.</p>
+        <p>This is the last lesson before the final project. After it you'll be able to build a modern landing with responsiveness, hover effects, gradients, and dark mode — in an hour, without a single line of CSS.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Build responsive layouts via <code>sm:</code>, <code>md:</code>, <code>lg:</code>, <code>xl:</code> (mobile-first)</li>
+            <li>Show/hide elements on different screens (<code>hidden md:block</code>)</li>
+            <li>Apply <code>hover:</code>, <code>focus:</code>, <code>active:</code> to any utility</li>
+            <li>Configure transitions via <code>transition-all duration-300</code></li>
+            <li>Create beautiful gradients (<code>bg-gradient-to-r from-blue-600 to-purple-600</code>)</li>
+            <li>Implement dark mode via <code>dark:</code> prefix</li>
+            <li>Use <code>group</code>/<code>group-hover</code> for parent-child animations</li>
+            <li>Build a full responsive Tailwind landing from scratch</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#responsive">Responsive-классы (sm, md, lg, xl)</a></li>
+            <li><a href="#responsive-examples">Примеры адаптивности</a></li>
+            <li><a href="#hover">hover, focus, active</a></li>
+            <li><a href="#transitions">Transitions в Tailwind</a></li>
+            <li><a href="#gradients">Градиенты</a></li>
+            <li><a href="#dark">Dark mode</a></li>
+            <li><a href="#group">group-hover</a></li>
+            <li><a href="#comparison">Tailwind vs Bootstrap — итог</a></li>
+            <li><a href="#landing">Собираем лендинг на Tailwind</a></li>
+            <li><a href="#practice">Создание своего лендинга</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#responsive">Responsive classes (sm, md, lg, xl)</a></li>
+            <li><a href="#responsive-examples">Responsiveness examples</a></li>
+            <li><a href="#hover">hover, focus, active</a></li>
+            <li><a href="#transitions">Transitions in Tailwind</a></li>
+            <li><a href="#gradients">Gradients</a></li>
+            <li><a href="#dark">Dark mode</a></li>
+            <li><a href="#group">group-hover</a></li>
+            <li><a href="#comparison">Tailwind vs Bootstrap — summary</a></li>
+            <li><a href="#landing">Building a Tailwind landing page</a></li>
+            <li><a href="#practice">Creating your own landing page</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== RESPONSIVE ==================== -->
+    <h2 id="responsive" data-lang="ru">1. Responsive-классы (sm, md, lg, xl)</h2>
+    <h2 id="responsive-en" data-lang="en">1. Responsive classes (sm, md, lg, xl)</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Адаптивность — без неё сайт бесполезен. Вспомните уроки 18-20: мы писали <code>@media (min-width: 768px) { ... }</code> вручную, отдельно для каждого свойства. Это было <strong>многословно</strong>.</p>
+        <p>В Tailwind адаптив — это <strong>префикс</strong> перед классом. <code>text-xl</code> = размер на мобильном. <code>md:text-3xl</code> = «на ≥ 768px — size 3xl». Один класс, одна строка. То же самое media queries, но в 10 раз короче.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Responsiveness — without it a site is useless. Remember lessons 18-20: we wrote <code>@media (min-width: 768px) { ... }</code> by hand, separately for each property. It was <strong>verbose</strong>.</p>
+        <p>In Tailwind, responsiveness is a <strong>prefix</strong> before a class. <code>text-xl</code> = size on mobile. <code>md:text-3xl</code> = "on ≥ 768px — size 3xl". One class, one line. Same media queries, but 10× shorter.</p>
+    </div>
+
+    <p data-lang="ru">Tailwind использует <strong>mobile-first</strong>. Базовые классы = мобильный. Префиксы добавляют стили для бо&#769;льших экранов:</p>
+    <p data-lang="en">Tailwind uses <strong>mobile-first</strong>. Base classes = mobile. Prefixes add styles for larger screens:</p>
+
+    <table data-lang="ru">
+        <tr><th>Префикс</th><th>Breakpoint</th><th>Экран</th></tr>
+        <tr><td>(без)</td><td>Все</td><td>0px+</td></tr>
+        <tr><td><code>sm:</code></td><td>Small</td><td>&#x2265; 640px</td></tr>
+        <tr><td><code>md:</code></td><td>Medium</td><td>&#x2265; 768px</td></tr>
+        <tr><td><code>lg:</code></td><td>Large</td><td>&#x2265; 1024px</td></tr>
+        <tr><td><code>xl:</code></td><td>Extra large</td><td>&#x2265; 1280px</td></tr>
+        <tr><td><code>2xl:</code></td><td>2X large</td><td>&#x2265; 1536px</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Prefix</th><th>Breakpoint</th><th>Screen</th></tr>
+        <tr><td>(none)</td><td>All</td><td>0px+</td></tr>
+        <tr><td><code>sm:</code></td><td>Small</td><td>&#x2265; 640px</td></tr>
+        <tr><td><code>md:</code></td><td>Medium</td><td>&#x2265; 768px</td></tr>
+        <tr><td><code>lg:</code></td><td>Large</td><td>&#x2265; 1024px</td></tr>
+        <tr><td><code>xl:</code></td><td>Extra large</td><td>&#x2265; 1280px</td></tr>
+        <tr><td><code>2xl:</code></td><td>2X large</td><td>&#x2265; 1536px</td></tr>
+    </table>
+
+<pre><code>&lt;!-- 1 колонка → 2 → 3 --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"&gt;
+    &lt;div&gt;Card 1&lt;/div&gt;
+    &lt;div&gt;Card 2&lt;/div&gt;
+    &lt;div&gt;Card 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>Формат:</strong> <code>{breakpoint}:{класс}</code>. Пример: <code>md:grid-cols-2</code> = «начиная с 768px — 2 колонки». Без префикса = мобильный (базовое).
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Format:</strong> <code>{breakpoint}:{class}</code>. Example: <code>md:grid-cols-2</code> = "from 768px — 2 columns". No prefix = mobile (base).
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Наследование одежды.</strong> Mobile-first — это как старшая одежда в семье: сначала её носит мобильный (базовая), потом планшет (наследует мобильное + свои особенности), потом десктоп (наследует планшетное + свои). На каждом размере добавляете только то, что меняется. Если на md и lg выглядит одинаково — пишите только <code>md:</code>, lg автоматически наследует.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Family hand-me-downs.</strong> Mobile-first is like clothes passed down in a family: first the mobile wears it (base), then tablet (inherits mobile + its own additions), then desktop (inherits tablet + its own). At each size, you add only what changes. If it looks the same on md and lg — write only <code>md:</code>, lg inherits automatically.</p>
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Breakpoints у Tailwind и Bootstrap <em>РАЗНЫЕ</em>!</strong></p>
+<pre><code>Bootstrap:  sm=576  md=768  lg=992   xl=1200
+Tailwind:   sm=640  md=768  lg=1024  xl=1280</code></pre>
+        <p>Совпадает только <code>md</code> (768). Если вы привыкли к Bootstrap — не ожидайте тех же значений в Tailwind. Проверяйте в DevTools.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Tailwind and Bootstrap breakpoints are <em>DIFFERENT</em>!</strong></p>
+<pre><code>Bootstrap:  sm=576  md=768  lg=992   xl=1200
+Tailwind:   sm=640  md=768  lg=1024  xl=1280</code></pre>
+        <p>Only <code>md</code> (768) matches. If you're used to Bootstrap — don't expect the same values in Tailwind. Check in DevTools.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРИМЕРЫ ==================== -->
+    <h2 id="responsive-examples" data-lang="ru">2. Примеры адаптивности</h2>
+    <h2 id="responsive-examples-en" data-lang="en">2. Responsiveness examples</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Теория ясна — давайте посмотрим на реальные паттерны, которые вы будете использовать <strong>постоянно</strong>. Эти 5 шаблонов покрывают 90% задач адаптива: плавный текст, плавные отступы, flex-направление, скрытие элементов, сетка колонок.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Theory is clear — let's see real patterns you'll use <strong>all the time</strong>. These 5 templates cover 90% of responsive tasks: fluid text, fluid spacing, flex direction, hiding elements, column grid.</p>
+    </div>
+
+<pre><code>&lt;!-- Адаптивный текст --&gt;
+&lt;h1 class="text-2xl md:text-4xl lg:text-5xl font-bold"&gt;
+    Responsive Heading
+&lt;/h1&gt;
+
+&lt;!-- Адаптивные отступы --&gt;
+&lt;div class="p-4 md:p-8 lg:p-12"&gt;...&lt;/div&gt;
+
+&lt;!-- Flex → column на мобильном --&gt;
+&lt;div class="flex flex-col md:flex-row gap-6"&gt;
+    &lt;div class="md:w-1/3"&gt;Sidebar&lt;/div&gt;
+    &lt;div class="md:w-2/3"&gt;Content&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Скрыть на мобильном --&gt;
+&lt;div class="hidden md:block"&gt;Только на десктопе&lt;/div&gt;
+&lt;div class="block md:hidden"&gt;Только на мобильном&lt;/div&gt;
+
+&lt;!-- Адаптивная сетка --&gt;
+&lt;div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"&gt;
+    ...
+&lt;/div&gt;</code></pre>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Два скрытия — вы запутаетесь, если не вызубрите:</strong></p>
+        <ul>
+            <li><code>hidden md:block</code> = <strong>скрыт на мобильном</strong>, виден с md. Для desktop-only контента: декор, sidebar, длинные описания.</li>
+            <li><code>block md:hidden</code> = <strong>виден на мобильном</strong>, скрыт с md. Для mobile-only: бургер-иконка, упрощённое меню.</li>
+        </ul>
+        <p>Читайте буквально: <code>hidden</code> — скрыт, <code>md:block</code> — на md и выше показать.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Two hides — you'll get confused if you don't memorize:</strong></p>
+        <ul>
+            <li><code>hidden md:block</code> = <strong>hidden on mobile</strong>, visible from md. For desktop-only content: decor, sidebar, long descriptions.</li>
+            <li><code>block md:hidden</code> = <strong>visible on mobile</strong>, hidden from md. For mobile-only: burger icon, simplified menu.</li>
+        </ul>
+        <p>Read literally: <code>hidden</code> — hidden, <code>md:block</code> — from md and up show.</p>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Типовой паттерн «text + image»:</strong> на мобильном — стопка (текст сверху, картинка снизу), на десктопе — два столбца.</p>
+<pre><code>&lt;div class="flex flex-col md:flex-row gap-8"&gt;
+    &lt;div class="md:w-1/2"&gt;&lt;!-- Текст --&gt;&lt;/div&gt;
+    &lt;div class="md:w-1/2"&gt;&lt;!-- Картинка --&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p>Это половина hero-секций в интернете.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Typical "text + image" pattern:</strong> on mobile — stack (text above, image below), on desktop — two columns.</p>
+<pre><code>&lt;div class="flex flex-col md:flex-row gap-8"&gt;
+    &lt;div class="md:w-1/2"&gt;&lt;!-- Text --&gt;&lt;/div&gt;
+    &lt;div class="md:w-1/2"&gt;&lt;!-- Image --&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p>That's half the hero sections on the internet.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== HOVER ==================== -->
+    <h2 id="hover" data-lang="ru">3. hover, focus, active</h2>
+    <h2 id="hover-en" data-lang="en">3. hover, focus, active</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Интерактивность — это что отличает современный сайт от статичного документа. В Tailwind она встроена: любой класс можно «обвязать» состоянием через префикс. <code>hover:</code> — когда курсор на элементе. <code>focus:</code> — когда элемент в фокусе (важно для форм и доступности). <code>active:</code> — когда кнопка нажата (тактильный фидбэк).</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Interactivity is what separates a modern site from a static document. In Tailwind it's built-in: any class can be "wrapped" in a state via prefix. <code>hover:</code> — when cursor is on element. <code>focus:</code> — when element is focused (critical for forms and accessibility). <code>active:</code> — when button is pressed (tactile feedback).</p>
+    </div>
+
+<pre><code>&lt;!-- Hover --&gt;
+&lt;button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg"&gt;
+    Hover Me
+&lt;/button&gt;
+
+&lt;!-- Hover на карточке --&gt;
+&lt;div class="bg-white rounded-xl shadow-md hover:shadow-xl
+            hover:-translate-y-2 transition-all duration-300"&gt;
+    ...
+&lt;/div&gt;
+
+&lt;!-- Focus (для input) --&gt;
+&lt;input class="border border-gray-300 rounded-lg px-4 py-2
+              focus:border-blue-500 focus:ring-2 focus:ring-blue-200
+              focus:outline-none transition-all"&gt;
+
+&lt;!-- Active (при нажатии) --&gt;
+&lt;button class="bg-blue-600 hover:bg-blue-700 active:scale-95
+               transition-all"&gt;
+    Click Me
+&lt;/button&gt;</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Формат:</strong> <code>hover:{класс}</code>, <code>focus:{класс}</code>, <code>active:{класс}</code>. Работает с любым утилити-классом!
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Format:</strong> <code>hover:{class}</code>, <code>focus:{class}</code>, <code>active:{class}</code>. Works with any utility class!
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Не забывайте про <code>focus:</code>.</strong> Новички добавляют только <code>hover:</code>, но забывают про фокус. Результат: человек с клавиатуры (Tab для навигации) не видит, где он находится. Это провал по <strong>доступности</strong>. Правило: везде, где есть <code>hover:</code> — должен быть <code>focus:</code> с похожим стилем. Для инпутов обязательно <code>focus:ring-2 focus:ring-blue-500</code>.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Don't forget <code>focus:</code>.</strong> Beginners add only <code>hover:</code>, forgetting focus. Result: keyboard users (Tab navigation) can't see where they are. Accessibility fail. Rule: wherever there's <code>hover:</code> — add <code>focus:</code> with similar style. For inputs, always include <code>focus:ring-2 focus:ring-blue-500</code>.</p>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Можно комбинировать префиксы!</strong> <code>md:hover:text-blue-500</code> = «на md и выше, при hover — синий текст». <code>dark:hover:bg-gray-800</code> = «в тёмной теме при hover — тёмный фон». Порядок важен: сначала responsive, потом состояние.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>You can combine prefixes!</strong> <code>md:hover:text-blue-500</code> = "on md and up, on hover — blue text". <code>dark:hover:bg-gray-800</code> = "in dark theme on hover — dark bg". Order matters: responsive first, then state.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== TRANSITIONS ==================== -->
+    <h2 id="transitions" data-lang="ru">4. Transitions в Tailwind</h2>
+    <h2 id="transitions-en" data-lang="en">4. Transitions in Tailwind</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Без <code>transition</code> hover-эффект работает <strong>резко</strong>: цвет меняется мгновенно. Это «дёшево» выглядит. Добавили <code>transition-colors duration-300</code> — плавно за 0.3 секунды. Это не мелочь, это <strong>разница между любительским и профессиональным</strong> сайтом.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Without <code>transition</code>, hover effects work <strong>abruptly</strong>: color changes instantly. Looks "cheap". Add <code>transition-colors duration-300</code> — smooth over 0.3s. Not a detail — it's the <strong>difference between amateur and professional</strong> sites.</p>
+    </div>
+
+<pre><code>&lt;!-- Transition на все свойства --&gt;
+&lt;div class="transition-all duration-300 ease-in-out"&gt;...&lt;/div&gt;
+
+&lt;!-- Только transform --&gt;
+&lt;div class="transition-transform duration-300"&gt;...&lt;/div&gt;
+
+&lt;!-- Только цвета --&gt;
+&lt;div class="transition-colors duration-200"&gt;...&lt;/div&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Класс</th><th>CSS</th></tr>
+        <tr><td><code>transition-all</code></td><td>transition: all</td></tr>
+        <tr><td><code>transition-colors</code></td><td>transition: color, background-color, border-color</td></tr>
+        <tr><td><code>transition-transform</code></td><td>transition: transform</td></tr>
+        <tr><td><code>duration-200</code></td><td>200ms</td></tr>
+        <tr><td><code>duration-300</code></td><td>300ms</td></tr>
+        <tr><td><code>duration-500</code></td><td>500ms</td></tr>
+        <tr><td><code>ease-in-out</code></td><td>timing-function: ease-in-out</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Class</th><th>CSS</th></tr>
+        <tr><td><code>transition-all</code></td><td>transition: all</td></tr>
+        <tr><td><code>transition-colors</code></td><td>transition: color, background-color, border-color</td></tr>
+        <tr><td><code>transition-transform</code></td><td>transition: transform</td></tr>
+        <tr><td><code>duration-200</code></td><td>200ms</td></tr>
+        <tr><td><code>duration-300</code></td><td>300ms</td></tr>
+        <tr><td><code>duration-500</code></td><td>500ms</td></tr>
+        <tr><td><code>ease-in-out</code></td><td>timing-function: ease-in-out</td></tr>
+    </table>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Правило трёх:</strong></p>
+<pre><code>&lt;!-- Кнопки (простой hover) --&gt;
+class="transition-colors duration-200"
+
+&lt;!-- Карточки (трансформации) --&gt;
+class="transition-all duration-300"
+
+&lt;!-- Модалки, большие анимации --&gt;
+class="transition-all duration-500 ease-out"</code></pre>
+        <p>Запомните эти три варианта — покрывают 95% случаев.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Rule of three:</strong></p>
+<pre><code>&lt;!-- Buttons (simple hover) --&gt;
+class="transition-colors duration-200"
+
+&lt;!-- Cards (transforms) --&gt;
+class="transition-all duration-300"
+
+&lt;!-- Modals, large animations --&gt;
+class="transition-all duration-500 ease-out"</code></pre>
+        <p>Memorize these three — covers 95% of cases.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ГРАДИЕНТЫ ==================== -->
+    <h2 id="gradients" data-lang="ru">5. Градиенты</h2>
+    <h2 id="gradients-en" data-lang="en">5. Gradients</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Градиент — плавный переход между двумя/тремя цветами. Самый быстрый способ сделать сайт <strong>современным</strong>. Hero-секция с градиентом вместо обычного синего — разница драматическая. В 2025 году градиенты — тренд дизайна: Stripe, Linear, Vercel, Apple — все используют.</p>
+        <p>Tailwind даёт градиенты тремя классами: направление (<code>bg-gradient-to-r</code>) + стартовый цвет (<code>from-blue-600</code>) + конечный (<code>to-purple-600</code>). Можно добавить средний через <code>via-</code>.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>A gradient — smooth transition between two/three colors. Fastest way to make a site look <strong>modern</strong>. Hero section with a gradient instead of plain blue — dramatic difference. In 2025, gradients are a design trend: Stripe, Linear, Vercel, Apple — all use them.</p>
+        <p>Tailwind gives gradients via three classes: direction (<code>bg-gradient-to-r</code>) + start color (<code>from-blue-600</code>) + end (<code>to-purple-600</code>). Add a middle via <code>via-</code>.</p>
+    </div>
+
+<pre><code>&lt;!-- Градиент фона --&gt;
+&lt;div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-12"&gt;
+    Gradient Section
+&lt;/div&gt;
+
+&lt;!-- Направления: --&gt;
+bg-gradient-to-r    /* слева → направо */
+bg-gradient-to-l    /* справа → налево */
+bg-gradient-to-t    /* снизу → вверх */
+bg-gradient-to-b    /* сверху → вниз */
+bg-gradient-to-br   /* в правый нижний угол */
+
+&lt;!-- 3 цвета --&gt;
+&lt;div class="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600"&gt;
+    Three-color gradient
+&lt;/div&gt;</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="ru">Живые примеры градиентов:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="en">Live gradient examples:</p>
+        <style>
+            .l27-grad-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+            .l27-grad { padding: 32px 16px; border-radius: 12px; color: #fff; font-weight: 600; text-align: center; font-size: 0.9rem; }
+            .l27-grad-1 { background: linear-gradient(to right, #2563eb, #9333ea); }
+            .l27-grad-2 { background: linear-gradient(to right, #34d399, #3b82f6, #9333ea); }
+            .l27-grad-3 { background: linear-gradient(to bottom right, #f97316, #ec4899); }
+            .l27-grad-4 { background: linear-gradient(to right, #1e293b, #334155); }
+        </style>
+        <div class="l27-grad-row">
+            <div class="l27-grad l27-grad-1">from-blue-600 → to-purple-600</div>
+            <div class="l27-grad l27-grad-2">from-green-400 → via-blue-500 → to-purple-600</div>
+            <div class="l27-grad l27-grad-3">from-orange-500 → to-pink-500 (to-br)</div>
+            <div class="l27-grad l27-grad-4">from-slate-800 → to-slate-600</div>
+        </div>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Рецепт красивого градиента:</strong> берите <strong>соседние</strong> или <strong>близкие</strong> цвета по hue (оттенку) — синий + фиолетовый, оранжевый + розовый, зелёный + синий. Очень яркие контрасты (красный + зелёный) выглядят аляповато. И используйте оттенки <strong>500-700</strong>: слишком светлые или слишком тёмные теряют эффект.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Recipe for a pretty gradient:</strong> take <strong>adjacent</strong> or <strong>close</strong> colors by hue — blue + purple, orange + pink, green + blue. Very high contrast (red + green) looks gaudy. And use shades <strong>500-700</strong>: too light or too dark loses the effect.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== DARK MODE ==================== -->
+    <h2 id="dark" data-lang="ru">6. Dark mode</h2>
+    <h2 id="dark-en" data-lang="en">6. Dark mode</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Dark mode — стандарт индустрии в 2025. Пользователи ждут переключателя темы. В обычном CSS для этого нужно написать <strong>два комплекта</strong> стилей: <code>.card</code> и <code>.card.dark</code>, или через CSS-переменные. В Tailwind — префикс <code>dark:</code>. Любой класс можно «раздвоить» для тёмной темы: <code>bg-white dark:bg-gray-900</code>. Пишете в одном месте, работает в двух режимах.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Dark mode is an industry standard in 2025. Users expect a theme toggle. In plain CSS this requires <strong>two sets</strong> of styles: <code>.card</code> and <code>.card.dark</code>, or via CSS variables. In Tailwind — <code>dark:</code> prefix. Any class can be "doubled" for dark: <code>bg-white dark:bg-gray-900</code>. Written in one place, works in two modes.</p>
+    </div>
+
+<pre><code>&lt;!-- Тёмная тема через dark: префикс --&gt;
+&lt;div class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100"&gt;
+    &lt;h1 class="text-gray-900 dark:text-white"&gt;Title&lt;/h1&gt;
+    &lt;p class="text-gray-600 dark:text-gray-400"&gt;Text&lt;/p&gt;
+    &lt;div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4"&gt;
+        Card
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <p data-lang="ru"><code>dark:</code> классы активируются, когда у <code>&lt;html&gt;</code> есть <code>class="dark"</code> или системная тема тёмная.</p>
+    <p data-lang="en"><code>dark:</code> classes activate when <code>&lt;html&gt;</code> has <code>class="dark"</code> or the system theme is dark.</p>
+
+    <div class="fun-fact" data-lang="ru">
+        <p>В Tailwind CDN можно включить dark mode через <code>class</code> стратегию: добавьте <code>class="dark"</code> на <code>&lt;html&gt;</code> — и все <code>dark:</code> стили активируются!</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p>In Tailwind CDN you can enable dark mode via <code>class</code> strategy: add <code>class="dark"</code> to <code>&lt;html&gt;</code> — and all <code>dark:</code> styles activate!</p>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Палитра для dark mode:</strong> вместо чистого чёрного (<code>bg-black</code>) используйте <code>bg-gray-900</code> (#111827) или <code>bg-slate-900</code>. Чистый чёрный создаёт «выжженное» ощущение глаз. Для текста — <code>text-gray-100</code>, не <code>text-white</code> (слишком яркий на тёмном). Для карточек в тёмной теме — <code>bg-gray-800</code>, чуть светлее основного фона.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Palette for dark mode:</strong> instead of pure black (<code>bg-black</code>), use <code>bg-gray-900</code> (#111827) or <code>bg-slate-900</code>. Pure black causes "eye burn". For text — <code>text-gray-100</code>, not <code>text-white</code> (too bright on dark). For cards in dark theme — <code>bg-gray-800</code>, slightly lighter than main bg.</p>
+    </div>
+
+    <div class="try-it" data-lang="ru">
+        <p>Включите dark mode на своём сайте с Tailwind CDN: в <code>&lt;html&gt;</code> или <code>&lt;body&gt;</code> добавьте <code>class="dark"</code> и посмотрите, как все ваши <code>dark:</code> стили сразу активируются. Уберите — вернётся светлая тема. Это и есть переключатель (только без JS).</p>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p>Turn on dark mode on your Tailwind CDN site: add <code>class="dark"</code> to <code>&lt;html&gt;</code> or <code>&lt;body&gt;</code> and watch all your <code>dark:</code> styles activate. Remove it — light theme returns. That's the toggle (minus the JS).</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== GROUP ==================== -->
+    <h2 id="group" data-lang="ru">7. group-hover</h2>
+    <h2 id="group-en" data-lang="en">7. group-hover</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Классика UX: наводишь на карточку — картинка зумится И заголовок меняет цвет И кнопка меняется. То есть один hover на родителе триггерит анимации у <strong>нескольких детей</strong>. В CSS это <code>.card:hover .image { ... } .card:hover h3 { ... }</code>. В Tailwind — два ключевых слова: <code>group</code> (на родителе) и <code>group-hover:</code> (на детях).</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>UX classic: hover a card — image zooms AND title changes color AND button shifts. One hover on parent triggers animations on <strong>multiple children</strong>. In CSS that's <code>.card:hover .image { ... } .card:hover h3 { ... }</code>. In Tailwind — two keywords: <code>group</code> (on parent) and <code>group-hover:</code> (on children).</p>
+    </div>
+
+    <p data-lang="ru"><code>group-hover</code> позволяет менять стили <strong>дочернего</strong> элемента при hover на <strong>родителе</strong>:</p>
+    <p data-lang="en"><code>group-hover</code> lets you change <strong>child</strong> element styles when hovering over the <strong>parent</strong>:</p>
+
+<pre><code>&lt;div class="group bg-white rounded-xl shadow-md overflow-hidden
+            hover:shadow-xl transition-all duration-300"&gt;
+    &lt;img src="..." class="w-full h-48 object-cover
+                          group-hover:scale-110 transition-transform duration-500"&gt;
+    &lt;div class="p-5"&gt;
+        &lt;h3 class="font-bold group-hover:text-blue-600 transition-colors"&gt;Title&lt;/h3&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Как работает:</strong> <code>group</code> на родителе, <code>group-hover:{класс}</code> на детях. При hover на карточку — картинка зумится И заголовок меняет цвет!
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>How it works:</strong> <code>group</code> on parent, <code>group-hover:{class}</code> on children. On card hover — image zooms AND title changes color!
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Частая ошибка:</strong> забыли <code>group</code> на родителе. <code>group-hover:scale-110</code> на картинке без <code>group</code> на карточке = ничего не работает. Если анимация не срабатывает — первым делом проверьте, стоит ли слово <code>group</code> на родителе.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Common mistake:</strong> forgot <code>group</code> on parent. <code>group-hover:scale-110</code> on image without <code>group</code> on card = nothing happens. If animation doesn't fire — first check that <code>group</code> word is on the parent.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== СРАВНЕНИЕ ==================== -->
+    <h2 id="comparison" data-lang="ru">8. Tailwind vs Bootstrap — итог</h2>
+    <h2 id="comparison-en" data-lang="en">8. Tailwind vs Bootstrap — summary</h2>
+
+    <table data-lang="ru">
+        <tr><th>Критерий</th><th>Bootstrap</th><th>Tailwind</th></tr>
+        <tr><td>Быстрый старт</td><td>&#x2705; Быстрее</td><td>Нужно запомнить классы</td></tr>
+        <tr><td>Уникальный дизайн</td><td>Все сайты похожи</td><td>&#x2705; Полная свобода</td></tr>
+        <tr><td>Responsive</td><td><code>col-md-6</code></td><td><code>md:w-1/2</code></td></tr>
+        <tr><td>Hover</td><td>Встроен в компоненты</td><td><code>hover:</code> на любой класс</td></tr>
+        <tr><td>Dark mode</td><td>Нет (или вручную)</td><td>&#x2705; <code>dark:</code> встроен</td></tr>
+        <tr><td>Компоненты</td><td>&#x2705; Navbar, Modal, Carousel</td><td>Нет (собирай сам)</td></tr>
+        <tr><td>Размер CSS</td><td>~200KB</td><td>&#x2705; Только то, что используешь</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Criteria</th><th>Bootstrap</th><th>Tailwind</th></tr>
+        <tr><td>Quick start</td><td>&#x2705; Faster</td><td>Need to memorize classes</td></tr>
+        <tr><td>Unique design</td><td>All sites look similar</td><td>&#x2705; Full freedom</td></tr>
+        <tr><td>Responsive</td><td><code>col-md-6</code></td><td><code>md:w-1/2</code></td></tr>
+        <tr><td>Hover</td><td>Built into components</td><td><code>hover:</code> on any class</td></tr>
+        <tr><td>Dark mode</td><td>No (or manual)</td><td>&#x2705; <code>dark:</code> built-in</td></tr>
+        <tr><td>Components</td><td>&#x2705; Navbar, Modal, Carousel</td><td>None (build yourself)</td></tr>
+        <tr><td>CSS size</td><td>~200KB</td><td>&#x2705; Only what you use</td></tr>
+    </table>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Вывод:</strong> Bootstrap — для быстрых прототипов и админок. Tailwind — для уникальных сайтов и продуктов. Оба — отличные инструменты!
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Conclusion:</strong> Bootstrap — for quick prototypes and admin panels. Tailwind — for unique sites and products. Both are excellent tools!
+    </div>
+
+    <hr>
+
+    <!-- ==================== ЛЕНДИНГ ==================== -->
+    <h2 id="landing" data-lang="ru">9. Собираем лендинг на Tailwind</h2>
+    <h2 id="landing-en" data-lang="en">9. Building a Tailwind landing page</h2>
+
+    <table data-lang="ru">
+        <tr><th>Секция</th><th>Ключевые классы</th></tr>
+        <tr><td>Header</td><td><code>flex items-center justify-between p-4 bg-white shadow-sm</code></td></tr>
+        <tr><td>Hero</td><td><code>min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center</code></td></tr>
+        <tr><td>Features</td><td><code>grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto py-16 px-4</code></td></tr>
+        <tr><td>Cards</td><td><code>grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6</code> + <code>group hover:shadow-xl</code></td></tr>
+        <tr><td>CTA</td><td><code>bg-gray-900 text-white text-center py-16</code></td></tr>
+        <tr><td>Footer</td><td><code>bg-gray-800 text-gray-400 grid grid-cols-1 md:grid-cols-3 gap-8 p-12</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Section</th><th>Key classes</th></tr>
+        <tr><td>Header</td><td><code>flex items-center justify-between p-4 bg-white shadow-sm</code></td></tr>
+        <tr><td>Hero</td><td><code>min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center</code></td></tr>
+        <tr><td>Features</td><td><code>grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto py-16 px-4</code></td></tr>
+        <tr><td>Cards</td><td><code>grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6</code> + <code>group hover:shadow-xl</code></td></tr>
+        <tr><td>CTA</td><td><code>bg-gray-900 text-white text-center py-16</code></td></tr>
+        <tr><td>Footer</td><td><code>bg-gray-800 text-gray-400 grid grid-cols-1 md:grid-cols-3 gap-8 p-12</code></td></tr>
+    </table>
+
+    <div class="summary" data-lang="ru">
+        <strong>Новые возможности Tailwind:</strong>
+        <ul>
+            <li><strong>Responsive:</strong> <code>md:</code>, <code>lg:</code> — mobile-first, любой класс</li>
+            <li><strong>Hover:</strong> <code>hover:bg-blue-700</code>, <code>hover:-translate-y-2</code></li>
+            <li><strong>Focus:</strong> <code>focus:ring-2 focus:border-blue-500</code></li>
+            <li><strong>Active:</strong> <code>active:scale-95</code></li>
+            <li><strong>Transitions:</strong> <code>transition-all duration-300</code></li>
+            <li><strong>Градиенты:</strong> <code>bg-gradient-to-r from-blue-600 to-purple-600</code></li>
+            <li><strong>Dark mode:</strong> <code>dark:bg-gray-900 dark:text-white</code></li>
+            <li><strong>Group hover:</strong> <code>group</code> + <code>group-hover:scale-110</code></li>
+            <li><strong>Hidden:</strong> <code>hidden md:block</code>, <code>block md:hidden</code></li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>New Tailwind features:</strong>
+        <ul>
+            <li><strong>Responsive:</strong> <code>md:</code>, <code>lg:</code> — mobile-first, any class</li>
+            <li><strong>Hover:</strong> <code>hover:bg-blue-700</code>, <code>hover:-translate-y-2</code></li>
+            <li><strong>Focus:</strong> <code>focus:ring-2 focus:border-blue-500</code></li>
+            <li><strong>Active:</strong> <code>active:scale-95</code></li>
+            <li><strong>Transitions:</strong> <code>transition-all duration-300</code></li>
+            <li><strong>Gradients:</strong> <code>bg-gradient-to-r from-blue-600 to-purple-600</code></li>
+            <li><strong>Dark mode:</strong> <code>dark:bg-gray-900 dark:text-white</code></li>
+            <li><strong>Group hover:</strong> <code>group</code> + <code>group-hover:scale-110</code></li>
+            <li><strong>Hidden:</strong> <code>hidden md:block</code>, <code>block md:hidden</code></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">10. Создание своего лендинга</h2>
+    <h2 id="practice-en" data-lang="en">10. Creating your own landing page</h2>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Как сделать 3 колонки на десктопе и 1 на мобильном?</li>
+            <li>Что делает <code>hover:bg-blue-700</code>?</li>
+            <li>Как добавить transition к hover-эффекту?</li>
+            <li>Как сделать градиентный фон?</li>
+            <li>Как работает <code>group-hover</code>?</li>
+            <li>Чем <code>hidden md:block</code> отличается от <code>block md:hidden</code>?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>How to make 3 columns on desktop and 1 on mobile?</li>
+            <li>What does <code>hover:bg-blue-700</code> do?</li>
+            <li>How to add transition to hover effects?</li>
+            <li>How to make a gradient background?</li>
+            <li>How does <code>group-hover</code> work?</li>
+            <li>What's the difference between <code>hidden md:block</code> and <code>block md:hidden</code>?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

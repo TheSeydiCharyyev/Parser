@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 3 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 3: Структура HTML-документа</span>
+    <span class="nav-title" data-lang="en">Lesson 3: HTML Document Structure</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 3: Структура HTML-документа</p>
+    <p class="subtitle" data-lang="en">Lesson 3: HTML Document Structure</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 3.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 3.1: ТЕГИ, АТРИБУТЫ, ВЛОЖЕННОСТЬ</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 3.1: TAGS, ATTRIBUTES, NESTING</h2>
+
+    <!-- ЗАДАНИЕ 3.1 / TASK 3.1 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 3.1: Найди ошибки</span>
+            <span class="task-title" data-lang="en">Task 3.1: Find the Errors</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">5 минут</span>
+                <span class="badge badge-time" data-lang="en">5 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться находить ошибки в HTML-коде</div>
+        <div class="task-goal" data-lang="en">Learn to find errors in HTML code</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">В каждом примере есть ошибка. Найдите её и запишите правильный вариант:</p>
+        <p data-lang="en">Each example contains an error. Find it and write the correct version:</p>
+
+<pre><code>&lt;!-- Пример 1 --&gt;
+&lt;p&gt;Это &lt;strong&gt;жирный текст&lt;/p&gt;&lt;/strong&gt;
+
+&lt;!-- Пример 2 --&gt;
+&lt;h1&gt;Заголовок&lt;h1&gt;
+
+&lt;!-- Пример 3 --&gt;
+&lt;img src="photo.jpg"&gt;&lt;/img&gt;
+
+&lt;!-- Пример 4 --&gt;
+&lt;a href="google.com" Ссылка на Google&lt;/a&gt;
+
+&lt;!-- Пример 5 --&gt;
+&lt;h1&gt;Главный&lt;/h1&gt;
+&lt;h3&gt;Раздел&lt;/h3&gt;
+&lt;h2&gt;Подраздел&lt;/h2&gt;</code></pre>
+
+        <div class="write-box" data-lang="ru">
+            Ошибка 1: ________________________________<br>
+            Правильно: ________________________________<br><br>
+            Ошибка 2: ________________________________<br>
+            Правильно: ________________________________<br><br>
+            Ошибка 3: ________________________________<br>
+            Правильно: ________________________________<br><br>
+            Ошибка 4: ________________________________<br>
+            Правильно: ________________________________<br><br>
+            Ошибка 5: ________________________________<br>
+            Правильно: ________________________________
+        </div>
+        <div class="write-box" data-lang="en">
+            Error 1: ________________________________<br>
+            Correct: ________________________________<br><br>
+            Error 2: ________________________________<br>
+            Correct: ________________________________<br><br>
+            Error 3: ________________________________<br>
+            Correct: ________________________________<br><br>
+            Error 4: ________________________________<br>
+            Correct: ________________________________<br><br>
+            Error 5: ________________________________<br>
+            Correct: ________________________________
+        </div>
+
+        <div class="example">
+            <ol data-lang="ru">
+                <li>Теги пересекаются → <code>&lt;p&gt;&lt;strong&gt;жирный текст&lt;/strong&gt;&lt;/p&gt;</code></li>
+                <li>Нет <code>/</code> в закрывающем теге → <code>&lt;/h1&gt;</code></li>
+                <li><code>&lt;img&gt;</code> — одиночный тег, не нужен <code>&lt;/img&gt;</code></li>
+                <li>Нет закрывающей <code>&gt;</code> и кавычки → <code>&lt;a href="https://google.com"&gt;Ссылка&lt;/a&gt;</code></li>
+                <li>Нарушена иерархия: после h1 должен идти h2, потом h3</li>
+            </ol>
+            <ol data-lang="en">
+                <li>Tags overlap → <code>&lt;p&gt;&lt;strong&gt;жирный текст&lt;/strong&gt;&lt;/p&gt;</code></li>
+                <li>Missing <code>/</code> in closing tag → <code>&lt;/h1&gt;</code></li>
+                <li><code>&lt;img&gt;</code> is a self-closing tag, no need for <code>&lt;/img&gt;</code></li>
+                <li>Missing closing <code>&gt;</code> and quote → <code>&lt;a href="https://google.com"&gt;Ссылка&lt;/a&gt;</code></li>
+                <li>Hierarchy violated: after h1 should come h2, then h3</li>
+            </ol>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Найдены все 5 ошибок</li>
+                <li>Записаны правильные варианты</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 5 errors found</li>
+                <li>Correct versions written down</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 3.2 / TASK 3.2 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 3.2: Атрибуты — заполни пропуски</span>
+            <span class="task-title" data-lang="en">Task 3.2: Attributes — Fill in the Blanks</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">5 минут</span>
+                <span class="badge badge-time" data-lang="en">5 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Закрепить знание атрибутов</div>
+        <div class="task-goal" data-lang="en">Reinforce knowledge of attributes</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Допишите недостающие атрибуты:</p>
+        <p data-lang="en">Fill in the missing attributes:</p>
+
+<pre><code>&lt;!-- 1. Ссылка, которая открывается в новой вкладке --&gt;
+&lt;a ___="https://youtube.com" ___="___"&gt;YouTube&lt;/a&gt;
+
+&lt;!-- 2. Картинка с описанием и шириной 400px --&gt;
+&lt;img ___="cat.jpg" ___="Фото кота" ___="400"&gt;
+
+&lt;!-- 3. HTML-документ на русском языке --&gt;
+&lt;html ___="___"&gt;
+
+&lt;!-- 4. Кодировка UTF-8 --&gt;
+&lt;meta ___="___"&gt;</code></pre>
+
+        <div class="write-box" data-lang="ru">
+            1. <code>href</code>, <code>target</code>, <code>_blank</code><br>
+            2. ________________________________<br>
+            3. ________________________________<br>
+            4. ________________________________
+        </div>
+        <div class="write-box" data-lang="en">
+            1. <code>href</code>, <code>target</code>, <code>_blank</code><br>
+            2. ________________________________<br>
+            3. ________________________________<br>
+            4. ________________________________
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все пропуски заполнены правильно</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All blanks filled in correctly</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 3.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 3.2: ЗАГОЛОВКИ И ФОРМАТИРОВАНИЕ</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 3.2: HEADINGS AND FORMATTING</h2>
+
+    <!-- ЗАДАНИЕ 3.3 / TASK 3.3 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 3.3: Иерархия заголовков</span>
+            <span class="task-title" data-lang="en">Task 3.3: Heading Hierarchy</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">5 минут</span>
+                <span class="badge badge-time" data-lang="en">5 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться строить правильную иерархию заголовков</div>
+        <div class="task-goal" data-lang="en">Learn to build a correct heading hierarchy</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Превратите это оглавление в HTML-код с правильными заголовками:</p>
+        <p data-lang="en">Convert this table of contents into HTML code with correct headings:</p>
+
+        <div class="example">
+<pre><code>Рецепты (главное название)
+├── Завтраки
+│   ├── Омлет
+│   └── Блинчики
+├── Обеды
+│   ├── Суп
+│   └── Салат
+└── Десерты
+    ├── Торт
+    └── Мороженое</code></pre>
+        </div>
+
+        <div class="hint" data-lang="ru">
+            «Рецепты» — h1, «Завтраки/Обеды/Десерты» — h2, конкретные блюда — h3.
+        </div>
+        <div class="hint" data-lang="en">
+            "Рецепты" — h1, "Завтраки/Обеды/Десерты" — h2, specific dishes — h3.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>h1 используется один раз</li>
+                <li>Иерархия: h1 → h2 → h3 (без пропусков)</li>
+                <li>Каждому блюду добавлен параграф <code>&lt;p&gt;</code> с описанием</li>
+            </ul>
+            <ul data-lang="en">
+                <li>h1 is used only once</li>
+                <li>Hierarchy: h1 → h2 → h3 (no gaps)</li>
+                <li>Each dish has a paragraph <code>&lt;p&gt;</code> with a description</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 3.4 / TASK 3.4 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 3.4: Форматирование текста</span>
+            <span class="task-title" data-lang="en">Task 3.4: Text Formatting</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Отработать все теги форматирования</div>
+        <div class="task-goal" data-lang="en">Practice all formatting tags</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Создайте HTML-страницу с карточкой товара, используя теги форматирования:</p>
+        <p data-lang="en">Create an HTML page with a product card using formatting tags:</p>
+
+<pre><code>&lt;h1&gt;Интернет-магазин&lt;/h1&gt;
+
+&lt;h2&gt;Наушники SuperSound Pro&lt;/h2&gt;
+
+&lt;p&gt;Цена: &lt;s&gt;5000 руб.&lt;/s&gt; &lt;strong&gt;3500 руб.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;mark&gt;СКИДКА 30%!&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Лучшие наушники&lt;/em&gt; для любителей музыки.
+Частотный диапазон: 20&lt;sub&gt;Гц&lt;/sub&gt; — 20000&lt;sub&gt;Гц&lt;/sub&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;small&gt;* предложение действует до конца месяца&lt;/small&gt;&lt;/p&gt;</code></pre>
+
+        <p data-lang="ru"><strong>Ваша задача:</strong> Создайте свою карточку товара (телефон, игра, одежда, еда — что угодно) используя ВСЕ теги: <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;s&gt;</code>, <code>&lt;mark&gt;</code>, <code>&lt;small&gt;</code>, <code>&lt;sub&gt;</code> или <code>&lt;sup&gt;</code>.</p>
+        <p data-lang="en"><strong>Your task:</strong> Create your own product card (phone, game, clothing, food — anything) using ALL tags: <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;s&gt;</code>, <code>&lt;mark&gt;</code>, <code>&lt;small&gt;</code>, <code>&lt;sub&gt;</code> or <code>&lt;sup&gt;</code>.</p>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Создана карточка товара с уникальным содержимым</li>
+                <li>Использованы минимум 5 разных тегов форматирования</li>
+                <li>Есть старая цена (зачёркнутая) и новая (жирная)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Product card created with unique content</li>
+                <li>At least 5 different formatting tags used</li>
+                <li>Old price (strikethrough) and new price (bold) are present</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 3.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 3.3: ПРАКТИЧЕСКИЙ ПРОЕКТ</h2>
+    <h2 data-lang="en">&#x1F3AF; LESSON 3.3: PRACTICAL PROJECT</h2>
+
+    <!-- ЗАДАНИЕ 3.5 / TASK 3.5 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 3.5: Страница-статья</span>
+            <span class="task-title" data-lang="en">Task 3.5: Article Page</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать полноценную HTML-страницу с правильной структурой</div>
+        <div class="task-goal" data-lang="en">Create a complete HTML page with proper structure</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <p data-lang="ru">Создайте страницу-статью на <strong>свою тему</strong>. Идеи:</p>
+        <p data-lang="en">Create an article page on <strong>your own topic</strong>. Ideas:</p>
+        <ul data-lang="ru">
+            <li>«10 фактов о [ваша тема]»</li>
+            <li>«Руководство по [ваше хобби]»</li>
+            <li>«Обзор [игра/фильм/альбом]»</li>
+            <li>«Биография [известная личность]»</li>
+            <li>«Мой город — путеводитель»</li>
+        </ul>
+        <ul data-lang="en">
+            <li>"10 Facts About [your topic]"</li>
+            <li>"Guide to [your hobby]"</li>
+            <li>"Review of [game/movie/album]"</li>
+            <li>"Biography of [famous person]"</li>
+            <li>"My City — Travel Guide"</li>
+        </ul>
+
+        <h3 data-lang="ru">Требования:</h3>
+        <h3 data-lang="en">Requirements:</h3>
+        <table data-lang="ru">
+            <tr><th>Элемент</th><th>Минимум</th></tr>
+            <tr><td><code>&lt;!DOCTYPE html&gt;</code> + полная структура</td><td>Обязательно</td></tr>
+            <tr><td><code>&lt;title&gt;</code> с осмысленным названием</td><td>Обязательно</td></tr>
+            <tr><td><code>&lt;h1&gt;</code> — название статьи</td><td>1</td></tr>
+            <tr><td><code>&lt;h2&gt;</code> — разделы</td><td>3+</td></tr>
+            <tr><td><code>&lt;h3&gt;</code> — подразделы</td><td>2+</td></tr>
+            <tr><td><code>&lt;p&gt;</code> — параграфы</td><td>5+</td></tr>
+            <tr><td><code>&lt;br&gt;</code> — переносы строк</td><td>2+</td></tr>
+            <tr><td><code>&lt;hr&gt;</code> — разделительные линии</td><td>2+</td></tr>
+            <tr><td><code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code></td><td>По 3+</td></tr>
+            <tr><td><code>&lt;mark&gt;</code>, <code>&lt;s&gt;</code> или <code>&lt;small&gt;</code></td><td>По 1+</td></tr>
+            <tr><td><code>&lt;!-- комментарии --&gt;</code></td><td>3+ (для разделов)</td></tr>
+        </table>
+        <table data-lang="en">
+            <tr><th>Element</th><th>Minimum</th></tr>
+            <tr><td><code>&lt;!DOCTYPE html&gt;</code> + full structure</td><td>Required</td></tr>
+            <tr><td><code>&lt;title&gt;</code> with a meaningful name</td><td>Required</td></tr>
+            <tr><td><code>&lt;h1&gt;</code> — article title</td><td>1</td></tr>
+            <tr><td><code>&lt;h2&gt;</code> — sections</td><td>3+</td></tr>
+            <tr><td><code>&lt;h3&gt;</code> — subsections</td><td>2+</td></tr>
+            <tr><td><code>&lt;p&gt;</code> — paragraphs</td><td>5+</td></tr>
+            <tr><td><code>&lt;br&gt;</code> — line breaks</td><td>2+</td></tr>
+            <tr><td><code>&lt;hr&gt;</code> — horizontal rules</td><td>2+</td></tr>
+            <tr><td><code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code></td><td>3+ each</td></tr>
+            <tr><td><code>&lt;mark&gt;</code>, <code>&lt;s&gt;</code> or <code>&lt;small&gt;</code></td><td>1+ each</td></tr>
+            <tr><td><code>&lt;!-- comments --&gt;</code></td><td>3+ (for sections)</td></tr>
+        </table>
+
+        <div class="example">
+            <p data-lang="ru"><strong>Структура (пример):</strong></p>
+            <p data-lang="en"><strong>Structure (example):</strong></p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;10 фактов о футболе&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;!-- Заголовок статьи --&gt;
+    &lt;h1&gt;10 удивительных фактов о футболе&lt;/h1&gt;
+    &lt;p&gt;Футбол — &lt;strong&gt;самый популярный спорт&lt;/strong&gt; в мире...&lt;/p&gt;
+
+    &lt;hr&gt;
+
+    &lt;!-- Раздел 1 --&gt;
+    &lt;h2&gt;История&lt;/h2&gt;
+    &lt;p&gt;...&lt;/p&gt;
+
+    &lt;h3&gt;Древний футбол&lt;/h3&gt;
+    &lt;p&gt;...&lt;/p&gt;
+
+    &lt;h3&gt;Современные правила&lt;/h3&gt;
+    &lt;p&gt;...&lt;/p&gt;
+
+    &lt;hr&gt;
+
+    &lt;!-- Раздел 2 --&gt;
+    &lt;h2&gt;Рекорды&lt;/h2&gt;
+    &lt;p&gt;...&lt;/p&gt;
+
+    ...
+
+    &lt;!-- Подвал --&gt;
+    &lt;hr&gt;
+    &lt;p&gt;&lt;small&gt;Автор: [Имя] | 2026&lt;/small&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Правильная структура HTML-документа (DOCTYPE, html, head, body)</li>
+                <li>Осмысленный <code>&lt;title&gt;</code></li>
+                <li>Правильная иерархия заголовков (h1 → h2 → h3, без пропусков)</li>
+                <li>Все обязательные элементы из таблицы</li>
+                <li>Правильная вложенность (теги не пересекаются)</li>
+                <li>Аккуратные отступы (форматирование Prettier)</li>
+                <li>Тема — уникальная, текст — свой</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Correct HTML document structure (DOCTYPE, html, head, body)</li>
+                <li>Meaningful <code>&lt;title&gt;</code></li>
+                <li>Correct heading hierarchy (h1 → h2 → h3, no gaps)</li>
+                <li>All required elements from the table</li>
+                <li>Proper nesting (tags do not overlap)</li>
+                <li>Clean indentation (Prettier formatting)</li>
+                <li>Topic is unique, text is original</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 3.6 / TASK 3.6 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 3.6: Инспекция в DevTools (бонусное)</span>
+            <span class="task-title" data-lang="en">Task 3.6: DevTools Inspection (bonus)</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">5 минут</span>
+                <span class="badge badge-time" data-lang="en">5 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Проверить свою страницу через DevTools</div>
+        <div class="task-goal" data-lang="en">Check your page using DevTools</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+        <ol data-lang="ru">
+            <li>Откройте свою статью через Live Server</li>
+            <li>Откройте DevTools (F12)</li>
+            <li>Проверьте структуру в Elements:
+                <ul>
+                    <li>Есть ли <code>&lt;!DOCTYPE html&gt;</code>?</li>
+                    <li>Правильная ли вложенность?</li>
+                    <li>Все ли теги закрыты?</li>
+                </ul>
+            </li>
+            <li>Наведите на разные элементы — посмотрите, как они подсвечиваются</li>
+            <li>Измените текст заголовка через DevTools</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Open your article via Live Server</li>
+            <li>Open DevTools (F12)</li>
+            <li>Check the structure in Elements:
+                <ul>
+                    <li>Is <code>&lt;!DOCTYPE html&gt;</code> present?</li>
+                    <li>Is the nesting correct?</li>
+                    <li>Are all tags closed?</li>
+                </ul>
+            </li>
+            <li>Hover over different elements — see how they get highlighted</li>
+            <li>Change the heading text using DevTools</li>
+        </ol>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Страница проверена в DevTools</li>
+                <li>Ошибки вложенности исправлены (если были)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Page checked in DevTools</li>
+                <li>Nesting errors fixed (if any)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ДОМАШНЕЕ ЗАДАНИЕ ==================== -->
+    <h2 data-lang="ru">&#x1F4DA; ДОМАШНЕЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x1F4DA; HOMEWORK</h2>
+
+    <!-- ДЗ 3 / HW 3 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">ДЗ 3: Расширенная статья + анализ сайта</span>
+            <span class="task-title" data-lang="en">HW 3: Extended Article + Website Analysis</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Закрепить структуру HTML-документа и теги форматирования</div>
+        <div class="task-goal" data-lang="en">Reinforce HTML document structure and formatting tags</div>
+
+        <h3 data-lang="ru">Часть 1: Расширь статью</h3>
+        <h3 data-lang="en">Part 1: Expand your article</h3>
+        <p data-lang="ru">Добавь в свою статью из задания 3.5:</p>
+        <p data-lang="en">Add the following to your article from task 3.5:</p>
+        <ul data-lang="ru">
+            <li>Ещё 2 раздела (<code>&lt;h2&gt;</code>) с подразделами (<code>&lt;h3&gt;</code>)</li>
+            <li>Использование <code>&lt;sub&gt;</code> или <code>&lt;sup&gt;</code> (формулы, сноски, степени)</li>
+            <li>Блок «Источники» в конце с тегом <code>&lt;small&gt;</code></li>
+            <li>Минимум 10 параграфов <code>&lt;p&gt;</code> с развёрнутым текстом</li>
+        </ul>
+        <ul data-lang="en">
+            <li>2 more sections (<code>&lt;h2&gt;</code>) with subsections (<code>&lt;h3&gt;</code>)</li>
+            <li>Use of <code>&lt;sub&gt;</code> or <code>&lt;sup&gt;</code> (formulas, footnotes, exponents)</li>
+            <li>A "Sources" block at the end using the <code>&lt;small&gt;</code> tag</li>
+            <li>At least 10 paragraphs <code>&lt;p&gt;</code> with detailed text</li>
+        </ul>
+
+        <h3 data-lang="ru">Часть 2: Анализ структуры реального сайта</h3>
+        <h3 data-lang="en">Part 2: Analyze a real website's structure</h3>
+        <p data-lang="ru">Откройте любой новостной сайт и через DevTools найдите:</p>
+        <p data-lang="en">Open any news website and use DevTools to find:</p>
+
+        <div class="write-box" data-lang="ru">
+            Сайт: ________________________________<br><br>
+
+            1. Есть ли &lt;h1&gt; на странице? Текст: ________________________________<br>
+            2. Сколько &lt;h2&gt; на странице? ________<br>
+            3. Есть ли &lt;h3&gt;? Сколько? ________<br>
+            4. Правильная ли иерархия (h1 → h2 → h3)? Да / Нет<br>
+            5. Какой &lt;title&gt; у страницы? ________________________________<br>
+            6. Какая кодировка (charset)? ________________________________<br>
+            7. Есть ли &lt;meta description&gt;? Текст: ________________________________
+        </div>
+        <div class="write-box" data-lang="en">
+            Website: ________________________________<br><br>
+
+            1. Is there an &lt;h1&gt; on the page? Text: ________________________________<br>
+            2. How many &lt;h2&gt; on the page? ________<br>
+            3. Are there &lt;h3&gt;? How many? ________<br>
+            4. Is the hierarchy correct (h1 → h2 → h3)? Yes / No<br>
+            5. What is the page &lt;title&gt;? ________________________________<br>
+            6. What is the encoding (charset)? ________________________________<br>
+            7. Is there a &lt;meta description&gt;? Text: ________________________________
+        </div>
+
+        <div class="hint" data-lang="ru">
+            Для поиска тегов на странице: в DevTools нажмите <code>Ctrl + F</code> в панели Elements и введите название тега (например, <code>h1</code>).
+        </div>
+        <div class="hint" data-lang="en">
+            To search for tags on the page: in DevTools press <code>Ctrl + F</code> in the Elements panel and type the tag name (e.g., <code>h1</code>).
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Статья расширена до 5+ разделов и 10+ параграфов</li>
+                <li>Использованы sub/sup и small</li>
+                <li>Заполнен анализ реального сайта</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Article expanded to 5+ sections and 10+ paragraphs</li>
+                <li>sub/sup and small tags used</li>
+                <li>Real website analysis completed</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

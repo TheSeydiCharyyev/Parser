@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 7 — Практические задания</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: #1e293b; background: #fff; padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { font-size: 1.8rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 10px; margin-bottom: 6px; }
+        h2 { font-size: 1.4rem; color: #7e22ce; margin: 36px 0 14px; padding: 8px 14px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 6px 6px 0; }
+        h3 { font-size: 1.15rem; color: #1e3a5f; margin: 20px 0 10px; }
+        .subtitle { color: #64748b; margin-bottom: 24px; }
+        .task { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 12px; padding: 24px; margin: 20px 0; }
+        .task-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+        .task-title { font-size: 1.15rem; font-weight: 700; color: #0f172a; }
+        .task-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+        .badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .badge-easy { background: #dcfce7; color: #15803d; }
+        .badge-medium { background: #fef9c3; color: #a16207; }
+        .badge-hard { background: #fce7f3; color: #9d174d; }
+        .badge-time { background: #e0e7ff; color: #3730a3; }
+        .task-goal { background: #faf5ff; border-left: 3px solid #a855f7; padding: 10px 14px; margin: 10px 0; border-radius: 0 6px 6px 0; font-size: 0.95rem; }
+        .task-goal::before { content: '🎯 Цель: '; font-weight: 700; color: #7e22ce; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 14px 18px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 0.9rem; line-height: 1.6; margin: 12px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+        th, td { padding: 8px 12px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 8px 0 8px 24px; }
+        li { margin: 4px 0; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 30px 0; }
+        .criteria { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+        .criteria::before { content: '✅ Критерии оценки:'; display: block; font-weight: 700; color: #15803d; margin-bottom: 6px; }
+        .hint { background: #fdf4ff; border: 1px solid #e9d5ff; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+        .hint::before { content: '💡 Подсказка:'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 4px; }
+        .write-box { background: #fff; border: 2px dashed #94a3b8; border-radius: 8px; padding: 16px; margin: 14px 0; min-height: 80px; }
+        .write-box::before { content: '✏️ Запиши:'; display: block; font-weight: 700; color: #475569; margin-bottom: 8px; }
+        .example { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+        .example::before { content: '📋 Пример:'; display: block; font-weight: 700; color: #a16207; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 7: Box Model</span><span style="color:#cbd5e1;">|</span><a href="lecture.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127979; Лекция</a><a href="student.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127891; Конспект</a><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128203; Задания</span></div>
+<div class="container">
+
+    <h1>📝 ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <p class="subtitle">Занятие 7: Box Model</p>
+
+    <hr>
+
+    <h2>🎯 УРОК 7.1: БЛОЧНЫЕ И СТРОЧНЫЕ + BOX MODEL</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 7.1: Block vs Inline — эксперимент</span>
+            <div class="task-meta">
+                <span class="badge badge-easy">Лёгкое</span>
+                <span class="badge badge-time">10 минут</span>
+            </div>
+        </div>
+        <div class="task-goal">Увидеть разницу между блочными и строчными элементами</div>
+
+        <h3>Условие:</h3>
+        <p>Создайте файл <code>block-inline.html</code>. Добавьте стили с рамкой для наглядности:</p>
+
+<pre><code>&lt;style&gt;
+    .block-demo { border: 3px solid blue; margin: 8px 0; padding: 8px; }
+    .inline-demo { border: 3px solid red; padding: 4px; }
+&lt;/style&gt;</code></pre>
+
+        <p>Затем создайте:</p>
+        <ol>
+            <li><strong>3 блочных элемента</strong> с классом <code>block-demo</code>: <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h3&gt;</code></li>
+            <li><strong>4 строчных элемента</strong> с классом <code>inline-demo</code> внутри одного <code>&lt;p&gt;</code>: <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code></li>
+        </ol>
+
+        <div class="write-box">
+            Блочные элементы занимают: ________________________________<br>
+            Строчные элементы занимают: ________________________________<br>
+            Главное отличие: ________________________________
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Блочные элементы с синей рамкой — каждый на новой строке, вся ширина</li>
+                <li>Строчные элементы с красной рамкой — все в одной строке</li>
+                <li>Записаны наблюдения</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 7.2: Определи тип элемента</span>
+            <div class="task-meta">
+                <span class="badge badge-easy">Лёгкое</span>
+                <span class="badge badge-time">5 минут</span>
+            </div>
+        </div>
+        <div class="task-goal">Закрепить знание блочных и строчных элементов</div>
+
+        <h3>Условие:</h3>
+        <p>Определите тип каждого элемента — блочный (B) или строчный (I):</p>
+
+        <div class="write-box">
+            <table>
+                <tr><th>Элемент</th><th>Тип (B/I)</th></tr>
+                <tr><td><code>&lt;div&gt;</code></td><td></td></tr>
+                <tr><td><code>&lt;span&gt;</code></td><td></td></tr>
+                <tr><td><code>&lt;h1&gt;</code></td><td></td></tr>
+                <tr><td><code>&lt;a&gt;</code></td><td></td></tr>
+                <tr><td><code>&lt;p&gt;</code></td><td></td></tr>
+                <tr><td><code>&lt;strong&gt;</code></td><td></td></tr>
+                <tr><td><code>&lt;section&gt;</code></td><td></td></tr>
+                <tr><td><code>&lt;em&gt;</code></td><td></td></tr>
+                <tr><td><code>&lt;header&gt;</code></td><td></td></tr>
+                <tr><td><code>&lt;code&gt;</code></td><td></td></tr>
+            </table>
+        </div>
+
+        <div class="example">
+            div — B, span — I, h1 — B, a — I, p — B, strong — I, section — B, em — I, header — B, code — I
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Минимум 8 из 10 ответов правильные</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 7.3: Box Model — рассчитай размер</span>
+            <div class="task-meta">
+                <span class="badge badge-medium">Среднее</span>
+                <span class="badge badge-time">5 минут</span>
+            </div>
+        </div>
+        <div class="task-goal">Понять как складываются размеры в Box Model</div>
+
+        <h3>Условие:</h3>
+        <p>Рассчитайте итоговую ширину элемента на экране для каждого примера:</p>
+
+        <div class="write-box">
+            <strong>Пример 1</strong> (box-sizing: content-box):<br>
+            width: 300px, padding: 20px, border: 5px solid black<br>
+            Итоговая ширина: ________<br><br>
+
+            <strong>Пример 2</strong> (box-sizing: border-box):<br>
+            width: 300px, padding: 20px, border: 5px solid black<br>
+            Итоговая ширина: ________<br><br>
+
+            <strong>Пример 3</strong> (box-sizing: content-box):<br>
+            width: 200px, padding: 10px 30px, border: 2px solid blue<br>
+            Итоговая ширина: ________
+        </div>
+
+        <div class="example">
+            <ol>
+                <li>300 + 20*2 + 5*2 = <strong>350px</strong></li>
+                <li><strong>300px</strong> (border-box — всё включено!)</li>
+                <li>200 + 30*2 + 2*2 = <strong>264px</strong> (padding: 10px 30px = 30px лево + 30px право)</li>
+            </ol>
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Все 3 расчёта выполнены правильно</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 7.4: Padding и Margin — практика</span>
+            <div class="task-meta">
+                <span class="badge badge-medium">Среднее</span>
+                <span class="badge badge-time">10 минут</span>
+            </div>
+        </div>
+        <div class="task-goal">Отработать padding и margin на реальных элементах</div>
+
+        <h3>Условие:</h3>
+        <p>Создайте файл <code>box-model.html</code>. Добавьте 4 блока <code>&lt;div&gt;</code> и задайте им стили:</p>
+
+        <ol>
+            <li><strong>Блок 1:</strong> фон <code>#dbeafe</code>, padding: 10px, без margin</li>
+            <li><strong>Блок 2:</strong> фон <code>#dcfce7</code>, padding: 30px, margin-top: 20px</li>
+            <li><strong>Блок 3:</strong> фон <code>#fef3c7</code>, padding: 20px 40px, margin: 20px 0, border: 2px solid #f59e0b</li>
+            <li><strong>Блок 4:</strong> фон <code>#fce7f3</code>, width: 400px, padding: 20px, margin: 20px auto (центрирован!)</li>
+        </ol>
+
+        <div class="hint">
+            Не забудьте добавить <code>* { box-sizing: border-box; }</code> в начало CSS!<br>
+            После создания — откройте DevTools (F12), выберите каждый блок и посмотрите Box Model в панели Styles.
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>4 блока с разными padding и margin</li>
+                <li>Блок 4 центрирован через <code>margin: 20px auto</code></li>
+                <li>Использован <code>box-sizing: border-box</code></li>
+                <li>Просмотрена Box Model в DevTools</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>🎯 УРОК 7.2: DISPLAY, OVERFLOW, ТЕНИ, СКРУГЛЕНИЯ</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 7.5: display — эксперимент</span>
+            <div class="task-meta">
+                <span class="badge badge-medium">Среднее</span>
+                <span class="badge badge-time">10 минут</span>
+            </div>
+        </div>
+        <div class="task-goal">Увидеть разницу между block, inline, inline-block</div>
+
+        <h3>Условие:</h3>
+        <p>Создайте файл <code>display.html</code>. Создайте 3 секции, в каждой — 3 одинаковых элемента <code>&lt;span&gt;</code> с текстом «Элемент 1», «Элемент 2», «Элемент 3».</p>
+
+        <ol>
+            <li>В первой секции: <code>display: block</code> — каждый элемент на новой строке, width: 200px</li>
+            <li>Во второй секции: <code>display: inline</code> — все в одной строке (попробуйте задать width — не сработает!)</li>
+            <li>В третьей секции: <code>display: inline-block</code> — все в одной строке, но width: 200px <strong>работает</strong></li>
+        </ol>
+
+        <div class="hint">
+<pre><code>.block { display: block; width: 200px; padding: 10px; background: #dbeafe; margin: 4px 0; border-radius: 8px; }
+.inline { display: inline; width: 200px; padding: 10px; background: #dcfce7; border-radius: 8px; }
+.inline-block { display: inline-block; width: 200px; padding: 10px; background: #fef3c7; border-radius: 8px; }</code></pre>
+        </div>
+
+        <div class="write-box">
+            block — элементы стоят: ________________________________<br>
+            inline — width работает? ________________________________<br>
+            inline-block — элементы стоят: ________________, width работает? ________
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>3 секции с разными display</li>
+                <li>Видна разница между block, inline и inline-block</li>
+                <li>Записаны наблюдения</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 7.6: Стилизованные кнопки</span>
+            <div class="task-meta">
+                <span class="badge badge-medium">Среднее</span>
+                <span class="badge badge-time">10 минут</span>
+            </div>
+        </div>
+        <div class="task-goal">Отработать inline-block, border-radius и box-shadow</div>
+
+        <h3>Условие:</h3>
+        <p>Создайте файл <code>buttons.html</code>. Сделайте 4 кнопки-ссылки (<code>&lt;a&gt;</code>) в ряд, каждая с разным стилем:</p>
+
+        <ol>
+            <li><strong>Кнопка 1:</strong> синий фон (#3b82f6), белый текст, скругление 8px, лёгкая тень</li>
+            <li><strong>Кнопка 2:</strong> зелёный фон (#22c55e), скругление 9999px (таблетка), средняя тень</li>
+            <li><strong>Кнопка 3:</strong> без фона, рамка 2px solid #7c3aed, фиолетовый текст, скругление 8px</li>
+            <li><strong>Кнопка 4:</strong> красный фон (#ef4444), белый текст, скругление 50% (круглая, одинаковые width и height)</li>
+        </ol>
+
+        <p>Все кнопки должны использовать:</p>
+        <ul>
+            <li><code>display: inline-block</code></li>
+            <li><code>padding: 12px 24px</code> (для кнопок 1-3)</li>
+            <li><code>text-decoration: none</code></li>
+            <li><code>font-weight: 600</code></li>
+        </ul>
+
+        <div class="criteria">
+            <ul>
+                <li>4 кнопки стоят в ряд (inline-block)</li>
+                <li>Каждая кнопка с уникальным стилем</li>
+                <li>Использованы border-radius и box-shadow</li>
+                <li>Кнопка 4 — круглая</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>🎯 УРОК 7.3: ПРАКТИЧЕСКИЙ ПРОЕКТ</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">Задание 7.7: Карточки товаров</span>
+            <div class="task-meta">
+                <span class="badge badge-hard">Продвинутое</span>
+                <span class="badge badge-time">20 минут</span>
+            </div>
+        </div>
+        <div class="task-goal">Создать набор карточек товаров, используя все знания занятия</div>
+
+        <h3>Условие:</h3>
+        <p>Создайте файл <code>cards.html</code> с набором из <strong>3-4 карточек товаров</strong>. Выберите тему: техника, одежда, еда, игры и т.д.</p>
+
+        <h3>Требования к каждой карточке:</h3>
+        <table>
+            <tr><th>Элемент</th><th>CSS</th></tr>
+            <tr><td>Карточка (<code>&lt;div&gt;</code>)</td><td><code>display: inline-block</code>, <code>width: 220px</code>, <code>padding: 20px</code>, <code>border-radius: 12px</code>, <code>box-shadow</code>, белый фон</td></tr>
+            <tr><td>Изображение (<code>&lt;img&gt;</code>)</td><td><code>width: 100%</code>, <code>border-radius: 8px</code></td></tr>
+            <tr><td>Название (<code>&lt;h3&gt;</code>)</td><td>margin сверху</td></tr>
+            <tr><td>Цена</td><td>Крупный зелёный текст, старая цена зачёркнута (<code>&lt;s&gt;</code>)</td></tr>
+            <tr><td>Кнопка «Купить» (<code>&lt;a&gt;</code>)</td><td><code>display: inline-block</code>, <code>width: 100%</code>, <code>text-align: center</code>, <code>padding</code>, <code>border-radius</code>, цветной фон</td></tr>
+        </table>
+
+        <h3>Дополнительные требования:</h3>
+        <ul>
+            <li><code>* { box-sizing: border-box; }</code></li>
+            <li>Фон страницы — светло-серый (<code>#f1f5f9</code>)</li>
+            <li>Карточки центрированы на странице (контейнер с <code>text-align: center</code> или <code>margin: 0 auto</code>)</li>
+            <li>Между карточками есть расстояние (<code>margin</code>)</li>
+            <li>Минимум у одного товара есть старая цена (зачёркнутая)</li>
+        </ul>
+
+        <div class="hint">
+            Для изображений можно использовать placeholder:<br>
+            <code>&lt;img src="https://via.placeholder.com/200x150/dbeafe/1d4ed8?text=Товар" alt="Товар"&gt;</code><br>
+            Или найдите бесплатные картинки на unsplash.com, pexels.com.
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>3-4 карточки стоят в ряд (inline-block)</li>
+                <li>У карточек: padding, border-radius, box-shadow</li>
+                <li>Картинка, название, цена, кнопка в каждой карточке</li>
+                <li><code>box-sizing: border-box</code> применён</li>
+                <li>Есть старая зачёркнутая цена</li>
+                <li>Кнопка «Купить» на всю ширину карточки</li>
+                <li>Страница выглядит аккуратно и цельно</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>📚 ДОМАШНЕЕ ЗАДАНИЕ</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title">ДЗ 7: Расширенные карточки + DevTools-исследование</span>
+            <div class="task-meta">
+                <span class="badge badge-medium">Среднее</span>
+                <span class="badge badge-time">30 минут</span>
+            </div>
+        </div>
+        <div class="task-goal">Закрепить Box Model и все CSS-свойства занятия</div>
+
+        <h3>Часть 1: Улучши карточки</h3>
+        <p>Доработайте карточки из задания 7.7:</p>
+        <ul>
+            <li>Добавьте <strong>бейдж «Хит»</strong> или <strong>«Скидка»</strong> в одну из карточек (span с <code>display: inline-block</code>, фон, padding, border-radius)</li>
+            <li>Добавьте <strong>рейтинг</strong> (звёздочки текстом: &#9733;&#9733;&#9733;&#9733;&#9734;) под название</li>
+            <li>Добавьте <strong>описание товара</strong> (1-2 строки мелким текстом)</li>
+            <li>Сделайте <strong>аватар</strong> (круглая картинка 60x60 с <code>border-radius: 50%</code>) — например, логотип бренда</li>
+        </ul>
+
+        <h3>Часть 2: DevTools-исследование</h3>
+        <p>Откройте <strong>2 интернет-магазина</strong> (ozon.ru, wildberries.ru, amazon.com или любые другие). Для карточки товара через DevTools найдите:</p>
+
+        <div class="write-box">
+            Магазин 1: ________________________________<br><br>
+            Карточка товара:<br>
+            padding: ________________________________<br>
+            border-radius: ________________________________<br>
+            box-shadow: ________________________________<br>
+            Ширина (width): ________________________________<br><br>
+
+            Магазин 2: ________________________________<br><br>
+            Карточка товара:<br>
+            padding: ________________________________<br>
+            border-radius: ________________________________<br>
+            box-shadow: ________________________________<br>
+            Ширина (width): ________________________________
+        </div>
+
+        <div class="criteria">
+            <ul>
+                <li>Карточки дополнены бейджем, рейтингом и описанием</li>
+                <li>Есть круглый аватар (border-radius: 50%)</li>
+                <li>Исследованы 2 интернет-магазина</li>
+                <li>Записаны CSS-значения карточек</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

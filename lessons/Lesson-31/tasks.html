@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 31 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 31: Подготовка к финальному проекту</span>
+    <span class="nav-title" data-lang="en">Lesson 31: Final Project Preparation</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 31: Подготовка к финальному проекту</p>
+    <p class="subtitle" data-lang="en">Lesson 31: Final Project Preparation</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 31.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 31.1: ВЫБОР ТЕМЫ И ВДОХНОВЕНИЕ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 31.1: TOPIC CHOICE AND INSPIRATION</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 30.1: Матрица выбора + сбор референсов</span>
+            <span class="task-title" data-lang="en">Task 30.1: Choice matrix + reference collection</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">45 минут</span>
+                <span class="badge badge-time" data-lang="en">45 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Определиться с темой и собрать визуальную базу для проекта</div>
+        <div class="task-goal" data-lang="en">Decide on a topic and collect visual reference for the project</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Матрица выбора:</strong> Оцените каждую из 6 идей (портфолио, лендинг, музыка, магазин, фестиваль, туризм) по 5 критериям (интересна / есть контент / сложность / полезна карьере / работать 3 недели) от 1 до 5. Выберите идею с максимальной суммой.</li>
+            <li><strong>Конкретизация темы:</strong> Если выбрали «лендинг бизнеса» — уточните, какой именно бизнес (кофейня «Sladko», студия татуировок «InkLab», школа программирования «CodeAkhal»). Придумайте название, слоган.</li>
+            <li><strong>Сбор референсов:</strong> Откройте минимум <strong>3 ресурса</strong> (Awwwards, Dribbble, Landbook, Pinterest, Figma Community). Соберите <strong>10+ скриншотов</strong> сайтов по вашей теме.</li>
+            <li><strong>Папка:</strong> Создайте локальную папку проекта. Внутри — папка <code>inspiration/</code>. Сохраните туда все скриншоты с осмысленными именами (<code>ref-01-awwwards.jpg</code>, не <code>Screenshot 2026-...</code>).</li>
+            <li><strong>Анализ:</strong> Что общего у собранных референсов? 2-3 общих черты. Это будет ваш стиль.</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Choice matrix:</strong> Rate each of 6 ideas (portfolio, landing, music, store, festival, travel) on 5 criteria (interested / have content / complexity / career / 3 weeks work) from 1 to 5. Pick the idea with the max total.</li>
+            <li><strong>Specify topic:</strong> If you picked "business landing" — specify which business (coffee shop "Sladko", tattoo studio "InkLab", coding school "CodeAkhal"). Come up with a name, tagline.</li>
+            <li><strong>Collect references:</strong> Open at least <strong>3 resources</strong> (Awwwards, Dribbble, Landbook, Pinterest, Figma Community). Collect <strong>10+ screenshots</strong> of sites on your topic.</li>
+            <li><strong>Folder:</strong> Create a local project folder. Inside — <code>inspiration/</code> folder. Save all screenshots there with meaningful names (<code>ref-01-awwwards.jpg</code>, not <code>Screenshot 2026-...</code>).</li>
+            <li><strong>Analysis:</strong> What do references have in common? 2-3 common traits. That will be your style.</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Как брать скриншот с Awwwards:</strong> откройте сайт → увидели интересный пример → F12 → iPhone режим (или 1440px для десктопа) → Cmd/Ctrl + Shift + S → Capture full size screenshot.<br><br>
+            <strong>Pinterest-лайфхак:</strong> «web design [ваша тема]» в поиске → выбираете 10 лучших → правый клик → Сохранить картинку.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>How to screenshot from Awwwards:</strong> open the site → see an interesting example → F12 → iPhone mode (or 1440px for desktop) → Cmd/Ctrl + Shift + S → Capture full size screenshot.<br><br>
+            <strong>Pinterest hack:</strong> "web design [your topic]" in search → pick 10 best → right-click → Save image.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Матрица заполнена на 6 идей × 5 критериев</li>
+                <li>Тема выбрана и конкретизирована (название + слоган)</li>
+                <li>Минимум 10 референсов-скриншотов собраны</li>
+                <li>Использовано минимум 3 разных ресурса</li>
+                <li>Файлы имеют осмысленные имена (не <code>Screenshot...</code>)</li>
+                <li>Записаны 2-3 общие черты референсов</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Matrix filled for 6 ideas × 5 criteria</li>
+                <li>Topic picked and specified (name + tagline)</li>
+                <li>At least 10 reference screenshots collected</li>
+                <li>At least 3 different resources used</li>
+                <li>Files have meaningful names (not <code>Screenshot...</code>)</li>
+                <li>2-3 common traits of references noted</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 31.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 31.2: SITEMAP + WIREFRAMES + ПАЛИТРА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 31.2: SITEMAP + WIREFRAMES + PALETTE</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 30.2: Спланировать структуру и дизайн</span>
+            <span class="task-title" data-lang="en">Task 30.2: Plan structure and design</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">45 минут</span>
+                <span class="badge badge-time" data-lang="en">45 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать полный план проекта: страницы, wireframes, палитра, шрифты</div>
+        <div class="task-goal" data-lang="en">Create a full project plan: pages, wireframes, palette, fonts</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>plan.md:</strong> Создайте файл в корне проекта. Внутри должно быть:
+                <ul>
+                    <li>Название проекта + слоган</li>
+                    <li>Sitemap: список страниц (3-5 штук) + что на каждой</li>
+                    <li>Описание компонентов, повторяющихся на разных страницах</li>
+                </ul>
+            </li>
+            <li><strong>Wireframes:</strong> Нарисуйте скелеты <strong>всех</strong> страниц. Инструменты:
+                <ul>
+                    <li>Бумага + ручка (сфотографируйте → <code>inspiration/wireframes/</code>)</li>
+                    <li>ИЛИ tldraw.com / excalidraw.com (экспорт в PNG)</li>
+                    <li>ИЛИ Figma с прямоугольниками</li>
+                </ul>
+                Без цветов, без красоты — только прямоугольники для каждого блока.
+            </li>
+            <li><strong>Палитра (5-8 цветов):</strong> Откройте coolors.co или tailwindcss.com/docs/customizing-colors. Выберите:
+                <ul>
+                    <li>Primary (основной цвет бренда)</li>
+                    <li>Primary Dark (hover-состояние)</li>
+                    <li>Accent (для выделений, редко)</li>
+                    <li>Text (основной текст)</li>
+                    <li>Text Muted (второстепенный)</li>
+                    <li>Background (белый или очень светлый)</li>
+                    <li>Background Alt (для альтернативных секций)</li>
+                    <li>Border</li>
+                </ul>
+                Все в HEX.
+            </li>
+            <li><strong>Шрифты из Google Fonts:</strong> Выберите 1-2 шрифта. Для начинающих рекомендуется Inter (один шрифт на всё). Продвинутый вариант: Poppins для заголовков + Inter для текста.</li>
+            <li><strong>Размеры шрифтов:</strong> Определите размеры для h1, h2, h3, body, small. Типовые: 48/32/20/16/14.</li>
+            <li><strong>Запишите всё в конспект (student.html)</strong> в соответствующие write-box поля.</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>plan.md:</strong> Create the file at the project root. Should contain:
+                <ul>
+                    <li>Project name + tagline</li>
+                    <li>Sitemap: page list (3-5 pages) + what's on each</li>
+                    <li>Description of components shared across pages</li>
+                </ul>
+            </li>
+            <li><strong>Wireframes:</strong> Draw skeletons of <strong>all</strong> pages. Tools:
+                <ul>
+                    <li>Paper + pen (photograph → <code>inspiration/wireframes/</code>)</li>
+                    <li>OR tldraw.com / excalidraw.com (export to PNG)</li>
+                    <li>OR Figma with rectangles</li>
+                </ul>
+                No colors, no beauty — just rectangles for each block.
+            </li>
+            <li><strong>Palette (5-8 colors):</strong> Open coolors.co or tailwindcss.com/docs/customizing-colors. Pick:
+                <ul>
+                    <li>Primary (main brand color)</li>
+                    <li>Primary Dark (hover state)</li>
+                    <li>Accent (for highlights, rare)</li>
+                    <li>Text (main text)</li>
+                    <li>Text Muted (secondary)</li>
+                    <li>Background (white or very light)</li>
+                    <li>Background Alt (for alternate sections)</li>
+                    <li>Border</li>
+                </ul>
+                All in HEX.
+            </li>
+            <li><strong>Fonts from Google Fonts:</strong> Pick 1-2 fonts. For beginners — Inter (one font for everything). Advanced: Poppins for headings + Inter for body.</li>
+            <li><strong>Font sizes:</strong> Define sizes for h1, h2, h3, body, small. Typical: 48/32/20/16/14.</li>
+            <li><strong>Record everything in notes (student.html)</strong> in the corresponding write-box fields.</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Шаблон plan.md:</strong>
+<pre><code># Plan: [название проекта]
+
+> Слоган: [одно предложение о сайте]
+
+## Sitemap
+
+1. **index.html** — Главная
+   - Секции: Header, Hero, Features, Gallery, Testimonials, CTA, Footer
+
+2. **about.html** — О нас
+   - Секции: Header, Story, Team, Values, Footer
+
+3. **contact.html** — Контакты
+   - Секции: Header, Info + Map, Form, Footer
+
+## Shared Components
+- Header (logo + 4 ссылки + CTA-кнопка)
+- Footer (3 колонки + копирайт)
+- Card (для features и gallery)
+- Button (.btn, .btn-primary, .btn-outline)
+
+## Wireframes
+Скриншоты в папке `inspiration/wireframes/`:
+- home-desktop.png, home-mobile.png
+- about-desktop.png, about-mobile.png
+- contact-desktop.png, contact-mobile.png
+
+## Design Decisions
+- Общий стиль: минимализм + крупная типографика
+- Основной цвет: #3B82F6 (синий)
+- Шрифт: Inter (400, 600, 700)
+- Breakpoints: 375px (mobile), 768px (tablet), 1440px (desktop)</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>plan.md template:</strong>
+<pre><code># Plan: [project name]
+
+> Tagline: [one sentence about the site]
+
+## Sitemap
+
+1. **index.html** — Home
+   - Sections: Header, Hero, Features, Gallery, Testimonials, CTA, Footer
+
+2. **about.html** — About
+   - Sections: Header, Story, Team, Values, Footer
+
+3. **contact.html** — Contact
+   - Sections: Header, Info + Map, Form, Footer
+
+## Shared Components
+- Header (logo + 4 links + CTA button)
+- Footer (3 columns + copyright)
+- Card (for features and gallery)
+- Button (.btn, .btn-primary, .btn-outline)
+
+## Wireframes
+Screenshots in `inspiration/wireframes/`:
+- home-desktop.png, home-mobile.png
+- about-desktop.png, about-mobile.png
+- contact-desktop.png, contact-mobile.png
+
+## Design Decisions
+- Overall style: minimalism + big typography
+- Primary color: #3B82F6 (blue)
+- Font: Inter (400, 600, 700)
+- Breakpoints: 375px (mobile), 768px (tablet), 1440px (desktop)</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li><code>plan.md</code> создан со всеми разделами (название, sitemap, компоненты, wireframes, design decisions)</li>
+                <li>3-5 страниц прописаны в sitemap</li>
+                <li>Wireframes <strong>всех</strong> страниц нарисованы (любым из инструментов)</li>
+                <li>Wireframes сохранены в <code>inspiration/wireframes/</code> как PNG или фото</li>
+                <li>Палитра содержит 5-8 цветов в HEX</li>
+                <li>Выбран шрифт из Google Fonts + веса</li>
+                <li>Размеры шрифтов определены (h1-h3, body, small)</li>
+                <li>Всё записано в student.html</li>
+            </ul>
+            <ul data-lang="en">
+                <li><code>plan.md</code> created with all sections (name, sitemap, components, wireframes, design decisions)</li>
+                <li>3-5 pages listed in sitemap</li>
+                <li>Wireframes of <strong>all</strong> pages drawn (any tool)</li>
+                <li>Wireframes saved in <code>inspiration/wireframes/</code> as PNG or photo</li>
+                <li>Palette has 5-8 HEX colors</li>
+                <li>Font picked from Google Fonts + weights</li>
+                <li>Font sizes defined (h1-h3, body, small)</li>
+                <li>Everything recorded in student.html</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 31.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 31.3: СТРУКТУРА ПРОЕКТА + GIT</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 31.3: PROJECT STRUCTURE + GIT</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 30.3: Настроить проект и загрузить на GitHub</span>
+            <span class="task-title" data-lang="en">Task 30.3: Set up the project and push to GitHub</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">45 минут</span>
+                <span class="badge badge-time" data-lang="en">45 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать структуру проекта, tokens.css, git-репозиторий на GitHub</div>
+        <div class="task-goal" data-lang="en">Create project structure, tokens.css, GitHub repo</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Структура папок:</strong> Создайте все нужные папки и пустые файлы:
+<pre><code>my-project/
+├── index.html       (пустой с базовым HTML)
+├── about.html       (пустой)
+├── contact.html     (пустой)
+├── css/
+│   ├── tokens.css
+│   ├── base.css
+│   ├── components.css
+│   └── style.css
+├── images/          (пока пусто)
+├── icons/           (пока пусто)
+├── inspiration/     (уже есть)
+├── README.md
+├── plan.md          (уже есть)
+└── .gitignore</code></pre>
+            </li>
+            <li><strong>tokens.css:</strong> Заполните всё, что определили в задании 30.2:
+                <ul>
+                    <li>Все цвета как CSS-переменные в <code>:root</code></li>
+                    <li>Шрифты и размеры (<code>--font-primary</code>, <code>--fs-h1</code>, ...)</li>
+                    <li>Spacing (<code>--space-sm</code>, <code>--space-md</code>, ...)</li>
+                    <li>Radii и shadows</li>
+                </ul>
+            </li>
+            <li><strong>base.css:</strong> Базовые стили:
+<pre><code>* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--fs-body);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}</code></pre>
+            </li>
+            <li><strong>README.md:</strong> Черновая версия по шаблону из лекции (название, demo-placeholder, страницы, tech stack, автор).</li>
+            <li><strong>.gitignore:</strong>
+<pre><code>.DS_Store
+node_modules/
+*.log
+.vscode/
+.idea/</code></pre>
+            </li>
+            <li><strong>Git:</strong>
+<pre><code>git init
+git add .
+git commit -m "Initial setup: plan, tokens, folder structure"</code></pre>
+            </li>
+            <li><strong>GitHub-репозиторий:</strong>
+                <ul>
+                    <li>Зайдите на github.com → New repository</li>
+                    <li>Имя = название проекта</li>
+                    <li>Visibility: <strong>Public</strong> (важно для GitHub Pages)</li>
+                    <li>НЕ создавайте README (он уже есть локально)</li>
+                    <li>Нажмите Create</li>
+                </ul>
+            </li>
+            <li><strong>Push на GitHub:</strong>
+<pre><code>git remote add origin https://github.com/USERNAME/PROJECT.git
+git branch -M main
+git push -u origin main</code></pre>
+            </li>
+            <li><strong>Проверка:</strong> Откройте репозиторий в браузере — все файлы должны быть видны. README.md должен отображаться на главной странице.</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Folder structure:</strong> Create all needed folders and empty files:
+<pre><code>my-project/
+├── index.html       (empty with base HTML)
+├── about.html       (empty)
+├── contact.html     (empty)
+├── css/
+│   ├── tokens.css
+│   ├── base.css
+│   ├── components.css
+│   └── style.css
+├── images/          (empty for now)
+├── icons/           (empty for now)
+├── inspiration/     (already exists)
+├── README.md
+├── plan.md          (already exists)
+└── .gitignore</code></pre>
+            </li>
+            <li><strong>tokens.css:</strong> Fill in everything from task 30.2:
+                <ul>
+                    <li>All colors as CSS variables in <code>:root</code></li>
+                    <li>Fonts and sizes (<code>--font-primary</code>, <code>--fs-h1</code>, ...)</li>
+                    <li>Spacing (<code>--space-sm</code>, <code>--space-md</code>, ...)</li>
+                    <li>Radii and shadows</li>
+                </ul>
+            </li>
+            <li><strong>base.css:</strong> Base styles:
+<pre><code>* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--fs-body);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}</code></pre>
+            </li>
+            <li><strong>README.md:</strong> Draft version per lecture template (name, demo placeholder, pages, tech stack, author).</li>
+            <li><strong>.gitignore:</strong>
+<pre><code>.DS_Store
+node_modules/
+*.log
+.vscode/
+.idea/</code></pre>
+            </li>
+            <li><strong>Git:</strong>
+<pre><code>git init
+git add .
+git commit -m "Initial setup: plan, tokens, folder structure"</code></pre>
+            </li>
+            <li><strong>GitHub repo:</strong>
+                <ul>
+                    <li>Go to github.com → New repository</li>
+                    <li>Name = project name</li>
+                    <li>Visibility: <strong>Public</strong> (important for GitHub Pages)</li>
+                    <li>DON'T create README (already exists locally)</li>
+                    <li>Click Create</li>
+                </ul>
+            </li>
+            <li><strong>Push to GitHub:</strong>
+<pre><code>git remote add origin https://github.com/USERNAME/PROJECT.git
+git branch -M main
+git push -u origin main</code></pre>
+            </li>
+            <li><strong>Check:</strong> Open the repo in the browser — all files should be visible. README.md should display on the main page.</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Пустой шаблон <code>index.html</code> со всеми подключениями:</strong>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;[Название проекта]&lt;/title&gt;
+
+    &lt;!-- Google Fonts --&gt;
+    &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+    &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"&gt;
+
+    &lt;!-- CSS в правильном порядке --&gt;
+    &lt;link rel="stylesheet" href="css/tokens.css"&gt;
+    &lt;link rel="stylesheet" href="css/base.css"&gt;
+    &lt;link rel="stylesheet" href="css/components.css"&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- HTML добавим на занятии 31 --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Empty <code>index.html</code> template with all connections:</strong>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;[Project Name]&lt;/title&gt;
+
+    &lt;!-- Google Fonts --&gt;
+    &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+    &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"&gt;
+
+    &lt;!-- CSS in correct order --&gt;
+    &lt;link rel="stylesheet" href="css/tokens.css"&gt;
+    &lt;link rel="stylesheet" href="css/base.css"&gt;
+    &lt;link rel="stylesheet" href="css/components.css"&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- HTML comes in lesson 31 --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Структура папок создана полностью (все подпапки + файлы)</li>
+                <li><code>tokens.css</code> содержит все переменные (цвета, шрифты, spacing, radii, shadows)</li>
+                <li><code>base.css</code> содержит сброс + body + <code>.container</code></li>
+                <li><code>README.md</code> — черновая версия по шаблону</li>
+                <li><code>.gitignore</code> создан (минимум <code>.DS_Store</code>)</li>
+                <li>Все <code>.html</code>-файлы имеют базовый шаблон с подключёнными CSS и Google Fonts</li>
+                <li>Git инициализирован, первый коммит сделан</li>
+                <li>GitHub-репозиторий создан (<strong>public</strong>)</li>
+                <li>Код запушен на GitHub (<code>git push</code>)</li>
+                <li>Репозиторий открывается в браузере, README отображается</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Folder structure fully created (all subfolders + files)</li>
+                <li><code>tokens.css</code> has all variables (colors, fonts, spacing, radii, shadows)</li>
+                <li><code>base.css</code> has reset + body + <code>.container</code></li>
+                <li><code>README.md</code> — draft per template</li>
+                <li><code>.gitignore</code> created (minimum <code>.DS_Store</code>)</li>
+                <li>All <code>.html</code> files have base template with CSS and Google Fonts linked</li>
+                <li>Git initialized, first commit made</li>
+                <li>GitHub repo created (<strong>public</strong>)</li>
+                <li>Code pushed to GitHub (<code>git push</code>)</li>
+                <li>Repo opens in browser, README displays</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 30.4: Детальный mood-board в Figma</span>
+            <span class="task-title" data-lang="en">Task 30.4: Detailed mood-board in Figma</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">30 минут</span>
+                <span class="badge badge-time" data-lang="en">30 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Собрать визуальную доску в Figma для дизайн-направления</div>
+        <div class="task-goal" data-lang="en">Assemble a visual mood-board in Figma for design direction</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li>Создайте новый Figma-файл с именем вашего проекта</li>
+            <li>Разместите на одной странице:
+                <ul>
+                    <li><strong>Референсы:</strong> 10+ скриншотов из <code>inspiration/</code> рядом друг с другом</li>
+                    <li><strong>Палитра:</strong> 8 цветных квадратов (каждый с HEX-подписью)</li>
+                    <li><strong>Типографика:</strong> «The quick brown fox» в 5 размерах (h1-small) выбранным шрифтом</li>
+                    <li><strong>Компоненты:</strong> нарисуйте 3 варианта кнопок (primary, secondary, outline) и 1 карточку</li>
+                </ul>
+            </li>
+            <li>Дайте ссылку на Figma-файл преподавателю</li>
+            <li>Экспортируйте mood-board как PNG в <code>inspiration/mood-board.png</code></li>
+        </ol>
+        <ol data-lang="en">
+            <li>Create a new Figma file with your project name</li>
+            <li>Place on one page:
+                <ul>
+                    <li><strong>References:</strong> 10+ screenshots from <code>inspiration/</code> side by side</li>
+                    <li><strong>Palette:</strong> 8 colored squares (each labeled with HEX)</li>
+                    <li><strong>Typography:</strong> "The quick brown fox" in 5 sizes (h1-small) with your chosen font</li>
+                    <li><strong>Components:</strong> draw 3 button variants (primary, secondary, outline) and 1 card</li>
+                </ul>
+            </li>
+            <li>Share the Figma link with the instructor</li>
+            <li>Export the mood-board as PNG to <code>inspiration/mood-board.png</code></li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Mood-board нужен не только вам, но и дизайнеру/преподавателю. Один взгляд — и ясно, в каком направлении проект. Профессиональная практика.
+        </div>
+        <div class="hint" data-lang="en">
+            A mood-board is needed not only by you but also by the designer/instructor. One look — and it's clear which direction the project is taking. Professional practice.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Figma-файл создан</li>
+                <li>Референсы + палитра + типографика + компоненты на одной странице</li>
+                <li>Mood-board экспортирован в <code>inspiration/mood-board.png</code></li>
+                <li>Ссылка на Figma приложена к проекту</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Figma file created</li>
+                <li>References + palette + typography + components on one page</li>
+                <li>Mood-board exported to <code>inspiration/mood-board.png</code></li>
+                <li>Figma link attached to the project</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

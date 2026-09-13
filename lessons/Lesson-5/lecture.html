@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 5 — Списки и семантика</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #1e293b; background: #f8fafc; padding: 40px 20px; }
+        .container { max-width: 860px; margin: 0 auto; }
+        h1 { font-size: 2.2rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 12px; margin-bottom: 8px; }
+        h2 { font-size: 1.5rem; color: #7e22ce; margin: 48px 0 16px; padding: 10px 16px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 8px 8px 0; }
+        h3 { font-size: 1.25rem; color: #1e3a5f; margin: 28px 0 12px; }
+        .subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 24px; }
+        p { margin: 10px 0; }
+        .highlight { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .important { background: #fef2f2; border-left: 4px solid #ef4444; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy { background: #fff7ed; border-left: 4px solid #f97316; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy::before { content: '🎨 Аналогия'; display: block; font-weight: 700; color: #c2410c; margin-bottom: 6px; }
+        .fun-fact { background: #fdf4ff; border-left: 4px solid #a855f7; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .fun-fact::before { content: '💡 Интересный факт'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 6px; }
+        .try-it { background: #ecfdf5; border: 2px solid #6ee7b7; padding: 16px 20px; margin: 16px 0; border-radius: 10px; }
+        .try-it::before { content: '🔧 Попробуй сам'; display: block; font-weight: 700; color: #059669; margin-bottom: 6px; }
+        .result-box { background: #fff; border: 2px solid #e2e8f0; border-radius: 10px; padding: 20px; margin: 16px 0; }
+        .result-box::before { content: '👁️ Результат в браузере:'; display: block; font-weight: 700; color: #475569; margin-bottom: 10px; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; margin: 14px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        .diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 20px; border-radius: 10px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.5; margin: 16px 0; overflow-x: auto; font-size: 0.88rem; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { padding: 10px 14px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 10px 0 10px 24px; }
+        li { margin: 5px 0; }
+        strong { color: #0f172a; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 40px 0; }
+        .summary { background: #faf5ff; border: 2px solid #d8b4fe; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .summary::before { content: '📋 Итоги раздела'; display: block; font-weight: 700; color: #7e22ce; font-size: 1.1rem; margin-bottom: 10px; }
+        .quiz { background: #fef2f2; border: 2px solid #fca5a5; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .quiz::before { content: '✅ Проверь себя'; display: block; font-weight: 700; color: #dc2626; font-size: 1.1rem; margin-bottom: 10px; }
+        .toc { background: #f1f5f9; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+        .toc-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: #0f172a; }
+        .toc ol { margin: 0 0 0 20px; }
+        .toc li { margin: 6px 0; }
+        .toc a { color: #7e22ce; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+        .compare > div { padding: 16px; border-radius: 8px; }
+        .compare .wrong { background: #fef2f2; border: 2px solid #fca5a5; }
+        .compare .right { background: #f0fdf4; border: 2px solid #86efac; }
+        .compare .label { font-weight: 700; margin-bottom: 8px; }
+        .mistake { background: #fff8f1; border: 2px solid #fdba74; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .mistake::before { content: '🚫 Частая ошибка новичков'; display: block; font-weight: 700; color: #ea580c; font-size: 1.05rem; margin-bottom: 10px; }
+        .pro-tip { background: #f0f9ff; border: 2px solid #7dd3fc; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .pro-tip::before { content: '🏆 Совет профессионала'; display: block; font-weight: 700; color: #0284c7; font-size: 1.05rem; margin-bottom: 10px; }
+        .why { background: #fefce8; border-left: 4px solid #eab308; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .why::before { content: '🤔 Зачем это нужно?'; display: block; font-weight: 700; color: #a16207; margin-bottom: 6px; }
+        .real-world { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .real-world::before { content: '🌍 В реальных проектах'; display: block; font-weight: 700; color: #0f766e; margin-bottom: 6px; }
+        @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 5: Списки и семантика</span><span style="color:#cbd5e1;">|</span><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128104;&#8205;&#127979; Лекция</span><a href="student.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127891; Конспект</a><a href="tasks.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128203; Задания</a></div>
+<div class="container">
+
+    <h1>Занятие 5: Списки и семантика</h1>
+    <p class="subtitle">Маркированные, нумерованные и описательные списки. Семантическая разметка страницы</p>
+
+    <div class="why">
+        <p>Списки и семантические теги — это <strong>основа структуры любой веб-страницы</strong>. Без списков невозможно создать навигацию, меню, рейтинги. Без семантики — поисковики и скринридеры не понимают вашу страницу.</p>
+        <p>Представьте книгу без оглавления, без глав, без нумерации страниц. Найти нужную информацию практически невозможно. Семантика и списки — это «оглавление» и «нумерация» вашего сайта.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Создавать маркированные, нумерованные и описательные списки</li>
+            <li>Вкладывать списки друг в друга (многоуровневые меню)</li>
+            <li>Строить страницу из семантических тегов (header, nav, main, footer)</li>
+            <li>Понимать, почему семантика важна для SEO и доступности</li>
+        </ul>
+    </div>
+
+    <div class="toc">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#ul">Маркированные списки &lt;ul&gt;</a></li>
+            <li><a href="#ol">Нумерованные списки &lt;ol&gt;</a></li>
+            <li><a href="#nested">Вложенные списки</a></li>
+            <li><a href="#dl">Описательные списки &lt;dl&gt;</a></li>
+            <li><a href="#lists-real">Списки в реальной жизни</a></li>
+            <li><a href="#semantic-why">Зачем нужна семантика</a></li>
+            <li><a href="#semantic-tags">Семантические теги HTML5</a></li>
+            <li><a href="#header-footer">header, footer и nav</a></li>
+            <li><a href="#main-section">main, section и article</a></li>
+            <li><a href="#aside-details">aside, details и другие</a></li>
+            <li><a href="#semantic-vs-div">Семантика vs div: сравнение</a></li>
+            <li><a href="#practice">Практика: семантическая страница блога</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== UL ===== -->
+    <h2 id="ul">1. Маркированные списки &lt;ul&gt;</h2>
+
+    <p><strong>Маркированный список</strong> (unordered list) — список, в котором порядок пунктов <strong>не важен</strong>. Каждый пункт отмечается маркером (точкой).</p>
+
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;Молоко&lt;/li&gt;
+    &lt;li&gt;Хлеб&lt;/li&gt;
+    &lt;li&gt;Яйца&lt;/li&gt;
+    &lt;li&gt;Сыр&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+    <div class="result-box">
+        <ul>
+            <li>Молоко</li>
+            <li>Хлеб</li>
+            <li>Яйца</li>
+            <li>Сыр</li>
+        </ul>
+    </div>
+
+    <ul>
+        <li><code>&lt;ul&gt;</code> — контейнер списка (unordered list)</li>
+        <li><code>&lt;li&gt;</code> — элемент списка (list item)</li>
+    </ul>
+
+    <div class="important">
+        Внутри <code>&lt;ul&gt;</code> могут быть <strong>только</strong> теги <code>&lt;li&gt;</code>. Нельзя напрямую вставлять <code>&lt;p&gt;</code>, <code>&lt;div&gt;</code> или текст — только <code>&lt;li&gt;</code>. А вот внутри <code>&lt;li&gt;</code> можно размещать что угодно: текст, ссылки, картинки, другие списки.
+    </div>
+
+    <div class="analogy">
+        <p>Маркированный список — это как <strong>список покупок на холодильнике</strong>: порядок не важен, главное — не забыть ни один пункт. Купите молоко первым или последним — результат одинаковый.</p>
+    </div>
+
+    <p><strong>Когда использовать:</strong> список покупок, меню навигации, перечисление навыков, любой набор элементов, где порядок не имеет значения.</p>
+
+    <hr>
+
+    <!-- ===== OL ===== -->
+    <h2 id="ol">2. Нумерованные списки &lt;ol&gt;</h2>
+
+    <p><strong>Нумерованный список</strong> (ordered list) — список, в котором порядок <strong>важен</strong>. Пункты автоматически нумеруются.</p>
+
+<pre><code>&lt;ol&gt;
+    &lt;li&gt;Включить духовку на 180°C&lt;/li&gt;
+    &lt;li&gt;Смешать муку и сахар&lt;/li&gt;
+    &lt;li&gt;Добавить яйца и молоко&lt;/li&gt;
+    &lt;li&gt;Вылить тесто в форму&lt;/li&gt;
+    &lt;li&gt;Выпекать 30 минут&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+    <div class="result-box">
+        <ol>
+            <li>Включить духовку на 180°C</li>
+            <li>Смешать муку и сахар</li>
+            <li>Добавить яйца и молоко</li>
+            <li>Вылить тесто в форму</li>
+            <li>Выпекать 30 минут</li>
+        </ol>
+    </div>
+
+    <h3>Атрибуты &lt;ol&gt;</h3>
+
+    <table>
+        <tr><th>Атрибут</th><th>Что делает</th><th>Пример</th></tr>
+        <tr><td><code>type</code></td><td>Тип нумерации</td><td><code>"1"</code> (цифры), <code>"A"</code> (буквы), <code>"a"</code> (маленькие буквы), <code>"I"</code> (римские), <code>"i"</code></td></tr>
+        <tr><td><code>start</code></td><td>Начальное число</td><td><code>start="5"</code> — начнёт с 5</td></tr>
+        <tr><td><code>reversed</code></td><td>Обратный порядок</td><td>10, 9, 8, 7...</td></tr>
+    </table>
+
+<pre><code>&lt;!-- Буквенная нумерация --&gt;
+&lt;ol type="A"&gt;
+    &lt;li&gt;Первый пункт&lt;/li&gt;
+    &lt;li&gt;Второй пункт&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Нумерация с 5 --&gt;
+&lt;ol start="5"&gt;
+    &lt;li&gt;Пятый пункт&lt;/li&gt;
+    &lt;li&gt;Шестой пункт&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Обратный отсчёт --&gt;
+&lt;h2&gt;ТОП-3 фильмов&lt;/h2&gt;
+&lt;ol reversed&gt;
+    &lt;li&gt;Интерстеллар&lt;/li&gt;
+    &lt;li&gt;Начало&lt;/li&gt;
+    &lt;li&gt;Матрица&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+    <p><strong>Когда использовать:</strong> рецепты, инструкции, рейтинги, любые последовательности, где порядок имеет значение.</p>
+
+    <div class="analogy">
+        <p><strong>ul vs ol:</strong></p>
+        <ul>
+            <li><code>&lt;ul&gt;</code> = список покупок (купить молоко, хлеб, сыр — порядок не важен)</li>
+            <li><code>&lt;ol&gt;</code> = рецепт торта (сначала разогреть духовку, потом смешать, потом выпечь — порядок важен!)</li>
+        </ul>
+    </div>
+
+    <div class="real-world">
+        <p>На сайтах интернет-магазинов нумерованные списки часто используются для <strong>шагов оформления заказа</strong>: 1. Корзина, 2. Доставка, 3. Оплата, 4. Подтверждение. Порядок критически важен!</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ВЛОЖЕННЫЕ ===== -->
+    <h2 id="nested">3. Вложенные списки</h2>
+
+    <p>Списки можно вкладывать друг в друга — создавая многоуровневую структуру. Вложенный список размещается <strong>внутри</strong> тега <code>&lt;li&gt;</code>:</p>
+
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;Фрукты
+        &lt;ul&gt;
+            &lt;li&gt;Яблоки&lt;/li&gt;
+            &lt;li&gt;Бананы&lt;/li&gt;
+            &lt;li&gt;Апельсины&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Овощи
+        &lt;ul&gt;
+            &lt;li&gt;Морковь&lt;/li&gt;
+            &lt;li&gt;Картофель&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Молочные продукты&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+    <div class="result-box">
+        <ul>
+            <li>Фрукты
+                <ul>
+                    <li>Яблоки</li>
+                    <li>Бананы</li>
+                    <li>Апельсины</li>
+                </ul>
+            </li>
+            <li>Овощи
+                <ul>
+                    <li>Морковь</li>
+                    <li>Картофель</li>
+                </ul>
+            </li>
+            <li>Молочные продукты</li>
+        </ul>
+    </div>
+
+    <p>Обратите внимание: браузер автоматически меняет тип маркера для каждого уровня вложенности (&#9679;, &#9675;, &#9632;).</p>
+
+    <p>Можно комбинировать <code>&lt;ul&gt;</code> и <code>&lt;ol&gt;</code>:</p>
+
+<pre><code>&lt;ol&gt;
+    &lt;li&gt;Подготовка
+        &lt;ul&gt;
+            &lt;li&gt;Помыть овощи&lt;/li&gt;
+            &lt;li&gt;Нарезать кубиками&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Приготовление
+        &lt;ul&gt;
+            &lt;li&gt;Обжарить лук&lt;/li&gt;
+            &lt;li&gt;Добавить овощи&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+    <div class="mistake">
+        <p>Вложенный список нужно размещать <strong>внутри <code>&lt;li&gt;</code></strong>, а не после него!</p>
+        <div class="compare">
+            <div class="wrong">
+                <div class="label">&#10060; Неправильно:</div>
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;Пункт 1&lt;/li&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Подпункт&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+            <div class="right">
+                <div class="label">&#9989; Правильно:</div>
+<pre><code>&lt;ul&gt;
+  &lt;li&gt;Пункт 1
+    &lt;ul&gt;
+      &lt;li&gt;Подпункт&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight">
+        <strong>Совет:</strong> Вложенные списки часто используются для <strong>меню навигации</strong> сайтов — основные разделы с подразделами.
+    </div>
+
+    <hr>
+
+    <!-- ===== DL ===== -->
+    <h2 id="dl">4. Описательные списки &lt;dl&gt;</h2>
+
+    <p><strong>Описательный список</strong> (definition list) используется для пар «термин — определение». Он состоит из трёх тегов:</p>
+
+    <ul>
+        <li><code>&lt;dl&gt;</code> — контейнер списка (definition list)</li>
+        <li><code>&lt;dt&gt;</code> — термин (definition term)</li>
+        <li><code>&lt;dd&gt;</code> — определение (definition description)</li>
+    </ul>
+
+<pre><code>&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Язык гипертекстовой разметки для создания веб-страниц.&lt;/dd&gt;
+
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Каскадные таблицы стилей для оформления веб-страниц.&lt;/dd&gt;
+
+    &lt;dt&gt;JavaScript&lt;/dt&gt;
+    &lt;dd&gt;Язык программирования для создания интерактивных веб-страниц.&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+
+    <div class="result-box">
+        <dl>
+            <dt><strong>HTML</strong></dt>
+            <dd style="margin-left: 20px; margin-bottom: 10px;">Язык гипертекстовой разметки для создания веб-страниц.</dd>
+            <dt><strong>CSS</strong></dt>
+            <dd style="margin-left: 20px; margin-bottom: 10px;">Каскадные таблицы стилей для оформления веб-страниц.</dd>
+            <dt><strong>JavaScript</strong></dt>
+            <dd style="margin-left: 20px;">Язык программирования для создания интерактивных веб-страниц.</dd>
+        </dl>
+    </div>
+
+    <p><strong>Когда использовать:</strong> словарь терминов, FAQ (вопрос-ответ), характеристики товара, метаданные (автор, дата, категория).</p>
+
+<pre><code>&lt;!-- FAQ --&gt;
+&lt;h2&gt;Частые вопросы&lt;/h2&gt;
+&lt;dl&gt;
+    &lt;dt&gt;Сколько стоит доставка?&lt;/dt&gt;
+    &lt;dd&gt;Доставка бесплатна при заказе от 3000 руб.&lt;/dd&gt;
+
+    &lt;dt&gt;Как долго ждать?&lt;/dt&gt;
+    &lt;dd&gt;Доставка занимает 2-3 рабочих дня.&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;!-- Характеристики товара --&gt;
+&lt;h2&gt;Характеристики&lt;/h2&gt;
+&lt;dl&gt;
+    &lt;dt&gt;Экран&lt;/dt&gt;
+    &lt;dd&gt;6.1 дюймов, OLED&lt;/dd&gt;
+
+    &lt;dt&gt;Аккумулятор&lt;/dt&gt;
+    &lt;dd&gt;4500 мА·ч&lt;/dd&gt;
+
+    &lt;dt&gt;Вес&lt;/dt&gt;
+    &lt;dd&gt;187 г&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+
+    <div class="pro-tip">
+        <p>На сайтах интернет-магазинов (ozon.ru, wildberries.ru) характеристики товаров часто реализованы именно через <code>&lt;dl&gt;</code>. Откройте DevTools на любом товаре и убедитесь сами!</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== СПИСКИ В ЖИЗНИ ===== -->
+    <h2 id="lists-real">5. Списки в реальной жизни</h2>
+
+    <p>Списки — один из самых часто используемых элементов на сайтах. Вот реальные примеры:</p>
+
+    <table>
+        <tr><th>Где</th><th>Тип списка</th><th>Пример</th></tr>
+        <tr><td><strong>Навигация</strong></td><td><code>&lt;ul&gt;</code></td><td>Главная, О нас, Контакты</td></tr>
+        <tr><td><strong>Меню ресторана</strong></td><td><code>&lt;ul&gt;</code> + вложенные</td><td>Супы: борщ, солянка...</td></tr>
+        <tr><td><strong>Рецепт</strong></td><td><code>&lt;ol&gt;</code></td><td>1. Нарезать. 2. Обжарить...</td></tr>
+        <tr><td><strong>ТОП-10</strong></td><td><code>&lt;ol&gt;</code></td><td>Рейтинг фильмов</td></tr>
+        <tr><td><strong>Словарь</strong></td><td><code>&lt;dl&gt;</code></td><td>Термин — определение</td></tr>
+        <tr><td><strong>FAQ</strong></td><td><code>&lt;dl&gt;</code></td><td>Вопрос — ответ</td></tr>
+        <tr><td><strong>Характеристики</strong></td><td><code>&lt;dl&gt;</code></td><td>Вес: 187 г</td></tr>
+        <tr><td><strong>Хлебные крошки</strong></td><td><code>&lt;ol&gt;</code></td><td>Главная &#8594; Каталог &#8594; Товар</td></tr>
+    </table>
+
+    <div class="fun-fact">
+        Навигация почти каждого сайта в интернете — это <code>&lt;ul&gt;</code> внутри <code>&lt;nav&gt;</code>. Откройте DevTools на любом сайте и найдите <code>&lt;nav&gt;</code> — внутри почти наверняка будет <code>&lt;ul&gt;</code> с пунктами <code>&lt;li&gt;</code>, в которых лежат ссылки <code>&lt;a&gt;</code>.
+    </div>
+
+<pre><code>&lt;!-- Типичная навигация сайта --&gt;
+&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Главная&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="catalog.html"&gt;Каталог&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="about.html"&gt;О нас&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="contacts.html"&gt;Контакты&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+
+    <div class="summary">
+        <ul>
+            <li><code>&lt;ul&gt;</code> — маркированный (порядок не важен): покупки, навыки, навигация</li>
+            <li><code>&lt;ol&gt;</code> — нумерованный (порядок важен): рецепты, рейтинги, инструкции</li>
+            <li><code>&lt;dl&gt;</code>/<code>&lt;dt&gt;</code>/<code>&lt;dd&gt;</code> — описательный: словари, FAQ, характеристики</li>
+            <li>Вложенные списки размещаются <strong>внутри <code>&lt;li&gt;</code></strong></li>
+            <li>Навигация = <code>&lt;nav&gt; &gt; &lt;ul&gt; &gt; &lt;li&gt; &gt; &lt;a&gt;</code></li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p><strong>Какой тип списка выбрать?</strong></p>
+        <ol>
+            <li>Список ингредиентов для пирога &#8594; <em><code>&lt;ul&gt;</code> (порядок не важен)</em></li>
+            <li>Шаги приготовления пирога &#8594; <em><code>&lt;ol&gt;</code> (порядок важен!)</em></li>
+            <li>Словарь кулинарных терминов &#8594; <em><code>&lt;dl&gt;</code> (термин + определение)</em></li>
+            <li>Меню навигации сайта &#8594; <em><code>&lt;ul&gt;</code> внутри <code>&lt;nav&gt;</code></em></li>
+            <li>ТОП-10 лучших фильмов &#8594; <em><code>&lt;ol&gt;</code> (рейтинг, порядок важен)</em></li>
+            <li>Характеристики телефона (экран, батарея, вес) &#8594; <em><code>&lt;dl&gt;</code></em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== ЗАЧЕМ СЕМАНТИКА ===== -->
+    <h2 id="semantic-why">6. Зачем нужна семантика</h2>
+
+    <p>До HTML5 веб-разработчики строили страницы из <code>&lt;div&gt;</code> — универсального блока-контейнера. Проблема: <code>&lt;div&gt;</code> не несёт никакого смысла. Ни браузер, ни поисковик, ни скринридер не понимают, что внутри — шапка сайта, навигация или основной контент.</p>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">&#10060; Без семантики (до HTML5):</div>
+<pre><code>&lt;div id="header"&gt;...&lt;/div&gt;
+&lt;div id="nav"&gt;...&lt;/div&gt;
+&lt;div id="main"&gt;...&lt;/div&gt;
+&lt;div id="sidebar"&gt;...&lt;/div&gt;
+&lt;div id="footer"&gt;...&lt;/div&gt;</code></pre>
+            <p>Все блоки одинаковые — <code>&lt;div&gt;</code>. Смысл понятен только по id.</p>
+        </div>
+        <div class="right">
+            <div class="label">&#9989; С семантикой (HTML5):</div>
+<pre><code>&lt;header&gt;...&lt;/header&gt;
+&lt;nav&gt;...&lt;/nav&gt;
+&lt;main&gt;...&lt;/main&gt;
+&lt;aside&gt;...&lt;/aside&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+            <p>Каждый тег несёт смысл — даже без чтения содержимого.</p>
+        </div>
+    </div>
+
+    <h3>Три причины использовать семантику</h3>
+
+    <ol>
+        <li><strong>SEO (поисковики)</strong> — Google лучше понимает структуру страницы и ранжирует выше.</li>
+        <li><strong>Доступность (accessibility)</strong> — скринридеры (программы для слабовидящих) используют семантику для навигации. Например, пользователь может сразу перейти к <code>&lt;main&gt;</code> или <code>&lt;nav&gt;</code>.</li>
+        <li><strong>Читаемость кода</strong> — разработчику проще понять структуру: <code>&lt;header&gt;</code> понятнее, чем <code>&lt;div class="header"&gt;</code>.</li>
+    </ol>
+
+    <div class="analogy">
+        <p><strong>Книга:</strong> <code>&lt;div&gt;</code> — это стопка неподписанных коробок. <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code> — это подписанные коробки: «Обложка», «Оглавление», «Содержание». Подписанные коробки легче найти и понять.</p>
+    </div>
+
+    <div class="why">
+        <p>Представьте, что вы переехали и все вещи в одинаковых коробках без подписей. Найти тарелки? Книги? Одежду? Нужно открывать каждую! А если коробки подписаны — всё найдётся за секунды. Семантические теги — это <strong>подписи на коробках</strong> вашего кода.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== СЕМАНТИЧЕСКИЕ ТЕГИ ===== -->
+    <h2 id="semantic-tags">7. Семантические теги HTML5</h2>
+
+    <p>HTML5 добавил набор тегов, которые описывают <strong>роль</strong> содержимого на странице:</p>
+
+    <div class="diagram">
+┌─────────────────────────────────────────────┐
+│                 &lt;header&gt;                    │
+│  Логотип, название, шапка                   │
+├─────────────────────────────────────────────┤
+│                  &lt;nav&gt;                      │
+│  Навигация: Главная | О нас | Контакты      │
+├──────────────────────────┬──────────────────┤
+│                          │                  │
+│        &lt;main&gt;           │    &lt;aside&gt;       │
+│                          │                  │
+│   ┌─────────────────┐   │  Боковая панель   │
+│   │   &lt;article&gt;     │   │  Реклама         │
+│   │   Статья/пост   │   │  Ссылки           │
+│   │                 │   │                  │
+│   │  ┌───────────┐  │   │                  │
+│   │  │ &lt;section&gt; │  │   │                  │
+│   │  │ Раздел    │  │   │                  │
+│   │  └───────────┘  │   │                  │
+│   └─────────────────┘   │                  │
+│                          │                  │
+├──────────────────────────┴──────────────────┤
+│                 &lt;footer&gt;                    │
+│  Копирайт, ссылки, контакты                 │
+└─────────────────────────────────────────────┘</div>
+
+    <table>
+        <tr><th>Тег</th><th>Что означает</th><th>Аналог в div-разметке</th></tr>
+        <tr><td><code>&lt;header&gt;</code></td><td>Шапка страницы или секции</td><td><code>&lt;div class="header"&gt;</code></td></tr>
+        <tr><td><code>&lt;nav&gt;</code></td><td>Блок навигации</td><td><code>&lt;div class="nav"&gt;</code></td></tr>
+        <tr><td><code>&lt;main&gt;</code></td><td>Основное содержимое (уникальное для страницы)</td><td><code>&lt;div class="main"&gt;</code></td></tr>
+        <tr><td><code>&lt;article&gt;</code></td><td>Самостоятельная единица контента (статья, пост)</td><td><code>&lt;div class="article"&gt;</code></td></tr>
+        <tr><td><code>&lt;section&gt;</code></td><td>Тематический раздел</td><td><code>&lt;div class="section"&gt;</code></td></tr>
+        <tr><td><code>&lt;aside&gt;</code></td><td>Боковой контент (sidebar, реклама)</td><td><code>&lt;div class="sidebar"&gt;</code></td></tr>
+        <tr><td><code>&lt;footer&gt;</code></td><td>Подвал страницы или секции</td><td><code>&lt;div class="footer"&gt;</code></td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ===== HEADER FOOTER NAV ===== -->
+    <h2 id="header-footer">8. header, footer и nav</h2>
+
+    <h3>&lt;header&gt; — шапка</h3>
+
+    <p>Обычно содержит логотип, название сайта, навигацию. Может использоваться для шапки всей страницы или для шапки отдельной секции/статьи.</p>
+
+<pre><code>&lt;header&gt;
+    &lt;a href="index.html"&gt;
+        &lt;img src="images/logo.png" alt="Логотип" width="120"&gt;
+    &lt;/a&gt;
+    &lt;h1&gt;Мой блог о путешествиях&lt;/h1&gt;
+&lt;/header&gt;</code></pre>
+
+    <h3>&lt;nav&gt; — навигация</h3>
+
+    <p>Блок с основными навигационными ссылками. На странице может быть несколько <code>&lt;nav&gt;</code> (основная навигация, навигация в подвале).</p>
+
+<pre><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Главная&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="blog.html"&gt;Блог&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="gallery.html"&gt;Галерея&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="contacts.html"&gt;Контакты&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+
+    <h3>&lt;footer&gt; — подвал</h3>
+
+    <p>Подвал страницы: копирайт, контакты, социальные сети, дополнительные ссылки.</p>
+
+<pre><code>&lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2026 Мой блог. Все права защищены.&lt;/p&gt;
+    &lt;nav&gt;
+        &lt;a href="privacy.html"&gt;Политика конфиденциальности&lt;/a&gt; |
+        &lt;a href="terms.html"&gt;Условия использования&lt;/a&gt;
+    &lt;/nav&gt;
+&lt;/footer&gt;</code></pre>
+
+    <div class="fun-fact">
+        Символ <code>&amp;copy;</code> — это <strong>HTML-сущность</strong> (entity). Она отображает знак копирайта &#169;. Есть и другие: <code>&amp;amp;</code> — &amp;, <code>&amp;lt;</code> — &lt;, <code>&amp;gt;</code> — &gt;, <code>&amp;nbsp;</code> — неразрывный пробел.
+    </div>
+
+    <div class="real-world">
+        <p>Почти каждый современный сайт имеет структуру: <code>&lt;header&gt;</code> с логотипом сверху, <code>&lt;nav&gt;</code> с меню, основной контент, и <code>&lt;footer&gt;</code> с копирайтом внизу. Откройте любой крупный сайт (Google, YouTube, Wikipedia) и вы найдёте эти теги.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== MAIN SECTION ARTICLE ===== -->
+    <h2 id="main-section">9. main, section и article</h2>
+
+    <h3>&lt;main&gt; — основной контент</h3>
+
+    <p>Содержит <strong>уникальный контент</strong> страницы — то, что отличает эту страницу от других. Всё, что повторяется на каждой странице (шапка, навигация, подвал), не входит в <code>&lt;main&gt;</code>.</p>
+
+    <div class="important">
+        <code>&lt;main&gt;</code> должен быть <strong>один</strong> на странице. Не оборачивайте в него header, nav или footer.
+    </div>
+
+    <h3>&lt;section&gt; — тематический раздел</h3>
+
+    <p>Группирует контент по теме. Обычно имеет свой заголовок.</p>
+
+<pre><code>&lt;main&gt;
+    &lt;section&gt;
+        &lt;h2&gt;О компании&lt;/h2&gt;
+        &lt;p&gt;Мы работаем с 2010 года...&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+        &lt;h2&gt;Наши услуги&lt;/h2&gt;
+        &lt;p&gt;Мы предлагаем...&lt;/p&gt;
+    &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+
+    <h3>&lt;article&gt; — самостоятельный контент</h3>
+
+    <p>Содержимое, которое <strong>имеет смысл отдельно</strong> от остальной страницы: статья, пост блога, комментарий, карточка товара.</p>
+
+    <p><strong>Простой тест:</strong> Если вырезать этот блок и вставить на другую страницу — он будет понятен? Если да &#8594; <code>&lt;article&gt;</code>.</p>
+
+<pre><code>&lt;article&gt;
+    &lt;h2&gt;Как выбрать ноутбук в 2026 году&lt;/h2&gt;
+    &lt;p&gt;&lt;small&gt;Автор: Алексей | 10 марта 2026&lt;/small&gt;&lt;/p&gt;
+    &lt;p&gt;При выборе ноутбука обратите внимание на...&lt;/p&gt;
+
+    &lt;section&gt;
+        &lt;h3&gt;Процессор&lt;/h3&gt;
+        &lt;p&gt;Для повседневных задач подойдёт...&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+        &lt;h3&gt;Оперативная память&lt;/h3&gt;
+        &lt;p&gt;Минимум 8 ГБ, рекомендуется 16 ГБ...&lt;/p&gt;
+    &lt;/section&gt;
+&lt;/article&gt;</code></pre>
+
+    <div class="pro-tip">
+        <p>Не путайте <code>&lt;section&gt;</code> и <code>&lt;article&gt;</code>:</p>
+        <ul>
+            <li><code>&lt;article&gt;</code> = может жить самостоятельно (пост блога, новость, карточка товара)</li>
+            <li><code>&lt;section&gt;</code> = часть чего-то большего (раздел «О нас» на главной странице)</li>
+        </ul>
+        <p>Подсказка: <code>&lt;article&gt;</code> часто содержит <code>&lt;section&gt;</code> внутри (разделы статьи).</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ASIDE DETAILS ===== -->
+    <h2 id="aside-details">10. aside, details и другие</h2>
+
+    <h3>&lt;aside&gt; — боковой контент</h3>
+
+    <p>Содержимое, которое <strong>дополняет</strong> основной контент, но не является его частью: боковая панель, реклама, блок «Похожие статьи», биография автора.</p>
+
+<pre><code>&lt;aside&gt;
+    &lt;h3&gt;Об авторе&lt;/h3&gt;
+    &lt;p&gt;Алексей — веб-разработчик с 5-летним опытом.&lt;/p&gt;
+
+    &lt;h3&gt;Похожие статьи&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="article2.html"&gt;Как выбрать мышку&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="article3.html"&gt;Лучшие мониторы 2026&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/aside&gt;</code></pre>
+
+    <h3>&lt;details&gt; и &lt;summary&gt; — раскрывающийся блок</h3>
+
+    <p>Интересный интерактивный элемент — без JavaScript! Пользователь может раскрыть/скрыть содержимое кликом:</p>
+
+<pre><code>&lt;details&gt;
+    &lt;summary&gt;Нажми, чтобы узнать больше&lt;/summary&gt;
+    &lt;p&gt;Этот текст скрыт по умолчанию.
+    Он появится, когда пользователь нажмёт на заголовок.&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+
+    <div class="result-box">
+        <details>
+            <summary style="cursor: pointer; font-weight: 700; color: #1d4ed8;">Нажми, чтобы узнать больше</summary>
+            <p>Этот текст скрыт по умолчанию. Он появится, когда пользователь нажмёт на заголовок.</p>
+        </details>
+    </div>
+
+    <p><strong>Отлично подходит для:</strong> FAQ, спойлеры, дополнительная информация, настройки.</p>
+
+    <h3>&lt;time&gt; — дата и время</h3>
+
+<pre><code>&lt;p&gt;Опубликовано &lt;time datetime="2026-03-14"&gt;14 марта 2026&lt;/time&gt;&lt;/p&gt;</code></pre>
+
+    <p>Атрибут <code>datetime</code> содержит машиночитаемую дату — для поисковиков и скринридеров.</p>
+
+    <div class="real-world">
+        <p>Тег <code>&lt;details&gt;</code> активно используется на GitHub для скрытия логов, длинного кода и описаний. На многих сайтах с FAQ каждый вопрос — это <code>&lt;details&gt;</code>, а текст вопроса — <code>&lt;summary&gt;</code>.</p>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li>Семантика = теги со <strong>смыслом</strong> (вместо бессмысленных div)</li>
+            <li>3 причины: <strong>SEO</strong> (Google), <strong>доступность</strong> (скринридеры), <strong>читаемость</strong> (разработчики)</li>
+            <li><code>&lt;header&gt;</code> — шапка, <code>&lt;nav&gt;</code> — навигация, <code>&lt;footer&gt;</code> — подвал</li>
+            <li><code>&lt;main&gt;</code> — основной контент (<strong>один</strong> на странице!)</li>
+            <li><code>&lt;article&gt;</code> — самостоятельный контент (может жить отдельно)</li>
+            <li><code>&lt;section&gt;</code> — тематический раздел (часть чего-то большего)</li>
+            <li><code>&lt;aside&gt;</code> — боковой контент, <code>&lt;details&gt;</code> — раскрывающийся блок</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p>Мысленно ответьте:</p>
+        <ol>
+            <li>Сколько <code>&lt;main&gt;</code> может быть на странице? <em>(Один!)</em></li>
+            <li>Чем <code>&lt;article&gt;</code> отличается от <code>&lt;section&gt;</code>? <em>(article самостоятелен — можно вырезать и вставить в другое место. section — часть целого)</em></li>
+            <li>Где размещать логотип сайта? <em>(В <code>&lt;header&gt;</code>)</em></li>
+            <li>Какой тег для бокового блока «Похожие статьи»? <em>(<code>&lt;aside&gt;</code>)</em></li>
+            <li>Как создать раскрывающийся FAQ без JavaScript? <em>(<code>&lt;details&gt;</code> + <code>&lt;summary&gt;</code>)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== СРАВНЕНИЕ ===== -->
+    <h2 id="semantic-vs-div">11. Семантика vs div: сравнение</h2>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">&#10060; Только div:</div>
+<pre><code>&lt;div class="page"&gt;
+  &lt;div class="header"&gt;
+    &lt;div class="logo"&gt;...&lt;/div&gt;
+    &lt;div class="menu"&gt;
+      &lt;div class="menu-item"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="content"&gt;
+    &lt;div class="post"&gt;
+      &lt;div class="post-title"&gt;...&lt;/div&gt;
+      &lt;div class="post-text"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="sidebar"&gt;...&lt;/div&gt;
+  &lt;div class="footer"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+        <div class="right">
+            <div class="label">&#9989; Семантическая разметка:</div>
+<pre><code>&lt;header&gt;
+  &lt;a href="/"&gt;&lt;img ...&gt;&lt;/a&gt;
+  &lt;nav&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="..."&gt;...&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h2&gt;...&lt;/h2&gt;
+    &lt;p&gt;...&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+&lt;aside&gt;...&lt;/aside&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+        </div>
+    </div>
+
+    <div class="highlight">
+        <strong>Правило:</strong> Используйте <code>&lt;div&gt;</code> только когда <strong>ни один семантический тег не подходит</strong>. Сначала подумайте: это шапка (<code>header</code>)? Навигация (<code>nav</code>)? Статья (<code>article</code>)? Раздел (<code>section</code>)? Если ничего не подходит — тогда <code>div</code>.
+    </div>
+
+    <div class="mistake">
+        <p>Новички часто оборачивают ВСЁ в <code>&lt;div&gt;</code> — даже когда есть подходящий семантический тег. Это как называть все блюда «еда»: «дайте мне еду» вместо «дайте мне борщ». Семантика делает код <strong>понятным</strong>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ПРАКТИКА ===== -->
+    <h2 id="practice">12. Практика: семантическая страница блога</h2>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Блог о технологиях&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;!-- Шапка --&gt;
+    &lt;header&gt;
+        &lt;h1&gt;TechBlog&lt;/h1&gt;
+        &lt;p&gt;Блог о технологиях и веб-разработке&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Навигация --&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Главная&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Статьи&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;О нас&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#contacts"&gt;Контакты&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+
+    &lt;!-- Основной контент --&gt;
+    &lt;main&gt;
+
+        &lt;!-- Статья 1 --&gt;
+        &lt;article&gt;
+            &lt;h2&gt;10 полезных HTML-тегов, о которых вы не знали&lt;/h2&gt;
+            &lt;p&gt;&lt;small&gt;Автор: Мария | &lt;time datetime="2026-03-10"&gt;10 марта 2026&lt;/time&gt;&lt;/small&gt;&lt;/p&gt;
+
+            &lt;section&gt;
+                &lt;h3&gt;1. Тег &amp;lt;details&amp;gt;&lt;/h3&gt;
+                &lt;p&gt;Этот тег создаёт раскрывающийся блок без JavaScript...&lt;/p&gt;
+            &lt;/section&gt;
+
+            &lt;section&gt;
+                &lt;h3&gt;2. Тег &amp;lt;mark&amp;gt;&lt;/h3&gt;
+                &lt;p&gt;Выделяет текст &lt;mark&gt;маркером&lt;/mark&gt;...&lt;/p&gt;
+            &lt;/section&gt;
+        &lt;/article&gt;
+
+        &lt;hr&gt;
+
+        &lt;!-- Статья 2 --&gt;
+        &lt;article&gt;
+            &lt;h2&gt;Как начать изучать веб-разработку&lt;/h2&gt;
+            &lt;p&gt;&lt;small&gt;Автор: Алексей | &lt;time datetime="2026-03-08"&gt;8 марта 2026&lt;/time&gt;&lt;/small&gt;&lt;/p&gt;
+
+            &lt;p&gt;Веб-разработка начинается с трёх технологий:&lt;/p&gt;
+            &lt;ol&gt;
+                &lt;li&gt;&lt;strong&gt;HTML&lt;/strong&gt; — структура страницы&lt;/li&gt;
+                &lt;li&gt;&lt;strong&gt;CSS&lt;/strong&gt; — стилизация&lt;/li&gt;
+                &lt;li&gt;&lt;strong&gt;JavaScript&lt;/strong&gt; — интерактивность&lt;/li&gt;
+            &lt;/ol&gt;
+
+            &lt;details&gt;
+                &lt;summary&gt;Полезные ресурсы для обучения&lt;/summary&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="https://developer.mozilla.org"&gt;MDN Web Docs&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="https://w3schools.com"&gt;W3Schools&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/details&gt;
+        &lt;/article&gt;
+
+    &lt;/main&gt;
+
+    &lt;!-- Боковая панель --&gt;
+    &lt;aside&gt;
+        &lt;h3&gt;Популярные теги&lt;/h3&gt;
+        &lt;ul&gt;
+            &lt;li&gt;HTML&lt;/li&gt;
+            &lt;li&gt;CSS&lt;/li&gt;
+            &lt;li&gt;JavaScript&lt;/li&gt;
+            &lt;li&gt;React&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/aside&gt;
+
+    &lt;!-- Подвал --&gt;
+    &lt;footer id="contacts"&gt;
+        &lt;h3&gt;Контакты&lt;/h3&gt;
+        &lt;p&gt;Email: &lt;a href="mailto:blog@example.com"&gt;blog@example.com&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;&amp;copy; 2026 TechBlog. Все права защищены.&lt;/p&gt;
+    &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="try-it">
+        <ol>
+            <li>Создайте эту страницу и запустите через Live Server</li>
+            <li>Откройте DevTools и найдите все семантические теги (header, nav, main, article, section, aside, footer)</li>
+            <li>Измените тему блога на свою</li>
+            <li>Добавьте третью статью (<code>&lt;article&gt;</code>) с разделами (<code>&lt;section&gt;</code>)</li>
+            <li>Добавьте <code>&lt;details&gt;</code> с FAQ</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <h2>Итоги занятия</h2>
+
+    <div class="summary">
+        <ul>
+            <li><code>&lt;ul&gt;</code> — маркированный список (порядок не важен)</li>
+            <li><code>&lt;ol&gt;</code> — нумерованный список (порядок важен). Атрибуты: <code>type</code>, <code>start</code>, <code>reversed</code></li>
+            <li><code>&lt;li&gt;</code> — элемент списка (используется в ul и ol)</li>
+            <li>Списки можно <strong>вкладывать</strong> друг в друга</li>
+            <li><code>&lt;dl&gt;</code> + <code>&lt;dt&gt;</code> + <code>&lt;dd&gt;</code> — описательный список (термин-определение, FAQ, характеристики)</li>
+            <li>Навигация сайта = <code>&lt;nav&gt;&lt;ul&gt;&lt;li&gt;&lt;a&gt;</code></li>
+            <li><strong>Семантика</strong> = теги со смыслом (вместо бессмысленных div)</li>
+            <li><code>&lt;header&gt;</code> — шапка, <code>&lt;nav&gt;</code> — навигация, <code>&lt;main&gt;</code> — основной контент</li>
+            <li><code>&lt;article&gt;</code> — самостоятельный контент, <code>&lt;section&gt;</code> — раздел</li>
+            <li><code>&lt;aside&gt;</code> — боковой контент, <code>&lt;footer&gt;</code> — подвал</li>
+            <li><code>&lt;details&gt;</code> + <code>&lt;summary&gt;</code> — раскрывающийся блок (без JS!)</li>
+            <li><code>&amp;copy;</code> — HTML-сущность для символа &#169;</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p><strong>Проверь себя перед заданиями:</strong></p>
+        <ol>
+            <li>Какой тег используется для списка покупок? (<code>&lt;ul&gt;</code>)</li>
+            <li>Какой тег для рецепта? (<code>&lt;ol&gt;</code>)</li>
+            <li>Какой тег для словаря терминов? (<code>&lt;dl&gt;</code>)</li>
+            <li>Сколько <code>&lt;main&gt;</code> может быть на странице? (Один!)</li>
+            <li>Чем <code>&lt;article&gt;</code> отличается от <code>&lt;section&gt;</code>? (article самостоятелен, section — часть целого)</li>
+            <li>Какой тег создаёт раскрывающийся блок без JS? (<code>&lt;details&gt;</code>)</li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

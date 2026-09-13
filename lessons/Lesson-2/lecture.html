@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 2 — Инструменты разработчика</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #1e293b; background: #f8fafc; padding: 40px 20px; }
+        .container { max-width: 860px; margin: 0 auto; }
+        h1 { font-size: 2.2rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 12px; margin-bottom: 8px; }
+        h2 { font-size: 1.5rem; color: #7e22ce; margin: 48px 0 16px; padding: 10px 16px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 8px 8px 0; }
+        h3 { font-size: 1.25rem; color: #1e3a5f; margin: 28px 0 12px; }
+        .subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 24px; }
+        p { margin: 10px 0; }
+        .highlight { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .important { background: #fef2f2; border-left: 4px solid #ef4444; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy { background: #fff7ed; border-left: 4px solid #f97316; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy::before { content: '\1F3A8 Аналогия'; display: block; font-weight: 700; color: #c2410c; margin-bottom: 6px; }
+        .fun-fact { background: #fdf4ff; border-left: 4px solid #a855f7; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .fun-fact::before { content: '\1F4A1 Интересный факт'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 6px; }
+        .try-it { background: #ecfdf5; border: 2px solid #6ee7b7; padding: 16px 20px; margin: 16px 0; border-radius: 10px; }
+        .try-it::before { content: '\1F527 Попробуй сам'; display: block; font-weight: 700; color: #059669; margin-bottom: 6px; }
+        .result-box { background: #fff; border: 2px solid #e2e8f0; border-radius: 10px; padding: 20px; margin: 16px 0; }
+        .result-box::before { content: '\1F441\FE0F Результат в браузере:'; display: block; font-weight: 700; color: #475569; margin-bottom: 10px; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; margin: 14px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        .diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 20px; border-radius: 10px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.5; margin: 16px 0; overflow-x: auto; font-size: 0.88rem; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { padding: 10px 14px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 10px 0 10px 24px; }
+        li { margin: 5px 0; }
+        strong { color: #0f172a; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 40px 0; }
+        .summary { background: #faf5ff; border: 2px solid #d8b4fe; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .summary::before { content: '\1F4CB Итоги раздела'; display: block; font-weight: 700; color: #7e22ce; font-size: 1.1rem; margin-bottom: 10px; }
+        .quiz { background: #fef2f2; border: 2px solid #fca5a5; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .quiz::before { content: '\2705 Проверь себя'; display: block; font-weight: 700; color: #dc2626; font-size: 1.1rem; margin-bottom: 10px; }
+        .toc { background: #f1f5f9; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+        .toc-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: #0f172a; }
+        .toc ol { margin: 0 0 0 20px; }
+        .toc li { margin: 6px 0; }
+        .toc a { color: #7e22ce; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+        .compare > div { padding: 16px; border-radius: 8px; }
+        .compare .wrong { background: #fef2f2; border: 2px solid #fca5a5; }
+        .compare .right { background: #f0fdf4; border: 2px solid #86efac; }
+        .compare .label { font-weight: 700; margin-bottom: 8px; }
+        .mistake { background: #fff8f1; border: 2px solid #fdba74; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .mistake::before { content: '\1F6AB Частая ошибка новичков'; display: block; font-weight: 700; color: #ea580c; font-size: 1.05rem; margin-bottom: 10px; }
+        .pro-tip { background: #f0f9ff; border: 2px solid #7dd3fc; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .pro-tip::before { content: '\1F3C6 Совет профессионала'; display: block; font-weight: 700; color: #0284c7; font-size: 1.05rem; margin-bottom: 10px; }
+        .why { background: #fefce8; border-left: 4px solid #eab308; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .why::before { content: '\1F914 Зачем это нужно?'; display: block; font-weight: 700; color: #a16207; margin-bottom: 6px; }
+        .real-world { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .real-world::before { content: '\1F30D В реальных проектах'; display: block; font-weight: 700; color: #0f766e; margin-bottom: 6px; }
+        .shortcut-table td:first-child { white-space: nowrap; }
+        .kbd { display: inline-block; background: #f1f5f9; border: 1px solid #cbd5e1; border-bottom: 3px solid #94a3b8; border-radius: 4px; padding: 2px 8px; font-family: 'Consolas', monospace; font-size: 0.85rem; color: #334155; }
+        @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 2: Инструменты разработчика</span><span style="color:#cbd5e1;">|</span><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128104;&#8205;&#127979; Лекция</span><a href="student.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127891; Конспект</a><a href="tasks.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128203; Задания</a></div>
+
+<div class="container">
+
+    <h1>Занятие 2: Инструменты разработчика</h1>
+    <p class="subtitle">VS Code на максимум и магия DevTools</p>
+
+    <div class="why">
+        <p>Знание инструментов разработчика отличает начинающего от продвинутого. Когда вы умеете быстро работать в VS Code и инспектировать любой сайт через DevTools, вы экономите <strong>часы</strong> времени на каждом проекте. Сегодня мы освоим оба инструмента на профессиональном уровне.</p>
+    </div>
+
+    <div class="toc">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#vscode-deep">VS Code: углублённое изучение</a></li>
+            <li><a href="#shortcuts">Горячие клавиши, которые сэкономят часы</a></li>
+            <li><a href="#emmet">Emmet — суперсила VS Code</a></li>
+            <li><a href="#extensions">Расширения для веб-разработки</a></li>
+            <li><a href="#settings">Настройка VS Code под себя</a></li>
+            <li><a href="#devtools">DevTools: вкладка Elements</a></li>
+            <li><a href="#devtools-styles">DevTools: вкладка Styles</a></li>
+            <li><a href="#devtools-tricks">DevTools: продвинутые приёмы</a></li>
+            <li><a href="#workflow">Рабочий процесс: от кода к результату</a></li>
+            <li><a href="#practice">Практика: создаём и инспектируем страницу</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== VS CODE ===== -->
+    <h2 id="vscode-deep">1. VS Code: углублённое изучение</h2>
+
+    <p>На прошлом занятии мы установили VS Code и создали первую страницу. Сегодня мы изучим этот инструмент намного глубже — научимся работать быстро и эффективно.</p>
+
+    <h3>Интерфейс VS Code</h3>
+
+    <p>Давайте разберём основные части интерфейса VS Code:</p>
+
+    <div class="diagram">
+&#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+&#9474;  &#1052;&#1077;&#1085;&#1102; (File, Edit, View...)                  &#9472;  &#9633;  &#10005;   &#9474;
+&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;
+&#9474;      &#9474;  &#1042;&#1082;&#1083;&#1072;&#1076;&#1082;&#1080; &#1092;&#1072;&#1081;&#1083;&#1086;&#1074;                 &#9474;               &#9474;
+&#9474;  &#1040;   &#9474;  &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488; &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;          &#9474;               &#9474;
+&#9474;  &#1050;   &#9474;  &#9474;index   &#9474; &#9474;style   &#9474;          &#9474;               &#9474;
+&#9474;  &#1058;   &#9500;&#9472;&#9472;&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;&#9472;&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;  &#1052;&#1080;&#1085;&#1080;&#1082;&#1072;&#1088;&#1090;&#1072;    &#9474;
+&#9474;  &#1048;   &#9474;                                 &#9474;  (minimap)    &#9474;
+&#9474;  &#1042;   &#9474;     &#1054;&#1073;&#1083;&#1072;&#1089;&#1090;&#1100; &#1088;&#1077;&#1076;&#1072;&#1082;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103;      &#9474;               &#9474;
+&#9474;  &#1053;   &#9474;     (&#1079;&#1076;&#1077;&#1089;&#1100; &#1087;&#1080;&#1096;&#1077;&#1084; &#1082;&#1086;&#1076;)           &#9474;               &#9474;
+&#9474;  &#1040;   &#9474;                                 &#9474;               &#9474;
+&#9474;  &#1071;   &#9474;                                 &#9474;               &#9474;
+&#9474;      &#9474;                                 &#9474;               &#9474;
+&#9474;  &#1055;   &#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;               &#9474;
+&#9474;  &#1040;   &#9474;  &#1058;&#1077;&#1088;&#1084;&#1080;&#1085;&#1072;&#1083; / &#1055;&#1088;&#1086;&#1073;&#1083;&#1077;&#1084;&#1099; / &#1042;&#1099;&#1074;&#1086;&#1076;    &#9474;               &#9474;
+&#9474;  &#1053;   &#9474;  (&#1085;&#1080;&#1078;&#1085;&#1103;&#1103; &#1087;&#1072;&#1085;&#1077;&#1083;&#1100;)                &#9474;               &#9474;
+&#9474;  &#1045;   &#9474;                                 &#9474;               &#9474;
+&#9474;  &#1051;   &#9474;                                 &#9474;               &#9474;
+&#9474;  &#1068;   &#9474;                                 &#9474;               &#9474;
+&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9524;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9524;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;
+&#9474;  &#1057;&#1090;&#1088;&#1086;&#1082;&#1072; &#1089;&#1086;&#1089;&#1090;&#1086;&#1103;&#1085;&#1080;&#1103; (&#1074;&#1085;&#1080;&#1079;&#1091;)                              &#9474;
+&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;</div>
+
+    <p><strong>Активная панель (слева)</strong> — иконки для переключения между разделами:</p>
+
+    <table>
+        <tr><th>Иконка</th><th>Название</th><th>Горячая клавиша</th><th>Что делает</th></tr>
+        <tr><td>&#128193;</td><td>Explorer</td><td><span class="kbd">Ctrl+Shift+E</span></td><td>Файлы и папки проекта</td></tr>
+        <tr><td>&#128269;</td><td>Search</td><td><span class="kbd">Ctrl+Shift+F</span></td><td>Поиск по всем файлам проекта</td></tr>
+        <tr><td>&#129513;</td><td>Extensions</td><td><span class="kbd">Ctrl+Shift+X</span></td><td>Установка расширений</td></tr>
+    </table>
+
+    <div class="fun-fact">
+        VS Code построен на веб-технологиях (HTML, CSS, JavaScript) — тех самых, которые мы изучаем! Он создан на фреймворке Electron. То есть VS Code — это, по сути, веб-приложение, работающее как настольная программа.
+    </div>
+
+    <hr>
+
+    <!-- ===== ГОРЯЧИЕ КЛАВИШИ ===== -->
+    <h2 id="shortcuts">2. Горячие клавиши, которые сэкономят часы</h2>
+
+    <p>Профессиональные разработчики редко пользуются мышкой для редактирования кода. Горячие клавиши позволяют работать в разы быстрее. Не нужно запоминать всё сразу — начните с 5-6 самых полезных и постепенно добавляйте новые.</p>
+
+    <div class="real-world">
+        <p>Опытные разработчики в среднем используют <strong>30-50 горячих клавиш</strong> ежедневно. Это экономит примерно 1-2 часа в день по сравнению с работой мышкой. На старте достаточно выучить 10 основных.</p>
+    </div>
+
+    <h3>Базовые (обязательные)</h3>
+
+    <table class="shortcut-table">
+        <tr><th>Клавиши</th><th>Действие</th><th>Когда использовать</th></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">S</span></td><td>Сохранить файл</td><td>После каждого изменения. Привыкайте нажимать автоматически!</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">Z</span></td><td>Отменить</td><td>Когда допустили ошибку</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">Z</span></td><td>Повторить (вернуть отмену)</td><td>Когда отменили лишнее</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">C</span></td><td>Копировать строку (без выделения)</td><td>Быстро копировать целую строку</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">X</span></td><td>Вырезать строку (без выделения)</td><td>Быстро удалить или переместить строку</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">V</span></td><td>Вставить</td><td>Вставить скопированное</td></tr>
+    </table>
+
+    <h3>Продвинутые (очень полезные)</h3>
+
+    <table class="shortcut-table">
+        <tr><th>Клавиши</th><th>Действие</th><th>Когда использовать</th></tr>
+        <tr><td><span class="kbd">Alt</span> + <span class="kbd">Shift</span> + <span class="kbd">&#8595;</span></td><td>Дублировать строку вниз</td><td>Когда нужно повторить похожую строку</td></tr>
+        <tr><td><span class="kbd">Alt</span> + <span class="kbd">&#8593;</span> / <span class="kbd">&#8595;</span></td><td>Переместить строку вверх/вниз</td><td>Изменить порядок строк без вырезания</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">/</span></td><td>Закомментировать строку</td><td>Временно отключить код</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">D</span></td><td>Выделить следующее совпадение</td><td>Изменить одинаковое слово в нескольких местах сразу</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">K</span></td><td>Удалить строку</td><td>Быстро убрать ненужную строку</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">P</span></td><td>Быстрое открытие файла</td><td>Переключиться на другой файл по имени</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">`</span></td><td>Открыть/закрыть терминал</td><td>Когда нужен терминал внутри VS Code</td></tr>
+        <tr><td><span class="kbd">Alt</span> + <span class="kbd">Z</span></td><td>Перенос слов (word wrap)</td><td>Когда строка не помещается на экране</td></tr>
+    </table>
+
+    <div class="pro-tip">
+        <p>Не пытайтесь выучить все горячие клавиши за один раз. Выберите 3 клавиши и используйте <strong>только их</strong> весь день. На следующий день добавьте ещё 3. Через неделю они станут рефлексами.</p>
+    </div>
+
+    <h3>Множественные курсоры</h3>
+
+    <p>Одна из самых мощных функций VS Code — возможность печатать в нескольких местах одновременно!</p>
+
+    <table class="shortcut-table">
+        <tr><th>Клавиши</th><th>Действие</th></tr>
+        <tr><td><span class="kbd">Alt</span> + клик мышкой</td><td>Поставить дополнительный курсор</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">Alt</span> + <span class="kbd">&#8593;</span> / <span class="kbd">&#8595;</span></td><td>Добавить курсор сверху/снизу</td></tr>
+        <tr><td><span class="kbd">Ctrl</span> + <span class="kbd">D</span></td><td>Выделить следующее такое же слово (добавить курсор)</td></tr>
+    </table>
+
+    <div class="try-it">
+        <p>Создайте файл и напишите 5 строк <code>&lt;li&gt;Пункт&lt;/li&gt;</code>. Теперь:</p>
+        <ol>
+            <li>Выделите слово «Пункт» в первой строке</li>
+            <li>Нажимайте <span class="kbd">Ctrl</span> + <span class="kbd">D</span> — каждое нажатие выделяет следующее «Пункт»</li>
+            <li>Начните печатать — текст меняется во всех выделенных местах одновременно!</li>
+        </ol>
+    </div>
+
+    <div class="analogy">
+        <p><strong>Горячие клавиши как вождение:</strong> сначала вы думаете о каждом действии (газ, тормоз, поворотник). Через пару недель — делаете всё на автомате. То же самое с горячими клавишами: первые дни будет непривычно, но через неделю практики вы не сможете без них.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== EMMET ===== -->
+    <h2 id="emmet">3. Emmet — суперсила VS Code</h2>
+
+    <p><strong>Emmet</strong> — это встроенный в VS Code инструмент, который позволяет генерировать HTML-код по коротким сокращениям. Вместо того чтобы печатать каждый тег вручную, вы пишете короткую команду и нажимаете <span class="kbd">Tab</span>.</p>
+
+    <div class="why">
+        <p>Ручной набор HTML — это медленно и чревато ошибками (забыл закрыть тег, опечатался в атрибуте). Emmet решает обе проблемы: генерирует код <strong>мгновенно</strong> и <strong>без ошибок</strong>. Верстальщик с Emmet работает в 3-5 раз быстрее.</p>
+    </div>
+
+    <h3>Основные сокращения Emmet</h3>
+
+    <table>
+        <tr><th>Вы пишете</th><th>Нажимаете Tab</th><th>Получаете</th></tr>
+        <tr><td><code>!</code></td><td><span class="kbd">Tab</span></td><td>Полный шаблон HTML-страницы</td></tr>
+        <tr><td><code>h1</code></td><td><span class="kbd">Tab</span></td><td><code>&lt;h1&gt;&lt;/h1&gt;</code></td></tr>
+        <tr><td><code>p</code></td><td><span class="kbd">Tab</span></td><td><code>&lt;p&gt;&lt;/p&gt;</code></td></tr>
+        <tr><td><code>a</code></td><td><span class="kbd">Tab</span></td><td><code>&lt;a href=""&gt;&lt;/a&gt;</code></td></tr>
+        <tr><td><code>img</code></td><td><span class="kbd">Tab</span></td><td><code>&lt;img src="" alt=""&gt;</code></td></tr>
+        <tr><td><code>div</code></td><td><span class="kbd">Tab</span></td><td><code>&lt;div&gt;&lt;/div&gt;</code></td></tr>
+    </table>
+
+    <h3>Emmet: продвинутые сокращения</h3>
+
+    <table>
+        <tr><th>Сокращение</th><th>Результат</th><th>Что делает</th></tr>
+        <tr>
+            <td><code>h1{Привет}</code></td>
+            <td><code>&lt;h1&gt;Привет&lt;/h1&gt;</code></td>
+            <td><code>{}</code> — текст внутри тега</td>
+        </tr>
+        <tr>
+            <td><code>ul&gt;li*3</code></td>
+            <td><code>&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;/li&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;</code></td>
+            <td><code>&gt;</code> — вложенность, <code>*3</code> — повторить 3 раза</td>
+        </tr>
+        <tr>
+            <td><code>div.container</code></td>
+            <td><code>&lt;div class="container"&gt;&lt;/div&gt;</code></td>
+            <td><code>.имя</code> — добавить класс</td>
+        </tr>
+        <tr>
+            <td><code>div#main</code></td>
+            <td><code>&lt;div id="main"&gt;&lt;/div&gt;</code></td>
+            <td><code>#имя</code> — добавить id</td>
+        </tr>
+        <tr>
+            <td><code>p*5&gt;lorem</code></td>
+            <td>5 параграфов с текстом-заглушкой</td>
+            <td><code>lorem</code> — «рыба» (Lorem Ipsum)</td>
+        </tr>
+        <tr>
+            <td><code>nav&gt;ul&gt;li*4&gt;a{Пункт $}</code></td>
+            <td>Навигация с 4 ссылками: Пункт 1, Пункт 2...</td>
+            <td><code>$</code> — автонумерация</td>
+        </tr>
+    </table>
+
+    <div class="try-it">
+        <p>Создайте новый HTML-файл и попробуйте эти сокращения Emmet. Напишите каждое и нажмите <span class="kbd">Tab</span>:</p>
+        <ol>
+            <li><code>!</code> — шаблон страницы</li>
+            <li><code>h1{Мой сайт}</code> — заголовок с текстом</li>
+            <li><code>ul&gt;li*5{Пункт $}</code> — список из 5 пунктов</li>
+            <li><code>div.card&gt;h2{Заголовок}+p{Описание}+a{Подробнее}</code> — карточка</li>
+            <li><code>p*3&gt;lorem</code> — 3 параграфа текста-заглушки</li>
+        </ol>
+    </div>
+
+    <div class="mistake">
+        <p>Emmet не работает? Проверьте:</p>
+        <ul>
+            <li>Файл сохранён с расширением <code>.html</code></li>
+            <li>Курсор стоит внутри <code>&lt;body&gt;</code>, а не внутри <code>&lt;style&gt;</code> или <code>&lt;script&gt;</code></li>
+            <li>Вы нажимаете <span class="kbd">Tab</span>, а не <span class="kbd">Enter</span></li>
+            <li>В правом нижнем углу VS Code написано «HTML», а не «Plain Text»</li>
+        </ul>
+    </div>
+
+    <div class="fun-fact">
+        <strong>Lorem Ipsum</strong> — это текст-заглушка, который используют дизайнеры и верстальщики с XVI века! Он основан на трактате Цицерона «О пределах добра и зла» (45 г. до н.э.), но перемешан так, что не имеет смысла. Emmet генерирует его автоматически командой <code>lorem</code>.
+    </div>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:10px;">Вот что генерирует Emmet — вы пишете одну строку, а получаете готовый HTML:</p>
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;">
+            <div style="background:#1e293b;color:#e2e8f0;padding:12px;border-radius:8px;font-family:Consolas,monospace;font-size:0.85rem;text-align:center;">nav>ul>li*3>a{Пункт $}</div>
+            <div style="font-size:1.5rem;color:#a855f7;font-weight:700;">→</div>
+            <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;">
+                <nav>
+                    <ul style="margin:0 0 0 20px;">
+                        <li style="margin:2px 0;"><a href="#" style="color:#2563eb;">Пункт 1</a></li>
+                        <li style="margin:2px 0;"><a href="#" style="color:#2563eb;">Пункт 2</a></li>
+                        <li style="margin:2px 0;"><a href="#" style="color:#2563eb;">Пункт 3</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;">Одна строка Emmet = 7 строк HTML. Это экономит <strong>огромное</strong> количество времени!</p>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li><strong>Горячие клавиши</strong> ускоряют работу в разы — начните с 5 самых важных</li>
+            <li><strong>Emmet</strong> генерирует HTML по коротким сокращениям (<code>!</code>, <code>ul>li*3</code>, <code>.class</code>, <code>#id</code>)</li>
+            <li>Операторы Emmet: <code>></code> (вложенность), <code>*</code> (повторение), <code>.</code> (class), <code>#</code> (id), <code>{}</code> (текст), <code>$</code> (нумерация)</li>
+            <li><strong>Множественные курсоры</strong> (<span class="kbd">Ctrl</span>+<span class="kbd">D</span>) — редактирование нескольких мест одновременно</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p>Мысленно ответьте:</p>
+        <ol>
+            <li>Как дублировать строку? <em>(<span class="kbd">Alt</span>+<span class="kbd">Shift</span>+<span class="kbd">↓</span>)</em></li>
+            <li>Какое Emmet-сокращение создаст шаблон HTML-страницы? <em>(<code>!</code> + Tab)</em></li>
+            <li>Что получится из <code>div.card*3</code>? <em>(3 div-а с классом card)</em></li>
+            <li>Как закомментировать строку? <em>(<span class="kbd">Ctrl</span>+<span class="kbd">/</span>)</em></li>
+            <li>Что делает <code>$</code> в Emmet? <em>(Автонумерация: 1, 2, 3...)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== РАСШИРЕНИЯ ===== -->
+    <h2 id="extensions">4. Расширения для веб-разработки</h2>
+
+    <p>На прошлом занятии мы установили 4 основных расширения. Давайте разберём каждое подробнее и добавим ещё парочку полезных.</p>
+
+    <h3>Live Server — автообновление страницы</h3>
+
+    <p><strong>Live Server</strong> запускает локальный веб-сервер и автоматически обновляет страницу в браузере при каждом сохранении файла. Без него вам пришлось бы каждый раз переключаться в браузер и нажимать F5.</p>
+
+    <p><strong>Как использовать:</strong></p>
+
+    <ul>
+        <li>Правый клик по HTML-файлу → <strong>Open with Live Server</strong></li>
+        <li>Или нажмите кнопку <strong>Go Live</strong> в строке состояния (внизу)</li>
+        <li>В браузере откроется страница на адресе <code>http://127.0.0.1:5500</code></li>
+        <li>Теперь любое сохранение (<span class="kbd">Ctrl</span> + <span class="kbd">S</span>) мгновенно обновляет страницу</li>
+    </ul>
+
+    <div class="mistake">
+        <p><strong>Live Server не работает?</strong> Скорее всего вы открыли отдельный файл, а не папку. Всегда открывайте <strong>папку проекта</strong> в VS Code (File → Open Folder), а не отдельный файл. Это самая частая причина проблем у начинающих.</p>
+    </div>
+
+    <h3>Prettier — автоформатирование кода</h3>
+
+    <p><strong>Prettier</strong> автоматически делает ваш код красивым и аккуратным: выравнивает отступы, ставит пробелы, переносит длинные строки.</p>
+
+    <p><strong>Как использовать:</strong></p>
+
+    <ul>
+        <li>Нажмите <span class="kbd">Shift</span> + <span class="kbd">Alt</span> + <span class="kbd">F</span> — код отформатируется</li>
+        <li>Или настройте автоформатирование при сохранении (см. раздел «Настройка»)</li>
+    </ul>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">&#10060; До Prettier:</div>
+<pre><code>&lt;div&gt;&lt;h1&gt;Привет&lt;/h1&gt;&lt;p&gt;Это текст&lt;/p&gt;
+        &lt;ul&gt;&lt;li&gt;Пункт 1&lt;/li&gt;
+&lt;li&gt;Пункт 2&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;</code></pre>
+        </div>
+        <div class="right">
+            <div class="label">&#9989; После Prettier:</div>
+<pre><code>&lt;div&gt;
+    &lt;h1&gt;Привет&lt;/h1&gt;
+    &lt;p&gt;Это текст&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;Пункт 1&lt;/li&gt;
+        &lt;li&gt;Пункт 2&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+    </div>
+
+    <h3>Auto Rename Tag</h3>
+
+    <p>Когда вы переименовываете открывающий тег — закрывающий переименовывается автоматически. Например, если вы измените <code>&lt;h1&gt;</code> на <code>&lt;h2&gt;</code>, то <code>&lt;/h1&gt;</code> автоматически станет <code>&lt;/h2&gt;</code>.</p>
+
+    <h3>Дополнительные полезные расширения</h3>
+
+    <table>
+        <tr><th>Расширение</th><th>Зачем</th></tr>
+        <tr><td><strong>Color Highlight</strong></td><td>Подсвечивает CSS-цвета прямо в коде. Написали <code>#e94560</code> — увидите красный прямоугольник рядом</td></tr>
+        <tr><td><strong>Image Preview</strong></td><td>Показывает превью картинок прямо в коде, когда вы пишете путь к изображению</td></tr>
+        <tr><td><strong>indent-rainbow</strong></td><td>Раскрашивает отступы в разные цвета — легче видеть вложенность</td></tr>
+    </table>
+
+    <div class="real-world">
+        <p>В реальных командах расширения вроде Prettier и Live Server — обязательный стандарт. Разработчики договариваются о единых настройках, чтобы код выглядел одинаково у всех. Файл <code>.prettierrc</code> хранит эти настройки прямо в проекте.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== НАСТРОЙКИ ===== -->
+    <h2 id="settings">5. Настройка VS Code под себя</h2>
+
+    <p>VS Code можно настроить под себя. Откройте настройки: <span class="kbd">Ctrl</span> + <span class="kbd">,</span> (запятая).</p>
+
+    <h3>Рекомендуемые настройки</h3>
+
+    <table>
+        <tr><th>Настройка</th><th>Что делает</th><th>Где найти</th></tr>
+        <tr><td><strong>Auto Save</strong></td><td>Автоматически сохраняет файлы</td><td>Поиск: <code>auto save</code> → выбрать <code>afterDelay</code></td></tr>
+        <tr><td><strong>Format On Save</strong></td><td>Форматирует код при сохранении (Prettier)</td><td>Поиск: <code>format on save</code> → включить</td></tr>
+        <tr><td><strong>Font Size</strong></td><td>Размер шрифта в редакторе</td><td>Поиск: <code>font size</code> → поставить 16-18</td></tr>
+        <tr><td><strong>Word Wrap</strong></td><td>Перенос длинных строк</td><td>Поиск: <code>word wrap</code> → <code>on</code></td></tr>
+        <tr><td><strong>Tab Size</strong></td><td>Размер отступа</td><td>Поиск: <code>tab size</code> → поставить 4</td></tr>
+    </table>
+
+    <h3>Темы оформления</h3>
+
+    <p>Многие разработчики используют тёмные темы — меньше нагрузка на глаза при долгой работе.</p>
+
+    <ul>
+        <li><strong>Как сменить тему:</strong> <span class="kbd">Ctrl</span> + <span class="kbd">K</span>, затем <span class="kbd">Ctrl</span> + <span class="kbd">T</span></li>
+        <li>Популярные тёмные темы: <strong>One Dark Pro</strong>, <strong>Dracula</strong>, <strong>GitHub Dark</strong></li>
+        <li>Популярные светлые темы: <strong>GitHub Light</strong>, <strong>Quiet Light</strong></li>
+    </ul>
+
+    <div class="highlight">
+        <strong>Совет:</strong> Настройте VS Code один раз и больше не тратьте на это время. Главное — включить <strong>Format On Save</strong> и <strong>Auto Save</strong>. Остальное — по вкусу.
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li><strong>Live Server</strong> — автообновление страницы при сохранении. Всегда открывайте <strong>папку</strong>, не файл!</li>
+            <li><strong>Prettier</strong> — автоформатирование кода (<span class="kbd">Shift</span>+<span class="kbd">Alt</span>+<span class="kbd">F</span>)</li>
+            <li><strong>Auto Rename Tag</strong> — автопереименование парного тега</li>
+            <li><strong>Format On Save</strong> + <strong>Auto Save</strong> — обязательные настройки</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ===== DEVTOOLS ELEMENTS ===== -->
+    <h2 id="devtools">6. DevTools: вкладка Elements</h2>
+
+    <p>На прошлом занятии мы открывали DevTools и немного играли с ними. Сегодня изучим их серьёзно — это один из главных инструментов веб-разработчика.</p>
+
+    <div class="why">
+        <p>DevTools позволяют «заглянуть под капот» любого сайта в интернете. Хотите узнать, какой шрифт использует Apple? Какие отступы у карточек на AirBnB? Какие цвета у кнопок Google? DevTools покажут всё это за секунды.</p>
+    </div>
+
+    <p><strong>Как открыть DevTools:</strong></p>
+
+    <ul>
+        <li><span class="kbd">F12</span></li>
+        <li>Или <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">I</span></li>
+        <li>Или правый клик по элементу → <strong>«Просмотреть код»</strong> (Inspect)</li>
+    </ul>
+
+    <h3>Вкладка Elements — HTML-структура</h3>
+
+    <p>Вкладка <strong>Elements</strong> показывает HTML-структуру страницы в виде дерева. Каждый тег можно раскрыть и увидеть его содержимое.</p>
+
+    <div class="diagram">
+&#9484;&#9472;&#9472;&#9472; DevTools &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+&#9474;  Elements  Console  Sources  Network  ...             &#9474;
+&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;
+&#9474;                           &#9474;                           &#9474;
+&#9474;  &#9660; &lt;html&gt;                &#9474;  Styles   Computed  ...   &#9474;
+&#9474;    &#9660; &lt;head&gt;              &#9474;                           &#9474;
+&#9474;      &lt;title&gt;...&lt;/title&gt;  &#9474;  element.style { }       &#9474;
+&#9474;    &#9660; &lt;body&gt;              &#9474;                           &#9474;
+&#9474;      &#9660; &lt;h1&gt;             &#9474;  h1 {                     &#9474;
+&#9474;          "&#1055;&#1088;&#1080;&#1074;&#1077;&#1090;"        &#9474;    color: black;          &#9474;
+&#9474;      &#9660; &lt;p&gt;              &#9474;    font-size: 32px;       &#9474;
+&#9474;          "&#1058;&#1077;&#1082;&#1089;&#1090;"         &#9474;  }                        &#9474;
+&#9474;      &#9660; &lt;ul&gt;             &#9474;                           &#9474;
+&#9474;        &lt;li&gt;...&lt;/li&gt;     &#9474;  Metrics:                 &#9474;
+&#9474;        &lt;li&gt;...&lt;/li&gt;     &#9474;  &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;    &#9474;
+&#9474;                           &#9474;  &#9474;  margin            &#9474;    &#9474;
+&#9474;                           &#9474;  &#9474;  &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488; &#9474;    &#9474;
+&#9474;  HTML-&#1076;&#1077;&#1088;&#1077;&#1074;&#1086; (&#1089;&#1083;&#1077;&#1074;&#1072;)      &#9474;  &#9474;  &#9474;  padding       &#9474; &#9474;    &#9474;
+&#9474;                           &#9474;  &#9474;  &#9474;  &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488; &#9474; &#9474;    &#9474;
+&#9474;                           &#9474;  &#9474;  &#9474;  &#9474;  content   &#9474; &#9474; &#9474;    &#9474;
+&#9474;                           &#9474;  &#1057;&#1090;&#1080;&#1083;&#1080; (&#1089;&#1087;&#1088;&#1072;&#1074;&#1072;)           &#9474;
+&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9524;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;</div>
+
+    <p><strong>Что можно делать в Elements:</strong></p>
+
+    <ul>
+        <li><strong>Инспектировать элемент</strong> — нажмите иконку &#128269; (Select element) в левом верхнем углу DevTools, затем наведите мышку на любой элемент на странице. Он подсветится, а в дереве элементов будет выбран соответствующий тег.</li>
+        <li><strong>Редактировать HTML</strong> — двойной клик по тексту в дереве элементов позволяет его изменить. Двойной клик по тегу позволяет изменить сам тег.</li>
+        <li><strong>Удалять элементы</strong> — выберите элемент и нажмите <span class="kbd">Delete</span>. Элемент исчезнет со страницы.</li>
+        <li><strong>Перетаскивать элементы</strong> — можно drag-and-drop элементы в дереве, чтобы изменить их порядок на странице.</li>
+    </ul>
+
+    <div class="try-it">
+        <p>Откройте любой новостной сайт и попробуйте:</p>
+        <ol>
+            <li>Найдите главный заголовок статьи через инструмент выбора (&#128269;)</li>
+            <li>Измените текст заголовка на что-нибудь смешное</li>
+            <li>Удалите рекламный баннер (выберите и нажмите Delete)</li>
+            <li>Найдите картинку и посмотрите её атрибуты (src, alt)</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== DEVTOOLS STYLES ===== -->
+    <h2 id="devtools-styles">7. DevTools: вкладка Styles</h2>
+
+    <p>Правая часть DevTools показывает <strong>CSS-стили</strong> выбранного элемента. Это невероятно мощный инструмент — вы можете менять стили в реальном времени и сразу видеть результат.</p>
+
+    <h3>Как менять стили</h3>
+
+    <ol>
+        <li>Выберите элемент (через &#128269; или в дереве Elements)</li>
+        <li>Справа в панели Styles вы увидите все CSS-правила, применённые к этому элементу</li>
+        <li>Кликните на <strong>значение</strong> свойства — можно его изменить</li>
+        <li>Кликните на пустое место внутри правила — можно добавить новое свойство</li>
+        <li>Снимите галочку рядом со свойством — оно отключится</li>
+    </ol>
+
+    <h3>Что можно попробовать менять</h3>
+
+    <table>
+        <tr><th>Свойство</th><th>Что меняет</th><th>Пример значения</th></tr>
+        <tr><td><code>color</code></td><td>Цвет текста</td><td><code>red</code>, <code>#ff0000</code>, <code>rgb(255,0,0)</code></td></tr>
+        <tr><td><code>background-color</code></td><td>Цвет фона</td><td><code>yellow</code>, <code>#ffd700</code></td></tr>
+        <tr><td><code>font-size</code></td><td>Размер шрифта</td><td><code>24px</code>, <code>2rem</code></td></tr>
+        <tr><td><code>font-weight</code></td><td>Жирность текста</td><td><code>bold</code>, <code>700</code></td></tr>
+        <tr><td><code>padding</code></td><td>Внутренние отступы</td><td><code>20px</code>, <code>10px 20px</code></td></tr>
+        <tr><td><code>margin</code></td><td>Внешние отступы</td><td><code>10px</code>, <code>0 auto</code></td></tr>
+        <tr><td><code>border</code></td><td>Рамка</td><td><code>2px solid red</code></td></tr>
+        <tr><td><code>border-radius</code></td><td>Скругление углов</td><td><code>10px</code>, <code>50%</code></td></tr>
+        <tr><td><code>display</code></td><td>Режим отображения</td><td><code>none</code> (скрыть элемент)</td></tr>
+    </table>
+
+    <div class="fun-fact">
+        В DevTools есть встроенный <strong>color picker</strong> (палитра цветов). Кликните на цветной квадратик рядом с любым цветовым свойством — откроется инструмент выбора цвета. Можно даже использовать «пипетку» (eyedropper), чтобы взять цвет с любого места на экране!
+    </div>
+
+    <div class="pro-tip">
+        <p>Используйте стрелки <span class="kbd">&#8593;</span> / <span class="kbd">&#8595;</span> на клавиатуре для пошагового изменения числовых значений в DevTools. Зажмите <span class="kbd">Shift</span> — шаг увеличится до 10, зажмите <span class="kbd">Alt</span> — шаг станет 0.1. Это удобнее, чем вводить точные значения вручную.</p>
+    </div>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:10px;">Вот что можно сделать с обычным текстом, меняя CSS в DevTools:</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div>
+                <div style="font-size:0.8rem;font-weight:600;color:#64748b;margin-bottom:4px;">До (стандартные стили):</div>
+                <div style="padding:12px;background:white;border:1px solid #e2e8f0;border-radius:4px;">
+                    <h3 style="margin:0 0 6px;font-size:1rem;">Заголовок статьи</h3>
+                    <p style="margin:0;font-size:0.9rem;color:#333;">Обычный текст без стилей</p>
+                </div>
+            </div>
+            <div>
+                <div style="font-size:0.8rem;font-weight:600;color:#64748b;margin-bottom:4px;">После (5 изменений в DevTools):</div>
+                <div style="padding:16px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:12px;box-shadow:0 4px 12px rgba(102,126,234,0.3);">
+                    <h3 style="margin:0 0 6px;font-size:1.1rem;color:white;">Заголовок статьи</h3>
+                    <p style="margin:0;font-size:0.9rem;color:rgba(255,255,255,0.85);">Обычный текст без стилей</p>
+                </div>
+            </div>
+        </div>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;">Изменили: background, color, padding, border-radius, box-shadow. Тот же HTML — совершенно другой вид!</p>
+    </div>
+
+    <div class="quiz">
+        <p>Мысленно ответьте:</p>
+        <ol>
+            <li>Как открыть DevTools? <em>(F12, или Ctrl+Shift+I, или правый клик → Inspect)</em></li>
+            <li>Что показывает вкладка Elements? <em>(HTML-структуру страницы в виде дерева)</em></li>
+            <li>Как выбрать элемент для инспектирования? <em>(Нажать 🔍 в DevTools, навести мышку и кликнуть)</em></li>
+            <li>Как изменить CSS в DevTools? <em>(Кликнуть на значение свойства в панели Styles)</em></li>
+            <li>Сохранятся ли изменения после обновления страницы? <em>(Нет! Они временные)</em></li>
+            <li>Как использовать стрелки для изменения значений? <em>(↑/↓ — шаг 1, +Shift — шаг 10, +Alt — шаг 0.1)</em></li>
+        </ol>
+    </div>
+
+    <h3>Вкладка Computed</h3>
+
+    <p>Рядом с вкладкой Styles есть вкладка <strong>Computed</strong>. Она показывает <strong>итоговые</strong> стили элемента — после применения всех CSS-правил. Здесь же есть визуальная модель <strong>Box Model</strong> (мы подробно изучим её позже):</p>
+
+    <div class="diagram">
+            &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+            &#9474;         margin              &#9474;
+            &#9474;   &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;   &#9474;
+            &#9474;   &#9474;     border          &#9474;   &#9474;
+            &#9474;   &#9474;  &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;  &#9474;   &#9474;
+            &#9474;   &#9474;  &#9474;   padding     &#9474;  &#9474;   &#9474;
+            &#9474;   &#9474;  &#9474;  &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;  &#9474;  &#9474;   &#9474;
+            &#9474;   &#9474;  &#9474;  &#9474; content &#9474;  &#9474;  &#9474;   &#9474;
+            &#9474;   &#9474;  &#9474;  &#9474; 300x200 &#9474;  &#9474;  &#9474;   &#9474;
+            &#9474;   &#9474;  &#9474;  &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;  &#9474;  &#9474;   &#9474;
+            &#9474;   &#9474;  &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;  &#9474;   &#9474;
+            &#9474;   &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;   &#9474;
+            &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;</div>
+
+    <p>Наведите мышку на каждую зону Box Model — соответствующая область подсветится на странице. Это очень удобно для понимания отступов.</p>
+
+    <hr>
+
+    <!-- ===== DEVTOOLS ПРИЁМЫ ===== -->
+    <h2 id="devtools-tricks">8. DevTools: продвинутые приёмы</h2>
+
+    <h3>Адаптивный режим (Device Mode)</h3>
+
+    <p>DevTools позволяет посмотреть, как ваш сайт выглядит на мобильных устройствах — прямо в браузере!</p>
+
+    <ul>
+        <li>Нажмите <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">M</span> (или иконку &#128241; в DevTools)</li>
+        <li>Выберите устройство из списка (iPhone, iPad, Samsung...)</li>
+        <li>Или задайте размер экрана вручную</li>
+    </ul>
+
+    <div class="highlight">
+        Мы будем часто использовать адаптивный режим, когда дойдём до Media Queries и адаптивного дизайна. Пока просто знайте, что он есть.
+    </div>
+
+    <h3>Консоль (Console)</h3>
+
+    <p>Вкладка <strong>Console</strong> позволяет выполнять JavaScript-код. Мы уже пробовали это на прошлом занятии. Несколько полезных команд:</p>
+
+<pre><code>// Подсветить все ссылки на странице красной рамкой
+document.querySelectorAll('a').forEach(a => a.style.border = '2px solid red');
+
+// Посчитать количество изображений на странице
+document.querySelectorAll('img').length;
+
+// Удалить все CSS-стили (увидеть голый HTML)
+document.querySelectorAll('style, link[rel="stylesheet"]').forEach(el => el.remove());
+
+// Сделать страницу редактируемой (можно менять любой текст прямо на странице!)
+document.designMode = 'on';</code></pre>
+
+    <div class="try-it">
+        <p>Откройте любой сайт и введите в консоли:</p>
+<pre><code>document.designMode = 'on';</code></pre>
+        <p>Теперь кликните на любой текст на странице и начните печатать — текст можно редактировать прямо на странице, как в Word! Чтобы выключить: <code>document.designMode = 'off';</code></p>
+    </div>
+
+    <h3>Скриншот элемента</h3>
+
+    <p>Можно сделать скриншот любого элемента: правый клик по элементу в дереве Elements → <strong>Capture node screenshot</strong>. Картинка скачается автоматически.</p>
+
+    <div class="real-world">
+        <p>Разработчики используют DevTools не только для отладки своего кода. Частая практика — «подсмотреть», как сделан дизайн у конкурентов или у сайтов, которые нравятся. Выберите элемент, скопируйте стили из DevTools, адаптируйте под свой проект. Это абсолютно нормальный рабочий процесс.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== РАБОЧИЙ ПРОЦЕСС ===== -->
+    <h2 id="workflow">9. Рабочий процесс: от кода к результату</h2>
+
+    <p>Теперь, когда мы знаем VS Code и DevTools, давайте разберём, как выглядит типичный процесс работы веб-разработчика:</p>
+
+    <div class="diagram">
+  1. &#1054;&#1090;&#1082;&#1088;&#1099;&#1090;&#1100; &#1087;&#1072;&#1087;&#1082;&#1091; &#1087;&#1088;&#1086;&#1077;&#1082;&#1090;&#1072; &#1074; VS Code
+           &#9474;
+  2. &#1057;&#1086;&#1079;&#1076;&#1072;&#1090;&#1100; / &#1086;&#1090;&#1082;&#1088;&#1099;&#1090;&#1100; HTML-&#1092;&#1072;&#1081;&#1083;
+           &#9474;
+  3. &#1053;&#1072;&#1087;&#1080;&#1089;&#1072;&#1090;&#1100; &#1082;&#1086;&#1076;
+           &#9474;
+  4. &#1057;&#1086;&#1093;&#1088;&#1072;&#1085;&#1080;&#1090;&#1100; (Ctrl+S)
+           &#9474;
+  5. Live Server &#1072;&#1074;&#1090;&#1086;&#1084;&#1072;&#1090;&#1080;&#1095;&#1077;&#1089;&#1082;&#1080; &#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1103;&#1077;&#1090; &#1073;&#1088;&#1072;&#1091;&#1079;&#1077;&#1088;
+           &#9474;
+  6. &#1057;&#1084;&#1086;&#1090;&#1088;&#1080;&#1084; &#1088;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090; &#1074; &#1073;&#1088;&#1072;&#1091;&#1079;&#1077;&#1088;&#1077;
+           &#9474;
+  7. &#1045;&#1089;&#1083;&#1080; &#1085;&#1091;&#1078;&#1085;&#1086; &#1087;&#1086;&#1076;&#1087;&#1088;&#1072;&#1074;&#1080;&#1090;&#1100; &#1089;&#1090;&#1080;&#1083;&#1080;:
+     &#8594; &#1054;&#1090;&#1082;&#1088;&#1099;&#1074;&#1072;&#1077;&#1084; DevTools (F12)
+     &#8594; &#1069;&#1082;&#1089;&#1087;&#1077;&#1088;&#1080;&#1084;&#1077;&#1085;&#1090;&#1080;&#1088;&#1091;&#1077;&#1084; &#1089;&#1086; &#1089;&#1090;&#1080;&#1083;&#1103;&#1084;&#1080;
+     &#8594; &#1050;&#1086;&#1075;&#1076;&#1072; &#1085;&#1072;&#1096;&#1083;&#1080; &#1085;&#1091;&#1078;&#1085;&#1099;&#1081; &#1074;&#1072;&#1088;&#1080;&#1072;&#1085;&#1090;
+     &#8594; &#1055;&#1077;&#1088;&#1077;&#1085;&#1086;&#1089;&#1080;&#1084; &#1080;&#1079;&#1084;&#1077;&#1085;&#1077;&#1085;&#1080;&#1103; &#1074; VS Code
+           &#9474;
+  8. &#1055;&#1086;&#1074;&#1090;&#1086;&#1088;&#1103;&#1077;&#1084; &#1096;&#1072;&#1075;&#1080; 3-7</div>
+
+    <div class="important">
+        <strong>Важный момент:</strong> изменения в DevTools — временные! Они пропадут при обновлении страницы. Поэтому, когда вы нашли нужные стили в DevTools, обязательно перенесите их в свой CSS-файл в VS Code.
+    </div>
+
+    <div class="analogy">
+        <p><strong>Примерочная в магазине:</strong> DevTools — это примерочная. Вы примеряете разные стили (одежду), смотрите, что подходит. Но пока вы не купите (не напишете в файл), одежда останется в магазине. А VS Code — это ваш шкаф, где хранится всё, что вы выбрали.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ПРАКТИКА ===== -->
+    <h2 id="practice">10. Практика: создаём и инспектируем страницу</h2>
+
+    <p>Давайте создадим страницу, применив все инструменты, которые мы изучили.</p>
+
+    <h3>Задание: страница «Мои любимые фильмы»</h3>
+
+    <p>Создайте папку <code>my-movies</code>, откройте в VS Code, создайте <code>index.html</code>. Используйте Emmet для быстрого набора:</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Мои любимые фильмы&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #e94560;
+            text-align: center;
+        }
+        h2 {
+            color: #1a1a2e;
+            border-bottom: 2px solid #e94560;
+            padding-bottom: 5px;
+        }
+        .movie {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #e94560;
+        }
+        .movie h3 {
+            margin: 0 0 5px;
+            color: #16213e;
+        }
+        .movie p {
+            margin: 5px 0;
+            color: #555;
+        }
+        a {
+            color: #e94560;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Мои любимые фильмы&lt;/h1&gt;
+    &lt;p&gt;Подборка фильмов, которые я рекомендую посмотреть.&lt;/p&gt;
+
+    &lt;h2&gt;ТОП-3&lt;/h2&gt;
+
+    &lt;div class="movie"&gt;
+        &lt;h3&gt;1. Интерстеллар (2014)&lt;/h3&gt;
+        &lt;p&gt;Фантастика о путешествии через червоточину ради спасения человечества.&lt;/p&gt;
+        &lt;p&gt;Режиссёр: &lt;strong&gt;Кристофер Нолан&lt;/strong&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="movie"&gt;
+        &lt;h3&gt;2. Начало (2010)&lt;/h3&gt;
+        &lt;p&gt;Триллер о ворах, которые проникают в чужие сны.&lt;/p&gt;
+        &lt;p&gt;Режиссёр: &lt;strong&gt;Кристофер Нолан&lt;/strong&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="movie"&gt;
+        &lt;h3&gt;3. Матрица (1999)&lt;/h3&gt;
+        &lt;p&gt;Культовый фильм о виртуальной реальности и восстании машин.&lt;/p&gt;
+        &lt;p&gt;Режиссёр: &lt;strong&gt;Вачовски&lt;/strong&gt;&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;h2&gt;Полезные ссылки&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="https://www.imdb.com" target="_blank"&gt;IMDb — база данных фильмов&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="https://www.kinopoisk.ru" target="_blank"&gt;Кинопоиск&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;hr&gt;
+    &lt;p&gt;&lt;em&gt;Страница создана на занятии 2 курса HTML/CSS&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <p>Обратите внимание: в этом примере CSS написан внутри тега <code>&lt;style&gt;</code> в <code>&lt;head&gt;</code>. Это называется <strong>внутренние стили</strong> (internal CSS). Позже мы научимся выносить CSS в отдельный файл.</p>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:10px;">Так будет выглядеть ваша страница:</p>
+        <div style="background:#f0f0f0;padding:20px;border-radius:8px;max-width:500px;margin:0 auto;font-family:Arial,sans-serif;">
+            <h3 style="color:#e94560;text-align:center;margin:0 0 8px;">Мои любимые фильмы</h3>
+            <p style="margin:0 0 12px;font-size:0.85rem;text-align:center;color:#555;">Подборка фильмов, которые я рекомендую.</p>
+            <div style="background:white;padding:12px;margin:6px 0;border-radius:8px;border-left:4px solid #e94560;">
+                <div style="font-weight:700;color:#16213e;font-size:0.9rem;margin:0 0 4px;">1. Интерстеллар (2014)</div>
+                <div style="font-size:0.8rem;color:#555;">Фантастика о путешествии через червоточину.</div>
+            </div>
+            <div style="background:white;padding:12px;margin:6px 0;border-radius:8px;border-left:4px solid #e94560;">
+                <div style="font-weight:700;color:#16213e;font-size:0.9rem;margin:0 0 4px;">2. Начало (2010)</div>
+                <div style="font-size:0.8rem;color:#555;">Триллер о ворах, проникающих в чужие сны.</div>
+            </div>
+            <div style="background:white;padding:12px;margin:6px 0;border-radius:8px;border-left:4px solid #e94560;">
+                <div style="font-weight:700;color:#16213e;font-size:0.9rem;margin:0 0 4px;">3. Матрица (1999)</div>
+                <div style="font-size:0.8rem;color:#555;">Культовый фильм о виртуальной реальности.</div>
+            </div>
+        </div>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;">Это ваша первая страница со стилями! Серый фон, белые карточки, красная полоска сбоку — всё это CSS.</p>
+    </div>
+
+    <div class="try-it">
+        <p>После создания страницы:</p>
+        <ol>
+            <li>Запустите через Live Server</li>
+            <li>Откройте DevTools (F12)</li>
+            <li>Выберите карточку фильма через &#128269; и посмотрите её стили</li>
+            <li>Измените <code>border-left</code> с <code>#e94560</code> на <code>blue</code></li>
+            <li>Измените <code>border-radius</code> на <code>20px</code></li>
+            <li>Добавьте <code>box-shadow: 0 2px 10px rgba(0,0,0,0.1)</code></li>
+            <li>Если понравился результат — перенесите изменения в VS Code</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== ИТОГИ ===== -->
+    <h2>Итоги занятия</h2>
+
+    <div class="summary">
+        <p>Сегодня мы изучили:</p>
+        <ul>
+            <li><strong>Интерфейс VS Code</strong> — Explorer, Search, Extensions, строка состояния</li>
+            <li><strong>Горячие клавиши</strong> — Ctrl+S, Alt+Shift+&#8595;, Ctrl+D, Ctrl+/, множественные курсоры</li>
+            <li><strong>Emmet</strong> — быстрая генерация HTML: <code>!</code>, <code>ul>li*3</code>, <code>.class</code>, <code>#id</code>, <code>lorem</code></li>
+            <li><strong>Расширения</strong> — Live Server, Prettier, Auto Rename Tag, Color Highlight</li>
+            <li><strong>Настройки VS Code</strong> — Auto Save, Format On Save, темы</li>
+            <li><strong>DevTools Elements</strong> — просмотр и редактирование HTML-структуры</li>
+            <li><strong>DevTools Styles</strong> — просмотр и изменение CSS-стилей в реальном времени</li>
+            <li><strong>DevTools приёмы</strong> — адаптивный режим, консоль, designMode, скриншоты</li>
+            <li><strong>Рабочий процесс</strong> — код в VS Code → просмотр в браузере → эксперименты в DevTools → перенос в код</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <ol>
+            <li>Как дублировать строку в VS Code?</li>
+            <li>Что делает Emmet-сокращение <code>ul>li*5</code>?</li>
+            <li>Как отформатировать код в VS Code?</li>
+            <li>Что делает расширение Live Server?</li>
+            <li>Как открыть DevTools?</li>
+            <li>Как выбрать элемент на странице для инспектирования?</li>
+            <li>Как изменить CSS-свойство в DevTools?</li>
+            <li>Сохраняются ли изменения, сделанные в DevTools, после обновления страницы?</li>
+            <li>Как включить адаптивный режим в DevTools?</li>
+            <li>Что делает команда <code>document.designMode = 'on'</code>?</li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

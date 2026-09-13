@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 18 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 18: CSS Grid — продвинутый</span>
+    <span class="nav-title" data-lang="en">Lesson 18: CSS Grid — Advanced</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 18: CSS Grid — продвинутый</p>
+    <p class="subtitle" data-lang="en">Lesson 18: CSS Grid — Advanced</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; РАЗМЕЩЕНИЕ ЭЛЕМЕНТОВ (grid-column / grid-row)</h2>
+    <h2 data-lang="en">&#x1F4DA; ITEM PLACEMENT (grid-column / grid-row)</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Grid-линии</strong> — границы между столбцами и строками. Нумеруются с 1. У сетки из 3 столбцов — 4 линии столбцов.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Grid lines</strong> — boundaries between columns and rows. Numbered from 1. A 3-column grid has 4 column lines.
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что делает</th><th>Пример</th></tr>
+        <tr><td><code>grid-column</code></td><td>Размещение по столбцам</td><td><code>1 / 3</code> или <code>span 2</code></td></tr>
+        <tr><td><code>grid-row</code></td><td>Размещение по строкам</td><td><code>1 / 3</code> или <code>span 2</code></td></tr>
+        <tr><td><code>grid-area</code></td><td>Привязка к именованной области</td><td><code>header</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it does</th><th>Example</th></tr>
+        <tr><td><code>grid-column</code></td><td>Column placement</td><td><code>1 / 3</code> or <code>span 2</code></td></tr>
+        <tr><td><code>grid-row</code></td><td>Row placement</td><td><code>1 / 3</code> or <code>span 2</code></td></tr>
+        <tr><td><code>grid-area</code></td><td>Assign to named area</td><td><code>header</code></td></tr>
+    </table>
+
+<pre><code>/* Занять 2 столбца */
+grid-column: span 2;
+
+/* Занять 3 строки */
+grid-row: span 3;
+
+/* От линии 1 до линии 4 (= 3 столбца) */
+grid-column: 1 / 4;</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ИМЕНОВАННЫЕ ОБЛАСТИ (grid-template-areas)</h2>
+    <h2 data-lang="en">&#x1F4DA; NAMED AREAS (grid-template-areas)</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>grid-template-areas</strong> — визуальный способ описать макет. Каждая строка в кавычках = строка сетки. Одинаковые имена = одна область.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>grid-template-areas</strong> — a visual way to describe a layout. Each quoted string = one grid row. Same names = one area.
+    </div>
+
+<pre><code>/* Контейнер */
+.layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 60px 1fr 50px;
+    grid-template-areas:
+        "header  header"
+        "sidebar content"
+        "footer  footer";
+}
+
+/* Элементы */
+.head { grid-area: header; }
+.side { grid-area: sidebar; }
+.main { grid-area: content; }
+.foot { grid-area: footer; }</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Правила grid-template-areas:</strong>
+        <ul>
+            <li>Область = только <strong>прямоугольник</strong> (нельзя Г-образная)</li>
+            <li>Одинаковое количество слов в каждой строке</li>
+            <li>Точка <code>.</code> = пустая ячейка</li>
+            <li>Порядок элементов в HTML не важен!</li>
+        </ul>
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>grid-template-areas rules:</strong>
+        <ul>
+            <li>Area = only a <strong>rectangle</strong> (no L-shapes)</li>
+            <li>Same number of words in each row</li>
+            <li>Dot <code>.</code> = empty cell</li>
+            <li>HTML element order doesn't matter!</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; GRID VS FLEXBOX — КОГДА ЧТО</h2>
+    <h2 data-lang="en">&#x1F4DA; GRID VS FLEXBOX — WHEN TO USE WHICH</h2>
+
+    <table data-lang="ru">
+        <tr><th>Используй Grid</th><th>Используй Flexbox</th></tr>
+        <tr><td>Макет всей страницы</td><td>Навигация (меню)</td></tr>
+        <tr><td>Сетка карточек</td><td>Содержимое карточки</td></tr>
+        <tr><td>Dashboard с виджетами</td><td>Центрирование</td></tr>
+        <tr><td>Header + Sidebar + Content</td><td>Элементы в ряд/столбец</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Use Grid</th><th>Use Flexbox</th></tr>
+        <tr><td>Full page layout</td><td>Navigation (menu)</td></tr>
+        <tr><td>Card grid</td><td>Card content</td></tr>
+        <tr><td>Dashboard with widgets</td><td>Centering</td></tr>
+        <tr><td>Header + Sidebar + Content</td><td>Items in row/column</td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Главное правило:</strong> Grid = макет (2D, «снаружи внутрь»), Flexbox = компоненты (1D, «изнутри наружу»). Используй вместе!
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Main rule:</strong> Grid = layout (2D, "outside in"), Flexbox = components (1D, "inside out"). Use them together!
+    </div>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>grid-column: span 2</code> — занять 2 столбца</li>
+            <li><code>grid-row: span 3</code> — занять 3 строки</li>
+            <li><code>grid-column: 1 / 4</code> — от линии 1 до линии 4</li>
+            <li><code>grid-template-areas</code> — визуальная карта макета</li>
+            <li><code>grid-area: header</code> — привязать элемент к области</li>
+            <li>Точка <code>.</code> — пустая ячейка в areas</li>
+            <li>Область обязательно прямоугольная!</li>
+            <li>Grid для макета + Flexbox для компонентов = идеальная пара</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>grid-column: span 2</code> — occupy 2 columns</li>
+            <li><code>grid-row: span 3</code> — occupy 3 rows</li>
+            <li><code>grid-column: 1 / 4</code> — from line 1 to line 4</li>
+            <li><code>grid-template-areas</code> — visual layout map</li>
+            <li><code>grid-area: header</code> — assign item to area</li>
+            <li>Dot <code>.</code> — empty cell in areas</li>
+            <li>Areas must be rectangular!</li>
+            <li>Grid for layout + Flexbox for components = perfect pair</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Dashboard:</strong> Создайте макет с <code>grid-template-areas</code>: header, sidebar, main, footer. Sidebar = 250px, остальное = 1fr.</li>
+            <li><strong>Виджеты:</strong> Внутри main — Grid-сетка из 4 виджетов (<code>auto-fit + minmax</code>). Первый виджет = <code>grid-column: span 2</code>.</li>
+            <li><strong>Бонус:</strong> Сделайте навигацию в sidebar через Flexbox (<code>flex-direction: column</code>).</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Dashboard:</strong> Create a layout with <code>grid-template-areas</code>: header, sidebar, main, footer. Sidebar = 250px, rest = 1fr.</li>
+            <li><strong>Widgets:</strong> Inside main — Grid of 4 widgets (<code>auto-fit + minmax</code>). First widget = <code>grid-column: span 2</code>.</li>
+            <li><strong>Bonus:</strong> Make sidebar navigation with Flexbox (<code>flex-direction: column</code>).</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

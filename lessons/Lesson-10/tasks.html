@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 10 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 10: Таблицы</span>
+    <span class="nav-title" data-lang="en">Lesson 10: Tables</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 10: Таблицы</p>
+    <p class="subtitle" data-lang="en">Lesson 10: Tables</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 10.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 10.1: БАЗОВЫЕ ТАБЛИЦЫ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 10.1: BASIC TABLES</h2>
+
+    <!-- ЗАДАНИЕ 9.1 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 9.1: Таблица одноклассников</span>
+            <span class="task-title" data-lang="en">Task 9.1: Classmates table</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться создавать базовую таблицу с заголовками</div>
+        <div class="task-goal" data-lang="en">Learn to create a basic table with headers</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>classmates.html</code>. Сделайте таблицу с данными о 5 одноклассниках (можно вымышленных):</p>
+        <p data-lang="en">Create a file <code>classmates.html</code>. Make a table with data about 5 classmates (can be fictional):</p>
+
+        <table data-lang="ru">
+            <tr><th>Столбец</th><th>Пример</th></tr>
+            <tr><td>Имя</td><td>Мерген</td></tr>
+            <tr><td>Возраст</td><td>16</td></tr>
+            <tr><td>Город</td><td>Ашхабад</td></tr>
+            <tr><td>Хобби</td><td>Программирование</td></tr>
+        </table>
+        <table data-lang="en">
+            <tr><th>Column</th><th>Example</th></tr>
+            <tr><td>Name</td><td>Mergen</td></tr>
+            <tr><td>Age</td><td>16</td></tr>
+            <tr><td>City</td><td>Ashgabat</td></tr>
+            <tr><td>Hobby</td><td>Programming</td></tr>
+        </table>
+
+        <h3 data-lang="ru">Требования:</h3>
+        <h3 data-lang="en">Requirements:</h3>
+
+        <ol data-lang="ru">
+            <li>Первая строка — заголовки (<code>&lt;th&gt;</code>): Имя, Возраст, Город, Хобби</li>
+            <li>5 строк с данными (<code>&lt;td&gt;</code>)</li>
+            <li>Добавьте в <code>&lt;style&gt;</code> базовый CSS: <code>border-collapse: collapse</code>, рамки, padding</li>
+        </ol>
+        <ol data-lang="en">
+            <li>First row — headers (<code>&lt;th&gt;</code>): Name, Age, City, Hobby</li>
+            <li>5 data rows (<code>&lt;td&gt;</code>)</li>
+            <li>Add basic CSS in <code>&lt;style&gt;</code>: <code>border-collapse: collapse</code>, borders, padding</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Минимальный CSS для красивой таблицы:
+<pre><code>table { width: 100%; border-collapse: collapse; }
+th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+th { background: #f1f5f9; }</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            Minimal CSS for a nice table:
+<pre><code>table { width: 100%; border-collapse: collapse; }
+th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+th { background: #f1f5f9; }</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Таблица имеет заголовки (<code>&lt;th&gt;</code>)</li>
+                <li>Минимум 5 строк данных</li>
+                <li>4 столбца</li>
+                <li><code>border-collapse: collapse</code> применён</li>
+                <li>Ячейки имеют padding и рамки</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Table has headers (<code>&lt;th&gt;</code>)</li>
+                <li>At least 5 data rows</li>
+                <li>4 columns</li>
+                <li><code>border-collapse: collapse</code> is applied</li>
+                <li>Cells have padding and borders</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 9.2 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 9.2: Таблица с colspan и rowspan</span>
+            <span class="task-title" data-lang="en">Task 9.2: Table with colspan and rowspan</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться объединять ячейки с помощью colspan и rowspan</div>
+        <div class="task-goal" data-lang="en">Learn to merge cells using colspan and rowspan</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>schedule.html</code>. Сделайте таблицу-расписание занятий на 3 дня:</p>
+        <p data-lang="en">Create a file <code>schedule.html</code>. Make a class schedule table for 3 days:</p>
+
+        <ol data-lang="ru">
+            <li>Первая строка: общий заголовок <strong>«Расписание на неделю»</strong> с <code>colspan</code> на всю ширину</li>
+            <li>Вторая строка: заголовки столбцов — <strong>День, Время, Предмет, Кабинет</strong></li>
+            <li>Понедельник — 3 урока (используй <code>rowspan="3"</code> для ячейки «Понедельник»)</li>
+            <li>Среда — 2 урока (используй <code>rowspan="2"</code>)</li>
+            <li>Пятница — 2 урока (используй <code>rowspan="2"</code>)</li>
+        </ol>
+        <ol data-lang="en">
+            <li>First row: main title <strong>"Weekly Schedule"</strong> with <code>colspan</code> spanning full width</li>
+            <li>Second row: column headers — <strong>Day, Time, Subject, Room</strong></li>
+            <li>Monday — 3 lessons (use <code>rowspan="3"</code> for the "Monday" cell)</li>
+            <li>Wednesday — 2 lessons (use <code>rowspan="2"</code>)</li>
+            <li>Friday — 2 lessons (use <code>rowspan="2"</code>)</li>
+        </ol>
+
+        <div class="example" data-lang="ru">
+            <p>Примерный вид:</p>
+<pre><code>|           Расписание на неделю            |  &lt;-- colspan="4"
+|    День    | Время |  Предмет  | Кабинет  |
+|            | 09:00 | HTML      |   101    |
+| Понедельник| 10:00 | CSS       |   101    |  &lt;-- rowspan="3"
+|            | 11:00 | JavaScript|   102    |
+|    Среда   | 09:00 | Git       |   103    |  &lt;-- rowspan="2"
+|            | 10:00 | Практика  |   101    |
+|   Пятница  | 09:00 | Проект    |   101    |  &lt;-- rowspan="2"
+|            | 10:00 | Ревью     |   102    |</code></pre>
+        </div>
+        <div class="example" data-lang="en">
+            <p>Expected result:</p>
+<pre><code>|              Weekly Schedule               |  &lt;-- colspan="4"
+|    Day     | Time  |  Subject  |   Room   |
+|            | 09:00 | HTML      |   101    |
+|   Monday   | 10:00 | CSS       |   101    |  &lt;-- rowspan="3"
+|            | 11:00 | JavaScript|   102    |
+|  Wednesday | 09:00 | Git       |   103    |  &lt;-- rowspan="2"
+|            | 10:00 | Practice  |   101    |
+|   Friday   | 09:00 | Project   |   101    |  &lt;-- rowspan="2"
+|            | 10:00 | Review    |   102    |</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li><code>colspan</code> используется для общего заголовка</li>
+                <li><code>rowspan</code> используется для дней недели</li>
+                <li>Минимум 7 строк данных</li>
+                <li>Таблица стилизована (рамки, padding, фон заголовков)</li>
+            </ul>
+            <ul data-lang="en">
+                <li><code>colspan</code> is used for the main title</li>
+                <li><code>rowspan</code> is used for weekdays</li>
+                <li>At least 7 data rows</li>
+                <li>Table is styled (borders, padding, header background)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 10.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 10.2: СТИЛИЗАЦИЯ ТАБЛИЦ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 10.2: TABLE STYLING</h2>
+
+    <!-- ЗАДАНИЕ 9.3 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 9.3: Полосатая таблица с hover</span>
+            <span class="task-title" data-lang="en">Task 9.3: Striped table with hover</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться применять zebra-эффект и hover к таблицам</div>
+        <div class="task-goal" data-lang="en">Learn to apply zebra effect and hover to tables</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Возьмите таблицу из задания 9.1 (одноклассники) и добавьте стили:</p>
+        <p data-lang="en">Take the table from task 9.1 (classmates) and add styles:</p>
+
+        <ol data-lang="ru">
+            <li>Используйте <code>thead</code>, <code>tbody</code> для семантичности</li>
+            <li>Добавьте <strong>полосатый эффект</strong>: каждая чётная строка — другого цвета (<code>:nth-child(even)</code>)</li>
+            <li>Добавьте <strong>hover-эффект</strong>: при наведении строка подсвечивается (<code>tr:hover</code>)</li>
+            <li>Добавьте плавный переход: <code>transition: background 0.2s ease</code></li>
+            <li>Стилизуйте заголовок: тёмный фон, белый текст</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Use <code>thead</code>, <code>tbody</code> for semantics</li>
+            <li>Add <strong>striped effect</strong>: every even row has a different color (<code>:nth-child(even)</code>)</li>
+            <li>Add <strong>hover effect</strong>: rows highlight on mouse hover (<code>tr:hover</code>)</li>
+            <li>Add smooth transition: <code>transition: background 0.2s ease</code></li>
+            <li>Style the header: dark background, white text</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+<pre><code>thead th {
+    background: #1e293b;
+    color: #fff;
+}
+tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+tbody tr:hover {
+    background: #dbeafe;
+}
+tbody tr {
+    transition: background 0.2s ease;
+}</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+<pre><code>thead th {
+    background: #1e293b;
+    color: #fff;
+}
+tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+tbody tr:hover {
+    background: #dbeafe;
+}
+tbody tr {
+    transition: background 0.2s ease;
+}</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li><code>thead</code> и <code>tbody</code> используются</li>
+                <li>Полосатый эффект работает</li>
+                <li>Hover-эффект работает</li>
+                <li>Заголовки с тёмным фоном</li>
+                <li>Переход плавный</li>
+            </ul>
+            <ul data-lang="en">
+                <li><code>thead</code> and <code>tbody</code> are used</li>
+                <li>Striped effect works</li>
+                <li>Hover effect works</li>
+                <li>Headers have dark background</li>
+                <li>Transition is smooth</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 10.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 10.3: PRICING TABLE</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 10.3: PRICING TABLE</h2>
+
+    <!-- ЗАДАНИЕ 9.4 -->
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 9.4: Таблица тарифов</span>
+            <span class="task-title" data-lang="en">Task 9.4: Pricing table</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать красивую таблицу тарифов с выделенным столбцом</div>
+        <div class="task-goal" data-lang="en">Create a beautiful pricing table with a highlighted column</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>pricing.html</code> с внешним CSS-файлом <code>pricing.css</code>. Сделайте таблицу тарифов:</p>
+        <p data-lang="en">Create a file <code>pricing.html</code> with an external CSS file <code>pricing.css</code>. Make a pricing table:</p>
+
+        <ol data-lang="ru">
+            <li><strong>3 тарифных плана:</strong> Базовый, Про, Бизнес</li>
+            <li><strong>Минимум 5 строк параметров:</strong> Цена, Проекты, Хранилище, Поддержка, Аналитика (или свои)</li>
+            <li><strong>Выделить рекомендуемый план</strong> (например, «Про») с помощью CSS-класса <code>.popular</code></li>
+            <li><strong>Используйте</strong> <code>thead</code> и <code>tbody</code></li>
+            <li><strong>Стилизация:</strong>
+                <ul>
+                    <li>Заголовки — тёмный фон</li>
+                    <li>Столбец «Про» — выделен цветом (фон в <code>thead</code> и <code>tbody</code>)</li>
+                    <li>Hover на строках</li>
+                    <li>Скруглённые углы таблицы и/или тень</li>
+                </ul>
+            </li>
+            <li>Используйте символы &#x2713; и &#x2717; для «да» и «нет»</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>3 pricing plans:</strong> Basic, Pro, Business</li>
+            <li><strong>At least 5 parameter rows:</strong> Price, Projects, Storage, Support, Analytics (or your own)</li>
+            <li><strong>Highlight the recommended plan</strong> (e.g., "Pro") using a CSS class <code>.popular</code></li>
+            <li><strong>Use</strong> <code>thead</code> and <code>tbody</code></li>
+            <li><strong>Styling:</strong>
+                <ul>
+                    <li>Headers — dark background</li>
+                    <li>"Pro" column — highlighted with color (background in <code>thead</code> and <code>tbody</code>)</li>
+                    <li>Hover on rows</li>
+                    <li>Rounded table corners and/or shadow</li>
+                </ul>
+            </li>
+            <li>Use symbols &#x2713; and &#x2717; for "yes" and "no"</li>
+        </ol>
+
+        <div class="example" data-lang="ru">
+            <p>Примерный вид:</p>
+<pre><code>|          | Базовый  |   ПРО    |  Бизнес  |
+|----------|----------|----------|----------|
+| Цена     | $0       |   $9     |   $29    |
+| Проекты  | 3        | Безлимит | Безлимит |
+| Место    | 1 ГБ     |  50 ГБ   |  500 ГБ  |
+| Поддержка| Email    | Чат 24/7 | Менеджер |
+| Аналитика| ✗        |    ✓     |    ✓     |
+
+Столбец «ПРО» выделен синим цветом</code></pre>
+        </div>
+        <div class="example" data-lang="en">
+            <p>Expected result:</p>
+<pre><code>|          |  Basic   |   PRO    | Business |
+|----------|----------|----------|----------|
+| Price    | $0       |   $9     |   $29    |
+| Projects | 3        | Unlimited| Unlimited|
+| Storage  | 1 GB     |  50 GB   |  500 GB  |
+| Support  | Email    | Chat 24/7| Manager  |
+| Analytics| ✗        |    ✓     |    ✓     |
+
+"PRO" column is highlighted in blue</code></pre>
+        </div>
+
+        <div class="hint" data-lang="ru">
+            Структура файлов:
+<pre><code>lesson-9/
+├── pricing.html   ← HTML-таблица + &lt;link href="pricing.css"&gt;
+└── pricing.css    ← все стили</code></pre>
+            <p>Для &#x2713; используйте <code>&amp;#x2713;</code>, для &#x2717; используйте <code>&amp;#x2717;</code></p>
+        </div>
+        <div class="hint" data-lang="en">
+            File structure:
+<pre><code>lesson-9/
+├── pricing.html   ← HTML table + &lt;link href="pricing.css"&gt;
+└── pricing.css    ← all styles</code></pre>
+            <p>For &#x2713; use <code>&amp;#x2713;</code>, for &#x2717; use <code>&amp;#x2717;</code></p>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>3 тарифных плана в столбцах</li>
+                <li>Минимум 5 строк параметров</li>
+                <li>Рекомендуемый столбец выделен цветом</li>
+                <li><code>thead</code> и <code>tbody</code> используются</li>
+                <li>CSS подключён через <code>&lt;link&gt;</code> (external)</li>
+                <li>Hover-эффект на строках</li>
+                <li>Таблица выглядит профессионально</li>
+            </ul>
+            <ul data-lang="en">
+                <li>3 pricing plans in columns</li>
+                <li>At least 5 parameter rows</li>
+                <li>Recommended column is highlighted</li>
+                <li><code>thead</code> and <code>tbody</code> are used</li>
+                <li>CSS is linked via <code>&lt;link&gt;</code> (external)</li>
+                <li>Hover effect on rows</li>
+                <li>Table looks professional</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 9.5: Турнирная таблица</span>
+            <span class="task-title" data-lang="en">Task 9.5: League standings table</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать сложную стилизованную таблицу с tfoot</div>
+        <div class="task-goal" data-lang="en">Create a complex styled table with tfoot</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте турнирную таблицу футбольной лиги:</p>
+        <p data-lang="en">Create a football league standings table:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Столбцы:</strong> #, Команда, Игры, Победы, Ничьи, Поражения, Очки</li>
+            <li><strong>6-8 команд</strong> (реальных или вымышленных)</li>
+            <li>Используйте <code>thead</code>, <code>tbody</code>, <code>tfoot</code></li>
+            <li>В <code>tfoot</code> — строка «Всего игр» с <code>colspan</code></li>
+            <li>Используйте <code>&lt;caption&gt;</code> для названия лиги</li>
+            <li><strong>Стилизация:</strong> полосатая, hover, первые 3 команды — зелёный фон (зона Лиги чемпионов), последние 2 — красный (зона вылета)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Columns:</strong> #, Team, Games, Wins, Draws, Losses, Points</li>
+            <li><strong>6-8 teams</strong> (real or fictional)</li>
+            <li>Use <code>thead</code>, <code>tbody</code>, <code>tfoot</code></li>
+            <li>In <code>tfoot</code> — a "Total games" row with <code>colspan</code></li>
+            <li>Use <code>&lt;caption&gt;</code> for the league name</li>
+            <li><strong>Styling:</strong> striped, hover, top 3 teams — green background (Champions League zone), bottom 2 — red (relegation zone)</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Для выделения первых/последних строк используйте:
+<pre><code>tbody tr:nth-child(-n+3) { /* первые 3 */
+    background: #f0fdf4;
+}
+tbody tr:nth-last-child(-n+2) { /* последние 2 */
+    background: #fef2f2;
+}</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            To highlight first/last rows:
+<pre><code>tbody tr:nth-child(-n+3) { /* first 3 */
+    background: #f0fdf4;
+}
+tbody tr:nth-last-child(-n+2) { /* last 2 */
+    background: #fef2f2;
+}</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>7 столбцов, 6-8 команд</li>
+                <li><code>thead</code>, <code>tbody</code>, <code>tfoot</code> используются</li>
+                <li><code>caption</code> присутствует</li>
+                <li>Зелёная зона (топ-3) и красная зона (последние 2) выделены</li>
+                <li>Hover-эффект работает</li>
+            </ul>
+            <ul data-lang="en">
+                <li>7 columns, 6-8 teams</li>
+                <li><code>thead</code>, <code>tbody</code>, <code>tfoot</code> are used</li>
+                <li><code>caption</code> is present</li>
+                <li>Green zone (top 3) and red zone (bottom 2) are highlighted</li>
+                <li>Hover effect works</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

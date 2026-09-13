@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 27 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 27: Tailwind CSS — основы</span>
+    <span class="nav-title" data-lang="en">Lesson 27: Tailwind CSS — Basics</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 27: Tailwind CSS — основы</p>
+    <p class="subtitle" data-lang="en">Lesson 27: Tailwind CSS — Basics</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 27.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 27.1: УТИЛИТИ-КЛАССЫ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 27.1: UTILITY CLASSES</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 26.1: Лаборатория Tailwind</span>
+            <span class="task-title" data-lang="en">Task 26.1: Tailwind laboratory</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Освоить основные утилити-классы Tailwind</div>
+        <div class="task-goal" data-lang="en">Master basic Tailwind utility classes</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>tailwind-lab.html</code> с подключённым Tailwind CDN. Покажите на одной странице:</p>
+        <p data-lang="en">Create a file <code>tailwind-lab.html</code> with Tailwind CDN connected. Show on one page:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Цвета:</strong> 8 блоков с разными <code>bg-{color}-500</code> + <code>text-white p-4 rounded-lg mb-2</code></li>
+            <li><strong>Типография:</strong> <code>text-sm</code>, <code>text-base</code>, <code>text-lg</code>, <code>text-xl</code>, <code>text-3xl</code>, <code>text-5xl</code> — каждый с подписью размера</li>
+            <li><strong>Тени:</strong> 5 блоков: <code>shadow-sm</code>, <code>shadow</code>, <code>shadow-md</code>, <code>shadow-lg</code>, <code>shadow-xl</code></li>
+            <li><strong>Скругления:</strong> 5 блоков: <code>rounded</code>, <code>rounded-lg</code>, <code>rounded-xl</code>, <code>rounded-2xl</code>, <code>rounded-full</code></li>
+            <li><strong>Spacing:</strong> блоки с <code>p-1</code> по <code>p-8</code> (видна разница отступов)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Colors:</strong> 8 blocks with different <code>bg-{color}-500</code> + <code>text-white p-4 rounded-lg mb-2</code></li>
+            <li><strong>Typography:</strong> <code>text-sm</code>, <code>text-base</code>, <code>text-lg</code>, <code>text-xl</code>, <code>text-3xl</code>, <code>text-5xl</code> — each with size label</li>
+            <li><strong>Shadows:</strong> 5 blocks: <code>shadow-sm</code>, <code>shadow</code>, <code>shadow-md</code>, <code>shadow-lg</code>, <code>shadow-xl</code></li>
+            <li><strong>Rounded:</strong> 5 blocks: <code>rounded</code>, <code>rounded-lg</code>, <code>rounded-xl</code>, <code>rounded-2xl</code>, <code>rounded-full</code></li>
+            <li><strong>Spacing:</strong> blocks with <code>p-1</code> through <code>p-8</code> (visible padding difference)</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Важно:</strong> подключение — через <code>&lt;script&gt;</code>, не <code>&lt;link&gt;</code>!
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Tailwind Lab&lt;/title&gt;
+    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body class="bg-gray-100 p-8"&gt;
+    &lt;!-- содержимое --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <strong>Формула:</strong> <code>p-N</code> = <code>N × 4</code> пикселей. <code>p-4</code> = 16px, <code>p-8</code> = 32px.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Important:</strong> connect via <code>&lt;script&gt;</code>, not <code>&lt;link&gt;</code>!
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Tailwind Lab&lt;/title&gt;
+    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body class="bg-gray-100 p-8"&gt;
+    &lt;!-- content --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            <strong>Formula:</strong> <code>p-N</code> = <code>N × 4</code> pixels. <code>p-4</code> = 16px, <code>p-8</code> = 32px.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Tailwind CDN подключён через <code>&lt;script&gt;</code></li>
+                <li>5 категорий утилит на одной странице (цвета, типография, тени, скругления, spacing)</li>
+                <li>Подписи к каждому блоку (что именно применено)</li>
+                <li>Ноль строк своего CSS</li>
+                <li>Протестировано: страница выглядит как надо (тени видны, цвета применены)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Tailwind CDN connected via <code>&lt;script&gt;</code></li>
+                <li>5 utility categories on one page (colors, typography, shadows, rounded, spacing)</li>
+                <li>Labels on each block (which utility applied)</li>
+                <li>Zero lines of custom CSS</li>
+                <li>Tested: page looks right (shadows visible, colors applied)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 27.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 27.2: FLEXBOX И GRID</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 27.2: FLEXBOX AND GRID</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 26.2: Layout на Tailwind</span>
+            <span class="task-title" data-lang="en">Task 26.2: Tailwind layouts</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать раскладки Flexbox и Grid с Tailwind</div>
+        <div class="task-goal" data-lang="en">Create Flexbox and Grid layouts with Tailwind</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Header:</strong> <code>flex items-center justify-between p-4 bg-white shadow</code> — лого + 3 ссылки + кнопка</li>
+            <li><strong>Grid 3 колонки:</strong> <code>grid grid-cols-3 gap-6 p-8</code> — 6 цветных блоков</li>
+            <li><strong>Grid 4 колонки:</strong> <code>grid grid-cols-4 gap-4</code> — 8 маленьких блоков</li>
+            <li><strong>Flex column:</strong> <code>flex flex-col gap-4</code> — sidebar с 5 ссылками</li>
+            <li><strong>Центрирование:</strong> <code>flex items-center justify-center h-64 bg-gray-100</code> — текст по центру</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Header:</strong> <code>flex items-center justify-between p-4 bg-white shadow</code> — logo + 3 links + button</li>
+            <li><strong>3-column Grid:</strong> <code>grid grid-cols-3 gap-6 p-8</code> — 6 colored blocks</li>
+            <li><strong>4-column Grid:</strong> <code>grid grid-cols-4 gap-4</code> — 8 small blocks</li>
+            <li><strong>Flex column:</strong> <code>flex flex-col gap-4</code> — sidebar with 5 links</li>
+            <li><strong>Centering:</strong> <code>flex items-center justify-center h-64 bg-gray-100</code> — centered text</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Шпаргалка соответствий:</strong>
+<pre><code>display: flex           → flex
+flex-direction: column  → flex-col
+align-items: center     → items-center
+justify-content: center → justify-center
+justify-content: space-between → justify-between
+gap: 16px               → gap-4
+display: grid           → grid
+grid-template-columns: repeat(3, 1fr) → grid-cols-3</code></pre>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Mapping cheat sheet:</strong>
+<pre><code>display: flex           → flex
+flex-direction: column  → flex-col
+align-items: center     → items-center
+justify-content: center → justify-center
+justify-content: space-between → justify-between
+gap: 16px               → gap-4
+display: grid           → grid
+grid-template-columns: repeat(3, 1fr) → grid-cols-3</code></pre>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>5 раскладок на одной странице (header, 3-col grid, 4-col grid, flex col, центрирование)</li>
+                <li>Flex и Grid через Tailwind-классы (<code>flex</code>, <code>grid</code>, <code>items-*</code>, <code>justify-*</code>, <code>grid-cols-*</code>, <code>gap-*</code>)</li>
+                <li>Каждая раскладка имеет подпись над ней</li>
+                <li>Ноль строк CSS</li>
+            </ul>
+            <ul data-lang="en">
+                <li>5 layouts on one page (header, 3-col grid, 4-col grid, flex col, centering)</li>
+                <li>Flex and Grid via Tailwind classes (<code>flex</code>, <code>grid</code>, <code>items-*</code>, <code>justify-*</code>, <code>grid-cols-*</code>, <code>gap-*</code>)</li>
+                <li>Each layout has a label above it</li>
+                <li>Zero lines of CSS</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 27.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 27.3: КАРТОЧКИ ТОВАРОВ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 27.3: PRODUCT CARDS</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 26.3: Карточки товаров на Tailwind</span>
+            <span class="task-title" data-lang="en">Task 26.3: Product cards with Tailwind</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">20 минут</span>
+                <span class="badge badge-time" data-lang="en">20 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать сетку карточек товаров используя только Tailwind</div>
+        <div class="task-goal" data-lang="en">Create a product card grid using only Tailwind</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>tailwind-cards.html</code>:</p>
+        <p data-lang="en">Create a file <code>tailwind-cards.html</code>:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Контейнер:</strong> <code>max-w-6xl mx-auto px-4 py-12</code></li>
+            <li><strong>Заголовок:</strong> <code>text-3xl font-bold text-center mb-8</code></li>
+            <li><strong>Сетка:</strong> <code>grid grid-cols-3 gap-6</code></li>
+            <li><strong>6 карточек</strong>, каждая:
+                <ul>
+                    <li>Контейнер: <code>bg-white rounded-xl shadow-md overflow-hidden</code></li>
+                    <li>Изображение: <code>w-full h-48 object-cover</code> (picsum.photos)</li>
+                    <li>Тег: <code>text-xs font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full</code></li>
+                    <li>Название: <code>text-lg font-bold text-gray-900 mt-3</code></li>
+                    <li>Описание: <code>text-sm text-gray-500 mt-2</code></li>
+                    <li>Цена: <code>text-xl font-bold text-green-600 mt-3</code></li>
+                    <li>Кнопка: <code>mt-4 w-full py-2 bg-blue-600 text-white rounded-lg font-semibold</code></li>
+                </ul>
+            </li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Container:</strong> <code>max-w-6xl mx-auto px-4 py-12</code></li>
+            <li><strong>Heading:</strong> <code>text-3xl font-bold text-center mb-8</code></li>
+            <li><strong>Grid:</strong> <code>grid grid-cols-3 gap-6</code></li>
+            <li><strong>6 cards</strong>, each:
+                <ul>
+                    <li>Container: <code>bg-white rounded-xl shadow-md overflow-hidden</code></li>
+                    <li>Image: <code>w-full h-48 object-cover</code> (picsum.photos)</li>
+                    <li>Tag: <code>text-xs font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full</code></li>
+                    <li>Name: <code>text-lg font-bold text-gray-900 mt-3</code></li>
+                    <li>Description: <code>text-sm text-gray-500 mt-2</code></li>
+                    <li>Price: <code>text-xl font-bold text-green-600 mt-3</code></li>
+                    <li>Button: <code>mt-4 w-full py-2 bg-blue-600 text-white rounded-lg font-semibold</code></li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Готовый шаблон одной карточки (скопируйте и повторите 6 раз с разными данными):</strong>
+<pre><code>&lt;div class="bg-white rounded-xl shadow-md overflow-hidden"&gt;
+    &lt;img src="https://picsum.photos/400/300?random=1"
+         class="w-full h-48 object-cover"&gt;
+    &lt;div class="p-5"&gt;
+        &lt;span class="text-xs font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full"&gt;Tag&lt;/span&gt;
+        &lt;h3 class="text-lg font-bold text-gray-900 mt-3"&gt;Product Name&lt;/h3&gt;
+        &lt;p class="text-sm text-gray-500 mt-2"&gt;Description...&lt;/p&gt;
+        &lt;p class="text-xl font-bold text-green-600 mt-3"&gt;$99.99&lt;/p&gt;
+        &lt;button class="mt-4 w-full py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700"&gt;
+            Add to Cart
+        &lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            Меняйте <code>random=1</code> на <code>2</code>, <code>3</code>... для разных фото.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Ready template for one card (copy and repeat 6× with different data):</strong>
+<pre><code>&lt;div class="bg-white rounded-xl shadow-md overflow-hidden"&gt;
+    &lt;img src="https://picsum.photos/400/300?random=1"
+         class="w-full h-48 object-cover"&gt;
+    &lt;div class="p-5"&gt;
+        &lt;span class="text-xs font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full"&gt;Tag&lt;/span&gt;
+        &lt;h3 class="text-lg font-bold text-gray-900 mt-3"&gt;Product Name&lt;/h3&gt;
+        &lt;p class="text-sm text-gray-500 mt-2"&gt;Description...&lt;/p&gt;
+        &lt;p class="text-xl font-bold text-green-600 mt-3"&gt;$99.99&lt;/p&gt;
+        &lt;button class="mt-4 w-full py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700"&gt;
+            Add to Cart
+        &lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            Change <code>random=1</code> to <code>2</code>, <code>3</code>... for different photos.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>6 карточек в Grid 3 колонки (<code>grid grid-cols-3 gap-6</code>)</li>
+                <li>Каждая с изображением, тегом, названием, описанием, ценой, кнопкой</li>
+                <li><strong>Ноль строк CSS</strong> — всё через Tailwind</li>
+                <li>Контейнер с <code>max-w-6xl mx-auto</code></li>
+                <li>Заголовок секции (<code>text-3xl font-bold text-center</code>)</li>
+                <li>Кнопка на всю ширину карточки (<code>w-full</code>)</li>
+                <li>Все карточки имеют одинаковую структуру и высоту</li>
+                <li>Бонус: hover-эффект на кнопке (<code>hover:bg-blue-700</code>)</li>
+            </ul>
+            <ul data-lang="en">
+                <li>6 cards in 3-column Grid (<code>grid grid-cols-3 gap-6</code>)</li>
+                <li>Each with image, tag, name, description, price, button</li>
+                <li><strong>Zero lines of CSS</strong> — all via Tailwind</li>
+                <li>Container with <code>max-w-6xl mx-auto</code></li>
+                <li>Section heading (<code>text-3xl font-bold text-center</code>)</li>
+                <li>Full-width button inside card (<code>w-full</code>)</li>
+                <li>All cards have same structure and height</li>
+                <li>Bonus: hover effect on button (<code>hover:bg-blue-700</code>)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 26.4: Bootstrap vs Tailwind</span>
+            <span class="task-title" data-lang="en">Task 26.4: Bootstrap vs Tailwind</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать одинаковую карточку на Bootstrap и Tailwind</div>
+        <div class="task-goal" data-lang="en">Create the same card on Bootstrap and Tailwind</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте 2 файла — одинаковая карточка товара:</p>
+        <p data-lang="en">Create 2 files — the same product card:</p>
+
+        <ol data-lang="ru">
+            <li><code>card-bootstrap.html</code> — карточка на Bootstrap (<code>card card-body</code>...)</li>
+            <li><code>card-tailwind.html</code> — та же карточка на Tailwind (<code>bg-white rounded-xl shadow-md</code>...)</li>
+            <li>Сравните: сколько классов, насколько гибко, какой код читаемее</li>
+        </ol>
+        <ol data-lang="en">
+            <li><code>card-bootstrap.html</code> — card with Bootstrap (<code>card card-body</code>...)</li>
+            <li><code>card-tailwind.html</code> — same card with Tailwind (<code>bg-white rounded-xl shadow-md</code>...)</li>
+            <li>Compare: how many classes, how flexible, which code is more readable</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Подумайте перед сравнением над вопросами:</strong>
+            <ul>
+                <li>Какой подход вам показался быстрее?</li>
+                <li>В каком коде легче увидеть «что он делает»?</li>
+                <li>Что если бы надо было 10 карточек в разных стилях?</li>
+                <li>Что если клиент попросит «поменять основной цвет»?</li>
+            </ul>
+            Ответы запишите в комментариях (<code>&lt;!-- --&gt;</code>) в каждом из файлов.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Think about these questions before comparing:</strong>
+            <ul>
+                <li>Which approach felt faster?</li>
+                <li>Which code is easier to "see what it does"?</li>
+                <li>What if you needed 10 cards in different styles?</li>
+                <li>What if the client asks to "change the primary color"?</li>
+            </ul>
+            Write answers in comments (<code>&lt;!-- --&gt;</code>) in each file.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Два файла: <code>card-bootstrap.html</code> и <code>card-tailwind.html</code></li>
+                <li>Bootstrap CDN в первом, Tailwind CDN во втором</li>
+                <li>Карточки визуально максимально похожи (размер, цвета, отступы, шрифт)</li>
+                <li>В каждом файле — комментарии с ответами на вопросы выше</li>
+                <li>Ни одной строки CSS ни в одном файле</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Two files: <code>card-bootstrap.html</code> and <code>card-tailwind.html</code></li>
+                <li>Bootstrap CDN in first, Tailwind CDN in second</li>
+                <li>Cards visually as similar as possible (size, colors, spacing, font)</li>
+                <li>In each file — comments with answers to the questions above</li>
+                <li>Not a single line of CSS in either file</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

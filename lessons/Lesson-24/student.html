@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 24 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 24: Мини-проект — Анимированная промо-страница</span>
+    <span class="nav-title" data-lang="en">Lesson 24: Mini-project — Animated Promo Page</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 24: Мини-проект #6 — Анимированная промо-страница</p>
+    <p class="subtitle" data-lang="en">Lesson 24: Mini-project #6 — Animated Promo Page</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; TRANSITION vs ANIMATION</h2>
+    <h2 data-lang="en">&#x1F4DA; TRANSITION vs ANIMATION</h2>
+
+    <table data-lang="ru">
+        <tr><th></th><th><code>transition</code></th><th><code>animation</code></th></tr>
+        <tr><td>Запуск</td><td>По событию (hover, focus)</td><td>Автоматически (при загрузке)</td></tr>
+        <tr><td>Состояний</td><td>2 (из A в B)</td><td>Любое количество (@keyframes)</td></tr>
+        <tr><td>Повтор</td><td>Нет</td><td><code>infinite</code> — бесконечно</td></tr>
+        <tr><td>Использовать</td><td>Кнопки, ссылки, карточки</td><td>Спиннеры, появление, пульс</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th></th><th><code>transition</code></th><th><code>animation</code></th></tr>
+        <tr><td>Trigger</td><td>On event (hover, focus)</td><td>Automatic (on load)</td></tr>
+        <tr><td>States</td><td>2 (A to B)</td><td>Any count (@keyframes)</td></tr>
+        <tr><td>Repeat</td><td>No</td><td><code>infinite</code> — forever</td></tr>
+        <tr><td>Use for</td><td>Buttons, links, cards</td><td>Spinners, appearance, pulse</td></tr>
+    </table>
+
+    <div class="definition" data-lang="ru">
+        <strong>Аналогия:</strong> <code>transition</code> — дверь (открывается, когда толкнул). <code>animation</code> — часы (идут сами).
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Analogy:</strong> <code>transition</code> is a door (opens when pushed). <code>animation</code> is a clock (runs by itself).
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; @KEYFRAMES — ОПРЕДЕЛЕНИЕ АНИМАЦИИ</h2>
+    <h2 data-lang="en">&#x1F4DA; @KEYFRAMES — DEFINING ANIMATION</h2>
+
+<pre><code>/* Шаг 1: создаём */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Шаг 2: применяем */
+.element {
+    animation: fadeInUp 0.8s ease forwards;
+}</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; СВОЙСТВА ANIMATION</h2>
+    <h2 data-lang="en">&#x1F4DA; ANIMATION PROPERTIES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Что делает</th><th>Часто</th></tr>
+        <tr><td><code>animation-name</code></td><td>Имя @keyframes</td><td><code>fadeIn</code></td></tr>
+        <tr><td><code>animation-duration</code></td><td>Длительность</td><td><code>0.8s</code></td></tr>
+        <tr><td><code>animation-delay</code></td><td>Задержка</td><td><code>0.2s</code></td></tr>
+        <tr><td><code>animation-iteration-count</code></td><td>Повторы</td><td><code>1</code>, <code>infinite</code></td></tr>
+        <tr><td><code>animation-direction</code></td><td>Направление</td><td><code>normal</code>, <code>alternate</code></td></tr>
+        <tr><td><code>animation-fill-mode</code></td><td>Состояние после</td><td><code>forwards</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>What it does</th><th>Common</th></tr>
+        <tr><td><code>animation-name</code></td><td>@keyframes name</td><td><code>fadeIn</code></td></tr>
+        <tr><td><code>animation-duration</code></td><td>Duration</td><td><code>0.8s</code></td></tr>
+        <tr><td><code>animation-delay</code></td><td>Delay</td><td><code>0.2s</code></td></tr>
+        <tr><td><code>animation-iteration-count</code></td><td>Repeats</td><td><code>1</code>, <code>infinite</code></td></tr>
+        <tr><td><code>animation-direction</code></td><td>Direction</td><td><code>normal</code>, <code>alternate</code></td></tr>
+        <tr><td><code>animation-fill-mode</code></td><td>State after</td><td><code>forwards</code></td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ГОТОВЫЕ АНИМАЦИИ</h2>
+    <h2 data-lang="en">&#x1F4DA; READY-MADE ANIMATIONS</h2>
+
+<pre><code>/* Появление */
+@keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+}
+
+/* Появление снизу */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Выезд слева */
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-60px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Спиннер */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Пульсация */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; КАСКАДНОЕ ПОЯВЛЕНИЕ</h2>
+    <h2 data-lang="en">&#x1F4DA; CASCADING APPEARANCE</h2>
+
+<pre><code>.hero h1  { animation: fadeInUp 0.8s ease forwards; }
+.hero p   { animation: fadeInUp 0.8s ease 0.2s forwards; opacity: 0; }
+.hero btn { animation: fadeInUp 0.8s ease 0.4s forwards; opacity: 0; }
+
+/* Элементы с delay: обязательно opacity: 0! */</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Каскадная задержка:</strong> каждый следующий элемент получает delay на 0.15–0.2s больше предыдущего → элементы появляются один за другим.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Cascading delay:</strong> each next element gets 0.15–0.2s more delay → elements appear one by one.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; 3 СТАНДАРТНЫХ РЕЦЕПТА</h2>
+    <h2 data-lang="en">&#x1F4DA; 3 STANDARD RECIPES</h2>
+
+<pre><code>/* 1. Одноразовая (появление) */
+animation: fadeIn 0.6s ease forwards;
+
+/* 2. Бесконечная (спиннер) */
+animation: spin 1s linear infinite;
+
+/* 3. Бесконечная туда-обратно (пульс) */
+animation: pulse 2s ease-in-out infinite alternate;</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Для спиннера — <code>linear</code>, не <code>ease</code>!</strong> С <code>ease</code> спиннер будет «дёргаться» — ускоряется и замедляется на каждом обороте.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>For spinners — <code>linear</code>, not <code>ease</code>!</strong> With <code>ease</code> the spinner jerks — speeds up and slows down each rotation.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧАСТЫЕ ОШИБКИ</h2>
+    <h2 data-lang="en">&#x1F4DA; COMMON MISTAKES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td>Элемент мигает после fadeIn</td><td>Добавить <code>forwards</code></td></tr>
+        <tr><td>Элемент виден до delay</td><td>Базовое <code>opacity: 0</code></td></tr>
+        <tr><td>Пульс выглядит «дёрганым»</td><td>Добавить <code>alternate</code> или 0%/50%/100%</td></tr>
+        <tr><td>Спиннер ускоряется/замедляется</td><td>Заменить <code>ease</code> на <code>linear</code></td></tr>
+        <tr><td>Нет <code>prefers-reduced-motion</code></td><td>Добавить media query</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td>Element flashes after fadeIn</td><td>Add <code>forwards</code></td></tr>
+        <tr><td>Element visible before delay</td><td>Base <code>opacity: 0</code></td></tr>
+        <tr><td>Pulse looks "jerky"</td><td>Add <code>alternate</code> or 0%/50%/100%</td></tr>
+        <tr><td>Spinner speeds/slows</td><td>Replace <code>ease</code> with <code>linear</code></td></tr>
+        <tr><td>No <code>prefers-reduced-motion</code></td><td>Add media query</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ДОСТУПНОСТЬ</h2>
+    <h2 data-lang="en">&#x1F4DA; ACCESSIBILITY</h2>
+
+<pre><code>@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}</code></pre>
+
+    <div class="definition" data-lang="ru">
+        Отключает анимации для пользователей с вестибулярными нарушениями. В продакшене — <strong>обязательно</strong>.
+    </div>
+    <div class="definition" data-lang="en">
+        Disables animations for users with vestibular issues. Mandatory in production.
+    </div>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>transition</code> = hover-эффекты. <code>animation</code> = автоматические</li>
+            <li><code>@keyframes</code> — определяем шаги анимации (from/to или 0%/50%/100%)</li>
+            <li><code>from</code> = <code>0%</code>, <code>to</code> = <code>100%</code> (одно и то же)</li>
+            <li><code>animation: name duration ease</code> — применяем к элементу</li>
+            <li><code>forwards</code> — элемент остаётся в конечном состоянии</li>
+            <li><code>infinite</code> — бесконечный цикл (спиннеры)</li>
+            <li><code>alternate</code> — туда-обратно (пульсация)</li>
+            <li>Для спиннеров ТОЛЬКО <code>linear</code>, не <code>ease</code></li>
+            <li>Элементы с <code>animation-delay</code> → ставь <code>opacity: 0</code></li>
+            <li>Каскадная задержка = красивое последовательное появление</li>
+            <li>CSS-переменные + <code>calc()</code> = автоматические задержки</li>
+            <li><code>@media (prefers-reduced-motion: reduce)</code> — обязательно для продакшена</li>
+            <li>Макс 3 типа анимаций на странице — иначе мешанина</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>transition</code> = hover effects. <code>animation</code> = automatic</li>
+            <li><code>@keyframes</code> — define animation steps (from/to or 0%/50%/100%)</li>
+            <li><code>from</code> = <code>0%</code>, <code>to</code> = <code>100%</code> (same thing)</li>
+            <li><code>animation: name duration ease</code> — apply to element</li>
+            <li><code>forwards</code> — element stays in final state</li>
+            <li><code>infinite</code> — infinite loop (spinners)</li>
+            <li><code>alternate</code> — back and forth (pulse)</li>
+            <li>For spinners ONLY <code>linear</code>, not <code>ease</code></li>
+            <li>Elements with <code>animation-delay</code> → set <code>opacity: 0</code></li>
+            <li>Cascading delay = beautiful sequential appearance</li>
+            <li>CSS variables + <code>calc()</code> = automatic delays</li>
+            <li><code>@media (prefers-reduced-motion: reduce)</code> — mandatory for production</li>
+            <li>Max 3 animation types per page — otherwise it's a mess</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Промо-страница:</strong> Hero (fadeInUp каскадом: h1 → p → кнопка с задержками 0s, 0.2s, 0.4s) + 3 features (slideInLeft / fadeInUp / slideInRight) + 3 карточки (fadeInUp каскадом) + CTA с пульсирующей кнопкой.</li>
+            <li><strong>Загрузчик:</strong> Сделайте 2 спиннера — вращающийся круг (<code>spin</code> + <code>linear</code> + <code>infinite</code>) и 3 пульсирующие точки с разной <code>animation-delay</code>.</li>
+            <li><strong>Glow-пульс:</strong> Красная точка уведомления с расходящейся тенью (<code>box-shadow: 0 0 0 15px</code> → <code>0 0 0 0</code>).</li>
+            <li><strong>CSS-переменные:</strong> <code>--anim-speed</code>, <code>--anim-delay-step</code> в <code>:root</code>, применение через <code>calc(var(--anim-delay-step) * N)</code>.</li>
+            <li><strong>Доступность:</strong> В конце style.css — <code>@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; } }</code>.</li>
+            <li><strong>Бонус:</strong> Подключите шрифт с Google Fonts и плавно его «проявите» при загрузке.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Promo page:</strong> Hero (cascading fadeInUp: h1 → p → button with delays 0s, 0.2s, 0.4s) + 3 features (slideInLeft / fadeInUp / slideInRight) + 3 cards (cascading fadeInUp) + CTA with pulsing button.</li>
+            <li><strong>Loader:</strong> Make 2 spinners — rotating circle (<code>spin</code> + <code>linear</code> + <code>infinite</code>) and 3 pulsing dots with different <code>animation-delay</code>.</li>
+            <li><strong>Glow pulse:</strong> Red notification dot with expanding shadow (<code>box-shadow: 0 0 0 15px</code> → <code>0 0 0 0</code>).</li>
+            <li><strong>CSS variables:</strong> <code>--anim-speed</code>, <code>--anim-delay-step</code> in <code>:root</code>, applied via <code>calc(var(--anim-delay-step) * N)</code>.</li>
+            <li><strong>Accessibility:</strong> At the end of style.css — <code>@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; } }</code>.</li>
+            <li><strong>Bonus:</strong> Load a font from Google Fonts and fade it in on load.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

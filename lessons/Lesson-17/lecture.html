@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 17 — CSS Grid: основы</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 17: CSS Grid — основы</span>
+    <span class="nav-title" data-lang="en">Lesson 17: CSS Grid — Basics</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 17: CSS Grid — основы</h1>
+    <h1 data-lang="en">Lesson 17: CSS Grid — Basics</h1>
+    <p class="subtitle" data-lang="ru">Grid-контейнер, столбцы и строки, единица fr, repeat(), gap и выравнивание</p>
+    <p class="subtitle" data-lang="en">Grid container, columns and rows, fr unit, repeat(), gap, and alignment</p>
+
+    <div class="why" data-lang="ru">
+        <p>Сегодня мы изучим <strong>CSS Grid</strong> — самую мощную систему раскладки в CSS. До Grid разработчики мучились с float, clearfix, таблицами и другими костылями, чтобы сделать простую сетку из карточек. Grid решает эту проблему <strong>одной строкой CSS</strong>.</p>
+        <p>Представьте, что вы расставляете мебель в комнате. Раньше вы могли только ставить предметы в ряд (Flexbox). Теперь вы можете разметить всю комнату сеткой и точно указать — шкаф сюда, стол туда, кровать на два квадрата.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Создавать сетки любой сложности — галереи, макеты страниц, дашборды</li>
+            <li>Делать адаптивные раскладки <strong>без единого media query</strong></li>
+            <li>Понимать, когда использовать Grid, а когда Flexbox</li>
+            <li>Создать полностью адаптивную фотогалерею за 3 строки CSS</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Today we'll learn <strong>CSS Grid</strong> — the most powerful layout system in CSS. Before Grid, developers struggled with floats, clearfix, tables and other hacks just to create a simple card grid. Grid solves this problem with <strong>a single line of CSS</strong>.</p>
+        <p>Imagine you're arranging furniture in a room. Before, you could only place items in a row (Flexbox). Now you can mark the entire room with a grid and precisely specify — wardrobe here, desk there, bed across two squares.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Create grids of any complexity — galleries, page layouts, dashboards</li>
+            <li>Make responsive layouts <strong>without a single media query</strong></li>
+            <li>Understand when to use Grid vs Flexbox</li>
+            <li>Create a fully responsive photo gallery in 3 lines of CSS</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#intro">Зачем нужен CSS Grid</a></li>
+            <li><a href="#flex-vs-grid">Flexbox vs Grid</a></li>
+            <li><a href="#terminology">Терминология Grid</a></li>
+            <li><a href="#display-grid">display: grid</a></li>
+            <li><a href="#columns">grid-template-columns</a></li>
+            <li><a href="#fr">Единица fr</a></li>
+            <li><a href="#repeat">repeat() — повторение</a></li>
+            <li><a href="#rows">grid-template-rows</a></li>
+            <li><a href="#gap">gap — отступы</a></li>
+            <li><a href="#justify-items">justify-items и align-items</a></li>
+            <li><a href="#justify-content-grid">justify-content и align-content</a></li>
+            <li><a href="#auto-fill">auto-fill и auto-fit</a></li>
+            <li><a href="#minmax">minmax() — адаптивные колонки</a></li>
+            <li><a href="#practice">Практика: фотогалерея</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#intro">Why we need CSS Grid</a></li>
+            <li><a href="#flex-vs-grid">Flexbox vs Grid</a></li>
+            <li><a href="#terminology">Grid terminology</a></li>
+            <li><a href="#display-grid">display: grid</a></li>
+            <li><a href="#columns">grid-template-columns</a></li>
+            <li><a href="#fr">The fr unit</a></li>
+            <li><a href="#repeat">repeat() — repetition</a></li>
+            <li><a href="#rows">grid-template-rows</a></li>
+            <li><a href="#gap">gap — spacing</a></li>
+            <li><a href="#justify-items">justify-items and align-items</a></li>
+            <li><a href="#justify-content-grid">justify-content and align-content</a></li>
+            <li><a href="#auto-fill">auto-fill and auto-fit</a></li>
+            <li><a href="#minmax">minmax() — responsive columns</a></li>
+            <li><a href="#practice">Practice: photo gallery</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ВВЕДЕНИЕ ==================== -->
+    <h2 id="intro" data-lang="ru">1. Зачем нужен CSS Grid</h2>
+    <h2 id="intro-en" data-lang="en">1. Why we need CSS Grid</h2>
+
+    <p data-lang="ru"><strong>CSS Grid</strong> — это система раскладки, которая позволяет создавать <strong>двумерные сетки</strong> (строки И столбцы одновременно). Если Flexbox работает в одном направлении, то Grid — в двух.</p>
+    <p data-lang="en"><strong>CSS Grid</strong> is a layout system that creates <strong>two-dimensional grids</strong> (rows AND columns simultaneously). While Flexbox works in one direction, Grid works in two.</p>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Flexbox vs Grid — верёвка vs шахматная доска.</strong> Flexbox — это <strong>верёвка с бельём</strong>: элементы вешаются в ряд (или столбец), один за другим. Grid — это <strong>шахматная доска</strong>: вы размечаете всю площадь на ячейки и размещаете элементы в любой ячейке, любого размера.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Flexbox vs Grid — clothesline vs chessboard.</strong> Flexbox is a <strong>clothesline</strong>: items hang in a row (or column), one after another. Grid is a <strong>chessboard</strong>: you mark the entire area into cells and place items in any cell, of any size.</p>
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Ещё одна аналогия — Excel.</strong> Представьте таблицу в Excel: столбцы A, B, C и строки 1, 2, 3. Вы можете поместить данные в конкретную ячейку B2, объединить ячейки A1:C1 для заголовка. CSS Grid работает точно так же — вы создаёте сетку и размещаете элементы в нужных ячейках.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Another analogy — Excel.</strong> Imagine a spreadsheet: columns A, B, C and rows 1, 2, 3. You can place data in a specific cell B2, merge cells A1:C1 for a header. CSS Grid works exactly the same — you create a grid and place items in the cells you want.</p>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Где Grid используется в реальных проектах:</strong></p>
+        <ul>
+            <li><strong>Фотогалереи</strong> — Instagram, Pinterest, Google Photos</li>
+            <li><strong>Макеты страниц</strong> — header + sidebar + content + footer</li>
+            <li><strong>Карточки товаров</strong> — Amazon, Ozon, любой интернет-магазин</li>
+            <li><strong>Дашборды</strong> — панели управления с виджетами разного размера</li>
+            <li><strong>Портфолио</strong> — сетки работ на сайтах дизайнеров</li>
+        </ul>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Where Grid is used in real projects:</strong></p>
+        <ul>
+            <li><strong>Photo galleries</strong> — Instagram, Pinterest, Google Photos</li>
+            <li><strong>Page layouts</strong> — header + sidebar + content + footer</li>
+            <li><strong>Product cards</strong> — Amazon, any online store</li>
+            <li><strong>Dashboards</strong> — admin panels with widgets of different sizes</li>
+            <li><strong>Portfolios</strong> — project grids on designer websites</li>
+        </ul>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p>CSS Grid появился в браузерах в 2017 году. До этого разработчики 20 лет мучились с float и таблицами для создания сеток. Представьте: чтобы сделать 3 колонки, нужно было писать ~30 строк CSS с float, clearfix и хаками. С Grid — <strong>одна строка</strong>: <code>grid-template-columns: 1fr 1fr 1fr</code>.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p>CSS Grid appeared in browsers in 2017. Before that, developers struggled for 20 years with floats and tables to create grids. Imagine: to make 3 columns, you needed ~30 lines of CSS with float, clearfix, and hacks. With Grid — <strong>one line</strong>: <code>grid-template-columns: 1fr 1fr 1fr</code>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== FLEX VS GRID ==================== -->
+    <h2 id="flex-vs-grid" data-lang="ru">2. Flexbox vs Grid</h2>
+    <h2 id="flex-vs-grid-en" data-lang="en">2. Flexbox vs Grid</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Новички часто спрашивают: «Зачем мне Grid, если есть Flexbox?» Это как спрашивать «Зачем мне молоток, если есть отвёртка?» — каждый инструмент для своей задачи. Понимание разницы избавит вас от часов мучений, когда вы пытаетесь сделать Grid-задачу Flexbox-ом.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Beginners often ask: "Why do I need Grid if I have Flexbox?" It's like asking "Why do I need a hammer if I have a screwdriver?" — each tool is for its task. Understanding the difference will save you hours of struggle when you try to do a Grid-task with Flexbox.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th></th><th>Flexbox</th><th>CSS Grid</th></tr>
+        <tr><td><strong>Измерения</strong></td><td><strong>1D</strong> — строка ИЛИ столбец</td><td><strong>2D</strong> — строки И столбцы</td></tr>
+        <tr><td><strong>Управление</strong></td><td>Контент определяет размер</td><td>Сетка определяет размер</td></tr>
+        <tr><td><strong>Лучше для</strong></td><td>Навигация, карточки в ряд, центрирование</td><td>Макеты страниц, сложные сетки, галереи</td></tr>
+        <tr><td><strong>Подход</strong></td><td>«Изнутри наружу» (от контента)</td><td>«Снаружи внутрь» (от сетки)</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th></th><th>Flexbox</th><th>CSS Grid</th></tr>
+        <tr><td><strong>Dimensions</strong></td><td><strong>1D</strong> — row OR column</td><td><strong>2D</strong> — rows AND columns</td></tr>
+        <tr><td><strong>Control</strong></td><td>Content determines size</td><td>Grid determines size</td></tr>
+        <tr><td><strong>Best for</strong></td><td>Navigation, cards in row, centering</td><td>Page layouts, complex grids, galleries</td></tr>
+        <tr><td><strong>Approach</strong></td><td>"Inside out" (from content)</td><td>"Outside in" (from grid)</td></tr>
+    </table>
+
+    <div class="diagram" data-lang="ru">
+Flexbox (1D — одно направление):
+┌──────┐┌──────┐┌──────┐┌──────┐
+│  1   ││  2   ││  3   ││  4   │  ← только в ряд
+└──────┘└──────┘└──────┘└──────┘
+
+Grid (2D — строки И столбцы):
+┌──────┬──────┬──────┐
+│  1   │  2   │  3   │  ← строка 1
+├──────┼──────┼──────┤
+│  4   │  5   │  6   │  ← строка 2
+└──────┴──────┴──────┘
+  col1   col2   col3</div>
+    <div class="diagram" data-lang="en">
+Flexbox (1D — one direction):
+┌──────┐┌──────┐┌──────┐┌──────┐
+│  1   ││  2   ││  3   ││  4   │  ← row only
+└──────┘└──────┘└──────┘└──────┘
+
+Grid (2D — rows AND columns):
+┌──────┬──────┬──────┐
+│  1   │  2   │  3   │  ← row 1
+├──────┼──────┼──────┤
+│  4   │  5   │  6   │  ← row 2
+└──────┴──────┴──────┘
+  col1   col2   col3</div>
+
+    <div class="important" data-lang="ru">
+        <strong>Flexbox и Grid — не конкуренты!</strong> Они дополняют друг друга. Используйте Grid для общей раскладки страницы (макет из колонок), а Flexbox — для компонентов внутри (навигация, кнопки в ряд, карточка товара). На реальных проектах вы будете использовать <strong>оба</strong>.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Flexbox and Grid are not competitors!</strong> They complement each other. Use Grid for overall page layout (column-based layouts), and Flexbox for components inside (navigation, buttons in a row, product cards). In real projects you'll use <strong>both</strong>.
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Простое правило выбора:</strong>
+        <ul>
+            <li>Элементы в <strong>одну линию</strong> (навигация, кнопки, хлебные крошки) → <strong>Flexbox</strong></li>
+            <li>Элементы в <strong>сетку</strong> (карточки товаров, галерея, макет страницы) → <strong>Grid</strong></li>
+            <li>Не уверены? Начните с Flexbox. Если не хватает — переключитесь на Grid</li>
+        </ul>
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Simple selection rule:</strong>
+        <ul>
+            <li>Items in <strong>one line</strong> (navigation, buttons, breadcrumbs) → <strong>Flexbox</strong></li>
+            <li>Items in a <strong>grid</strong> (product cards, gallery, page layout) → <strong>Grid</strong></li>
+            <li>Not sure? Start with Flexbox. If it's not enough — switch to Grid</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ТЕРМИНОЛОГИЯ ==================== -->
+    <h2 id="terminology" data-lang="ru">3. Терминология Grid</h2>
+    <h2 id="terminology-en" data-lang="en">3. Grid terminology</h2>
+
+    <p data-lang="ru">Прежде чем писать код, давайте выучим <strong>6 ключевых терминов</strong>. Без них документация и статьи о Grid будут непонятны.</p>
+    <p data-lang="en">Before writing code, let's learn <strong>6 key terms</strong>. Without them, Grid documentation and articles will be confusing.</p>
+
+    <div class="diagram" data-lang="ru">
+      линия 1  линия 2  линия 3  линия 4
+        │        │        │        │
+    ────┼────────┼────────┼────────┼────  ← линия 1
+        │  Cell  │  Cell  │  Cell  │
+    row1│ (1,1)  │ (1,2)  │ (1,3)  │
+    ────┼────────┼────────┼────────┼────  ← линия 2
+        │  Cell  │  Cell  │  Cell  │
+    row2│ (2,1)  │ (2,2)  │ (2,3)  │
+    ────┼────────┼────────┼────────┼────  ← линия 3
+
+    Grid-контейнер = вся таблица целиком
+    Grid-элемент   = каждая Cell (прямой потомок)
+    Track (трек)   = один столбец или одна строка
+    Cell (ячейка)  = пересечение строки и столбца
+    Line (линия)   = граница между треками (нумерация с 1!)
+    Area (область)  = прямоугольник из нескольких ячеек</div>
+    <div class="diagram" data-lang="en">
+      line 1   line 2   line 3   line 4
+        │        │        │        │
+    ────┼────────┼────────┼────────┼────  ← line 1
+        │  Cell  │  Cell  │  Cell  │
+    row1│ (1,1)  │ (1,2)  │ (1,3)  │
+    ────┼────────┼────────┼────────┼────  ← line 2
+        │  Cell  │  Cell  │  Cell  │
+    row2│ (2,1)  │ (2,2)  │ (2,3)  │
+    ────┼────────┼────────┼────────┼────  ← line 3
+
+    Grid container = entire table
+    Grid item      = each Cell (direct child)
+    Track          = one column or one row
+    Cell           = intersection of row and column
+    Line           = boundary between tracks (numbered from 1!)
+    Area           = rectangle of multiple cells</div>
+
+    <table data-lang="ru">
+        <tr><th>Термин</th><th>Что это</th><th>Аналогия</th></tr>
+        <tr><td><strong>Grid-контейнер</strong></td><td>Элемент с <code>display: grid</code></td><td>Шахматная доска целиком</td></tr>
+        <tr><td><strong>Grid-элемент</strong></td><td>Прямой потомок контейнера</td><td>Фигура на доске</td></tr>
+        <tr><td><strong>Track (трек)</strong></td><td>Один столбец или одна строка</td><td>Ряд или колонка на доске</td></tr>
+        <tr><td><strong>Cell (ячейка)</strong></td><td>Одна клетка сетки</td><td>Одна клетка на доске</td></tr>
+        <tr><td><strong>Line (линия)</strong></td><td>Граница между треками (нумеруется с 1)</td><td>Линии между клетками</td></tr>
+        <tr><td><strong>Area (область)</strong></td><td>Прямоугольник из нескольких ячеек</td><td>Несколько клеток, объединённых вместе</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Term</th><th>What it is</th><th>Analogy</th></tr>
+        <tr><td><strong>Grid container</strong></td><td>Element with <code>display: grid</code></td><td>The entire chessboard</td></tr>
+        <tr><td><strong>Grid item</strong></td><td>Direct child of the container</td><td>A piece on the board</td></tr>
+        <tr><td><strong>Track</strong></td><td>One column or one row</td><td>A row or column on the board</td></tr>
+        <tr><td><strong>Cell</strong></td><td>One grid cell</td><td>One square on the board</td></tr>
+        <tr><td><strong>Line</strong></td><td>Boundary between tracks (numbered from 1)</td><td>Lines between squares</td></tr>
+        <tr><td><strong>Area</strong></td><td>Rectangle of multiple cells</td><td>Multiple squares merged together</td></tr>
+    </table>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Grid-элемент — только прямой потомок!</strong> Если у вас такая структура:</p>
+<pre><code>&lt;div class="grid"&gt;       &lt;!-- Grid-контейнер --&gt;
+    &lt;div&gt;Item 1&lt;/div&gt;    &lt;!-- Grid-элемент ✅ --&gt;
+    &lt;div&gt;                 &lt;!-- Grid-элемент ✅ --&gt;
+        &lt;p&gt;Текст&lt;/p&gt;     &lt;!-- НЕ grid-элемент ❌ (вложенный) --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p>Только <code>&lt;div&gt;</code>-ы, которые <strong>напрямую</strong> внутри контейнера — это grid-элементы. Вложенные элементы — обычные, на них Grid не действует.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Grid items are direct children only!</strong> If you have this structure:</p>
+<pre><code>&lt;div class="grid"&gt;       &lt;!-- Grid container --&gt;
+    &lt;div&gt;Item 1&lt;/div&gt;    &lt;!-- Grid item ✅ --&gt;
+    &lt;div&gt;                 &lt;!-- Grid item ✅ --&gt;
+        &lt;p&gt;Text&lt;/p&gt;      &lt;!-- NOT a grid item ❌ (nested) --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p>Only <code>&lt;div&gt;</code>s <strong>directly</strong> inside the container are grid items. Nested elements are regular — Grid doesn't affect them.</p>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><strong>Линии нумеруются с 1, а не с 0!</strong> У сетки с 3 столбцами будет <strong>4 вертикальных линии</strong> (1, 2, 3, 4). Это как забор: 3 секции — 4 столба. Новички часто путаются, потому что в программировании нумерация обычно с 0. В Grid — с 1.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><strong>Lines are numbered from 1, not 0!</strong> A grid with 3 columns has <strong>4 vertical lines</strong> (1, 2, 3, 4). It's like a fence: 3 sections — 4 posts. Beginners often get confused because in programming numbering usually starts from 0. In Grid — from 1.</p>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Что такое Grid-контейнер? <em>(элемент с display: grid)</em></li>
+            <li>Сколько вертикальных линий у сетки с 4 столбцами? <em>(5 линий)</em></li>
+            <li>Чем track отличается от cell? <em>(track — целая строка или столбец, cell — одна клетка на пересечении)</em></li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>What is a Grid container? <em>(an element with display: grid)</em></li>
+            <li>How many vertical lines does a grid with 4 columns have? <em>(5 lines)</em></li>
+            <li>How does a track differ from a cell? <em>(track is a whole row or column, cell is one intersection)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== DISPLAY GRID ==================== -->
+    <h2 id="display-grid" data-lang="ru">4. display: grid</h2>
+    <h2 id="display-grid-en" data-lang="en">4. display: grid</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Так же, как <code>display: flex</code> превращает элемент в flex-контейнер, <code>display: grid</code> превращает его в grid-контейнер. Все прямые дочерние элементы автоматически становятся grid-элементами.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Just as <code>display: flex</code> turns an element into a flex container, <code>display: grid</code> turns it into a grid container. All direct children automatically become grid items.</p>
+    </div>
+
+<pre><code>&lt;div class="grid-container"&gt;
+    &lt;div class="item"&gt;1&lt;/div&gt;
+    &lt;div class="item"&gt;2&lt;/div&gt;
+    &lt;div class="item"&gt;3&lt;/div&gt;
+    &lt;div class="item"&gt;4&lt;/div&gt;
+    &lt;div class="item"&gt;5&lt;/div&gt;
+    &lt;div class="item"&gt;6&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<pre><code>.grid-container {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;  /* 3 столбца по 200px */
+}</code></pre>
+
+    <p data-lang="ru"><code>display: grid</code> включает Grid. <code>grid-template-columns</code> задаёт количество и ширину столбцов. В примере — 3 столбца по 200px. Элементы автоматически распределяются по ячейкам: первые 3 — в первую строку, следующие 3 — во вторую.</p>
+    <p data-lang="en"><code>display: grid</code> enables Grid. <code>grid-template-columns</code> defines the number and width of columns. In this example — 3 columns of 200px each. Items automatically fill cells: first 3 go to row 1, next 3 to row 2.</p>
+
+    <div class="result-box">
+        <div style="display: grid; grid-template-columns: 200px 200px 200px; gap: 4px;">
+            <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 16px; text-align: center; font-weight: 700; border-radius: 6px;">1</div>
+            <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 16px; text-align: center; font-weight: 700; border-radius: 6px;">2</div>
+            <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 16px; text-align: center; font-weight: 700; border-radius: 6px;">3</div>
+            <div style="background: #dcfce7; border: 2px solid #22c55e; padding: 16px; text-align: center; font-weight: 700; border-radius: 6px;">4</div>
+            <div style="background: #dcfce7; border: 2px solid #22c55e; padding: 16px; text-align: center; font-weight: 700; border-radius: 6px;">5</div>
+            <div style="background: #dcfce7; border: 2px solid #22c55e; padding: 16px; text-align: center; font-weight: 700; border-radius: 6px;">6</div>
+        </div>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;" data-lang="ru">3 столбца по 200px. Элементы 1-3 в первой строке (синие), 4-6 во второй (зелёные).</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;" data-lang="en">3 columns of 200px. Items 1-3 in first row (blue), 4-6 in second (green).</p>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    grid-template-columns: 200px 200px 200px;
+
+    ┌────────┬────────┬────────┐
+    │   1    │   2    │   3    │  ← строка 1
+    ├────────┼────────┼────────┤
+    │   4    │   5    │   6    │  ← строка 2
+    └────────┴────────┴────────┘
+      200px    200px    200px</div>
+    <div class="diagram" data-lang="en">
+    grid-template-columns: 200px 200px 200px;
+
+    ┌────────┬────────┬────────┐
+    │   1    │   2    │   3    │  ← row 1
+    ├────────┼────────┼────────┤
+    │   4    │   5    │   6    │  ← row 2
+    └────────┴────────┴────────┘
+      200px    200px    200px</div>
+
+    <div class="try-it" data-lang="ru">
+        <p>Откройте DevTools (F12) на этой странице. Найдите grid-контейнер выше и кликните на значок <strong>«grid»</strong> рядом с элементом — Chrome подсветит сетку с номерами линий прямо на странице! Это ваш главный инструмент отладки Grid.</p>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p>Open DevTools (F12) on this page. Find the grid container above and click the <strong>"grid"</strong> badge next to the element — Chrome will highlight the grid with line numbers right on the page! This is your main Grid debugging tool.</p>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Без <code>grid-template-columns</code></strong> элементы просто встанут друг под другом (по одному на строку), как обычные блочные элементы. <code>display: grid</code> сам по себе ничего визуально не меняет — нужно задать столбцы!
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Without <code>grid-template-columns</code></strong> items will just stack vertically (one per row), like regular block elements. <code>display: grid</code> alone doesn't change anything visually — you need to define columns!
+    </div>
+
+    <hr>
+
+    <!-- ==================== COLUMNS ==================== -->
+    <h2 id="columns" data-lang="ru">5. grid-template-columns</h2>
+    <h2 id="columns-en" data-lang="en">5. grid-template-columns</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Это <strong>самое важное свойство</strong> в Grid. Именно <code>grid-template-columns</code> определяет, сколько столбцов будет в сетке и какой ширины. Всё остальное — настройка поверх этого.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>This is the <strong>most important property</strong> in Grid. <code>grid-template-columns</code> defines how many columns the grid has and how wide they are. Everything else is fine-tuning on top of this.</p>
+    </div>
+
+    <p data-lang="ru">Можно задавать колонки в разных единицах:</p>
+    <p data-lang="en">You can define columns in different units:</p>
+
+<pre><code>/* 3 фиксированных столбца */
+grid-template-columns: 200px 300px 200px;
+
+/* Проценты */
+grid-template-columns: 25% 50% 25%;
+
+/* Смешанные: sidebar фиксированный + контент растягивается */
+grid-template-columns: 250px auto 250px;
+/* auto = занимает оставшееся место */</code></pre>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:8px;" data-lang="ru">Разные способы задать колонки:</p>
+        <p style="font-weight:600;margin-bottom:8px;" data-lang="en">Different ways to define columns:</p>
+
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;">200px 300px 200px:</p>
+        <div style="display: grid; grid-template-columns: 200px 300px 200px; gap: 4px; margin-bottom: 16px;">
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.85rem;">200px</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.85rem;">300px</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.85rem;">200px</div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;">25% 50% 25%:</p>
+        <div style="display: grid; grid-template-columns: 25% 50% 25%; gap: 4px; margin-bottom: 16px;">
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.85rem;">25%</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.85rem;">50%</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.85rem;">25%</div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;">250px auto 250px:</p>
+        <div style="display: grid; grid-template-columns: 250px auto 250px; gap: 4px;">
+            <div style="background: #f3e8ff; border: 1px solid #c4b5fd; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.85rem;">250px</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.85rem;">auto (всё остальное)</div>
+            <div style="background: #f3e8ff; border: 1px solid #c4b5fd; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.85rem;">250px</div>
+        </div>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Типичные раскладки:</strong></p>
+        <ul>
+            <li><code>250px 1fr</code> — сайдбар + контент (панели администратора)</li>
+            <li><code>1fr 1fr 1fr</code> — 3 равные колонки (карточки товаров)</li>
+            <li><code>200px 1fr 200px</code> — контент с двумя сайдбарами (форумы)</li>
+            <li><code>1fr 1fr</code> — две колонки (блог с картинкой слева и текстом справа)</li>
+        </ul>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Typical layouts:</strong></p>
+        <ul>
+            <li><code>250px 1fr</code> — sidebar + content (admin panels)</li>
+            <li><code>1fr 1fr 1fr</code> — 3 equal columns (product cards)</li>
+            <li><code>200px 1fr 200px</code> — content with two sidebars (forums)</li>
+            <li><code>1fr 1fr</code> — two columns (blog with image left, text right)</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== FR ==================== -->
+    <h2 id="fr" data-lang="ru">6. Единица fr</h2>
+    <h2 id="fr-en" data-lang="en">6. The fr unit</h2>
+
+    <div class="why" data-lang="ru">
+        <p><code>fr</code> — это <strong>главная единица</strong> CSS Grid. Без неё вы будете мучиться с процентами, вычитать gap из ширины и ловить баги на разных экранах. <code>fr</code> решает все эти проблемы автоматически.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p><code>fr</code> is the <strong>main unit</strong> of CSS Grid. Without it, you'll struggle with percentages, subtract gaps from widths, and catch bugs on different screens. <code>fr</code> solves all these problems automatically.</p>
+    </div>
+
+    <p data-lang="ru"><code>fr</code> (fraction) — <strong>доля свободного пространства</strong>. Как если бы вы делили пирог: 1fr — одна часть, 2fr — две части.</p>
+    <p data-lang="en"><code>fr</code> (fraction) — <strong>a share of available space</strong>. Like dividing a pie: 1fr — one slice, 2fr — two slices.</p>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Пирог.</strong> Представьте круглый пирог. <code>1fr 1fr 1fr</code> — делим на 3 равные части (по 1/3). <code>1fr 2fr 1fr</code> — первый получает 1/4, второй 2/4 (половину!), третий 1/4. Число fr — это «аппетит» колонки: чем больше, тем больше места она «съест».</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Pie.</strong> Imagine a round pie. <code>1fr 1fr 1fr</code> — divide into 3 equal parts (1/3 each). <code>1fr 2fr 1fr</code> — first gets 1/4, second gets 2/4 (half!), third gets 1/4. The fr number is the column's "appetite": the bigger it is, the more space it "eats".</p>
+    </div>
+
+<pre><code>/* 3 равных столбца */
+grid-template-columns: 1fr 1fr 1fr;
+
+/* Средний в 2 раза шире */
+grid-template-columns: 1fr 2fr 1fr;
+
+/* Sidebar 250px + content на всё остальное */
+grid-template-columns: 250px 1fr;</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;">1fr 1fr 1fr (3 равных):</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; margin-bottom: 16px;">
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">1fr (33%)</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">1fr (33%)</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">1fr (33%)</div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;">1fr 2fr 1fr (средний вдвое шире):</p>
+        <div style="display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 4px; margin-bottom: 16px;">
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.85rem;">1fr (25%)</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">2fr (50%)</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.85rem;">1fr (25%)</div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;">250px 1fr (sidebar + контент):</p>
+        <div style="display: grid; grid-template-columns: 250px 1fr; gap: 4px;">
+            <div style="background: #f3e8ff; border: 1px solid #c4b5fd; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.85rem;">250px (sidebar)</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">1fr (всё остальное)</div>
+        </div>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    1fr 1fr 1fr:
+    ┌──────────┬──────────┬──────────┐
+    │   33%    │   33%    │   33%    │
+    └──────────┴──────────┴──────────┘
+
+    1fr 2fr 1fr:
+    ┌──────┬────────────────┬──────┐
+    │  25% │      50%       │  25% │
+    └──────┴────────────────┴──────┘
+
+    250px 1fr:
+    ┌────────┬───────────────────────────┐
+    │ 250px  │     всё остальное (1fr)   │
+    └────────┴───────────────────────────┘</div>
+    <div class="diagram" data-lang="en">
+    1fr 1fr 1fr:
+    ┌──────────┬──────────┬──────────┐
+    │   33%    │   33%    │   33%    │
+    └──────────┴──────────┴──────────┘
+
+    1fr 2fr 1fr:
+    ┌──────┬────────────────┬──────┐
+    │  25% │      50%       │  25% │
+    └──────┴────────────────┴──────┘
+
+    250px 1fr:
+    ┌────────┬───────────────────────────┐
+    │ 250px  │    everything else (1fr)  │
+    └────────┴───────────────────────────┘</div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>fr vs %:</strong> <code>fr</code> распределяет <strong>свободное</strong> пространство (после фиксированных колонок и gap). <code>%</code> считается от общей ширины и <strong>не учитывает gap</strong> — из-за этого 3 колонки по 33.33% + gap = не помещаются! <code>fr</code> всегда помещается, потому что он умнее.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>fr vs %:</strong> <code>fr</code> distributes <strong>available</strong> space (after fixed columns and gap). <code>%</code> is calculated from total width and <strong>doesn't account for gap</strong> — so 3 columns at 33.33% + gap = overflow! <code>fr</code> always fits because it's smarter.
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Использование % вместо fr.</strong> Новички пишут:</p>
+<pre><code>.grid {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    gap: 20px;  /* ← ПРОБЛЕМА! */
+}</code></pre>
+        <p>Итого: 33.33% + 33.33% + 33.33% = 100% + 40px gap = <strong>больше 100%!</strong> Появится горизонтальная прокрутка.</p>
+        <p><strong>Решение:</strong> используйте <code>fr</code>:</p>
+<pre><code>grid-template-columns: 1fr 1fr 1fr;
+gap: 20px;  /* fr автоматически учитывает gap ✅ */</code></pre>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Using % instead of fr.</strong> Beginners write:</p>
+<pre><code>.grid {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    gap: 20px;  /* ← PROBLEM! */
+}</code></pre>
+        <p>Total: 33.33% + 33.33% + 33.33% = 100% + 40px gap = <strong>more than 100%!</strong> Horizontal scrollbar appears.</p>
+        <p><strong>Solution:</strong> use <code>fr</code>:</p>
+<pre><code>grid-template-columns: 1fr 1fr 1fr;
+gap: 20px;  /* fr automatically accounts for gap ✅ */</code></pre>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Смешивайте fr и px!</strong> Это суперспособность Grid. Фиксированный sidebar + гибкий контент:</p>
+<pre><code>grid-template-columns: 250px 1fr;     /* sidebar + контент */
+grid-template-columns: 80px 1fr 80px; /* иконка + текст + иконка */
+grid-template-columns: 1fr 300px;     /* контент + правая панель */</code></pre>
+        <p><code>fr</code> заберёт всё оставшееся пространство после фиксированных колонок. На любом экране!</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Mix fr and px!</strong> This is Grid's superpower. Fixed sidebar + flexible content:</p>
+<pre><code>grid-template-columns: 250px 1fr;     /* sidebar + content */
+grid-template-columns: 80px 1fr 80px; /* icon + text + icon */
+grid-template-columns: 1fr 300px;     /* content + right panel */</code></pre>
+        <p><code>fr</code> will take all remaining space after fixed columns. On any screen!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== REPEAT ==================== -->
+    <h2 id="repeat" data-lang="ru">7. repeat() — повторение</h2>
+    <h2 id="repeat-en" data-lang="en">7. repeat() — repetition</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Представьте, что вам нужна сетка из 12 колонок (как в Bootstrap). Писать <code>1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr</code> — мучение. <code>repeat()</code> делает это в одно слово.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Imagine you need a 12-column grid (like Bootstrap). Writing <code>1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr</code> is painful. <code>repeat()</code> does it in one word.</p>
+    </div>
+
+    <p data-lang="ru">Вместо повторения одинаковых значений — используйте <code>repeat()</code>:</p>
+    <p data-lang="en">Instead of repeating identical values — use <code>repeat()</code>:</p>
+
+<pre><code>/* Вместо: */
+grid-template-columns: 1fr 1fr 1fr 1fr;
+
+/* Пишем: */
+grid-template-columns: repeat(4, 1fr);
+
+/* 12 колонок (как Bootstrap) */
+grid-template-columns: repeat(12, 1fr);
+
+/* Смешанно: sidebar + 3 равные колонки */
+grid-template-columns: 250px repeat(3, 1fr);</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;">repeat(4, 1fr) — 4 равных столбца:</p>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-bottom: 16px;">
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">1fr</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">1fr</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">1fr</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">1fr</div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;">250px repeat(3, 1fr) — sidebar + 3 колонки:</p>
+        <div style="display: grid; grid-template-columns: 250px repeat(3, 1fr); gap: 4px;">
+            <div style="background: #f3e8ff; border: 1px solid #c4b5fd; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem;">250px</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem;">1fr</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem;">1fr</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 10px; text-align: center; border-radius: 4px; font-size: 0.85rem;">1fr</div>
+        </div>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><code>repeat()</code> можно использовать несколько раз: <code>repeat(2, 100px) repeat(3, 1fr)</code> — сначала 2 колонки по 100px, потом 3 гибких. Это как конструктор — собирайте любые комбинации!</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><code>repeat()</code> can be used multiple times: <code>repeat(2, 100px) repeat(3, 1fr)</code> — first 2 columns of 100px, then 3 flexible ones. It's like Lego — build any combination!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ROWS ==================== -->
+    <h2 id="rows" data-lang="ru">8. grid-template-rows</h2>
+    <h2 id="rows-en" data-lang="en">8. grid-template-rows</h2>
+
+    <p data-lang="ru"><code>grid-template-rows</code> работает так же, как columns, но для строк:</p>
+    <p data-lang="en"><code>grid-template-rows</code> works the same as columns, but for rows:</p>
+
+<pre><code>.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 100px 200px 100px;
+}
+
+/* Автоматическая высота строк (по содержимому) */
+grid-template-rows: auto auto auto;</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">grid-template-rows: 60px 120px 60px:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">grid-template-rows: 60px 120px 60px:</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 60px 120px 60px; gap: 4px;">
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 0.8rem;">60px</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 0.8rem;">60px</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 0.8rem;">60px</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">120px</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">120px</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">120px</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 0.8rem;">60px</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 0.8rem;">60px</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; display: flex; align-items: center; justify-content: center; border-radius: 4px; font-size: 0.8rem;">60px</div>
+        </div>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        Если не задать <code>grid-template-rows</code>, строки создаются <strong>автоматически</strong> с высотой по содержимому. В 90% случаев этого достаточно! Задавайте rows только когда нужна конкретная высота (например, hero-секция 400px).
+    </div>
+    <div class="fun-fact" data-lang="en">
+        If you don't set <code>grid-template-rows</code>, rows are created <strong>automatically</strong> with height based on content. In 90% of cases this is enough! Set rows only when you need a specific height (e.g., 400px hero section).
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Полезный паттерн для макета страницы:</strong></p>
+<pre><code>body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;  /* header + content + footer */
+    min-height: 100vh;
+}
+/* auto — header/footer по содержимому
+   1fr  — контент занимает ВСЁ оставшееся
+   Footer всегда прижат к низу! */</code></pre>
+        <p>Это решает вечную проблему «прилипающего footer» — и всего за 3 строки CSS!</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Useful pattern for page layout:</strong></p>
+<pre><code>body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;  /* header + content + footer */
+    min-height: 100vh;
+}
+/* auto — header/footer fit content
+   1fr  — content takes ALL remaining space
+   Footer is always stuck to the bottom! */</code></pre>
+        <p>This solves the eternal "sticky footer" problem — in just 3 lines of CSS!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== GAP ==================== -->
+    <h2 id="gap" data-lang="ru">9. gap — отступы</h2>
+    <h2 id="gap-en" data-lang="en">9. gap — spacing</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Без <code>gap</code> элементы в сетке слипаются. Вы могли бы использовать margin, но тогда появятся лишние отступы по краям. <code>gap</code> добавляет отступы <strong>только между</strong> элементами — без лишних по краям. Чисто и предсказуемо.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Without <code>gap</code> items in the grid are glued together. You could use margin, but then you'd get extra spacing at the edges. <code>gap</code> adds spacing <strong>only between</strong> items — no extras at the edges. Clean and predictable.</p>
+    </div>
+
+<pre><code>/* Одинаковый отступ */
+gap: 20px;
+
+/* Разный: строки и столбцы */
+gap: 20px 30px;    /* row-gap column-gap */
+
+/* По отдельности */
+row-gap: 20px;
+column-gap: 30px;</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">Без gap — элементы слипаются:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">No gap — items are glued:</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); margin-bottom: 16px;">
+            <div style="background: #fee2e2; border: 1px solid #fca5a5; padding: 12px; text-align: center; font-size: 0.85rem;">1</div>
+            <div style="background: #fee2e2; border: 1px solid #fca5a5; padding: 12px; text-align: center; font-size: 0.85rem;">2</div>
+            <div style="background: #fee2e2; border: 1px solid #fca5a5; padding: 12px; text-align: center; font-size: 0.85rem;">3</div>
+            <div style="background: #fee2e2; border: 1px solid #fca5a5; padding: 12px; text-align: center; font-size: 0.85rem;">4</div>
+            <div style="background: #fee2e2; border: 1px solid #fca5a5; padding: 12px; text-align: center; font-size: 0.85rem;">5</div>
+            <div style="background: #fee2e2; border: 1px solid #fca5a5; padding: 12px; text-align: center; font-size: 0.85rem;">6</div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">gap: 12px — красиво и аккуратно:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">gap: 12px — clean and neat:</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px;">
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 6px; font-size: 0.85rem;">1</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 6px; font-size: 0.85rem;">2</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 6px; font-size: 0.85rem;">3</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 6px; font-size: 0.85rem;">4</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 6px; font-size: 0.85rem;">5</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 6px; font-size: 0.85rem;">6</div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">gap: 8px 24px — маленький по вертикали, большой по горизонтали:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">gap: 8px 24px — small vertical, large horizontal:</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 24px;">
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 12px; text-align: center; border-radius: 6px; font-size: 0.85rem;">1</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 12px; text-align: center; border-radius: 6px; font-size: 0.85rem;">2</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 12px; text-align: center; border-radius: 6px; font-size: 0.85rem;">3</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 12px; text-align: center; border-radius: 6px; font-size: 0.85rem;">4</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 12px; text-align: center; border-radius: 6px; font-size: 0.85rem;">5</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 12px; text-align: center; border-radius: 6px; font-size: 0.85rem;">6</div>
+        </div>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Типичные значения gap в проектах:</strong></p>
+        <ul>
+            <li><code>8px</code> — маленькие иконки, бейджи</li>
+            <li><code>12px–16px</code> — карточки товаров, галереи</li>
+            <li><code>20px–24px</code> — разделы страницы, дашборды</li>
+            <li><code>32px–40px</code> — крупные секции, маркетинговые лендинги</li>
+        </ul>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Typical gap values in projects:</strong></p>
+        <ul>
+            <li><code>8px</code> — small icons, badges</li>
+            <li><code>12px–16px</code> — product cards, galleries</li>
+            <li><code>20px–24px</code> — page sections, dashboards</li>
+            <li><code>32px–40px</code> — large sections, marketing landing pages</li>
+        </ul>
+    </div>
+
+    <div class="summary" data-lang="ru">
+        <p>К этому моменту вы знаете <strong>80% того, что нужно для работы с Grid</strong>:</p>
+        <ul>
+            <li><code>display: grid</code> — включает Grid</li>
+            <li><code>grid-template-columns</code> — задаёт столбцы (количество и ширину)</li>
+            <li><code>fr</code> — гибкая единица (доля свободного пространства)</li>
+            <li><code>repeat()</code> — сокращение для одинаковых колонок</li>
+            <li><code>gap</code> — отступы между ячейками</li>
+        </ul>
+        <p>Всего <strong>5 свойств</strong> — и вы уже можете строить сетки! Дальше идёт тонкая настройка.</p>
+    </div>
+    <div class="summary" data-lang="en">
+        <p>By now you know <strong>80% of what you need for Grid</strong>:</p>
+        <ul>
+            <li><code>display: grid</code> — enables Grid</li>
+            <li><code>grid-template-columns</code> — defines columns (count and width)</li>
+            <li><code>fr</code> — flexible unit (fraction of available space)</li>
+            <li><code>repeat()</code> — shorthand for identical columns</li>
+            <li><code>gap</code> — spacing between cells</li>
+        </ul>
+        <p>Just <strong>5 properties</strong> — and you can already build grids! The rest is fine-tuning.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== JUSTIFY/ALIGN ITEMS ==================== -->
+    <h2 id="justify-items" data-lang="ru">10. justify-items и align-items</h2>
+    <h2 id="justify-items-en" data-lang="en">10. justify-items and align-items</h2>
+
+    <div class="why" data-lang="ru">
+        <p>По умолчанию grid-элементы растягиваются на всю ячейку (<code>stretch</code>). Но что если вы хотите, чтобы элемент был по центру ячейки, или прижат к правому краю? Для этого есть свойства выравнивания.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>By default, grid items stretch to fill their entire cell (<code>stretch</code>). But what if you want an item centered in its cell, or aligned to the right? That's what alignment properties are for.</p>
+    </div>
+
+    <p data-lang="ru">Выравнивание элементов <strong>внутри их ячеек</strong>:</p>
+    <p data-lang="en">Aligning items <strong>inside their cells</strong>:</p>
+
+    <table data-lang="ru">
+        <tr><th>Свойство</th><th>Ось</th><th>Значения</th></tr>
+        <tr><td><code>justify-items</code></td><td>Горизонтальная (в ячейке)</td><td><code>start</code>, <code>end</code>, <code>center</code>, <code>stretch</code></td></tr>
+        <tr><td><code>align-items</code></td><td>Вертикальная (в ячейке)</td><td><code>start</code>, <code>end</code>, <code>center</code>, <code>stretch</code></td></tr>
+        <tr><td><code>place-items</code></td><td>Сокращение (оба сразу)</td><td><code>place-items: center center</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Property</th><th>Axis</th><th>Values</th></tr>
+        <tr><td><code>justify-items</code></td><td>Horizontal (in cell)</td><td><code>start</code>, <code>end</code>, <code>center</code>, <code>stretch</code></td></tr>
+        <tr><td><code>align-items</code></td><td>Vertical (in cell)</td><td><code>start</code>, <code>end</code>, <code>center</code>, <code>stretch</code></td></tr>
+        <tr><td><code>place-items</code></td><td>Shorthand (both)</td><td><code>place-items: center center</code></td></tr>
+    </table>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">place-items: stretch (по умолчанию) — элементы заполняют всю ячейку:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">place-items: stretch (default) — items fill entire cell:</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 16px; background: #f1f5f9; padding: 4px; border-radius: 6px;">
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 16px; text-align: center; border-radius: 4px; font-size: 0.8rem;">stretch</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 16px; text-align: center; border-radius: 4px; font-size: 0.8rem;">stretch</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 16px; text-align: center; border-radius: 4px; font-size: 0.8rem;">stretch</div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">place-items: center — элементы по центру ячейки (сжимаются по содержимому):</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">place-items: center — items centered in cell (shrink to content):</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 80px; gap: 4px; place-items: center; margin-bottom: 16px; background: #f1f5f9; padding: 4px; border-radius: 6px;">
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 8px 16px; text-align: center; border-radius: 4px; font-size: 0.8rem;">center</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 8px 16px; text-align: center; border-radius: 4px; font-size: 0.8rem;">center</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 8px 16px; text-align: center; border-radius: 4px; font-size: 0.8rem;">center</div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">justify-items: end, align-items: start — в правом верхнем углу:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">justify-items: end, align-items: start — top-right corner:</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 80px; gap: 4px; justify-items: end; align-items: start; background: #f1f5f9; padding: 4px; border-radius: 6px;">
+            <div style="background: #f3e8ff; border: 1px solid #c4b5fd; padding: 8px 16px; text-align: center; border-radius: 4px; font-size: 0.8rem;">end/start</div>
+            <div style="background: #f3e8ff; border: 1px solid #c4b5fd; padding: 8px 16px; text-align: center; border-radius: 4px; font-size: 0.8rem;">end/start</div>
+            <div style="background: #f3e8ff; border: 1px solid #c4b5fd; padding: 8px 16px; text-align: center; border-radius: 4px; font-size: 0.8rem;">end/start</div>
+        </div>
+    </div>
+
+<pre><code>/* Все элементы по центру ячеек */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;    /* = justify-items + align-items */
+}</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>stretch</strong> (по умолчанию) — элемент растягивается на всю ячейку. <code>center</code> — сжимается до размера содержимого и центрируется. Если элемент стал маленьким — значит, сработал <code>center</code> или <code>start/end</code>.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>stretch</strong> (default) — item stretches to fill the cell. <code>center</code> — shrinks to content size and centers. If an item became small — <code>center</code> or <code>start/end</code> is in effect.
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Мяч в комнате.</strong> Ячейка Grid — это комната. Элемент — мяч. <code>stretch</code> — мяч надувается до стен. <code>center</code> — мяч обычного размера в центре. <code>start</code> — мяч в левом верхнем углу. <code>end</code> — в правом нижнем.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Ball in a room.</strong> A Grid cell is a room. The element is a ball. <code>stretch</code> — the ball inflates to the walls. <code>center</code> — regular-sized ball in the middle. <code>start</code> — ball in the top-left corner. <code>end</code> — bottom-right.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== JUSTIFY/ALIGN CONTENT ==================== -->
+    <h2 id="justify-content-grid" data-lang="ru">11. justify-content и align-content</h2>
+    <h2 id="justify-content-grid-en" data-lang="en">11. justify-content and align-content</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Предыдущие свойства выравнивали элементы <strong>внутри ячеек</strong>. А что если вся сетка меньше контейнера? Например, 3 колонки по 200px = 600px, а контейнер 900px. Куда денутся лишние 300px? За это отвечают <code>justify-content</code> и <code>align-content</code>.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Previous properties aligned items <strong>inside cells</strong>. But what if the entire grid is smaller than the container? For example, 3 columns of 200px = 600px, but the container is 900px. Where do the extra 300px go? <code>justify-content</code> and <code>align-content</code> handle this.</p>
+    </div>
+
+    <p data-lang="ru">Выравнивание <strong>всей сетки</strong> внутри контейнера (если сетка меньше контейнера):</p>
+    <p data-lang="en">Aligning the <strong>entire grid</strong> inside the container (if the grid is smaller than the container):</p>
+
+<pre><code>.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 150px); /* фиксированные — сетка уже контейнера */
+    justify-content: center;  /* сетка по центру горизонтально */
+    align-content: center;    /* сетка по центру вертикально */
+}</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">justify-content: center (сетка из фиксированных колонок по центру):</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">justify-content: center (fixed-column grid centered):</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 150px); gap: 8px; justify-content: center; background: #f1f5f9; padding: 12px; border-radius: 6px; margin-bottom: 16px;">
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.8rem;">1</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.8rem;">2</div>
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.8rem;">3</div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">justify-content: space-between (сетка растянута по краям):</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">justify-content: space-between (grid stretched to edges):</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 150px); gap: 8px; justify-content: space-between; background: #f1f5f9; padding: 12px; border-radius: 6px; margin-bottom: 16px;">
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.8rem;">1</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.8rem;">2</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.8rem;">3</div>
+        </div>
+
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="ru">justify-content: space-evenly (равные промежутки повсюду):</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:4px;" data-lang="en">justify-content: space-evenly (equal gaps everywhere):</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 150px); gap: 8px; justify-content: space-evenly; background: #f1f5f9; padding: 12px; border-radius: 6px;">
+            <div style="background: #f3e8ff; border: 1px solid #c4b5fd; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.8rem;">1</div>
+            <div style="background: #f3e8ff; border: 1px solid #c4b5fd; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.8rem;">2</div>
+            <div style="background: #f3e8ff; border: 1px solid #c4b5fd; padding: 12px; text-align: center; border-radius: 4px; font-size: 0.8rem;">3</div>
+        </div>
+    </div>
+
+    <p data-lang="ru">Значения те же, что у Flexbox: <code>start</code>, <code>end</code>, <code>center</code>, <code>space-between</code>, <code>space-around</code>, <code>space-evenly</code>.</p>
+    <p data-lang="en">Same values as Flexbox: <code>start</code>, <code>end</code>, <code>center</code>, <code>space-between</code>, <code>space-around</code>, <code>space-evenly</code>.</p>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Важно:</strong> <code>justify-content</code> и <code>align-content</code> работают только когда сетка <strong>меньше</strong> контейнера. Если вы используете <code>fr</code> — сетка занимает 100%, и эти свойства ни на что не повлияют. Они нужны для сеток с фиксированными размерами (px).
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Important:</strong> <code>justify-content</code> and <code>align-content</code> only work when the grid is <strong>smaller</strong> than the container. If you use <code>fr</code> — the grid takes 100%, and these properties have no effect. They're for grids with fixed sizes (px).
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Чем <code>justify-items</code> отличается от <code>justify-content</code>? <em>(items — выравнивает элементы внутри ячеек, content — всю сетку внутри контейнера)</em></li>
+            <li>Что делает <code>place-items: center</code>? <em>(центрирует элементы и по горизонтали, и по вертикали в их ячейках)</em></li>
+            <li>Будет ли <code>justify-content: center</code> работать с <code>grid-template-columns: 1fr 1fr 1fr</code>? <em>(нет, потому что fr занимает всё пространство)</em></li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>How does <code>justify-items</code> differ from <code>justify-content</code>? <em>(items aligns elements inside cells, content aligns the entire grid inside the container)</em></li>
+            <li>What does <code>place-items: center</code> do? <em>(centers items both horizontally and vertically in their cells)</em></li>
+            <li>Will <code>justify-content: center</code> work with <code>grid-template-columns: 1fr 1fr 1fr</code>? <em>(no, because fr takes all available space)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== AUTO-FILL / AUTO-FIT ==================== -->
+    <h2 id="auto-fill" data-lang="ru">12. auto-fill и auto-fit</h2>
+    <h2 id="auto-fill-en" data-lang="en">12. auto-fill and auto-fit</h2>
+
+    <div class="why" data-lang="ru">
+        <p>До сих пор мы указывали <strong>точное количество</strong> колонок: 3, 4, 12. Но что если вы хотите, чтобы количество колонок менялось автоматически в зависимости от ширины экрана? 4 колонки на десктопе, 2 на планшете, 1 на телефоне — и всё <strong>без media queries</strong>? Для этого существуют <code>auto-fill</code> и <code>auto-fit</code>.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Until now we specified an <strong>exact number</strong> of columns: 3, 4, 12. But what if you want the number of columns to change automatically based on screen width? 4 columns on desktop, 2 on tablet, 1 on phone — all <strong>without media queries</strong>? That's what <code>auto-fill</code> and <code>auto-fit</code> are for.</p>
+    </div>
+
+    <p data-lang="ru">Вместо фиксированного количества колонок — пусть браузер решит сам:</p>
+    <p data-lang="en">Instead of a fixed number of columns — let the browser decide:</p>
+
+<pre><code>/* auto-fill: создай столько колонок по 200px, сколько поместится */
+grid-template-columns: repeat(auto-fill, 200px);
+
+/* auto-fit: как auto-fill, но пустые колонки схлопываются */
+grid-template-columns: repeat(auto-fit, 200px);</code></pre>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Полка с книгами.</strong> <code>auto-fill</code> — вы размечаете на полке места для книг одинаковой ширины. Если книг мало, пустые места остаются. <code>auto-fit</code> — вы тоже размечаете места, но пустые схлопываются, и книги растягиваются, заполняя всю полку.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Bookshelf.</strong> <code>auto-fill</code> — you mark spots on the shelf for books of equal width. If there are few books, empty spots remain. <code>auto-fit</code> — you also mark spots, but empty ones collapse, and books stretch to fill the entire shelf.</p>
+    </div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">auto-fill</div>
+            <p data-lang="ru">Создаёт пустые колонки, если элементов меньше. Сохраняет структуру сетки. Элементы <strong>не растягиваются</strong>.</p>
+            <p data-lang="en">Creates empty columns if fewer items. Preserves grid structure. Items <strong>don't stretch</strong>.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, 120px); gap: 4px; margin-top: 8px;">
+                <div style="background: #fee2e2; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.8rem;">1</div>
+                <div style="background: #fee2e2; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.8rem;">2</div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="label">auto-fit</div>
+            <p data-lang="ru">Пустые колонки схлопываются. Элементы <strong>растягиваются</strong> на всё пространство. Используется чаще!</p>
+            <p data-lang="en">Empty columns collapse. Items <strong>stretch</strong> to fill space. Used more often!</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 4px; margin-top: 8px;">
+                <div style="background: #dcfce7; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.8rem;">1</div>
+                <div style="background: #dcfce7; padding: 8px; text-align: center; border-radius: 4px; font-size: 0.8rem;">2</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>В 99% случаев вам нужен <code>auto-fit</code>.</strong> Потому что <code>auto-fill</code> оставляет пустые колонки — визуально это выглядит как элементы, прижатые к левому краю с пустым пространством справа. <code>auto-fit</code> убирает пустоту и растягивает элементы.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>In 99% of cases you need <code>auto-fit</code>.</strong> Because <code>auto-fill</code> leaves empty columns — visually this looks like items stuck to the left with empty space on the right. <code>auto-fit</code> removes the void and stretches items.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== MINMAX ==================== -->
+    <h2 id="minmax" data-lang="ru">13. minmax() — адаптивные колонки</h2>
+    <h2 id="minmax-en" data-lang="en">13. minmax() — responsive columns</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Мы подошли к <strong>самому мощному паттерну Grid</strong> — комбинации <code>auto-fit</code> + <code>minmax()</code>. Эта одна строка CSS заменяет десятки строк с media queries и делает сетку полностью адаптивной.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>We've reached <strong>Grid's most powerful pattern</strong> — the combination of <code>auto-fit</code> + <code>minmax()</code>. This single CSS line replaces dozens of media query lines and makes the grid fully responsive.</p>
+    </div>
+
+    <p data-lang="ru"><code>minmax(min, max)</code> — задаёт минимальный и максимальный размер трека:</p>
+    <p data-lang="en"><code>minmax(min, max)</code> — sets minimum and maximum track size:</p>
+
+<pre><code>/* Магическая строка — адаптивная сетка без media queries! */
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));</code></pre>
+
+    <p data-lang="ru">Эта одна строка создаёт <strong>полностью адаптивную сетку</strong>:</p>
+    <p data-lang="en">This single line creates a <strong>fully responsive grid</strong>:</p>
+
+    <ul data-lang="ru">
+        <li>Колонки не уже 280px — контент не будет сжат до нечитаемого состояния</li>
+        <li>Растягиваются до 1fr (равномерно) — нет пустого пространства</li>
+        <li>auto-fit — столько колонок, сколько поместится</li>
+        <li>Автоматически: 3 колонки на десктопе, 2 на планшете, 1 на мобильном!</li>
+    </ul>
+    <ul data-lang="en">
+        <li>Columns no narrower than 280px — content won't be squished to unreadable</li>
+        <li>Stretch up to 1fr (evenly) — no wasted space</li>
+        <li>auto-fit — as many columns as will fit</li>
+        <li>Automatically: 3 columns on desktop, 2 on tablet, 1 on mobile!</li>
+    </ul>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px;" data-lang="ru">repeat(auto-fit, minmax(200px, 1fr)) — попробуйте изменить ширину окна браузера!</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px;" data-lang="en">repeat(auto-fit, minmax(200px, 1fr)) — try resizing the browser window!</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+            <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 20px; text-align: center; border-radius: 8px; font-weight: 600;">Card 1</div>
+            <div style="background: #dcfce7; border: 1px solid #86efac; padding: 20px; text-align: center; border-radius: 8px; font-weight: 600;">Card 2</div>
+            <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 20px; text-align: center; border-radius: 8px; font-weight: 600;">Card 3</div>
+            <div style="background: #f3e8ff; border: 1px solid #c4b5fd; padding: 20px; text-align: center; border-radius: 8px; font-weight: 600;">Card 4</div>
+            <div style="background: #fee2e2; border: 1px solid #fca5a5; padding: 20px; text-align: center; border-radius: 8px; font-weight: 600;">Card 5</div>
+            <div style="background: #f0fdfa; border: 1px solid #99f6e4; padding: 20px; text-align: center; border-radius: 8px; font-weight: 600;">Card 6</div>
+        </div>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+Как работает repeat(auto-fit, minmax(280px, 1fr)):
+
+Десктоп (900px+):
+┌──────────┬──────────┬──────────┐
+│  Card 1  │  Card 2  │  Card 3  │  ← 3 колонки
+├──────────┼──────────┼──────────┤
+│  Card 4  │  Card 5  │  Card 6  │
+└──────────┴──────────┴──────────┘
+
+Планшет (600–900px):
+┌───────────────┬───────────────┐
+│    Card 1     │    Card 2     │  ← 2 колонки
+├───────────────┼───────────────┤
+│    Card 3     │    Card 4     │
+└───────────────┴───────────────┘
+
+Мобильный (&lt;600px):
+┌───────────────────────────────┐
+│           Card 1              │  ← 1 колонка
+├───────────────────────────────┤
+│           Card 2              │
+├───────────────────────────────┤
+│           Card 3              │
+└───────────────────────────────┘</div>
+    <div class="diagram" data-lang="en">
+How repeat(auto-fit, minmax(280px, 1fr)) works:
+
+Desktop (900px+):
+┌──────────┬──────────┬──────────┐
+│  Card 1  │  Card 2  │  Card 3  │  ← 3 columns
+├──────────┼──────────┼──────────┤
+│  Card 4  │  Card 5  │  Card 6  │
+└──────────┴──────────┴──────────┘
+
+Tablet (600–900px):
+┌───────────────┬───────────────┐
+│    Card 1     │    Card 2     │  ← 2 columns
+├───────────────┼───────────────┤
+│    Card 3     │    Card 4     │
+└───────────────┴───────────────┘
+
+Mobile (&lt;600px):
+┌───────────────────────────────┐
+│           Card 1              │  ← 1 column
+├───────────────────────────────┤
+│           Card 2              │
+├───────────────────────────────┤
+│           Card 3              │
+└───────────────────────────────┘</div>
+
+    <div class="important" data-lang="ru">
+        <strong>Запомните эту строку!</strong> <code>repeat(auto-fit, minmax(280px, 1fr))</code> — это самый полезный паттерн Grid. Адаптивная сетка без единого media query. Вы будете использовать её в <strong>каждом</strong> проекте.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Remember this line!</strong> <code>repeat(auto-fit, minmax(280px, 1fr))</code> — this is Grid's most useful pattern. Responsive grid without a single media query. You'll use it in <strong>every</strong> project.
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Популярные значения minmax в реальных проектах:</strong></p>
+        <ul>
+            <li><code>minmax(250px, 1fr)</code> — карточки товаров (интернет-магазины)</li>
+            <li><code>minmax(200px, 1fr)</code> — фотогалереи</li>
+            <li><code>minmax(300px, 1fr)</code> — карточки статей блога</li>
+            <li><code>minmax(150px, 1fr)</code> — сетка иконок, маленькие элементы</li>
+        </ul>
+        <p>Число <strong>280px</strong> — не магическое. Подбирайте под свой контент: если карточка нормально выглядит при 250px — ставьте 250px.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Popular minmax values in real projects:</strong></p>
+        <ul>
+            <li><code>minmax(250px, 1fr)</code> — product cards (online stores)</li>
+            <li><code>minmax(200px, 1fr)</code> — photo galleries</li>
+            <li><code>minmax(300px, 1fr)</code> — blog article cards</li>
+            <li><code>minmax(150px, 1fr)</code> — icon grids, small elements</li>
+        </ul>
+        <p><strong>280px</strong> isn't a magic number. Choose based on your content: if a card looks fine at 250px — use 250px.</p>
+    </div>
+
+    <div class="try-it" data-lang="ru">
+        <p>Откройте DevTools и измените ширину окна (или перетащите край панели DevTools). Посмотрите, как карточки выше <strong>автоматически перестраиваются</strong> — без единой строки JavaScript или media query!</p>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p>Open DevTools and resize the window (or drag the DevTools panel edge). Watch how the cards above <strong>automatically rearrange</strong> — without a single line of JavaScript or media query!</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">14. Практика: фотогалерея</h2>
+    <h2 id="practice-en" data-lang="en">14. Practice: photo gallery</h2>
+
+    <p data-lang="ru">Применим <strong>всё изученное</strong> за сегодня! Создадим адаптивную фотогалерею — один из самых частых компонентов на сайтах с визуальным контентом.</p>
+    <p data-lang="en">Let's apply <strong>everything we learned</strong> today! We'll create a responsive photo gallery — one of the most common components on visually-driven websites.</p>
+
+    <div class="highlight" data-lang="ru">
+        <strong>В этом примере мы используем:</strong>
+        <ul>
+            <li><code>display: grid</code> — включаем Grid</li>
+            <li><code>repeat(auto-fit, minmax(250px, 1fr))</code> — адаптивные колонки</li>
+            <li><code>gap: 16px</code> — отступы между фото</li>
+            <li><code>border-radius</code> — скруглённые углы</li>
+            <li><code>object-fit: cover</code> — фото заполняет карточку без искажений</li>
+            <li><code>transition + :hover</code> — плавная анимация при наведении</li>
+        </ul>
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>In this example we use:</strong>
+        <ul>
+            <li><code>display: grid</code> — enable Grid</li>
+            <li><code>repeat(auto-fit, minmax(250px, 1fr))</code> — responsive columns</li>
+            <li><code>gap: 16px</code> — spacing between photos</li>
+            <li><code>border-radius</code> — rounded corners</li>
+            <li><code>object-fit: cover</code> — photo fills card without distortion</li>
+            <li><code>transition + :hover</code> — smooth animation on hover</li>
+        </ul>
+    </div>
+
+<pre><code>&lt;div class="photo-grid"&gt;
+    &lt;img src="https://picsum.photos/400/300?random=1" alt="Photo 1"&gt;
+    &lt;img src="https://picsum.photos/400/300?random=2" alt="Photo 2"&gt;
+    &lt;img src="https://picsum.photos/400/300?random=3" alt="Photo 3"&gt;
+    &lt;img src="https://picsum.photos/400/300?random=4" alt="Photo 4"&gt;
+    &lt;img src="https://picsum.photos/400/300?random=5" alt="Photo 5"&gt;
+    &lt;img src="https://picsum.photos/400/300?random=6" alt="Photo 6"&gt;
+    &lt;img src="https://picsum.photos/400/300?random=7" alt="Photo 7"&gt;
+    &lt;img src="https://picsum.photos/400/300?random=8" alt="Photo 8"&gt;
+    &lt;img src="https://picsum.photos/400/300?random=9" alt="Photo 9"&gt;
+&lt;/div&gt;</code></pre>
+
+<pre><code>.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.photo-grid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;       /* заполняет без искажений */
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.photo-grid img:hover {
+    transform: scale(1.03);  /* небольшое увеличение при наведении */
+}</code></pre>
+
+    <div class="result-box">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 160px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem;">Photo 1</div>
+            <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); height: 160px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem;">Photo 2</div>
+            <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); height: 160px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem;">Photo 3</div>
+            <div style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); height: 160px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem;">Photo 4</div>
+            <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); height: 160px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem;">Photo 5</div>
+            <div style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); height: 160px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem;">Photo 6</div>
+        </div>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;" data-lang="ru">Измените ширину окна — колонки перестроятся автоматически!</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;" data-lang="en">Resize the window — columns will rearrange automatically!</p>
+    </div>
+
+    <div class="try-it" data-lang="ru">
+        <p><strong>Создайте этот файл и модифицируйте:</strong></p>
+        <ol>
+            <li>Измените <code>minmax(250px, 1fr)</code> на <code>minmax(150px, 1fr)</code> — карточки станут мельче и их будет больше в ряду</li>
+            <li>Увеличьте gap до <code>24px</code> — больше воздуха между фото</li>
+            <li>Добавьте <code>box-shadow: 0 4px 12px rgba(0,0,0,0.15)</code> к фото</li>
+            <li>Измените hover-эффект: попробуйте <code>transform: scale(1.08)</code> — более заметное увеличение</li>
+            <li>Добавьте 10-е, 11-е, 12-е фото и посмотрите, как сетка автоматически расширяется</li>
+        </ol>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p><strong>Create this file and modify it:</strong></p>
+        <ol>
+            <li>Change <code>minmax(250px, 1fr)</code> to <code>minmax(150px, 1fr)</code> — cards will be smaller with more per row</li>
+            <li>Increase gap to <code>24px</code> — more air between photos</li>
+            <li>Add <code>box-shadow: 0 4px 12px rgba(0,0,0,0.15)</code> to photos</li>
+            <li>Change hover effect: try <code>transform: scale(1.08)</code> — more noticeable zoom</li>
+            <li>Add 10th, 11th, 12th photos and see how the grid automatically expands</li>
+        </ol>
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Забыли <code>object-fit: cover</code> для изображений.</strong> Без него фотографии разных пропорций будут выглядеть так:</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0;">
+            <div style="background: #f1f5f9; height: 80px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #64748b;">Растянутое</div>
+            <div style="background: #f1f5f9; height: 80px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #64748b;">Сжатое</div>
+            <div style="background: #f1f5f9; height: 80px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #64748b;">Нормальное</div>
+        </div>
+        <p><code>object-fit: cover</code> обрезает лишнее и <strong>заполняет</strong> карточку равномерно. Всегда добавляйте его к картинкам в сетках!</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Forgot <code>object-fit: cover</code> for images.</strong> Without it, photos of different proportions look distorted.</p>
+        <p><code>object-fit: cover</code> crops excess and <strong>fills</strong> the card evenly. Always add it to images in grids!</p>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">Итоги занятия 16</h2>
+    <h2 data-lang="en">Lesson 17 Summary</h2>
+
+    <div class="summary" data-lang="ru">
+        <strong>Свойства Grid-контейнера:</strong>
+        <ul>
+            <li><code>display: grid</code> — включает Grid. Все прямые потомки становятся grid-элементами</li>
+            <li><code>grid-template-columns</code> — столбцы (px, fr, %, auto, repeat, auto-fit, minmax)</li>
+            <li><code>grid-template-rows</code> — строки (обычно не нужно — авто по содержимому)</li>
+            <li><code>gap</code> — отступы между ячейками (только между, не по краям!)</li>
+            <li><code>fr</code> — доля свободного пространства (главная единица Grid)</li>
+            <li><code>repeat()</code> — сокращение для повторяющихся колонок</li>
+            <li><code>justify-items / align-items</code> — выравнивание внутри ячеек</li>
+            <li><code>justify-content / align-content</code> — выравнивание всей сетки в контейнере</li>
+            <li><code>repeat(auto-fit, minmax(280px, 1fr))</code> — адаптивная сетка без media queries!</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>Grid container properties:</strong>
+        <ul>
+            <li><code>display: grid</code> — enables Grid. All direct children become grid items</li>
+            <li><code>grid-template-columns</code> — columns (px, fr, %, auto, repeat, auto-fit, minmax)</li>
+            <li><code>grid-template-rows</code> — rows (usually not needed — auto from content)</li>
+            <li><code>gap</code> — spacing between cells (only between, not at edges!)</li>
+            <li><code>fr</code> — fraction of available space (Grid's main unit)</li>
+            <li><code>repeat()</code> — shorthand for repeating columns</li>
+            <li><code>justify-items / align-items</code> — alignment inside cells</li>
+            <li><code>justify-content / align-content</code> — alignment of entire grid in container</li>
+            <li><code>repeat(auto-fit, minmax(280px, 1fr))</code> — responsive grid without media queries!</li>
+        </ul>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <p><strong>Финальная проверка — ответьте на все вопросы:</strong></p>
+        <ol>
+            <li>Чем Grid отличается от Flexbox? <em>(Grid — 2D (строки и столбцы), Flexbox — 1D (одно направление))</em></li>
+            <li>Что означает единица <code>fr</code>? <em>(fraction — доля свободного пространства)</em></li>
+            <li>Как создать 4 равных столбца? <em>(grid-template-columns: repeat(4, 1fr))</em></li>
+            <li>Чем <code>fr</code> лучше <code>%</code>? <em>(fr автоматически учитывает gap, % — нет)</em></li>
+            <li>Что делает <code>repeat(auto-fit, minmax(280px, 1fr))</code>? <em>(адаптивная сетка: столько колонок, сколько поместится, минимум 280px каждая)</em></li>
+            <li>Чем <code>auto-fill</code> отличается от <code>auto-fit</code>? <em>(auto-fill сохраняет пустые колонки, auto-fit схлопывает их)</em></li>
+            <li>Что делает <code>place-items: center</code>? <em>(центрирует элементы по обеим осям в ячейках)</em></li>
+            <li>Зачем нужен <code>object-fit: cover</code> для фото в сетке? <em>(чтобы фото заполняло карточку без искажений)</em></li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <p><strong>Final check — answer all questions:</strong></p>
+        <ol>
+            <li>How is Grid different from Flexbox? <em>(Grid is 2D (rows and columns), Flexbox is 1D (one direction))</em></li>
+            <li>What does the <code>fr</code> unit mean? <em>(fraction — a share of available space)</em></li>
+            <li>How to create 4 equal columns? <em>(grid-template-columns: repeat(4, 1fr))</em></li>
+            <li>Why is <code>fr</code> better than <code>%</code>? <em>(fr automatically accounts for gap, % doesn't)</em></li>
+            <li>What does <code>repeat(auto-fit, minmax(280px, 1fr))</code> do? <em>(responsive grid: as many columns as fit, minimum 280px each)</em></li>
+            <li>How is <code>auto-fill</code> different from <code>auto-fit</code>? <em>(auto-fill keeps empty columns, auto-fit collapses them)</em></li>
+            <li>What does <code>place-items: center</code> do? <em>(centers items on both axes in their cells)</em></li>
+            <li>Why use <code>object-fit: cover</code> for photos in a grid? <em>(so photos fill the card without distortion)</em></li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

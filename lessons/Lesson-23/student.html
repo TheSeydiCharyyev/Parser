@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 23 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 23: CSS Transitions и Transform</span>
+    <span class="nav-title" data-lang="en">Lesson 23: CSS Transitions and Transform</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+    <p class="subtitle" data-lang="ru">Занятие 23: CSS Transitions и Transform</p>
+    <p class="subtitle" data-lang="en">Lesson 23: CSS Transitions and Transform</p>
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; TRANSITION (ПЛАВНЫЙ ПЕРЕХОД)</h2>
+    <h2 data-lang="en">&#x1F4DA; TRANSITION (SMOOTH CHANGE)</h2>
+
+<pre><code>/* Синтаксис: */
+transition: property duration timing-function delay;
+
+/* Примеры: */
+transition: background 0.3s ease;
+transition: all 0.3s ease;
+transition: transform 0.3s ease, box-shadow 0.3s ease;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Параметр</th><th>Значение</th><th>Типичное</th></tr>
+        <tr><td>property</td><td>Какое свойство</td><td><code>all</code>, <code>transform</code>, <code>background</code></td></tr>
+        <tr><td>duration</td><td>Длительность</td><td><code>0.3s</code></td></tr>
+        <tr><td>timing-function</td><td>Кривая</td><td><code>ease</code></td></tr>
+        <tr><td>delay</td><td>Задержка</td><td><code>0s</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Parameter</th><th>Value</th><th>Typical</th></tr>
+        <tr><td>property</td><td>Which property</td><td><code>all</code>, <code>transform</code>, <code>background</code></td></tr>
+        <tr><td>duration</td><td>Duration</td><td><code>0.3s</code></td></tr>
+        <tr><td>timing-function</td><td>Curve</td><td><code>ease</code></td></tr>
+        <tr><td>delay</td><td>Delay</td><td><code>0s</code></td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        <code>transition</code> пишется на <strong>базовом состоянии</strong>, НЕ на :hover!
+    </div>
+    <div class="key-point" data-lang="en">
+        <code>transition</code> is written on the <strong>base state</strong>, NOT on :hover!
+    </div>
+
+    <div class="definition" data-lang="ru">
+        <strong>Рекомендуемая длительность:</strong> 0.2s–0.4s для hover. Меньше — незаметно, больше — раздражает. Для загрузки модалок/попапов — 0.3s–0.5s.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Recommended duration:</strong> 0.2s–0.4s for hover. Less — invisible, more — annoying. For modal/popup load — 0.3s–0.5s.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; TIMING-FUNCTION (КРИВЫЕ)</h2>
+    <h2 data-lang="en">&#x1F4DA; TIMING-FUNCTION (CURVES)</h2>
+
+    <table data-lang="ru">
+        <tr><th>Значение</th><th>Поведение</th><th>Когда</th></tr>
+        <tr><td><code>ease</code></td><td>медленно → быстро → медленно</td><td>По умолчанию, универсально</td></tr>
+        <tr><td><code>linear</code></td><td>постоянная скорость</td><td>Спиннеры, прогресс-бары</td></tr>
+        <tr><td><code>ease-in</code></td><td>медленно → быстро</td><td>Элемент улетает с экрана</td></tr>
+        <tr><td><code>ease-out</code></td><td>быстро → медленно</td><td>Элемент появляется (модалка)</td></tr>
+        <tr><td><code>ease-in-out</code></td><td>медленно → быстро → медленно</td><td>Плавные hover</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Value</th><th>Behavior</th><th>When</th></tr>
+        <tr><td><code>ease</code></td><td>slow → fast → slow</td><td>Default, universal</td></tr>
+        <tr><td><code>linear</code></td><td>constant speed</td><td>Spinners, progress bars</td></tr>
+        <tr><td><code>ease-in</code></td><td>slow → fast</td><td>Element flying off screen</td></tr>
+        <tr><td><code>ease-out</code></td><td>fast → slow</td><td>Element appearing (modal)</td></tr>
+        <tr><td><code>ease-in-out</code></td><td>slow → fast → slow</td><td>Smooth hover</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; TRANSFORM (ТРАНСФОРМАЦИИ)</h2>
+    <h2 data-lang="en">&#x1F4DA; TRANSFORM (TRANSFORMATIONS)</h2>
+
+    <div class="definition" data-lang="ru">
+        <code>transform</code> изменяет элемент <strong>визуально</strong>, не влияя на соседние элементы (в отличие от <code>margin</code>/<code>width</code>). Поэтому идеален для hover-эффектов — макет не «скачет».
+    </div>
+    <div class="definition" data-lang="en">
+        <code>transform</code> visually changes an element <strong>without affecting neighbors</strong> (unlike <code>margin</code>/<code>width</code>). Perfect for hover effects — the layout doesn't jump.
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Функция</th><th>Действие</th><th>Частое значение</th></tr>
+        <tr><td><code>translateY(-10px)</code></td><td>Поднять вверх</td><td>Карточки при hover</td></tr>
+        <tr><td><code>translateX(20px)</code></td><td>Сдвинуть вправо</td><td>Появление элемента</td></tr>
+        <tr><td><code>scale(1.1)</code></td><td>Увеличить на 10%</td><td>Кнопки, иконки</td></tr>
+        <tr><td><code>scale(0.95)</code></td><td>Уменьшить на 5%</td><td>:active (нажатие)</td></tr>
+        <tr><td><code>rotate(45deg)</code></td><td>Повернуть</td><td>Иконки, декор</td></tr>
+        <tr><td><code>skewX(-5deg)</code></td><td>Наклонить</td><td>Декоративные элементы</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Function</th><th>Action</th><th>Common use</th></tr>
+        <tr><td><code>translateY(-10px)</code></td><td>Lift up</td><td>Card hover</td></tr>
+        <tr><td><code>translateX(20px)</code></td><td>Shift right</td><td>Element appearing</td></tr>
+        <tr><td><code>scale(1.1)</code></td><td>Enlarge 10%</td><td>Buttons, icons</td></tr>
+        <tr><td><code>scale(0.95)</code></td><td>Shrink 5%</td><td>:active (press)</td></tr>
+        <tr><td><code>rotate(45deg)</code></td><td>Rotate</td><td>Icons, decoration</td></tr>
+        <tr><td><code>skewX(-5deg)</code></td><td>Skew</td><td>Decorative elements</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; КОМБИНИРОВАНИЕ И ПОРЯДОК</h2>
+    <h2 data-lang="en">&#x1F4DA; COMBINING AND ORDER</h2>
+
+<pre><code>/* ПРАВИЛЬНО — один transform через пробел */
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+/* НЕПРАВИЛЬНО — второй перекроет первый! */
+.card:hover {
+    transform: translateY(-8px);
+    transform: scale(1.02);   /* работает только scale */
+}</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Порядок важен!</strong> <code>translate + rotate</code> ≠ <code>rotate + translate</code>. Каждая следующая трансформация применяется в системе координат, созданной предыдущей. Обычно ставьте <code>translate</code> первым.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Order matters!</strong> <code>translate + rotate</code> ≠ <code>rotate + translate</code>. Each subsequent transform applies in the coordinate system created by the previous one. Usually put <code>translate</code> first.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ПРОИЗВОДИТЕЛЬНОСТЬ</h2>
+    <h2 data-lang="en">&#x1F4DA; PERFORMANCE</h2>
+
+    <table data-lang="ru">
+        <tr><th>Стоимость</th><th>Свойства</th><th>FPS</th></tr>
+        <tr><td>Дёшево (GPU)</td><td><code>transform</code>, <code>opacity</code></td><td>60fps</td></tr>
+        <tr><td>Средне</td><td><code>color</code>, <code>background</code>, <code>box-shadow</code></td><td>~60fps</td></tr>
+        <tr><td>Дорого</td><td><code>width</code>, <code>height</code>, <code>top</code>, <code>left</code>, <code>margin</code></td><td>20–30fps</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Cost</th><th>Properties</th><th>FPS</th></tr>
+        <tr><td>Cheap (GPU)</td><td><code>transform</code>, <code>opacity</code></td><td>60fps</td></tr>
+        <tr><td>Medium</td><td><code>color</code>, <code>background</code>, <code>box-shadow</code></td><td>~60fps</td></tr>
+        <tr><td>Expensive</td><td><code>width</code>, <code>height</code>, <code>top</code>, <code>left</code>, <code>margin</code></td><td>20–30fps</td></tr>
+    </table>
+
+    <div class="key-point" data-lang="ru">
+        Для сдвига — <code>transform: translate()</code>, не <code>left</code>/<code>top</code>. Для увеличения — <code>transform: scale()</code>, не <code>width</code>.
+    </div>
+    <div class="key-point" data-lang="en">
+        For movement — <code>transform: translate()</code>, not <code>left</code>/<code>top</code>. For resizing — <code>transform: scale()</code>, not <code>width</code>.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ДОСТУПНОСТЬ (prefers-reduced-motion)</h2>
+    <h2 data-lang="en">&#x1F4DA; ACCESSIBILITY (prefers-reduced-motion)</h2>
+
+<pre><code>/* Уважаем пользователей, отключивших анимации в ОС */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}</code></pre>
+
+    <div class="definition" data-lang="ru">
+        Пользователи с вестибулярными расстройствами / эпилепсией отключают анимации в настройках ОС. Этот блок делает их отключение мгновенным. В продакшене — <strong>обязательно</strong>.
+    </div>
+    <div class="definition" data-lang="en">
+        Users with vestibular disorders / epilepsy disable animations in OS settings. This block makes animations near-instant for them. Mandatory in production.
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ГОТОВЫЕ ПАТТЕРНЫ</h2>
+    <h2 data-lang="en">&#x1F4DA; READY-MADE PATTERNS</h2>
+
+<pre><code>/* Карточка */
+.card { transition: transform 0.3s, box-shadow 0.3s; }
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+}
+
+/* Зум картинки */
+.card { overflow: hidden; }
+.card img { transition: transform 0.4s; }
+.card:hover img { transform: scale(1.1); }
+
+/* Кнопка */
+.btn { transition: all 0.2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: scale(0.95); }
+
+/* Анимированное подчёркивание ссылки */
+.link { position: relative; }
+.link::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+.link:hover::after { width: 100%; }
+
+/* Социальные иконки */
+.social-icon {
+    color: #94a3b8;
+    transition: color 0.2s, transform 0.2s;
+}
+.social-icon:hover {
+    color: #3b82f6;
+    transform: scale(1.2);
+}</code></pre>
+
+    <hr>
+
+    <h2 data-lang="ru">&#x1F4DA; ЧАСТЫЕ ОШИБКИ</h2>
+    <h2 data-lang="en">&#x1F4DA; COMMON MISTAKES</h2>
+
+    <table data-lang="ru">
+        <tr><th>Ошибка</th><th>Решение</th></tr>
+        <tr><td><code>transition</code> только в <code>:hover</code></td><td>Переместить на базовое состояние</td></tr>
+        <tr><td>Два <code>transform</code> в одном блоке</td><td>Объединить через пробел</td></tr>
+        <tr><td><code>scale(1.5)</code> и больше</td><td>Уменьшить до 1.02–1.1</td></tr>
+        <tr><td>Анимируется <code>width</code> вместо <code>scale</code></td><td>Заменить на <code>transform: scale()</code></td></tr>
+        <tr><td>Нет <code>overflow: hidden</code> при зуме фото</td><td>Добавить родителю</td></tr>
+        <tr><td>Нет <code>prefers-reduced-motion</code></td><td>Добавить media query</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Mistake</th><th>Fix</th></tr>
+        <tr><td><code>transition</code> only in <code>:hover</code></td><td>Move to base state</td></tr>
+        <tr><td>Two <code>transform</code>s in one block</td><td>Merge with a space</td></tr>
+        <tr><td><code>scale(1.5)</code> or more</td><td>Reduce to 1.02–1.1</td></tr>
+        <tr><td>Animating <code>width</code> instead of <code>scale</code></td><td>Switch to <code>transform: scale()</code></td></tr>
+        <tr><td>No <code>overflow: hidden</code> for photo zoom</td><td>Add to parent</td></tr>
+        <tr><td>No <code>prefers-reduced-motion</code></td><td>Add media query</td></tr>
+    </table>
+
+    <hr>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>transition</code> — на базовом состоянии, НЕ на :hover</li>
+            <li>Длительность: 0.2s–0.4s для hover, 0.3s–0.5s для модалок</li>
+            <li>Timing: <code>ease</code> для hover, <code>ease-out</code> для появления, <code>linear</code> для спиннеров</li>
+            <li><code>transform</code> НЕ влияет на соседей (в отличие от margin/padding)</li>
+            <li><code>translateY(-10px)</code> — поднять карточку</li>
+            <li><code>scale(1.1)</code> — увеличить, <code>scale(0.95)</code> — эффект нажатия</li>
+            <li><code>rotate(45deg)</code> — повернуть (иконки, стрелки, бургер→крестик)</li>
+            <li><code>overflow: hidden</code> + <code>scale</code> = зум без выхода за рамки</li>
+            <li>Комбинируй через <strong>пробел</strong>: <code>translateY(-8px) scale(1.02)</code></li>
+            <li>Два <code>transform</code> через новую строку = второй <strong>перекрывает</strong> первый</li>
+            <li><code>:active</code> — стиль при нажатии (ощущение тактильности)</li>
+            <li>Дёшево анимировать: <code>transform</code>, <code>opacity</code>. Дорого: <code>width</code>, <code>height</code>, <code>margin</code></li>
+            <li>Макс 3 типа анимаций на странице — иначе мешанина</li>
+            <li>Не забывать <code>prefers-reduced-motion</code> для доступности</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>transition</code> — on base state, NOT on :hover</li>
+            <li>Duration: 0.2s–0.4s for hover, 0.3s–0.5s for modals</li>
+            <li>Timing: <code>ease</code> for hover, <code>ease-out</code> for appearance, <code>linear</code> for spinners</li>
+            <li><code>transform</code> does NOT affect neighbors (unlike margin/padding)</li>
+            <li><code>translateY(-10px)</code> — lift card</li>
+            <li><code>scale(1.1)</code> — enlarge, <code>scale(0.95)</code> — press effect</li>
+            <li><code>rotate(45deg)</code> — rotate (icons, arrows, burger→cross)</li>
+            <li><code>overflow: hidden</code> + <code>scale</code> = zoom without overflow</li>
+            <li>Combine with a <strong>space</strong>: <code>translateY(-8px) scale(1.02)</code></li>
+            <li>Two <code>transform</code>s on new lines = the second <strong>overrides</strong> the first</li>
+            <li><code>:active</code> — style on press (tactile feel)</li>
+            <li>Cheap to animate: <code>transform</code>, <code>opacity</code>. Expensive: <code>width</code>, <code>height</code>, <code>margin</code></li>
+            <li>Max 3 animation types per page — otherwise it's a mess</li>
+            <li>Don't forget <code>prefers-reduced-motion</code> for accessibility</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Кнопки:</strong> 6 кнопок с разными hover-эффектами — смена цвета, подъём (<code>translateY(-3px)</code>), увеличение (<code>scale(1.1)</code>), нажатие (:active + <code>scale(0.95)</code>), обводка → заливка, анимированное подчёркивание (<code>::after</code>).</li>
+            <li><strong>Карточки:</strong> Grid из 6 карточек с изображениями. Hover карточки: <code>translateY(-8px)</code> + тень. Hover фото внутри: <code>scale(1.1)</code> при <code>overflow: hidden</code> у родителя.</li>
+            <li><strong>Transform-лаборатория:</strong> 6 квадратов с разными transform при hover (translateX, translateY, scale, rotate, skew, комбинация).</li>
+            <li><strong>Оживите сайт ресторана из урока 21:</strong> добавьте hover-эффекты к карточкам меню, кнопке в hero, ссылкам в навигации, иконкам соцсетей в footer.</li>
+            <li><strong>Бонус:</strong> Социальные иконки (5 круглых кнопок) — при hover меняется цвет на свой (FB=синий, TW=голубой, IG=розовый, YT=красный, GH=чёрный), появляется тень, элемент поднимается и увеличивается.</li>
+            <li><strong>Бонус:</strong> Добавьте <code>@media (prefers-reduced-motion: reduce)</code> ко всем проектам.</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Buttons:</strong> 6 buttons with different hover effects — color change, lift (<code>translateY(-3px)</code>), scale (<code>scale(1.1)</code>), press (:active + <code>scale(0.95)</code>), outline → filled, animated underline (<code>::after</code>).</li>
+            <li><strong>Cards:</strong> Grid of 6 cards with images. Card hover: <code>translateY(-8px)</code> + shadow. Photo hover inside: <code>scale(1.1)</code> with <code>overflow: hidden</code> on parent.</li>
+            <li><strong>Transform lab:</strong> 6 squares with different transforms on hover (translateX, translateY, scale, rotate, skew, combination).</li>
+            <li><strong>Breathe life into the restaurant site from lesson 21:</strong> add hover effects to menu cards, the hero button, nav links, footer social icons.</li>
+            <li><strong>Bonus:</strong> Social icons (5 circle buttons) — on hover color changes to its own (FB=blue, TW=cyan, IG=pink, YT=red, GH=black), shadow appears, element lifts and grows.</li>
+            <li><strong>Bonus:</strong> Add <code>@media (prefers-reduced-motion: reduce)</code> to all projects.</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

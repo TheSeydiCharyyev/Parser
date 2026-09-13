@@ -1,0 +1,413 @@
+/* ========== LECTURE PAGE STYLES ========== */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.8;
+    color: #1e293b;
+    background: #f8fafc;
+    padding: 40px 20px;
+}
+.container { max-width: 860px; margin: 0 auto; }
+
+h1 {
+    font-size: 2.2rem;
+    color: #0f172a;
+    border-bottom: 3px solid #3b82f6;
+    padding-bottom: 12px;
+    margin-bottom: 8px;
+}
+h2 {
+    font-size: 1.5rem;
+    color: #1e40af;
+    margin: 48px 0 16px;
+    padding: 10px 16px;
+    background: #eff6ff;
+    border-left: 4px solid #3b82f6;
+    border-radius: 0 8px 8px 0;
+}
+h3 {
+    font-size: 1.25rem;
+    color: #1e3a5f;
+    margin: 28px 0 12px;
+}
+.subtitle {
+    color: #64748b;
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+}
+p { margin: 10px 0; }
+
+/* ========== CALLOUT BOXES ========== */
+.highlight {
+    background: #f0fdf4;
+    border-left: 4px solid #22c55e;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+}
+.important {
+    background: #fef2f2;
+    border-left: 4px solid #ef4444;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.analogy {
+    background: #fff7ed;
+    border-left: 4px solid #f97316;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+}
+.analogy::before {
+    display: block;
+    font-weight: 700;
+    color: #c2410c;
+    margin-bottom: 6px;
+}
+html[lang="ru"] .analogy::before { content: '\1F3A8  Аналогия'; }
+html[lang="en"] .analogy::before { content: '\1F3A8  Analogy'; }
+
+.fun-fact {
+    background: #fdf4ff;
+    border-left: 4px solid #a855f7;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+}
+.fun-fact::before {
+    display: block;
+    font-weight: 700;
+    color: #7e22ce;
+    margin-bottom: 6px;
+}
+html[lang="ru"] .fun-fact::before { content: '\1F4A1  Интересный факт'; }
+html[lang="en"] .fun-fact::before { content: '\1F4A1  Fun fact'; }
+
+.try-it {
+    background: #ecfdf5;
+    border: 2px solid #6ee7b7;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 10px;
+}
+.try-it::before {
+    display: block;
+    font-weight: 700;
+    color: #059669;
+    margin-bottom: 6px;
+}
+html[lang="ru"] .try-it::before { content: '\1F527  Попробуй сам'; }
+html[lang="en"] .try-it::before { content: '\1F527  Try it yourself'; }
+
+/* ========== CODE ========== */
+pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 14px 0;
+}
+code {
+    background: #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9rem;
+}
+pre code { background: none; padding: 0; }
+
+/* ========== DIAGRAM ========== */
+.diagram {
+    background: #f8fafc;
+    border: 2px solid #cbd5e1;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Consolas', monospace;
+    white-space: pre;
+    line-height: 1.5;
+    margin: 16px 0;
+    overflow-x: auto;
+}
+
+/* ========== TABLE ========== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+}
+th, td {
+    padding: 10px 14px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+}
+th {
+    background: #f1f5f9;
+    font-weight: 600;
+}
+
+/* ========== LISTS ========== */
+ul, ol { margin: 10px 0 10px 24px; }
+li { margin: 5px 0; }
+strong { color: #0f172a; }
+
+hr {
+    border: none;
+    border-top: 2px solid #e2e8f0;
+    margin: 40px 0;
+}
+
+/* ========== TIMELINE ========== */
+.timeline {
+    border-left: 3px solid #3b82f6;
+    margin: 20px 0 20px 12px;
+    padding-left: 24px;
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -31px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background: #3b82f6;
+    border-radius: 50%;
+}
+.timeline-year {
+    font-weight: 700;
+    color: #1d4ed8;
+    font-size: 1.05rem;
+}
+
+/* ========== PERSON CARD ========== */
+.person-card {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: #f1f5f9;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 16px 0;
+}
+.person-card .info { flex: 1; }
+.person-card .name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+.person-card .role {
+    color: #3b82f6;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* ========== SUMMARY ========== */
+.summary {
+    background: #eff6ff;
+    border: 2px solid #bfdbfe;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 24px 0;
+}
+.summary::before {
+    display: block;
+    font-weight: 700;
+    color: #1d4ed8;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+html[lang="ru"] .summary::before { content: '\1F4CB  Итоги раздела'; }
+html[lang="en"] .summary::before { content: '\1F4CB  Section summary'; }
+
+/* ========== QUIZ ========== */
+.quiz {
+    background: #fef2f2;
+    border: 2px solid #fca5a5;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 24px 0;
+}
+.quiz::before {
+    display: block;
+    font-weight: 700;
+    color: #dc2626;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+html[lang="ru"] .quiz::before { content: '\2705  Проверь себя'; }
+html[lang="en"] .quiz::before { content: '\2705  Test yourself'; }
+
+/* ========== TABLE OF CONTENTS ========== */
+.toc {
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 24px 0;
+}
+.toc-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #0f172a;
+}
+.toc ol { margin: 0 0 0 20px; }
+.toc li { margin: 6px 0; }
+.toc a {
+    color: #1d4ed8;
+    text-decoration: none;
+}
+.toc a:hover { text-decoration: underline; }
+
+/* ========== COMPARE BOXES ========== */
+.compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+}
+.compare > div { padding: 16px; border-radius: 8px; }
+.compare .wrong { background: #fef2f2; border: 2px solid #fca5a5; }
+.compare .right { background: #f0fdf4; border: 2px solid #86efac; }
+.compare .label { font-weight: 700; margin-bottom: 8px; }
+@media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
+
+/* ========== RESULT BOX ========== */
+.result-box {
+    background: #fff;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 16px 0;
+}
+.result-box::before {
+    display: block;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 10px;
+}
+html[lang="ru"] .result-box::before { content: '\1F441\FE0F  Результат в браузере:'; }
+html[lang="en"] .result-box::before { content: '\1F441\FE0F  Result in browser:'; }
+
+/* ========== COLOR DEMO ========== */
+.color-demo {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    vertical-align: middle;
+    border: 1px solid #cbd5e1;
+    margin-right: 6px;
+}
+
+/* ========== SHORTCUT TABLE ========== */
+.shortcut-table td:first-child { white-space: nowrap; }
+
+/* ========== STEP ========== */
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: #3b82f6;
+    color: white;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+.step {
+    display: flex;
+    align-items: flex-start;
+    margin: 12px 0;
+}
+.step p { margin: 0; }
+
+/* ========== SCREENSHOT ========== */
+img.screenshot {
+    max-width: 100%;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    margin: 12px 0;
+}
+
+/* ========== WHY BOX ========== */
+.why {
+    background: #fefce8;
+    border-left: 4px solid #eab308;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+}
+.why::before {
+    display: block;
+    font-weight: 700;
+    color: #a16207;
+    margin-bottom: 6px;
+}
+html[lang="ru"] .why::before { content: '\1F914  Зачем это нужно?'; }
+html[lang="en"] .why::before { content: '\1F914  Why does this matter?'; }
+
+/* ========== MISTAKE BOX ========== */
+.mistake {
+    background: #fff8f1;
+    border: 2px solid #fdba74;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 24px 0;
+}
+.mistake::before {
+    display: block;
+    font-weight: 700;
+    color: #ea580c;
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+}
+html[lang="ru"] .mistake::before { content: '\1F6AB  Частая ошибка новичков'; }
+html[lang="en"] .mistake::before { content: '\1F6AB  Common beginner mistake'; }
+
+/* ========== PRO TIP BOX ========== */
+.pro-tip {
+    background: #f0f9ff;
+    border: 2px solid #7dd3fc;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 24px 0;
+}
+.pro-tip::before {
+    display: block;
+    font-weight: 700;
+    color: #0284c7;
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+}
+html[lang="ru"] .pro-tip::before { content: '\1F3C6  Совет профессионала'; }
+html[lang="en"] .pro-tip::before { content: '\1F3C6  Pro tip'; }
+
+/* ========== REAL WORLD BOX ========== */
+.real-world {
+    background: #f0fdfa;
+    border-left: 4px solid #14b8a6;
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+}
+.real-world::before {
+    display: block;
+    font-weight: 700;
+    color: #0f766e;
+    margin-bottom: 6px;
+}
+html[lang="ru"] .real-world::before { content: '\1F30D  В реальных проектах'; }
+html[lang="en"] .real-world::before { content: '\1F30D  In real projects'; }

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 11 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 11: Формы</span>
+    <span class="nav-title" data-lang="en">Lesson 11: Forms</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4D3; КОНСПЕКТ УЧЕНИКА</h1>
+    <h1 data-lang="en">&#x1F4D3; STUDENT NOTES</h1>
+
+    <p class="subtitle" data-lang="ru">Занятие 11: Формы</p>
+    <p class="subtitle" data-lang="en">Lesson 11: Forms</p>
+
+    <p class="date-line" data-lang="ru">Дата: _______________</p>
+    <p class="date-line" data-lang="en">Date: _______________</p>
+
+    <hr>
+
+    <!-- УРОК 11.1 -->
+    <h2 data-lang="ru">&#x1F4DA; УРОК 11.1: ПОЛЯ ВВОДА</h2>
+    <h2 data-lang="en">&#x1F4DA; Lesson 11.1: INPUT FIELDS</h2>
+
+    <div class="definition" data-lang="ru">
+        <strong>Форма</strong> — это способ получить данные от пользователя: текст, выбор, файлы. Все поля находятся внутри тега <code>&lt;form&gt;</code>.
+    </div>
+    <div class="definition" data-lang="en">
+        <strong>Form</strong> — a way to collect data from the user: text, choices, files. All fields are inside the <code>&lt;form&gt;</code> tag.
+    </div>
+
+    <h3 data-lang="ru">Основные теги форм</h3>
+    <h3 data-lang="en">Main form tags</h3>
+
+    <table data-lang="ru">
+        <tr><th>Тег</th><th>Что делает</th></tr>
+        <tr><td><code>&lt;form&gt;</code></td><td>Контейнер формы</td></tr>
+        <tr><td><code>&lt;input&gt;</code></td><td>Поле ввода (однострочное)</td></tr>
+        <tr><td><code>&lt;label&gt;</code></td><td>Подпись к полю</td></tr>
+        <tr><td><code>&lt;textarea&gt;</code></td><td>Многострочное поле</td></tr>
+        <tr><td><code>&lt;select&gt;</code></td><td>Выпадающий список</td></tr>
+        <tr><td><code>&lt;option&gt;</code></td><td>Вариант в списке</td></tr>
+        <tr><td><code>&lt;button&gt;</code></td><td>Кнопка</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Tag</th><th>What it does</th></tr>
+        <tr><td><code>&lt;form&gt;</code></td><td>Form container</td></tr>
+        <tr><td><code>&lt;input&gt;</code></td><td>Input field (single line)</td></tr>
+        <tr><td><code>&lt;label&gt;</code></td><td>Field label</td></tr>
+        <tr><td><code>&lt;textarea&gt;</code></td><td>Multi-line field</td></tr>
+        <tr><td><code>&lt;select&gt;</code></td><td>Dropdown list</td></tr>
+        <tr><td><code>&lt;option&gt;</code></td><td>Option in dropdown</td></tr>
+        <tr><td><code>&lt;button&gt;</code></td><td>Button</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Типы input</h3>
+    <h3 data-lang="en">Input types</h3>
+
+    <table data-lang="ru">
+        <tr><th>Тип</th><th>Для чего</th></tr>
+        <tr><td><code>text</code></td><td>Обычный текст</td></tr>
+        <tr><td><code>email</code></td><td>Email (проверяет @)</td></tr>
+        <tr><td><code>password</code></td><td>Пароль (скрывает ввод)</td></tr>
+        <tr><td><code>number</code></td><td>Число (стрелки вверх/вниз)</td></tr>
+        <tr><td><code>tel</code></td><td>Телефон</td></tr>
+        <tr><td><code>date</code></td><td>Дата (календарь)</td></tr>
+        <tr><td><code>radio</code></td><td>Один из нескольких</td></tr>
+        <tr><td><code>checkbox</code></td><td>Несколько из нескольких</td></tr>
+        <tr><td><code>file</code></td><td>Загрузка файла</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Type</th><th>For what</th></tr>
+        <tr><td><code>text</code></td><td>Plain text</td></tr>
+        <tr><td><code>email</code></td><td>Email (validates @)</td></tr>
+        <tr><td><code>password</code></td><td>Password (hides input)</td></tr>
+        <tr><td><code>number</code></td><td>Number (up/down arrows)</td></tr>
+        <tr><td><code>tel</code></td><td>Phone</td></tr>
+        <tr><td><code>date</code></td><td>Date (calendar)</td></tr>
+        <tr><td><code>radio</code></td><td>One of many</td></tr>
+        <tr><td><code>checkbox</code></td><td>Multiple of many</td></tr>
+        <tr><td><code>file</code></td><td>File upload</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Шаблон поля с подписью</h3>
+    <h3 data-lang="en">Field with label template</h3>
+
+<pre><code>&lt;label for="name"&gt;Имя:&lt;/label&gt;
+&lt;input type="text" id="name" name="name" placeholder="Ваше имя"&gt;</code></pre>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Связь label &#x2194; input:</strong> Атрибут <code>for</code> у label = <code>id</code> у input. При клике на подпись — фокус переходит на поле.
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>label &#x2194; input connection:</strong> The <code>for</code> attribute in label = <code>id</code> in input. Clicking the label focuses the field.
+    </div>
+
+    <hr>
+
+    <!-- УРОК 11.2 -->
+    <h2 data-lang="ru">&#x1F4DA; УРОК 11.2: ЭЛЕМЕНТЫ ФОРМ И СТИЛИЗАЦИЯ</h2>
+    <h2 data-lang="en">&#x1F4DA; Lesson 11.2: FORM ELEMENTS AND STYLING</h2>
+
+    <h3 data-lang="ru">radio vs checkbox</h3>
+    <h3 data-lang="en">radio vs checkbox</h3>
+
+    <table data-lang="ru">
+        <tr><th></th><th>radio</th><th>checkbox</th></tr>
+        <tr><td>Выбор</td><td>Только ОДИН</td><td>НЕСКОЛЬКО</td></tr>
+        <tr><td>Вид</td><td>&#x25CB; Круглый</td><td>&#x2610; Квадратный</td></tr>
+        <tr><td>name</td><td>Одинаковый в группе</td><td>Может быть разным</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th></th><th>radio</th><th>checkbox</th></tr>
+        <tr><td>Selection</td><td>Only ONE</td><td>MULTIPLE</td></tr>
+        <tr><td>Shape</td><td>&#x25CB; Round</td><td>&#x2610; Square</td></tr>
+        <tr><td>name</td><td>Same in group</td><td>Can be different</td></tr>
+    </table>
+
+    <h3 data-lang="ru">HTML-валидация (без JavaScript!)</h3>
+    <h3 data-lang="en">HTML validation (no JavaScript!)</h3>
+
+    <table data-lang="ru">
+        <tr><th>Атрибут</th><th>Что делает</th></tr>
+        <tr><td><code>required</code></td><td>Обязательное поле</td></tr>
+        <tr><td><code>minlength="3"</code></td><td>Мин. 3 символа</td></tr>
+        <tr><td><code>maxlength="50"</code></td><td>Макс. 50 символов</td></tr>
+        <tr><td><code>min="12"</code></td><td>Мин. число 12</td></tr>
+        <tr><td><code>max="100"</code></td><td>Макс. число 100</td></tr>
+        <tr><td><code>pattern="..."</code></td><td>Регулярное выражение</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Attribute</th><th>What it does</th></tr>
+        <tr><td><code>required</code></td><td>Mandatory field</td></tr>
+        <tr><td><code>minlength="3"</code></td><td>Min. 3 characters</td></tr>
+        <tr><td><code>maxlength="50"</code></td><td>Max. 50 characters</td></tr>
+        <tr><td><code>min="12"</code></td><td>Min. number 12</td></tr>
+        <tr><td><code>max="100"</code></td><td>Max. number 100</td></tr>
+        <tr><td><code>pattern="..."</code></td><td>Regular expression</td></tr>
+    </table>
+
+    <h3 data-lang="ru">Ключевые CSS для форм</h3>
+    <h3 data-lang="en">Key CSS for forms</h3>
+
+<pre><code>input, select, textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+}
+
+button[type="submit"] {
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background: #2563eb;
+}</code></pre>
+
+    <hr>
+
+    <!-- УРОК 11.3 -->
+    <h2 data-lang="ru">&#x1F4DA; УРОК 11.3: ПРАКТИКА</h2>
+    <h2 data-lang="en">&#x1F4DA; Lesson 11.3: PRACTICE</h2>
+
+    <div class="key-point" data-lang="ru">
+        <strong>Сегодня создаём:</strong>
+        <ol>
+            <li>Форму регистрации (input, select, radio, checkbox, button)</li>
+            <li>Форму обратной связи (input, textarea, button)</li>
+        </ol>
+    </div>
+    <div class="key-point" data-lang="en">
+        <strong>Today we create:</strong>
+        <ol>
+            <li>Registration form (input, select, radio, checkbox, button)</li>
+            <li>Contact form (input, textarea, button)</li>
+        </ol>
+    </div>
+
+    <div class="remember" data-lang="ru">
+        <ul>
+            <li><code>&lt;label for="id"&gt;</code> + <code>&lt;input id="id"&gt;</code> — всегда связывай!</li>
+            <li><code>radio</code> — один из группы, <code>checkbox</code> — несколько</li>
+            <li>У radio-кнопок одной группы <code>name</code> одинаковый</li>
+            <li><code>required</code> — обязательное поле</li>
+            <li><code>placeholder</code> — подсказка, <code>value</code> — значение</li>
+            <li><code>:focus</code> — стили при фокусе</li>
+            <li><code>font-family: inherit</code> — чтобы поля использовали шрифт страницы</li>
+            <li><code>outline: none</code> + свой <code>box-shadow</code> — заменяем стандартный фокус</li>
+        </ul>
+    </div>
+    <div class="remember" data-lang="en">
+        <ul>
+            <li><code>&lt;label for="id"&gt;</code> + <code>&lt;input id="id"&gt;</code> — always link them!</li>
+            <li><code>radio</code> — one from group, <code>checkbox</code> — multiple</li>
+            <li>Radio buttons in one group have the same <code>name</code></li>
+            <li><code>required</code> — mandatory field</li>
+            <li><code>placeholder</code> — hint, <code>value</code> — actual value</li>
+            <li><code>:focus</code> — styles on focus</li>
+            <li><code>font-family: inherit</code> — so fields use page font</li>
+            <li><code>outline: none</code> + custom <code>box-shadow</code> — replace default focus</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div class="homework" data-lang="ru">
+        <ol>
+            <li><strong>Форма регистрации:</strong> Имя, Email, Пароль, Возраст, Город (select), Пол (radio), Согласие (checkbox), Кнопка. Все поля стилизованы, валидация через HTML.</li>
+            <li><strong>Форма обратной связи:</strong> Имя, Email, Тема (select), Сообщение (textarea), Кнопка «Отправить».</li>
+            <li><strong>Бонус:</strong> Создай форму заказа пиццы — размер (radio), топпинги (checkbox), адрес (text), комментарий (textarea).</li>
+        </ol>
+    </div>
+    <div class="homework" data-lang="en">
+        <ol>
+            <li><strong>Registration form:</strong> Name, Email, Password, Age, City (select), Gender (radio), Agreement (checkbox), Button. All fields styled, HTML validation.</li>
+            <li><strong>Contact form:</strong> Name, Email, Subject (select), Message (textarea), "Send" button.</li>
+            <li><strong>Bonus:</strong> Create a pizza order form — size (radio), toppings (checkbox), address (text), comment (textarea).</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

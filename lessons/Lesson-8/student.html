@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 8 — Конспект ученика</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/student.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 8: CSS Position</span>
+    <span class="nav-title" data-lang="en">Lesson 8: CSS Position</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</span>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">📓 КОНСПЕКТ — Занятие 8</h1>
+    <h1 data-lang="en">📓 NOTES — Lesson 8</h1>
+    <p class="subtitle" data-lang="ru">CSS Position — позиционирование элементов</p>
+    <p class="subtitle" data-lang="en">CSS Position — element positioning</p>
+
+    <hr>
+
+    <h2 data-lang="ru">📌 5 ЗНАЧЕНИЙ POSITION</h2>
+    <h2 data-lang="en">📌 5 POSITION VALUES</h2>
+
+    <table>
+        <tr>
+            <th>position</th>
+            <th data-lang="ru">В потоке?</th>
+            <th data-lang="en">In flow?</th>
+            <th data-lang="ru">Откуда считает координаты</th>
+            <th data-lang="en">Reference point</th>
+        </tr>
+        <tr>
+            <td><code>static</code></td>
+            <td data-lang="ru">да</td>
+            <td data-lang="en">yes</td>
+            <td data-lang="ru">— (top/left не работают)</td>
+            <td data-lang="en">— (top/left don't work)</td>
+        </tr>
+        <tr>
+            <td><code>relative</code></td>
+            <td data-lang="ru">да (место сохраняется)</td>
+            <td data-lang="en">yes (place preserved)</td>
+            <td data-lang="ru">от исходного места</td>
+            <td data-lang="en">from original place</td>
+        </tr>
+        <tr>
+            <td><code>absolute</code></td>
+            <td data-lang="ru">нет (вырван)</td>
+            <td data-lang="en">no (pulled out)</td>
+            <td data-lang="ru">от ближайшего relative-родителя</td>
+            <td data-lang="en">from nearest relative parent</td>
+        </tr>
+        <tr>
+            <td><code>fixed</code></td>
+            <td data-lang="ru">нет</td>
+            <td data-lang="en">no</td>
+            <td data-lang="ru">от окна браузера (viewport)</td>
+            <td data-lang="en">from browser window (viewport)</td>
+        </tr>
+        <tr>
+            <td><code>sticky</code></td>
+            <td data-lang="ru">да, потом «прилипает»</td>
+            <td data-lang="en">yes, then "sticks"</td>
+            <td data-lang="ru">от исходного места, потом от viewport</td>
+            <td data-lang="en">from original place, then viewport</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">📐 TOP / RIGHT / BOTTOM / LEFT</h2>
+    <h2 data-lang="en">📐 TOP / RIGHT / BOTTOM / LEFT</h2>
+
+    <div class="key-point">
+        <p data-lang="ru">Эти свойства задают <strong>отступ от соответствующего края</strong> родителя (для absolute/fixed/sticky) или от исходного места (для relative).</p>
+        <p data-lang="ru"><code>top: 20px</code> — элемент опустится на 20px вниз<br>
+        <code>right: 20px</code> — элемент сдвинется на 20px влево от правого края<br>
+        <code>bottom: 20px</code> — элемент поднимется на 20px от нижнего края<br>
+        <code>left: 20px</code> — элемент сдвинется на 20px вправо</p>
+        <p data-lang="en">These properties set the <strong>offset from the corresponding edge</strong> of the parent (for absolute/fixed/sticky) or from original place (for relative).</p>
+        <p data-lang="en"><code>top: 20px</code> — element moves 20px down<br>
+        <code>right: 20px</code> — element moves 20px left from right edge<br>
+        <code>bottom: 20px</code> — element moves 20px up from bottom edge<br>
+        <code>left: 20px</code> — element moves 20px right</p>
+    </div>
+
+    <p data-lang="ru"><strong>Отрицательные значения:</strong> элемент уходит в противоположную сторону. <code>top: -10px</code> — поднимается на 10px выше.</p>
+    <p data-lang="en"><strong>Negative values:</strong> element moves in opposite direction. <code>top: -10px</code> — moves 10px higher.</p>
+
+    <hr>
+
+    <h2 data-lang="ru">🎯 ГЛАВНЫЙ ПАТТЕРН: relative + absolute</h2>
+    <h2 data-lang="en">🎯 KEY PATTERN: relative + absolute</h2>
+
+    <div class="definition">
+        <p data-lang="ru"><strong>Абсолютная позиция считается от ближайшего предка с <code>position</code> отличным от <code>static</code>.</strong> Если такого нет — от <code>&lt;html&gt;</code> (всей страницы).</p>
+        <p data-lang="en"><strong>Absolute position is counted from the nearest ancestor with <code>position</code> other than <code>static</code>.</strong> If none — from <code>&lt;html&gt;</code> (whole page).</p>
+    </div>
+
+    <pre><code>/* Шаблон "бейдж в углу карточки" */
+.card {
+    position: relative;   /* привязка для бейджа */
+}
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}</code></pre>
+
+    <div class="remember">
+        <p data-lang="ru"><strong>99% случаев:</strong> хочешь <code>absolute</code> у ребёнка — поставь <code>position: relative</code> на родителя. Без координат — это просто «привязка».</p>
+        <p data-lang="en"><strong>99% of cases:</strong> want <code>absolute</code> on a child — set <code>position: relative</code> on the parent. Without coordinates, it's just an "anchor."</p>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">🔝 STICKY-ШАПКА</h2>
+    <h2 data-lang="en">🔝 STICKY HEADER</h2>
+
+    <pre><code>.site-header {
+    position: sticky;
+    top: 0;             /* обязательно! */
+    background: white;  /* обязательно, иначе текст просвечивает */
+    z-index: 100;       /* поверх контента */
+}</code></pre>
+
+    <div class="remember">
+        <p data-lang="ru"><strong>Sticky не работает?</strong> Проверь:
+        <ol>
+            <li>Указан <code>top</code> (или другая сторона)?</li>
+            <li>На каком-то родителе нет <code>overflow: hidden/scroll/auto</code>?</li>
+            <li>Родитель выше самой sticky-шапки?</li>
+        </ol>
+        </p>
+        <p data-lang="en"><strong>Sticky doesn't work?</strong> Check:
+        <ol>
+            <li>Is <code>top</code> (or another side) set?</li>
+            <li>Does any parent have <code>overflow: hidden/scroll/auto</code>?</li>
+            <li>Is the parent taller than the sticky element itself?</li>
+        </ol>
+        </p>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">📌 FIXED-ЭЛЕМЕНТЫ</h2>
+    <h2 data-lang="en">📌 FIXED ELEMENTS</h2>
+
+    <pre><code>/* Кнопка "Наверх" */
+.back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 50;
+}
+
+/* Модалка-фон на весь экран */
+.modal-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+}</code></pre>
+
+    <div class="remember">
+        <p data-lang="ru"><strong>Fixed-шапка ≠ sticky-шапка.</strong> Fixed вырвана из потока, контент уходит ПОД неё. Если используешь fixed-шапку высотой 70px — добавь <code>padding-top: 70px</code> на <code>main</code>.</p>
+        <p data-lang="en"><strong>Fixed header ≠ sticky header.</strong> Fixed is pulled from flow, content goes UNDER it. If you use a 70px fixed header — add <code>padding-top: 70px</code> to <code>main</code>.</p>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">🔢 Z-INDEX — ШКАЛА</h2>
+    <h2 data-lang="en">🔢 Z-INDEX — SCALE</h2>
+
+    <table>
+        <tr><th>z-index</th><th data-lang="ru">Что</th><th data-lang="en">What</th></tr>
+        <tr><td>-1</td><td data-lang="ru">Декоративный фон под контентом</td><td data-lang="en">Decorative background under content</td></tr>
+        <tr><td>1-10</td><td data-lang="ru">Бейджи, иконки</td><td data-lang="en">Badges, icons</td></tr>
+        <tr><td>50-100</td><td data-lang="ru">Sticky/fixed шапка, dropdown</td><td data-lang="en">Sticky/fixed header, dropdown</td></tr>
+        <tr><td>1000+</td><td data-lang="ru">Модалки, тосты</td><td data-lang="en">Modals, toasts</td></tr>
+    </table>
+
+    <div class="remember">
+        <p data-lang="ru"><strong>z-index работает только если у элемента <code>position</code> ≠ static.</strong> На обычном элементе z-index игнорируется.</p>
+        <p data-lang="en"><strong>z-index only works if the element has <code>position</code> ≠ static.</strong> On a regular element z-index is ignored.</p>
+    </div>
+
+    <hr>
+
+    <h2 data-lang="ru">🎨 ШПАРГАЛКА — ЧТО ВЫБРАТЬ</h2>
+    <h2 data-lang="en">🎨 CHEATSHEET — WHAT TO PICK</h2>
+
+    <table>
+        <tr><th data-lang="ru">Что нужно</th><th data-lang="en">What you need</th><th>position</th></tr>
+        <tr><td data-lang="ru">«Просто блок на странице»</td><td data-lang="en">"Just a block on the page"</td><td><code>static</code> (по умолчанию)</td></tr>
+        <tr><td data-lang="ru">«Подвинуть на пару пикселей»</td><td data-lang="en">"Shift by a few pixels"</td><td><code>relative</code> + top/left</td></tr>
+        <tr><td data-lang="ru">«Контейнер для бейджа/иконки»</td><td data-lang="en">"Container for a badge/icon"</td><td><code>relative</code> (без top/left)</td></tr>
+        <tr><td data-lang="ru">«Бейдж в углу карточки»</td><td data-lang="en">"Badge in card corner"</td><td><code>absolute</code> на бейдже</td></tr>
+        <tr><td data-lang="ru">«Кнопка чата в углу экрана»</td><td data-lang="en">"Chat button in screen corner"</td><td><code>fixed</code></td></tr>
+        <tr><td data-lang="ru">«Шапка прилипает при скролле»</td><td data-lang="en">"Header sticks when scrolling"</td><td><code>sticky</code> + top:0</td></tr>
+        <tr><td data-lang="ru">«Модальное окно поверх всего»</td><td data-lang="en">"Modal window over everything"</td><td><code>fixed</code> + z-index:1000</td></tr>
+    </table>
+
+    <hr>
+
+    <h2 data-lang="ru">🚫 ТОП-5 ОШИБОК</h2>
+    <h2 data-lang="en">🚫 TOP-5 MISTAKES</h2>
+
+    <ol data-lang="ru">
+        <li><strong>absolute без relative-родителя</strong> → улетает в угол страницы</li>
+        <li><strong>sticky без top</strong> → не прилипает</li>
+        <li><strong>sticky с overflow:hidden на родителе</strong> → не работает</li>
+        <li><strong>прозрачная sticky-шапка</strong> → текст просвечивает</li>
+        <li><strong>z-index без position</strong> → игнорируется</li>
+    </ol>
+    <ol data-lang="en">
+        <li><strong>absolute without relative parent</strong> → flies to page corner</li>
+        <li><strong>sticky without top</strong> → doesn't stick</li>
+        <li><strong>sticky with overflow:hidden on parent</strong> → doesn't work</li>
+        <li><strong>transparent sticky header</strong> → text shows through</li>
+        <li><strong>z-index without position</strong> → ignored</li>
+    </ol>
+
+    <hr>
+
+    <div class="homework">
+        <p data-lang="ru"><strong>Открой файл <code>tasks.html</code> и сделай 3 задания:</strong></p>
+        <ul data-lang="ru">
+            <li>Задание 8.1 — relative и absolute (бейдж в углу карточки)</li>
+            <li>Задание 8.2 — fixed (кнопка «Наверх»)</li>
+            <li>Задание 8.3 — sticky-навигация</li>
+        </ul>
+        <p data-lang="en"><strong>Open <code>tasks.html</code> and do 3 tasks:</strong></p>
+        <ul data-lang="en">
+            <li>Task 8.1 — relative and absolute (badge in card corner)</li>
+            <li>Task 8.2 — fixed ("Back to top" button)</li>
+            <li>Task 8.3 — sticky navigation</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

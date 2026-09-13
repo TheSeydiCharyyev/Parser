@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 33 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 33: Разработка — CSS-стили</span>
+    <span class="nav-title" data-lang="en">Lesson 33: Development — CSS Styles</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 33: Разработка — CSS-стили</p>
+    <p class="subtitle" data-lang="en">Lesson 33: Development — CSS Styles</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 33.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 33.1: BASE.CSS — ТИПОГРАФИКА + КОНТЕЙНЕР</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 33.1: BASE.CSS — TYPOGRAPHY + CONTAINER</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 32.1: Заполните base.css</span>
+            <span class="task-title" data-lang="en">Task 32.1: Fill base.css</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">45 минут</span>
+                <span class="badge badge-time" data-lang="en">45 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Написать CSS reset, типографику и контейнер в base.css</div>
+        <div class="task-goal" data-lang="en">Write CSS reset, typography and container in base.css</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Reset (5 мин):</strong>
+<pre><code>*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul, ol { list-style: none; }
+a { color: inherit; text-decoration: none; }
+img, svg { max-width: 100%; height: auto; display: block; }
+button, input, textarea, select { font-family: inherit;
+                                   font-size: inherit;
+                                   color: inherit; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }</code></pre>
+            </li>
+            <li><strong>Body (5 мин):</strong> базовый шрифт, размер, line-height, цвет, фон — всё через <code>var(--*)</code>.</li>
+            <li><strong>Заголовки h1-h4 (10 мин):</strong>
+                <ul>
+                    <li>Общий стиль: <code>font-weight: 700</code>, <code>line-height: 1.2</code></li>
+                    <li>h1 с <code>letter-spacing: -0.02em</code></li>
+                    <li>Размеры через <code>var(--fs-h1)</code>...<code>var(--fs-h4)</code></li>
+                </ul>
+            </li>
+            <li><strong>Параграфы и ссылки (5 мин):</strong>
+                <ul>
+                    <li><code>p</code> с <code>margin-bottom: var(--space-md)</code></li>
+                    <li><code>a</code> с цветом <code>var(--color-primary)</code> и transition</li>
+                    <li><code>a:hover</code> с <code>var(--color-primary-dark)</code></li>
+                </ul>
+            </li>
+            <li><strong>Контейнер (5 мин):</strong>
+<pre><code>.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}</code></pre>
+            </li>
+            <li><strong>Проверка (15 мин):</strong> Откройте index.html в браузере:
+                <ul>
+                    <li>Шрифт ваш (из Google Fonts), не системный</li>
+                    <li>Заголовки имеют правильные размеры</li>
+                    <li>Ссылки цветные, при hover меняются</li>
+                    <li>Контент в центре экрана (не растянут на всю ширину)</li>
+                </ul>
+            </li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Reset (5 min):</strong>
+<pre><code>*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul, ol { list-style: none; }
+a { color: inherit; text-decoration: none; }
+img, svg { max-width: 100%; height: auto; display: block; }
+button, input, textarea, select { font-family: inherit;
+                                   font-size: inherit;
+                                   color: inherit; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }</code></pre>
+            </li>
+            <li><strong>Body (5 min):</strong> base font, size, line-height, color, background — all via <code>var(--*)</code>.</li>
+            <li><strong>Headings h1-h4 (10 min):</strong>
+                <ul>
+                    <li>Common style: <code>font-weight: 700</code>, <code>line-height: 1.2</code></li>
+                    <li>h1 with <code>letter-spacing: -0.02em</code></li>
+                    <li>Sizes via <code>var(--fs-h1)</code>...<code>var(--fs-h4)</code></li>
+                </ul>
+            </li>
+            <li><strong>Paragraphs and links (5 min):</strong>
+                <ul>
+                    <li><code>p</code> with <code>margin-bottom: var(--space-md)</code></li>
+                    <li><code>a</code> with <code>var(--color-primary)</code> and transition</li>
+                    <li><code>a:hover</code> with <code>var(--color-primary-dark)</code></li>
+                </ul>
+            </li>
+            <li><strong>Container (5 min):</strong>
+<pre><code>.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}</code></pre>
+            </li>
+            <li><strong>Check (15 min):</strong> Open index.html in browser:
+                <ul>
+                    <li>Font is yours (from Google Fonts), not system</li>
+                    <li>Headings have correct sizes</li>
+                    <li>Links are colored, change on hover</li>
+                    <li>Content centered (not stretched full width)</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Проверка шрифта:</strong> F12 → Elements → <code>&lt;body&gt;</code> → Computed → <code>font-family</code>. Должен быть ваш Google Fonts, не Arial/system. Если не грузится — проверьте подключение в <code>&lt;head&gt;</code>.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Font check:</strong> F12 → Elements → <code>&lt;body&gt;</code> → Computed → <code>font-family</code>. Should be your Google Fonts, not Arial/system. If not loading — check <code>&lt;head&gt;</code> connection.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Reset написан полностью (7 правил)</li>
+                <li><code>box-sizing: border-box</code> на <code>*</code></li>
+                <li>body использует <code>var(--font-primary)</code>, <code>var(--fs-body)</code>, <code>var(--color-text)</code></li>
+                <li>h1-h4 стилизованы с правильными line-height и font-weight</li>
+                <li>Размеры шрифтов через <code>var(--fs-*)</code></li>
+                <li>p и a стилизованы</li>
+                <li><code>.container</code> работает — контент центрирован и ограничен 1200px</li>
+                <li>В браузере шрифт Google Fonts реально применён</li>
+                <li>Никаких HEX-цветов в <code>base.css</code> — только переменные</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Reset written completely (7 rules)</li>
+                <li><code>box-sizing: border-box</code> on <code>*</code></li>
+                <li>body uses <code>var(--font-primary)</code>, <code>var(--fs-body)</code>, <code>var(--color-text)</code></li>
+                <li>h1-h4 styled with proper line-height and font-weight</li>
+                <li>Font sizes via <code>var(--fs-*)</code></li>
+                <li>p and a styled</li>
+                <li><code>.container</code> works — content centered and limited to 1200px</li>
+                <li>In browser, Google Fonts actually applied</li>
+                <li>No HEX colors in <code>base.css</code> — variables only</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 33.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 33.2: COMPONENTS.CSS — КНОПКИ, КАРТОЧКИ, ФОРМЫ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 33.2: COMPONENTS.CSS — BUTTONS, CARDS, FORMS</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 32.2: Стилизация компонентов</span>
+            <span class="task-title" data-lang="en">Task 32.2: Style components</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">45 минут</span>
+                <span class="badge badge-time" data-lang="en">45 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Написать стили для переиспользуемых компонентов</div>
+        <div class="task-goal" data-lang="en">Write styles for reusable components</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Кнопки (15 мин):</strong> Напишите в <code>components.css</code>:
+                <ul>
+                    <li>Базовый класс <code>.btn</code>: display: inline-flex, padding, border, border-radius, font-weight, transition, cursor</li>
+                    <li>Модификаторы цвета: <code>.btn-primary</code>, <code>.btn-outline</code>, <code>.btn-ghost</code></li>
+                    <li>Модификаторы размера: <code>.btn-sm</code>, <code>.btn-lg</code></li>
+                    <li>Модификатор ширины: <code>.btn-full</code></li>
+                    <li>Состояния: <code>:hover</code> (translateY + shadow), <code>:focus-visible</code> (box-shadow ring), <code>:active</code> (translateY 0), <code>:disabled</code> (opacity 0.5 + cursor not-allowed)</li>
+                </ul>
+            </li>
+            <li><strong>Карточки (15 мин):</strong> Напишите:
+                <ul>
+                    <li><code>.card</code>: background, border-radius, box-shadow, <strong>overflow: hidden</strong>, transition</li>
+                    <li><code>.card:hover</code>: translateY(-4px) + усиление тени</li>
+                    <li><code>.card-image</code>: width: 100%, height: 240px, object-fit: cover</li>
+                    <li><code>.card-body</code>: padding</li>
+                    <li><code>.card-title</code>: font-size, font-weight, margin-bottom</li>
+                    <li><code>.card-text</code>: color muted</li>
+                    <li><code>.card-price</code>: крупный, цветной</li>
+                </ul>
+            </li>
+            <li><strong>Формы (10 мин):</strong>
+                <ul>
+                    <li><code>.form-group</code>: margin-bottom</li>
+                    <li><code>.form-label</code>: display block, font-weight, margin-bottom</li>
+                    <li><code>.form-input</code>, <code>.form-textarea</code>: width 100%, padding, border, border-radius, <strong>font-family: inherit</strong></li>
+                    <li><code>.form-input:focus</code>: border-color primary + box-shadow focus-ring (rgba primary 0.15)</li>
+                    <li><code>.form-textarea</code>: min-height, <strong>resize: vertical</strong></li>
+                </ul>
+            </li>
+            <li><strong>Проверка (5 мин):</strong> Откройте страницу — кнопки, карточки, формы выглядят профессионально. Hover работает, focus видимый.</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Buttons (15 min):</strong> Write in <code>components.css</code>:
+                <ul>
+                    <li>Base class <code>.btn</code>: display: inline-flex, padding, border, border-radius, font-weight, transition, cursor</li>
+                    <li>Color modifiers: <code>.btn-primary</code>, <code>.btn-outline</code>, <code>.btn-ghost</code></li>
+                    <li>Size modifiers: <code>.btn-sm</code>, <code>.btn-lg</code></li>
+                    <li>Width modifier: <code>.btn-full</code></li>
+                    <li>States: <code>:hover</code> (translateY + shadow), <code>:focus-visible</code> (box-shadow ring), <code>:active</code> (translateY 0), <code>:disabled</code> (opacity 0.5 + cursor not-allowed)</li>
+                </ul>
+            </li>
+            <li><strong>Cards (15 min):</strong> Write:
+                <ul>
+                    <li><code>.card</code>: background, border-radius, box-shadow, <strong>overflow: hidden</strong>, transition</li>
+                    <li><code>.card:hover</code>: translateY(-4px) + stronger shadow</li>
+                    <li><code>.card-image</code>: width: 100%, height: 240px, object-fit: cover</li>
+                    <li><code>.card-body</code>: padding</li>
+                    <li><code>.card-title</code>: font-size, font-weight, margin-bottom</li>
+                    <li><code>.card-text</code>: muted color</li>
+                    <li><code>.card-price</code>: large, colored</li>
+                </ul>
+            </li>
+            <li><strong>Forms (10 min):</strong>
+                <ul>
+                    <li><code>.form-group</code>: margin-bottom</li>
+                    <li><code>.form-label</code>: display block, font-weight, margin-bottom</li>
+                    <li><code>.form-input</code>, <code>.form-textarea</code>: width 100%, padding, border, border-radius, <strong>font-family: inherit</strong></li>
+                    <li><code>.form-input:focus</code>: border-color primary + box-shadow focus-ring (rgba primary 0.15)</li>
+                    <li><code>.form-textarea</code>: min-height, <strong>resize: vertical</strong></li>
+                </ul>
+            </li>
+            <li><strong>Check (5 min):</strong> Open the page — buttons, cards, forms look professional. Hover works, focus visible.</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Готовый шаблон .btn (скопируйте и измените под свою палитру):</strong>
+<pre><code>.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 12px 28px;
+    font-size: var(--fs-body);
+    font-weight: 600;
+    line-height: 1;
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+.btn-primary:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+}
+
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+}
+.btn:active { transform: translateY(0); }
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}</code></pre>
+            <strong>Замените rgba(59, 130, 246, 0.4)</strong> на ваш primary цвет в rgba-формате.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Ready .btn template (copy and adjust for your palette):</strong>
+<pre><code>.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 12px 28px;
+    font-size: var(--fs-body);
+    font-weight: 600;
+    line-height: 1;
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+.btn-primary:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+}
+
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+}
+.btn:active { transform: translateY(0); }
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}</code></pre>
+            <strong>Replace rgba(59, 130, 246, 0.4)</strong> with your primary color in rgba format.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>.btn базовый + минимум 3 модификатора цвета</li>
+                <li>.btn-sm, .btn-lg, .btn-full — размерные модификаторы</li>
+                <li>4 состояния: :hover, :focus-visible, :active, :disabled</li>
+                <li>.card с элементами (image, body, title, text, price)</li>
+                <li>.card имеет <code>overflow: hidden</code></li>
+                <li>.card-image с <code>object-fit: cover</code></li>
+                <li>.card:hover с анимацией (translateY + shadow)</li>
+                <li>.form-input, .form-textarea, .form-label, .form-group</li>
+                <li>Focus-ring на input через <code>box-shadow</code> (не <code>outline</code>)</li>
+                <li><code>font-family: inherit</code> на input/textarea</li>
+                <li>В браузере — компоненты выглядят стилизованно и интерактивно</li>
+            </ul>
+            <ul data-lang="en">
+                <li>.btn base + at least 3 color modifiers</li>
+                <li>.btn-sm, .btn-lg, .btn-full — size modifiers</li>
+                <li>4 states: :hover, :focus-visible, :active, :disabled</li>
+                <li>.card with elements (image, body, title, text, price)</li>
+                <li>.card has <code>overflow: hidden</code></li>
+                <li>.card-image with <code>object-fit: cover</code></li>
+                <li>.card:hover with animation (translateY + shadow)</li>
+                <li>.form-input, .form-textarea, .form-label, .form-group</li>
+                <li>Focus-ring on input via <code>box-shadow</code> (not <code>outline</code>)</li>
+                <li><code>font-family: inherit</code> on input/textarea</li>
+                <li>In browser — components look styled and interactive</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 33.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 33.3: ПРОВЕРКА + КОНСУЛЬТАЦИЯ + COMMIT</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 33.3: CHECK + CONSULTATION + COMMIT</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 32.3: Полировка и обратная связь</span>
+            <span class="task-title" data-lang="en">Task 32.3: Polish and feedback</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">45 минут</span>
+                <span class="badge badge-time" data-lang="en">45 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Проверить стили на всех страницах, получить фидбек, закоммитить</div>
+        <div class="task-goal" data-lang="en">Check styles on all pages, get feedback, commit</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <ol data-lang="ru">
+            <li><strong>Проверка на всех страницах (10 мин):</strong> Откройте каждую страницу проекта — кнопки, карточки, формы выглядят одинаково? Если нет — значит где-то в HTML забыли класс.</li>
+            <li><strong>Hover/focus тест (5 мин):</strong>
+                <ul>
+                    <li>Hover над каждой кнопкой → анимация плавная</li>
+                    <li>Tab по странице → focus-ring виден на всех интерактивных</li>
+                    <li>Click → :active сработал</li>
+                </ul>
+            </li>
+            <li><strong>Проверка переменных (5 мин):</strong> Откройте <code>base.css</code> и <code>components.css</code>. Поиск в файле:
+                <ul>
+                    <li>Найдите все <code>#</code> (HEX-цвета) — <strong>их не должно быть</strong>. Если есть — замените на <code>var(--color-*)</code></li>
+                    <li>Найдите <code>px</code> у font-size — должны быть только <code>var(--fs-*)</code></li>
+                </ul>
+            </li>
+            <li><strong>Консультация (15 мин):</strong> Покажите преподавателю:
+                <ul>
+                    <li>Главную страницу в браузере</li>
+                    <li>base.css и components.css в VS Code</li>
+                    <li>Hover/focus эффекты</li>
+                    <li>Вопросы по неясным местам</li>
+                </ul>
+            </li>
+            <li><strong>Правки (5 мин):</strong> Внесите правки по комментариям.</li>
+            <li><strong>Коммит (5 мин):</strong>
+<pre><code>git add .
+git commit -m "Lesson 33: Base styles + components"
+git push</code></pre>
+            </li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Check all pages (10 min):</strong> Open each project page — do buttons, cards, forms look the same? If not — a class was forgotten in HTML.</li>
+            <li><strong>Hover/focus test (5 min):</strong>
+                <ul>
+                    <li>Hover over each button → animation smooth</li>
+                    <li>Tab through page → focus-ring visible on all interactive</li>
+                    <li>Click → :active triggered</li>
+                </ul>
+            </li>
+            <li><strong>Variable check (5 min):</strong> Open <code>base.css</code> and <code>components.css</code>. Search in file:
+                <ul>
+                    <li>Find all <code>#</code> (HEX colors) — <strong>there shouldn't be any</strong>. If there are — replace with <code>var(--color-*)</code></li>
+                    <li>Find <code>px</code> in font-size — should only be <code>var(--fs-*)</code></li>
+                </ul>
+            </li>
+            <li><strong>Consultation (15 min):</strong> Show the instructor:
+                <ul>
+                    <li>Home page in browser</li>
+                    <li>base.css and components.css in VS Code</li>
+                    <li>Hover/focus effects</li>
+                    <li>Questions on unclear parts</li>
+                </ul>
+            </li>
+            <li><strong>Fixes (5 min):</strong> Apply fixes per comments.</li>
+            <li><strong>Commit (5 min):</strong>
+<pre><code>git add .
+git commit -m "Lesson 33: Base styles + components"
+git push</code></pre>
+            </li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Вопросы на консультации:</strong>
+            <ul>
+                <li>«Мои кнопки похожи на макет?»</li>
+                <li>«Line-height достаточен для чтения?»</li>
+                <li>«Нужен ли ещё модификатор кнопки (<code>.btn-danger</code>, <code>.btn-success</code>)?»</li>
+                <li>«Правильно ли focus-ring виден на тёмном фоне?»</li>
+                <li>«Карточки выглядят премиально?»</li>
+            </ul>
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Questions at consultation:</strong>
+            <ul>
+                <li>"Do my buttons match the mockup?"</li>
+                <li>"Is line-height enough for reading?"</li>
+                <li>"Do I need another button modifier (<code>.btn-danger</code>, <code>.btn-success</code>)?"</li>
+                <li>"Is focus-ring visible on dark background?"</li>
+                <li>"Do cards look premium?"</li>
+            </ul>
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все страницы проверены — компоненты выглядят одинаково</li>
+                <li>Hover/focus/active работают на всех кнопках</li>
+                <li>В CSS нет HEX-цветов (кроме rgba для полупрозрачных теней)</li>
+                <li>Все font-size через <code>var(--fs-*)</code></li>
+                <li>Преподаватель дал обратную связь, правки внесены</li>
+                <li>Коммит с сообщением «Lesson 33: ...»</li>
+                <li>Код запушен на GitHub</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All pages checked — components look consistent</li>
+                <li>Hover/focus/active work on all buttons</li>
+                <li>No HEX colors in CSS (except rgba for semi-transparent shadows)</li>
+                <li>All font-size via <code>var(--fs-*)</code></li>
+                <li>Instructor gave feedback, fixes applied</li>
+                <li>Commit with message "Lesson 33: ..."</li>
+                <li>Code pushed to GitHub</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 32.4: Style Guide — страница демо</span>
+            <span class="task-title" data-lang="en">Task 32.4: Style Guide — demo page</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">30 минут</span>
+                <span class="badge badge-time" data-lang="en">30 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Создать отдельную страницу, где показаны все компоненты</div>
+        <div class="task-goal" data-lang="en">Create a separate page showing all components</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте <code>styleguide.html</code> в корне проекта — это справочная страница <strong>только для вас</strong> (не для публики). На ней будут все ваши компоненты в разных состояниях:</p>
+        <p data-lang="en">Create <code>styleguide.html</code> at the project root — a reference page <strong>for you</strong> (not public). Shows all your components in various states:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Типографика:</strong> h1, h2, h3, h4, параграф, ссылка в тексте, <strong>жирный</strong>, <em>курсив</em>, маленький текст.</li>
+            <li><strong>Цветовая палитра:</strong> 8 блоков с вашими цветами и HEX-кодами под ними.</li>
+            <li><strong>Кнопки (минимум 15 штук):</strong>
+                <ul>
+                    <li>3 цвета × 3 размера = 9 вариантов</li>
+                    <li>3 кнопки в состоянии <code>:disabled</code></li>
+                    <li>3 кнопки с иконками (SVG)</li>
+                </ul>
+            </li>
+            <li><strong>Карточки:</strong> 3 карточки с разным контентом (с ценой, без цены, с кнопкой внутри).</li>
+            <li><strong>Формы:</strong> полный набор полей — text, email, tel, textarea, checkbox, radio, select.</li>
+            <li><strong>Alerts и badges</strong> (если есть в вашем дизайне).</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Typography:</strong> h1, h2, h3, h4, paragraph, text link, <strong>bold</strong>, <em>italic</em>, small text.</li>
+            <li><strong>Color palette:</strong> 8 blocks with your colors and HEX codes below them.</li>
+            <li><strong>Buttons (min 15):</strong>
+                <ul>
+                    <li>3 colors × 3 sizes = 9 variants</li>
+                    <li>3 buttons in <code>:disabled</code> state</li>
+                    <li>3 buttons with icons (SVG)</li>
+                </ul>
+            </li>
+            <li><strong>Cards:</strong> 3 cards with different content (with price, without, with button inside).</li>
+            <li><strong>Forms:</strong> full set — text, email, tel, textarea, checkbox, radio, select.</li>
+            <li><strong>Alerts and badges</strong> (if in your design).</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Зачем styleguide:</strong>
+            <ul>
+                <li>Тестирует <strong>все</strong> компоненты сразу</li>
+                <li>Видно сразу, если какой-то вариант сломан</li>
+                <li>При работе над секциями вы открываете styleguide и копируете код компонента</li>
+                <li>Показывает работодателю уровень подхода (у профи всегда есть styleguide)</li>
+            </ul>
+            Styleguide не включается в публичное меню сайта — это инструмент для разработки.
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Why styleguide:</strong>
+            <ul>
+                <li>Tests <strong>all</strong> components at once</li>
+                <li>Obvious if any variant is broken</li>
+                <li>When working on sections you open styleguide and copy component code</li>
+                <li>Shows employers your level (pros always have a styleguide)</li>
+            </ul>
+            Styleguide isn't in the public menu — it's a development tool.
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li><code>styleguide.html</code> создан и работает</li>
+                <li>Показаны все заголовки h1-h4, параграф, ссылки</li>
+                <li>8 цветов палитры</li>
+                <li>Минимум 15 кнопок (варианты + состояния)</li>
+                <li>3+ карточки разных конфигураций</li>
+                <li>Полный набор элементов формы</li>
+                <li>Не включён в основную навигацию (отдельная страница)</li>
+            </ul>
+            <ul data-lang="en">
+                <li><code>styleguide.html</code> created and working</li>
+                <li>All headings h1-h4, paragraph, links shown</li>
+                <li>8 palette colors</li>
+                <li>At least 15 buttons (variants + states)</li>
+                <li>3+ cards of different configurations</li>
+                <li>Full set of form elements</li>
+                <li>Not in main navigation (separate page)</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

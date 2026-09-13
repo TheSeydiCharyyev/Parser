@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 25 — Bootstrap: основы</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 25: Bootstrap — основы</span>
+    <span class="nav-title" data-lang="en">Lesson 25: Bootstrap — Basics</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 25: Bootstrap — основы</h1>
+    <h1 data-lang="en">Lesson 25: Bootstrap — Basics</h1>
+    <p class="subtitle" data-lang="ru">Что такое Bootstrap, подключение CDN, сетка, типография, кнопки, утилиты</p>
+    <p class="subtitle" data-lang="en">What is Bootstrap, CDN setup, grid, typography, buttons, utilities</p>
+
+    <div class="why" data-lang="ru">
+        <p>Последние 23 урока мы писали CSS <strong>вручную</strong>. Это дало понимание того, как всё работает «под капотом» — и это бесценно. Но в реальной работе разработчики часто используют <strong>CSS-фреймворки</strong> — готовые библиотеки с кнопками, сетками, модалками. Это ускоряет работу в 3-5 раз.</p>
+        <p><strong>Bootstrap</strong> — самый популярный CSS-фреймворк. По статистике, его использует <strong>более 20% всех сайтов в интернете</strong>. Знание Bootstrap — это буквально требование в 80% вакансий для junior-верстальщиков и веб-разработчиков.</p>
+        <p>Важно понять: фреймворк не заменяет знание CSS — он его <strong>ускоряет</strong>. Без базовых знаний (flexbox, grid, media queries), вы не поймёте, что делают классы Bootstrap. Поэтому мы изучаем его только сейчас, а не в начале курса.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Подключать Bootstrap к любой странице через CDN за 30 секунд</li>
+            <li>Использовать 12-колоночную сетку (<code>container</code> → <code>row</code> → <code>col</code>)</li>
+            <li>Делать адаптивность без media queries — через breakpoint-классы (<code>col-md-6</code>)</li>
+            <li>Стилизовать кнопки, тексты, формы одним классом</li>
+            <li>Применять утилиты: отступы (<code>mt-3</code>), flex (<code>d-flex</code>), текст (<code>text-center</code>)</li>
+            <li>Собирать типовые страницы (landing, карточки, галерея) в разы быстрее</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>For the last 23 lessons we wrote CSS <strong>by hand</strong>. This gave understanding of how everything works "under the hood" — priceless. But in real work, developers often use <strong>CSS frameworks</strong> — ready libraries with buttons, grids, modals. Speeds up work 3-5×.</p>
+        <p><strong>Bootstrap</strong> is the most popular CSS framework. Per statistics, <strong>over 20% of all sites on the internet</strong> use it. Knowing Bootstrap is literally a requirement in 80% of junior web developer job postings.</p>
+        <p>Important: a framework doesn't replace CSS knowledge — it <strong>accelerates</strong> it. Without basics (flexbox, grid, media queries), you won't understand what Bootstrap classes do. That's why we learn it now, not at the start of the course.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Hook up Bootstrap on any page via CDN in 30 seconds</li>
+            <li>Use the 12-column grid (<code>container</code> → <code>row</code> → <code>col</code>)</li>
+            <li>Make responsive layouts without media queries — via breakpoint classes (<code>col-md-6</code>)</li>
+            <li>Style buttons, text, forms with a single class</li>
+            <li>Apply utilities: spacing (<code>mt-3</code>), flex (<code>d-flex</code>), text (<code>text-center</code>)</li>
+            <li>Build typical pages (landing, cards, gallery) much faster</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#what">Что такое Bootstrap</a></li>
+            <li><a href="#cdn">Подключение через CDN</a></li>
+            <li><a href="#container">Контейнеры</a></li>
+            <li><a href="#grid">Сетка: row и col</a></li>
+            <li><a href="#responsive-cols">Адаптивные колонки</a></li>
+            <li><a href="#typography">Типография</a></li>
+            <li><a href="#colors">Цвета Bootstrap</a></li>
+            <li><a href="#buttons">Кнопки</a></li>
+            <li><a href="#spacing">Утилиты: отступы (spacing)</a></li>
+            <li><a href="#display">Утилиты: display, text, flex</a></li>
+            <li><a href="#practice">Практика: страница на Bootstrap-сетке</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#what">What is Bootstrap</a></li>
+            <li><a href="#cdn">CDN setup</a></li>
+            <li><a href="#container">Containers</a></li>
+            <li><a href="#grid">Grid: row and col</a></li>
+            <li><a href="#responsive-cols">Responsive columns</a></li>
+            <li><a href="#typography">Typography</a></li>
+            <li><a href="#colors">Bootstrap colors</a></li>
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#spacing">Utilities: spacing</a></li>
+            <li><a href="#display">Utilities: display, text, flex</a></li>
+            <li><a href="#practice">Practice: page on Bootstrap grid</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ЧТО ТАКОЕ ==================== -->
+    <h2 id="what" data-lang="ru">1. Что такое Bootstrap</h2>
+    <h2 id="what-en" data-lang="en">1. What is Bootstrap</h2>
+
+    <p data-lang="ru"><strong>Bootstrap</strong> — самый популярный CSS-фреймворк в мире. Это набор <strong>готовых CSS-классов</strong>, которые позволяют быстро создавать адаптивные страницы без написания CSS с нуля.</p>
+    <p data-lang="en"><strong>Bootstrap</strong> — the most popular CSS framework in the world. It's a set of <strong>ready-made CSS classes</strong> that let you quickly build responsive pages without writing CSS from scratch.</p>
+
+    <table data-lang="ru">
+        <tr><th>Без Bootstrap</th><th>С Bootstrap</th></tr>
+        <tr><td>Пишете CSS сами: сетки, кнопки, отступы</td><td>Добавляете классы: <code>row</code>, <code>col</code>, <code>btn</code></td></tr>
+        <tr><td>Media queries вручную</td><td>Адаптивность встроена (<code>col-md-6</code>)</td></tr>
+        <tr><td>Полный контроль, но дольше</td><td>Быстро, но менее гибко</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Without Bootstrap</th><th>With Bootstrap</th></tr>
+        <tr><td>Write CSS yourself: grids, buttons, spacing</td><td>Add classes: <code>row</code>, <code>col</code>, <code>btn</code></td></tr>
+        <tr><td>Media queries manually</td><td>Responsiveness built-in (<code>col-md-6</code>)</td></tr>
+        <tr><td>Full control, but slower</td><td>Fast, but less flexible</td></tr>
+    </table>
+
+    <div class="fun-fact" data-lang="ru">
+        <p>Bootstrap создан командой Twitter в 2011 году как внутренний набор стилей. Марк Отто и Джейкоб Торнтон открыли исходный код — и мир веб-разработки изменился. Сейчас его используют миллионы сайтов. Текущая версия — Bootstrap 5 (2021 год).</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p>Bootstrap was created by the Twitter team in 2011 as an internal style kit. Mark Otto and Jacob Thornton open-sourced it — and web development changed. Millions of sites use it now. Current version — Bootstrap 5 (2021).</p>
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>IKEA vs столярная мастерская.</strong> Писать CSS с нуля — как делать стол в столярной мастерской: абсолютный контроль, но долго. Bootstrap — как IKEA: берёте готовые детали, собираете быстро, результат всегда «ровный и стандартный». Для большинства заказов — идеально. Для уникального дизайна — нужна своя «столярка».</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>IKEA vs carpenter's workshop.</strong> Writing CSS from scratch is like making a table in a workshop: full control, but slow. Bootstrap is like IKEA: take ready parts, assemble fast, result is always "neat and standard". For most orders — perfect. For unique design — you need your own "carpentry".</p>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Когда использовать Bootstrap:</strong> админ-панели, internal-tools, MVP стартапов, быстрые landing-страницы клиентов. <strong>Когда НЕ использовать:</strong> продуктовые лендинги известных брендов (они хотят уникальный дизайн), креативные портфолио, сайты где важна «индивидуальность». Для первого коммерческого заказа (у клиента нет дизайнера) — Bootstrap идеален.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>When to use Bootstrap:</strong> admin panels, internal tools, startup MVPs, quick client landings. <strong>When NOT to use:</strong> product landings for established brands (they want unique design), creative portfolios, sites where "personality" matters. For your first commercial job (client has no designer) — Bootstrap is ideal.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CDN ==================== -->
+    <h2 id="cdn" data-lang="ru">2. Подключение через CDN</h2>
+    <h2 id="cdn-en" data-lang="en">2. CDN setup</h2>
+
+    <div class="why" data-lang="ru">
+        <p><strong>CDN</strong> (Content Delivery Network) — сервер, с которого браузер пользователя скачивает Bootstrap напрямую. Вам не нужно качать файлы на свой компьютер и класть их в проект. Одна ссылка в <code>&lt;head&gt;</code> — и все стили Bootstrap уже у вас.</p>
+        <p>Альтернатива — npm/скачивание файлов — используется в крупных проектах. Для учебных и клиентских проектов CDN идеален: простота, скорость загрузки (CDN кэшируется в браузере после первого визита на любой Bootstrap-сайт).</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p><strong>CDN</strong> (Content Delivery Network) is a server the user's browser downloads Bootstrap from directly. No need to download files to your computer. One link in <code>&lt;head&gt;</code> — and all Bootstrap styles are available.</p>
+        <p>Alternative — npm/download — is used in large projects. For learning and client projects CDN is ideal: simplicity, fast load (CDN gets cached in the browser after the first visit to any Bootstrap site).</p>
+    </div>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Bootstrap Page&lt;/title&gt;
+    &lt;!-- Bootstrap CSS --&gt;
+    &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;Hello Bootstrap!&lt;/h1&gt;
+
+    &lt;!-- Bootstrap JS (для компонентов) --&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>CSS</strong> подключаем в <code>&lt;head&gt;</code>. <strong>JS</strong> — перед <code>&lt;/body&gt;</code>. JS нужен для интерактивных компонентов (модалки, карусели, выпадающие меню).
+    </div>
+    <div class="important" data-lang="en">
+        <strong>CSS</strong> goes in <code>&lt;head&gt;</code>. <strong>JS</strong> — before <code>&lt;/body&gt;</code>. JS is needed for interactive components (modals, carousels, dropdowns).
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Свой CSS подключайте ПОСЛЕ Bootstrap.</strong> Bootstrap задаёт базовые стили через классы. Если ваш <code>style.css</code> идёт до Bootstrap — ваши правила <strong>перекроются</strong> Bootstrap'ом (каскад: кто позже, тот побеждает). Правильный порядок:</p>
+<pre><code>&lt;link href="https://cdn.../bootstrap.min.css" rel="stylesheet"&gt;
+&lt;link href="style.css" rel="stylesheet"&gt;   &lt;!-- Свой CSS ПОСЛЕ --&gt;</code></pre>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Load your CSS AFTER Bootstrap.</strong> Bootstrap sets base styles via classes. If your <code>style.css</code> comes before Bootstrap — your rules get <strong>overridden</strong> by Bootstrap (cascade: whoever comes later wins). Correct order:</p>
+<pre><code>&lt;link href="https://cdn.../bootstrap.min.css" rel="stylesheet"&gt;
+&lt;link href="style.css" rel="stylesheet"&gt;   &lt;!-- Your CSS AFTER --&gt;</code></pre>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Версия имеет значение.</strong> В уроке мы используем Bootstrap 5. Не путайте с Bootstrap 4 — в нём другие классы (<code>ml-</code>/<code>mr-</code> вместо <code>ms-</code>/<code>me-</code>, jQuery как зависимость). Всегда проверяйте версию в CDN-ссылке: <code>bootstrap@5.3.3</code>.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Version matters.</strong> In the lesson we use Bootstrap 5. Don't confuse with Bootstrap 4 — it has different classes (<code>ml-</code>/<code>mr-</code> instead of <code>ms-</code>/<code>me-</code>, jQuery as dependency). Always check the version in the CDN link: <code>bootstrap@5.3.3</code>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== CONTAINER ==================== -->
+    <h2 id="container" data-lang="ru">3. Контейнеры</h2>
+    <h2 id="container-en" data-lang="en">3. Containers</h2>
+
+<pre><code>&lt;!-- Адаптивный контейнер (max-width на breakpoints) --&gt;
+&lt;div class="container"&gt;...&lt;/div&gt;
+
+&lt;!-- На всю ширину --&gt;
+&lt;div class="container-fluid"&gt;...&lt;/div&gt;</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Класс</th><th>Поведение</th></tr>
+        <tr><td><code>.container</code></td><td>Фиксированная max-width на каждом breakpoint, центрируется</td></tr>
+        <tr><td><code>.container-fluid</code></td><td>Всегда 100% ширины</td></tr>
+        <tr><td><code>.container-md</code></td><td>100% до md, потом фиксированная</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Class</th><th>Behavior</th></tr>
+        <tr><td><code>.container</code></td><td>Fixed max-width at each breakpoint, centered</td></tr>
+        <tr><td><code>.container-fluid</code></td><td>Always 100% width</td></tr>
+        <tr><td><code>.container-md</code></td><td>100% until md, then fixed</td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ==================== GRID ==================== -->
+    <h2 id="grid" data-lang="ru">4. Сетка: row и col</h2>
+    <h2 id="grid-en" data-lang="en">4. Grid: row and col</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Сетка — <strong>главная фишка</strong> Bootstrap. Почему 12, а не 10 или 16? Потому что 12 делится на 1, 2, 3, 4, 6 — все самые частые раскладки. Половина = 6+6. Треть = 4+4+4. Четверть = 3+3+3+3. Гибкость.</p>
+        <p>Работает по принципу «матрёшки»: <code>container</code> (обёртка) → <code>row</code> (строка) → <code>col</code> (колонка). Строго в этом порядке.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>The grid is the <strong>main feature</strong> of Bootstrap. Why 12 and not 10 or 16? Because 12 divides by 1, 2, 3, 4, 6 — all the most common layouts. Half = 6+6. Third = 4+4+4. Quarter = 3+3+3+3. Flexibility.</p>
+        <p>Works like nested boxes: <code>container</code> (wrapper) → <code>row</code> (row) → <code>col</code> (column). Strictly in that order.</p>
+    </div>
+
+    <p data-lang="ru">Bootstrap использует <strong>12-колоночную сетку</strong>. Любая строка делится на 12 частей:</p>
+    <p data-lang="en">Bootstrap uses a <strong>12-column grid</strong>. Every row is divided into 12 parts:</p>
+
+<pre><code>&lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-6"&gt;Половина (6/12)&lt;/div&gt;
+        &lt;div class="col-6"&gt;Половина (6/12)&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-4"&gt;Треть (4/12)&lt;/div&gt;
+        &lt;div class="col-4"&gt;Треть (4/12)&lt;/div&gt;
+        &lt;div class="col-4"&gt;Треть (4/12)&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-3"&gt;Четверть&lt;/div&gt;
+        &lt;div class="col-9"&gt;Три четверти&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <div class="diagram" data-lang="ru">
+    12-колоночная сетка:
+    &#x250C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x2510;
+    &#x2502;1&#x2502;2&#x2502;3&#x2502;4&#x2502;5&#x2502;6&#x2502;7&#x2502;8&#x2502;9&#x2502;10&#x2502;11&#x2502;12&#x2502;
+    &#x2514;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2518;
+
+    col-6 + col-6 = 12  (2 равные колонки)
+    col-4 + col-4 + col-4 = 12  (3 равные)
+    col-3 + col-9 = 12  (sidebar + content)</div>
+    <div class="diagram" data-lang="en">
+    12-column grid:
+    &#x250C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x252C;&#x2500;&#x2510;
+    &#x2502;1&#x2502;2&#x2502;3&#x2502;4&#x2502;5&#x2502;6&#x2502;7&#x2502;8&#x2502;9&#x2502;10&#x2502;11&#x2502;12&#x2502;
+    &#x2514;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2534;&#x2500;&#x2518;
+
+    col-6 + col-6 = 12  (2 equal columns)
+    col-4 + col-4 + col-4 = 12  (3 equal)
+    col-3 + col-9 = 12  (sidebar + content)</div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Правило:</strong> <code>row</code> — строка. Внутри — <code>col</code>. Числа колонок в строке должны складываться до <strong>12</strong> (или меньше).
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Rule:</strong> <code>row</code> — a row. Inside — <code>col</code>. Column numbers in a row should add up to <strong>12</strong> (or less).
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Частые ошибки новичков:</strong></p>
+        <ul>
+            <li><code>col-6 + col-7 = 13</code> → колонки «переносятся» на новую строку. Складывайте до 12.</li>
+            <li><code>&lt;div class="col"&gt;</code> без родителя <code>row</code> → отступы и margin-ы сломаются.</li>
+            <li><code>&lt;div class="row"&gt;</code> без родителя <code>container</code> → появится горизонтальный скролл.</li>
+            <li>Прямые классы <code>col</code> без <code>row</code> — <strong>самая частая</strong> ошибка. Помните: <code>container</code> → <code>row</code> → <code>col</code>.</li>
+        </ul>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Common beginner mistakes:</strong></p>
+        <ul>
+            <li><code>col-6 + col-7 = 13</code> → columns wrap to a new row. Keep sum ≤ 12.</li>
+            <li><code>&lt;div class="col"&gt;</code> without <code>row</code> parent → spacing and margins break.</li>
+            <li><code>&lt;div class="row"&gt;</code> without <code>container</code> parent → horizontal scroll appears.</li>
+            <li>Direct <code>col</code> classes without <code>row</code> — the <strong>most common</strong> mistake. Remember: <code>container</code> → <code>row</code> → <code>col</code>.</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== RESPONSIVE COLS ==================== -->
+    <h2 id="responsive-cols" data-lang="ru">5. Адаптивные колонки</h2>
+    <h2 id="responsive-cols-en" data-lang="en">5. Responsive columns</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Вот где Bootstrap показывает свою мощь. Обычно для адаптива нужны media queries: <code>@media (min-width: 768px) { ... }</code> вручную. Bootstrap превращает это в <strong>один класс</strong>: <code>col-md-6</code>. Встроенная логика: «с 768px будь 6/12». Ноль строк CSS.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>This is where Bootstrap shows its power. Normally responsive layouts need manual media queries: <code>@media (min-width: 768px) { ... }</code>. Bootstrap turns this into <strong>one class</strong>: <code>col-md-6</code>. Built-in logic: "from 768px be 6/12". Zero lines of CSS.</p>
+    </div>
+
+    <p data-lang="ru">Добавьте <strong>breakpoint-суффикс</strong> к col — и колонки станут адаптивными:</p>
+    <p data-lang="en">Add a <strong>breakpoint suffix</strong> to col — and columns become responsive:</p>
+
+    <table data-lang="ru">
+        <tr><th>Класс</th><th>Breakpoint</th><th>Ширина экрана</th></tr>
+        <tr><td><code>col-</code></td><td>Все размеры</td><td>0px+</td></tr>
+        <tr><td><code>col-sm-</code></td><td>Small</td><td>≥ 576px</td></tr>
+        <tr><td><code>col-md-</code></td><td>Medium</td><td>≥ 768px</td></tr>
+        <tr><td><code>col-lg-</code></td><td>Large</td><td>≥ 992px</td></tr>
+        <tr><td><code>col-xl-</code></td><td>Extra large</td><td>≥ 1200px</td></tr>
+        <tr><td><code>col-xxl-</code></td><td>Extra extra large</td><td>≥ 1400px</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Class</th><th>Breakpoint</th><th>Screen width</th></tr>
+        <tr><td><code>col-</code></td><td>All sizes</td><td>0px+</td></tr>
+        <tr><td><code>col-sm-</code></td><td>Small</td><td>≥ 576px</td></tr>
+        <tr><td><code>col-md-</code></td><td>Medium</td><td>≥ 768px</td></tr>
+        <tr><td><code>col-lg-</code></td><td>Large</td><td>≥ 992px</td></tr>
+        <tr><td><code>col-xl-</code></td><td>Extra large</td><td>≥ 1200px</td></tr>
+        <tr><td><code>col-xxl-</code></td><td>Extra extra large</td><td>≥ 1400px</td></tr>
+    </table>
+
+<pre><code>&lt;!-- Мобильный: 1 колонка, Планшет: 2, Десктоп: 3 --&gt;
+&lt;div class="row"&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;Card 1&lt;/div&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;Card 2&lt;/div&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;Card 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <div class="analogy" data-lang="ru">
+        <p><code>col-12 col-md-6 col-lg-4</code> читается как: «На мобильном — 12/12 (вся ширина). С 768px — 6/12 (половина). С 992px — 4/12 (треть)».</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><code>col-12 col-md-6 col-lg-4</code> reads as: "On mobile — 12/12 (full width). From 768px — 6/12 (half). From 992px — 4/12 (third)".</p>
+    </div>
+
+    <div class="important" data-lang="ru">
+        <strong>Bootstrap = mobile-first.</strong> Breakpoints работают по принципу <code>min-width</code>: <code>col-md-6</code> применяется с 768px <strong>и шире</strong>. Если не задать <code>col-12</code> для мобильного — колонка будет «плавать» без контроля. Всегда ставьте базовый класс для мобильного, потом расширяйте.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Bootstrap = mobile-first.</strong> Breakpoints use <code>min-width</code>: <code>col-md-6</code> applies from 768px <strong>and up</strong>. Without <code>col-12</code> for mobile — the column "floats" uncontrolled. Always set a base class for mobile, then expand.
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Шаблоны раскладок, которые вы будете использовать 80% времени:</strong></p>
+<pre><code>&lt;!-- Карточки товаров (1/2/3) --&gt;
+col-12 col-md-6 col-lg-4
+
+&lt;!-- Галерея (2/3/4) --&gt;
+col-6 col-md-4 col-lg-3
+
+&lt;!-- Текст + картинка (стопка/ряд) --&gt;
+col-12 col-md-6
+
+&lt;!-- Sidebar + контент (стопка/25%+75%) --&gt;
+col-12 col-md-3  + col-12 col-md-9</code></pre>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Layouts you'll use 80% of the time:</strong></p>
+<pre><code>&lt;!-- Product cards (1/2/3) --&gt;
+col-12 col-md-6 col-lg-4
+
+&lt;!-- Gallery (2/3/4) --&gt;
+col-6 col-md-4 col-lg-3
+
+&lt;!-- Text + image (stack/row) --&gt;
+col-12 col-md-6
+
+&lt;!-- Sidebar + content (stack/25%+75%) --&gt;
+col-12 col-md-3  + col-12 col-md-9</code></pre>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ТИПОГРАФИЯ ==================== -->
+    <h2 id="typography" data-lang="ru">6. Типография</h2>
+    <h2 id="typography-en" data-lang="en">6. Typography</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Bootstrap переопределяет базовые стили текста: шрифт, размеры заголовков, высоту строки. Вы получаете «готовый дизайн» просто за счёт подключения. Но если хотите особенные эффекты — есть классы-утилиты: <code>display-1</code> (гигантский), <code>lead</code> (крупный параграф), <code>text-muted</code> (серый).</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Bootstrap overrides base text styles: font, heading sizes, line-height. You get "ready design" just by linking it. For special effects — utility classes exist: <code>display-1</code> (huge), <code>lead</code> (large paragraph), <code>text-muted</code> (gray).</p>
+    </div>
+
+<pre><code>&lt;!-- Заголовки --&gt;
+&lt;h1 class="display-1"&gt;Огромный заголовок&lt;/h1&gt;
+&lt;h2 class="display-4"&gt;Большой заголовок&lt;/h2&gt;
+
+&lt;!-- Текст --&gt;
+&lt;p class="lead"&gt;Увеличенный параграф&lt;/p&gt;
+&lt;p class="text-muted"&gt;Серый текст&lt;/p&gt;
+&lt;p class="fw-bold"&gt;Жирный текст&lt;/p&gt;
+&lt;p class="fst-italic"&gt;Курсив&lt;/p&gt;
+&lt;p class="text-center"&gt;По центру&lt;/p&gt;
+&lt;p class="text-uppercase"&gt;ВЕРХНИЙ РЕГИСТР&lt;/p&gt;</code></pre>
+
+    <hr>
+
+    <!-- ==================== ЦВЕТА ==================== -->
+    <h2 id="colors" data-lang="ru">7. Цвета Bootstrap</h2>
+    <h2 id="colors-en" data-lang="en">7. Bootstrap colors</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Bootstrap определяет <strong>8 стандартных цветов с именами</strong>: primary, secondary, success, danger, warning, info, light, dark. Это не просто палитра — это <strong>семантика</strong>. <code>primary</code> — «основное действие». <code>danger</code> — «опасное» (удаление, ошибка). <code>success</code> — «успех» (сохранено, отправлено). Один и тот же цвет используется единообразно по всему сайту.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Bootstrap defines <strong>8 standard named colors</strong>: primary, secondary, success, danger, warning, info, light, dark. Not just a palette — <strong>semantics</strong>. <code>primary</code> — "main action". <code>danger</code> — "dangerous" (delete, error). <code>success</code> — "success" (saved, sent). Same color used consistently across the site.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Имя</th><th>Цвет</th><th>Использование</th></tr>
+        <tr><td><code>primary</code></td><td>Синий (#0d6efd)</td><td>Основные действия</td></tr>
+        <tr><td><code>secondary</code></td><td>Серый (#6c757d)</td><td>Второстепенное</td></tr>
+        <tr><td><code>success</code></td><td>Зелёный (#198754)</td><td>Успех, подтверждение</td></tr>
+        <tr><td><code>danger</code></td><td>Красный (#dc3545)</td><td>Ошибки, удаление</td></tr>
+        <tr><td><code>warning</code></td><td>Жёлтый (#ffc107)</td><td>Предупреждения</td></tr>
+        <tr><td><code>info</code></td><td>Голубой (#0dcaf0)</td><td>Информация</td></tr>
+        <tr><td><code>light</code></td><td>Светлый (#f8f9fa)</td><td>Светлый фон</td></tr>
+        <tr><td><code>dark</code></td><td>Тёмный (#212529)</td><td>Тёмный фон</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Name</th><th>Color</th><th>Usage</th></tr>
+        <tr><td><code>primary</code></td><td>Blue (#0d6efd)</td><td>Main actions</td></tr>
+        <tr><td><code>secondary</code></td><td>Gray (#6c757d)</td><td>Secondary</td></tr>
+        <tr><td><code>success</code></td><td>Green (#198754)</td><td>Success, confirmation</td></tr>
+        <tr><td><code>danger</code></td><td>Red (#dc3545)</td><td>Errors, deletion</td></tr>
+        <tr><td><code>warning</code></td><td>Yellow (#ffc107)</td><td>Warnings</td></tr>
+        <tr><td><code>info</code></td><td>Cyan (#0dcaf0)</td><td>Information</td></tr>
+        <tr><td><code>light</code></td><td>Light (#f8f9fa)</td><td>Light background</td></tr>
+        <tr><td><code>dark</code></td><td>Dark (#212529)</td><td>Dark background</td></tr>
+    </table>
+
+<pre><code>&lt;!-- Цвет текста --&gt;
+&lt;p class="text-primary"&gt;Синий текст&lt;/p&gt;
+&lt;p class="text-danger"&gt;Красный текст&lt;/p&gt;
+
+&lt;!-- Цвет фона --&gt;
+&lt;div class="bg-primary text-white"&gt;Синий фон&lt;/div&gt;
+&lt;div class="bg-warning"&gt;Жёлтый фон&lt;/div&gt;</code></pre>
+
+    <hr>
+
+    <!-- ==================== КНОПКИ ==================== -->
+    <h2 id="buttons" data-lang="ru">8. Кнопки</h2>
+    <h2 id="buttons-en" data-lang="en">8. Buttons</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Кнопки — самый частый компонент на сайте. В Bootstrap достаточно двух классов: <code>btn</code> (базовый) + <code>btn-primary</code> (цвет). Получаете готовую кнопку с правильными отступами, border-radius, hover-эффектом. За 2 секунды. Без Bootstrap на это уходит 10-15 строк CSS на каждую кнопку.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Buttons are the most common component on a site. In Bootstrap you just need two classes: <code>btn</code> (base) + <code>btn-primary</code> (color). You get a ready button with proper padding, border-radius, hover effect. In 2 seconds. Without Bootstrap that's 10-15 lines of CSS per button.</p>
+    </div>
+
+<pre><code>&lt;!-- Заливка --&gt;
+&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Danger&lt;/button&gt;
+
+&lt;!-- Обводка --&gt;
+&lt;button class="btn btn-outline-primary"&gt;Outline&lt;/button&gt;
+
+&lt;!-- Размеры --&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Большая&lt;/button&gt;
+&lt;button class="btn btn-primary btn-sm"&gt;Маленькая&lt;/button&gt;
+
+&lt;!-- На всю ширину --&gt;
+&lt;button class="btn btn-primary w-100"&gt;Во всю ширину&lt;/button&gt;</code></pre>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><strong>Два класса — потому что так работает CSS.</strong> <code>.btn</code> даёт базовые стили (отступы, border-radius). <code>.btn-primary</code> — только цвет. Это называется <strong>модификатор</strong>. Bootstrap использует BEM-подобную систему: базовый класс + модификатор.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><strong>Two classes — because that's how CSS works.</strong> <code>.btn</code> gives base styles (padding, border-radius). <code>.btn-primary</code> — only color. It's called a <strong>modifier</strong>. Bootstrap uses a BEM-like system: base class + modifier.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SPACING ==================== -->
+    <h2 id="spacing" data-lang="ru">9. Утилиты: отступы (spacing)</h2>
+    <h2 id="spacing-en" data-lang="en">9. Utilities: spacing</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Утилиты — самое мощное в Bootstrap. Вместо того чтобы писать <code>margin-top: 24px</code> в CSS, вы пишете <code>class="mt-4"</code> прямо в HTML. Это экономит <strong>часы</strong> работы: 90% мелких стилей делаются через утилиты. Но надо запомнить систему.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Utilities are the most powerful feature in Bootstrap. Instead of writing <code>margin-top: 24px</code> in CSS, you write <code>class="mt-4"</code> right in HTML. Saves <strong>hours</strong>: 90% of small styles are done via utilities. But you need to learn the system.</p>
+    </div>
+
+    <p data-lang="ru">Формат: <code>{свойство}{сторона}-{размер}</code></p>
+    <p data-lang="en">Format: <code>{property}{side}-{size}</code></p>
+
+    <table data-lang="ru">
+        <tr><th>Буква</th><th>Свойство</th></tr>
+        <tr><td><code>m</code></td><td>margin</td></tr>
+        <tr><td><code>p</code></td><td>padding</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Letter</th><th>Property</th></tr>
+        <tr><td><code>m</code></td><td>margin</td></tr>
+        <tr><td><code>p</code></td><td>padding</td></tr>
+    </table>
+
+    <table data-lang="ru">
+        <tr><th>Суффикс</th><th>Сторона</th></tr>
+        <tr><td><code>t</code></td><td>top</td></tr>
+        <tr><td><code>b</code></td><td>bottom</td></tr>
+        <tr><td><code>s</code></td><td>start (left)</td></tr>
+        <tr><td><code>e</code></td><td>end (right)</td></tr>
+        <tr><td><code>x</code></td><td>left + right</td></tr>
+        <tr><td><code>y</code></td><td>top + bottom</td></tr>
+        <tr><td>(пусто)</td><td>все стороны</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Suffix</th><th>Side</th></tr>
+        <tr><td><code>t</code></td><td>top</td></tr>
+        <tr><td><code>b</code></td><td>bottom</td></tr>
+        <tr><td><code>s</code></td><td>start (left)</td></tr>
+        <tr><td><code>e</code></td><td>end (right)</td></tr>
+        <tr><td><code>x</code></td><td>left + right</td></tr>
+        <tr><td><code>y</code></td><td>top + bottom</td></tr>
+        <tr><td>(empty)</td><td>all sides</td></tr>
+    </table>
+
+<pre><code>&lt;!-- Примеры --&gt;
+&lt;div class="p-3"&gt;padding: 16px (все стороны)&lt;/div&gt;
+&lt;div class="mt-4"&gt;margin-top: 24px&lt;/div&gt;
+&lt;div class="px-2"&gt;padding-left + padding-right: 8px&lt;/div&gt;
+&lt;div class="mb-5"&gt;margin-bottom: 48px&lt;/div&gt;
+&lt;div class="mx-auto"&gt;центрирование (margin: 0 auto)&lt;/div&gt;
+
+&lt;!-- Размеры: 0, 1(4px), 2(8px), 3(16px), 4(24px), 5(48px) --&gt;</code></pre>
+
+    <div class="diagram" data-lang="ru">
+    Шкала размеров Bootstrap:
+
+    0 → 0px       (ничего)
+    1 → 0.25rem   (4px)   — микро-отступ
+    2 → 0.5rem    (8px)   — маленький
+    3 → 1rem      (16px)  — базовый
+    4 → 1.5rem    (24px)  — средний
+    5 → 3rem      (48px)  — большой (секции)
+    auto → авто-маргин (для центрирования)</div>
+    <div class="diagram" data-lang="en">
+    Bootstrap size scale:
+
+    0 → 0px       (none)
+    1 → 0.25rem   (4px)   — micro
+    2 → 0.5rem    (8px)   — small
+    3 → 1rem      (16px)  — base
+    4 → 1.5rem    (24px)  — medium
+    5 → 3rem      (48px)  — large (sections)
+    auto → auto margin (for centering)</div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Часто используемые комбинации:</strong></p>
+        <ul>
+            <li><code>py-5</code> — вертикальный padding для секций</li>
+            <li><code>mb-3</code> / <code>mb-4</code> — отступ снизу между блоками</li>
+            <li><code>mx-auto</code> — центрирование блока</li>
+            <li><code>p-3</code> — внутренний padding карточки</li>
+            <li><code>mt-0 mb-0</code> (или <code>m-0</code>) — сбросить отступы</li>
+        </ul>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Common combinations:</strong></p>
+        <ul>
+            <li><code>py-5</code> — vertical padding for sections</li>
+            <li><code>mb-3</code> / <code>mb-4</code> — bottom gap between blocks</li>
+            <li><code>mx-auto</code> — center a block</li>
+            <li><code>p-3</code> — inner padding of a card</li>
+            <li><code>mt-0 mb-0</code> (or <code>m-0</code>) — reset margins</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- ==================== DISPLAY ==================== -->
+    <h2 id="display" data-lang="ru">10. Утилиты: display, text, flex</h2>
+    <h2 id="display-en" data-lang="en">10. Utilities: display, text, flex</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Помимо отступов, Bootstrap даёт утилиты для <strong>всего остального</strong>: flexbox, текст, ширина, границы, тени. Всё через короткие классы. Это позволяет собирать компоненты <strong>без единой строки CSS</strong>. В админ-панелях и внутренних инструментах разработчики пишут HTML с 20 классами Bootstrap — и никакого style.css.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Besides spacing, Bootstrap has utilities for <strong>everything else</strong>: flexbox, text, width, borders, shadows. All via short classes. This lets you build components <strong>without a single line of CSS</strong>. In admin panels and internal tools, developers write HTML with 20 Bootstrap classes — and no style.css at all.</p>
+    </div>
+
+<pre><code>&lt;!-- Display --&gt;
+&lt;div class="d-none"&gt;Скрыто&lt;/div&gt;
+&lt;div class="d-block"&gt;Блочный&lt;/div&gt;
+&lt;div class="d-flex"&gt;Flexbox&lt;/div&gt;
+&lt;div class="d-none d-md-block"&gt;Скрыто на мобильном, видно с md&lt;/div&gt;
+
+&lt;!-- Flex --&gt;
+&lt;div class="d-flex justify-content-between align-items-center"&gt;
+    &lt;span&gt;Logo&lt;/span&gt;
+    &lt;span&gt;Menu&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Текст --&gt;
+&lt;p class="text-center"&gt;По центру&lt;/p&gt;
+&lt;p class="text-end"&gt;Справа&lt;/p&gt;
+&lt;p class="text-md-start"&gt;Слева с md&lt;/p&gt;
+
+&lt;!-- Ширина/высота --&gt;
+&lt;div class="w-50"&gt;50% ширины&lt;/div&gt;
+&lt;div class="w-100"&gt;100% ширины&lt;/div&gt;
+
+&lt;!-- Границы --&gt;
+&lt;div class="border rounded"&gt;Бордер + скругление&lt;/div&gt;
+&lt;div class="rounded-circle"&gt;Круг&lt;/div&gt;
+&lt;div class="shadow"&gt;Тень&lt;/div&gt;</code></pre>
+
+    <div class="try-it" data-lang="ru">
+        <p>Откройте <a href="https://getbootstrap.com/docs/5.3/utilities/spacing/" target="_blank">getbootstrap.com/docs/5.3/utilities/</a>. Это <strong>ваш лучший друг</strong> в ближайшие месяцы. Вместо заучивания всех классов — просто ищите в доках: «нужен padding» → Spacing, «нужен flex» → Flex, «нужна тень» → Shadows.</p>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p>Open <a href="https://getbootstrap.com/docs/5.3/utilities/spacing/" target="_blank">getbootstrap.com/docs/5.3/utilities/</a>. This is <strong>your best friend</strong> for the next few months. Instead of memorizing all classes — just search docs: "need padding" → Spacing, "need flex" → Flex, "need shadow" → Shadows.</p>
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Utility-спам.</strong> Легко увлечься и написать <code>class="p-3 mt-4 mb-2 mx-auto d-flex justify-content-between align-items-center bg-light rounded shadow-sm"</code> — 10 классов. Если таких элементов 50 — HTML становится нечитаемым. В этом случае лучше создать свой класс <code>.my-card</code> в отдельном CSS. Правило: если блок повторяется &gt; 3 раз и имеет &gt; 5 утилит — выносите в свой CSS.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Utility spam.</strong> It's easy to get carried away and write <code>class="p-3 mt-4 mb-2 mx-auto d-flex justify-content-between align-items-center bg-light rounded shadow-sm"</code> — 10 classes. If you have 50 such elements — HTML becomes unreadable. Better to create a <code>.my-card</code> class in a separate CSS. Rule: if a block repeats &gt; 3 times and has &gt; 5 utilities — extract to your own CSS.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">11. Практика: страница на Bootstrap-сетке</h2>
+    <h2 id="practice-en" data-lang="en">11. Practice: page on Bootstrap grid</h2>
+
+<pre><code>&lt;div class="container py-5"&gt;
+    &lt;h1 class="display-4 text-center mb-4"&gt;Our Services&lt;/h1&gt;
+    &lt;div class="row g-4"&gt;
+        &lt;div class="col-12 col-md-6 col-lg-4"&gt;
+            &lt;div class="bg-white p-4 rounded shadow-sm"&gt;
+                &lt;h3&gt;Service 1&lt;/h3&gt;
+                &lt;p class="text-muted"&gt;Description...&lt;/p&gt;
+                &lt;button class="btn btn-primary"&gt;Learn More&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- ещё 2 карточки --&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <p data-lang="ru"><code>g-4</code> — gap (расстояние между колонками) на row. Bootstrap 5 использует <code>g-</code> вместо <code>gap</code>.</p>
+    <p data-lang="en"><code>g-4</code> — gap (spacing between columns) on row. Bootstrap 5 uses <code>g-</code> instead of <code>gap</code>.</p>
+
+    <div class="summary" data-lang="ru">
+        <ul>
+            <li><strong>Bootstrap</strong> — CSS-фреймворк с готовыми классами</li>
+            <li>Подключение через CDN (CSS в head, JS перед /body)</li>
+            <li><code>container</code> → <code>row</code> → <code>col</code> — 12-колоночная сетка</li>
+            <li><code>col-md-6</code> — адаптивные колонки (sm, md, lg, xl)</li>
+            <li><code>btn btn-primary</code> — кнопки с цветами</li>
+            <li><code>p-3</code>, <code>mt-4</code>, <code>mx-auto</code> — утилиты отступов</li>
+            <li><code>text-center</code>, <code>d-flex</code>, <code>shadow</code> — утилиты</li>
+            <li>Цвета: primary, success, danger, warning, info, dark, light</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <ul>
+            <li><strong>Bootstrap</strong> — CSS framework with ready-made classes</li>
+            <li>CDN setup (CSS in head, JS before /body)</li>
+            <li><code>container</code> → <code>row</code> → <code>col</code> — 12-column grid</li>
+            <li><code>col-md-6</code> — responsive columns (sm, md, lg, xl)</li>
+            <li><code>btn btn-primary</code> — colored buttons</li>
+            <li><code>p-3</code>, <code>mt-4</code>, <code>mx-auto</code> — spacing utilities</li>
+            <li><code>text-center</code>, <code>d-flex</code>, <code>shadow</code> — utilities</li>
+            <li>Colors: primary, success, danger, warning, info, dark, light</li>
+        </ul>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Что такое Bootstrap и зачем он нужен?</li>
+            <li>Сколько колонок в Bootstrap-сетке?</li>
+            <li>Что означает <code>col-12 col-md-6 col-lg-4</code>?</li>
+            <li>Как сделать кнопку с красным фоном?</li>
+            <li>Что означает <code>mt-4</code>? А <code>px-3</code>?</li>
+            <li>Чем <code>container</code> отличается от <code>container-fluid</code>?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>What is Bootstrap and why is it needed?</li>
+            <li>How many columns in the Bootstrap grid?</li>
+            <li>What does <code>col-12 col-md-6 col-lg-4</code> mean?</li>
+            <li>How to make a button with red background?</li>
+            <li>What does <code>mt-4</code> mean? And <code>px-3</code>?</li>
+            <li>What's the difference between <code>container</code> and <code>container-fluid</code>?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

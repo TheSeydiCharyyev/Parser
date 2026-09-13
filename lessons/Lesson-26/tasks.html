@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 26 — Практические задания</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/tasks.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 26: Bootstrap — компоненты и проект</span>
+    <span class="nav-title" data-lang="en">Lesson 26: Bootstrap — Components and Project</span>
+    <span class="nav-sep">|</span>
+    <a href="lecture.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</a>
+    <a href="lecture.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</a>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <span class="nav-active" data-lang="ru">&#x1F4CB; Задания</span>
+    <span class="nav-active" data-lang="en">&#x1F4CB; Tasks</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">&#x1F4DD; ПРАКТИЧЕСКИЕ ЗАДАНИЯ</h1>
+    <h1 data-lang="en">&#x1F4DD; PRACTICAL TASKS</h1>
+    <p class="subtitle" data-lang="ru">Занятие 26: Bootstrap — компоненты и проект</p>
+    <p class="subtitle" data-lang="en">Lesson 26: Bootstrap — Components and Project</p>
+
+    <hr>
+
+    <!-- ==================== УРОК 26.1 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 26.1: КОМПОНЕНТЫ</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 26.1: COMPONENTS</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 25.1: Витрина компонентов</span>
+            <span class="task-title" data-lang="en">Task 25.1: Component showcase</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Собрать на одной странице все основные компоненты Bootstrap</div>
+        <div class="task-goal" data-lang="en">Assemble all main Bootstrap components on one page</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>components.html</code>. Разместите на одной странице:</p>
+        <p data-lang="en">Create a file <code>components.html</code>. Place on one page:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Navbar</strong> (тёмная, с бургером и 4 ссылками)</li>
+            <li><strong>4 Alerts</strong> (success, danger, warning, info)</li>
+            <li><strong>3 Cards</strong> в <code>row g-4</code> (с изображениями и кнопками, <code>h-100</code>)</li>
+            <li><strong>Carousel</strong> (3 слайда с изображениями)</li>
+            <li><strong>Accordion</strong> (3 вопроса-ответа)</li>
+            <li><strong>Modal</strong> (кнопка → модальное окно с формой)</li>
+            <li><strong>Form</strong> (name, email, select, checkbox, submit)</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Navbar</strong> (dark, with burger and 4 links)</li>
+            <li><strong>4 Alerts</strong> (success, danger, warning, info)</li>
+            <li><strong>3 Cards</strong> in <code>row g-4</code> (with images and buttons, <code>h-100</code>)</li>
+            <li><strong>Carousel</strong> (3 slides with images)</li>
+            <li><strong>Accordion</strong> (3 Q&A items)</li>
+            <li><strong>Modal</strong> (button → modal with form)</li>
+            <li><strong>Form</strong> (name, email, select, checkbox, submit)</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Секретный ингредиент — Bootstrap JS.</strong> Без него бургер, модалка, карусель, accordion — мертвы. Проверьте, что в конце <code>&lt;body&gt;</code> есть:
+<pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</code></pre>
+            Именно <code>bundle.min.js</code> (включает Popper.js для тултипов).
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Secret ingredient — Bootstrap JS.</strong> Without it, burger, modal, carousel, accordion — are dead. Check that the end of <code>&lt;body&gt;</code> has:
+<pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</code></pre>
+            Specifically <code>bundle.min.js</code> (includes Popper.js for tooltips).
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Все 7 компонентов на одной странице</li>
+                <li>Подзаголовки над каждым блоком (<code>&lt;h3&gt;</code>)</li>
+                <li>Navbar с работающим бургером на мобильном</li>
+                <li>Carousel с автопрокруткой (<code>data-bs-ride="carousel"</code>)</li>
+                <li>Все 4 alert-а (success, danger, warning, info)</li>
+                <li>3 card в <code>row g-4</code> с <code>h-100</code></li>
+                <li>Modal открывается по кнопке и закрывается по Escape</li>
+                <li>Accordion раскрывается по клику (один открыт — остальные закрыты)</li>
+                <li>Form: все поля обёрнуты в <code>mb-3</code>, submit как <code>btn btn-primary</code></li>
+                <li>Bootstrap CSS + <strong>JS</strong> подключены</li>
+            </ul>
+            <ul data-lang="en">
+                <li>All 7 components on one page</li>
+                <li>Subheadings above each block (<code>&lt;h3&gt;</code>)</li>
+                <li>Navbar with working burger on mobile</li>
+                <li>Carousel with auto-slide (<code>data-bs-ride="carousel"</code>)</li>
+                <li>All 4 alerts (success, danger, warning, info)</li>
+                <li>3 cards in <code>row g-4</code> with <code>h-100</code></li>
+                <li>Modal opens on button click and closes on Escape</li>
+                <li>Accordion expands on click (one open — others closed)</li>
+                <li>Form: all fields wrapped in <code>mb-3</code>, submit as <code>btn btn-primary</code></li>
+                <li>Bootstrap CSS + <strong>JS</strong> connected</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 26.2 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 26.2: РАЗБОР ГОТОВОГО САЙТА</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 26.2: ANALYZING A READY SITE</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 25.2: Анализ Bootstrap-сайта</span>
+            <span class="task-title" data-lang="en">Task 25.2: Bootstrap site analysis</span>
+            <div class="task-meta">
+                <span class="badge badge-easy" data-lang="ru">Лёгкое</span>
+                <span class="badge badge-easy" data-lang="en">Easy</span>
+                <span class="badge badge-time" data-lang="ru">10 минут</span>
+                <span class="badge badge-time" data-lang="en">10 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Научиться читать и понимать Bootstrap-код</div>
+        <div class="task-goal" data-lang="en">Learn to read and understand Bootstrap code</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Откройте любой сайт из примеров Bootstrap (<strong>getbootstrap.com/docs/5.3/examples/</strong>). Выберите один, откройте в DevTools и запишите:</p>
+        <p data-lang="en">Open any Bootstrap example site (<strong>getbootstrap.com/docs/5.3/examples/</strong>). Choose one, open DevTools and write down:</p>
+
+        <ol data-lang="ru">
+            <li>Какие <strong>компоненты</strong> используются (navbar, card, carousel...)?</li>
+            <li>Какие <strong>breakpoints</strong> (<code>col-md-</code>, <code>col-lg-</code>) применены к сетке?</li>
+            <li>Какие <strong>утилиты</strong> чаще всего встречаются?</li>
+            <li>Есть ли <strong>свой CSS</strong> поверх Bootstrap?</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Which <strong>components</strong> are used (navbar, card, carousel...)?</li>
+            <li>Which <strong>breakpoints</strong> (<code>col-md-</code>, <code>col-lg-</code>) are applied to the grid?</li>
+            <li>Which <strong>utilities</strong> are most common?</li>
+            <li>Is there <strong>custom CSS</strong> on top of Bootstrap?</li>
+        </ol>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>Список компонентов записан</li>
+                <li>Breakpoints определены</li>
+                <li>Самые частые утилиты выписаны</li>
+            </ul>
+            <ul data-lang="en">
+                <li>Component list written</li>
+                <li>Breakpoints identified</li>
+                <li>Most common utilities listed</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== УРОК 26.3 ==================== -->
+    <h2 data-lang="ru">&#x1F3AF; УРОК 26.3: ЛЕНДИНГ НА BOOTSTRAP</h2>
+    <h2 data-lang="en">&#x1F3AF; Lesson 26.3: BOOTSTRAP LANDING PAGE</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 25.3: Лендинг на Bootstrap</span>
+            <span class="task-title" data-lang="en">Task 25.3: Bootstrap landing page</span>
+            <div class="task-meta">
+                <span class="badge badge-medium" data-lang="ru">Среднее</span>
+                <span class="badge badge-medium" data-lang="en">Medium</span>
+                <span class="badge badge-time" data-lang="ru">25 минут</span>
+                <span class="badge badge-time" data-lang="en">25 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Собрать полный лендинг из Bootstrap-компонентов</div>
+        <div class="task-goal" data-lang="en">Build a complete landing page from Bootstrap components</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Создайте файл <code>landing.html</code>. Соберите лендинг для любого продукта/сервиса:</p>
+        <p data-lang="en">Create a file <code>landing.html</code>. Build a landing page for any product/service:</p>
+
+        <ol data-lang="ru">
+            <li><strong>Navbar:</strong> <code>navbar-dark bg-dark navbar-expand-lg</code> с 4 ссылками + кнопка «Get Started» (<code>btn btn-outline-light</code>)</li>
+            <li><strong>Hero:</strong> <code>bg-primary text-white text-center py-5</code>, <code>display-4</code> заголовок, <code>lead</code> описание, кнопка <code>btn-light btn-lg</code></li>
+            <li><strong>Features:</strong> <code>row g-4 py-5</code>, 3 колонки (<code>col-md-4</code>), в каждой: Bootstrap Icon (<code>bi bi-... fs-1 text-primary</code>), заголовок, описание</li>
+            <li><strong>Cards:</strong> <code>row g-4</code>, 3 карточки (<code>card h-100</code>) с изображениями, текстом, кнопками</li>
+            <li><strong>Testimonial:</strong> <code>carousel</code> с 3 текстовыми отзывами (имя, текст, оценка звёздами <code>bi bi-star-fill</code>)</li>
+            <li><strong>FAQ:</strong> <code>accordion</code> с 4 вопросами</li>
+            <li><strong>Contact:</strong> <code>row</code>: <code>col-md-6</code> информация + <code>col-md-6</code> форма (<code>form-control</code>)</li>
+            <li><strong>CTA:</strong> секция с кнопкой, открывающей <code>modal</code> с формой подписки</li>
+            <li><strong>Footer:</strong> <code>bg-dark text-white</code>, <code>row</code>: 3 колонки + копирайт</li>
+        </ol>
+        <ol data-lang="en">
+            <li><strong>Navbar:</strong> <code>navbar-dark bg-dark navbar-expand-lg</code> with 4 links + "Get Started" button (<code>btn btn-outline-light</code>)</li>
+            <li><strong>Hero:</strong> <code>bg-primary text-white text-center py-5</code>, <code>display-4</code> heading, <code>lead</code> description, <code>btn-light btn-lg</code> button</li>
+            <li><strong>Features:</strong> <code>row g-4 py-5</code>, 3 columns (<code>col-md-4</code>), each: Bootstrap Icon (<code>bi bi-... fs-1 text-primary</code>), title, description</li>
+            <li><strong>Cards:</strong> <code>row g-4</code>, 3 cards (<code>card h-100</code>) with images, text, buttons</li>
+            <li><strong>Testimonial:</strong> <code>carousel</code> with 3 text reviews (name, text, star rating <code>bi bi-star-fill</code>)</li>
+            <li><strong>FAQ:</strong> <code>accordion</code> with 4 questions</li>
+            <li><strong>Contact:</strong> <code>row</code>: <code>col-md-6</code> info + <code>col-md-6</code> form (<code>form-control</code>)</li>
+            <li><strong>CTA:</strong> section with button opening a <code>modal</code> with subscribe form</li>
+            <li><strong>Footer:</strong> <code>bg-dark text-white</code>, <code>row</code>: 3 columns + copyright</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            <strong>Подключения (всё в &lt;head&gt; кроме JS):</strong>
+<pre><code>&lt;!-- Bootstrap CSS --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+
+&lt;!-- Bootstrap Icons --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"&gt;
+
+&lt;!-- Bootstrap JS (перед &lt;/body&gt;) --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</code></pre>
+            И проверьте, что Bootstrap JS подключён (для navbar, carousel, modal, accordion).
+        </div>
+        <div class="hint" data-lang="en">
+            <strong>Connections (all in &lt;head&gt; except JS):</strong>
+<pre><code>&lt;!-- Bootstrap CSS --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+
+&lt;!-- Bootstrap Icons --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"&gt;
+
+&lt;!-- Bootstrap JS (before &lt;/body&gt;) --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;</code></pre>
+            And check that Bootstrap JS is connected (for navbar, carousel, modal, accordion).
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>9 секций на одной странице</li>
+                <li>Минимум 5 компонентов: navbar, card, carousel, modal, accordion</li>
+                <li>Bootstrap Icons в минимум 3 местах (navbar, features, footer)</li>
+                <li>Адаптивная сетка (<code>col-md-*</code>, <code>col-lg-*</code>)</li>
+                <li>Modal открывается и закрывается (Escape, крестик, «Отмена»)</li>
+                <li>Carousel переключается вручную (стрелки) и авто</li>
+                <li>Navbar с бургером на мобильном (&lt; 992px)</li>
+                <li>Accordion: один открыт, остальные закрыты (<code>data-bs-parent</code>)</li>
+                <li>Form: все <code>form-control</code>, кнопка <code>btn btn-primary</code></li>
+                <li>Минимум своего CSS (или ноль)</li>
+                <li>Проверено на мобильном в DevTools (375px) и десктопе</li>
+            </ul>
+            <ul data-lang="en">
+                <li>9 sections on one page</li>
+                <li>At least 5 components: navbar, card, carousel, modal, accordion</li>
+                <li>Bootstrap Icons in at least 3 places (navbar, features, footer)</li>
+                <li>Responsive grid (<code>col-md-*</code>, <code>col-lg-*</code>)</li>
+                <li>Modal opens and closes (Escape, X, "Cancel")</li>
+                <li>Carousel switches manually (arrows) and automatically</li>
+                <li>Navbar with burger on mobile (&lt; 992px)</li>
+                <li>Accordion: one open, others closed (<code>data-bs-parent</code>)</li>
+                <li>Form: all <code>form-control</code>, submit <code>btn btn-primary</code></li>
+                <li>Minimal custom CSS (or zero)</li>
+                <li>Tested on mobile in DevTools (375px) and desktop</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ==================== БОНУС ==================== -->
+    <h2 data-lang="ru">&#x2B50; БОНУСНОЕ ЗАДАНИЕ</h2>
+    <h2 data-lang="en">&#x2B50; BONUS TASK</h2>
+
+    <div class="task">
+        <div class="task-header">
+            <span class="task-title" data-lang="ru">Задание 25.4: Свой стиль поверх Bootstrap</span>
+            <span class="task-title" data-lang="en">Task 25.4: Custom style on top of Bootstrap</span>
+            <div class="task-meta">
+                <span class="badge badge-hard" data-lang="ru">Сложное</span>
+                <span class="badge badge-hard" data-lang="en">Hard</span>
+                <span class="badge badge-time" data-lang="ru">15 минут</span>
+                <span class="badge badge-time" data-lang="en">15 min</span>
+            </div>
+        </div>
+
+        <div class="task-goal" data-lang="ru">Добавить свой CSS поверх Bootstrap для уникального дизайна</div>
+        <div class="task-goal" data-lang="en">Add custom CSS on top of Bootstrap for unique design</div>
+
+        <h3 data-lang="ru">Условие:</h3>
+        <h3 data-lang="en">Instructions:</h3>
+
+        <p data-lang="ru">Возьмите лендинг из задания 25.3 и добавьте файл <code>custom.css</code> (подключите <strong>после</strong> Bootstrap):</p>
+        <p data-lang="en">Take the landing from task 25.3 and add <code>custom.css</code> (connect it <strong>after</strong> Bootstrap):</p>
+
+        <ol data-lang="ru">
+            <li>Замените шрифт на Google Fonts (например, 'Poppins')</li>
+            <li>Измените основной цвет (<code>.btn-primary</code>, <code>.bg-primary</code>) на свой через переопределение</li>
+            <li>Добавьте hover-анимации на карточки (<code>transform: translateY(-8px)</code> + <code>box-shadow</code>)</li>
+            <li>Hero: фоновое изображение вместо <code>bg-primary</code></li>
+            <li>Плавная прокрутка (<code>scroll-behavior: smooth</code>)</li>
+        </ol>
+        <ol data-lang="en">
+            <li>Replace font with Google Fonts (e.g., 'Poppins')</li>
+            <li>Change primary color (<code>.btn-primary</code>, <code>.bg-primary</code>) to yours via override</li>
+            <li>Add hover animations on cards (<code>transform: translateY(-8px)</code> + <code>box-shadow</code>)</li>
+            <li>Hero: background image instead of <code>bg-primary</code></li>
+            <li>Smooth scrolling (<code>scroll-behavior: smooth</code>)</li>
+        </ol>
+
+        <div class="hint" data-lang="ru">
+            Подключайте свой CSS <strong>после</strong> Bootstrap: <code>&lt;link href="bootstrap.css"&gt; &lt;link href="custom.css"&gt;</code>. Ваши стили перезапишут Bootstrap благодаря каскаду!
+        </div>
+        <div class="hint" data-lang="en">
+            Connect your CSS <strong>after</strong> Bootstrap: <code>&lt;link href="bootstrap.css"&gt; &lt;link href="custom.css"&gt;</code>. Your styles will override Bootstrap thanks to the cascade!
+        </div>
+
+        <div class="criteria">
+            <ul data-lang="ru">
+                <li>custom.css подключён после Bootstrap</li>
+                <li>Свой шрифт (Google Fonts)</li>
+                <li>Свой основной цвет</li>
+                <li>Hover-анимации на карточках</li>
+                <li>Hero с фоновым изображением</li>
+            </ul>
+            <ul data-lang="en">
+                <li>custom.css connected after Bootstrap</li>
+                <li>Custom font (Google Fonts)</li>
+                <li>Custom primary color</li>
+                <li>Hover animations on cards</li>
+                <li>Hero with background image</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

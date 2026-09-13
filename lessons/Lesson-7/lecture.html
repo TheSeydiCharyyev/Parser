@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 7 — Box Model</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; color: #1e293b; background: #f8fafc; padding: 40px 20px; }
+        .container { max-width: 860px; margin: 0 auto; }
+        h1 { font-size: 2.2rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 12px; margin-bottom: 8px; }
+        h2 { font-size: 1.5rem; color: #7e22ce; margin: 48px 0 16px; padding: 10px 16px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 8px 8px 0; }
+        h3 { font-size: 1.25rem; color: #1e3a5f; margin: 28px 0 12px; }
+        .subtitle { color: #64748b; font-size: 1.1rem; margin-bottom: 24px; }
+        p { margin: 10px 0; }
+        .highlight { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .important { background: #fef2f2; border-left: 4px solid #ef4444; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy { background: #fff7ed; border-left: 4px solid #f97316; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .analogy::before { content: '🎨 Аналогия'; display: block; font-weight: 700; color: #c2410c; margin-bottom: 6px; }
+        .fun-fact { background: #fdf4ff; border-left: 4px solid #a855f7; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .fun-fact::before { content: '💡 Интересный факт'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 6px; }
+        .try-it { background: #ecfdf5; border: 2px solid #6ee7b7; padding: 16px 20px; margin: 16px 0; border-radius: 10px; }
+        .try-it::before { content: '🔧 Попробуй сам'; display: block; font-weight: 700; color: #059669; margin-bottom: 6px; }
+        .result-box { background: #fff; border: 2px solid #e2e8f0; border-radius: 10px; padding: 20px; margin: 16px 0; }
+        .result-box::before { content: '👁️ Результат в браузере:'; display: block; font-weight: 700; color: #475569; margin-bottom: 10px; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 16px 20px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; margin: 14px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        .diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 20px; border-radius: 10px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.5; margin: 16px 0; overflow-x: auto; font-size: 0.88rem; }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        th, td { padding: 10px 14px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 10px 0 10px 24px; }
+        li { margin: 5px 0; }
+        strong { color: #0f172a; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 40px 0; }
+        .summary { background: #faf5ff; border: 2px solid #d8b4fe; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .summary::before { content: '📋 Итоги раздела'; display: block; font-weight: 700; color: #7e22ce; font-size: 1.1rem; margin-bottom: 10px; }
+        .quiz { background: #fef2f2; border: 2px solid #fca5a5; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .quiz::before { content: '✅ Проверь себя'; display: block; font-weight: 700; color: #dc2626; font-size: 1.1rem; margin-bottom: 10px; }
+        .toc { background: #f1f5f9; border-radius: 12px; padding: 20px 24px; margin: 24px 0; }
+        .toc-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; color: #0f172a; }
+        .toc ol { margin: 0 0 0 20px; }
+        .toc li { margin: 6px 0; }
+        .toc a { color: #7e22ce; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+        .compare > div { padding: 16px; border-radius: 8px; }
+        .compare .wrong { background: #fef2f2; border: 2px solid #fca5a5; }
+        .compare .right { background: #f0fdf4; border: 2px solid #86efac; }
+        .compare .label { font-weight: 700; margin-bottom: 8px; }
+        .mistake { background: #fff8f1; border: 2px solid #fdba74; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .mistake::before { content: '🚫 Частая ошибка новичков'; display: block; font-weight: 700; color: #ea580c; font-size: 1.05rem; margin-bottom: 10px; }
+        .pro-tip { background: #f0f9ff; border: 2px solid #7dd3fc; border-radius: 12px; padding: 20px; margin: 24px 0; }
+        .pro-tip::before { content: '🏆 Совет профессионала'; display: block; font-weight: 700; color: #0284c7; font-size: 1.05rem; margin-bottom: 10px; }
+        .why { background: #fefce8; border-left: 4px solid #eab308; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .why::before { content: '🤔 Зачем это нужно?'; display: block; font-weight: 700; color: #a16207; margin-bottom: 6px; }
+        .real-world { background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .real-world::before { content: '🌍 В реальных проектах'; display: block; font-weight: 700; color: #0f766e; margin-bottom: 6px; }
+        @media (max-width: 600px) { .compare { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 7: Box Model</span><span style="color:#cbd5e1;">|</span><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128104;&#8205;&#127979; Лекция</span><a href="student.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127891; Конспект</a><a href="tasks.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128203; Задания</a></div>
+<div class="container">
+
+    <h1>Занятие 7: Box Model</h1>
+    <p class="subtitle">Блочные и строчные элементы, модель коробки, display, overflow, border-radius и тени</p>
+
+    <div class="why">
+        <p>Сегодня мы изучим <strong>самую фундаментальную концепцию CSS</strong> — Box Model (модель коробки). Без понимания Box Model невозможно нормально верстать: элементы будут не того размера, отступы будут работать не так, как вы ожидаете, а макет будет «рассыпаться».</p>
+        <p>Представьте, что вы строите дом. Если вы не понимаете размеры кирпичей — стены будут кривые. Box Model — это понимание размеров «кирпичей» вашей веб-страницы.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Понимать, почему элемент занимает больше места, чем вы указали в width</li>
+            <li>Создавать аккуратные отступы внутри и между элементами</li>
+            <li>Делать красивые карточки, кнопки, аватарки</li>
+            <li>Читать и понимать Box Model в DevTools</li>
+        </ul>
+    </div>
+
+    <div class="toc">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#block-inline">Блочные и строчные элементы</a></li>
+            <li><a href="#block-details">Блочные элементы подробно</a></li>
+            <li><a href="#inline-details">Строчные элементы подробно</a></li>
+            <li><a href="#block-vs-inline">Визуальное сравнение</a></li>
+            <li><a href="#box-model">Box Model — модель коробки</a></li>
+            <li><a href="#padding">padding — внутренние отступы</a></li>
+            <li><a href="#border">border — рамка</a></li>
+            <li><a href="#margin">margin — внешние отступы</a></li>
+            <li><a href="#box-sizing">box-sizing: border-box</a></li>
+            <li><a href="#display">display: block, inline, inline-block</a></li>
+            <li><a href="#overflow">overflow — переполнение</a></li>
+            <li><a href="#border-radius">border-radius — скругление углов</a></li>
+            <li><a href="#box-shadow">box-shadow — тени</a></li>
+            <li><a href="#practice">Практика: карточки товаров</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== БЛОЧНЫЕ И СТРОЧНЫЕ ===== -->
+    <h2 id="block-inline">1. Блочные и строчные элементы</h2>
+
+    <p>Прежде чем изучать Box Model, нужно понять одну из <strong>самых важных концепций</strong> в CSS — деление HTML-элементов на два типа.</p>
+
+    <div class="why">
+        <p>Почему это важно? Потому что от типа элемента зависит, <strong>как к нему применяются CSS-свойства</strong>. Вы можете написать <code>width: 200px</code> для элемента, но оно просто не сработает, если элемент строчный. Вы потратите 30 минут на отладку, не понимая, что происходит. Знание типов элементов избавит вас от этого.</p>
+    </div>
+
+    <table>
+        <tr><th>Блочные (block)</th><th>Строчные (inline)</th></tr>
+        <tr><td>Занимают <strong>всю ширину</strong> родителя</td><td>Занимают <strong>только ширину своего содержимого</strong></td></tr>
+        <tr><td>Начинаются с <strong>новой строки</strong></td><td>Располагаются <strong>в одной строке</strong> друг за другом</td></tr>
+        <tr><td>Можно задать ширину, высоту, все отступы</td><td>Ширина и высота <strong>не работают</strong>, вертикальные margin/padding — ограничены</td></tr>
+    </table>
+
+    <div class="analogy">
+        <p><strong>Кирпичи и буквы.</strong> Блочные элементы — как кирпичи: каждый кирпич кладётся на новый ряд и занимает всю ширину стены. Строчные элементы — как буквы в тексте: они стоят рядом друг с другом на одной строке и переносятся на следующую только когда место заканчивается.</p>
+    </div>
+
+    <div class="analogy">
+        <p><strong>Ещё одна аналогия — мебель и декор.</strong> Блочные элементы — как шкаф или кровать: каждый предмет занимает свою «полосу» комнаты, и вы не поставите два шкафа бок о бок (без специальных усилий). Строчные — как книги на полке: они стоят рядом, и каждая занимает ровно столько места, сколько нужно.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== БЛОЧНЫЕ ПОДРОБНО ===== -->
+    <h2 id="block-details">2. Блочные элементы подробно</h2>
+
+    <p><strong>Блочный элемент</strong> (block) — это элемент, который:</p>
+    <ul>
+        <li>Начинается с <strong>новой строки</strong></li>
+        <li>Растягивается на <strong>всю доступную ширину</strong> (от края до края родителя)</li>
+        <li>Элементы после него тоже начинаются с новой строки</li>
+        <li>Можно свободно задавать <code>width</code>, <code>height</code>, <code>margin</code>, <code>padding</code></li>
+    </ul>
+
+    <h3>Примеры блочных элементов</h3>
+
+    <table>
+        <tr><th>Тег</th><th>Описание</th><th>Когда использовать</th></tr>
+        <tr><td><code>&lt;div&gt;</code></td><td>Универсальный блочный контейнер</td><td>Для группировки и обёртки любых элементов</td></tr>
+        <tr><td><code>&lt;p&gt;</code></td><td>Параграф</td><td>Для абзацев текста</td></tr>
+        <tr><td><code>&lt;h1&gt;</code> ... <code>&lt;h6&gt;</code></td><td>Заголовки</td><td>Для заголовков и подзаголовков</td></tr>
+        <tr><td><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code></td><td>Списки</td><td>Для перечислений, навигации</td></tr>
+        <tr><td><code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code></td><td>Семантические блоки</td><td>Шапка, подвал, навигация сайта</td></tr>
+        <tr><td><code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code></td><td>Семантические блоки</td><td>Основной контент, разделы, статьи</td></tr>
+        <tr><td><code>&lt;aside&gt;</code></td><td>Боковая панель</td><td>Боковое меню, дополнительная информация</td></tr>
+        <tr><td><code>&lt;form&gt;</code></td><td>Форма</td><td>Формы ввода данных</td></tr>
+        <tr><td><code>&lt;hr&gt;</code></td><td>Горизонтальная линия</td><td>Визуальное разделение секций</td></tr>
+    </table>
+
+    <p>Посмотрим на примере. Добавим рамку к блочным элементам, чтобы увидеть, сколько места они занимают:</p>
+
+<pre><code>&lt;style&gt;
+    .demo-block { border: 3px solid blue; margin: 8px 0; }
+&lt;/style&gt;
+
+&lt;div class="demo-block"&gt;Я — div (блочный)&lt;/div&gt;
+&lt;p class="demo-block"&gt;Я — параграф (блочный)&lt;/p&gt;
+&lt;h3 class="demo-block"&gt;Я — заголовок (блочный)&lt;/h3&gt;</code></pre>
+
+    <div class="result-box">
+        <div style="border: 3px solid blue; margin: 8px 0; padding: 4px 8px;">Я — div (блочный)</div>
+        <p style="border: 3px solid blue; margin: 8px 0; padding: 4px 8px;">Я — параграф (блочный)</p>
+        <div style="border: 3px solid blue; margin: 8px 0; padding: 4px 8px; font-size: 1.15rem; font-weight: 700;">Я — заголовок (блочный)</div>
+    </div>
+
+    <p>Видите? Каждый элемент занимает <strong>всю строку целиком</strong>, даже если текст внутри короткий. Синяя рамка тянется от края до края. Текст «Я — div» занимает может 150 пикселей, но сам блок растянулся на все 860 пикселей ширины контейнера.</p>
+
+    <div class="real-world">
+        <p>Посмотрите на любой сайт — вы увидите блочные элементы повсюду. Шапка сайта (<code>&lt;header&gt;</code>) занимает всю ширину. Каждый абзац (<code>&lt;p&gt;</code>) — на своей строке. Навигация (<code>&lt;nav&gt;</code>) — отдельный блок. Это и есть блочное поведение.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== СТРОЧНЫЕ ПОДРОБНО ===== -->
+    <h2 id="inline-details">3. Строчные элементы подробно</h2>
+
+    <p><strong>Строчный элемент</strong> (inline) — это элемент, который:</p>
+    <ul>
+        <li><strong>Не</strong> начинается с новой строки</li>
+        <li>Занимает <strong>только ширину своего содержимого</strong></li>
+        <li>Стоит <strong>в одной строке</strong> с другими строчными элементами</li>
+    </ul>
+
+    <h3>Примеры строчных элементов</h3>
+
+    <table>
+        <tr><th>Тег</th><th>Описание</th><th>Когда использовать</th></tr>
+        <tr><td><code>&lt;span&gt;</code></td><td>Универсальный строчный контейнер</td><td>Обернуть часть текста для стилизации</td></tr>
+        <tr><td><code>&lt;a&gt;</code></td><td>Ссылка</td><td>Кликабельные ссылки внутри текста</td></tr>
+        <tr><td><code>&lt;strong&gt;</code>, <code>&lt;b&gt;</code></td><td>Жирный текст</td><td>Выделить важное слово</td></tr>
+        <tr><td><code>&lt;em&gt;</code>, <code>&lt;i&gt;</code></td><td>Курсивный текст</td><td>Смысловое выделение, термины</td></tr>
+        <tr><td><code>&lt;mark&gt;</code></td><td>Выделение (маркером)</td><td>Подсветить текст как маркером</td></tr>
+        <tr><td><code>&lt;code&gt;</code></td><td>Код</td><td>Вставки кода в текст</td></tr>
+        <tr><td><code>&lt;img&gt;</code></td><td>Изображение</td><td>Особый случай — inline, но ведёт себя как inline-block</td></tr>
+        <tr><td><code>&lt;br&gt;</code></td><td>Перенос строки</td><td>Принудительный перенос</td></tr>
+        <tr><td><code>&lt;sub&gt;</code>, <code>&lt;sup&gt;</code></td><td>Подстрочный / надстрочный</td><td>Формулы: H&#8322;O, x&#178;</td></tr>
+    </table>
+
+<pre><code>&lt;style&gt;
+    .demo-inline { border: 3px solid red; }
+&lt;/style&gt;
+
+&lt;p&gt;
+    Обычный текст
+    &lt;span class="demo-inline"&gt;span&lt;/span&gt;
+    &lt;a href="#" class="demo-inline"&gt;ссылка&lt;/a&gt;
+    &lt;strong class="demo-inline"&gt;strong&lt;/strong&gt;
+    &lt;em class="demo-inline"&gt;em&lt;/em&gt;
+    конец текста.
+&lt;/p&gt;</code></pre>
+
+    <div class="result-box">
+        <p>
+            Обычный текст
+            <span style="border: 3px solid red;">span</span>
+            <a href="#" style="border: 3px solid red;">ссылка</a>
+            <strong style="border: 3px solid red;">strong</strong>
+            <em style="border: 3px solid red;">em</em>
+            конец текста.
+        </p>
+    </div>
+
+    <p>Видите разницу? Строчные элементы <strong>стоят в одной строке</strong> и красная рамка обхватывает только текст, а не всю строку.</p>
+
+    <div class="important">
+        <strong>Главное ограничение строчных элементов:</strong>
+        <ul>
+            <li><code>width</code> и <code>height</code> — <strong>не работают</strong></li>
+            <li><code>margin-top</code> и <code>margin-bottom</code> — <strong>не работают</strong></li>
+            <li><code>padding-top</code> и <code>padding-bottom</code> — визуально работают, но <strong>не раздвигают</strong> соседние строки</li>
+        </ul>
+    </div>
+
+    <div class="mistake">
+        <p><strong>Ситуация:</strong> новичок хочет сделать кнопку из ссылки <code>&lt;a&gt;</code> и пишет:</p>
+<pre><code>a {
+    width: 200px;      /* НЕ СРАБОТАЕТ! */
+    height: 50px;      /* НЕ СРАБОТАЕТ! */
+    margin-top: 20px;  /* НЕ СРАБОТАЕТ! */
+    padding: 10px;     /* сработает, но padding-top/bottom может "залезать" на соседние строки */
+}</code></pre>
+        <p>Почему ничего не работает? Потому что <code>&lt;a&gt;</code> — это <strong>строчный элемент</strong>. Чтобы width, height и margin заработали, нужно изменить display:</p>
+<pre><code>a {
+    display: inline-block; /* Теперь ВСЁ работает! */
+    width: 200px;
+    height: 50px;
+    margin-top: 20px;
+    padding: 10px;
+}</code></pre>
+        <p>Про <code>display</code> подробно поговорим в разделе 10.</p>
+    </div>
+
+    <h3>Почему так сделано?</h3>
+    <p>Строчные элементы задуманы для работы <strong>внутри текста</strong>. Представьте: вы выделили слово жирным через <code>&lt;strong&gt;</code>. Если бы это слово вдруг заняло всю строку — текст бы развалился. Поэтому строчные элементы «живут» внутри потока текста и не нарушают его.</p>
+
+    <hr>
+
+    <!-- ===== ВИЗУАЛЬНОЕ СРАВНЕНИЕ ===== -->
+    <h2 id="block-vs-inline">4. Визуальное сравнение</h2>
+
+    <div class="diagram">
+БЛОЧНЫЕ (block):
+┌──────────────────────────────────────────┐
+│ &lt;div&gt; — занимает всю ширину              │
+└──────────────────────────────────────────┘
+┌──────────────────────────────────────────┐
+│ &lt;p&gt; — тоже всю ширину                   │
+└──────────────────────────────────────────┘
+┌──────────────────────────────────────────┐
+│ &lt;h2&gt; — и этот тоже                      │
+└──────────────────────────────────────────┘
+
+СТРОЧНЫЕ (inline):
+┌──────┐┌────────┐┌──────┐┌────┐
+│&lt;span&gt;││&lt;a&gt;     ││&lt;strong&gt;││&lt;em&gt;│  ← в одной строке
+└──────┘└────────┘└──────┘└────┘</div>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">Блочные элементы</div>
+            <div style="border:2px solid blue;padding:6px;margin:4px 0;">div — вся ширина</div>
+            <div style="border:2px solid blue;padding:6px;margin:4px 0;">p — вся ширина</div>
+            <div style="border:2px solid blue;padding:6px;margin:4px 0;">h3 — вся ширина</div>
+            <p style="font-size:0.85rem;margin-top:8px;color:#64748b;">Каждый на своей строке, растянут от края до края</p>
+        </div>
+        <div class="right">
+            <div class="label">Строчные элементы</div>
+            <p>
+                <span style="border:2px solid red;padding:2px 4px;">span</span>
+                <a href="#" style="border:2px solid red;padding:2px 4px;">ссылка</a>
+                <strong style="border:2px solid red;padding:2px 4px;">strong</strong>
+                <em style="border:2px solid red;padding:2px 4px;">em</em>
+            </p>
+            <p style="font-size:0.85rem;margin-top:8px;color:#64748b;">Все в одной строке, каждый по размеру содержимого</p>
+        </div>
+    </div>
+
+    <div class="try-it">
+        <p>Откройте DevTools (F12) на любом сайте. Наведите на элемент — DevTools подсветит его. Блочные элементы будут подсвечены <strong>на всю ширину</strong>, строчные — только по содержимому. Попробуйте навести на заголовок (block) и на ссылку внутри текста (inline).</p>
+    </div>
+
+    <div class="summary">
+        <ul>
+            <li><strong>Block</strong>: div, p, h1-h6, ul, ol, li, header, footer, nav, main, section, article, aside, form, hr</li>
+            <li><strong>Inline</strong>: span, a, strong, em, b, i, mark, code, img, br, sub, sup, small, s, u</li>
+            <li>Блочные — «кирпичи» (новая строка, вся ширина). Строчные — «буквы» (в одной строке)</li>
+            <li>Тип элемента можно изменить через CSS-свойство <code>display</code> (изучим далее)</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p>Мысленно ответьте:</p>
+        <ol>
+            <li>Вы пишете <code>&lt;span style="width: 300px"&gt;текст&lt;/span&gt;</code>. Ширина элемента будет 300px? <em>(Нет, span — строчный, width игнорируется)</em></li>
+            <li>Если поставить два <code>&lt;div&gt;</code> подряд, они будут на одной строке? <em>(Нет, каждый div — на новой строке)</em></li>
+            <li>Тег <code>&lt;img&gt;</code> — блочный или строчный? <em>(Строчный, но особенный — ведёт себя как inline-block)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== BOX MODEL ===== -->
+    <h2 id="box-model">5. Box Model — модель коробки</h2>
+
+    <p>Теперь самое важное — <strong>Box Model</strong>. Каждый HTML-элемент в CSS представляет собой <strong>прямоугольную коробку</strong>. Даже если вы видите круглую кнопку или текст без рамки — внутри CSS это всё равно прямоугольник.</p>
+
+    <div class="why">
+        <p>Зачем знать Box Model? Потому что <strong>90% проблем с вёрсткой</strong> связаны с непониманием, из чего складывается размер элемента. Вы задали <code>width: 300px</code>, а элемент на экране занимает 350px. Почему? Потому что к width добавляются padding и border. Это и есть Box Model.</p>
+    </div>
+
+    <p>Эта коробка состоит из <strong>4 слоёв</strong> — от центра наружу:</p>
+
+    <div class="diagram">
+┌─────────────────────────────────────────────┐
+│                  MARGIN                     │  ← внешние отступы (прозрачные)
+│   ┌─────────────────────────────────────┐   │
+│   │              BORDER                 │   │  ← рамка (видимая)
+│   │   ┌─────────────────────────────┐   │   │
+│   │   │          PADDING            │   │   │  ← внутренние отступы
+│   │   │   ┌─────────────────────┐   │   │   │
+│   │   │   │                     │   │   │   │
+│   │   │   │      CONTENT        │   │   │   │  ← содержимое (текст, картинка)
+│   │   │   │                     │   │   │   │
+│   │   │   └─────────────────────┘   │   │   │
+│   │   └─────────────────────────────┘   │   │
+│   └─────────────────────────────────────┘   │
+└─────────────────────────────────────────────┘</div>
+
+    <table>
+        <tr><th>Слой</th><th>CSS-свойство</th><th>Что это</th><th>Пример из жизни</th></tr>
+        <tr><td><strong>Content</strong></td><td><code>width</code>, <code>height</code></td><td>Содержимое элемента (текст, картинка)</td><td>Сама картина</td></tr>
+        <tr><td><strong>Padding</strong></td><td><code>padding</code></td><td>Внутренние отступы (между содержимым и рамкой). <strong>Фон виден!</strong></td><td>Паспарту (рамка вокруг картины)</td></tr>
+        <tr><td><strong>Border</strong></td><td><code>border</code></td><td>Рамка вокруг элемента</td><td>Рамка картины</td></tr>
+        <tr><td><strong>Margin</strong></td><td><code>margin</code></td><td>Внешние отступы (между элементом и соседями). <strong>Всегда прозрачный!</strong></td><td>Расстояние до соседних картин на стене</td></tr>
+    </table>
+
+    <div class="analogy">
+        <p><strong>Картина в рамке на стене:</strong></p>
+        <ul>
+            <li><strong>Content</strong> — сама картина (то, на что вы смотрите)</li>
+            <li><strong>Padding</strong> — паспарту (белая/цветная рамка вокруг картины внутри основной рамки). Обратите внимание: паспарту может быть цветным — так же и padding показывает фон элемента</li>
+            <li><strong>Border</strong> — рамка картины (деревянная, металлическая)</li>
+            <li><strong>Margin</strong> — расстояние от рамки до соседних картин на стене. Стена видна, а не цвет рамки — поэтому margin прозрачный</li>
+        </ul>
+    </div>
+
+    <div class="analogy">
+        <p><strong>Подарочная коробка:</strong></p>
+        <ul>
+            <li><strong>Content</strong> — сам подарок внутри</li>
+            <li><strong>Padding</strong> — мягкая упаковка, пенопласт вокруг подарка (чтобы не бился)</li>
+            <li><strong>Border</strong> — стенки коробки</li>
+            <li><strong>Margin</strong> — расстояние между коробками на полке</li>
+        </ul>
+    </div>
+
+    <div class="real-world">
+        <p><strong>В DevTools это выглядит так:</strong> откройте любой сайт, нажмите F12, выберите элемент. Внизу панели Styles (или в панели Computed) вы увидите цветную диаграмму Box Model. Наведите на каждый слой — он подсветится на странице!</p>
+        <ul>
+            <li><span style="display:inline-block;width:14px;height:14px;background:#90cdf4;border-radius:2px;vertical-align:middle;"></span> <strong>Синий</strong> — content (содержимое)</li>
+            <li><span style="display:inline-block;width:14px;height:14px;background:#86efac;border-radius:2px;vertical-align:middle;"></span> <strong>Зелёный</strong> — padding (внутренние отступы)</li>
+            <li><span style="display:inline-block;width:14px;height:14px;background:#fde68a;border-radius:2px;vertical-align:middle;"></span> <strong>Жёлтый</strong> — border (рамка)</li>
+            <li><span style="display:inline-block;width:14px;height:14px;background:#fdba74;border-radius:2px;vertical-align:middle;"></span> <strong>Оранжевый</strong> — margin (внешние отступы)</li>
+        </ul>
+        <p>Это ваш <strong>главный инструмент отладки</strong> для Box Model. Вы будете пользоваться им каждый день!</p>
+    </div>
+
+    <div class="try-it">
+        <p>Прямо сейчас откройте DevTools на этой странице. Кликните правой кнопкой на любом блоке и нажмите «Inspect» (Исследовать элемент). Найдите диаграмму Box Model и посмотрите, какие отступы у элемента. Попробуйте поменять padding прямо в DevTools — изменения мгновенно отобразятся на странице!</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== PADDING ===== -->
+    <h2 id="padding">6. padding — внутренние отступы</h2>
+
+    <p><code>padding</code> — расстояние <strong>внутри</strong> элемента, между содержимым и рамкой. Фон элемента распространяется на padding — это его ключевое отличие от margin.</p>
+
+    <div class="why">
+        <p>Без padding текст будет «прилипать» к краям элемента. Попробуйте представить кнопку, где текст упирается в самый край — выглядит ужасно. Padding создаёт «воздух» внутри элемента, делая его читабельным и красивым.</p>
+    </div>
+
+    <h3>Синтаксис</h3>
+
+<pre><code>/* Все стороны одинаково */
+padding: 20px;
+
+/* Вертикально | Горизонтально */
+padding: 20px 40px;
+/*        ↑       ↑
+    верх+низ  лево+право  */
+
+/* Три значения: Верх | Лево+Право | Низ */
+padding: 10px 20px 30px;
+
+/* Четыре значения: Верх | Право | Низ | Лево (по часовой стрелке!) */
+padding: 10px 20px 30px 40px;
+
+/* Каждая сторона отдельно */
+padding-top: 10px;
+padding-right: 20px;
+padding-bottom: 30px;
+padding-left: 40px;</code></pre>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:8px;">Сравните — одинаковый текст с разным padding:</p>
+        <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 4px; margin-bottom: 10px;">padding: 4px — текст прижат к краям, тесно</div>
+        <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 12px; margin-bottom: 10px;">padding: 12px — уже лучше, есть немного воздуха</div>
+        <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 24px; margin-bottom: 10px;">padding: 24px — комфортно, текст «дышит»</div>
+        <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 48px;">padding: 48px — много пространства, подходит для hero-секций</div>
+    </div>
+
+    <div class="highlight">
+        <strong>Запоминалка для 4 значений</strong> — по часовой стрелке, начиная сверху: <strong>Т</strong>оп, <strong>Р</strong>айт, <strong>Б</strong>оттом, <strong>Л</strong>ефт (ТРБЛ — «trouble» / проблема).
+        <p style="margin-top:8px;">Или представьте часы: 12 (top) → 3 (right) → 6 (bottom) → 9 (left).</p>
+    </div>
+
+    <div class="real-world">
+        <p><strong>Типичные значения padding в реальных проектах:</strong></p>
+        <ul>
+            <li><code>4px–8px</code> — маленькие бейджи, теги</li>
+            <li><code>10px–16px</code> — кнопки, инпуты</li>
+            <li><code>16px–24px</code> — карточки, блоки контента</li>
+            <li><code>40px–80px</code> — hero-секции, большие баннеры</li>
+        </ul>
+    </div>
+
+    <div class="pro-tip">
+        <p>Часто горизонтальный padding делают больше вертикального. Например, <code>padding: 12px 24px</code> для кнопок — это стандарт. Так кнопка выглядит пропорционально, потому что текст обычно шире, чем выше.</p>
+    </div>
+
+    <div class="mistake">
+        <p><strong>Путаница padding и margin.</strong> Новички часто не понимают разницу. Простое правило:</p>
+        <ul>
+            <li><strong>Padding</strong> — отступ <strong>внутри</strong> элемента. Фон элемента его покрывает. Используйте, когда нужно отодвинуть содержимое от края.</li>
+            <li><strong>Margin</strong> — отступ <strong>снаружи</strong> элемента. Он прозрачный. Используйте, когда нужно отодвинуть элемент от соседей.</li>
+        </ul>
+        <p>Запомните: <strong>padding — внутри, margin — снаружи</strong>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== BORDER ===== -->
+    <h2 id="border">7. border — рамка</h2>
+
+    <p><code>border</code> — видимая рамка вокруг элемента. Находится между padding и margin. Состоит из трёх частей: <strong>толщина</strong>, <strong>стиль</strong> и <strong>цвет</strong>.</p>
+
+    <div class="why">
+        <p>Border используется не только для декоративных рамок. Это мощный инструмент для <strong>отладки вёрстки</strong>: когда вы не понимаете, сколько места занимает элемент, добавьте <code>border: 1px solid red</code> — и сразу увидите его границы. Многие разработчики держат это как «трюк номер один» для отладки.</p>
+    </div>
+
+<pre><code>border: толщина стиль цвет;
+
+/* Примеры */
+border: 1px solid black;       /* тонкая сплошная чёрная */
+border: 3px dashed red;        /* пунктирная красная */
+border: 2px dotted #3b82f6;    /* точечная синяя */
+border: 4px double green;      /* двойная зелёная */
+
+/* Отдельные стороны */
+border-top: 3px solid red;
+border-bottom: 2px dashed blue;
+border-left: 4px solid green;
+border-right: none;
+
+/* Отдельные свойства */
+border-width: 2px;
+border-style: solid;
+border-color: #333;</code></pre>
+
+    <h3>Стили рамок</h3>
+    <table>
+        <tr><th>Стиль</th><th>Вид</th><th>Описание</th><th>Где используется</th></tr>
+        <tr><td><code>solid</code></td><td style="border-bottom: 3px solid #1e293b;">&#8203;</td><td>Сплошная линия</td><td>Самый частый вариант — кнопки, карточки, разделители</td></tr>
+        <tr><td><code>dashed</code></td><td style="border-bottom: 3px dashed #1e293b;">&#8203;</td><td>Пунктирная (штрихи)</td><td>Зоны drag-and-drop, области загрузки файлов</td></tr>
+        <tr><td><code>dotted</code></td><td style="border-bottom: 3px dotted #1e293b;">&#8203;</td><td>Точечная</td><td>Разделители, декоративные линии</td></tr>
+        <tr><td><code>double</code></td><td style="border-bottom: 4px double #1e293b;">&#8203;</td><td>Двойная линия</td><td>Классические/академические дизайны</td></tr>
+        <tr><td><code>none</code></td><td>&#8203;</td><td>Без рамки</td><td>Убрать рамку у инпутов, кнопок</td></tr>
+    </table>
+
+    <div class="result-box">
+        <div style="border: 2px solid #1e293b; padding: 10px; margin-bottom: 8px;">solid — сплошная (используется в 90% случаев)</div>
+        <div style="border: 2px dashed #e11d48; padding: 10px; margin-bottom: 8px;">dashed — пунктирная (зона «перетащите файл сюда»)</div>
+        <div style="border: 2px dotted #7c3aed; padding: 10px; margin-bottom: 8px;">dotted — точечная (тонкие разделители)</div>
+        <div style="border: 4px double #059669; padding: 10px; margin-bottom: 8px;">double — двойная (классический стиль)</div>
+        <div style="border-bottom: 3px solid #3b82f6; padding: 10px;">border-bottom only — только нижняя рамка (подчёркивание вкладок)</div>
+    </div>
+
+    <div class="real-world">
+        <p><strong>Популярные паттерны с border:</strong></p>
+        <ul>
+            <li><code>border-bottom: 2px solid</code> — подчёркивание активной вкладки в навигации</li>
+            <li><code>border-left: 4px solid</code> — акцентная полоска сбоку (как в этих блоках «Аналогия»)</li>
+            <li><code>border: 1px solid #e2e8f0</code> — тонкая разделительная рамка (карточки, таблицы)</li>
+            <li><code>border: 2px solid transparent</code> — невидимая рамка, которая появляется при hover (чтобы элемент не «прыгал»)</li>
+        </ul>
+    </div>
+
+    <div class="pro-tip">
+        <p><strong>Трюк для отладки:</strong> если вы не понимаете, почему элементы расположены неправильно, временно добавьте всем элементам рамку:</p>
+<pre><code>/* Временно! Удалить после отладки */
+* { border: 1px solid red !important; }</code></pre>
+        <p>Это покажет границы <strong>каждого</strong> элемента на странице и поможет понять проблему. Профессионалы используют этот трюк постоянно.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== MARGIN ===== -->
+    <h2 id="margin">8. margin — внешние отступы</h2>
+
+    <p><code>margin</code> — расстояние <strong>снаружи</strong> элемента, между ним и соседними элементами. Margin всегда прозрачный — фон элемента на него <strong>не</strong> распространяется.</p>
+
+    <div class="why">
+        <p>Margin отвечает за <strong>расстояние между элементами</strong>. Без margin все блоки будут слипаться друг с другом. Margin создаёт «дышащий» макет, где у каждого элемента есть своё пространство.</p>
+    </div>
+
+<pre><code>/* Все стороны */
+margin: 20px;
+
+/* Вертикально | Горизонтально */
+margin: 20px 40px;
+
+/* Верх | Право | Низ | Лево (по часовой, как padding) */
+margin: 10px 20px 30px 40px;
+
+/* Отдельные стороны */
+margin-top: 20px;
+margin-bottom: 30px;
+
+/* МАГИЯ: центрирование блока по горизонтали */
+margin: 0 auto;</code></pre>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:8px;">Без margin — блоки слипаются:</p>
+        <div style="background: #fee2e2; border: 2px solid #ef4444; padding: 10px; margin-bottom: 0;">Блок 1 (margin-bottom: 0)</div>
+        <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 10px; margin-bottom: 0;">Блок 2 (без margin — прилипает к первому)</div>
+        <p style="font-weight:600;margin: 20px 0 8px;">С margin — блоки «дышат»:</p>
+        <div style="background: #fee2e2; border: 2px solid #ef4444; padding: 10px; margin-bottom: 16px;">Блок 3 (margin-bottom: 16px)</div>
+        <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 10px;">Блок 4 (есть расстояние!)</div>
+    </div>
+
+    <h3>margin: 0 auto — центрирование</h3>
+
+    <p>Одна из самых полезных комбинаций в CSS. Если задать блоку фиксированную ширину и <code>margin: 0 auto</code>, он будет <strong>по центру</strong> родителя:</p>
+
+<pre><code>.container {
+    width: 600px;
+    margin: 0 auto;    /* 0 сверху/снизу, auto слева/справа */
+}</code></pre>
+
+    <div class="result-box">
+        <div style="width: 300px; margin: 0 auto; background: #dbeafe; border: 2px solid #3b82f6; padding: 12px; text-align: center;">width: 300px; margin: 0 auto;</div>
+        <p style="text-align:center;font-size:0.85rem;color:#64748b;margin-top:8px;">Блок центрирован в родителе</p>
+    </div>
+
+    <div class="important">
+        <strong>Важно!</strong> <code>margin: 0 auto</code> работает только при двух условиях:
+        <ol>
+            <li>У элемента задан <strong>width</strong> (или max-width)</li>
+            <li>Элемент <strong>блочный</strong> (display: block)</li>
+        </ol>
+        <p>Если ширина не задана — блок и так занимает 100%, центрировать нечего. Если элемент строчный — auto margin не работает.</p>
+    </div>
+
+    <h3>Схлопывание margin (margin collapsing)</h3>
+
+    <p>Это одна из самых <strong>запутанных</strong> вещей в CSS. Когда два вертикальных margin встречаются, они <strong>не складываются</strong>, а <strong>схлопываются</strong> — побеждает больший:</p>
+
+    <div class="diagram">
+Блок 1:  margin-bottom: 30px
+Блок 2:  margin-top: 20px
+
+Ожидаем расстояние:  30 + 20 = 50px  ❌
+Реальное расстояние:  max(30, 20) = 30px  ✅
+
+Побеждает больший margin!</div>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:8px;">Демонстрация схлопывания:</p>
+        <div style="background: #fee2e2; border: 2px solid #ef4444; padding: 10px; margin-bottom: 30px;">Блок 1: margin-bottom: <strong>30px</strong></div>
+        <div style="background: #dbeafe; border: 2px solid #3b82f6; padding: 10px; margin-top: 20px;">Блок 2: margin-top: <strong>20px</strong></div>
+        <p style="font-size:0.85rem;color:#64748b;margin-top:8px;">Расстояние между ними = 30px (не 50px!). Больший margin «поглотил» меньший.</p>
+    </div>
+
+    <div class="fun-fact">
+        <p>Схлопывание margin — одна из самых запутанных вещей в CSS, которая унаследована из эпохи документов. Оно задумано для текста: чтобы расстояние между абзацами было одинаковым, а не удваивалось.</p>
+        <p>Схлопывание работает <strong>только вертикально</strong> (top/bottom) и <strong>не работает</strong>:</p>
+        <ul>
+            <li>Горизонтально (left/right)</li>
+            <li>Для flex/grid контейнеров</li>
+            <li>Для элементов с <code>overflow</code> (кроме visible)</li>
+            <li>Для элементов с <code>padding</code> или <code>border</code> между margin'ами</li>
+        </ul>
+    </div>
+
+    <div class="pro-tip">
+        <p><strong>Как избежать проблем со схлопыванием?</strong> Два подхода:</p>
+        <ol>
+            <li><strong>Использовать margin только в одном направлении.</strong> Например, только <code>margin-bottom</code> у всех элементов — тогда margin'ы не встречаются и не схлопываются.</li>
+            <li><strong>Использовать padding родителя</strong> вместо margin ребёнка, когда нужен отступ от края контейнера.</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== BOX-SIZING ===== -->
+    <h2 id="box-sizing">9. box-sizing: border-box</h2>
+
+    <p>А теперь разберём одну из <strong>самых раздражающих проблем</strong> в CSS. По умолчанию, <code>width</code> и <code>height</code> задают размер <strong>только content</strong>. Padding и border добавляются сверху:</p>
+
+    <div class="diagram">
+box-sizing: content-box (по умолчанию)
+──────────────────────────────────────
+width: 300px
+padding: 20px (слева + справа = 40px)
+border: 5px (слева + справа = 10px)
+
+Итого ширина на экране: 300 + 40 + 10 = 350px  😱
+
+Вы задали 300px, а получили 350px!</div>
+
+    <p>Представьте: у вас 3 колонки по <code>width: 33.33%</code>. Вы добавляете <code>padding: 20px</code> и... макет ломается, потому что ширина каждой колонки стала 33.33% + 40px. Три колонки не помещаются в строку.</p>
+
+    <p>Поэтому придумали <code>box-sizing: border-box</code>:</p>
+
+    <div class="diagram">
+box-sizing: border-box (рекомендуется!)
+──────────────────────────────────────
+width: 300px — это ИТОГО (content + padding + border)
+
+Content автоматически уменьшается,
+чтобы всё вместилось в 300px.
+
+Итого ширина на экране: 300px  ✅
+
+Вы задали 300px — получили 300px!</div>
+
+<pre><code>/* Применяем ко ВСЕМ элементам (лучшая практика) */
+* {
+    box-sizing: border-box;
+}
+
+/* Теперь width = итоговая ширина */
+.box {
+    width: 300px;
+    padding: 20px;
+    border: 5px solid black;
+    /* На экране будет ровно 300px! */
+}</code></pre>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label">content-box (по умолчанию) ❌</div>
+            <div style="width:200px;padding:20px;border:5px solid #ef4444;background:#fee2e2;box-sizing:content-box;">width: 200px<br>+ padding 40px<br>+ border 10px<br>= <strong>250px</strong> на экране!</div>
+            <p style="font-size:0.8rem;color:#64748b;margin-top:6px;">Элемент шире, чем вы указали. Макет может сломаться.</p>
+        </div>
+        <div class="right">
+            <div class="label">border-box (рекомендуется) ✅</div>
+            <div style="width:200px;padding:20px;border:5px solid #22c55e;background:#dcfce7;box-sizing:border-box;">width: 200px<br>padding и border<br>внутри<br>= <strong>200px</strong> на экране!</div>
+            <p style="font-size:0.8rem;color:#64748b;margin-top:6px;">Элемент ровно такой, как указано. Предсказуемо!</p>
+        </div>
+    </div>
+
+    <div class="important">
+        <strong>Правило:</strong> всегда добавляйте <code>* { box-sizing: border-box; }</code> в начало CSS. Это стандарт индустрии. Все фреймворки (Bootstrap, Tailwind) делают так. Все профессиональные разработчики делают так. Нет причины использовать content-box в 2025 году.
+    </div>
+
+    <div class="fun-fact">
+        <p>Интересный факт: <code>content-box</code> — это поведение по умолчанию, потому что CSS создавался в 1996 году, и тогда так было логично. Но с развитием веба все поняли, что это неудобно. В 2012 году появился <code>border-box</code>, и весь мир переключился на него. Это тот редкий случай, когда «значение по умолчанию» в CSS — неправильное.</p>
+    </div>
+
+    <div class="quiz">
+        <p>Быстрый расчёт — посчитайте итоговую ширину:</p>
+        <ol>
+            <li><code>box-sizing: content-box; width: 200px; padding: 15px; border: 5px;</code> → <em>200 + 30 + 10 = <strong>240px</strong></em></li>
+            <li><code>box-sizing: border-box; width: 200px; padding: 15px; border: 5px;</code> → <em><strong>200px</strong> (content уменьшится до 160px)</em></li>
+            <li><code>box-sizing: content-box; width: 100%; padding: 20px;</code> → <em>100% + 40px — <strong>макет сломается</strong>, элемент будет шире родителя!</em></li>
+            <li><code>box-sizing: border-box; width: 100%; padding: 20px;</code> → <em><strong>100%</strong> — всё влезает идеально</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== DISPLAY ===== -->
+    <h2 id="display">10. display: block, inline, inline-block</h2>
+
+    <p>Мы говорили, что <code>&lt;div&gt;</code> — блочный, <code>&lt;span&gt;</code> — строчный. Но <strong>тип элемента не высечен в камне</strong>! Свойство <code>display</code> позволяет <strong>изменить</strong> поведение любого элемента:</p>
+
+    <div class="why">
+        <p>Зачем менять display? Потому что HTML-теги выбираются по <strong>смыслу</strong>, а не по внешнему виду. Тег <code>&lt;a&gt;</code> означает «ссылка» — его семантика строчная. Но вам может понадобиться ссылка-кнопка на всю ширину. Вместо использования <code>&lt;div&gt;</code> (что неправильно семантически), вы меняете display у <code>&lt;a&gt;</code> на block.</p>
+    </div>
+
+    <table>
+        <tr><th>Значение</th><th>Поведение</th><th>Пример использования</th></tr>
+        <tr><td><code>block</code></td><td>Новая строка, вся ширина, работают width/height/margin</td><td>Сделать <code>&lt;a&gt;</code> блочной кнопкой на всю ширину</td></tr>
+        <tr><td><code>inline</code></td><td>В одной строке, только по содержимому, width/height не работают</td><td>Сделать <code>&lt;li&gt;</code> горизонтальным меню</td></tr>
+        <tr><td><code>inline-block</code></td><td>В одной строке, НО работают width/height/margin</td><td>Кнопки в ряд, бейджи, карточки</td></tr>
+        <tr><td><code>none</code></td><td>Элемент полностью скрыт (не занимает места)</td><td>Скрытие элементов, выпадающие меню</td></tr>
+    </table>
+
+    <h3>inline-block — лучшее от двух миров</h3>
+
+    <p><code>inline-block</code> — это, пожалуй, <strong>самое полезное</strong> значение display на данном этапе. Оно объединяет преимущества block и inline:</p>
+
+    <table>
+        <tr><th>Свойство</th><th>inline</th><th>block</th><th>inline-block</th></tr>
+        <tr><td>На одной строке с другими?</td><td>✅ Да</td><td>❌ Нет</td><td>✅ Да</td></tr>
+        <tr><td>Работает width/height?</td><td>❌ Нет</td><td>✅ Да</td><td>✅ Да</td></tr>
+        <tr><td>Работает margin/padding?</td><td>Частично</td><td>✅ Да</td><td>✅ Да</td></tr>
+        <tr><td>Занимает всю ширину?</td><td>❌ Нет</td><td>✅ Да</td><td>❌ Нет</td></tr>
+    </table>
+
+<pre><code>/* Бейджи / теги */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #dbeafe;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+/* Кнопки в ряд */
+.button {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #3b82f6;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}</code></pre>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:8px;">Бейджи (inline-block):</p>
+        <span style="display:inline-block;padding:4px 12px;background:#dbeafe;border-radius:12px;font-size:14px;color:#1d4ed8;font-weight:600;">HTML</span>
+        <span style="display:inline-block;padding:4px 12px;background:#f3e8ff;border-radius:12px;font-size:14px;color:#7c3aed;font-weight:600;">CSS</span>
+        <span style="display:inline-block;padding:4px 12px;background:#dcfce7;border-radius:12px;font-size:14px;color:#15803d;font-weight:600;">JavaScript</span>
+        <span style="display:inline-block;padding:4px 12px;background:#fef3c7;border-radius:12px;font-size:14px;color:#a16207;font-weight:600;">React</span>
+        <p style="font-weight:600;margin: 16px 0 8px;">Кнопки в ряд (inline-block):</p>
+        <div>
+            <a href="#" style="display:inline-block;padding:10px 24px;background:#3b82f6;color:white;border-radius:8px;text-decoration:none;font-weight:600;">Кнопка 1</a>
+            <a href="#" style="display:inline-block;padding:10px 24px;background:#7c3aed;color:white;border-radius:8px;text-decoration:none;font-weight:600;">Кнопка 2</a>
+            <a href="#" style="display:inline-block;padding:10px 24px;background:#059669;color:white;border-radius:8px;text-decoration:none;font-weight:600;">Кнопка 3</a>
+        </div>
+    </div>
+
+    <div class="mistake">
+        <p><strong>Ловушка с пробелами в inline-block:</strong> между inline-block элементами появляется маленький пробел (~4px), потому что браузер считает перенос строки в HTML как пробел.</p>
+<pre><code>&lt;!-- Между кнопками будет пробел ~4px --&gt;
+&lt;a class="btn"&gt;Кнопка 1&lt;/a&gt;
+&lt;a class="btn"&gt;Кнопка 2&lt;/a&gt;
+
+&lt;!-- Решение 1: убрать пробел в HTML --&gt;
+&lt;a class="btn"&gt;Кнопка 1&lt;/a&gt;&lt;a class="btn"&gt;Кнопка 2&lt;/a&gt;
+
+&lt;!-- Решение 2 (лучше): использовать flexbox (изучим позже) --&gt;</code></pre>
+        <p>Не паникуйте — это мелочь. Но полезно знать, почему кнопки не прилегают вплотную.</p>
+    </div>
+
+    <h3>display: none — полное скрытие</h3>
+
+    <p><code>display: none</code> полностью убирает элемент со страницы. Он не виден и <strong>не занимает места</strong>, как будто его нет в HTML.</p>
+
+<pre><code>.hidden { display: none; }
+
+/* Часто используется вместе с JavaScript:
+   при клике на кнопку — показать/скрыть элемент */</code></pre>
+
+    <div class="fun-fact">
+        <p>Есть ещё <code>visibility: hidden</code> — элемент <strong>невидим</strong>, но <strong>занимает место</strong>. Разница:</p>
+        <ul>
+            <li><code>display: none</code> — элемент исчезает полностью (как вырезали из страницы)</li>
+            <li><code>visibility: hidden</code> — элемент невидим, но «дыра» на его месте остаётся</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <ol>
+            <li>Какой display по умолчанию у <code>&lt;div&gt;</code>? <em>(block)</em></li>
+            <li>Какой display по умолчанию у <code>&lt;span&gt;</code>? <em>(inline)</em></li>
+            <li>Можно ли задать width для inline-элемента? <em>(нет, нужно inline-block или block)</em></li>
+            <li>Чем inline-block отличается от block? <em>(inline-block не начинает новую строку)</em></li>
+            <li>Чем display: none отличается от visibility: hidden? <em>(none убирает с потока, hidden только скрывает визуально)</em></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ===== OVERFLOW ===== -->
+    <h2 id="overflow">11. overflow — переполнение</h2>
+
+    <p>Что произойдёт, если содержимое <strong>не помещается</strong> в элемент с фиксированными размерами? За это отвечает свойство <code>overflow</code>.</p>
+
+    <div class="why">
+        <p>Зачем это нужно? Представьте карточку товара с фиксированной высотой. Если описание товара слишком длинное — оно вылезет за карточку и наедет на соседние элементы. Overflow позволяет контролировать это: обрезать лишнее, добавить прокрутку или позволить тексту «вылезти».</p>
+    </div>
+
+    <table>
+        <tr><th>Значение</th><th>Поведение</th><th>Когда использовать</th></tr>
+        <tr><td><code>visible</code></td><td>Содержимое вылезает за пределы (по умолчанию)</td><td>Обычно не то, что вы хотите</td></tr>
+        <tr><td><code>hidden</code></td><td>Всё, что не влезло — обрезается</td><td>Карточки с фиксированной высотой, круглые аватарки</td></tr>
+        <tr><td><code>scroll</code></td><td>Всегда показывает полосу прокрутки</td><td>Редко — полосы прокрутки выглядят некрасиво</td></tr>
+        <tr><td><code>auto</code></td><td>Полоса прокрутки появляется <strong>только если нужна</strong></td><td>Чаты, логи, длинные списки в ограниченной области</td></tr>
+    </table>
+
+<pre><code>.card-description {
+    height: 100px;
+    overflow: hidden;   /* обрезать длинное описание */
+}
+
+.chat-window {
+    height: 400px;
+    overflow: auto;     /* прокрутка для сообщений */
+}
+
+/* Можно отдельно по осям */
+overflow-x: hidden;    /* горизонтально — скрыть */
+overflow-y: auto;      /* вертикально — прокрутка если нужна */</code></pre>
+
+    <div class="result-box">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+            <div>
+                <div style="font-weight:600;font-size:0.85rem;margin-bottom:4px;">overflow: visible</div>
+                <div style="width:100%;height:80px;border:2px solid #3b82f6;padding:8px;overflow:visible;font-size:0.8rem;background:#eff6ff;">Этот текст длинный и не помещается в маленький блок с фиксированной высотой, поэтому он вылезает за границы и наезжает на другие элементы.</div>
+            </div>
+            <div>
+                <div style="font-weight:600;font-size:0.85rem;margin-bottom:4px;">overflow: hidden</div>
+                <div style="width:100%;height:80px;border:2px solid #ef4444;padding:8px;overflow:hidden;font-size:0.8rem;background:#fef2f2;">Этот текст длинный и не помещается в маленький блок с фиксированной высотой, поэтому он обрезается и невидим.</div>
+            </div>
+            <div>
+                <div style="font-weight:600;font-size:0.85rem;margin-bottom:4px;">overflow: auto</div>
+                <div style="width:100%;height:80px;border:2px solid #22c55e;padding:8px;overflow:auto;font-size:0.8rem;background:#f0fdf4;">Этот текст длинный и не помещается в маленький блок с фиксированной высотой, поэтому появляется полоса прокрутки.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="real-world">
+        <p><strong>Где используется overflow в реальных проектах:</strong></p>
+        <ul>
+            <li><code>overflow: hidden</code> — круглые аватарки (вместе с border-radius: 50% — обрезает углы изображения)</li>
+            <li><code>overflow: auto</code> — окна чатов (WhatsApp Web, Telegram Web), боковые панели с длинным списком</li>
+            <li><code>overflow: hidden</code> — карточки товаров с ограниченным описанием</li>
+            <li><code>overflow-x: auto</code> — горизонтальная прокрутка таблиц на мобильных</li>
+        </ul>
+    </div>
+
+    <div class="pro-tip">
+        <p><strong>overflow: auto vs scroll:</strong> почти всегда используйте <code>auto</code>, а не <code>scroll</code>. Разница в том, что <code>scroll</code> показывает полосу прокрутки <strong>всегда</strong>, даже если контент помещается. А <code>auto</code> показывает её <strong>только когда нужно</strong>. На Windows полосы прокрутки занимают место и выглядят громоздко, поэтому лишние полосы — это визуальный мусор.</p>
+    </div>
+
+    <hr>
+
+    <!-- ===== BORDER-RADIUS ===== -->
+    <h2 id="border-radius">12. border-radius — скругление углов</h2>
+
+    <p><code>border-radius</code> скругляет углы элемента. Работает даже без видимой рамки (border) — скругляет фон, тени и т.д.</p>
+
+    <div class="why">
+        <p>Скругление углов — один из главных инструментов современного дизайна. Острые углы выглядят «жёстко» и «технично», а скруглённые — «мягко» и «дружелюбно». Практически все современные сайты используют скругления. Посмотрите на Google, Apple, любую социальную сеть — везде скруглённые кнопки, карточки, аватарки.</p>
+    </div>
+
+<pre><code>/* Все углы одинаково */
+border-radius: 10px;
+
+/* Каждый угол отдельно (по часовой стрелке) */
+border-radius: 10px 20px 30px 40px;
+/*              ↑        ↑        ↑        ↑
+   верхний-левый  верхний-правый  нижний-правый  нижний-левый */
+
+/* Круг или овал (если элемент квадратный — круг) */
+border-radius: 50%;
+
+/* Таблетка / капсула (для кнопок) */
+border-radius: 9999px;</code></pre>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:10px;">Степени скругления:</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: center;">
+            <div style="width:80px;height:80px;background:#3b82f6;border-radius:0;display:flex;align-items:center;justify-content:center;color:white;font-size:0.75rem;font-weight:600;flex-direction:column;"><span>0px</span><span style="font-size:0.65rem;font-weight:400;">острый</span></div>
+            <div style="width:80px;height:80px;background:#6366f1;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:0.75rem;font-weight:600;flex-direction:column;"><span>8px</span><span style="font-size:0.65rem;font-weight:400;">кнопка</span></div>
+            <div style="width:80px;height:80px;background:#7c3aed;border-radius:16px;display:flex;align-items:center;justify-content:center;color:white;font-size:0.75rem;font-weight:600;flex-direction:column;"><span>16px</span><span style="font-size:0.65rem;font-weight:400;">карточка</span></div>
+            <div style="width:80px;height:80px;background:#059669;border-radius:24px;display:flex;align-items:center;justify-content:center;color:white;font-size:0.75rem;font-weight:600;flex-direction:column;"><span>24px</span><span style="font-size:0.65rem;font-weight:400;">мягкий</span></div>
+            <div style="width:80px;height:80px;background:#e11d48;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.75rem;font-weight:600;flex-direction:column;"><span>50%</span><span style="font-size:0.65rem;font-weight:400;">круг</span></div>
+            <div style="padding:10px 30px;background:#f59e0b;border-radius:9999px;display:inline-flex;align-items:center;justify-content:center;color:white;font-size:0.75rem;font-weight:600;flex-direction:column;"><span>9999px</span><span style="font-size:0.65rem;font-weight:400;">таблетка</span></div>
+        </div>
+    </div>
+
+    <div class="highlight">
+        <strong>Популярные значения:</strong>
+        <ul>
+            <li><code>4px–8px</code> — лёгкое скругление (кнопки, инпуты, мелкие элементы)</li>
+            <li><code>12px–16px</code> — карточки, модальные окна</li>
+            <li><code>50%</code> — идеальный круг (для квадратных элементов и аватаров)</li>
+            <li><code>9999px</code> — таблетка/капсула (для кнопок и бейджей). Работает для любой высоты элемента</li>
+        </ul>
+    </div>
+
+    <h3>Круглая аватарка</h3>
+    <p>Один из самых популярных паттернов в вебе — круглые аватарки:</p>
+
+<pre><code>.avatar {
+    width: 80px;
+    height: 80px;          /* квадрат! */
+    border-radius: 50%;    /* делает круг */
+    overflow: hidden;      /* обрезает углы изображения */
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     /* заполняет без искажений */
+}</code></pre>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:8px;">Круглые аватарки:</p>
+        <div style="display:flex;gap:12px;align-items:center;">
+            <div style="width:60px;height:60px;border-radius:50%;background:#3b82f6;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.15);">А</div>
+            <div style="width:60px;height:60px;border-radius:50%;background:#e11d48;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.15);">Б</div>
+            <div style="width:60px;height:60px;border-radius:50%;background:#059669;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.15);">В</div>
+            <span style="color:#64748b;font-size:0.85rem;margin-left:8px;">border-radius: 50% + квадратный элемент = круг</span>
+        </div>
+    </div>
+
+    <div class="mistake">
+        <p><strong>border-radius: 50% не даёт круг?</strong> Проверьте, что у элемента одинаковые width и height. Если width: 100px, а height: 60px — получится <strong>овал</strong>, а не круг. Для круга нужен квадрат!</p>
+        <div style="display:flex;gap:16px;margin-top:8px;">
+            <div style="width:80px;height:50px;border-radius:50%;background:#ef4444;display:flex;align-items:center;justify-content:center;color:white;font-size:0.7rem;">80x50<br>= овал</div>
+            <div style="width:60px;height:60px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;color:white;font-size:0.7rem;">60x60<br>= круг</div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ===== BOX-SHADOW ===== -->
+    <h2 id="box-shadow">13. box-shadow — тени</h2>
+
+    <p><code>box-shadow</code> добавляет тень вокруг элемента. Создаёт эффект глубины и «приподнятости» — как будто элемент парит над страницей.</p>
+
+    <div class="why">
+        <p>Тени — это главный способ создать <strong>ощущение глубины</strong> на плоском экране. Без теней страница выглядит «плоско». С тенями карточки «парят», кнопки выглядят кликабельными, модальные окна «отделяются» от фона. Именно тени создают эффект материального дизайна (Material Design от Google).</p>
+    </div>
+
+<pre><code>box-shadow: смещение-X  смещение-Y  размытие  растяжение  цвет;
+
+/* Примеры */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);        /* лёгкая тень */
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);       /* средняя тень */
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);       /* глубокая тень */
+box-shadow: 0 0 0 3px #3b82f6;                     /* обводка (outline-эффект) */
+box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);   /* внутренняя тень */</code></pre>
+
+    <table>
+        <tr><th>Параметр</th><th>Что делает</th><th>Типичные значения</th></tr>
+        <tr><td>смещение-X</td><td>Горизонтальное смещение (+ вправо, - влево)</td><td>Обычно 0 (тень по центру)</td></tr>
+        <tr><td>смещение-Y</td><td>Вертикальное смещение (+ вниз, - вверх)</td><td>2px–10px (тень снизу, как от солнца сверху)</td></tr>
+        <tr><td>размытие</td><td>Степень размытия (0 = чёткая тень)</td><td>4px–30px</td></tr>
+        <tr><td>растяжение</td><td>Увеличение/уменьшение размера тени</td><td>Необязательный, обычно не используется</td></tr>
+        <tr><td>цвет</td><td>Цвет тени</td><td>rgba(0,0,0, 0.1–0.2) — полупрозрачный чёрный</td></tr>
+        <tr><td>inset</td><td>Внутренняя тень (вдавленный эффект)</td><td>Необязательный, для инпутов/кнопок</td></tr>
+    </table>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:12px;">Уровни теней — от лёгкой до глубокой:</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div style="padding:20px;background:white;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,0.05);text-align:center;font-size:0.85rem;"><strong>Минимальная</strong><br>0 1px 2px<br><span style="color:#64748b;">Еле заметна. Для тонких разделителей.</span></div>
+            <div style="padding:20px;background:white;border-radius:12px;box-shadow:0 2px 4px rgba(0,0,0,0.1);text-align:center;font-size:0.85rem;"><strong>Лёгкая</strong><br>0 2px 4px<br><span style="color:#64748b;">Карточки, кнопки в покое.</span></div>
+            <div style="padding:20px;background:white;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);text-align:center;font-size:0.85rem;"><strong>Средняя</strong><br>0 4px 12px<br><span style="color:#64748b;">Карточки при наведении, dropdown.</span></div>
+            <div style="padding:20px;background:white;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.2);text-align:center;font-size:0.85rem;"><strong>Глубокая</strong><br>0 10px 30px<br><span style="color:#64748b;">Модальные окна, pop-up.</span></div>
+            <div style="padding:20px;background:white;border-radius:12px;box-shadow:0 0 0 3px #3b82f6;text-align:center;font-size:0.85rem;"><strong>Обводка</strong><br>0 0 0 3px<br><span style="color:#64748b;">Фокус на инпуте, выделение.</span></div>
+            <div style="padding:20px;background:white;border-radius:12px;box-shadow:inset 0 2px 6px rgba(0,0,0,0.12);text-align:center;font-size:0.85rem;"><strong>Внутренняя</strong><br>inset 0 2px 6px<br><span style="color:#64748b;">Вдавленный эффект, инпуты.</span></div>
+        </div>
+    </div>
+
+    <div class="fun-fact">
+        <p><code>rgba(0, 0, 0, 0.1)</code> — это чёрный цвет с прозрачностью 10%. Последнее число (0.1) — альфа-канал (прозрачность) от 0 (полностью невидимый) до 1 (полностью непрозрачный). Для теней обычно используют 0.05–0.25. Чем меньше число — тем легче и воздушнее тень.</p>
+    </div>
+
+    <h3>Множественные тени</h3>
+
+    <p>Можно задать <strong>несколько теней</strong> через запятую. Это создаёт более реалистичный эффект глубины:</p>
+
+<pre><code>/* Двойная тень — выглядит более реалистично */
+box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.07),     /* ближняя чёткая */
+    0 4px 12px rgba(0, 0, 0, 0.05);    /* дальняя размытая */
+
+/* Тройная тень — премиальный эффект */
+box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.08),
+    0 4px 8px rgba(0, 0, 0, 0.06),
+    0 16px 32px rgba(0, 0, 0, 0.04);</code></pre>
+
+    <div class="result-box">
+        <p style="font-weight:600;margin-bottom:12px;">Одинарная vs множественная тень:</p>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;">
+            <div style="padding:20px;background:white;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);text-align:center;font-size:0.85rem;width:180px;"><strong>Одинарная</strong><br><span style="color:#64748b;">Нормально, но «плоско»</span></div>
+            <div style="padding:20px;background:white;border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,0.07),0 4px 12px rgba(0,0,0,0.05),0 16px 32px rgba(0,0,0,0.04);text-align:center;font-size:0.85rem;width:180px;"><strong>Множественная</strong><br><span style="color:#64748b;">Реалистичная глубина</span></div>
+        </div>
+    </div>
+
+    <div class="real-world">
+        <p><strong>Готовые рецепты теней для ваших проектов:</strong></p>
+<pre><code>/* Карточка товара */
+.card {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+}
+
+/* Кнопка */
+.button {
+    box-shadow: 0 2px 4px rgba(59,130,246,0.3);  /* цветная тень! */
+}
+
+/* Модальное окно */
+.modal {
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* Навигация / шапка */
+.navbar {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}</code></pre>
+    </div>
+
+    <div class="pro-tip">
+        <p><strong>Цветные тени!</strong> Вместо серой тени можно использовать цвет самого элемента — это выглядит очень стильно:</p>
+        <div style="display:flex;gap:16px;margin-top:10px;flex-wrap:wrap;">
+            <a href="#" style="display:inline-block;padding:12px 28px;background:#3b82f6;color:white;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:0 4px 14px rgba(59,130,246,0.4);">Синяя кнопка</a>
+            <a href="#" style="display:inline-block;padding:12px 28px;background:#ef4444;color:white;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:0 4px 14px rgba(239,68,68,0.4);">Красная кнопка</a>
+            <a href="#" style="display:inline-block;padding:12px 28px;background:#22c55e;color:white;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:0 4px 14px rgba(34,197,94,0.4);">Зелёная кнопка</a>
+        </div>
+        <p style="margin-top:8px;font-size:0.9rem;">Секрет: вместо rgba(0,0,0,...) используйте rgba цвета кнопки. Например, для синей (#3b82f6 = rgb 59,130,246): <code>box-shadow: 0 4px 14px rgba(59,130,246,0.4)</code></p>
+    </div>
+
+    <hr>
+
+    <!-- ===== ПРАКТИКА ===== -->
+    <h2 id="practice">14. Практика: карточки товаров</h2>
+
+    <p>Применим <strong>всё изученное</strong> за сегодня! Создадим набор карточек товаров — один из самых частых компонентов на любом сайте. Карточки используются в интернет-магазинах, портфолио, блогах, социальных сетях.</p>
+
+    <div class="highlight">
+        <strong>В этом примере мы используем:</strong>
+        <ul>
+            <li><code>* { box-sizing: border-box; }</code> — чтобы padding не ломал размеры</li>
+            <li><code>display: inline-block</code> — карточки в ряд</li>
+            <li><code>padding</code> — внутренние отступы в карточках</li>
+            <li><code>margin</code> — расстояние между карточками и центрирование</li>
+            <li><code>border-radius</code> — скругления углов</li>
+            <li><code>box-shadow</code> — тень для эффекта «парения»</li>
+            <li><code>width: 100%</code> — картинка на всю ширину карточки</li>
+        </ul>
+    </div>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Карточки товаров&lt;/title&gt;
+    &lt;style&gt;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;   /* ВСЕГДА в начале! */
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f1f5f9;      /* светло-серый фон */
+            padding: 40px 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .cards {
+            max-width: 800px;
+            margin: 0 auto;           /* центрирование контейнера */
+            text-align: center;       /* центрирование inline-block карточек */
+        }
+        .card {
+            display: inline-block;    /* карточки в ряд */
+            width: 220px;             /* фиксированная ширина */
+            background: white;        /* белый фон */
+            border-radius: 12px;      /* скруглённые углы */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  /* тень */
+            padding: 20px;            /* внутренние отступы */
+            margin: 10px;             /* расстояние между карточками */
+            vertical-align: top;      /* выравнивание по верху */
+            text-align: left;         /* текст внутри — по левому краю */
+        }
+        .card img {
+            width: 100%;              /* картинка на всю ширину карточки */
+            border-radius: 8px;       /* скруглённые углы у картинки */
+        }
+        .card h3 {
+            margin: 12px 0 8px;
+            font-size: 1.1rem;
+        }
+        .card .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #059669;           /* зелёный — цвет денег */
+            margin-bottom: 12px;
+        }
+        .card .old-price {
+            text-decoration: line-through;  /* зачёркнутая старая цена */
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-left: 8px;
+            font-weight: 400;
+        }
+        .card .btn {
+            display: inline-block;
+            width: 100%;              /* кнопка на всю ширину */
+            text-align: center;
+            padding: 10px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Наши товары&lt;/h1&gt;
+    &lt;div class="cards"&gt;
+        &lt;div class="card"&gt;
+            &lt;img src="https://via.placeholder.com/200x150/dbeafe/1d4ed8?text=Наушники" alt="Наушники"&gt;
+            &lt;h3&gt;Наушники Pro&lt;/h3&gt;
+            &lt;div class="price"&gt;3 500 &#8381; &lt;span class="old-price"&gt;5 000 &#8381;&lt;/span&gt;&lt;/div&gt;
+            &lt;a href="#" class="btn"&gt;Купить&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class="card"&gt;
+            &lt;img src="https://via.placeholder.com/200x150/dcfce7/15803d?text=Клавиатура" alt="Клавиатура"&gt;
+            &lt;h3&gt;Клавиатура RGB&lt;/h3&gt;
+            &lt;div class="price"&gt;2 800 &#8381;&lt;/div&gt;
+            &lt;a href="#" class="btn"&gt;Купить&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class="card"&gt;
+            &lt;img src="https://via.placeholder.com/200x150/fef3c7/a16207?text=Мышка" alt="Мышка"&gt;
+            &lt;h3&gt;Мышка Gaming&lt;/h3&gt;
+            &lt;div class="price"&gt;1 990 &#8381; &lt;span class="old-price"&gt;2 500 &#8381;&lt;/span&gt;&lt;/div&gt;
+            &lt;a href="#" class="btn"&gt;Купить&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <div class="try-it">
+        <p><strong>Попробуйте модифицировать этот код:</strong></p>
+        <ol>
+            <li>Измените цвет кнопки «Купить» на зелёный (<code>#22c55e</code>)</li>
+            <li>Добавьте 4-ю карточку</li>
+            <li>Увеличьте тень: <code>box-shadow: 0 4px 16px rgba(0,0,0,0.15)</code></li>
+            <li>Измените border-radius карточки на 20px</li>
+            <li>Добавьте рейтинг звёздочками (текстом): &#9733;&#9733;&#9733;&#9733;&#9734;</li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <h2>Итоги занятия 7</h2>
+
+    <div class="summary">
+        <ul>
+            <li><strong>Блочные</strong> (block) — новая строка, вся ширина: div, p, h1-h6, ul, li, header, section...</li>
+            <li><strong>Строчные</strong> (inline) — в одной строке, по содержимому: span, a, strong, em, code...</li>
+            <li><strong>Box Model</strong> — каждый элемент = content + padding + border + margin</li>
+            <li><strong>padding</strong> — внутренние отступы (фон распространяется). Чтобы текст «дышал» внутри элемента</li>
+            <li><strong>border</strong> — рамка (толщина + стиль + цвет). Также незаменимый инструмент отладки</li>
+            <li><strong>margin</strong> — внешние отступы (прозрачные, схлопываются вертикально). Расстояние между элементами</li>
+            <li><strong>box-sizing: border-box</strong> — width включает padding и border (всегда использовать!)</li>
+            <li><strong>display</strong> — меняет тип: block, inline, inline-block, none</li>
+            <li><strong>inline-block</strong> — лучшее от двух миров: в строке + работает width/height</li>
+            <li><strong>overflow</strong> — что делать с переполнением: hidden (обрезать), auto (прокрутка если нужна)</li>
+            <li><strong>border-radius</strong> — скругление (8px кнопки, 16px карточки, 50% круг, 9999px таблетка)</li>
+            <li><strong>box-shadow</strong> — тень (X Y размытие цвет). Создаёт глубину и стиль</li>
+        </ul>
+    </div>
+
+    <div class="quiz">
+        <p><strong>Финальная проверка — ответьте на все вопросы:</strong></p>
+        <ol>
+            <li>Назовите 4 слоя Box Model от центра наружу <em>(content → padding → border → margin)</em></li>
+            <li>Чем padding отличается от margin? <em>(padding — внутри, фон виден. Margin — снаружи, прозрачный)</em></li>
+            <li>Зачем нужен <code>box-sizing: border-box</code>? <em>(чтобы width включал padding и border, и элемент был предсказуемого размера)</em></li>
+            <li>Какой display нужен, чтобы элементы стояли в ряд, но у них работал width? <em>(inline-block)</em></li>
+            <li>Как сделать круглый элемент? <em>(width = height + border-radius: 50%)</em></li>
+            <li>Что значит <code>margin: 0 auto</code>? <em>(0 сверху/снизу, auto слева/справа — центрирование блока)</em></li>
+            <li>Что произойдёт, если содержимое не влезает в элемент с <code>overflow: hidden</code>? <em>(лишнее обрежется)</em></li>
+            <li>Как сделать кнопку-таблетку? <em>(border-radius: 9999px)</em></li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>

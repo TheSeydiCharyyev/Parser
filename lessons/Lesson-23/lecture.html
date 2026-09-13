@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 23 — CSS Transitions и Transform</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <link rel="stylesheet" href="../../css/lecture.css">
+    <script src="../../js/lang.js" defer></script>
+</head>
+<body>
+
+<div class="lesson-nav">
+    <a href="../../index.html" class="nav-home" data-lang="ru">&#8592; Главная</a>
+    <a href="../../index.html" class="nav-home" data-lang="en">&#8592; Home</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-title" data-lang="ru">Занятие 23: CSS Transitions и Transform</span>
+    <span class="nav-title" data-lang="en">Lesson 23: CSS Transitions and Transform</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-active" data-lang="ru">&#x1F468;&#x200D;&#x1F3EB; Лекция</span>
+    <span class="nav-active" data-lang="en">&#x1F468;&#x200D;&#x1F3EB; Lecture</span>
+    <a href="student.html" class="nav-link" data-lang="ru">&#x1F468;&#x200D;&#x1F393; Конспект</a>
+    <a href="student.html" class="nav-link" data-lang="en">&#x1F468;&#x200D;&#x1F393; Notes</a>
+    <a href="tasks.html" class="nav-link" data-lang="ru">&#x1F4CB; Задания</a>
+    <a href="tasks.html" class="nav-link" data-lang="en">&#x1F4CB; Tasks</a>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+</div>
+
+<div class="container">
+
+    <h1 data-lang="ru">Занятие 23: CSS Transitions и Transform</h1>
+    <h1 data-lang="en">Lesson 23: CSS Transitions and Transform</h1>
+    <p class="subtitle" data-lang="ru">Плавные переходы, трансформации: translate, rotate, scale, skew, hover-эффекты</p>
+    <p class="subtitle" data-lang="en">Smooth transitions, transforms: translate, rotate, scale, skew, hover effects</p>
+
+    <div class="why" data-lang="ru">
+        <p>До сих пор наши сайты были <strong>статичными</strong>. Пользователь наводит на кнопку — цвет меняется мгновенно. Нажимает — ничего не двигается. Это работает, но выглядит как сайт из 2005 года.</p>
+        <p>Современные сайты <strong>реагируют на действия</strong>: кнопка плавно меняет цвет, карточка приподнимается при наведении, иконка поворачивается на 45°, при нажатии элемент «утопает». Именно эти маленькие детали отличают профессиональный сайт от любительского.</p>
+        <p>Хорошая новость: для этого <strong>не нужен JavaScript</strong>. CSS даёт два мощных инструмента: <code>transition</code> (плавные переходы между состояниями) и <code>transform</code> (трансформации — сдвиг, поворот, масштаб, наклон). Вместе они покрывают 90% всех интерактивных анимаций на сайтах.</p>
+        <p><strong>После этого занятия вы сможете:</strong></p>
+        <ul>
+            <li>Делать плавные hover-эффекты на кнопках, карточках, ссылках</li>
+            <li>Управлять длительностью и «характером» анимации через timing-function</li>
+            <li>Двигать элементы без смещения соседей через <code>translate</code></li>
+            <li>Увеличивать и уменьшать без искажений через <code>scale</code></li>
+            <li>Вращать иконки через <code>rotate</code></li>
+            <li>Комбинировать несколько трансформаций в одну</li>
+            <li>Собирать готовые hover-паттерны для карточек, кнопок, иконок</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Until now our sites were <strong>static</strong>. User hovers a button — color changes instantly. Clicks — nothing moves. It works, but it looks like a 2005 website.</p>
+        <p>Modern sites <strong>react to actions</strong>: button smoothly changes color, card lifts on hover, icon rotates 45°, element "sinks" on click. Those small details separate a professional site from an amateur one.</p>
+        <p>Good news: <strong>no JavaScript needed</strong>. CSS gives two powerful tools: <code>transition</code> (smooth changes between states) and <code>transform</code> (transformations — move, rotate, scale, skew). Together they cover 90% of interactive animations on websites.</p>
+        <p><strong>After this lesson you'll be able to:</strong></p>
+        <ul>
+            <li>Build smooth hover effects on buttons, cards, links</li>
+            <li>Control duration and "character" of animation via timing-function</li>
+            <li>Move elements without shifting neighbors via <code>translate</code></li>
+            <li>Scale up and down without distortion via <code>scale</code></li>
+            <li>Rotate icons via <code>rotate</code></li>
+            <li>Combine multiple transforms in one</li>
+            <li>Assemble ready hover patterns for cards, buttons, icons</li>
+        </ul>
+    </div>
+
+    <div class="toc" data-lang="ru">
+        <div class="toc-title">Содержание</div>
+        <ol>
+            <li><a href="#why">Зачем нужны анимации</a></li>
+            <li><a href="#transition">transition — плавный переход</a></li>
+            <li><a href="#transition-props">Свойства transition</a></li>
+            <li><a href="#timing">timing-function — кривые ускорения</a></li>
+            <li><a href="#multiple">Несколько transition сразу</a></li>
+            <li><a href="#transform-intro">transform — трансформации</a></li>
+            <li><a href="#translate">translate — перемещение</a></li>
+            <li><a href="#scale">scale — масштаб</a></li>
+            <li><a href="#rotate">rotate — вращение</a></li>
+            <li><a href="#skew">skew — наклон</a></li>
+            <li><a href="#combine">Комбинирование трансформаций</a></li>
+            <li><a href="#hover-patterns">Популярные hover-паттерны</a></li>
+            <li><a href="#practice">Практика: интерактивные карточки и кнопки</a></li>
+        </ol>
+    </div>
+    <div class="toc" data-lang="en">
+        <div class="toc-title">Table of Contents</div>
+        <ol>
+            <li><a href="#why">Why animations matter</a></li>
+            <li><a href="#transition">transition — smooth change</a></li>
+            <li><a href="#transition-props">transition properties</a></li>
+            <li><a href="#timing">timing-function — easing curves</a></li>
+            <li><a href="#multiple">Multiple transitions</a></li>
+            <li><a href="#transform-intro">transform — transformations</a></li>
+            <li><a href="#translate">translate — movement</a></li>
+            <li><a href="#scale">scale — scaling</a></li>
+            <li><a href="#rotate">rotate — rotation</a></li>
+            <li><a href="#skew">skew — skewing</a></li>
+            <li><a href="#combine">Combining transforms</a></li>
+            <li><a href="#hover-patterns">Popular hover patterns</a></li>
+            <li><a href="#practice">Practice: interactive cards and buttons</a></li>
+        </ol>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ЗАЧЕМ ==================== -->
+    <h2 id="why" data-lang="ru">1. Зачем нужны анимации</h2>
+    <h2 id="why-en" data-lang="en">1. Why animations matter</h2>
+
+    <p data-lang="ru">Анимации делают сайт <strong>живым и отзывчивым</strong>. Когда кнопка плавно меняет цвет при наведении — пользователь чувствует, что сайт реагирует на его действия.</p>
+    <p data-lang="en">Animations make a site <strong>lively and responsive</strong>. When a button smoothly changes color on hover — the user feels the site reacting to their actions.</p>
+
+    <div class="compare">
+        <div class="wrong">
+            <div class="label" data-lang="ru">&#x274C; Без transition</div>
+            <div class="label" data-lang="en">&#x274C; Without transition</div>
+            <p data-lang="ru">Цвет меняется <strong>мгновенно</strong>. Резко, неприятно, дёшево.</p>
+            <p data-lang="en">Color changes <strong>instantly</strong>. Abrupt, unpleasant, cheap.</p>
+            <style>
+                .demo-btn-instant { background: #3b82f6; color: #fff; padding: 12px 24px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; }
+                .demo-btn-instant:hover { background: #1d4ed8; }
+            </style>
+            <button class="demo-btn-instant" data-lang="ru">Наведи на меня</button>
+            <button class="demo-btn-instant" data-lang="en">Hover me</button>
+        </div>
+        <div class="right">
+            <div class="label" data-lang="ru">&#x2705; С transition</div>
+            <div class="label" data-lang="en">&#x2705; With transition</div>
+            <p data-lang="ru">Цвет меняется <strong>плавно за 0.3s</strong>. Красиво, профессионально.</p>
+            <p data-lang="en">Color changes <strong>smoothly in 0.3s</strong>. Beautiful, professional.</p>
+            <style>
+                .demo-btn-smooth { background: #3b82f6; color: #fff; padding: 12px 24px; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background 0.3s; }
+                .demo-btn-smooth:hover { background: #1d4ed8; }
+            </style>
+            <button class="demo-btn-smooth" data-lang="ru">Наведи на меня</button>
+            <button class="demo-btn-smooth" data-lang="en">Hover me</button>
+        </div>
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Автомобильный тормоз.</strong> Когда вы нажимаете педаль тормоза в машине, она не блокируется мгновенно — это бы вас швырнуло в лобовое. Тормоз <strong>плавно</strong> увеличивает сопротивление, и машина замедляется комфортно. CSS-анимация — тот же принцип: мгновенное изменение «швыряет» взгляд пользователя, плавное — направляет его.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>A car brake.</strong> When you press the brake pedal, it doesn't lock instantly — that would throw you through the windshield. The brake <strong>smoothly</strong> builds resistance, and the car slows comfortably. CSS animation is the same principle: instant changes "jolt" the user's eye, smooth ones guide it.</p>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>Анимации — это про восприятие качества.</strong> Исследования Nielsen Norman Group показывают: сайты с плавными transition воспринимаются пользователями как более <strong>качественные и дорогие</strong>, даже если содержимое у них идентичное. Для e-commerce это значит <strong>более высокую конверсию</strong>. Apple, Stripe, Airbnb — все известные своим дизайном сайты обильно используют transition.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>Animations are about perceived quality.</strong> Nielsen Norman Group research shows: sites with smooth transitions are perceived by users as more <strong>high-quality and expensive</strong>, even with identical content. For e-commerce this means <strong>higher conversion</strong>. Apple, Stripe, Airbnb — all the design-famous sites use transitions heavily.</p>
+    </div>
+
+    <div class="important" data-lang="ru">
+        <strong>Главное правило: анимации — для фидбека, а не для развлечения.</strong> Каждая анимация должна <strong>сообщать</strong> что-то пользователю: «кнопка кликабельна» (hover), «я нажал кнопку» (active), «карточка — элемент меню» (hover lift). Анимации ради красоты раздражают и отвлекают.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Key rule: animations are for feedback, not entertainment.</strong> Every animation should <strong>tell</strong> the user something: "this button is clickable" (hover), "I pressed the button" (active), "this card is a menu item" (hover lift). Animations for looks alone are distracting and annoying.
+    </div>
+
+    <hr>
+
+    <!-- ==================== TRANSITION ==================== -->
+    <h2 id="transition" data-lang="ru">2. transition — плавный переход</h2>
+    <h2 id="transition-en" data-lang="en">2. transition — smooth change</h2>
+
+    <div class="why" data-lang="ru">
+        <p><code>transition</code> — <strong>свойство-анимация</strong>. Оно говорит браузеру: «когда это CSS-свойство меняется — меняй его не мгновенно, а <strong>за N секунд</strong>». Работает с любым свойством, которое имеет числовое значение: цвет, размер, положение, прозрачность.</p>
+        <p>Ключ к пониманию: <code>transition</code> не «создаёт» анимацию сам по себе. Он только <strong>замедляет переход</strong> между двумя состояниями, которые вы сами задаёте (базовое состояние и <code>:hover</code>, например).</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p><code>transition</code> is an <strong>animation property</strong>. It tells the browser: "when this CSS property changes — don't change it instantly, take <strong>N seconds</strong>". Works with any property that has a numeric value: color, size, position, opacity.</p>
+        <p>Key insight: <code>transition</code> doesn't "create" animation by itself. It only <strong>slows down transitions</strong> between two states you define yourself (base state and <code>:hover</code>, for example).</p>
+    </div>
+
+<pre><code>/* Без transition: мгновенное изменение */
+.btn { background: #3b82f6; }
+.btn:hover { background: #1d4ed8; }
+
+/* С transition: плавное изменение за 0.3s */
+.btn {
+    background: #3b82f6;
+    transition: background 0.3s;
+}
+.btn:hover { background: #1d4ed8; }</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>transition пишется на базовом состоянии</strong> (не на :hover!). Браузер будет плавно анимировать изменение при наведении И при уходе курсора.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>transition is written on the base state</strong> (not on :hover!). The browser will smoothly animate the change on hover AND when the cursor leaves.
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Типичная ошибка новичка:</strong></p>
+<pre><code>.btn { background: #3b82f6; }
+.btn:hover {
+    background: #1d4ed8;
+    transition: background 0.3s;  /* НЕПРАВИЛЬНО */
+}</code></pre>
+        <p>Если написать <code>transition</code> только в <code>:hover</code> — плавный переход сработает только <strong>при наведении</strong>. А когда курсор уходит — цвет вернётся мгновенно. Получится «въезжаю плавно, выскакиваю резко». Всегда ставьте <code>transition</code> на базовое состояние.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Classic beginner mistake:</strong></p>
+<pre><code>.btn { background: #3b82f6; }
+.btn:hover {
+    background: #1d4ed8;
+    transition: background 0.3s;  /* WRONG */
+}</code></pre>
+        <p>If you write <code>transition</code> only on <code>:hover</code> — smooth change only works <strong>on hover</strong>. When the cursor leaves — color snaps back instantly. You get "slide in smooth, snap out hard". Always put <code>transition</code> on the base state.</p>
+    </div>
+
+    <div class="try-it" data-lang="ru">
+        <p>Откройте любой сайт (Google, YouTube, GitHub) и откройте DevTools. Наведите на любую кнопку, затем в Elements выберите её и на панели Styles ищите слово <code>transition</code>. Вы увидите, что почти все интерактивные элементы имеют <code>transition</code> — это индустриальный стандарт.</p>
+    </div>
+    <div class="try-it" data-lang="en">
+        <p>Open any site (Google, YouTube, GitHub) and open DevTools. Hover any button, then select it in Elements and look in Styles for the word <code>transition</code>. You'll see almost all interactive elements have <code>transition</code> — it's the industry standard.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== СВОЙСТВА ==================== -->
+    <h2 id="transition-props" data-lang="ru">3. Свойства transition</h2>
+    <h2 id="transition-props-en" data-lang="en">3. transition properties</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Короткое <code>transition: background 0.3s</code> — это сокращённая запись. На самом деле у <code>transition</code> <strong>4 параметра</strong>: что анимировать, как долго, с какой «кривой», и с какой задержкой. В порядке частоты использования: 95% случаев — первые два параметра, остальные — для сложных эффектов.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>The short <code>transition: background 0.3s</code> is shorthand. Actually <code>transition</code> has <strong>4 parameters</strong>: what to animate, how long, with what "curve", and with what delay. In order of usage frequency: 95% of cases — first two params, the rest — for complex effects.</p>
+    </div>
+
+<pre><code>transition: property duration timing-function delay;
+
+/* Примеры: */
+transition: background 0.3s ease;
+transition: color 0.2s ease-in-out;
+transition: transform 0.5s ease 0.1s;  /* с задержкой 0.1s */
+transition: all 0.3s ease;             /* ВСЕ свойства */</code></pre>
+
+    <table data-lang="ru">
+        <tr><th>Параметр</th><th>Что делает</th><th>Примеры</th></tr>
+        <tr><td><code>property</code></td><td>Какое свойство анимировать</td><td><code>background</code>, <code>color</code>, <code>transform</code>, <code>all</code></td></tr>
+        <tr><td><code>duration</code></td><td>Длительность</td><td><code>0.3s</code>, <code>0.5s</code>, <code>200ms</code></td></tr>
+        <tr><td><code>timing-function</code></td><td>Кривая ускорения</td><td><code>ease</code>, <code>linear</code>, <code>ease-in-out</code></td></tr>
+        <tr><td><code>delay</code></td><td>Задержка перед началом</td><td><code>0s</code>, <code>0.1s</code>, <code>0.5s</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Parameter</th><th>What it does</th><th>Examples</th></tr>
+        <tr><td><code>property</code></td><td>Which property to animate</td><td><code>background</code>, <code>color</code>, <code>transform</code>, <code>all</code></td></tr>
+        <tr><td><code>duration</code></td><td>Duration</td><td><code>0.3s</code>, <code>0.5s</code>, <code>200ms</code></td></tr>
+        <tr><td><code>timing-function</code></td><td>Easing curve</td><td><code>ease</code>, <code>linear</code>, <code>ease-in-out</code></td></tr>
+        <tr><td><code>delay</code></td><td>Delay before start</td><td><code>0s</code>, <code>0.1s</code>, <code>0.5s</code></td></tr>
+    </table>
+
+    <div class="highlight" data-lang="ru">
+        <strong>Рекомендуемая длительность:</strong> 0.2s — 0.4s для hover-эффектов. Меньше — незаметно. Больше — раздражает.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Recommended duration:</strong> 0.2s — 0.4s for hover effects. Less — invisible. More — annoying.
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    Длительность transition:
+
+    0.05s  →  мигание, незаметно, почти то же, что без transition
+    0.15s  →  быстрый отклик, идеально для кнопок
+    0.3s   →  баланс, универсально (hover карточек, цвет ссылок)
+    0.5s   →  плавно, для крупных трансформаций
+    1.0s   →  медленно, раздражает в hover, но ок для первой загрузки
+    2.0s+  →  почти всегда плохо</div>
+    <div class="diagram" data-lang="en">
+    Transition duration:
+
+    0.05s  →  flicker, invisible, almost same as no transition
+    0.15s  →  snappy, perfect for buttons
+    0.3s   →  balanced, universal (card hover, link color)
+    0.5s   →  smooth, for large transforms
+    1.0s   →  slow, annoying on hover, but ok for initial load
+    2.0s+  →  almost always bad</div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><strong>delay полезен для «цепочки» анимаций.</strong> Представьте карточку, у которой при hover сначала увеличивается тень (0.2s), а потом (через 0.1s задержки) поднимается сама карточка (0.3s). Эффект «карточка сначала «вибрирует», потом поднимается». Реализуется через два разных значения delay в одном <code>transition</code>.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><strong>delay is useful for "chained" animations.</strong> Imagine a card: on hover the shadow grows first (0.2s), then (after 0.1s delay) the card itself lifts (0.3s). The effect: "card vibrates, then lifts". Achieved via two different delay values in one <code>transition</code>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== TIMING ==================== -->
+    <h2 id="timing" data-lang="ru">4. timing-function — кривые ускорения</h2>
+    <h2 id="timing-en" data-lang="en">4. timing-function — easing curves</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Переход за 0.3 секунды — это <strong>не просто равномерное движение</strong>. Анимация может ускоряться в начале, замедляться в конце, или делать и то и другое. Это называется <strong>easing</strong> (смягчение) или <strong>timing-function</strong>.</p>
+        <p>Почему это важно? Потому что в реальном мире движение редко бывает равномерным. Машина трогается медленно, разгоняется и плавно тормозит — не скачет с места с постоянной скоростью. Анимации, повторяющие этот «естественный» паттерн, кажутся приятными. Линейные — роботизированными.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>A 0.3s transition is <strong>not just uniform movement</strong>. Animation can accelerate at the start, slow at the end, or both. This is called <strong>easing</strong> or <strong>timing-function</strong>.</p>
+        <p>Why does it matter? Because in real life movement is rarely uniform. A car starts slowly, accelerates, and smoothly brakes — it doesn't jump from standing at constant speed. Animations that mimic this "natural" pattern feel pleasant. Linear ones feel robotic.</p>
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Разгон автомобиля.</strong></p>
+        <ul>
+            <li><code>linear</code> — телепорт с постоянной скоростью (нереалистично)</li>
+            <li><code>ease-in</code> — машина трогается: медленно, потом быстрее</li>
+            <li><code>ease-out</code> — машина тормозит: быстро, потом замедляется</li>
+            <li><code>ease-in-out</code> — полный цикл: разгон → торможение</li>
+            <li><code>ease</code> — похоже на <code>ease-in-out</code>, но асимметрично (быстрее стартует)</li>
+        </ul>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Car acceleration.</strong></p>
+        <ul>
+            <li><code>linear</code> — teleport at constant speed (unnatural)</li>
+            <li><code>ease-in</code> — car starts: slow, then fast</li>
+            <li><code>ease-out</code> — car brakes: fast, then slow</li>
+            <li><code>ease-in-out</code> — full cycle: accelerate → brake</li>
+            <li><code>ease</code> — similar to <code>ease-in-out</code>, but asymmetric (starts faster)</li>
+        </ul>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Значение</th><th>Описание</th><th>Когда использовать</th></tr>
+        <tr><td><code>ease</code></td><td>Медленно → быстро → медленно (по умолчанию)</td><td>Универсальный, подходит почти всегда</td></tr>
+        <tr><td><code>linear</code></td><td>Постоянная скорость</td><td>Загрузчики, прогресс-бары</td></tr>
+        <tr><td><code>ease-in</code></td><td>Медленно → быстро</td><td>Элемент уходит с экрана</td></tr>
+        <tr><td><code>ease-out</code></td><td>Быстро → медленно</td><td>Элемент появляется</td></tr>
+        <tr><td><code>ease-in-out</code></td><td>Медленно → быстро → медленно</td><td>Плавные переходы</td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Value</th><th>Description</th><th>When to use</th></tr>
+        <tr><td><code>ease</code></td><td>Slow → fast → slow (default)</td><td>Universal, works almost always</td></tr>
+        <tr><td><code>linear</code></td><td>Constant speed</td><td>Loaders, progress bars</td></tr>
+        <tr><td><code>ease-in</code></td><td>Slow → fast</td><td>Element leaving screen</td></tr>
+        <tr><td><code>ease-out</code></td><td>Fast → slow</td><td>Element appearing</td></tr>
+        <tr><td><code>ease-in-out</code></td><td>Slow → fast → slow</td><td>Smooth transitions</td></tr>
+    </table>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="ru">Наведите на каждый прямоугольник — сравните характеры анимации:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="en">Hover over each box — compare animation styles:</p>
+        <style>
+            .timing-row { display: flex; flex-direction: column; gap: 8px; }
+            .timing-demo { background: #3b82f6; color: #fff; padding: 10px 16px; border-radius: 8px; font-weight: 600; width: 200px; transition-property: transform; transition-duration: 1s; }
+            .timing-demo:hover { transform: translateX(200px); }
+            .timing-linear { transition-timing-function: linear; }
+            .timing-ease { transition-timing-function: ease; }
+            .timing-ease-in { transition-timing-function: ease-in; }
+            .timing-ease-out { transition-timing-function: ease-out; }
+            .timing-ease-in-out { transition-timing-function: ease-in-out; }
+        </style>
+        <div class="timing-row">
+            <div class="timing-demo timing-linear">linear</div>
+            <div class="timing-demo timing-ease">ease</div>
+            <div class="timing-demo timing-ease-in">ease-in</div>
+            <div class="timing-demo timing-ease-out">ease-out</div>
+            <div class="timing-demo timing-ease-in-out">ease-in-out</div>
+        </div>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Правило выбора:</strong></p>
+        <ul>
+            <li><strong>Hover-эффекты</strong> (кнопки, ссылки, карточки) → <code>ease</code> (по умолчанию)</li>
+            <li><strong>Появление элемента</strong> (модальное окно, popup) → <code>ease-out</code> (начинается быстро, замедляется при появлении — внимание привлекается сразу)</li>
+            <li><strong>Исчезновение элемента</strong> → <code>ease-in</code> (стартует медленно, улетает быстро — ощущение «уходит»)</li>
+            <li><strong>Прогресс-бары, загрузчики, крутилки</strong> → <code>linear</code> (равномерно)</li>
+        </ul>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Selection rule:</strong></p>
+        <ul>
+            <li><strong>Hover effects</strong> (buttons, links, cards) → <code>ease</code> (default)</li>
+            <li><strong>Element appearing</strong> (modal, popup) → <code>ease-out</code> (starts fast, slows as it appears — instant attention)</li>
+            <li><strong>Element disappearing</strong> → <code>ease-in</code> (starts slow, flies out fast — "leaving" feel)</li>
+            <li><strong>Progress bars, spinners, loaders</strong> → <code>linear</code> (uniform)</li>
+        </ul>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><strong>cubic-bezier() — свой собственный easing.</strong> Все эти <code>ease</code>, <code>ease-in</code> — это предустановки. На самом деле под капотом работает функция <code>cubic-bezier(x1, y1, x2, y2)</code> с 4 параметрами, определяющими форму кривой. Например, <code>ease-in</code> = <code>cubic-bezier(0.42, 0, 1, 1)</code>. Можно рисовать свои «пружинящие» эффекты на сайте <a href="https://cubic-bezier.com" target="_blank">cubic-bezier.com</a>.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><strong>cubic-bezier() — roll your own easing.</strong> All these <code>ease</code>, <code>ease-in</code> — are presets. Under the hood is <code>cubic-bezier(x1, y1, x2, y2)</code> with 4 params defining the curve shape. E.g., <code>ease-in</code> = <code>cubic-bezier(0.42, 0, 1, 1)</code>. Design your own "springy" curves at <a href="https://cubic-bezier.com" target="_blank">cubic-bezier.com</a>.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== НЕСКОЛЬКО ==================== -->
+    <h2 id="multiple" data-lang="ru">5. Несколько transition сразу</h2>
+    <h2 id="multiple-en" data-lang="en">5. Multiple transitions</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Обычно при hover меняется <strong>не одно, а несколько свойств</strong> сразу: цвет фона + положение + тень. Нужно анимировать их все одновременно, но иногда с разной длительностью (например, тень быстрее, положение медленнее). Для этого в CSS есть два способа.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Usually on hover <strong>several properties change at once</strong>: background + position + shadow. Need to animate all of them, sometimes with different durations (e.g., shadow faster, position slower). CSS provides two ways for this.</p>
+    </div>
+
+<pre><code>/* Способ 1: all (все свойства) */
+transition: all 0.3s ease;
+
+/* Способ 2: перечисление через запятую */
+transition: background 0.3s ease,
+            color 0.2s ease,
+            transform 0.4s ease;</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong><code>all</code> — удобно, но менее производительно.</strong> Для простых hover-эффектов <code>all</code> вполне подходит. Для сложных анимаций лучше перечислять конкретные свойства.
+    </div>
+    <div class="important" data-lang="en">
+        <strong><code>all</code> — convenient but less performant.</strong> For simple hover effects <code>all</code> is fine. For complex animations, list specific properties.
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Опасность <code>transition: all</code>.</strong> Если у элемента при hover меняется только цвет, а ВДРУГ позже вы добавите <code>margin</code> в hover-состояние — <code>all</code> начнёт анимировать и <code>margin</code>, и это может «дёргать» макет. Безопаснее явно перечислить свойства. Для продакшен-кода правило: <strong>всегда перечисляйте свойства явно</strong>.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Danger of <code>transition: all</code>.</strong> If an element only changes color on hover, but later you add <code>margin</code> to the hover state — <code>all</code> will start animating <code>margin</code> too, which may "jerk" the layout. Safer to list properties explicitly. For production code: <strong>always list properties explicitly</strong>.</p>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>«Дешёвые» и «дорогие» свойства для анимации.</strong> Не все CSS-свойства одинаково быстро анимируются браузером:</p>
+        <ul>
+            <li><strong>Дёшево</strong> (GPU-ускорение, плавные 60fps): <code>transform</code>, <code>opacity</code></li>
+            <li><strong>Средне</strong>: <code>color</code>, <code>background-color</code>, <code>box-shadow</code></li>
+            <li><strong>Дорого</strong> (вызывает перерисовку всей страницы): <code>width</code>, <code>height</code>, <code>top</code>, <code>left</code>, <code>margin</code></li>
+        </ul>
+        <p>Правило: если нужно «подвинуть» элемент — используйте <code>transform: translate()</code>, а не <code>left: ...</code>. Для «увеличить» — <code>transform: scale()</code>, а не <code>width: ...</code>. Это покажется неважным на простой странице, но на странице с 100 карточек разница между 60fps и 20fps становится огромной.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>"Cheap" and "expensive" properties to animate.</strong> Not all CSS properties animate equally fast:</p>
+        <ul>
+            <li><strong>Cheap</strong> (GPU-accelerated, smooth 60fps): <code>transform</code>, <code>opacity</code></li>
+            <li><strong>Medium</strong>: <code>color</code>, <code>background-color</code>, <code>box-shadow</code></li>
+            <li><strong>Expensive</strong> (triggers full-page repaint): <code>width</code>, <code>height</code>, <code>top</code>, <code>left</code>, <code>margin</code></li>
+        </ul>
+        <p>Rule: to "move" an element — use <code>transform: translate()</code>, not <code>left: ...</code>. To "enlarge" — <code>transform: scale()</code>, not <code>width: ...</code>. Won't matter on a simple page, but on a page with 100 cards the difference between 60fps and 20fps becomes huge.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== TRANSFORM INTRO ==================== -->
+    <h2 id="transform-intro" data-lang="ru">6. transform — трансформации</h2>
+    <h2 id="transform-intro-en" data-lang="en">6. transform — transformations</h2>
+
+    <div class="why" data-lang="ru">
+        <p><code>transform</code> — второй мощный инструмент CSS-анимаций. Если <code>transition</code> <strong>замедляет</strong> переход, то <code>transform</code> <strong>двигает, крутит, масштабирует</strong> элементы. Вместе они — основа всех красивых hover-эффектов в интернете.</p>
+        <p>Ключевая особенность: <code>transform</code> НЕ влияет на соседей. Если вы напишете <code>margin-top: -10px</code> — все элементы ниже сдвинутся вверх, макет «поедет». А <code>transform: translateY(-10px)</code> — элемент визуально поднимется, но для макета он <strong>остался на месте</strong>. Соседи не двигаются. Это бесценно для hover-эффектов.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p><code>transform</code> — the second powerful CSS animation tool. If <code>transition</code> <strong>slows down</strong> changes, <code>transform</code> <strong>moves, rotates, scales</strong> elements. Together they're the foundation of all nice hover effects on the web.</p>
+        <p>Key feature: <code>transform</code> does NOT affect neighbors. Write <code>margin-top: -10px</code> — all elements below shift up, layout jumps. But <code>transform: translateY(-10px)</code> — element visually lifts, but for the layout it <strong>stayed in place</strong>. Neighbors don't move. Invaluable for hover effects.</p>
+    </div>
+
+    <p data-lang="ru"><code>transform</code> изменяет элемент визуально, <strong>не влияя на поток документа</strong> (соседние элементы не сдвигаются).</p>
+    <p data-lang="en"><code>transform</code> changes an element visually <strong>without affecting document flow</strong> (neighboring elements don't shift).</p>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Голограмма vs физическое движение.</strong> Представьте элемент как голограмму. <code>margin</code>, <code>width</code>, <code>top</code> — это физическое перемещение объекта: он двигается, и всё вокруг реагирует. <code>transform</code> — это «голографическая» проекция: объект кажется смещённым, но физически он на месте. Именно поэтому <code>transform</code> — быстрый и не ломает макет.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Hologram vs physical motion.</strong> Picture the element as a hologram. <code>margin</code>, <code>width</code>, <code>top</code> — physical movement: object moves, everything around reacts. <code>transform</code> — a "holographic" projection: the object appears moved, but physically it's in place. That's why <code>transform</code> is fast and doesn't break layout.</p>
+    </div>
+
+    <table data-lang="ru">
+        <tr><th>Функция</th><th>Что делает</th><th>Пример</th></tr>
+        <tr><td><code>translate(x, y)</code></td><td>Перемещение</td><td><code>translate(0, -10px)</code></td></tr>
+        <tr><td><code>scale(n)</code></td><td>Масштаб</td><td><code>scale(1.1)</code></td></tr>
+        <tr><td><code>rotate(deg)</code></td><td>Вращение</td><td><code>rotate(45deg)</code></td></tr>
+        <tr><td><code>skew(deg)</code></td><td>Наклон</td><td><code>skew(5deg)</code></td></tr>
+    </table>
+    <table data-lang="en">
+        <tr><th>Function</th><th>What it does</th><th>Example</th></tr>
+        <tr><td><code>translate(x, y)</code></td><td>Movement</td><td><code>translate(0, -10px)</code></td></tr>
+        <tr><td><code>scale(n)</code></td><td>Scaling</td><td><code>scale(1.1)</code></td></tr>
+        <tr><td><code>rotate(deg)</code></td><td>Rotation</td><td><code>rotate(45deg)</code></td></tr>
+        <tr><td><code>skew(deg)</code></td><td>Skewing</td><td><code>skew(5deg)</code></td></tr>
+    </table>
+
+    <hr>
+
+    <!-- ==================== TRANSLATE ==================== -->
+    <h2 id="translate" data-lang="ru">7. translate — перемещение</h2>
+    <h2 id="translate-en" data-lang="en">7. translate — movement</h2>
+
+    <div class="why" data-lang="ru">
+        <p><code>translate</code> — это перемещение. <code>translateX(20px)</code> сдвигает элемент на 20px <strong>вправо</strong> (в сторону положительной оси X), <code>translateY(-10px)</code> — на 10px <strong>вверх</strong> (в CSS ось Y направлена вниз, поэтому отрицательное значение = вверх).</p>
+        <p>Самое частое применение — эффект «подъёма карточки» при наведении: <code>translateY(-10px)</code>. Карточка будто приподнимается со стола. Если добавить тень — эффект «левитации» готов.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p><code>translate</code> means movement. <code>translateX(20px)</code> shifts the element 20px <strong>right</strong> (positive X), <code>translateY(-10px)</code> — 10px <strong>up</strong> (in CSS the Y axis points down, so negative = up).</p>
+        <p>Most common use — the "card lift" hover effect: <code>translateY(-10px)</code>. The card seems to rise from the table. Add a shadow — and you have "levitation".</p>
+    </div>
+
+<pre><code>/* Поднять на 10px при hover */
+.card {
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-10px);
+}
+
+/* Варианты: */
+transform: translateX(20px);    /* вправо на 20px */
+transform: translateY(-10px);   /* вверх на 10px */
+transform: translate(20px, -10px); /* вправо и вверх */</code></pre>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><code>translateY(-10px)</code> — самый популярный hover-эффект для карточек. Карточка «взлетает» при наведении. Добавьте <code>box-shadow</code> для усиления эффекта!</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><code>translateY(-10px)</code> — the most popular hover effect for cards. The card "lifts off" on hover. Add <code>box-shadow</code> to enhance the effect!</p>
+    </div>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="ru">Наведите на карточки — верхняя без translate, нижняя с translateY(-10px):</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="en">Hover the cards — top without translate, bottom with translateY(-10px):</p>
+        <style>
+            .l22-card { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; margin-bottom: 12px; font-weight: 600; }
+            .l22-card-lift:hover { transform: translateY(-10px); box-shadow: 0 16px 32px rgba(0,0,0,0.15); }
+        </style>
+        <div class="l22-card" data-lang="ru">Обычная карточка (без hover-эффекта)</div>
+        <div class="l22-card" data-lang="en">Ordinary card (no hover effect)</div>
+        <div class="l22-card l22-card-lift" data-lang="ru">Карточка с translateY(-10px) + тень — наведите курсор!</div>
+        <div class="l22-card l22-card-lift" data-lang="en">Card with translateY(-10px) + shadow — hover me!</div>
+    </div>
+
+    <div class="diagram" data-lang="ru">
+    Ось координат в CSS:
+
+          -Y (translateY(-10px) = вверх на 10px)
+           ▲
+           │
+    -X ────┼──── +X    (translateX(+20px) = вправо на 20px)
+           │
+           ▼
+          +Y (translateY(+10px) = вниз на 10px)</div>
+    <div class="diagram" data-lang="en">
+    CSS coordinate axes:
+
+          -Y (translateY(-10px) = up 10px)
+           ▲
+           │
+    -X ────┼──── +X    (translateX(+20px) = right 20px)
+           │
+           ▼
+          +Y (translateY(+10px) = down 10px)</div>
+
+    <hr>
+
+    <!-- ==================== SCALE ==================== -->
+    <h2 id="scale" data-lang="ru">8. scale — масштаб</h2>
+    <h2 id="scale-en" data-lang="en">8. scale — scaling</h2>
+
+    <div class="why" data-lang="ru">
+        <p><code>scale</code> — это <strong>увеличение или уменьшение</strong>. Значение — коэффициент: <code>1</code> = нормальный размер, <code>1.1</code> = на 10% больше, <code>0.9</code> = на 10% меньше.</p>
+        <p>Главное применение: эффект «приближения» при hover (<code>scale(1.05)</code> — +5%) и эффект «нажатия» при active (<code>scale(0.95)</code> — −5%). Эти маленькие изменения дают пользователю <strong>тактильную обратную связь</strong> — ощущение, что он реально нажал на кнопку.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p><code>scale</code> is <strong>enlarging or shrinking</strong>. The value is a coefficient: <code>1</code> = normal size, <code>1.1</code> = 10% larger, <code>0.9</code> = 10% smaller.</p>
+        <p>Main use: "zoom-in" effect on hover (<code>scale(1.05)</code> — +5%) and "press" effect on active (<code>scale(0.95)</code> — −5%). These small changes give users <strong>tactile feedback</strong> — feeling they actually pressed the button.</p>
+    </div>
+
+<pre><code>/* Увеличить на 10% */
+.btn:hover { transform: scale(1.1); }
+
+/* Уменьшить до 95% (эффект нажатия) */
+.btn:active { transform: scale(0.95); }
+
+/* Зум на изображении внутри карточки */
+.card { overflow: hidden; }
+.card img {
+    transition: transform 0.4s ease;
+}
+.card:hover img {
+    transform: scale(1.1);
+}</code></pre>
+
+    <div class="highlight" data-lang="ru">
+        <strong>scale(1)</strong> = обычный размер. <strong>scale(1.1)</strong> = на 10% больше. <strong>scale(0.95)</strong> = на 5% меньше.
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>scale(1)</strong> = normal size. <strong>scale(1.1)</strong> = 10% larger. <strong>scale(0.95)</strong> = 5% smaller.
+    </div>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="ru">Нажмите кнопку — увидите эффект «нажатия» scale(0.95):</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="en">Press the button — see the "press" effect scale(0.95):</p>
+        <style>
+            .l22-press-btn { background: #3b82f6; color: #fff; padding: 14px 32px; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: transform 0.15s, background 0.3s; }
+            .l22-press-btn:hover { background: #1d4ed8; transform: scale(1.05); }
+            .l22-press-btn:active { transform: scale(0.95); }
+        </style>
+        <button class="l22-press-btn" data-lang="ru">Нажми меня (hover + active)</button>
+        <button class="l22-press-btn" data-lang="en">Press me (hover + active)</button>
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Не переборщите с <code>scale</code>.</strong> Типичные значения для hover: <strong>1.02–1.1</strong>. Значение <code>scale(1.3)</code> или <code>scale(2)</code> выглядит как ошибка — элемент «раздувается» и перекрывает соседей. Помните: scale НЕ двигает соседей, но <strong>визуально</strong> закрывает их. Меньше — лучше.</p>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Don't overdo <code>scale</code>.</strong> Typical hover values: <strong>1.02–1.1</strong>. Values like <code>scale(1.3)</code> or <code>scale(2)</code> look like a bug — the element "balloons" and covers neighbors. Remember: scale doesn't move neighbors, but <strong>visually</strong> covers them. Less is more.</p>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Зум фото в карточке через <code>overflow: hidden</code> у родителя.</strong> Картинка увеличивается при hover, но <strong>не выходит</strong> за рамки карточки. Эффект «заглянуть поближе»:</p>
+<pre><code>.card {
+    overflow: hidden;   /* отсекаем то, что вылезает */
+    border-radius: 12px;
+}
+.card img {
+    transition: transform 0.4s ease;
+}
+.card:hover img {
+    transform: scale(1.1);  /* картинка увеличивается */
+}</code></pre>
+        <p>Работает, потому что родитель (<code>.card</code>) имеет <code>overflow: hidden</code>, и всё, что у картинки вышло за границу — обрезается.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Image zoom inside a card via <code>overflow: hidden</code> on the parent.</strong> The image enlarges on hover but <strong>doesn't leave</strong> the card. The "peek closer" effect:</p>
+<pre><code>.card {
+    overflow: hidden;   /* crop what sticks out */
+    border-radius: 12px;
+}
+.card img {
+    transition: transform 0.4s ease;
+}
+.card:hover img {
+    transform: scale(1.1);  /* image grows */
+}</code></pre>
+        <p>Works because the parent (<code>.card</code>) has <code>overflow: hidden</code>, so anything spilling out is cropped.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ROTATE ==================== -->
+    <h2 id="rotate" data-lang="ru">9. rotate — вращение</h2>
+    <h2 id="rotate-en" data-lang="en">9. rotate — rotation</h2>
+
+    <div class="why" data-lang="ru">
+        <p><code>rotate</code> — поворот элемента вокруг своего центра. Угол задаётся в градусах (<code>deg</code>). Положительный угол — по часовой стрелке, отрицательный — против.</p>
+        <p>Где используется:</p>
+        <ul>
+            <li><strong>Стрелочки-аккордеоны</strong>: стрелка вниз при закрытом состоянии, при открытии поворачивается на 180°</li>
+            <li><strong>Иконка «гамбургер» → «крестик»</strong>: линии поворачиваются на 45° (это мы уже делали в уроке 21!)</li>
+            <li><strong>Иконки-спиннеры</strong>: бесконечное вращение 0° → 360° для индикации загрузки</li>
+            <li><strong>Декоративные элементы</strong>: слегка повёрнутый бейдж «NEW» или «SALE»</li>
+        </ul>
+    </div>
+    <div class="why" data-lang="en">
+        <p><code>rotate</code> — rotation around the element's center. Angle in degrees (<code>deg</code>). Positive = clockwise, negative = counter-clockwise.</p>
+        <p>Where it's used:</p>
+        <ul>
+            <li><strong>Accordion arrows</strong>: down arrow in closed state, rotates 180° when open</li>
+            <li><strong>Burger-to-cross icons</strong>: lines rotate 45° (we already did this in lesson 21!)</li>
+            <li><strong>Spinner icons</strong>: infinite 0° → 360° to indicate loading</li>
+            <li><strong>Decorative elements</strong>: a slightly rotated "NEW" or "SALE" badge</li>
+        </ul>
+    </div>
+
+<pre><code>/* Повернуть иконку на 90° */
+.icon:hover { transform: rotate(90deg); }
+
+/* Полный оборот */
+.spinner { transform: rotate(360deg); }
+
+/* Отрицательный угол = против часовой */
+.arrow:hover { transform: rotate(-180deg); }</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="ru">Наведите на иконки — разные углы поворота:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="en">Hover the icons — different rotation angles:</p>
+        <style>
+            .l22-rot-row { display: flex; gap: 16px; flex-wrap: wrap; }
+            .l22-rot { width: 64px; height: 64px; background: #f59e0b; color: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; transition: transform 0.4s ease; cursor: pointer; }
+            .l22-rot-1:hover { transform: rotate(45deg); }
+            .l22-rot-2:hover { transform: rotate(90deg); }
+            .l22-rot-3:hover { transform: rotate(180deg); }
+            .l22-rot-4:hover { transform: rotate(360deg); }
+            .l22-rot-5:hover { transform: rotate(-45deg); }
+        </style>
+        <div class="l22-rot-row">
+            <div class="l22-rot l22-rot-1">45°</div>
+            <div class="l22-rot l22-rot-2">90°</div>
+            <div class="l22-rot l22-rot-3">180°</div>
+            <div class="l22-rot l22-rot-4">360°</div>
+            <div class="l22-rot l22-rot-5">-45°</div>
+        </div>
+    </div>
+
+    <div class="fun-fact" data-lang="ru">
+        <p><strong>Единицы для угла.</strong> <code>rotate()</code> поддерживает 4 единицы: <code>deg</code> (градусы, 360 в полном круге), <code>turn</code> (обороты, 1turn = 360°), <code>rad</code> (радианы, 2π в полном круге), <code>grad</code> (грады, 400 в полном круге). В продакшене используют только <code>deg</code> — остальные слишком непривычны.</p>
+    </div>
+    <div class="fun-fact" data-lang="en">
+        <p><strong>Angle units.</strong> <code>rotate()</code> supports 4 units: <code>deg</code> (degrees, 360 in a full circle), <code>turn</code> (turns, 1turn = 360°), <code>rad</code> (radians, 2π), <code>grad</code> (gradians, 400). In production, only <code>deg</code> is used — others are too unusual.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== SKEW ==================== -->
+    <h2 id="skew" data-lang="ru">10. skew — наклон</h2>
+    <h2 id="skew-en" data-lang="en">10. skew — skewing</h2>
+
+    <div class="why" data-lang="ru">
+        <p><code>skew</code> — это <strong>параллелограммный наклон</strong>. Представьте, что вы держите прямоугольную открытку за верхний и нижний края и сдвигаете их в противоположных направлениях — прямоугольник превратится в параллелограмм. Это и есть skew.</p>
+        <p>Из четырёх функций <code>transform</code> (translate, scale, rotate, skew) — skew используется <strong>реже всего</strong>. Но он полезен для декоративных элементов: полоски-разделители, динамичные бейджи, hover-эффекты типа «подъехал сбоку».</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p><code>skew</code> is a <strong>parallelogram tilt</strong>. Picture holding a rectangular card by its top and bottom edges and shifting them in opposite directions — the rectangle becomes a parallelogram. That's skew.</p>
+        <p>Out of the four <code>transform</code> functions (translate, scale, rotate, skew) — skew is <strong>least used</strong>. But it's handy for decorative elements: dividing stripes, dynamic badges, "slide in from the side" hover effects.</p>
+    </div>
+
+<pre><code>/* Наклон элемента */
+.tag:hover { transform: skewX(-5deg); }
+
+/* Декоративная полоска */
+.decoration {
+    transform: skewX(-15deg);
+    background: #3b82f6;
+}</code></pre>
+
+    <p data-lang="ru"><code>skew</code> используется реже, но хорош для декоративных элементов и необычных кнопок.</p>
+    <p data-lang="en"><code>skew</code> is used less often, but great for decorative elements and unique buttons.</p>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="ru">Пример: декоративная полоса и наклонный бейдж:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="en">Example: decorative bar and tilted badge:</p>
+        <style>
+            .l22-skew-bar { background: linear-gradient(90deg, #f59e0b, #ef4444); height: 6px; width: 100%; transform: skewX(-15deg); margin-bottom: 20px; border-radius: 2px; }
+            .l22-skew-badge { display: inline-block; background: #ef4444; color: #fff; padding: 8px 24px; font-weight: 700; transform: skewX(-10deg); }
+            .l22-skew-badge span { display: inline-block; transform: skewX(10deg); }
+        </style>
+        <div class="l22-skew-bar"></div>
+        <div class="l22-skew-badge"><span>SALE -50%</span></div>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Трюк с «двойным skew» для текста.</strong> Заметили в примере выше: сам бейдж <code>skewX(-10deg)</code>, а текст внутри <code>skewX(10deg)</code>? Это отменяет наклон текста, оставляя только коробку наклонной. Так пишут «спортивные» ценники, которые не искажают буквы.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>The "double skew" trick for text.</strong> Noticed in the example above: the badge is <code>skewX(-10deg)</code>, the text inside is <code>skewX(10deg)</code>? This cancels the text's tilt, leaving only the box tilted. That's how "sporty" price tags are done without distorting letters.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== КОМБИНИРОВАНИЕ ==================== -->
+    <h2 id="combine" data-lang="ru">11. Комбинирование трансформаций</h2>
+    <h2 id="combine-en" data-lang="en">11. Combining transforms</h2>
+
+    <div class="why" data-lang="ru">
+        <p>В реальных hover-эффектах редко используется только одна трансформация. Красивая кнопка обычно <strong>одновременно</strong> чуть поднимается (<code>translateY</code>), чуть увеличивается (<code>scale</code>) и получает тень — это создаёт эффект «кнопка нажимается и реагирует». Все эти трансформации записываются в одно <code>transform</code> через <strong>пробел</strong>.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Real hover effects rarely use just one transform. A nice button typically <strong>simultaneously</strong> lifts slightly (<code>translateY</code>), grows slightly (<code>scale</code>), and gains a shadow — creating the "button presses and responds" feel. All these go into a single <code>transform</code> separated by <strong>spaces</strong>.</p>
+    </div>
+
+<pre><code>/* Несколько transform через пробел */
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+/* Кнопка: подъём + лёгкое увеличение + тень */
+.btn {
+    transition: all 0.3s ease;
+}
+.btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+.btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}</code></pre>
+
+    <div class="important" data-lang="ru">
+        <strong>Порядок важен!</strong> <code>translate</code> + <code>rotate</code> ≠ <code>rotate</code> + <code>translate</code>. В большинстве случаев ставьте <code>translate</code> первым.
+    </div>
+    <div class="important" data-lang="en">
+        <strong>Order matters!</strong> <code>translate</code> + <code>rotate</code> ≠ <code>rotate</code> + <code>translate</code>. In most cases put <code>translate</code> first.
+    </div>
+
+    <div class="analogy" data-lang="ru">
+        <p><strong>Почему порядок важен?</strong> Представьте: сначала вы поворачиваетесь на 90°, а затем шагаете вперёд. Вы окажетесь сбоку от исходной точки. А если сначала шагнёте вперёд, а потом повернётесь — окажетесь впереди с развернутым лицом. То же самое происходит с элементом: каждая последующая трансформация применяется <strong>в новой системе координат</strong>, созданной предыдущей.</p>
+    </div>
+    <div class="analogy" data-lang="en">
+        <p><strong>Why does order matter?</strong> Imagine: first you rotate 90°, then step forward. You end up sideways from the start. But if you step forward first, then rotate — you're ahead, facing sideways. Same for elements: each subsequent transform applies <strong>in the new coordinate system</strong> created by the previous one.</p>
+    </div>
+
+    <div class="mistake" data-lang="ru">
+        <p><strong>Не пишите несколько <code>transform</code> через перевод строки.</strong></p>
+<pre><code>.card:hover {
+    transform: translateY(-8px);
+    transform: scale(1.02);   /* ЭТО ПЕРЕКРОЕТ ПЕРВУЮ! */
+}</code></pre>
+        <p>Второй <code>transform</code> <strong>полностью заменит</strong> первый — сработает только <code>scale</code>. Всегда пишите все трансформации в одном <code>transform</code> через пробел:</p>
+<pre><code>.card:hover {
+    transform: translateY(-8px) scale(1.02);  /* ПРАВИЛЬНО */
+}</code></pre>
+    </div>
+    <div class="mistake" data-lang="en">
+        <p><strong>Don't write multiple <code>transform</code> on separate lines.</strong></p>
+<pre><code>.card:hover {
+    transform: translateY(-8px);
+    transform: scale(1.02);   /* THIS OVERRIDES THE FIRST! */
+}</code></pre>
+        <p>The second <code>transform</code> <strong>completely replaces</strong> the first — only <code>scale</code> will apply. Always put all transforms in one <code>transform</code> separated by spaces:</p>
+<pre><code>.card:hover {
+    transform: translateY(-8px) scale(1.02);  /* CORRECT */
+}</code></pre>
+    </div>
+
+    <hr>
+
+    <!-- ==================== HOVER PATTERNS ==================== -->
+    <h2 id="hover-patterns" data-lang="ru">12. Популярные hover-паттерны</h2>
+    <h2 id="hover-patterns-en" data-lang="en">12. Popular hover patterns</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Теперь, когда вы знаете все инструменты (<code>transition</code> + <code>transform</code>), пора <strong>собрать их в готовые рецепты</strong>. Эти 5 паттернов покрывают 80% всех hover-эффектов на современных сайтах. Сохраните их, копируйте в свои проекты, адаптируйте под ваши цвета.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Now that you know all the tools (<code>transition</code> + <code>transform</code>), it's time to <strong>combine them into ready recipes</strong>. These 5 patterns cover 80% of all hover effects on modern sites. Save them, copy into your projects, adapt colors.</p>
+    </div>
+
+    <h3 data-lang="ru">Карточка с подъёмом + тень</h3>
+    <h3 data-lang="en">Card with lift + shadow</h3>
+<pre><code>.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+}</code></pre>
+
+    <h3 data-lang="ru">Зум изображения</h3>
+    <h3 data-lang="en">Image zoom</h3>
+<pre><code>.card { overflow: hidden; border-radius: 12px; }
+.card img { transition: transform 0.4s ease; }
+.card:hover img { transform: scale(1.1); }</code></pre>
+
+    <h3 data-lang="ru">Кнопка с нажатием</h3>
+    <h3 data-lang="en">Button with press</h3>
+<pre><code>.btn { transition: all 0.2s ease; }
+.btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29,78,216,0.3);
+}
+.btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}</code></pre>
+
+    <h3 data-lang="ru">Подчёркивание ссылки</h3>
+    <h3 data-lang="en">Link underline</h3>
+<pre><code>.link {
+    position: relative;
+}
+.link::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+.link:hover::after { width: 100%; }</code></pre>
+
+    <h3 data-lang="ru">Смена цвета иконки</h3>
+    <h3 data-lang="en">Icon color change</h3>
+<pre><code>.social-icon {
+    color: #94a3b8;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.social-icon:hover {
+    color: #3b82f6;
+    transform: scale(1.2);
+}</code></pre>
+
+    <div class="result-box">
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="ru">Живой демо всех 5 паттернов. Наводите и нажимайте:</p>
+        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;" data-lang="en">Live demo of all 5 patterns. Hover and click:</p>
+        <style>
+            .l22-demos { display: grid; gap: 20px; }
+            .l22-demo-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; font-weight: 600; text-align: center; }
+            .l22-demo-card:hover { transform: translateY(-8px); box-shadow: 0 16px 32px rgba(0,0,0,0.12); }
+            .l22-demo-imgwrap { overflow: hidden; border-radius: 12px; width: 100%; max-width: 400px; }
+            .l22-demo-imgwrap img { width: 100%; display: block; transition: transform 0.4s ease; }
+            .l22-demo-imgwrap:hover img { transform: scale(1.1); }
+            .l22-demo-btn { background: #3b82f6; color: #fff; padding: 14px 32px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; font-size: 1rem; }
+            .l22-demo-btn:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(29,78,216,0.3); }
+            .l22-demo-btn:active { transform: translateY(0); box-shadow: none; }
+            .l22-demo-link { position: relative; color: #1e293b; text-decoration: none; font-weight: 600; display: inline-block; padding: 4px 0; }
+            .l22-demo-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: currentColor; transition: width 0.3s ease; }
+            .l22-demo-link:hover::after { width: 100%; }
+            .l22-demo-icons { display: flex; gap: 20px; font-size: 1.8rem; }
+            .l22-demo-icon { color: #94a3b8; transition: color 0.2s ease, transform 0.2s ease; cursor: pointer; }
+            .l22-demo-icon:hover { color: #3b82f6; transform: scale(1.2); }
+        </style>
+        <div class="l22-demos">
+            <div class="l22-demo-card" data-lang="ru">1. Карточка с подъёмом — наведите</div>
+            <div class="l22-demo-card" data-lang="en">1. Card with lift — hover me</div>
+
+            <div class="l22-demo-imgwrap">
+                <img src="https://picsum.photos/400/200?random=22" alt="">
+            </div>
+
+            <button class="l22-demo-btn" data-lang="ru">3. Кнопка (hover + active)</button>
+            <button class="l22-demo-btn" data-lang="en">3. Button (hover + active)</button>
+
+            <div>
+                <a href="#" class="l22-demo-link" data-lang="ru">4. Ссылка с подчёркиванием</a>
+                <a href="#" class="l22-demo-link" data-lang="en">4. Animated link</a>
+            </div>
+
+            <div class="l22-demo-icons">
+                <span class="l22-demo-icon">&#128525;</span>
+                <span class="l22-demo-icon">&#128077;</span>
+                <span class="l22-demo-icon">&#10084;</span>
+                <span class="l22-demo-icon">&#11088;</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pro-tip" data-lang="ru">
+        <p><strong>Правило 3 анимаций на страницу.</strong> Не анимируйте ВСЁ — от этого устают глаза и замедляется браузер. Хорошее правило: <strong>максимум 3 типа hover-анимаций</strong> на одной странице. Например: карточки поднимаются, кнопки увеличиваются, ссылки подчёркиваются. Всё. Больше — мешанина.</p>
+    </div>
+    <div class="pro-tip" data-lang="en">
+        <p><strong>Rule of 3 animations per page.</strong> Don't animate EVERYTHING — it tires the eyes and slows down the browser. Good rule: <strong>max 3 types of hover animations</strong> per page. For example: cards lift, buttons grow, links underline. That's it. More = a mess.</p>
+    </div>
+
+    <div class="real-world" data-lang="ru">
+        <p><strong>prefers-reduced-motion — доступность.</strong> Некоторые пользователи (с вестибулярными расстройствами, эпилепсией) <strong>отключают анимации</strong> в настройках ОС. Хорошая практика — уважать это:</p>
+<pre><code>@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}</code></pre>
+        <p>Этот код мгновенно отключает все анимации для таких пользователей. В коммерческих проектах — обязательно.</p>
+    </div>
+    <div class="real-world" data-lang="en">
+        <p><strong>prefers-reduced-motion — accessibility.</strong> Some users (with vestibular disorders, epilepsy) <strong>disable animations</strong> in OS settings. Good practice is to respect this:</p>
+<pre><code>@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}</code></pre>
+        <p>This code instantly disables all animations for such users. In commercial projects — mandatory.</p>
+    </div>
+
+    <hr>
+
+    <!-- ==================== ПРАКТИКА ==================== -->
+    <h2 id="practice" data-lang="ru">13. Практика: интерактивные карточки и кнопки</h2>
+    <h2 id="practice-en" data-lang="en">13. Practice: interactive cards and buttons</h2>
+
+    <div class="why" data-lang="ru">
+        <p>Возьмите сайт ресторана из урока 21 и <strong>оживите его</strong>. До этого карточки меню, кнопки, иконки — были статичными. Сейчас мы применим к ним всё, что изучили: плавные цвета, подъёмы, зумы, масштабирование при нажатии.</p>
+        <p>Эта практика важна: красивая статичная вёрстка — это 50% работы, остальные 50% — интерактивность. Именно она делает сайт «живым» и отличает работу профессионала.</p>
+    </div>
+    <div class="why" data-lang="en">
+        <p>Take the restaurant site from lesson 21 and <strong>bring it to life</strong>. Menu cards, buttons, icons were static. Now we'll apply everything we learned: smooth colors, lifts, zooms, press-to-shrink.</p>
+        <p>This practice matters: nice static markup is 50% of the work; the other 50% is interactivity. It makes the site "alive" and distinguishes professional work.</p>
+    </div>
+
+    <div class="highlight" data-lang="ru">
+        <strong>План для практики:</strong>
+        <ol>
+            <li>Откройте свой сайт ресторана из урока 21</li>
+            <li>К карточкам меню добавьте <code>transition</code> + <code>translateY(-8px)</code> на hover</li>
+            <li>Фото внутри карточек оберните в блок с <code>overflow: hidden</code>, добавьте <code>scale(1.1)</code> на hover</li>
+            <li>К кнопке «View Menu» в hero добавьте <code>scale(1.05)</code> на hover и <code>scale(0.95)</code> на active</li>
+            <li>Ссылки в навигации header — добавьте анимированное подчёркивание</li>
+            <li>Иконки соцсетей в footer — цвет + <code>scale(1.2)</code> на hover</li>
+            <li>В самом низу CSS добавьте <code>@media (prefers-reduced-motion: reduce)</code> блок</li>
+        </ol>
+    </div>
+    <div class="highlight" data-lang="en">
+        <strong>Practice plan:</strong>
+        <ol>
+            <li>Open your restaurant site from lesson 21</li>
+            <li>Add <code>transition</code> + <code>translateY(-8px)</code> on hover to menu cards</li>
+            <li>Wrap photos inside cards in a block with <code>overflow: hidden</code>, add <code>scale(1.1)</code> on hover</li>
+            <li>Add <code>scale(1.05)</code> on hover and <code>scale(0.95)</code> on active to the "View Menu" button</li>
+            <li>Header nav links — add animated underline</li>
+            <li>Footer social icons — color + <code>scale(1.2)</code> on hover</li>
+            <li>At the bottom of CSS add a <code>@media (prefers-reduced-motion: reduce)</code> block</li>
+        </ol>
+    </div>
+
+    <div class="summary" data-lang="ru">
+        <strong>transition:</strong>
+        <ul>
+            <li><code>transition: property duration timing-function delay</code></li>
+            <li>Пишется на <strong>базовом</strong> состоянии (не на :hover)</li>
+            <li>Длительность: 0.2s–0.4s для hover</li>
+            <li><code>all</code> — анимировать все свойства</li>
+        </ul>
+        <strong>transform:</strong>
+        <ul>
+            <li><code>translateY(-10px)</code> — поднять элемент</li>
+            <li><code>scale(1.1)</code> — увеличить на 10%</li>
+            <li><code>rotate(45deg)</code> — повернуть</li>
+            <li>Можно комбинировать: <code>translateY(-8px) scale(1.02)</code></li>
+            <li>Не влияет на соседние элементы!</li>
+        </ul>
+    </div>
+    <div class="summary" data-lang="en">
+        <strong>transition:</strong>
+        <ul>
+            <li><code>transition: property duration timing-function delay</code></li>
+            <li>Written on the <strong>base</strong> state (not on :hover)</li>
+            <li>Duration: 0.2s–0.4s for hover</li>
+            <li><code>all</code> — animate all properties</li>
+        </ul>
+        <strong>transform:</strong>
+        <ul>
+            <li><code>translateY(-10px)</code> — lift element</li>
+            <li><code>scale(1.1)</code> — enlarge by 10%</li>
+            <li><code>rotate(45deg)</code> — rotate</li>
+            <li>Can combine: <code>translateY(-8px) scale(1.02)</code></li>
+            <li>Doesn't affect neighboring elements!</li>
+        </ul>
+    </div>
+
+    <div class="quiz" data-lang="ru">
+        <ol>
+            <li>Где пишется <code>transition</code> — на :hover или на базовом состоянии?</li>
+            <li>Что делает <code>transform: translateY(-10px)</code>?</li>
+            <li>Чем <code>scale(1.1)</code> отличается от <code>scale(0.9)</code>?</li>
+            <li>Как сделать зум на изображении, не выходя за рамки карточки?</li>
+            <li>Какая длительность transition рекомендуется для hover?</li>
+            <li>Что делает <code>:active</code>?</li>
+        </ol>
+    </div>
+    <div class="quiz" data-lang="en">
+        <ol>
+            <li>Where is <code>transition</code> written — on :hover or base state?</li>
+            <li>What does <code>transform: translateY(-10px)</code> do?</li>
+            <li>What's the difference between <code>scale(1.1)</code> and <code>scale(0.9)</code>?</li>
+            <li>How to zoom an image without overflowing the card?</li>
+            <li>What transition duration is recommended for hover?</li>
+            <li>What does <code>:active</code> do?</li>
+        </ol>
+    </div>
+
+</div>
+
+</body>
+</html>

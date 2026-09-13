@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Занятие 7 — Конспект ученика</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: #1e293b; background: #fff; padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { font-size: 1.8rem; color: #0f172a; border-bottom: 3px solid #a855f7; padding-bottom: 10px; margin-bottom: 6px; }
+        h2 { font-size: 1.4rem; color: #7e22ce; margin: 36px 0 14px; padding: 8px 14px; background: #faf5ff; border-left: 4px solid #a855f7; border-radius: 0 6px 6px 0; }
+        h3 { font-size: 1.15rem; color: #1e3a5f; margin: 20px 0 10px; }
+        .subtitle { color: #64748b; margin-bottom: 6px; }
+        .date-line { color: #94a3b8; font-style: italic; margin-bottom: 24px; }
+        .key-point { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 14px 18px; margin: 12px 0; border-radius: 0 6px 6px 0; }
+        .definition { background: #faf5ff; border: 1px solid #d8b4fe; padding: 14px 18px; border-radius: 8px; margin: 12px 0; }
+        .definition strong { color: #7e22ce; }
+        .diagram { background: #f8fafc; border: 2px solid #cbd5e1; padding: 16px; border-radius: 8px; font-family: 'Consolas', monospace; white-space: pre; line-height: 1.4; margin: 14px 0; overflow-x: auto; font-size: 0.82rem; }
+        pre { background: #1e293b; color: #e2e8f0; padding: 14px 18px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 0.9rem; line-height: 1.6; margin: 12px 0; }
+        code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9rem; }
+        pre code { background: none; padding: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+        th, td { padding: 8px 12px; border: 1px solid #e2e8f0; text-align: left; }
+        th { background: #f1f5f9; font-weight: 600; }
+        ul, ol { margin: 8px 0 8px 24px; }
+        li { margin: 4px 0; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 30px 0; }
+        .remember { background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
+        .remember::before { content: '❗ Запомни:'; display: block; font-weight: 700; color: #dc2626; margin-bottom: 4px; }
+        .homework { background: #fdf4ff; border: 2px solid #d8b4fe; border-radius: 10px; padding: 18px; margin: 20px 0; }
+        .homework::before { content: '📚 ДОМАШНЕЕ ЗАДАНИЕ'; display: block; font-weight: 700; color: #7e22ce; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+<div id="lesson-nav" style="position:sticky;top:0;z-index:999;background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:Inter,Segoe UI,sans-serif;font-size:0.85rem;"><a href="../../index.html" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#a855f7;font-weight:600;padding:6px 12px;border-radius:8px;background:#faf5ff;">&#8592; Главная</a><span style="color:#cbd5e1;">|</span><span style="color:#64748b;font-weight:500;">Занятие 7: Box Model</span><span style="color:#cbd5e1;">|</span><a href="lecture.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128104;&#8205;&#127979; Лекция</a><span style="padding:6px 12px;border-radius:8px;background:#1e293b;color:#fff;font-weight:600;">&#128104;&#8205;&#127891; Конспект</span><a href="tasks.html" style="padding:6px 12px;border-radius:8px;text-decoration:none;color:#475569;font-weight:500;background:#f1f5f9;">&#128203; Задания</a></div>
+<div class="container">
+
+    <h1>📓 КОНСПЕКТ УЧЕНИКА</h1>
+    <p class="subtitle">Занятие 7: Box Model</p>
+    <p class="date-line">Дата: _______________</p>
+
+    <hr>
+
+    <h2>📦 БЛОЧНЫЕ И СТРОЧНЫЕ ЭЛЕМЕНТЫ</h2>
+
+    <table>
+        <tr><th>Блочные (block)</th><th>Строчные (inline)</th></tr>
+        <tr><td>Новая строка, вся ширина</td><td>В одной строке, по содержимому</td></tr>
+        <tr><td>width/height — работают</td><td>width/height — <strong>не работают</strong></td></tr>
+        <tr><td>margin/padding — все работают</td><td>margin-top/bottom — не работают</td></tr>
+    </table>
+
+    <h3>Блочные элементы</h3>
+    <p><code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;form&gt;</code>, <code>&lt;hr&gt;</code></p>
+
+    <h3>Строчные элементы</h3>
+    <p><code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;mark&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;sub&gt;</code>, <code>&lt;sup&gt;</code>, <code>&lt;small&gt;</code></p>
+
+    <div class="remember">
+        Блочные = кирпичи (каждый на новый ряд).<br>
+        Строчные = буквы (стоят рядом в одной строке).
+    </div>
+
+    <hr>
+
+    <h2>📦 BOX MODEL</h2>
+
+    <div class="definition">
+        <strong>Box Model</strong> — каждый элемент на странице = прямоугольная коробка из 4 слоёв.
+    </div>
+
+    <div class="diagram">
+┌────────────────────────────────┐
+│           MARGIN               │  внешние отступы
+│  ┌──────────────────────────┐  │
+│  │        BORDER            │  │  рамка
+│  │  ┌────────────────────┐  │  │
+│  │  │     PADDING        │  │  │  внутренние отступы
+│  │  │  ┌──────────────┐  │  │  │
+│  │  │  │   CONTENT    │  │  │  │  содержимое
+│  │  │  └──────────────┘  │  │  │
+│  │  └────────────────────┘  │  │
+│  └──────────────────────────┘  │
+└────────────────────────────────┘</div>
+
+    <table>
+        <tr><th>Слой</th><th>Свойство</th><th>Что делает</th></tr>
+        <tr><td>Content</td><td><code>width</code>, <code>height</code></td><td>Размер содержимого</td></tr>
+        <tr><td>Padding</td><td><code>padding</code></td><td>Отступ внутри (фон виден)</td></tr>
+        <tr><td>Border</td><td><code>border</code></td><td>Рамка</td></tr>
+        <tr><td>Margin</td><td><code>margin</code></td><td>Отступ снаружи (прозрачный)</td></tr>
+    </table>
+
+    <hr>
+
+    <h2>📏 PADDING — внутренние отступы</h2>
+
+<pre><code>padding: 20px;                   /* все стороны */
+padding: 20px 40px;              /* верх-низ | лево-право */
+padding: 10px 20px 30px 40px;   /* верх | право | низ | лево */
+padding-top: 10px;               /* отдельная сторона */</code></pre>
+
+    <div class="key-point">
+        <strong>Запоминалка 4 значений:</strong> по часовой стрелке — Top, Right, Bottom, Left (TRBL — «trouble»)
+    </div>
+
+    <hr>
+
+    <h2>🔲 BORDER — рамка</h2>
+
+<pre><code>border: толщина стиль цвет;
+
+border: 1px solid black;     /* сплошная */
+border: 2px dashed red;      /* пунктирная */
+border: 2px dotted blue;     /* точечная */
+border: 3px double green;    /* двойная */
+border-bottom: 2px solid #333;  /* только снизу */</code></pre>
+
+    <table>
+        <tr><th>Стиль</th><th>Описание</th></tr>
+        <tr><td><code>solid</code></td><td>Сплошная (самая частая)</td></tr>
+        <tr><td><code>dashed</code></td><td>Пунктирная (штрихи)</td></tr>
+        <tr><td><code>dotted</code></td><td>Точечная</td></tr>
+        <tr><td><code>double</code></td><td>Двойная</td></tr>
+        <tr><td><code>none</code></td><td>Без рамки</td></tr>
+    </table>
+
+    <hr>
+
+    <h2>↔️ MARGIN — внешние отступы</h2>
+
+<pre><code>margin: 20px;                /* все стороны */
+margin: 20px 40px;           /* верх-низ | лево-право */
+margin: 0 auto;             /* центрирование блока */
+margin-bottom: 30px;         /* отдельная сторона */</code></pre>
+
+    <div class="remember">
+        <ul>
+            <li><code>margin: 0 auto;</code> — центрирует блок (нужен width!)</li>
+            <li>Вертикальные margin <strong>схлопываются</strong>: побеждает больший (30px + 20px = 30px, не 50px)</li>
+            <li>Padding — <strong>внутри</strong> (фон виден). Margin — <strong>снаружи</strong> (прозрачный).</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>📐 BOX-SIZING</h2>
+
+    <table>
+        <tr><th>Значение</th><th>width включает</th></tr>
+        <tr><td><code>content-box</code> (по умолч.)</td><td>Только content. Padding и border <strong>добавляются сверху</strong></td></tr>
+        <tr><td><code>border-box</code> (рекомендуется)</td><td>Content + padding + border. <strong>Итоговый размер = width</strong></td></tr>
+    </table>
+
+<pre><code>/* Всегда добавляйте в начало CSS! */
+* {
+    box-sizing: border-box;
+}</code></pre>
+
+    <hr>
+
+    <h2>🔀 DISPLAY</h2>
+
+    <table>
+        <tr><th>Значение</th><th>Поведение</th></tr>
+        <tr><td><code>block</code></td><td>Новая строка, вся ширина, width/height работают</td></tr>
+        <tr><td><code>inline</code></td><td>В одной строке, width/height не работают</td></tr>
+        <tr><td><code>inline-block</code></td><td>В одной строке + width/height работают</td></tr>
+        <tr><td><code>none</code></td><td>Элемент скрыт (не занимает места)</td></tr>
+    </table>
+
+<pre><code>/* Кнопки в ряд */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #3b82f6;
+    color: white;
+    border-radius: 8px;
+}</code></pre>
+
+    <hr>
+
+    <h2>📜 OVERFLOW</h2>
+
+    <table>
+        <tr><th>Значение</th><th>Что делает</th></tr>
+        <tr><td><code>visible</code></td><td>Содержимое вылезает (по умолч.)</td></tr>
+        <tr><td><code>hidden</code></td><td>Обрезает лишнее</td></tr>
+        <tr><td><code>scroll</code></td><td>Всегда прокрутка</td></tr>
+        <tr><td><code>auto</code></td><td>Прокрутка только если нужна</td></tr>
+    </table>
+
+    <hr>
+
+    <h2>⭕ BORDER-RADIUS</h2>
+
+<pre><code>border-radius: 8px;       /* лёгкое скругление */
+border-radius: 16px;      /* карточки */
+border-radius: 50%;       /* круг (для квадрата) */
+border-radius: 9999px;    /* таблетка (кнопки) */</code></pre>
+
+    <hr>
+
+    <h2>🌑 BOX-SHADOW</h2>
+
+<pre><code>box-shadow: X  Y  размытие  цвет;
+
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);    /* лёгкая */
+box-shadow: 0 4px 12px rgba(0,0,0,0.15);  /* средняя */
+box-shadow: 0 10px 30px rgba(0,0,0,0.2);  /* глубокая */</code></pre>
+
+    <p><code>rgba(0,0,0,0.1)</code> — чёрный цвет, 10% прозрачность.</p>
+
+    <hr>
+
+    <h2>📝 ИТОГИ ЗАНЯТИЯ 7</h2>
+
+    <div class="key-point">
+        <ul>
+            <li>Блочные (block) — новая строка, вся ширина. Строчные (inline) — в одной строке</li>
+            <li>Box Model: content → padding → border → margin</li>
+            <li>Padding — внутри, margin — снаружи</li>
+            <li><code>* { box-sizing: border-box; }</code> — всегда!</li>
+            <li><code>display: inline-block</code> — лучшее от block и inline</li>
+            <li><code>overflow: hidden/auto</code> — обрезка или прокрутка</li>
+            <li><code>border-radius</code> — скругление (50% = круг)</li>
+            <li><code>box-shadow</code> — тень (X Y размытие цвет)</li>
+        </ul>
+    </div>
+
+    <div class="homework">
+        <ol>
+            <li>Создайте 3 карточки товаров с padding, border-radius, box-shadow и кнопкой «Купить»</li>
+            <li>Используйте <code>display: inline-block</code> чтобы карточки стояли в ряд</li>
+            <li>Добавьте <code>* { box-sizing: border-box; }</code></li>
+            <li>Поэкспериментируйте с margin и padding в DevTools — посмотрите Box Model</li>
+            <li>Сделайте аватар (круглое изображение с <code>border-radius: 50%</code>)</li>
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>
